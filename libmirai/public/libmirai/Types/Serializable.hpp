@@ -1,0 +1,22 @@
+#ifndef _MIRAI_TYPES_SERIALIZABLE_HPP_
+#define _MIRAI_TYPES_SERIALIZABLE_HPP_
+
+#include <nlohmann/json_fwd.hpp>
+
+namespace Mirai
+{
+
+class Serializable
+{
+public:
+	virtual void FromJson(const nlohmann::json&) = 0;
+	virtual nlohmann::json ToJson() const = 0;
+};
+
+void to_json(nlohmann::json &j, const Serializable &p);
+
+void from_json(const nlohmann::json &j, Serializable &p);
+
+}
+
+#endif
