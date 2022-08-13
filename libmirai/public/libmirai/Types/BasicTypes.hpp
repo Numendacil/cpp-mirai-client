@@ -9,6 +9,10 @@
 #include <nlohmann/json_fwd.hpp>
 #include <libmirai/Types/Serializable.hpp>
 
+#ifdef IGNORE	// Oh well, Windows.h again
+#undef IGNORE
+#endif
+
 namespace Mirai
 {
 

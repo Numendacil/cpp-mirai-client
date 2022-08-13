@@ -11,6 +11,8 @@ class Serializable
 public:
 	virtual void FromJson(const nlohmann::json&) = 0;
 	virtual nlohmann::json ToJson() const = 0;
+
+	virtual ~Serializable() = default;
 };
 
 void to_json(nlohmann::json &j, const Serializable &p);

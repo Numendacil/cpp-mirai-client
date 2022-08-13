@@ -6,10 +6,9 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
-#include <httplib.h>
 
-#include <libmirai/Impl/HttpClientImpl.hpp>
 #include <libmirai/Impl/MessageClientImpl.hpp>
+#include <libmirai/Impl/HttpClientImpl.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
 
@@ -501,7 +500,7 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path)
 {
-	string name = (path.has_filename())? path.filename() : path;
+	string name = (path.has_filename()) ? path.filename().u8string() : path.u8string();
 	std::ifstream f(path, std::ios_base::binary);
 	return this->UploadGroupFile(GroupId, UploadPath, name, f);
 }

@@ -21,7 +21,7 @@ protected:
 	std::condition_variable _cv;
 
 	std::vector<std::thread> _workers;
-	std::queue<std::packaged_task<void()>> _jobs;
+	std::queue<std::function<void()>> _jobs;
 
 	bool _stop = false;
 
@@ -29,7 +29,7 @@ protected:
 	{
 		while (true)
 		{
-			std::packaged_task<void()> job;
+			std::function<void()> job;
 			{
 				std::unique_lock<std::mutex> lk(this->_mtx);
 				this->_cv.wait(lk, [this]{ return this->_stop || !this->_jobs.empty(); });
@@ -74,19 +74,19 @@ public:
 	{
 		using return_type = std::invoke_result_t<F&&, Args&&...>;
 
-		std::packaged_task<return_type()> task(
+		auto task = std::make_shared<std::packaged_task<return_type()>>(
 				[&]() -> return_type
 				{
 					return std::invoke(std::forward<F>(f), std::forward<Args>(args)...);
 				}
 			);
 
-		std::future<return_type> result = task.get_future();
+		std::future<return_type> result = task->get_future();
 		{
 			std::unique_lock<std::mutex> lk(this->_mtx);
 			if(this->_stop)
 				return std::future<return_type>();
-			this->_jobs.emplace(std::move(task));
+			this->_jobs.emplace([task]() { (*task)(); });
 		}
 		this->_cv.notify_one();
 		return result;
