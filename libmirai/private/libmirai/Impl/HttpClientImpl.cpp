@@ -37,8 +37,8 @@ const char* JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
 
 json HttpClientImpl::SessionInfo(const string& SessionKey)
 {
-	json body = {{"sessionKey", SessionKey}};
-	auto result = this->_client.Post("/sessionInfo", body.dump(), JSON_CONTENT_TYPE);
+	httplib::Params params = {{"sessionKey", SessionKey}};
+	auto result = this->_client.Get("/sessionInfo", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
 }
