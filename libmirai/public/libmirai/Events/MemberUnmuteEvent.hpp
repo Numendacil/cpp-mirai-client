@@ -26,10 +26,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberUnmuteEvent* Clone() const override
-	{
-		return new MemberUnmuteEvent(*this);
-	}
+	// virtual MemberUnmuteEvent* Clone() const override
+	// {
+	//	return new MemberUnmuteEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

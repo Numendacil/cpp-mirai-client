@@ -27,10 +27,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotGroupPermissionChangeEvent* Clone() const override
-	{
-		return new BotGroupPermissionChangeEvent(*this);
-	}
+	// virtual BotGroupPermissionChangeEvent* Clone() const override
+	// {
+	//	return new BotGroupPermissionChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

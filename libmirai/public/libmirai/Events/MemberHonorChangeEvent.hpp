@@ -59,10 +59,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberHonorChangeEvent* Clone() const override
-	{
-		return new MemberHonorChangeEvent(*this);
-	}
+	// virtual MemberHonorChangeEvent* Clone() const override
+	// {
+	//	return new MemberHonorChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

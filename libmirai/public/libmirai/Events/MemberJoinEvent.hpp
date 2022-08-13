@@ -27,10 +27,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberJoinEvent* Clone() const override
-	{
-		return new MemberJoinEvent(*this);
-	}
+	// virtual MemberJoinEvent* Clone() const override
+	// {
+	//	return new MemberJoinEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

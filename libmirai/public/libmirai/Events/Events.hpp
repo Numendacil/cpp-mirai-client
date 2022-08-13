@@ -1,3 +1,6 @@
+#ifndef _MIRAI_EVENTS_HPP_
+#define _MIRAI_EVENTS_HPP_
+
 #include "EventBase.hpp"
 #include "BotEvent.hpp"
 #include "BotOfflineEventActive.hpp"
@@ -49,3 +52,5 @@
 #include "TempSyncMessageEvent.hpp"
 
 #include "MiraiClientEvents.hpp"
+
+#endif

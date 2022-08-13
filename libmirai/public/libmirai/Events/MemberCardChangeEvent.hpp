@@ -27,10 +27,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberCardChangeEvent* Clone() const override
-	{
-		return new MemberCardChangeEvent(*this);
-	}
+	// virtual MemberCardChangeEvent* Clone() const override
+	// {
+	//	return new MemberCardChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

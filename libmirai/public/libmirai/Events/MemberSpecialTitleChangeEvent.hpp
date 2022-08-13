@@ -27,10 +27,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberSpecialTitleChangeEvent* Clone() const override
-	{
-		return new MemberSpecialTitleChangeEvent(*this);
-	}
+	// virtual MemberSpecialTitleChangeEvent* Clone() const override
+	// {
+	//	return new MemberSpecialTitleChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

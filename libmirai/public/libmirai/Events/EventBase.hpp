@@ -22,17 +22,17 @@ public:
 
 	virtual std::string_view GetType() const = 0;
  
-	virtual EventBase* Clone() const = 0;
+	// virtual EventBase* Clone() const = 0;
 
-	virtual std::shared_ptr<EventBase> CloneShared() const
-	{
-		return std::shared_ptr<EventBase>(this->Clone());
-	}
+	// virtual std::shared_ptr<EventBase> CloneShared() const
+	// {
+	// 	return std::shared_ptr<EventBase>(this->Clone());
+	// }
 
-	virtual std::unique_ptr<EventBase> CloneUnique() const
-	{
-		return std::unique_ptr<EventBase>(this->Clone());
-	}
+	// virtual std::unique_ptr<EventBase> CloneUnique() const
+	// {
+	// 	return std::unique_ptr<EventBase>(this->Clone());
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) = 0;
 

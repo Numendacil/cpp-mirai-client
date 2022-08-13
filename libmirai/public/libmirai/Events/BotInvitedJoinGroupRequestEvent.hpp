@@ -29,10 +29,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotInvitedJoinGroupRequestEvent* Clone() const override
-	{
-		return new BotInvitedJoinGroupRequestEvent(*this);
-	}
+	// virtual BotInvitedJoinGroupRequestEvent* Clone() const override
+	// {
+	//	return new BotInvitedJoinGroupRequestEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

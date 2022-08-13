@@ -31,10 +31,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupRecallEvent* Clone() const override
-	{
-		return new GroupRecallEvent(*this);
-	}
+	// virtual GroupRecallEvent* Clone() const override
+	// {
+	//	return new GroupRecallEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

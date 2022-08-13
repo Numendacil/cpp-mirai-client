@@ -26,14 +26,14 @@ public:
 		return _TYPE_;
 	}
 
-	virtual FriendInputStatusChangedEvent* Clone() const override
-	{
-		return new FriendInputStatusChangedEvent(*this);
-	}
+	// virtual FriendInputStatusChangedEvent* Clone() const override
+	// {
+	//	return new FriendInputStatusChangedEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
-	User GetTarget() const { return this->_friend; }
+	User GetFriend() const { return this->_friend; }
 	bool isInputting() const { return this->_inputting; }
 };
 

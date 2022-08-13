@@ -26,10 +26,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberLeaveEventKick* Clone() const override
-	{
-		return new MemberLeaveEventKick(*this);
-	}
+	// virtual MemberLeaveEventKick* Clone() const override
+	// {
+	//	return new MemberLeaveEventKick(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

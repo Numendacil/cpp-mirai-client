@@ -27,14 +27,14 @@ public:
 		return _TYPE_;
 	}
 
-	virtual FriendNickChangedEvent* Clone() const override
-	{
-		return new FriendNickChangedEvent(*this);
-	}
+	// virtual FriendNickChangedEvent* Clone() const override
+	// {
+	//	return new FriendNickChangedEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
-	User GetTarget() const { return this->_friend; }
+	User GetFriend() const { return this->_friend; }
 	std::string GetOriginalNickname() const { return this->_from; }
 	std::string GetNewNickname() const { return this->_to; }
 };

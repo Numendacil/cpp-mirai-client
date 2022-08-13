@@ -26,10 +26,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual OtherClientOnlineEvent* Clone() const override
-	{
-		return new OtherClientOnlineEvent(*this);
-	}
+	// virtual OtherClientOnlineEvent* Clone() const override
+	// {
+	//	return new OtherClientOnlineEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

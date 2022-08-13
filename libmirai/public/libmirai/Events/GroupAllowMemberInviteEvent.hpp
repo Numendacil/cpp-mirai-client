@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupAllowMemberInviteEvent* Clone() const override
-	{
-		return new GroupAllowMemberInviteEvent(*this);
-	}
+	// virtual GroupAllowMemberInviteEvent* Clone() const override
+	// {
+	//	return new GroupAllowMemberInviteEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

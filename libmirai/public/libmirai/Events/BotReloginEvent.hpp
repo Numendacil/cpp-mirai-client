@@ -20,10 +20,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotReloginEvent* Clone() const override
-	{
-		return new BotReloginEvent(*this);
-	}
+	// virtual BotReloginEvent* Clone() const override
+	// {
+	//	return new BotReloginEvent(*this);
+	// }
 };
 
 }

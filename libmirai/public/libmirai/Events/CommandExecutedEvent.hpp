@@ -30,10 +30,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual CommandExecutedEvent* Clone() const override
-	{
-		return new CommandExecutedEvent(*this);
-	}
+	// virtual CommandExecutedEvent* Clone() const override
+	// {
+	//	return new CommandExecutedEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

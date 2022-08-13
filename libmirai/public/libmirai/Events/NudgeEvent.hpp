@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual NudgeEvent* Clone() const override
-	{
-		return new NudgeEvent(*this);
-	}
+	// virtual NudgeEvent* Clone() const override
+	// {
+	//	return new NudgeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupNameChangeEvent* Clone() const override
-	{
-		return new GroupNameChangeEvent(*this);
-	}
+	// virtual GroupNameChangeEvent* Clone() const override
+	// {
+	//	return new GroupNameChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

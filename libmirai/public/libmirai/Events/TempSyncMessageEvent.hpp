@@ -20,17 +20,17 @@ protected:
 	MessageChain _message;
 
 public:
-	static constexpr std::string_view _TYPE_ = "TempSyncMessageEvent";
+	static constexpr std::string_view _TYPE_ = "TempSyncMessage";
 
 	virtual std::string_view GetType() const override
 	{
 		return _TYPE_;
 	}
 
-	virtual TempSyncMessageEvent* Clone() const override
-	{
-		return new TempSyncMessageEvent(*this);
-	}
+	// virtual TempSyncMessageEvent* Clone() const override
+	// {
+	//	return new TempSyncMessageEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

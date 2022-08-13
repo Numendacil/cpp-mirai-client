@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupAllowAnonymousChatEvent* Clone() const override
-	{
-		return new GroupAllowAnonymousChatEvent(*this);
-	}
+	// virtual GroupAllowAnonymousChatEvent* Clone() const override
+	// {
+	//	return new GroupAllowAnonymousChatEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

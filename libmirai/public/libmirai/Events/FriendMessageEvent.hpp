@@ -20,17 +20,17 @@ protected:
 	MessageChain _message;
 
 public:
-	static constexpr std::string_view _TYPE_ = "FriendMessageEvent";
+	static constexpr std::string_view _TYPE_ = "FriendMessage";
 
 	virtual std::string_view GetType() const override
 	{
 		return _TYPE_;
 	}
 
-	virtual FriendMessageEvent* Clone() const override
-	{
-		return new FriendMessageEvent(*this);
-	}
+	// virtual FriendMessageEvent* Clone() const override
+	// {
+	//	return new FriendMessageEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

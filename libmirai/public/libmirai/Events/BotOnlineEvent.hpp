@@ -20,10 +20,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotOnlineEvent* Clone() const override
-	{
-		return new BotOnlineEvent(*this);
-	}
+	// virtual BotOnlineEvent* Clone() const override
+	// {
+	//	return new BotOnlineEvent(*this);
+	// }
 };
 
 }

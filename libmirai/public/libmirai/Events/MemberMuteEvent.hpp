@@ -29,10 +29,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberMuteEvent* Clone() const override
-	{
-		return new MemberMuteEvent(*this);
-	}
+	// virtual MemberMuteEvent* Clone() const override
+	// {
+	//	return new MemberMuteEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

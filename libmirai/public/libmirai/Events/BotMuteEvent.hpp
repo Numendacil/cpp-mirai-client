@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotMuteEvent* Clone() const override
-	{
-		return new BotMuteEvent(*this);
-	}
+	// virtual BotMuteEvent* Clone() const override
+	// {
+	//	return new BotMuteEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

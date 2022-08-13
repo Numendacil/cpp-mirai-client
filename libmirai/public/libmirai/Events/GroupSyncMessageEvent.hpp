@@ -20,17 +20,17 @@ protected:
 	MessageChain _message;
 
 public:
-	static constexpr std::string_view _TYPE_ = "GroupSyncMessageEvent";
+	static constexpr std::string_view _TYPE_ = "GroupSyncMessage";
 
 	virtual std::string_view GetType() const override
 	{
 		return _TYPE_;
 	}
 
-	virtual GroupSyncMessageEvent* Clone() const override
-	{
-		return new GroupSyncMessageEvent(*this);
-	}
+	// virtual GroupSyncMessageEvent* Clone() const override
+	// {
+	//	return new GroupSyncMessageEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

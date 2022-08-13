@@ -25,10 +25,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual BotLeaveEventActive* Clone() const override
-	{
-		return new BotLeaveEventActive(*this);
-	}
+	// virtual BotLeaveEventActive* Clone() const override
+	// {
+	//	return new BotLeaveEventActive(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

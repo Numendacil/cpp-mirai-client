@@ -27,10 +27,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual MemberPermissionChangeEvent* Clone() const override
-	{
-		return new MemberPermissionChangeEvent(*this);
-	}
+	// virtual MemberPermissionChangeEvent* Clone() const override
+	// {
+	//	return new MemberPermissionChangeEvent(*this);
+	// }/ }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

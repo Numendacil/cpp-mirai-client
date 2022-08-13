@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupEntranceAnnouncementChangeEvent* Clone() const override
-	{
-		return new GroupEntranceAnnouncementChangeEvent(*this);
-	}
+	// virtual GroupEntranceAnnouncementChangeEvent* Clone() const override
+	// {
+	//	return new GroupEntranceAnnouncementChangeEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

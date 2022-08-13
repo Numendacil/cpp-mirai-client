@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual GroupAllowConfessTalkEvent* Clone() const override
-	{
-		return new GroupAllowConfessTalkEvent(*this);
-	}
+	// virtual GroupAllowConfessTalkEvent* Clone() const override
+	// {
+	//	return new GroupAllowConfessTalkEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 

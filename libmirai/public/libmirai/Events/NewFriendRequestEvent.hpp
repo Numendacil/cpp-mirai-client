@@ -28,10 +28,10 @@ public:
 		return _TYPE_;
 	}
 
-	virtual NewFriendRequestEvent* Clone() const override
-	{
-		return new NewFriendRequestEvent(*this);
-	}
+	// virtual NewFriendRequestEvent* Clone() const override
+	// {
+	//	return new NewFriendRequestEvent(*this);
+	// }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
