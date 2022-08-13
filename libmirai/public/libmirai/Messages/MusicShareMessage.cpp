@@ -10,7 +10,7 @@ using json = nlohmann::json;
 
 bool MusicShareMessage::isValid() const
 {
-	return !(this->_kind.empty() || this->_title.empty() || this->_summary.empty()
+	return !(this->_kind == MusicKind::UNKNOWN || this->_title.empty() || this->_summary.empty()
 	|| this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
 	|| this->_brief.empty());
 }
@@ -18,7 +18,7 @@ bool MusicShareMessage::isValid() const
 void MusicShareMessage::FromJson(const json& data)
 {
 	assert(Utils::GetValue(data, "type", "") == this->GetType());
-	this->_kind = Utils::GetValue(data, "kind", "");
+	this->_kind = _to_enum(Utils::GetValue(data, "kind", ""));
 	this->_title = Utils::GetValue(data, "title", "");
 	this->_summary = Utils::GetValue(data, "summary", "");
 	this->_JumpUrl = Utils::GetValue(data, "jumpUrl", "");
@@ -33,7 +33,7 @@ json MusicShareMessage::ToJson() const
 
 	json data = json::object();
 	data["type"] = this->GetType();
-	data["kind"] = this->_kind;
+	data["kind"] = _to_string(this->_kind);
 	data["title"] = this->_title;
 	data["summary"] = this->_summary;
 	data["jumpUrl"] = this->_JumpUrl;

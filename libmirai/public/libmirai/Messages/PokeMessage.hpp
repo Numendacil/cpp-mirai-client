@@ -36,7 +36,7 @@ public:
 	};
 
 protected:
-	std::string _name;
+	PokeKind _kind;
 
 	
 	static constexpr std::array<std::string_view, static_cast<std::size_t>(PokeKind::UNKNOWN)> _PokeKindStr = 
@@ -78,7 +78,7 @@ protected:
 	}
 public:
 	PokeMessage() {}
-	PokeMessage(PokeKind kind) : _name(_to_string(kind)) {}
+	PokeMessage(PokeKind kind) : _kind(kind) {}
 	PokeMessage(const PokeMessage&) = default;
 	PokeMessage& operator=(const PokeMessage&) = default;
 	PokeMessage(PokeMessage&&) noexcept = default;
@@ -104,7 +104,7 @@ public:
 
 	bool operator==(const PokeMessage& rhs)
 	{
-		return this->_name == rhs._name;
+		return this->_kind == rhs._kind;
 	}
 
 	bool operator!=(const PokeMessage& rhs)
@@ -112,8 +112,8 @@ public:
 		return !(*this == rhs);
 	}
 
-	PokeKind GetPokeKind() const { return _to_enum(this->_name); }
-	void SetPokeKind(PokeKind kind) { this->_name = _to_string(kind); }
+	PokeKind GetPokeKind() const { return this->_kind; }
+	void SetPokeKind(PokeKind kind) { this->_kind = kind; }
 };
 
 }

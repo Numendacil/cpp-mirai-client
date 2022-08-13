@@ -25,7 +25,7 @@ public:
 	};
 
 protected:
-	std::string _kind;
+	MusicKind _kind;
 	std::string _title;
 	std::string _summary;
 	std::string _JumpUrl;
@@ -67,7 +67,7 @@ public:
 	MusicShareMessage() {}
 	MusicShareMessage(MusicKind kind, const std::string& title, const std::string& summary,
 	const std::string& JumpUrl, const std::string& PictureUrl, const std::string& MusicUrl, const std::string& brief) 
-	: _kind(_to_string(kind)), _title(title), _summary(summary), 
+	: _kind(kind), _title(title), _summary(summary), 
 	_JumpUrl(JumpUrl), _PictureUrl(PictureUrl), _MusicUrl(MusicUrl), _brief(brief) {}
 	MusicShareMessage(const MusicShareMessage&) = default;
 	MusicShareMessage& operator=(const MusicShareMessage&) = default;
@@ -89,7 +89,7 @@ public:
 	virtual void FromJson(const nlohmann::json& data) override;
 	virtual nlohmann::json ToJson() const override;
 
-	MusicKind GetKind() const { return _to_enum(this->_kind); }
+	MusicKind GetKind() const { return this->_kind; }
 	std::string GetTitle() const { return this->_title; }
 	std::string GetSummary() const { return this->_summary; }
 	std::string GetJumpUrl() const { return this->_JumpUrl; }
@@ -97,7 +97,7 @@ public:
 	std::string GetMusicUrl() const { return this->_MusicUrl; }
 	std::string GetBrief() const { return this->_brief; }
 
-	void SetKind(MusicKind kind) { this->_kind = _to_string(kind); }
+	void SetKind(MusicKind kind) { this->_kind = kind; }
 	void SetTitle(const std::string& title) { this->_title = title; }
 	void SetSummary(const std::string& summary) { this->_summary = summary; }
 	void SetJumpUrl(const std::string& JumpUrl) { this->_JumpUrl = JumpUrl; }

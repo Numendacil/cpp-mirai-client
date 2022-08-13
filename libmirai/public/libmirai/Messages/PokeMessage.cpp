@@ -10,13 +10,13 @@ using json = nlohmann::json;
 
 bool PokeMessage::isValid() const
 {
-	return !this->_name.empty();
+	return this->_kind != PokeKind::UNKNOWN;
 }
 
 void PokeMessage::FromJson(const json& data)
 {
 	assert(Utils::GetValue(data, "type", "") == this->GetType());
-	this->_name = Utils::GetValue(data, "name", "");
+	this->_kind = _to_enum(Utils::GetValue(data, "name", ""));
 }
 
 json PokeMessage::ToJson() const
@@ -25,7 +25,7 @@ json PokeMessage::ToJson() const
 
 	json data = json::object();
 	data["type"] = this->GetType();
-	data["name"] = this->_name;
+	data["name"] = _to_string(this->_kind);
 	return data;
 }
 

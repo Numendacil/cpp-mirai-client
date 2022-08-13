@@ -20,22 +20,83 @@ void from_json(const json& j, UID_t& p)
 	p = j.get<int64_t>();
 }
 
+
+namespace
+{
+
+constexpr std::array<std::string_view, static_cast<std::size_t>(SEX::UNKNOWN) + 1> sex_names =
+{
+	"MALE",
+	"FEMALE",
+	"UNKNOWN"
+};
+
+constexpr std::string_view sex_to_str(const SEX& m)
+{
+		auto i = static_cast<std::size_t>(m);
+		if (i < sex_names.size())
+			return sex_names[i];
+		else
+			return "UNKNOWN";
+}
+
+constexpr SEX str_to_sex(std::string_view s)
+{
+	for (std::size_t i = 0; i < sex_names.size(); i++)
+		if (sex_names[i] == s)
+			return static_cast<SEX>(i);
+
+	return SEX::UNKNOWN;
+}
+
+}
+
 void to_json(nlohmann::json& j, const SEX& p)
 {
-	j = SEX::_to_string(p);
+	j = sex_to_str(p);
 }
 void from_json(const nlohmann::json& j, SEX& p)
 {
-	p = SEX::_to_enum(j.get<std::string>());
+	p = str_to_sex(j.get<std::string>());
+}
+
+namespace
+{
+
+static constexpr std::array<std::string_view, static_cast<std::size_t>(PERMISSION::UNKNOWN)> permission_names =
+{
+	"OWNER",
+	"ADMINISTRATOR",
+	"MEMBER"
+};
+
+constexpr std::string_view permission_to_str(const PERMISSION& m)
+{
+		auto i = static_cast<std::size_t>(m);
+		if (i < permission_names.size())
+			return permission_names[i];
+		else
+			return "";
+}
+
+constexpr PERMISSION str_to_permission(std::string_view s)
+{
+	for (std::size_t i = 0; i < permission_names.size(); i++)
+		if (permission_names[i] == s)
+			return static_cast<PERMISSION>(i);
+
+	return PERMISSION::UNKNOWN;
+}
+
 }
 
 void to_json(nlohmann::json& j, const PERMISSION& p)
 {
-	j = PERMISSION::_to_string(p);
+	j = permission_to_str(p);
 }
 void from_json(const nlohmann::json& j, PERMISSION& p)
 {
-	p = PERMISSION::_to_enum(j.get<std::string>());
+	p = str_to_permission(j.get<std::string>());
 }
 
 

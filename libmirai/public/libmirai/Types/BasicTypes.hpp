@@ -60,80 +60,13 @@ enum class NewFriendRequestOp {ACCEPT = 0, REFUSE, BLACKLIST};
 enum class MemberJoinRequestOp {ACCEPT = 0, REFUSE, IGNORE, REFUSE_BLACKLIST, IGNORE_BLACKLIST};
 enum class BotInvitedJoinGroupRequestOp {ACCEPT = 0, REFUSE};
 
-
-struct SEX
-{
-	enum _enum : std::size_t {MALE = 0, FEMALE, UNKNOWN};
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(_enum::UNKNOWN) + 1> _names =
-	{
-		"MALE",
-		"FEMALE",
-		"UNKNOWN"
-	};
-	static constexpr std::string_view _to_string(const _enum& m)
-	{
-		auto i = static_cast<std::size_t>(m);
-		if (i < _names.size())
-			return _names[i];
-		else
-			return "UNKNOWN";
-	}
-
-	static constexpr _enum _to_enum(std::string_view s)
-	{
-		for (std::size_t i = 0; i < _names.size(); i++)
-			if (_names[i] == s)
-				return static_cast<_enum>(i);
-
-		return UNKNOWN;
-	}
-
-	SEX() = delete;
-	constexpr SEX(_enum value) : _value(value) {}
-	constexpr operator _enum() const { return _value; }
-
-private:
-	_enum _value;
-};
+enum class SEX : std::size_t {MALE = 0, FEMALE, UNKNOWN};
 
 void to_json(nlohmann::json&, const SEX&);
 void from_json(const nlohmann::json&, SEX&);
 
 
-struct PERMISSION
-{
-	enum _enum : std::size_t {OWNER = 0, ADMINISTRATOR, MEMBER, UNKNOWN};
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(_enum::UNKNOWN)> _names =
-	{
-		"OWNER",
-		"ADMINISTRATOR",
-		"MEMBER"
-	};
-	static constexpr std::string_view _to_string(const _enum& m)
-	{
-		auto i = static_cast<std::size_t>(m);
-		if (i < _names.size())
-			return _names[i];
-		else
-			return "";
-	}
-
-	static constexpr _enum _to_enum(std::string_view s)
-	{
-		for (std::size_t i = 0; i < _names.size(); i++)
-			if (_names[i] == s)
-				return static_cast<_enum>(i);
-
-		return UNKNOWN;
-	}
-
-	PERMISSION() = delete;
-	constexpr PERMISSION(_enum value) : _value(value) {}
-	constexpr operator _enum() const { return _value; }
-
-private:
-	_enum _value;
-};
+enum class PERMISSION : std::size_t {OWNER = 0, ADMINISTRATOR, MEMBER, UNKNOWN};
 
 void to_json(nlohmann::json&, const PERMISSION&);
 void from_json(const nlohmann::json&, PERMISSION&);

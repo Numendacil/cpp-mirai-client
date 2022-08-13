@@ -23,7 +23,7 @@ public:
 		UNKNOWN
 	};
 protected:
-	std::string _action;	// {achieve, lose}
+	ActionKind _action;	// {achieve, lose}
 	std::string _honor;
 	GroupMember _member;
 
@@ -66,7 +66,7 @@ public:
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
-	ActionKind GetAction() const { return _to_enum(this->_action); }
+	ActionKind GetAction() const { return this->_action; }
 	std::string GetHonor() const { return this->_honor; }
 	GroupMember GetMember() const { return this->_member; }
 };
