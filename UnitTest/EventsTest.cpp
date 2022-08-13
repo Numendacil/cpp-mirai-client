@@ -6,7 +6,6 @@
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "JsonData.hpp"
-#include "libmirai/Types/NudgeTarget.hpp"
 
 using namespace Mirai;
 using json = nlohmann::json;

@@ -8,16 +8,16 @@
 #include <nlohmann/json.hpp>
 #include <httplib.h>
 
-#include <libmirai/Api/HttpClientImpl.hpp>
-#include <libmirai/Api/MessageClientImpl.hpp>
-#include <libmirai/Events/MiraiClientEvents.hpp>
-#include <libmirai/Exceptions/Exceptions.hpp>
+#include <libmirai/Impl/HttpClientImpl.hpp>
+#include <libmirai/Impl/MessageClientImpl.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
 
+#include <libmirai/Events/MiraiClientEvents.hpp>
+#include <libmirai/Exceptions/Exceptions.hpp>
+#include <libmirai/Types/Types.hpp>
+
 #include "Client.hpp"
-#include "libmirai/Types/BasicTypes.hpp"
-#include "libmirai/Types/NudgeTarget.hpp"
 
 namespace Mirai
 {

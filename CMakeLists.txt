@@ -14,7 +14,11 @@ set(MIRAI_LIB_TARGET_NAME	cppmirai)
 
 option(BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
 
-add_library(${MIRAI_LIB_TARGET_NAME})
+if(BUILD_SHARED_LIBS)
+	add_library(${MIRAI_LIB_TARGET_NAME} SHARED)
+else()
+	add_library(${MIRAI_LIB_TARGET_NAME} STATIC)
+endif()
 add_library(${PROJECT_NAME}::${MIRAI_LIB_TARGET_NAME} ALIAS ${MIRAI_LIB_TARGET_NAME})
 
 target_compile_features(${MIRAI_LIB_TARGET_NAME} PRIVATE cxx_std_17)

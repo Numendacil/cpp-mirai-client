@@ -14,7 +14,7 @@
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Messages/Messages.hpp>
-#include <libmirai/Api/HttpClientImpl.hpp>
+#include <libmirai/Impl/HttpClientImpl.hpp>
 
 using json = nlohmann::json;
 

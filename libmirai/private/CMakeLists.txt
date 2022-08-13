@@ -1,2 +1,2 @@
-add_subdirectory(libmirai/Api)
+add_subdirectory(libmirai/Impl)
 add_subdirectory(libmirai/Utils)
