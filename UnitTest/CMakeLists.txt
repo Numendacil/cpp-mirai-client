@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 project(unit_test)
 
-set(CMAKE_CXX_FLAGS "-g -Wall")
+# set(CMAKE_CXX_FLAGS "-g -Wall")
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 enable_testing()
