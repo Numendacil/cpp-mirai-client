@@ -221,6 +221,14 @@ json HttpClientImpl::Recall(const string& SessionKey, MessageId_t id, UID_t targ
 	return resp;
 }
 
+json HttpClientImpl::RoamingMessages(const string& SessionKey, std::time_t TimeStart, std::time_t TimeEnd, UID_t target)
+{
+	json body = {{"sessionKey", SessionKey}, {"timeStart", TimeStart}, {"timeEnd", TimeEnd}, {"target", target}};
+	auto result = this->_client.Post("/roamingMessages", body.dump(), JSON_CONTENT_TYPE);
+	json resp = Utils::ParseResponse(result);
+	return resp["data"];
+}
+
 
 json HttpClientImpl::FileList(const string& SessionKey, const string& id, const string& path, UID_t target, 
 			int64_t offset, int64_t size, bool withDownloadInfo)
@@ -557,14 +565,14 @@ json HttpClientImpl::CmdRegister(const string& SessionKey, const string& name, c
 }
 
 
-json HttpClientImpl::PostRaw(const std::string& path, const std::string& content, const std::string& ContentType)
+json HttpClientImpl::PostRaw(const string& path, const string& content, const string& ContentType)
 {
 	auto result = this->_client.Post(path, content, ContentType);
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
 
-json HttpClientImpl::GetRaw(const std::string& path, const std::multimap<std::string, std::string> params)
+json HttpClientImpl::GetRaw(const string& path, const std::multimap<string, string> params)
 {
 	auto result = this->_client.Get(path, params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);

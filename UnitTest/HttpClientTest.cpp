@@ -138,9 +138,9 @@ TEST_F(HttpClientTest, RouteTest)
 	EXPECT_EQ(Utils::GetValue(resp["data"], "method", ""), "post");
 	EXPECT_EQ(Utils::GetValue(resp["data"], "path", ""), "/recall");
 	
-	// resp = cli.RoamingMessages("");
-	// EXPECT_EQ(Utils::GetValue(resp, "method", ""), "post");
-	// EXPECT_EQ(Utils::GetValue(resp, "path", ""), "/roamingMessages");
+	resp = cli.RoamingMessages("", 0, 0, 0_qq);
+	EXPECT_EQ(Utils::GetValue(resp, "method", ""), "post");
+	EXPECT_EQ(Utils::GetValue(resp, "path", ""), "/roamingMessages");
 	
 	resp = cli.FileList("", "", "", 0_gid);
 	EXPECT_EQ(Utils::GetValue(resp, "method", ""), "get");

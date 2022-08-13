@@ -450,7 +450,7 @@ TEST(MessagesTest, SerializationTest)
 		auto idx = randidx(rng);
 		msg += data[idx];
 	}
-	m.FromJson(msg);
+	m = msg.get<MessageChain>();
 	EXPECT_EQ(m.size(), msg.size());
 	for (std::size_t i = 0; i < msg.size(); i++)
 	{

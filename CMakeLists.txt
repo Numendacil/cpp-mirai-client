@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.16)
 
-project (cpp-mirai-client VERSION 2.5.2 LANGUAGES CXX)
+project (cpp-mirai-client VERSION 2.6.1 LANGUAGES CXX)
 # set(CMAKE_CXX_STANDARD 17)
 # SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 

@@ -393,9 +393,16 @@ void MiraiClient::RecallFriendMessage(MessageId_t id, QQ_t qq)
 {
 	(void)this->_HttpClient->Recall(this->_SessionKey, id, qq);
 }
+
 void MiraiClient::RecallGroupMessage(MessageId_t id, GID_t GroupId)
 {
 	(void)this->_HttpClient->Recall(this->_SessionKey, id, GroupId);
+}
+
+std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart, std::time_t TimeEnd)
+{
+	json resp = this->_HttpClient->RoamingMessages(this->_SessionKey, TimeStart, TimeEnd, qq);
+	return resp.get<std::vector<MessageChain>>();
 }
 
 

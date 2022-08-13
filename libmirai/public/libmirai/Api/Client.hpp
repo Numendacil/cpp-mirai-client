@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include <functional>
+#include <limits>
 #include <memory>
 #include <nlohmann/json_fwd.hpp>
 #include <mutex>
@@ -16,6 +17,7 @@
 #include <libmirai/Types/GroupSettings.hpp>
 #include <libmirai/Events/Events.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
+#include <vector>
 
 #include "SessionConfig.hpp"
 
@@ -201,6 +203,7 @@ public:
 	void NudgeStranger(QQ_t qq);
 	void RecallFriendMessage(MessageId_t id, QQ_t qq);
 	void RecallGroupMessage(MessageId_t id, GID_t GroupId);
+	std::vector<MessageChain> GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart = 0, std::time_t TimeEnd = std::numeric_limits<std::time_t>::max());
 
 	std::vector<GroupFileInfo> GetGroupFileList(GID_t GroupId, const FilePath& dir = {}, 
 		int64_t offset = 0, int64_t size = 0, bool withDownloadInfo = false);

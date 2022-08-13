@@ -75,6 +75,7 @@ public:
 	json SendTempMessage(const std::string& SessionKey, QQ_t qq, GID_t group, const json& message, std::optional<MessageId_t> QuoteId = std::nullopt);
 	json SendNudge(const std::string& SessionKey, QQ_t target, UID_t subject, const std::string& kind);
 	json Recall(const std::string& SessionKey, MessageId_t id, UID_t target);
+	json RoamingMessages(const std::string& SessionKey, std::time_t TimeStart, std::time_t TimeEnd, UID_t target);
 
 	json FileList(const std::string& SessionKey, const std::string& id, const std::string& path, UID_t target, 
 				int64_t offset = 0, int64_t size = 0, bool withDownloadInfo = false);
