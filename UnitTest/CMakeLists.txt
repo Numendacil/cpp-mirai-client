@@ -23,7 +23,8 @@ target_link_libraries(unit_test PRIVATE ixwebsocket::ixwebsocket)
 target_include_directories(unit_test PRIVATE ../libmirai/private)
 
 target_compile_features(unit_test PRIVATE cxx_std_17)
-target_compile_options(unit_test PRIVATE -std=c++17)
+set_property(TARGET unit_test PROPERTY CXX_STANDARD 17)
+set_property(TARGET unit_test PROPERTY CXX_STANDARD_REQUIRED ON)
 
 include(GoogleTest)
 gtest_discover_tests(unit_test)

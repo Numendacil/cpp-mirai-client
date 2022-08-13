@@ -454,6 +454,6 @@ TEST(MessagesTest, SerializationTest)
 	EXPECT_EQ(m.size(), msg.size());
 	for (std::size_t i = 0; i < msg.size(); i++)
 	{
-		EXPECT_EQ(m[i]->GetType(), msg[i]["type"]);
+		EXPECT_EQ(m[i]->GetType(), msg[i]["type"].get<std::string>());
 	}
 }
