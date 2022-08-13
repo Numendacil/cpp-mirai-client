@@ -5,7 +5,7 @@ namespace Data
 
 using json = nlohmann::json;
 
-static json MessageData = 
+static const json MessageData = 
 {
 	{
 		"AppMessage", json::parse(R"(
@@ -232,6 +232,883 @@ static json MessageData =
 			{
 				"type": "Xml",
 				"xml": "<XML>"
+			}
+		)")
+	}
+};
+
+static const json EventData = 
+{
+	{
+		"BotOnlineEvent", json::parse(R"(
+			{
+				"type":"BotOnlineEvent",
+				"qq":123456
+			}
+		)")
+	},
+	{
+		"BotOfflineEventActive", json::parse(R"(
+			{
+				"type":"BotOfflineEventActive",
+				"qq":123456
+			}
+		)")
+	},
+	{
+		"BotOfflineEventDropped", json::parse(R"(
+			{
+				"type":"BotOfflineEventDropped",
+				"qq":123456
+			}
+		)")
+	},
+	{
+		"FriendInputStatusChangedEvent", json::parse(R"(
+			{
+				"type":"FriendInputStatusChangedEvent",
+				"friend": 
+				{
+					"id": 123123,
+					"nickname": "nick",
+					"remark": "remark"
+				}, 
+				"inputting": true
+			}
+		)")
+	},
+	{
+		"FriendNickChangedEvent", json::parse(R"(
+			{
+				"type": "FriendNickChangedEvent",
+				"friend": 
+				{
+					"id": 123123,
+					"nickname": "new nickname",
+					"remark": "remark"
+				}, 
+				"from": "origin nickname",
+				"to": "new nickname"
+			}
+		)")
+	},
+	{
+		"BotGroupPermissionChangeEvent", json::parse(R"(
+			{
+				"type": "BotGroupPermissionChangeEvent",
+				"origin": "MEMBER",
+				"current": "ADMINISTRATOR",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "ADMINISTRATOR"
+				}
+			}
+		)")
+	},
+	{
+		"BotMuteEvent", json::parse(R"(
+			{
+				"type": "BotMuteEvent",
+				"durationSeconds": 600,
+				"operator": 
+				{
+					"id": 123456789,
+					"memberName": "aaa",
+					"permission": "ADMINISTRATOR",
+					"specialTitle":"xxx",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"BotUnmuteEvent", json::parse(R"(
+			{
+				"type": "BotUnmuteEvent",
+				"operator": 
+				{
+					"id": 123456789,
+					"memberName": "aaa",
+					"permission": "ADMINISTRATOR",
+					"specialTitle":"xxx",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"BotJoinGroupEvent", json::parse(R"(
+			{
+				"type": "BotJoinGroupEvent",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"invitor": null
+			}
+		)")
+	},
+	{
+		"BotLeaveEventActive", json::parse(R"(
+			{
+				"type": "BotLeaveEventActive",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				}
+			}
+		)")
+	},
+	{
+		"BotLeaveEventKick", json::parse(R"(
+			{
+				"type": "BotLeaveEventKick",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator":
+				{
+					"id": 1111,
+					"memberName":"Marisa",
+					"permission":"OWNER",
+					"specialTitle":"xxx",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"BotLeaveEventDisband", json::parse(R"(
+			{
+				"type": "BotLeaveEventDisband",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator":
+				{
+					"id": 1111,
+					"memberName":"Marisa",
+					"permission":"OWNER",
+					"specialTitle":"xxx",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"GroupRecallEvent", json::parse(R"(
+			{
+				"type": "GroupRecallEvent",
+				"authorId": 123456,
+				"messageId": 123456789,
+				"time": 1234679,
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "ADMINISTRATOR"
+				},
+				"operator": null
+			}
+		)")
+	},
+	{
+		"FriendRecallEvent", json::parse(R"(
+			{
+				"type": "FriendRecallEvent",
+				"authorId": 123456,
+				"messageId": 123456789,
+				"time": 1234679,
+				"operator": 123456
+			}
+		)")
+	},
+	{
+		"NudgeEvent", json::parse(R"(
+			{
+				"type": "NudgeEvent",
+				"fromId": 123456,
+				"subject": 
+				{
+					"id": 8888,
+					"kind": "Group"
+				},
+				"action": "戳了戳",
+				"suffix": "的脸",
+				"target": 654321
+			}
+		)")
+	},
+	{
+		"GroupNameChangeEvent", json::parse(R"(
+			{
+				"type": "GroupNameChangeEvent",
+				"origin": "mirai technology",
+				"current": "MIRAI TECHNOLOGY",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "MIRAI TECHNOLOGY",
+					"permission": "MEMBER"
+				},
+				"operator": 
+				{
+					"id": 123456,
+					"memberName": "xxx",
+					"permission": "ADMINISTRATOR",
+					"specialTitle":"xxxx",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "MIRAI TECHNOLOGY",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"GroupEntranceAnnouncementChangeEvent", json::parse(R"(
+			{
+				"type": "GroupEntranceAnnouncementChangeEvent",
+				"origin": "abc",
+				"current": "cba",
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator": null
+			}
+		)")
+	},
+	{
+		"GroupMuteAllEvent", json::parse(R"(
+			{
+				"type": "GroupMuteAllEvent",
+				"origin": false,
+				"current": true,
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator": null
+			}
+		)")
+	},
+	{
+		"GroupAllowAnonymousChatEvent", json::parse(R"(
+			{
+				"type": "GroupAllowAnonymousChatEvent",
+				"origin": false,
+				"current": true,
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator": 
+				{
+					"id":1234567890,
+					"memberName":"x",
+					"specialTitle":"xx",
+					"permission":"ADMINISTRATOR",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"GroupAllowConfessTalkEvent", json::parse(R"(
+			{
+				"type": "GroupAllowConfessTalkEvent",
+				"origin": false,
+				"current": true,
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"isByBot": false
+			}
+		)")
+	},
+	{
+		"GroupAllowMemberInviteEvent", json::parse(R"(
+			{
+				"type": "GroupAllowMemberInviteEvent",
+				"origin": false,
+				"current": true,
+				"group": 
+				{
+					"id": 123456789,
+					"name": "Mirai Technology",
+					"permission": "MEMBER"
+				},
+				"operator": null
+			}
+		)")
+	},
+	{
+		"MemberJoinEvent", json::parse(R"(
+			{
+				"type": "MemberJoinEvent",
+				"member": 
+				{
+					"id":1234567890,
+					"memberName":"aaa",
+					"specialTitle":"xxx",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group":
+					{
+						"id":12345,
+						"name":"xxx",
+						"permission":"ADMINISTRATOR"
+					}
+				},
+				"invitor": null
+			}
+		)")
+	},
+	{
+		"MemberLeaveEventKick", json::parse(R"(
+			{
+				"type": "MemberLeaveEventKick",
+				"member": 
+				{
+					"id":1234567890,
+					"memberName":"aaa",
+					"specialTitle":"",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group":
+					{
+						"id":12345,
+						"name":"xxx",
+						"permission":"MEMBER"
+					}
+				},
+				"operator": 
+				{
+					"id":88888888,
+					"memberName":"bbb",
+					"specialTitle":"ccc",
+					"permission":"OWNER",
+					"joinTimestamp":0,
+					"lastSpeakTimestamp":6666666,
+					"muteTimeRemaining":0,
+					"group":
+					{
+						"id":12345,
+						"name":"xxx",
+						"permission":"MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberLeaveEventQuit", json::parse(R"(
+			{
+				"type": "MemberLeaveEventQuit",
+				"member": 
+				{
+					"id": 1234,
+					"memberName": "run",
+					"permission": "MEMBER",
+					"group":
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberCardChangeEvent", json::parse(R"(
+			{
+				"type": "MemberCardChangeEvent",
+				"origin": "old",
+				"current": "new",
+				"member": 
+				{
+					"id":1234567890,
+					"memberName":"aaa",
+					"specialTitle":"xxx",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining":0,
+					"group":
+					{
+						"id":12345,
+						"name":"xxx",
+						"permission":"MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberSpecialTitleChangeEvent", json::parse(R"(
+			{
+				"type": "MemberSpecialTitleChangeEvent",
+				"origin": "origin",
+				"current": "new",
+				"member": 
+				{
+					"id": 1234,
+					"memberName": "bbb",
+					"permission": "MEMBER",
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberPermissionChangeEvent", json::parse(R"(
+			{
+				"type": "MemberPermissionChangeEvent",
+				"origin": "MEMBER",
+				"current": "ADMINISTRATOR",
+				"member": 
+				{
+					"id": 1234,
+					"memberName": "bbb",
+					"permission": "MEMBER",
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberMuteEvent", json::parse(R"(
+			{
+				"type": "MemberMuteEvent",
+				"durationSeconds": 600,
+				"member": 
+				{
+					"id":1234,
+					"memberName":"aaa",
+					"specialTitle":"xxx",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining": 600,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				},
+				"operator":
+				{
+					"id":4321,
+					"memberName":"bbb",
+					"specialTitle":"xxx",
+					"permission":"OWNER",
+					"joinTimestamp":1619334595,
+					"lastSpeakTimestamp":1660370799,
+					"muteTimeRemaining":0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				}
+			}
+		)")
+	},
+	{
+		"MemberUnmuteEvent", json::parse(R"(
+			{
+				"type": "MemberUnmuteEvent",
+				"member": 
+				{
+					"id":1234,
+					"memberName":"aaa",
+					"specialTitle":"xxx",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining": 0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "OWNER"
+					}
+				},
+				"operator": null
+			}
+		)")
+	},
+	{
+		"MemberHonorChangeEvent", json::parse(R"(
+			{
+				"type": "MemberHonorChangeEvent",
+				"member": 
+				{
+					"id":1234,
+					"memberName":"aaa",
+					"specialTitle":"xxx",
+					"permission":"MEMBER",
+					"joinTimestamp":12345678,
+					"lastSpeakTimestamp":8765432,
+					"muteTimeRemaining": 0,
+					"group": 
+					{
+						"id": 123456789,
+						"name": "Mirai Technology",
+						"permission": "MEMBER"
+					}
+				},
+				"action": "achieve",
+				"honor": "龙王"
+			}
+		)")
+	},
+	{
+		"NewFriendRequestEvent", json::parse(R"(
+			{
+				"type": "NewFriendRequestEvent",
+				"eventId": 12345678,
+				"fromId": 123456,
+				"groupId": 0,
+				"nick": "xxx",
+				"message": "hehe"
+			}
+		)")
+	},
+	{
+		"MemberJoinRequestEvent", json::parse(R"(
+			{
+				"type": "MemberJoinRequestEvent",
+				"eventId": 12345678,
+				"fromId": 123456,
+				"groupId": 654321,
+				"groupName": "Group",
+				"nick": "xxx",
+				"message": "hehe"
+			}
+		)")
+	},
+	{
+		"BotInvitedJoinGroupRequestEvent", json::parse(R"(
+			{
+				"type": "BotInvitedJoinGroupRequestEvent",
+				"eventId": 12345678,
+				"fromId": 123456,
+				"groupId": 654321,
+				"groupName": "Group",
+				"nick": "xxx",
+				"message": "hehe"
+			}
+		)")
+	},
+	{
+		"OtherClientOnlineEvent", json::parse(R"(
+			{
+				"type": "OtherClientOnlineEvent",
+				"client": 
+				{
+					"id": 1,
+					"platform": "WINDOWS"
+				},
+				"kind": 69899
+			}
+		)")
+	},
+	{
+		"OtherClientOfflineEvent", json::parse(R"(
+			{
+				"type": "OtherClientOfflineEvent",
+				"client": 
+				{
+					"id": 1,
+					"platform": "WINDOWS"
+				}
+			}
+		)")
+	},
+	{
+		"CommandExecutedEvent", json::parse(R"(
+			{
+				"type": "CommandExecutedEvent",
+				"name": "shutdown",
+				"friend": 
+				{
+					"id": 123123,
+					"nickname": "nick",
+					"remark": "remark"
+				},
+				"member": null,
+				"args": 
+				[
+				{
+					"type": "Plain",
+					"text": "myself"
+				}
+				]
+			}
+		)")
+	},
+	{
+		"FriendMessage", json::parse(R"(
+			{
+				"type": "FriendMessage",
+				"sender": 
+				{
+					"id": 123,
+					"nickname": "xxx",
+					"remark": "who"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"GroupMessage", json::parse(R"(
+			{
+				"type": "GroupMessage",
+				"sender": 
+				{
+					"id": 123,
+					"memberName": "aaa",
+					"specialTitle": "xxx",
+					"permission": "MEMBER",
+					"joinTimestamp": 123,
+					"lastSpeakTimestamp": 456,
+					"muteTimeRemaining": 0,
+					"group": 
+					{
+						"id": 1234567890,
+						"name": "bbb",
+						"permission": "ADMINISTRATOR"
+					}
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"TempMessage", json::parse(R"(
+			{
+				"type": "TempMessage",
+				"sender": {
+					"id": 123,
+					"memberName": "aaa",
+					"specialTitle": "xxx",
+					"permission": "MEMBER",
+					"joinTimestamp": 123,
+					"lastSpeakTimestamp": 456,
+					"muteTimeRemaining": 0,
+					"group": 
+					{
+						"id": 1234567890,
+						"name": "bbb",
+						"permission": "ADMINISTRATOR"
+					}
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"StrangerMessage", json::parse(R"(
+			{
+				"type": "StrangerMessage",
+				"sender": 
+				{
+					"id": 123,
+					"nickname": "xxx",
+					"remark": "who"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"OtherClientMessage", json::parse(R"(
+			{
+				"type": "OtherClientMessage",
+				"sender": 
+				{
+					"id": 123,
+					"platform": "MOBILE"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"FriendSyncMessage", json::parse(R"(
+			{
+				"type": "FriendSyncMessage",
+				"subject": 
+				{
+					"id": 123,
+					"nickname": "xxx",
+					"remark": "who"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"GroupSyncMessage", json::parse(R"(
+			{
+				"type": "GroupSyncMessage",
+				"subject": 
+				{
+					"id": 1234567890,
+					"name": "bbb",
+					"permission": "MEMBER"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"TempSyncMessage", json::parse(R"(
+			{
+				"type": "TempSyncMessage",
+				"subject": {
+					"id": 123,
+					"memberName": "aaa",
+					"specialTitle": "xxx",
+					"permission": "MEMBER",
+					"joinTimestamp": 123,
+					"lastSpeakTimestamp": 456,
+					"muteTimeRemaining": 0,
+					"group": 
+					{
+						"id": 1234567890,
+						"name": "bbb",
+						"permission": "ADMINISTRATOR"
+					}
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
+			}
+		)")
+	},
+	{
+		"StrangerSyncMessage", json::parse(R"(
+			{
+				"type": "StrangerSyncMessage",
+				"subject": 
+				{
+					"id": 123,
+					"nickname": "xxx",
+					"remark": "who"
+				},
+				"messageChain": [{
+					"type": "Plain",
+					"text": "hello"
+				}]
 			}
 		)")
 	}

@@ -39,7 +39,7 @@ public:
 	QQ_t GetUserId() const { return this->_FromId; }
 	std::string GetNickname() const { return this->_nickname; }
 	GID_t GetGroupId() const { return this->_GroupId; }
-	bool isFromGroup() const { return this->_GroupId == (GID_t)0;}
+	bool isFromGroup() const { return this->_GroupId != (GID_t)0;}
 	std::string GetMessage() const { return this->_message; }
 };
 

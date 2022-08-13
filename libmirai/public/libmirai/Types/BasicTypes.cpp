@@ -17,7 +17,7 @@ void to_json(json& j, const UID_t& p)
 
 void from_json(const json& j, UID_t& p)
 {
-	p = j.get<int64_t>();
+	p = UID_t(j.get<int64_t>());
 }
 
 
@@ -142,7 +142,7 @@ void GroupMember::FromJson(const json& data)
 	this->SpecialTitle = Utils::GetValue(data, "specialTitle", "");
 	this->JoinTimestamp = Utils::GetValue(data, "joinTimestamp", (std::time_t)0);
 	this->LastSpeakTimestamp = Utils::GetValue(data, "lastSpeakTimestamp", (std::time_t)0);
-	this->MuteTimeRemaining = Utils::GetValue(data, "muteTimeRemaining", (std::time_t)0);
+	this->MuteTimeRemaining = std::chrono::seconds(Utils::GetValue(data, "muteTimeRemaining", (int64_t)0));
 	this->group = Utils::GetValue(data, "group", Group{});
 }
 
@@ -155,7 +155,7 @@ json GroupMember::ToJson() const
 	data["specialTitle"] = this->SpecialTitle;
 	data["joinTimestamp"] = this->JoinTimestamp;
 	data["lastSpeakTimestamp"] = this->LastSpeakTimestamp;
-	data["muteTimeRemaining"] = this->MuteTimeRemaining;
+	data["muteTimeRemaining"] = this->MuteTimeRemaining.count();
 	data["group"] = this->group.ToJson();
 	return data;
 }

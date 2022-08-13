@@ -9,7 +9,8 @@ enable_testing()
 add_executable(unit_test 
 	JsonData.hpp
 	
-	MessagesTest.cpp 
+	MessagesTest.cpp
+	EventsTest.cpp
 	HttpClientTest.cpp
 	UtilsTest.cpp
 )

@@ -1,6 +1,7 @@
 #ifndef _MIRAI_TYPES_BASIC_TYPES_HPP_
 #define _MIRAI_TYPES_BASIC_TYPES_HPP_
 
+#include <chrono>
 #include <string>
 #include <array>
 #include <ctime>
@@ -19,7 +20,7 @@ protected:
 	int64_t _number;
 
 	UID_t() : _number(0) {}
-	UID_t(int64_t num) : _number(num) {}
+	explicit UID_t(int64_t num) : _number(num) {}
 
 public:
 	explicit operator int64_t() const { return this->_number; }
@@ -41,7 +42,7 @@ class QQ_t : public UID_t
 {
 public:
 	QQ_t() : UID_t() {}
-	QQ_t(int64_t num) : UID_t(num) {}
+	explicit QQ_t(int64_t num) : UID_t(num) {}
 };
 
 inline QQ_t operator ""_qq(unsigned long long num) { return QQ_t(num); }
@@ -50,7 +51,7 @@ class GID_t : public UID_t
 {
 public:
 	GID_t() : UID_t() {}
-	GID_t(int64_t num) : UID_t(num) {}
+	explicit GID_t(int64_t num) : UID_t(num) {}
 };
 
 inline GID_t operator""_gid(unsigned long long num) { return GID_t(num); }
@@ -80,6 +81,11 @@ struct User : public Serializable
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
+
+	bool operator==(const User& rhs) const
+	{
+		return this->id == rhs.id;
+	}
 };
 
 struct Group : public Serializable
@@ -90,6 +96,11 @@ struct Group : public Serializable
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
+
+	bool operator==(const Group& rhs) const
+	{
+		return this->id == rhs.id && this->permission == rhs.permission;
+	}
 };
 
 struct GroupMember : public Serializable
@@ -100,11 +111,16 @@ struct GroupMember : public Serializable
 	std::string SpecialTitle;
 	std::time_t JoinTimestamp = 0;
 	std::time_t LastSpeakTimestamp = 0;
-	std::time_t MuteTimeRemaining = 0;
+	std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0);
 	Group group;
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
+
+	bool operator==(const GroupMember& rhs) const
+	{
+		return this->id == rhs.id && this->group == rhs.group;
+	}
 };
 
 struct UserProfile : public Serializable
@@ -118,6 +134,16 @@ struct UserProfile : public Serializable
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
+
+	bool operator==(const UserProfile& rhs) const
+	{
+		return this->nickname == rhs.nickname
+		&& this->email == rhs.email
+		&& this->age == rhs.age
+		&& this->level == rhs.level
+		&& this->sign == rhs.sign
+		&& this->sex == rhs.sex;
+	}
 };
 
 struct ClientDevice : public Serializable
@@ -127,6 +153,11 @@ struct ClientDevice : public Serializable
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
+
+	bool operator==(const ClientDevice& rhs) const
+	{
+		return this->id == rhs.id && this->platform == rhs.platform;
+	}
 };
 
 
