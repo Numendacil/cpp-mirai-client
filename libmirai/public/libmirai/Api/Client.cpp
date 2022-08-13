@@ -65,7 +65,8 @@ void MiraiClient::Connect()
 	this->_MessageClient->OnError(
 		[this](const ix::WebSocketErrorInfo& info)
 		{
-			if (this->_ConnectionErrorCallback)
+			auto callback = this->_GetErrorCallback();
+			if (callback)
 			{
 				ClientConnectionErrorEvent event {
 					info.retries,
@@ -74,7 +75,7 @@ void MiraiClient::Connect()
 					info.reason,
 					info.decompressionError
 				};
-				this->_ConnectionErrorCallback(event);
+				callback(event);
 			}
 		}
 	);
@@ -84,14 +85,15 @@ void MiraiClient::Connect()
 		{
 			this->_connected = false;
 			this->_SessionKeySet = false;
-			if (this->_ConnectionClosedCallback)
+			auto callback = this->_GetClosedCallback();
+			if (callback)
 			{
 				ClientConnectionClosedEvent event {
 					info.code,
 					info.reason,
 					info.remote
 				};
-				this->_ConnectionClosedCallback(event);
+				callback(event);
 			}
 		}
 	);
@@ -115,8 +117,9 @@ void MiraiClient::Connect()
 				{
 					if (this->_ReadSessionKey(data))
 					{
-						if (!this->_ConnectionEstablishedCallback)
-							this->_ConnectionEstablishedCallback(this->_HandshakeInfo);
+						auto callback = this->_GetEstablishedCallback();
+						if (callback)
+							callback(this->_HandshakeInfo);
 						return;
 					}
 				}
@@ -126,16 +129,19 @@ void MiraiClient::Connect()
 			}
 			catch(const ParseError& e)
 			{
+				auto callback = this->_GetParseErrorCallback();
 				if(this->_ParseErrorCallback)
 					this->_ParseErrorCallback({e, message});
 			}
 			catch(const std::exception& e)
 			{
+				auto callback = this->_GetParseErrorCallback();
 				if(this->_ParseErrorCallback)
 					this->_ParseErrorCallback({ParseError{e.what(), message}, message});
 			}
 			catch(...)
 			{
+				auto callback = this->_GetParseErrorCallback();
 				if(this->_ParseErrorCallback)
 					this->_ParseErrorCallback({ParseError{"Unknown error", message}, message});
 			}
@@ -217,24 +223,28 @@ void MiraiClient::_DispatchEvent(const json& data)
 template<>
 void MiraiClient::On(EventCallback<ClientConnectionEstablishedEvent> callback)
 {
+	std::lock_guard<std::mutex> lk(this->_mtx);
 	this->_ConnectionEstablishedCallback = callback;
 }
 
 template<>
 void MiraiClient::On(EventCallback<ClientConnectionErrorEvent> callback)
 {
+	std::lock_guard<std::mutex> lk(this->_mtx);
 	this->_ConnectionErrorCallback = callback;
 }
 
 template<>
 void MiraiClient::On(EventCallback<ClientConnectionClosedEvent> callback)
 {
+	std::lock_guard<std::mutex> lk(this->_mtx);
 	this->_ConnectionClosedCallback = callback;
 }
 
 template<>
 void MiraiClient::On(EventCallback<ClientParseErrorEvent> callback)
 {
+	std::lock_guard<std::mutex> lk(this->_mtx);
 	this->_ParseErrorCallback = callback;
 }
 

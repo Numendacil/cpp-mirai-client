@@ -90,6 +90,30 @@ protected:
 		static_assert(_has_type_<Event>::value, "Event must contain a static atrribute _TYPE_");
 	};
 
+	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_ConnectionEstablishedCallback;
+	}
+
+	EventCallback<ClientConnectionClosedEvent> _GetClosedCallback() const
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_ConnectionClosedCallback;
+	}
+
+	EventCallback<ClientConnectionErrorEvent> _GetErrorCallback() const
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_ConnectionErrorCallback;
+	}
+
+	EventCallback<ClientParseErrorEvent> _GetParseErrorCallback() const
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_ParseErrorCallback;
+	}
+
 public:
 	MiraiClient() : _config{}, _SessionKeySet(false), _connected(false) {}
 	MiraiClient(const SessionConfigs& config) : _config(config), _connected(false) {}
