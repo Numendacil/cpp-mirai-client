@@ -5,7 +5,6 @@
 #include <nlohmann/json_fwd.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 #include "ImageMessage.hpp"
 
 namespace Mirai

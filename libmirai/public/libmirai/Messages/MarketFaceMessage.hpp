@@ -6,7 +6,6 @@
 #include <libmirai/Types/BasicTypes.hpp>
 
 
-#include <libmirai/Utils/Common.hpp>
 #include "FaceMessage.hpp"
 
 namespace Mirai
