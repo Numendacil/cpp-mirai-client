@@ -6,13 +6,15 @@ on:
   pull_request:
     branches: [ "master" ]
 
+env:
+  BUILD_TYPE: Debug
+
 jobs:
   build:
     name: ${{ matrix.config.name }}
     runs-on: ${{ matrix.config.os }}
     env:
       TARGET: unit_test
-      BUILD_TYPE: Debug
       CC: ${{ matrix.config.cc }}
       CXX: ${{ matrix.config.cxx }}
     strategy:
