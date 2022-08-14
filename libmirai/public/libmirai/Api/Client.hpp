@@ -176,9 +176,9 @@ public:
 	UserProfile GetMemberProfile(GID_t GroupId, QQ_t MemberId);
 	UserProfile GetUserProfile(QQ_t qq);
 
-	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message, bool ignoreInvalid = false);
-	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message, bool ignoreInvalid = false);
-	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message, bool ignoreInvalid = false);
+	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
 	void SendNudge(const NudgeTarget& target);
 	void NudgeFriend(QQ_t qq);
 	void NudgeGroup(QQ_t MemberId, GID_t GroupId);

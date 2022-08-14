@@ -187,7 +187,7 @@ json HttpClientImpl::SendFriendMessage(const string& SessionKey, QQ_t qq, const 
 
 json HttpClientImpl::SendGroupMessage(const string& SessionKey, GID_t group, const json& message, std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"qq", group}, {"messageChain", message}};
+	json body = {{"sessionKey", SessionKey}, {"group", group}, {"messageChain", message}};
 	if (QuoteId.has_value())
 		body["quote"] = QuoteId.value();
 	auto result = this->_client.Post("/sendGroupMessage", body.dump(), JSON_CONTENT_TYPE);
@@ -197,7 +197,7 @@ json HttpClientImpl::SendGroupMessage(const string& SessionKey, GID_t group, con
 
 json HttpClientImpl::SendTempMessage(const string& SessionKey, QQ_t qq, GID_t group, const json& message, std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"qq", qq}, {"qq", group}, {"messageChain", message}};
+	json body = {{"sessionKey", SessionKey}, {"qq", qq}, {"group", group}, {"messageChain", message}};
 	if (QuoteId.has_value())
 		body["quote"] = QuoteId.value();
 	auto result = this->_client.Post("/sendTempMessage", body.dump(), JSON_CONTENT_TYPE);

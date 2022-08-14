@@ -42,7 +42,8 @@ MiraiClient::MiraiClient(MiraiClient&& rhs)
 
 MiraiClient::~MiraiClient()
 {
-	this->_MessageClient->Disconnect();
+	// if (this->_MessageClient)
+	// 	this->_MessageClient->Disconnect();
 }
 
 MiraiClient& MiraiClient::operator=(MiraiClient&& rhs)
@@ -199,10 +200,13 @@ void MiraiClient::Connect()
 
 void MiraiClient::Disconnect()
 {
-	this->_MessageClient->Disconnect();
-	this->_MessageClient.reset();
-	this->_HttpClient.reset();
-	this->_ThreadPool.reset();
+	if (this->_MessageClient)
+	{
+		this->_MessageClient->Disconnect();
+	}
+	this->_ThreadPool = nullptr;
+	this->_HttpClient = nullptr;
+	this->_MessageClient = nullptr;
 }
 
 bool MiraiClient::_ReadSessionKey(const json& data)
@@ -410,21 +414,21 @@ UserProfile MiraiClient::GetUserProfile(QQ_t qq)
 	return resp.get<UserProfile>();
 }
 
-MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message, bool ignoreInvalid)
+MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message, std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendFriendMessage(this->_SessionKey, qq, message.ToJson(ignoreInvalid));
+	json resp = this->_HttpClient->SendFriendMessage(this->_SessionKey, qq, message.ToJson(ignoreInvalid), QuoteId);
 	return Utils::GetValue(resp, "messageId", (MessageId_t)0);
 }
 
-MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& message, bool ignoreInvalid)
+MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendGroupMessage(this->_SessionKey, GroupId, message.ToJson(ignoreInvalid));
+	json resp = this->_HttpClient->SendGroupMessage(this->_SessionKey, GroupId, message.ToJson(ignoreInvalid), QuoteId);
 	return Utils::GetValue(resp, "messageId", (MessageId_t)0);
 }
 
-MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message, bool ignoreInvalid)
+MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendTempMessage(this->_SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid));
+	json resp = this->_HttpClient->SendTempMessage(this->_SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid), QuoteId);
 	return Utils::GetValue(resp, "messageId", (MessageId_t)0);
 }
 

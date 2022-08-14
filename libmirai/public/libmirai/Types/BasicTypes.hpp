@@ -186,5 +186,25 @@ struct ClientDevice : public Serializable
 
 }
 
+namespace std
+{
+
+template<> 
+struct hash<Mirai::GID_t>
+{
+	std::size_t operator() (const Mirai::GID_t& t) const {
+		return hash<int64_t>{}((int64_t)t);
+	}
+};
+template<> 
+struct hash<Mirai::QQ_t>
+{
+	std::size_t operator() (const Mirai::QQ_t& t) const {
+		return hash<int64_t>{}((int64_t)t);
+	}
+};
+
+}
+
 
 #endif
