@@ -27,4 +27,4 @@ set_property(TARGET unit_test PROPERTY CXX_STANDARD 17)
 set_property(TARGET unit_test PROPERTY CXX_STANDARD_REQUIRED ON)
 
 include(GoogleTest)
-gtest_discover_tests(unit_test)
+gtest_discover_tests(unit_test DISCOVERY_TIMEOUT 300)
