@@ -21,6 +21,7 @@ protected:
 	std::time_t _duration = 0;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotMuteEvent";
 
 	virtual std::string_view GetType() const override

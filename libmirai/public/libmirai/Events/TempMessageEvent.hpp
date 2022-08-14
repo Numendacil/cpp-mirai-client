@@ -20,6 +20,7 @@ protected:
 	MessageChain _message;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "TempMessage";
 
 	virtual std::string_view GetType() const override

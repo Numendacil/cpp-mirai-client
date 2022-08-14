@@ -20,6 +20,7 @@ protected:
 	std::string _to;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendNickChangedEvent";
 
 	virtual std::string_view GetType() const override

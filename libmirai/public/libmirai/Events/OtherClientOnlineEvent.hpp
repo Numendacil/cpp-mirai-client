@@ -19,6 +19,7 @@ protected:
 	std::optional<int64_t> _kind;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientOnlineEvent";
 
 	virtual std::string_view GetType() const override

@@ -83,6 +83,8 @@ struct User : public Serializable
 	std::string nickname;
 	std::string remark;
 
+	User(QQ_t id = 0_qq, const std::string& nickname = "", const std::string& remark = "")
+	: id(id), nickname(nickname), remark(remark) {}
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
 
@@ -97,6 +99,9 @@ struct Group : public Serializable
 	GID_t id;
 	std::string name;
 	PERMISSION permission = PERMISSION::UNKNOWN;
+
+	Group(GID_t id = 0_gid, const std::string& name = "", PERMISSION permission = PERMISSION::UNKNOWN)
+	: id(id), name(name), permission(permission) {}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -118,6 +123,13 @@ struct GroupMember : public Serializable
 	std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0);
 	Group group;
 
+	GroupMember(QQ_t id = 0_qq, const std::string& MemberName = "", PERMISSION permission = PERMISSION::UNKNOWN,
+	const std::string& SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
+	std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), const Group& group = {})
+	: id(id), MemberName(MemberName), permission(permission), SpecialTitle(SpecialTitle),
+	  JoinTimestamp(JoinTimestamp), LastSpeakTimestamp(LastSpeakTimestamp), 
+	  MuteTimeRemaining(MuteTimeRemaining), group(group) {}
+
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
 
@@ -135,6 +147,10 @@ struct UserProfile : public Serializable
 	int level = 0;
 	std::string sign;
 	SEX sex = SEX::UNKNOWN;
+
+	UserProfile(const std::string& nickname = "", const std::string& email = "", int age = 0,
+	int level = 0, const std::string& sign = "", SEX sex = SEX::UNKNOWN)
+	: nickname(nickname), email(email), age(age), level(level), sign(sign), sex(sex) {}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -154,6 +170,9 @@ struct ClientDevice : public Serializable
 {
 	int64_t id = 0;
 	std::string platform;
+
+	ClientDevice(int64_t id = 0, const std::string& platform = "")
+	: id(id), platform(platform) {}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;

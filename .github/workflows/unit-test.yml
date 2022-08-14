@@ -22,14 +22,17 @@ jobs:
             os: windows-latest
             cc: cl
             cxx: cl
+            exe: ${{env.BUILD_TYPE}}/unit_test.exe
           - name: Ubuntu Latest GCC
             os: ubuntu-latest
             cc: gcc
             cxx: g++
+            exe: unit_test
           - name: macOS Latest Clang
             os: macos-latest
             cc: clang
             cxx: clang++
+            exe: unit_test
 
     steps:
     - uses: actions/checkout@v3
@@ -48,5 +51,4 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build/UnitTest
       # Execute tests defined by the CMake configuration.  
-      shell: bash
-      run: find . -name unit_test -type f -exec '{}' ';'
+      run: ./${{ matrix.config.exe }}

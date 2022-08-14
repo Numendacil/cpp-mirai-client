@@ -18,6 +18,7 @@ protected:
 	ClientDevice _client;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientOfflineEvent";
 
 	virtual std::string_view GetType() const override

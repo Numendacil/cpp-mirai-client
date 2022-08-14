@@ -22,6 +22,7 @@ protected:
 	std::string _message;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberJoinRequestEvent";
 
 	virtual std::string_view GetType() const override

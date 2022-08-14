@@ -20,6 +20,7 @@ protected:
 	GroupMember _operator;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotUnmuteEvent";
 
 	virtual std::string_view GetType() const override

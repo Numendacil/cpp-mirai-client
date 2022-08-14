@@ -44,7 +44,7 @@ class MiraiClient
 public:
 	template<typename Event>
 	using EventCallback = std::function<void(Event)>;
-	using EventHandler = std::function<std::unique_ptr<EventBase>(std::unique_ptr<EventBase>)>;
+	using EventHandler = std::function<void(const nlohmann::json&)>;
 
 protected:
 	mutable std::mutex _mtx;
@@ -117,25 +117,12 @@ protected:
 	}
 
 public:
-	MiraiClient() : _config{}, _SessionKeySet(false), _connected(false) {}
-	MiraiClient(const SessionConfigs& config) : _config(config), _connected(false) {}
+	MiraiClient();
+	MiraiClient(const SessionConfigs& config);
 	MiraiClient(const MiraiClient&) = delete;
 	MiraiClient& operator=(const MiraiClient&) = delete;
-	MiraiClient(MiraiClient&& rhs) : 
-	_config(std::move(rhs._config)), _SessionKey(std::move(rhs._SessionKey)), 
-	_SessionKeySet(rhs._SessionKeySet), _connected(rhs._connected),
-	_HttpClient(std::move(rhs._HttpClient)), _MessageClient(std::move(rhs._MessageClient)), _ThreadPool(std::move(rhs._ThreadPool)) {}
-	MiraiClient& operator=(MiraiClient&& rhs)
-	{
-		this->_config = std::move(rhs._config);
-		this->_SessionKey = std::move(rhs._SessionKey);
-		this->_SessionKeySet = rhs._SessionKeySet;
-		this->_connected = rhs._connected;
-		this->_HttpClient = std::move(rhs._HttpClient);
-		this->_MessageClient = std::move(rhs._MessageClient);
-		this->_ThreadPool = std::move(rhs._ThreadPool);
-		return *this;
-	}
+	MiraiClient(MiraiClient&& rhs);
+	MiraiClient& operator=(MiraiClient&& rhs);
 	~MiraiClient();
 
 	std::optional<std::string> GetSessionKey() const
@@ -146,7 +133,7 @@ public:
 	SessionConfigs GetSessionConfig() const { return this->_config; }
 	QQ_t GetBotQQ() const { return this->_config.BotQQ; }
 	bool isConnected() const { return this->_connected && this->_SessionKeySet; }
-	constexpr std::string_view GetVersion() const { return PROJECT_VERSION; }
+	constexpr std::string_view GetVersion() const { return CPP_MIRAI_CLIENT_VERSION; }
 
 	template<typename EventType>
 	void On(EventCallback<EventType> callback)
@@ -154,16 +141,11 @@ public:
 		_type_check_<EventType>();
 		std::lock_guard<std::mutex> lk(this->_mtx);
 		this->_EventHandlers[std::string(EventType::_TYPE_)] =
-			[callback](std::unique_ptr<EventBase> event) -> std::unique_ptr<EventBase>
+			[callback, this](const nlohmann::json& j)
 			{
-				if(event)
-				{
-					assert(event->GetType() == EventType::_TYPE_);
-					callback(*static_cast<EventType*>(event.get()));
-					return nullptr;
-				}
-				else
-					return std::make_unique<EventType>();
+				EventType event(this);
+				event.FromJson(j);
+				callback(event);
 			};
 	}
 
@@ -268,6 +250,15 @@ public:
 	json GetRaw(const string& path, const std::multimap<string, string> params);
 
 };
+
+template<>
+void MiraiClient::On<ClientConnectionEstablishedEvent>(EventCallback<ClientConnectionEstablishedEvent>);
+template<>
+void MiraiClient::On<ClientConnectionErrorEvent>(EventCallback<ClientConnectionErrorEvent>);
+template<>
+void MiraiClient::On<ClientConnectionClosedEvent>(EventCallback<ClientConnectionClosedEvent>);
+template<>
+void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParseErrorEvent>);
 
 }
 

@@ -18,6 +18,7 @@ protected:
 	GroupMember _member;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberLeaveEventQuit";
 
 	virtual std::string_view GetType() const override

@@ -19,6 +19,7 @@ protected:
 	bool _inputting = false;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendInputStatusChangedEvent";
 
 	virtual std::string_view GetType() const override

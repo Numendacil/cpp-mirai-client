@@ -23,6 +23,7 @@ protected:
 	MessageChain _args;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "CommandExecutedEvent";
 
 	virtual std::string_view GetType() const override

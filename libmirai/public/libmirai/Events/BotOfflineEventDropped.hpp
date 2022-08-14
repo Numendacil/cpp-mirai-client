@@ -13,6 +13,7 @@ namespace Mirai
 class BotOfflineEventDropped : public BotEvent
 {
 public:
+	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotOfflineEventDropped";
 
 	virtual std::string_view GetType() const override

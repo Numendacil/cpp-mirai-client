@@ -11,8 +11,10 @@ add_executable(unit_test
 	
 	MessagesTest.cpp
 	EventsTest.cpp
-	HttpClientTest.cpp
 	UtilsTest.cpp
+	HttpClientTest.cpp
+	MessageClientTest.cpp
+	ClientTest.cpp
 )
 
 target_link_libraries(unit_test PRIVATE ${MIRAI_LIB_TARGET_NAME})

@@ -22,6 +22,7 @@ public:
 		LOSE,
 		UNKNOWN
 	};
+
 protected:
 	ActionKind _action;	// {achieve, lose}
 	std::string _honor;
@@ -52,6 +53,7 @@ protected:
 	}
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberHonorChangeEvent";
 
 	virtual std::string_view GetType() const override

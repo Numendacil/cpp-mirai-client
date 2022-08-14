@@ -14,11 +14,12 @@ class MiraiClient;
 class EventBase
 {
 protected:
-	friend class MiraiClient;
 	MiraiClient* _client;
 
 public:
 	// static constexpr std::string_view _TYPE_ = "EventBase";
+
+	EventBase(MiraiClient* client) : _client(client) {}
 
 	virtual std::string_view GetType() const = 0;
  

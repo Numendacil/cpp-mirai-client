@@ -12,7 +12,7 @@ using json = nlohmann::json;
 
 TEST(EventsTest, BotOnlineEvent)
 {
-	BotOnlineEvent event;
+	BotOnlineEvent event(nullptr);
 	event.FromJson(Data::EventData["BotOnlineEvent"]);
 	EXPECT_EQ(event.GetType(), "BotOnlineEvent");
 
@@ -21,7 +21,7 @@ TEST(EventsTest, BotOnlineEvent)
 
 TEST(EventsTest, BotOfflineEventActive)
 {
-	BotOfflineEventActive event;
+	BotOfflineEventActive event(nullptr);
 	event.FromJson(Data::EventData["BotOfflineEventActive"]);
 	EXPECT_EQ(event.GetType(), "BotOfflineEventActive");
 
@@ -30,7 +30,7 @@ TEST(EventsTest, BotOfflineEventActive)
 
 TEST(EventsTest, BotOfflineEventDropped)
 {
-	BotOfflineEventDropped event;
+	BotOfflineEventDropped event(nullptr);
 	event.FromJson(Data::EventData["BotOfflineEventDropped"]);
 	EXPECT_EQ(event.GetType(), "BotOfflineEventDropped");
 
@@ -39,7 +39,7 @@ TEST(EventsTest, BotOfflineEventDropped)
 
 TEST(EventsTest, FriendInputStatusChangedEvent)
 {
-	FriendInputStatusChangedEvent event;
+	FriendInputStatusChangedEvent event(nullptr);
 	event.FromJson(Data::EventData["FriendInputStatusChangedEvent"]);
 	EXPECT_EQ(event.GetType(), "FriendInputStatusChangedEvent");
 
@@ -51,7 +51,7 @@ TEST(EventsTest, FriendInputStatusChangedEvent)
 
 TEST(EventsTest, FriendNickChangedEvent)
 {
-	FriendNickChangedEvent event;
+	FriendNickChangedEvent event(nullptr);
 	event.FromJson(Data::EventData["FriendNickChangedEvent"]);
 	EXPECT_EQ(event.GetType(), "FriendNickChangedEvent");
 
@@ -64,7 +64,7 @@ TEST(EventsTest, FriendNickChangedEvent)
 
 TEST(EventsTest, BotGroupPermissionChangeEvent)
 {
-	BotGroupPermissionChangeEvent event;
+	BotGroupPermissionChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["BotGroupPermissionChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "BotGroupPermissionChangeEvent");
 
@@ -77,7 +77,7 @@ TEST(EventsTest, BotGroupPermissionChangeEvent)
 
 TEST(EventsTest, BotMuteEvent)
 {
-	BotMuteEvent event;
+	BotMuteEvent event(nullptr);
 	event.FromJson(Data::EventData["BotMuteEvent"]);
 	EXPECT_EQ(event.GetType(), "BotMuteEvent");
 
@@ -96,7 +96,7 @@ TEST(EventsTest, BotMuteEvent)
 
 TEST(EventsTest, BotUnmuteEvent)
 {
-	BotUnmuteEvent event;
+	BotUnmuteEvent event(nullptr);
 	event.FromJson(Data::EventData["BotUnmuteEvent"]);
 	EXPECT_EQ(event.GetType(), "BotUnmuteEvent");
 
@@ -114,7 +114,7 @@ TEST(EventsTest, BotUnmuteEvent)
 
 TEST(EventsTest, BotJoinGroupEvent)
 {
-	BotJoinGroupEvent event;
+	BotJoinGroupEvent event(nullptr);
 	event.FromJson(Data::EventData["BotJoinGroupEvent"]);
 	EXPECT_EQ(event.GetType(), "BotJoinGroupEvent");
 
@@ -126,7 +126,7 @@ TEST(EventsTest, BotJoinGroupEvent)
 
 TEST(EventsTest, BotLeaveEventActive)
 {
-	BotLeaveEventActive event;
+	BotLeaveEventActive event(nullptr);
 	event.FromJson(Data::EventData["BotLeaveEventActive"]);
 	EXPECT_EQ(event.GetType(), "BotLeaveEventActive");
 
@@ -137,7 +137,7 @@ TEST(EventsTest, BotLeaveEventActive)
 
 TEST(EventsTest, BotLeaveEventKick)
 {
-	BotLeaveEventKick event;
+	BotLeaveEventKick event(nullptr);
 	event.FromJson(Data::EventData["BotLeaveEventKick"]);
 	EXPECT_EQ(event.GetType(), "BotLeaveEventKick");
 
@@ -157,7 +157,7 @@ TEST(EventsTest, BotLeaveEventKick)
 
 TEST(EventsTest, BotLeaveEventDisband)
 {
-	BotLeaveEventDisband event;
+	BotLeaveEventDisband event(nullptr);
 	event.FromJson(Data::EventData["BotLeaveEventDisband"]);
 	EXPECT_EQ(event.GetType(), "BotLeaveEventDisband");
 
@@ -177,7 +177,7 @@ TEST(EventsTest, BotLeaveEventDisband)
 
 TEST(EventsTest, GroupRecallEvent)
 {
-	GroupRecallEvent event;
+	GroupRecallEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupRecallEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupRecallEvent");
 
@@ -192,7 +192,7 @@ TEST(EventsTest, GroupRecallEvent)
 
 TEST(EventsTest, FriendRecallEvent)
 {
-	FriendRecallEvent event;
+	FriendRecallEvent event(nullptr);
 	event.FromJson(Data::EventData["FriendRecallEvent"]);
 	EXPECT_EQ(event.GetType(), "FriendRecallEvent");
 
@@ -204,7 +204,7 @@ TEST(EventsTest, FriendRecallEvent)
 
 TEST(NudgeEvent, NudgeEvent)
 {
-	NudgeEvent event;
+	NudgeEvent event(nullptr);
 	event.FromJson(Data::EventData["NudgeEvent"]);
 	EXPECT_EQ(event.GetType(), "NudgeEvent");
 
@@ -218,7 +218,7 @@ TEST(NudgeEvent, NudgeEvent)
 
 TEST(EventsTest, GroupNameChangeEvent)
 {
-	GroupNameChangeEvent event;
+	GroupNameChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupNameChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupNameChangeEvent");
 
@@ -240,7 +240,7 @@ TEST(EventsTest, GroupNameChangeEvent)
 
 TEST(EventsTest, GroupEntranceAnnouncementChangeEvent)
 {
-	GroupEntranceAnnouncementChangeEvent event;
+	GroupEntranceAnnouncementChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupEntranceAnnouncementChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupEntranceAnnouncementChangeEvent");
 
@@ -254,7 +254,7 @@ TEST(EventsTest, GroupEntranceAnnouncementChangeEvent)
 
 TEST(EventsTest, GroupMuteAllEvent)
 {
-	GroupMuteAllEvent event;
+	GroupMuteAllEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupMuteAllEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupMuteAllEvent");
 
@@ -268,7 +268,7 @@ TEST(EventsTest, GroupMuteAllEvent)
 
 TEST(EventsTest, GroupAllowAnonymousChatEvent)
 {
-	GroupAllowAnonymousChatEvent event;
+	GroupAllowAnonymousChatEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupAllowAnonymousChatEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupAllowAnonymousChatEvent");
 
@@ -290,7 +290,7 @@ TEST(EventsTest, GroupAllowAnonymousChatEvent)
 
 TEST(EventsTest, GroupAllowConfessTalkEvent)
 {
-	GroupAllowConfessTalkEvent event;
+	GroupAllowConfessTalkEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupAllowConfessTalkEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupAllowConfessTalkEvent");
 
@@ -304,7 +304,7 @@ TEST(EventsTest, GroupAllowConfessTalkEvent)
 
 TEST(EventsTest, GroupAllowMemberInviteEvent)
 {
-	GroupAllowMemberInviteEvent event;
+	GroupAllowMemberInviteEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupAllowMemberInviteEvent"]);
 	EXPECT_EQ(event.GetType(), "GroupAllowMemberInviteEvent");
 
@@ -318,7 +318,7 @@ TEST(EventsTest, GroupAllowMemberInviteEvent)
 
 TEST(EventsTest, MemberJoinEvent)
 {
-	MemberJoinEvent event;
+	MemberJoinEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberJoinEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberJoinEvent");
 
@@ -337,7 +337,7 @@ TEST(EventsTest, MemberJoinEvent)
 
 TEST(EventsTest, MemberLeaveEventKick)
 {
-	MemberLeaveEventKick event;
+	MemberLeaveEventKick event(nullptr);
 	event.FromJson(Data::EventData["MemberLeaveEventKick"]);
 	EXPECT_EQ(event.GetType(), "MemberLeaveEventKick");
 
@@ -364,7 +364,7 @@ TEST(EventsTest, MemberLeaveEventKick)
 
 TEST(EventsTest, MemberLeaveEventQuit)
 {
-	MemberLeaveEventQuit event;
+	MemberLeaveEventQuit event(nullptr);
 	event.FromJson(Data::EventData["MemberLeaveEventQuit"]);
 	EXPECT_EQ(event.GetType(), "MemberLeaveEventQuit");
 
@@ -382,7 +382,7 @@ TEST(EventsTest, MemberLeaveEventQuit)
 
 TEST(EventsTest, MemberCardChangeEvent)
 {
-	MemberCardChangeEvent event;
+	MemberCardChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberCardChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberCardChangeEvent");
 
@@ -402,7 +402,7 @@ TEST(EventsTest, MemberCardChangeEvent)
 
 TEST(EventsTest, MemberSpecialTitleChangeEvent)
 {
-	MemberSpecialTitleChangeEvent event;
+	MemberSpecialTitleChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberSpecialTitleChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberSpecialTitleChangeEvent");
 
@@ -422,7 +422,7 @@ TEST(EventsTest, MemberSpecialTitleChangeEvent)
 
 TEST(EventsTest, MemberPermissionChangeEvent)
 {
-	MemberPermissionChangeEvent event;
+	MemberPermissionChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberPermissionChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberPermissionChangeEvent");
 
@@ -442,7 +442,7 @@ TEST(EventsTest, MemberPermissionChangeEvent)
 
 TEST(EventsTest, MemberMuteEvent)
 {
-	MemberMuteEvent event;
+	MemberMuteEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberMuteEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberMuteEvent");
 
@@ -470,7 +470,7 @@ TEST(EventsTest, MemberMuteEvent)
 
 TEST(EventsTest, MemberUnmuteEvent)
 {
-	MemberUnmuteEvent event;
+	MemberUnmuteEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberUnmuteEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberUnmuteEvent");
 
@@ -489,7 +489,7 @@ TEST(EventsTest, MemberUnmuteEvent)
 
 TEST(EventsTest, MemberHonorChangeEvent)
 {
-	MemberHonorChangeEvent event;
+	MemberHonorChangeEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberHonorChangeEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberHonorChangeEvent");
 
@@ -509,7 +509,7 @@ TEST(EventsTest, MemberHonorChangeEvent)
 
 TEST(EventsTest, NewFriendRequestEvent)
 {
-	NewFriendRequestEvent event;
+	NewFriendRequestEvent event(nullptr);
 	event.FromJson(Data::EventData["NewFriendRequestEvent"]);
 	EXPECT_EQ(event.GetType(), "NewFriendRequestEvent");
 
@@ -523,7 +523,7 @@ TEST(EventsTest, NewFriendRequestEvent)
 
 TEST(EventsTest, MemberJoinRequestEvent)
 {
-	MemberJoinRequestEvent event;
+	MemberJoinRequestEvent event(nullptr);
 	event.FromJson(Data::EventData["MemberJoinRequestEvent"]);
 	EXPECT_EQ(event.GetType(), "MemberJoinRequestEvent");
 
@@ -537,7 +537,7 @@ TEST(EventsTest, MemberJoinRequestEvent)
 
 TEST(EventsTest, BotInvitedJoinGroupRequestEvent)
 {
-	BotInvitedJoinGroupRequestEvent event;
+	BotInvitedJoinGroupRequestEvent event(nullptr);
 	event.FromJson(Data::EventData["BotInvitedJoinGroupRequestEvent"]);
 	EXPECT_EQ(event.GetType(), "BotInvitedJoinGroupRequestEvent");
 
@@ -551,7 +551,7 @@ TEST(EventsTest, BotInvitedJoinGroupRequestEvent)
 
 TEST(EventsTest, OtherClientOnlineEvent)
 {
-	OtherClientOnlineEvent event;
+	OtherClientOnlineEvent event(nullptr);
 	event.FromJson(Data::EventData["OtherClientOnlineEvent"]);
 	EXPECT_EQ(event.GetType(), "OtherClientOnlineEvent");
 
@@ -562,7 +562,7 @@ TEST(EventsTest, OtherClientOnlineEvent)
 
 TEST(EventsTest, OtherClientOfflineEvent)
 {
-	OtherClientOfflineEvent event;
+	OtherClientOfflineEvent event(nullptr);
 	event.FromJson(Data::EventData["OtherClientOfflineEvent"]);
 	EXPECT_EQ(event.GetType(), "OtherClientOfflineEvent");
 
@@ -572,7 +572,7 @@ TEST(EventsTest, OtherClientOfflineEvent)
 
 TEST(EventsTest, CommandExecutedEvent)
 {
-	CommandExecutedEvent event;
+	CommandExecutedEvent event(nullptr);
 	event.FromJson(Data::EventData["CommandExecutedEvent"]);
 	EXPECT_EQ(event.GetType(), "CommandExecutedEvent");
 
@@ -589,7 +589,7 @@ TEST(EventsTest, CommandExecutedEvent)
 
 TEST(EventsTest, FriendMessageEvent)
 {
-	FriendMessageEvent event;
+	FriendMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["FriendMessage"]);
 	EXPECT_EQ(event.GetType(), "FriendMessage");
 
@@ -603,7 +603,7 @@ TEST(EventsTest, FriendMessageEvent)
 
 TEST(EventsTest, GroupMessageEvent)
 {
-	GroupMessageEvent event;
+	GroupMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupMessage"]);
 	EXPECT_EQ(event.GetType(), "GroupMessage");
 
@@ -624,7 +624,7 @@ TEST(EventsTest, GroupMessageEvent)
 
 TEST(EventsTest, TempMessageEvent)
 {
-	TempMessageEvent event;
+	TempMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["TempMessage"]);
 	EXPECT_EQ(event.GetType(), "TempMessage");
 
@@ -645,7 +645,7 @@ TEST(EventsTest, TempMessageEvent)
 
 TEST(EventsTest, StrangerMessageEvent)
 {
-	StrangerMessageEvent event;
+	StrangerMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["StrangerMessage"]);
 	EXPECT_EQ(event.GetType(), "StrangerMessage");
 
@@ -659,7 +659,7 @@ TEST(EventsTest, StrangerMessageEvent)
 
 TEST(EventsTest, OtherClientMessageEvent)
 {
-	OtherClientMessageEvent event;
+	OtherClientMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["OtherClientMessage"]);
 	EXPECT_EQ(event.GetType(), "OtherClientMessage");
 
@@ -672,7 +672,7 @@ TEST(EventsTest, OtherClientMessageEvent)
 
 TEST(EventsTest, FriendSyncMessageEvent)
 {
-	FriendSyncMessageEvent event;
+	FriendSyncMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["FriendSyncMessage"]);
 	EXPECT_EQ(event.GetType(), "FriendSyncMessage");
 
@@ -686,7 +686,7 @@ TEST(EventsTest, FriendSyncMessageEvent)
 
 TEST(EventsTest, GroupSyncMessageEvent)
 {
-	GroupSyncMessageEvent event;
+	GroupSyncMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["GroupSyncMessage"]);
 	EXPECT_EQ(event.GetType(), "GroupSyncMessage");
 
@@ -700,7 +700,7 @@ TEST(EventsTest, GroupSyncMessageEvent)
 
 TEST(EventsTest, TempSyncMessageEvent)
 {
-	TempSyncMessageEvent event;
+	TempSyncMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["TempSyncMessage"]);
 	EXPECT_EQ(event.GetType(), "TempSyncMessage");
 
@@ -721,7 +721,7 @@ TEST(EventsTest, TempSyncMessageEvent)
 
 TEST(EventsTest, StrangerSyncMessageEvent)
 {
-	StrangerSyncMessageEvent event;
+	StrangerSyncMessageEvent event(nullptr);
 	event.FromJson(Data::EventData["StrangerSyncMessage"]);
 	EXPECT_EQ(event.GetType(), "StrangerSyncMessage");
 

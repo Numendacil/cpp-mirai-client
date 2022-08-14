@@ -18,6 +18,7 @@ protected:
 
 
 public:
+	using EventBase::EventBase;
 	// static constexpr std::string_view _TYPE_ = "BotEvent";
 
 	// virtual std::string_view GetType() const override

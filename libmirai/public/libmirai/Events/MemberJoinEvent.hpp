@@ -20,6 +20,7 @@ protected:
 	std::optional<GroupMember> _inviter = std::nullopt;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberJoinEvent";
 
 	virtual std::string_view GetType() const override

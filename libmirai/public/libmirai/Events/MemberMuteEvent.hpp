@@ -22,6 +22,7 @@ protected:
 	std::optional<GroupMember> _operator = std::nullopt;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberMuteEvent";
 
 	virtual std::string_view GetType() const override

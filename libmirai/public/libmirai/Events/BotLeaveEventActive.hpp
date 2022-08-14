@@ -18,6 +18,7 @@ protected:
 	Group _group;
 
 public:
+	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotLeaveEventActive";
 
 	virtual std::string_view GetType() const override
