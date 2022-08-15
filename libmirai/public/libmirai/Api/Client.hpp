@@ -7,10 +7,12 @@
 #include <functional>
 #include <limits>
 #include <memory>
-#include <nlohmann/json_fwd.hpp>
 #include <mutex>
+#include <unordered_map>
 #include <optional>
 #include <string>
+
+#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
@@ -133,7 +135,7 @@ public:
 	SessionConfigs GetSessionConfig() const { return this->_config; }
 	QQ_t GetBotQQ() const { return this->_config.BotQQ; }
 	bool isConnected() const { return this->_connected && this->_SessionKeySet; }
-	constexpr std::string_view GetVersion() const { return CPP_MIRAI_CLIENT_VERSION; }
+	constexpr std::string_view GetVersion();
 
 	template<typename EventType>
 	void On(EventCallback<EventType> callback)
