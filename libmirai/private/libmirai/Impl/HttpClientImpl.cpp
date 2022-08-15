@@ -110,7 +110,7 @@ json HttpClientImpl::BotList()
 
 json HttpClientImpl::MessageFromId(const string& SessionKey, MessageId_t id, UID_t target)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"id", std::to_string(id)}, {"target", target.to_string()}};
+	httplib::Params params = {{"sessionKey", SessionKey}, {"messageId", std::to_string(id)}, {"target", target.to_string()}};
 	auto result = this->_client.Get("/messageFromId", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");

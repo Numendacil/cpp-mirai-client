@@ -42,6 +42,7 @@ public:
 	HttpClientImpl(HttpClientImpl&&) noexcept = delete;
 	HttpClientImpl& operator=(const HttpClientImpl&) = delete;
 	HttpClientImpl& operator=(HttpClientImpl&&) noexcept = delete;
+	~HttpClientImpl() { this->_client.stop(); }
 
 	using json = nlohmann::json;
 
