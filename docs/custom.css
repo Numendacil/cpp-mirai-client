@@ -6,13 +6,13 @@ html {
 
 	/* page base colors */
 	--page-background-color: white;
-	--page-foreground-color: #3e294a;
+	--page-foreground-color: #0e0d11;
 	--page-secondary-foreground-color: #4e4f7b;
 
 	--odd-color: rgba(0, 0, 0, .1);
 
-	--font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-	--font-family-monospace: Consolas, 'Courier New', monospace, Cascadia Mono, ui-monospace, SFMono-Regular, SF Mono, Menlo, Liberation Mono;
+	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+	--font-family-monospace: Consolas, Monaco, Cascadia Mono, 'Andale Mono', 'Ubuntu Mono', monospace;
 
 	--border-radius-large: 22px;
 	--border-radius-small: 9px;
@@ -42,7 +42,7 @@ html.dark-mode {
 	--primary-dark-color: #6fa2c6;
 	--primary-light-color: #f0e0fb;
 
-	--page-background-color: #171729;
+	--page-background-color: #0e0d11;
 	--page-foreground-color: white;
 	--page-secondary-foreground-color: #acacc5;
 

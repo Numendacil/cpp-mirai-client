@@ -1,4 +1,6 @@
 #include <cstdint>
+#include <array>
+#include <string>
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>

@@ -12,6 +12,11 @@ namespace Mirai
 /**
  * @brief QQ移动端头像戳一戳动作的对象
  * 
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `NudgeTarget::_kind` | `TargetKind::UNKNOWN`
+ * `NudgeTarget::_target` | `0_qq`
+ * `NudgeTarget::_subject` | `0`
  */
 class NudgeTarget
 {
@@ -19,13 +24,14 @@ public:
 	/**
 	 * @brief 戳一戳类型
 	 * 
+	 * `UNKNOWN` 为保留字段，使用时出现说明数据不合法
 	 */
 	enum TargetKind : std::size_t { FRIEND = 0, GROUP, STRANGER, UNKNOWN };
 
 protected:
-	TargetKind _kind;
+	TargetKind _kind = TargetKind::UNKNOWN;
 	QQ_t _target;
-	int64_t _subject;
+	int64_t _subject = 0;
 
 	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::UNKNOWN)> _TargetKindStr = 
 	{
@@ -102,41 +108,47 @@ public:
 	 * @brief 设置戳一戳类型
 	 * 
 	 * @param kind 戳一戳类型 `enum`
+	 * @return Reference to *this
 	 */
-	void SetTargetKind(TargetKind kind) { this->_kind = kind; }
+	NudgeTarget& SetTargetKind(TargetKind kind) { this->_kind = kind; return *this; }
 
 	/**
 	 * @brief 设置戳一戳类型
 	 * 
 	 * @param kind 戳一戳类型 `std::string`
+	 * @return Reference to *this
 	 */
-	void SetTargetKind(const std::string& kind) { this->_kind = _to_enum(kind); }
+	NudgeTarget& SetTargetKind(const std::string& kind) { this->_kind = _to_enum(kind); return *this; }
 
 	/**
 	 * @brief 设置戳一戳对象
 	 * 
 	 * @param target 戳一戳对象QQ
+	 * @return Reference to *this
 	 */
-	void SetTarget(QQ_t target) { this->_target = target; }
+	NudgeTarget& SetTarget(QQ_t target) { this->_target = target; return *this; }
 
 	/**
 	 * @brief 设置戳一戳的发送主体
 	 * 
 	 * 不推荐，考虑使用 `NudgeFriend()`, `NudgeGroupMember()` 与 `NudgeStranger()`
 	 * @param subject 戳一戳的发送主体
+	 * @return Reference to *this
 	 */
-	void SetSubject(int64_t subject) { this->_subject = subject; }
+	NudgeTarget& SetSubject(int64_t subject) { this->_subject = subject; return *this; }
 
 
 	/**
 	 * @brief 设置为好友戳一戳消息
 	 * 
 	 * @param target 好友QQ 
+	 * @return Reference to *this
 	 */
-	void NudgeFriend(QQ_t target)
+	NudgeTarget& NudgeFriend(QQ_t target)
 	{
 		this->_kind = TargetKind::FRIEND;
 		this->_target = target;
+		return *this;
 	}
 
 	/**
@@ -144,23 +156,27 @@ public:
 	 * 
 	 * @param target 群友QQ
 	 * @param group 群聊号码
+	 * @return Reference to *this
 	 */
-	void NudgeGroupMember(QQ_t target, GID_t group)
+	NudgeTarget& NudgeGroupMember(QQ_t target, GID_t group)
 	{
 		this->_kind = TargetKind::GROUP;
 		this->_target = target;
 		this->_subject = (int64_t)group;
+		return *this;
 	}
 
 	/**
 	 * @brief 设置为单向好友戳一戳消息
 	 * 
 	 * @param target 陌生人QQ
+	 * @return Reference to *this
 	 */
-	void NudgeStranger(QQ_t target)
+	NudgeTarget& NudgeStranger(QQ_t target)
 	{
 		this->_kind = TargetKind::STRANGER;
 		this->_target = target;
+		return *this; 
 	}
 
 };
