@@ -16,6 +16,10 @@
 namespace Mirai
 {
 
+/**
+ * @brief 文件基础信息
+ * 
+ */
 struct FileInfo
 {
 	std::string sha1;
@@ -29,17 +33,31 @@ struct FileInfo
 
 void from_json(const nlohmann::json&, FileInfo&);
 
+/**
+ * @brief 群文件信息
+ * 
+ * 可能为文件夹，此时 `GroupFileInfo::isFile = false` 且
+ * `GroupFileInfo::file` 为空。'GroupFileInfo::DownloadUrl'
+ * 只有当请求了下载信息时才会被设置。
+ */
 struct GroupFileInfo
 {
+	/// 文件id，唯一标识符
 	std::string id;
+	/// 文件路径
 	std::string path;
+	/// 文件名称
 	std::string name;
+	/// 文件父目录
 	std::unique_ptr<GroupFileInfo> parent;
 	bool isFile = false;
 	int64_t size = 0;
+	/// 文件所在的群聊
 	Group contact;
 
+	/// 文件信息
 	std::optional<FileInfo> file = std::nullopt;
+	/// 文件下载链接
 	std::optional<std::string> DownloadUrl = std::nullopt;
 
 	void FromJson(const nlohmann::json&);
@@ -47,6 +65,12 @@ struct GroupFileInfo
 
 void from_json(const nlohmann::json&, GroupFileInfo&);
 
+/**
+ * @brief 文件路径
+ * 
+ * 可由文件id或者文件位置 `/path/to/file` 指定，由于文件名
+ * 可以不唯一，推荐尽量使用id。
+ */
 class FilePath
 {
 protected:
