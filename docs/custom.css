@@ -12,7 +12,12 @@ html {
 	--odd-color: rgba(0, 0, 0, .1);
 
 	--font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-	--font-family-monospace: Consolas, Monaco, Cascadia Mono, 'Andale Mono', 'Ubuntu Mono', monospace;
+	--font-family-monospace: Cascadia Mono, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+
+	--page-font-size: 1em;
+	--navigation-font-size: 1em;
+	--code-font-size: 0.9em; /* affects code, fragment */
+	--title-font-size: 1.5em;
 
 	--border-radius-large: 22px;
 	--border-radius-small: 9px;
@@ -141,6 +146,10 @@ html.dark-mode #variants_image img {
 
 span.mlabel {
 	color: var(--page-background-color);
+}
+
+div.contents div.dyncontent iframe:not([id]) {
+	font-weight: 600;
 }
 
 /* .fieldtable td.fieldname {

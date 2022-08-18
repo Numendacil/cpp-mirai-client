@@ -1,7 +1,8 @@
+#include "XmlMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "XmlMessage.hpp"
 
 namespace Mirai
 {
@@ -22,11 +23,11 @@ void XmlMessage::FromJson(const json& data)
 json XmlMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	data["xml"] = this->_content;
 	return data;
 }
 
-}
+} // namespace Mirai

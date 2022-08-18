@@ -1,7 +1,8 @@
+#include "MiraiCodeMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MiraiCodeMessage.hpp"
 
 namespace Mirai
 {
@@ -22,7 +23,7 @@ void MiraiCodeMessage::FromJson(const json& data)
 json MiraiCodeMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	data["code"] = this->_code;
@@ -30,4 +31,4 @@ json MiraiCodeMessage::ToJson() const
 	return data;
 }
 
-}
+} // namespace Mirai

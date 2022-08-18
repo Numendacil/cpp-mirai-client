@@ -14,15 +14,17 @@ namespace Mirai
 class Serializable
 {
 public:
-	virtual void FromJson(const nlohmann::json &) = 0;
+	virtual void FromJson(const nlohmann::json&) = 0;
 	virtual nlohmann::json ToJson() const = 0;
 
 	virtual ~Serializable() = default;
 };
 
-void to_json(nlohmann::json &j, const Serializable &p);
+/// Custom serialization to nlohmann::json type for all `Serializable` derived class
+void to_json(nlohmann::json& j, const Serializable& p);
 
-void from_json(const nlohmann::json &j, Serializable &p);
+/// Custom serialization from nlohmann::json type for all `Serializable` derived class
+void from_json(const nlohmann::json& j, Serializable& p);
 
 } // namespace Mirai
 

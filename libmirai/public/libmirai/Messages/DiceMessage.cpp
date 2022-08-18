@@ -1,12 +1,13 @@
+#include "DiceMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "DiceMessage.hpp"
 
 
 namespace Mirai
 {
-	
+
 using json = nlohmann::json;
 
 bool DiceMessage::isValid() const
@@ -30,4 +31,4 @@ json DiceMessage::ToJson() const
 	return data;
 }
 
-}
+} // namespace Mirai

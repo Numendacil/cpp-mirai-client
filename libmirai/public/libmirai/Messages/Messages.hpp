@@ -1,7 +1,3 @@
-#include "MessageBase.hpp"
-
-#include "MessageChain.hpp"
-
 #include "AppMessage.hpp"
 #include "AtAllMessage.hpp"
 #include "AtMessage.hpp"
@@ -14,6 +10,8 @@
 #include "ImageMessage.hpp"
 #include "JsonMessage.hpp"
 #include "MarketFaceMessage.hpp"
+#include "MessageBase.hpp"
+#include "MessageChain.hpp"
 #include "MiraiCodeMessage.hpp"
 #include "MusicShareMessage.hpp"
 #include "PlainMessage.hpp"

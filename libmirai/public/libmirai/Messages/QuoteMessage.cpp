@@ -1,7 +1,8 @@
+#include "QuoteMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "QuoteMessage.hpp"
 
 namespace Mirai
 {
@@ -39,4 +40,4 @@ json QuoteMessage::ToJson() const
 	return json::object();
 }
 
-}
+} // namespace Mirai

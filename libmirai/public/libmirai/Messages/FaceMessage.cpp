@@ -1,7 +1,8 @@
+#include "FaceMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "FaceMessage.hpp"
 
 
 namespace Mirai
@@ -24,14 +25,13 @@ void FaceMessage::FromJson(const json& data)
 json FaceMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
-	if (this->_id != -1)
-		data["faceId"] = this->_id;
+	if (this->_id != -1) data["faceId"] = this->_id;
 	else
 		data["name"] = this->_name;
 	return data;
 }
 
-}
+} // namespace Mirai

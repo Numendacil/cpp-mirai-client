@@ -1,9 +1,11 @@
-#include <nlohmann/json.hpp>
+#include "ForwardMessage.hpp"
+
 #include <optional>
 #include <vector>
 
+#include <nlohmann/json.hpp>
+
 #include <libmirai/Utils/Common.hpp>
-#include "ForwardMessage.hpp"
 
 
 namespace Mirai
@@ -13,11 +15,10 @@ using json = nlohmann::json;
 
 bool ForwardMessage::Node::isValid() const
 {
-	return this->_MessageId.has_value() 
-	|| (!this->_SenderName.empty() && this->_message.isValid());
+	return this->_MessageId.has_value() || (!this->_SenderName.empty() && this->_message.isValid());
 }
 
-void ForwardMessage::Node::FromJson(const json &data)
+void ForwardMessage::Node::FromJson(const json& data)
 {
 	this->_SenderId = Utils::GetValue(data, "senderId", QQ_t{});
 	this->_time = Utils::GetValue(data, "time", (std::time_t)0);
@@ -31,8 +32,7 @@ json ForwardMessage::Node::ToJson() const
 	// assert(this->isValid());
 
 	json data = json::object();
-	if (this->_MessageId.has_value())
-		data["messageId"] = this->_MessageId.value();
+	if (this->_MessageId.has_value()) data["messageId"] = this->_MessageId.value();
 	else
 	{
 		data["senderId"] = _SenderId;
@@ -46,8 +46,7 @@ json ForwardMessage::Node::ToJson() const
 bool ForwardMessage::isValid() const
 {
 	for (const auto& n : this->_NodeList)
-		if (!n.isValid())
-			return false;
+		if (!n.isValid()) return false;
 	return true;
 }
 
@@ -70,4 +69,4 @@ json ForwardMessage::ToJson() const
 	return data;
 }
 
-}
+} // namespace Mirai

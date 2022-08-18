@@ -1,7 +1,8 @@
+#include "SourceMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "SourceMessage.hpp"
 
 namespace Mirai
 {
@@ -33,4 +34,4 @@ json SourceMessage::ToJson() const
 	return json::object();
 }
 
-}
+} // namespace Mirai

@@ -2,14 +2,18 @@
 #define _MIRAI_ATALL_MESSAGE_HPP_
 
 #include <string>
+
 #include <nlohmann/json_fwd.hpp>
-#include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
 
 namespace Mirai
 {
 
+/**
+ * @brief At全体成员消息
+ * 
+ */
 class AtAllMessage : public MessageBase
 {
 public:
@@ -22,15 +26,9 @@ public:
 
 	static constexpr std::string_view _TYPE_ = "AtAll";
 
-	virtual std::string_view GetType() const override
-	{
-		return _TYPE_;
-	}
+	virtual std::string_view GetType() const override { return _TYPE_; }
 
-	virtual AtAllMessage* Clone() const override
-	{
-		return new AtAllMessage(*this);
-	}
+	virtual AtAllMessage* Clone() const override { return new AtAllMessage(*this); }
 
 	virtual void FromJson(const nlohmann::json& data) override;
 	virtual nlohmann::json ToJson() const override;
@@ -38,7 +36,7 @@ public:
 	virtual bool isValid() const override;
 };
 
-}
+} // namespace Mirai
 
 
 #endif

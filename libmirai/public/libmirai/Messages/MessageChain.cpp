@@ -1,14 +1,16 @@
-#include <algorithm>
-#include <nlohmann/json.hpp>
+#include "MessageChain.hpp"
 
+#include <algorithm>
 #include <optional>
 #include <string>
-#include <libmirai/Utils/Factory.hpp>
-#include <libmirai/Utils/Common.hpp>
 
-#include "Messages.hpp"
-#include "MessageChain.hpp"
+#include <nlohmann/json.hpp>
+
+#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Utils/Factory.hpp>
+
 #include "ForwardMessage.hpp"
+#include "Messages.hpp"
 
 namespace Mirai
 {
@@ -28,7 +30,7 @@ MessageChain::MessageChain(const MessageChain& rhs)
 
 MessageChain& MessageChain::operator=(const MessageChain& rhs)
 {
-	if(this != &rhs)
+	if (this != &rhs)
 	{
 		MessageContainer v;
 		v.reserve(rhs._message.size());
@@ -41,13 +43,11 @@ MessageChain& MessageChain::operator=(const MessageChain& rhs)
 	return *this;
 }
 
-MessageChain::MessageChain(MessageChain&& rhs) noexcept
-: _message(std::move(rhs._message)) {}
+MessageChain::MessageChain(MessageChain&& rhs) noexcept : _message(std::move(rhs._message)) {}
 
 MessageChain& MessageChain::operator=(MessageChain&& rhs) noexcept
 {
-	if(this != &rhs)
-		this->_message = std::move(rhs._message);
+	if (this != &rhs) this->_message = std::move(rhs._message);
 	return *this;
 }
 
@@ -117,11 +117,11 @@ Utils::Factory<MessageBase> InitFactory()
 {
 	Utils::Factory<MessageBase> f;
 
-	#ifdef NDEBUG
-	#define  _REGISTER_(_class_) f.Register<_class_>(std::string(_class_::_TYPE_))
-	#else
-	#define _REGISTER_(_class_) assert(f.Register<_class_>(std::string(_class_::_TYPE_)))
-	#endif
+#ifdef NDEBUG
+#define _REGISTER_(_class_) f.Register<_class_>(std::string(_class_::_TYPE_))
+#else
+#define _REGISTER_(_class_) assert(f.Register<_class_>(std::string(_class_::_TYPE_)))
+#endif
 
 	_REGISTER_(AppMessage);
 	_REGISTER_(AtAllMessage);
@@ -143,43 +143,43 @@ Utils::Factory<MessageBase> InitFactory()
 	_REGISTER_(SourceMessage);
 	_REGISTER_(XmlMessage);
 
-	#undef _REGISTER_
-	
+#undef _REGISTER_
+
 	return f;
 }
 
 Utils::Factory<MessageBase> MessageFactory{std::move(InitFactory())};
 
-}
+} // namespace
 
 void MessageChain::RemoveInvalid()
 {
-	this->_message.erase(std::remove_if(this->_message.begin(), this->_message.end(),  
-		[](const value_type& p) { return !p->isValid(); }), this->_message.end());
-			
+	this->_message.erase(
+		std::remove_if(this->_message.begin(), this->_message.end(), [](const value_type& p) { return !p->isValid(); }),
+		this->_message.end());
 }
 
 bool MessageChain::isValid() const
 {
+	bool empty = true;
 	for (const auto& p : this->_message)
-		if (!p->isValid())
-			return false;
-	return true;
+	{
+		if (!p->isValid()) return false;
+		if (empty && !p->ToJson().empty()) empty = false;
+	}
+	return !empty;
 }
 
 void MessageChain::FromJson(const json& data)
 {
-	if (!data.is_array())
-		return;
+	if (!data.is_array()) return;
 	this->_message.clear();
 	this->_message.reserve(data.size());
 	for (const auto& p : data)
 	{
-		if (!p.is_object() || !p.contains("type") || !p["type"].is_string())
-			continue;
+		if (!p.is_object() || !p.contains("type") || !p["type"].is_string()) continue;
 		std::string type = p["type"].get<std::string>();
-		if (!MessageFactory.Exist(type))
-			continue;
+		if (!MessageFactory.Exist(type)) continue;
 		this->_message.emplace_back(MessageFactory.Make(type))->FromJson(p);
 	}
 }
@@ -189,11 +189,9 @@ json MessageChain::ToJson(bool ignoreInvalid) const
 	json data = json::array();
 	for (const auto& p : this->_message)
 	{
-		if (ignoreInvalid && !p->isValid())
-			continue;
+		if (ignoreInvalid && !p->isValid()) continue;
 		json msg = p->ToJson();
-		if (!msg.empty() && msg.contains("type"))
-			data += msg;
+		if (!msg.empty() && msg.contains("type")) data += msg;
 	}
 	return data;
 }
@@ -203,14 +201,14 @@ MessageChain& MessageChain::Forward(ForwardMessage&& forward)
 	return this->Append(std::forward<ForwardMessage>(forward));
 }
 
-void to_json(json &j, const MessageChain &p)
+void to_json(json& j, const MessageChain& p)
 {
 	j = p.ToJson();
 }
 
-void from_json(const json &j, MessageChain &p)
+void from_json(const json& j, MessageChain& p)
 {
 	p.FromJson(j);
 }
 
-}
+} // namespace Mirai

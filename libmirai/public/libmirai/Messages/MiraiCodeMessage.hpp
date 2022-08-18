@@ -2,11 +2,18 @@
 #define _MIRAI_MIRAICODE_MESSAGE_HPP_
 
 #include <string>
+
 #include <nlohmann/json_fwd.hpp>
-#include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
 
+/**
+ * @brief  Mirai码消息
+ * 
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `MiraiCodeMessage::_code` | `""`
+ */
 namespace Mirai
 {
 
@@ -16,7 +23,6 @@ protected:
 	std::string _code;
 
 public:
-
 	MiraiCodeMessage() {}
 	MiraiCodeMessage(const std::string& code) : _code(code) {}
 	MiraiCodeMessage(const MiraiCodeMessage&) = default;
@@ -25,16 +31,10 @@ public:
 	MiraiCodeMessage& operator=(MiraiCodeMessage&&) noexcept = default;
 
 	static constexpr std::string_view _TYPE_ = "MiraiCode";
-	
-	virtual std::string_view GetType() const override
-	{
-		return _TYPE_;
-	}
 
-	virtual MiraiCodeMessage* Clone() const override
-	{
-		return new MiraiCodeMessage(*this);
-	}
+	virtual std::string_view GetType() const override { return _TYPE_; }
+
+	virtual MiraiCodeMessage* Clone() const override { return new MiraiCodeMessage(*this); }
 
 	virtual bool isValid() const override;
 
@@ -42,22 +42,21 @@ public:
 	virtual nlohmann::json ToJson() const override;
 
 
-	bool operator==(const MiraiCodeMessage& rhs)
-	{
-		return this->_code == rhs._code;
-	}
+	bool operator==(const MiraiCodeMessage& rhs) { return this->_code == rhs._code; }
 
-	bool operator!=(const MiraiCodeMessage& rhs)
-	{
-		return !(*this == rhs);
-	}
+	bool operator!=(const MiraiCodeMessage& rhs) { return !(*this == rhs); }
 
+	/// 获取mirai码
 	std::string GetCode() const { return this->_code; }
-	void SetCode(const std::string& code) { this->_code = code; }
 
-	
+	/// 设置mirai码
+	MiraiCodeMessage& SetCode(const std::string& code)
+	{
+		this->_code = code;
+		return *this;
+	}
 };
 
-}
+} // namespace Mirai
 
 #endif

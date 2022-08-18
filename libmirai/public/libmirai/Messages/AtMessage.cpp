@@ -1,8 +1,10 @@
+#include "AtMessage.hpp"
+
 #include <cassert>
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "AtMessage.hpp"
 
 namespace Mirai
 {
@@ -32,8 +34,8 @@ json AtMessage::ToJson() const
 
 	// Not used for sending
 	// data["display"] = this->display;
-	
+
 	return data;
 }
 
-}
+} // namespace Mirai

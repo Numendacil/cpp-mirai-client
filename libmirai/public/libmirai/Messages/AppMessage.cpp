@@ -1,7 +1,8 @@
+#include "AppMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "AppMessage.hpp"
 
 namespace Mirai
 {
@@ -22,11 +23,11 @@ void AppMessage::FromJson(const json& data)
 json AppMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	data["content"] = this->_content;
 	return data;
 }
 
-}
+} // namespace Mirai

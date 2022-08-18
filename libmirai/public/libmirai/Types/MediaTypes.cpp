@@ -1,11 +1,11 @@
+#include "MediaTypes.hpp"
+
 #include <memory>
 #include <optional>
 
-
 #include <nlohmann/json.hpp>
-#include <libmirai/Utils/Common.hpp>
 
-#include "MediaTypes.hpp"
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -40,7 +40,7 @@ void GroupFileInfo::FromJson(const json& data)
 	else
 		this->parent = nullptr;
 	this->isFile = Utils::GetValue(data, "isFile", false);
-	if(this->isFile)
+	if (this->isFile)
 	{
 		this->file = FileInfo{};
 		this->file->FromJson(data);
@@ -76,17 +76,16 @@ void MiraiImage::FromJson(const json& data)
 json MiraiImage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
-	if (!this->id.empty())
-		data["imageId"] = this->id;
+	if (!this->id.empty()) data["imageId"] = this->id;
 	else if (!this->url.empty())
 		data["url"] = this->url;
 	else if (!this->path.empty())
 		data["path"] = this->path;
 	else if (!this->base64.empty())
 		data["base64"] = this->base64;
-	
+
 	return data;
 }
 void MiraiAudio::FromJson(const json& data)
@@ -101,18 +100,17 @@ void MiraiAudio::FromJson(const json& data)
 json MiraiAudio::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
-	if (!this->id.empty())
-		data["voiceId"] = this->id;
+	if (!this->id.empty()) data["voiceId"] = this->id;
 	else if (!this->url.empty())
 		data["url"] = this->url;
 	else if (!this->path.empty())
 		data["path"] = this->path;
 	else if (!this->base64.empty())
 		data["base64"] = this->base64;
-	
+
 	return data;
 }
 
-}
+} // namespace Mirai

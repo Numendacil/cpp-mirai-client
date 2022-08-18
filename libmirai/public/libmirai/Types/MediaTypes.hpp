@@ -8,8 +8,8 @@
 
 #include <nlohmann/json_fwd.hpp>
 
-#include <libmirai/Types/Serializable.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
+#include <libmirai/Types/Serializable.hpp>
 
 
 namespace Mirai
@@ -118,21 +118,18 @@ public:
 	 * @param dir 文件路径，可能为id或文件名路径
 	 * @param isPath 是否为文件名路径
 	 */
-	FilePath(const std::string& dir, bool isPath = false)
-	: _dir(dir), _isPath(isPath) {}
+	FilePath(const std::string& dir, bool isPath = false) : _dir(dir), _isPath(isPath) {}
 
 	/**
 	 * @brief 构造函数
 	 * @param file `GroupFileInfo` 对象
 	 */
-	FilePath(const GroupFileInfo& file)
-	: _dir(file.id), _isPath(false) {}
+	FilePath(const GroupFileInfo& file) : _dir(file.id), _isPath(false) {}
 
 	/**
 	 * @brief 判定是否为文件名路径
 	 * 
-	 * @return true 
-	 * @return false 
+	 * @return `bool` 
 	 */
 	bool isPath() const { return this->_isPath; }
 
@@ -142,7 +139,7 @@ public:
 	 * 仅当 `isPath()` 为 `true` 时有效，否则返回空字符串
 	 * @return 文件名路径
 	 */
-	std::string GetPath() const { return this->_isPath? this->_dir : ""; }
+	std::string GetPath() const { return this->_isPath ? this->_dir : ""; }
 
 	/**
 	 * @brief 获取文件id
@@ -150,7 +147,7 @@ public:
 	 * 仅当 `isPath()` 为 `false` 时有效，否则返回空字符串
 	 * @return 文件id
 	 */
-	std::string GetId() const { return this->_isPath? "" : this->_dir; }
+	std::string GetId() const { return this->_isPath ? "" : this->_dir; }
 
 	/**
 	 * @brief 设置文件名路径
@@ -168,7 +165,7 @@ public:
 	/**
 	 * @brief 设置文件id
 	 * 
-	 * @param path 文件名id
+	 * @param id 文件名id
 	 * @return Reference to *this
 	 */
 	FilePath& SetId(const std::string& id)
@@ -177,7 +174,6 @@ public:
 		this->_dir = id;
 		return *this;
 	}
-	
 };
 
 /**
@@ -214,19 +210,20 @@ struct MiraiImage : public Serializable
 	/// 图片大小
 	int64_t size = 0;
 	/// 图片类型（JPEG，PNG，……）
-	std::string ImageType;	// TODO: replace with enum
+	std::string ImageType; // TODO: replace with enum
 	/// 是否为表情
 	bool isEmoji = false;
 
-	MiraiImage(const std::string& id = {}, const std::string& url = {}, 
-		const std::string& path = {}, const std::string& base64 = {})
-	: id(id), url(url), path(path), base64(base64) {}
+	MiraiImage(const std::string& id = {}, const std::string& url = {}, const std::string& path = {},
+	           const std::string& base64 = {})
+		: id(id), url(url), path(path), base64(base64)
+	{
+	}
 
 	/**
 	 * @brief 检查对象能否用于发送
 	 * 
-	 * @return true 
-	 * @return false 
+	 * @return `bool`
 	 */
 	bool isValid() const
 	{
@@ -268,15 +265,16 @@ struct MiraiAudio : public Serializable
 	/// 音频长度
 	int64_t length = 0;
 
-	MiraiAudio(const std::string& id = {}, const std::string& url = {}, 
-		const std::string& path = {}, const std::string& base64 = {})
-	: id(id), url(url), path(path), base64(base64) {}
+	MiraiAudio(const std::string& id = {}, const std::string& url = {}, const std::string& path = {},
+	           const std::string& base64 = {})
+		: id(id), url(url), path(path), base64(base64)
+	{
+	}
 
 	/**
 	 * @brief 检查对象能否用于发送
 	 * 
-	 * @return true 
-	 * @return false 
+	 * @return `bool`
 	 */
 	bool isValid() const
 	{
@@ -290,6 +288,6 @@ struct MiraiAudio : public Serializable
 // only group audio uploads are supported for now
 using GroupAudio = MiraiAudio;
 
-}
+} // namespace Mirai
 
 #endif

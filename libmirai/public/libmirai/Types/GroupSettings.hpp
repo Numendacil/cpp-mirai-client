@@ -8,7 +8,7 @@
 #include <libmirai/Types/BasicTypes.hpp>
 
 
-namespace Mirai 
+namespace Mirai
 {
 
 /**
@@ -38,6 +38,7 @@ struct GroupConfig
 	void FromJson(const nlohmann::json&);
 };
 
+/// Custom serialization from nlohmann::json type for `GroupConfig` class
 void from_json(const nlohmann::json&, GroupConfig&);
 
 /**
@@ -69,12 +70,13 @@ struct GroupAnnouncement
 	int ConfirmedCount = 0;
 	/// 发布时间
 	std::time_t PublicationTime = 0;
-	
+
 	void FromJson(const nlohmann::json&);
 };
 
+/// Custom serialization from nlohmann::json type for `GroupAnnouncement` class
 void from_json(const nlohmann::json&, GroupAnnouncement&);
 
-}
+} // namespace Mirai
 
 #endif

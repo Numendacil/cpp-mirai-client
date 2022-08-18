@@ -1,21 +1,34 @@
 #ifndef _MIRAI_MUSIC_SHARE_MESSAGE_HPP_
 #define _MIRAI_MUSIC_SHARE_MESSAGE_HPP_
 
-#include <string>
 #include <array>
+#include <string>
+
 #include <nlohmann/json_fwd.hpp>
-#include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
 
 namespace Mirai
 {
 
+/**
+ * @brief 音乐分享卡片消息
+ *
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `MusicShareMessage::_kind` | `MusicKind::UNKNOWN`
+ * `MusicShareMessage::_title` | `""`
+ * `MusicShareMessage::_summary` | `""`
+ * `MusicShareMessage::_JumpUrl` | `""`
+ * `MusicShareMessage::_PictureUrl` | `""`
+ * `MusicShareMessage::_MusicUrl` | `""`
+ * `MusicShareMessage::_brief` | `""`
+ */
 class MusicShareMessage : public MessageBase
 {
 public:
-	enum MusicKind : std::size_t 
-	{ 
+	enum MusicKind : std::size_t
+	{
 		NETEASECLOUDMUSIC = 0,
 		QQMUSIC,
 		MIGUMUSIC,
@@ -33,21 +46,14 @@ protected:
 	std::string _MusicUrl;
 	std::string _brief;
 
-	
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(MusicKind::UNKNOWN)> _MusicKindStr = 
-	{
-		"NeteaseCloudMusic",
-		"QQMusic",
-		"MiguMusic",
-		"KugouMusic",
-		"KuwoMusic"
-	};
+
+	static constexpr std::array<std::string_view, static_cast<std::size_t>(MusicKind::UNKNOWN)> _MusicKindStr = {
+		"NeteaseCloudMusic", "QQMusic", "MiguMusic", "KugouMusic", "KuwoMusic"};
 
 	static constexpr std::string_view _to_string(const MusicKind& m)
 	{
 		auto i = static_cast<std::size_t>(m);
-		if (i < _MusicKindStr.size())
-			return _MusicKindStr[i];
+		if (i < _MusicKindStr.size()) return _MusicKindStr[i];
 		else
 			return "";
 	}
@@ -55,8 +61,7 @@ protected:
 	static constexpr MusicKind _to_enum(std::string_view s)
 	{
 		for (std::size_t i = 0; i < _MusicKindStr.size(); i++)
-			if (_MusicKindStr[i] == s)
-				return static_cast<MusicKind>(i);
+			if (_MusicKindStr[i] == s) return static_cast<MusicKind>(i);
 
 		return MusicKind::UNKNOWN;
 	}
@@ -65,50 +70,96 @@ public:
 	static constexpr std::string_view _TYPE_ = "MusicShare";
 
 	MusicShareMessage() {}
-	MusicShareMessage(MusicKind kind, const std::string& title, const std::string& summary,
-	const std::string& JumpUrl, const std::string& PictureUrl, const std::string& MusicUrl, const std::string& brief) 
-	: _kind(kind), _title(title), _summary(summary), 
-	_JumpUrl(JumpUrl), _PictureUrl(PictureUrl), _MusicUrl(MusicUrl), _brief(brief) {}
+	MusicShareMessage(MusicKind kind, const std::string& title, const std::string& summary, const std::string& JumpUrl,
+	                  const std::string& PictureUrl, const std::string& MusicUrl, const std::string& brief)
+		: _kind(kind)
+		, _title(title)
+		, _summary(summary)
+		, _JumpUrl(JumpUrl)
+		, _PictureUrl(PictureUrl)
+		, _MusicUrl(MusicUrl)
+		, _brief(brief)
+	{
+	}
 	MusicShareMessage(const MusicShareMessage&) = default;
 	MusicShareMessage& operator=(const MusicShareMessage&) = default;
 	MusicShareMessage(MusicShareMessage&&) noexcept = default;
 	MusicShareMessage& operator=(MusicShareMessage&&) noexcept = default;
 
-	virtual std::string_view GetType() const override
-	{
-		return _TYPE_;
-	}
+	virtual std::string_view GetType() const override { return _TYPE_; }
 
-	virtual MusicShareMessage* Clone() const override
-	{
-		return new MusicShareMessage(*this);
-	}
+	virtual MusicShareMessage* Clone() const override { return new MusicShareMessage(*this); }
 
 	virtual bool isValid() const override;
 
 	virtual void FromJson(const nlohmann::json& data) override;
 	virtual nlohmann::json ToJson() const override;
 
+	/// 获取分享种类
 	MusicKind GetKind() const { return this->_kind; }
+	/// 获取标题
 	std::string GetTitle() const { return this->_title; }
+	/// 获取介绍
 	std::string GetSummary() const { return this->_summary; }
+	/// 获取转跳链接
 	std::string GetJumpUrl() const { return this->_JumpUrl; }
+	/// 获取封面图片连接
 	std::string GetPictureUrl() const { return this->_PictureUrl; }
+	/// 获取音乐链接
 	std::string GetMusicUrl() const { return this->_MusicUrl; }
+	/**
+	 * @brief 获取简介
+	 * 
+	 * 简介为未打开会话窗口时显示的简要文字消息
+	 */
 	std::string GetBrief() const { return this->_brief; }
 
-	void SetKind(MusicKind kind) { this->_kind = kind; }
-	void SetTitle(const std::string& title) { this->_title = title; }
-	void SetSummary(const std::string& summary) { this->_summary = summary; }
-	void SetJumpUrl(const std::string& JumpUrl) { this->_JumpUrl = JumpUrl; }
-	void SetPictureUrl(const std::string& PictureUrl) { this->_PictureUrl = PictureUrl; }
-	void SetMusicUrl(const std::string& MusicUrl) { this->_MusicUrl = MusicUrl; }
-	void SetBrief(const std::string& brief) { this->_brief = brief; }
-
+	/// 设置分享种类
+	MusicShareMessage& SetKind(MusicKind kind)
+	{
+		this->_kind = kind;
+		return *this;
+	}
+	/// 设置标题
+	MusicShareMessage& SetTitle(const std::string& title)
+	{
+		this->_title = title;
+		return *this;
+	}
+	/// 设置介绍
+	MusicShareMessage& SetSummary(const std::string& summary)
+	{
+		this->_summary = summary;
+		return *this;
+	}
+	/// 设置转跳链接
+	MusicShareMessage& SetJumpUrl(const std::string& JumpUrl)
+	{
+		this->_JumpUrl = JumpUrl;
+		return *this;
+	}
+	/// 设置封面图片连接
+	MusicShareMessage& SetPictureUrl(const std::string& PictureUrl)
+	{
+		this->_PictureUrl = PictureUrl;
+		return *this;
+	}
+	/// 设置音乐链接
+	MusicShareMessage& SetMusicUrl(const std::string& MusicUrl)
+	{
+		this->_MusicUrl = MusicUrl;
+		return *this;
+	}
+	/// 设置简介
+	MusicShareMessage& SetBrief(const std::string& brief)
+	{
+		this->_brief = brief;
+		return *this;
+	}
 };
 
 
-}
+} // namespace Mirai
 
 
 #endif

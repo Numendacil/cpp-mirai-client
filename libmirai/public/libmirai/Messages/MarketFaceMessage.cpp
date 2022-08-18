@@ -1,7 +1,8 @@
+#include "MarketFaceMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MarketFaceMessage.hpp"
 
 namespace Mirai
 {
@@ -34,4 +35,4 @@ json MarketFaceMessage::ToJson() const
 	return json::object();
 }
 
-}
+} // namespace Mirai

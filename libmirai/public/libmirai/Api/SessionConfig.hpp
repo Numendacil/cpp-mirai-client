@@ -1,11 +1,12 @@
 #ifndef _MIRAI_SESSION_CONFIG_HPP_
 #define _MIRAI_SESSION_CONFIG_HPP_
 
+#include <chrono>
 #include <ctime>
 #include <string>
-#include <chrono>
 
 #include <nlohmann/json_fwd.hpp>
+
 #include <libmirai/Types/BasicTypes.hpp>
 
 namespace Mirai
@@ -36,12 +37,12 @@ struct SessionConfigs
 	bool EnablePong = true;
 	/// 开启数据压缩
 	bool EnableDeflate =
-	#ifdef IXWEBSOCKET_USE_ZLIB
+#ifdef IXWEBSOCKET_USE_ZLIB
 		true
-	#else
+#else
 		false
-	#endif
-	;
+#endif
+		;
 	/// 开启自动重连
 	bool AutoReconnect = true;
 	/// 最小重连时间间隔
@@ -63,6 +64,6 @@ struct SessionConfigs
 	void FromJson(const nlohmann::json& json_config);
 };
 
-}
+} // namespace Mirai
 
 #endif

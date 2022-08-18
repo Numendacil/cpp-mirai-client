@@ -1,6 +1,8 @@
-#include <nlohmann/json.hpp>
-#include <libmirai/Utils/Common.hpp>
 #include "GroupSettings.hpp"
+
+#include <nlohmann/json.hpp>
+
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -39,4 +41,4 @@ void from_json(const json& j, GroupAnnouncement& p)
 }
 
 
-}
+} // namespace Mirai

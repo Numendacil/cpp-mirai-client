@@ -1,7 +1,8 @@
+#include "MusicShareMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MusicShareMessage.hpp"
 
 namespace Mirai
 {
@@ -11,8 +12,7 @@ using json = nlohmann::json;
 bool MusicShareMessage::isValid() const
 {
 	return !(this->_kind == MusicKind::UNKNOWN || this->_title.empty() || this->_summary.empty()
-	|| this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
-	|| this->_brief.empty());
+	         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty() || this->_brief.empty());
 }
 
 void MusicShareMessage::FromJson(const json& data)
@@ -43,4 +43,4 @@ json MusicShareMessage::ToJson() const
 	return data;
 }
 
-}
+} // namespace Mirai

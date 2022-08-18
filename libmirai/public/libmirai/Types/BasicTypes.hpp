@@ -2,13 +2,14 @@
 #define _MIRAI_TYPES_BASIC_TYPES_HPP_
 
 #include <chrono>
-#include <string>
 #include <ctime>
+#include <string>
 
 #include <nlohmann/json_fwd.hpp>
+
 #include <libmirai/Types/Serializable.hpp>
 
-#ifdef IGNORE	// Oh well, Windows.h again
+#ifdef IGNORE // Oh well, Windows.h again
 #undef IGNORE
 #endif
 
@@ -38,13 +39,13 @@ public:
 	explicit operator int64_t() const { return this->_number; }
 	std::string to_string() const { return std::to_string(this->_number); }
 
-	bool operator < (const UID_t& uid) const { return this->_number < uid._number; }
-	bool operator == (const UID_t& uid) const { return this->_number == uid._number; }
+	bool operator<(const UID_t& uid) const { return this->_number < uid._number; }
+	bool operator==(const UID_t& uid) const { return this->_number == uid._number; }
 
-	bool operator != (const UID_t& uid) const { return !(*this == uid); }
-	bool operator > (const UID_t& uid) const { return uid < *this; }
-	bool operator >= (const UID_t& uid) const { return !(*this < uid); }
-	bool operator <= (const UID_t& uid) const { return !(uid < *this); }
+	bool operator!=(const UID_t& uid) const { return !(*this == uid); }
+	bool operator>(const UID_t& uid) const { return uid < *this; }
+	bool operator>=(const UID_t& uid) const { return !(*this < uid); }
+	bool operator<=(const UID_t& uid) const { return !(uid < *this); }
 
 	friend void to_json(nlohmann::json&, const UID_t&);
 	friend void from_json(const nlohmann::json&, UID_t&);
@@ -62,7 +63,10 @@ public:
 	explicit QQ_t(int64_t num) : UID_t(num) {}
 };
 
-inline QQ_t operator ""_qq(unsigned long long num) { return QQ_t(num); }
+inline QQ_t operator""_qq(unsigned long long num)
+{
+	return QQ_t(num);
+}
 
 /**
  * @brief 群聊号码类型
@@ -76,7 +80,10 @@ public:
 	explicit GID_t(int64_t num) : UID_t(num) {}
 };
 
-inline GID_t operator""_gid(unsigned long long num) { return GID_t(num); }
+inline GID_t operator""_gid(unsigned long long num)
+{
+	return GID_t(num);
+}
 
 /**
  * @brief 处理好友申请的操作
@@ -87,7 +94,12 @@ inline GID_t operator""_gid(unsigned long long num) { return GID_t(num); }
  * `REFUSE` | 拒绝好友申请
  * `BLACKLIST` | 拒绝并拉黑，不再接收此人的申请
  */
-enum class NewFriendRequestOp {ACCEPT = 0, REFUSE, BLACKLIST};
+enum class NewFriendRequestOp
+{
+	ACCEPT = 0,
+	REFUSE,
+	BLACKLIST
+};
 
 /**
  * @brief 处理用户入群申请的操作
@@ -100,7 +112,14 @@ enum class NewFriendRequestOp {ACCEPT = 0, REFUSE, BLACKLIST};
  * `REFUSE_BLACKLIST` | 拒绝并拉黑，不再接收此人的申请
  * `IGNORE_BLACKLIST` | 忽略并拉黑，不再接收此人的申请
  */
-enum class MemberJoinRequestOp {ACCEPT = 0, REFUSE, IGNORE, REFUSE_BLACKLIST, IGNORE_BLACKLIST};
+enum class MemberJoinRequestOp
+{
+	ACCEPT = 0,
+	REFUSE,
+	IGNORE,
+	REFUSE_BLACKLIST,
+	IGNORE_BLACKLIST
+};
 
 /**
  * @brief 处理被邀请入群的操作
@@ -110,16 +129,27 @@ enum class MemberJoinRequestOp {ACCEPT = 0, REFUSE, IGNORE, REFUSE_BLACKLIST, IG
  * `ACCEPT` | 同意邀请
  * `REFUSE` | 拒绝拒绝邀请
  */
-enum class BotInvitedJoinGroupRequestOp {ACCEPT = 0, REFUSE};
+enum class BotInvitedJoinGroupRequestOp
+{
+	ACCEPT = 0,
+	REFUSE
+};
 
 /**
  * @brief QQ用户性别
  * 
  * `UNKNOWN` 为未知性别
  */
-enum class SEX : std::size_t {MALE = 0, FEMALE, UNKNOWN};
+enum class SEX : std::size_t
+{
+	MALE = 0,
+	FEMALE,
+	UNKNOWN
+};
 
+/// Custom serialization to nlohmann::json type for `SEX` enum
 void to_json(nlohmann::json&, const SEX&);
+/// Custom serialization from nlohmann::json type for `SEX` enum
 void from_json(const nlohmann::json&, SEX&);
 
 /**
@@ -127,9 +157,17 @@ void from_json(const nlohmann::json&, SEX&);
  * 
  * `UNKNOWN` 为保留字段，使用时出现说明数据不合法
  */
-enum class PERMISSION : std::size_t {OWNER = 0, ADMINISTRATOR, MEMBER, UNKNOWN};
+enum class PERMISSION : std::size_t
+{
+	OWNER = 0,
+	ADMINISTRATOR,
+	MEMBER,
+	UNKNOWN
+};
 
+/// Custom serialization to nlohmann::json type for `PERMISSION` enum
 void to_json(nlohmann::json&, const PERMISSION&);
+/// Custom serialization from nlohmann::json type for `PERMISSION` enum
 void from_json(const nlohmann::json&, PERMISSION&);
 
 /**
@@ -147,7 +185,9 @@ struct User : public Serializable
 	std::string remark;
 
 	User(QQ_t id = 0_qq, const std::string& nickname = "", const std::string& remark = "")
-	: id(id), nickname(nickname), remark(remark) {}
+		: id(id), nickname(nickname), remark(remark)
+	{
+	}
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
 
@@ -156,10 +196,7 @@ struct User : public Serializable
 	 * 
 	 * 仅判断QQ号，更严格的判断请直接比较 `User::ToJson()` 的结果
 	 */
-	bool operator==(const User& rhs) const
-	{
-		return this->id == rhs.id;
-	}
+	bool operator==(const User& rhs) const { return this->id == rhs.id; }
 };
 
 /**
@@ -176,7 +213,9 @@ struct Group : public Serializable
 	PERMISSION permission = PERMISSION::UNKNOWN;
 
 	Group(GID_t id = 0_gid, const std::string& name = "", PERMISSION permission = PERMISSION::UNKNOWN)
-	: id(id), name(name), permission(permission) {}
+		: id(id), name(name), permission(permission)
+	{
+	}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -186,10 +225,7 @@ struct Group : public Serializable
 	 * 
 	 * 仅判断群号，更严格的判断请直接比较 `Group::ToJson()` 的结果
 	 */
-	bool operator==(const Group& rhs) const
-	{
-		return this->id == rhs.id;
-	}
+	bool operator==(const Group& rhs) const { return this->id == rhs.id; }
 };
 
 /**
@@ -217,11 +253,18 @@ struct GroupMember : public Serializable
 	Group group;
 
 	GroupMember(QQ_t id = 0_qq, const std::string& MemberName = "", PERMISSION permission = PERMISSION::UNKNOWN,
-	const std::string& SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
-	std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), const Group& group = {})
-	: id(id), MemberName(MemberName), permission(permission), SpecialTitle(SpecialTitle),
-	  JoinTimestamp(JoinTimestamp), LastSpeakTimestamp(LastSpeakTimestamp), 
-	  MuteTimeRemaining(MuteTimeRemaining), group(group) {}
+	            const std::string& SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
+	            std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), const Group& group = {})
+		: id(id)
+		, MemberName(MemberName)
+		, permission(permission)
+		, SpecialTitle(SpecialTitle)
+		, JoinTimestamp(JoinTimestamp)
+		, LastSpeakTimestamp(LastSpeakTimestamp)
+		, MuteTimeRemaining(MuteTimeRemaining)
+		, group(group)
+	{
+	}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -231,10 +274,7 @@ struct GroupMember : public Serializable
 	 * 
 	 * 仅判断群号与QQ号，更严格的判断请直接比较 `GroupMember::ToJson()` 的结果
 	 */
-	bool operator==(const GroupMember& rhs) const
-	{
-		return this->id == rhs.id && this->group == rhs.group;
-	}
+	bool operator==(const GroupMember& rhs) const { return this->id == rhs.id && this->group == rhs.group; }
 };
 
 /**
@@ -243,22 +283,24 @@ struct GroupMember : public Serializable
  */
 struct UserProfile : public Serializable
 {
-	// QQ昵称
+	/// QQ昵称
 	std::string nickname;
-	// QQ邮箱
+	/// QQ邮箱
 	std::string email;
-	// 年龄
+	/// 年龄
 	int age = 0;
-	// QQ等级
+	/// QQ等级
 	int level = 0;
-	// QQ签名
+	/// QQ签名
 	std::string sign;
-	// 性别
+	/// 性别
 	SEX sex = SEX::UNKNOWN;
 
-	UserProfile(const std::string& nickname = "", const std::string& email = "", int age = 0,
-	int level = 0, const std::string& sign = "", SEX sex = SEX::UNKNOWN)
-	: nickname(nickname), email(email), age(age), level(level), sign(sign), sex(sex) {}
+	UserProfile(const std::string& nickname = "", const std::string& email = "", int age = 0, int level = 0,
+	            const std::string& sign = "", SEX sex = SEX::UNKNOWN)
+		: nickname(nickname), email(email), age(age), level(level), sign(sign), sex(sex)
+	{
+	}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -270,12 +312,8 @@ struct UserProfile : public Serializable
 	 */
 	bool operator==(const UserProfile& rhs) const
 	{
-		return this->nickname == rhs.nickname
-		&& this->email == rhs.email
-		&& this->age == rhs.age
-		&& this->level == rhs.level
-		&& this->sign == rhs.sign
-		&& this->sex == rhs.sex;
+		return this->nickname == rhs.nickname && this->email == rhs.email && this->age == rhs.age
+			&& this->level == rhs.level && this->sign == rhs.sign && this->sex == rhs.sex;
 	}
 };
 
@@ -288,10 +326,9 @@ struct ClientDevice : public Serializable
 	/// 设备id，唯一标识符
 	int64_t id = 0;
 	/// 设备平台
-	std::string platform;	// TODO：replace with enum
+	std::string platform; // TODO：replace with enum
 
-	ClientDevice(int64_t id = 0, const std::string& platform = "")
-	: id(id), platform(platform) {}
+	ClientDevice(int64_t id = 0, const std::string& platform = "") : id(id), platform(platform) {}
 
 	virtual void FromJson(const nlohmann::json&) override;
 	virtual nlohmann::json ToJson() const override;
@@ -300,34 +337,26 @@ struct ClientDevice : public Serializable
 	 * @brief 判断设备是否相同
 	 * 
 	 */
-	bool operator==(const ClientDevice& rhs) const
-	{
-		return this->id == rhs.id && this->platform == rhs.platform;
-	}
+	bool operator==(const ClientDevice& rhs) const { return this->id == rhs.id && this->platform == rhs.platform; }
 };
 
 
-}
+} // namespace Mirai
 
 namespace std
 {
 
-template<> 
-struct hash<Mirai::GID_t>
+template<> struct hash<Mirai::GID_t>
 {
-	std::size_t operator() (const Mirai::GID_t& t) const {
-		return hash<int64_t>{}((int64_t)t);
-	}
-};
-template<> 
-struct hash<Mirai::QQ_t>
-{
-	std::size_t operator() (const Mirai::QQ_t& t) const {
-		return hash<int64_t>{}((int64_t)t);
-	}
+	std::size_t operator()(const Mirai::GID_t& t) const { return hash<int64_t>{}((int64_t)t); }
 };
 
-}
+template<> struct hash<Mirai::QQ_t>
+{
+	std::size_t operator()(const Mirai::QQ_t& t) const { return hash<int64_t>{}((int64_t)t); }
+};
+
+} // namespace std
 
 
 #endif

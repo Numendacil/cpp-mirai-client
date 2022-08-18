@@ -1,7 +1,6 @@
-#include <nlohmann/json.hpp>
-
-#include <libmirai/Utils/Common.hpp>
 #include "FlashImageMessage.hpp"
+
+#include <nlohmann/json.hpp>
 
 namespace Mirai
 {

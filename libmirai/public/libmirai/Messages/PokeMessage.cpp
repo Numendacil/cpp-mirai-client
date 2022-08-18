@@ -1,7 +1,8 @@
+#include "PokeMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "PokeMessage.hpp"
 
 namespace Mirai
 {
@@ -29,4 +30,4 @@ json PokeMessage::ToJson() const
 	return data;
 }
 
-}
+} // namespace Mirai

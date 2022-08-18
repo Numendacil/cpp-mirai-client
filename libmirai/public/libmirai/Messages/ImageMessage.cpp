@@ -1,7 +1,8 @@
+#include "ImageMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "ImageMessage.hpp"
 
 namespace Mirai
 {
@@ -23,12 +24,12 @@ void ImageMessage::FromJson(const json& data)
 json ImageMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	data.update(this->_image);
-	
+
 	return data;
 }
 
-}
+} // namespace Mirai

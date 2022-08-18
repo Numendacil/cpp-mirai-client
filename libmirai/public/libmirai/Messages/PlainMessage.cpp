@@ -1,8 +1,10 @@
+#include "PlainMessage.hpp"
+
 #include <cassert>
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "PlainMessage.hpp"
 
 namespace Mirai
 {
@@ -23,11 +25,11 @@ void PlainMessage::FromJson(const json& data)
 json PlainMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	data["text"] = this->_text;
 	return data;
 }
 
-}
+} // namespace Mirai

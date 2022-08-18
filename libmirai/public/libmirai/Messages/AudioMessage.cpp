@@ -1,7 +1,8 @@
+#include "AudioMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "AudioMessage.hpp"
 
 namespace Mirai
 {
@@ -27,8 +28,8 @@ json AudioMessage::ToJson() const
 	json data = json::object();
 	data["type"] = this->GetType();
 	data.update(this->_audio);
-	
+
 	return data;
 }
 
-}
+} // namespace Mirai

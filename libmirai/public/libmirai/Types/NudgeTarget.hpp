@@ -1,8 +1,8 @@
 #ifndef _MIRAI_TYPES_NUDGE_TARGET_HPP_
 #define _MIRAI_TYPES_NUDGE_TARGET_HPP_
 
-#include <string>
 #include <array>
+#include <string>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -26,25 +26,26 @@ public:
 	 * 
 	 * `UNKNOWN` 为保留字段，使用时出现说明数据不合法
 	 */
-	enum TargetKind : std::size_t { FRIEND = 0, GROUP, STRANGER, UNKNOWN };
+	enum TargetKind : std::size_t
+	{
+		FRIEND = 0,
+		GROUP,
+		STRANGER,
+		UNKNOWN
+	};
 
 protected:
 	TargetKind _kind = TargetKind::UNKNOWN;
 	QQ_t _target;
 	int64_t _subject = 0;
 
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::UNKNOWN)> _TargetKindStr = 
-	{
-		"Friend",
-		"Group",
-		"Stranger"
-	};
+	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::UNKNOWN)> _TargetKindStr = {
+		"Friend", "Group", "Stranger"};
 
 	static constexpr std::string_view _to_string(const TargetKind& m)
 	{
 		auto i = static_cast<std::size_t>(m);
-		if (i < _TargetKindStr.size())
-			return _TargetKindStr[i];
+		if (i < _TargetKindStr.size()) return _TargetKindStr[i];
 		else
 			return "";
 	}
@@ -52,8 +53,7 @@ protected:
 	static constexpr TargetKind _to_enum(std::string_view s)
 	{
 		for (std::size_t i = 0; i < _TargetKindStr.size(); i++)
-			if (_TargetKindStr[i] == s)
-				return static_cast<TargetKind>(i);
+			if (_TargetKindStr[i] == s) return static_cast<TargetKind>(i);
 
 		return TargetKind::UNKNOWN;
 	}
@@ -72,8 +72,9 @@ public:
 	 * @param target 戳一戳的对象
 	 * @param subject 戳一戳的发送主体，群聊消息时为群号，私聊时为对方QQ号码
 	 */
-	NudgeTarget(TargetKind kind, QQ_t target, UID_t subject)
-	: _kind(kind), _target(target), _subject((int64_t)subject) {}
+	NudgeTarget(TargetKind kind, QQ_t target, UID_t subject) : _kind(kind), _target(target), _subject((int64_t)subject)
+	{
+	}
 
 	/**
 	 * @brief 返回戳一戳类型
@@ -95,14 +96,14 @@ public:
 	 * @return 戳一戳对象的QQ号
 	 */
 	QQ_t GetTarget() const { return this->_target; }
-	
+
 	/**
 	 * @brief 返回戳一戳所在的群聊
 	 * 
 	 * 仅在类型为 `TargetKind::GROUP` 时有效，否则返回 `0`
 	 * @return 戳一戳的群号
 	 */
-	GID_t GetGroup() const { return (this->_kind == TargetKind::GROUP)? (GID_t)this->_subject : (GID_t)0; }
+	GID_t GetGroup() const { return (this->_kind == TargetKind::GROUP) ? (GID_t)this->_subject : (GID_t)0; }
 
 	/**
 	 * @brief 设置戳一戳类型
@@ -110,7 +111,11 @@ public:
 	 * @param kind 戳一戳类型 `enum`
 	 * @return Reference to *this
 	 */
-	NudgeTarget& SetTargetKind(TargetKind kind) { this->_kind = kind; return *this; }
+	NudgeTarget& SetTargetKind(TargetKind kind)
+	{
+		this->_kind = kind;
+		return *this;
+	}
 
 	/**
 	 * @brief 设置戳一戳类型
@@ -118,7 +123,11 @@ public:
 	 * @param kind 戳一戳类型 `std::string`
 	 * @return Reference to *this
 	 */
-	NudgeTarget& SetTargetKind(const std::string& kind) { this->_kind = _to_enum(kind); return *this; }
+	NudgeTarget& SetTargetKind(const std::string& kind)
+	{
+		this->_kind = _to_enum(kind);
+		return *this;
+	}
 
 	/**
 	 * @brief 设置戳一戳对象
@@ -126,7 +135,11 @@ public:
 	 * @param target 戳一戳对象QQ
 	 * @return Reference to *this
 	 */
-	NudgeTarget& SetTarget(QQ_t target) { this->_target = target; return *this; }
+	NudgeTarget& SetTarget(QQ_t target)
+	{
+		this->_target = target;
+		return *this;
+	}
 
 	/**
 	 * @brief 设置戳一戳的发送主体
@@ -135,7 +148,11 @@ public:
 	 * @param subject 戳一戳的发送主体
 	 * @return Reference to *this
 	 */
-	NudgeTarget& SetSubject(int64_t subject) { this->_subject = subject; return *this; }
+	NudgeTarget& SetSubject(int64_t subject)
+	{
+		this->_subject = subject;
+		return *this;
+	}
 
 
 	/**
@@ -176,11 +193,10 @@ public:
 	{
 		this->_kind = TargetKind::STRANGER;
 		this->_target = target;
-		return *this; 
+		return *this;
 	}
-
 };
 
-}
+} // namespace Mirai
 
 #endif

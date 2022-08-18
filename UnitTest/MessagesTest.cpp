@@ -18,8 +18,8 @@ TEST(MessagesTest, AppMessage)
 	EXPECT_TRUE(app.isValid());
 	EXPECT_NO_THROW(app.ToJson());
 	EXPECT_EQ(app.ToJson().value("type", ""), "App");
-	auto app1 = app.CloneShared();
-	auto app2 = app.CloneUnique();
+	auto app1 = app.CloneUnique();
+	std::shared_ptr<MessageBase> app2 = app.CloneUnique();
 	EXPECT_EQ(app1->ToJson(), app2->ToJson());
 
 	EXPECT_EQ(app.GetContent(), "<>");
@@ -34,8 +34,8 @@ TEST(MessagesTest, AtAllMessage)
 	EXPECT_TRUE(atall.isValid());
 	EXPECT_NO_THROW(atall.ToJson());
 	EXPECT_EQ(atall.ToJson().value("type", ""), "AtAll");
-	auto atall1 = atall.CloneShared();
-	auto atall2 = atall.CloneUnique();
+	auto atall1 = atall.CloneUnique();
+	std::shared_ptr<MessageBase> atall2 = atall.CloneUnique();
 	EXPECT_EQ(atall1->ToJson(), atall2->ToJson());
 
 	EXPECT_FALSE(atall.ToJson().empty());
@@ -49,8 +49,8 @@ TEST(MessagesTest, AtMessage)
 	EXPECT_TRUE(at.isValid());
 	EXPECT_NO_THROW(at.ToJson());
 	EXPECT_EQ(at.ToJson().value("type", ""), "At");
-	auto at1 = at.CloneShared();
-	auto at2 = at.CloneUnique();
+	auto at1 = at.CloneUnique();
+	std::shared_ptr<MessageBase> at2 = at.CloneUnique();
 	EXPECT_EQ(at1->ToJson(), at2->ToJson());
 
 	EXPECT_EQ(at.GetTarget(), 123456_qq);
@@ -69,8 +69,8 @@ TEST(MessagesTest, AudioMessage)
 	EXPECT_TRUE(audio.isValid());
 	EXPECT_NO_THROW(audio.ToJson());
 	EXPECT_EQ(audio.ToJson().value("type", ""), "Voice");
-	auto audio1 = audio.CloneShared();
-	auto audio2 = audio.CloneUnique();
+	auto audio1 = audio.CloneUnique();
+	std::shared_ptr<MessageBase> audio2 = audio.CloneUnique();
 	EXPECT_EQ(audio1->ToJson(), audio2->ToJson());
 
 	EXPECT_EQ(audio.GetAudio().id, "23C477720A37FEB6A9EE4BCCF654014F.amr");
@@ -90,8 +90,8 @@ TEST(MessagesTest, DiceMessage)
 	EXPECT_TRUE(dice.isValid());
 	EXPECT_NO_THROW(dice.ToJson());
 	EXPECT_EQ(dice.ToJson().value("type", ""), "Dice");
-	auto dice1 = dice.CloneShared();
-	auto dice2 = dice.CloneUnique();
+	auto dice1 = dice.CloneUnique();
+	std::shared_ptr<MessageBase> dice2 = dice.CloneUnique();
 	EXPECT_EQ(dice1->ToJson(), dice2->ToJson());
 
 	EXPECT_EQ(dice.GetValue(), 1);
@@ -108,8 +108,8 @@ TEST(MessagesTest, FaceMessage)
 	EXPECT_TRUE(face.isValid());
 	EXPECT_NO_THROW(face.ToJson());
 	EXPECT_EQ(face.ToJson().value("type", ""), "Face");
-	auto face1 = face.CloneShared();
-	auto face2 = face.CloneUnique();
+	auto face1 = face.CloneUnique();
+	std::shared_ptr<MessageBase> face2 = face.CloneUnique();
 	EXPECT_EQ(face1->ToJson(), face2->ToJson());
 
 	EXPECT_EQ(face.GetId(), 123);
@@ -125,8 +125,8 @@ TEST(MessagesTest, FileMessage)
 
 	EXPECT_TRUE(file.isValid());
 	EXPECT_NO_THROW(file.ToJson());
-	auto file1 = file.CloneShared();
-	auto file2 = file.CloneUnique();
+	auto file1 = file.CloneUnique();
+	std::shared_ptr<MessageBase> file2 = file.CloneUnique();
 	EXPECT_EQ(file1->ToJson(), file2->ToJson());
 
 	EXPECT_EQ(file.GetId(), "id");
@@ -142,8 +142,8 @@ TEST(MessagesTest, FlashImageMessage)
 	EXPECT_TRUE(flashimage.isValid());
 	EXPECT_NO_THROW(flashimage.ToJson());
 	EXPECT_EQ(flashimage.ToJson().value("type", ""), "FlashImage");
-	auto flashimage1 = flashimage.CloneShared();
-	auto flashimage2 = flashimage.CloneUnique();
+	auto flashimage1 = flashimage.CloneUnique();
+	std::shared_ptr<MessageBase> flashimage2 = flashimage.CloneUnique();
 	EXPECT_EQ(flashimage1->ToJson(), flashimage2->ToJson());
 
 	EXPECT_EQ(flashimage.GetImage().id, "23C477720A37FEB6A9EE4BCCF654014F.png");
@@ -167,8 +167,8 @@ TEST(MessagesTest, ForwardMessage)
 	EXPECT_TRUE(forward.isValid());
 	EXPECT_NO_THROW(forward.ToJson());
 	EXPECT_EQ(forward.ToJson().value("type", ""), "Forward");
-	auto forward1 = forward.CloneShared();
-	auto forward2 = forward.CloneUnique();
+	auto forward1 = forward.CloneUnique();
+	std::shared_ptr<MessageBase> forward2 = forward.CloneUnique();
 	EXPECT_EQ(forward1->ToJson(), forward2->ToJson());
 
 	EXPECT_EQ(forward.size(), 2);
@@ -191,8 +191,8 @@ TEST(MessagesTest, ImageMessage)
 	EXPECT_TRUE(image.isValid());
 	EXPECT_NO_THROW(image.ToJson());
 	EXPECT_EQ(image.ToJson().value("type", ""), "Image");
-	auto image1 = image.CloneShared();
-	auto image2 = image.CloneUnique();
+	auto image1 = image.CloneUnique();
+	std::shared_ptr<MessageBase> image2 = image.CloneUnique();
 	EXPECT_EQ(image1->ToJson(), image2->ToJson());
 
 	EXPECT_EQ(image.GetImage().id, "23C477720A37FEB6A9EE4BCCF654014F.png");
@@ -214,8 +214,8 @@ TEST(MessagesTest, JsonMessage)
 	EXPECT_TRUE(j.isValid());
 	EXPECT_NO_THROW(j.ToJson());
 	EXPECT_EQ(j.ToJson().value("type", ""), "Json");
-	auto j1 = j.CloneShared();
-	auto j2 = j.CloneUnique();
+	auto j1 = j.CloneUnique();
+	std::shared_ptr<MessageBase> j2 = j.CloneUnique();
 	EXPECT_EQ(j1->ToJson(), j2->ToJson());
 
 	EXPECT_EQ(j.GetContent(), "{\"text\": \"hello\"}");
@@ -236,8 +236,8 @@ TEST(MessagesTest, MarketFaceMessage)
 
 	EXPECT_TRUE(marketface.isValid());
 	EXPECT_NO_THROW(marketface.ToJson());
-	auto marketface1 = marketface.CloneShared();
-	auto marketface2 = marketface.CloneUnique();
+	auto marketface1 = marketface.CloneUnique();
+	std::shared_ptr<MessageBase> marketface2 = marketface.CloneUnique();
 	EXPECT_EQ(marketface1->ToJson(), marketface2->ToJson());
 
 	EXPECT_EQ(marketface.GetId(), 123);
@@ -254,8 +254,8 @@ TEST(MessagesTest, MiraiCodeMessage)
 	EXPECT_TRUE(miraicode.isValid());
 	EXPECT_NO_THROW(miraicode.ToJson());
 	EXPECT_EQ(miraicode.ToJson().value("type", ""), "MiraiCode");
-	auto miraicode1 = miraicode.CloneShared();
-	auto miraicode2 = miraicode.CloneUnique();
+	auto miraicode1 = miraicode.CloneUnique();
+	std::shared_ptr<MessageBase> miraicode2 = miraicode.CloneUnique();
 	EXPECT_EQ(miraicode1->ToJson(), miraicode2->ToJson());
 
 	EXPECT_EQ(miraicode.GetCode(), "hello[mirai:at:1234567]");
@@ -270,8 +270,8 @@ TEST(MessagesTest, MusicShareMessage)
 	EXPECT_TRUE(musicshare.isValid());
 	EXPECT_NO_THROW(musicshare.ToJson());
 	EXPECT_EQ(musicshare.ToJson().value("type", ""), "MusicShare");
-	auto musicshare1 = musicshare.CloneShared();
-	auto musicshare2 = musicshare.CloneUnique();
+	auto musicshare1 = musicshare.CloneUnique();
+	std::shared_ptr<MessageBase> musicshare2 = musicshare.CloneUnique();
 	EXPECT_EQ(musicshare1->ToJson(), musicshare2->ToJson());
 
 	EXPECT_EQ(musicshare.GetKind(), MusicShareMessage::NETEASECLOUDMUSIC);
@@ -298,8 +298,8 @@ TEST(MessagesTest, PlainMessage)
 	EXPECT_TRUE(plain.isValid());
 	EXPECT_NO_THROW(plain.ToJson());
 	EXPECT_EQ(plain.ToJson().value("type", ""), "Plain");
-	auto plain1 = plain.CloneShared();
-	auto plain2 = plain.CloneUnique();
+	auto plain1 = plain.CloneUnique();
+	std::shared_ptr<MessageBase> plain2 = plain.CloneUnique();
 	EXPECT_EQ(plain1->ToJson(), plain2->ToJson());
 
 	EXPECT_EQ(plain.GetText(), "hello");
@@ -314,8 +314,8 @@ TEST(MessagesTest, PokeMessage)
 	EXPECT_TRUE(poke.isValid());
 	EXPECT_NO_THROW(poke.ToJson());
 	EXPECT_EQ(poke.ToJson().value("type", ""), "Poke");
-	auto poke1 = poke.CloneShared();
-	auto poke2 = poke.CloneUnique();
+	auto poke1 = poke.CloneUnique();
+	std::shared_ptr<MessageBase> poke2 = poke.CloneUnique();
 	EXPECT_EQ(poke1->ToJson(), poke2->ToJson());
 
 	EXPECT_EQ(poke.GetPokeKind(), PokeMessage::DIANZAN);
@@ -329,8 +329,8 @@ TEST(MessagesTest, QuoteMessage)
 
 	EXPECT_TRUE(quote.isValid());
 	EXPECT_NO_THROW(quote.ToJson());
-	auto quote1 = quote.CloneShared();
-	auto quote2 = quote.CloneUnique();
+	auto quote1 = quote.CloneUnique();
+	std::shared_ptr<MessageBase> quote2 = quote.CloneUnique();
 	EXPECT_EQ(quote1->ToJson(), quote2->ToJson());
 
 	EXPECT_NE(quote.GetTargetId(), 123456789_qq);
@@ -345,8 +345,8 @@ TEST(MessagesTest, SourceMessage)
 
 	EXPECT_TRUE(source.isValid());
 	EXPECT_NO_THROW(source.ToJson());
-	auto source1 = source.CloneShared();
-	auto source2 = source.CloneUnique();
+	auto source1 = source.CloneUnique();
+	std::shared_ptr<MessageBase> source2 = source.CloneUnique();
 	EXPECT_EQ(source1->ToJson(), source2->ToJson());
 
 	EXPECT_EQ(source.GetTimestamp(), 123456);
@@ -361,8 +361,8 @@ TEST(MessagesTest, XmlMessage)
 	EXPECT_TRUE(xml.isValid());
 	EXPECT_NO_THROW(xml.ToJson());
 	EXPECT_EQ(xml.ToJson().value("type", ""), "Xml");
-	auto xml1 = xml.CloneShared();
-	auto xml2 = xml.CloneUnique();
+	auto xml1 = xml.CloneUnique();
+	std::shared_ptr<MessageBase> xml2 = xml.CloneUnique();
 	EXPECT_EQ(xml1->ToJson(), xml2->ToJson());
 
 	EXPECT_EQ(xml.GetContent(), "<XML>");

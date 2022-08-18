@@ -8,16 +8,23 @@
 #include <limits>
 #include <memory>
 #include <mutex>
-#include <unordered_map>
 #include <optional>
 #include <string>
+#include <unordered_map>
+#include <vector>
 
 #include <nlohmann/json_fwd.hpp>
 
-#include <libmirai/Types/Types.hpp>
-#include <libmirai/Events/Events.hpp>
+#include <libmirai/Events/BotInvitedJoinGroupRequestEvent.hpp>
+#include <libmirai/Events/FriendMessageEvent.hpp>
+#include <libmirai/Events/GroupMessageEvent.hpp>
+#include <libmirai/Events/MemberJoinRequestEvent.hpp>
+#include <libmirai/Events/MiraiClientEvents.hpp>
+#include <libmirai/Events/NewFriendRequestEvent.hpp>
+#include <libmirai/Events/StrangerMessageEvent.hpp>
+#include <libmirai/Events/TempMessageEvent.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
-#include <vector>
+#include <libmirai/Types/Types.hpp>
 
 #include "SessionConfig.hpp"
 
@@ -31,7 +38,7 @@ namespace Details
 class HttpClientImpl;
 class MessageClientImpl;
 
-}
+} // namespace Details
 
 namespace Utils
 {
@@ -53,8 +60,7 @@ class ThreadPool;
 class MiraiClient
 {
 public:
-	template<typename Event>
-	using EventCallback = std::function<void(Event)>;
+	template<typename Event> using EventCallback = std::function<void(Event)>;
 
 protected:
 	using EventHandler = std::function<void(const nlohmann::json&)>;
@@ -66,7 +72,7 @@ protected:
 
 	std::string _SessionKey;
 	bool _SessionKeySet = false;
-	bool _connected = false;	// Probably can be removed, but just in case
+	bool _connected = false; // Probably can be removed, but just in case
 
 	std::unique_ptr<Details::HttpClientImpl> _HttpClient;
 	std::unique_ptr<Details::MessageClientImpl> _MessageClient;
@@ -85,20 +91,18 @@ protected:
 	bool _ReadSessionKey(const nlohmann::json& data);
 	void _DispatchEvent(const nlohmann::json& data);
 
-	template <typename T>
-	class _has_type_
+	template<typename T> class _has_type_
 	{
 		typedef char yes_type;
 		typedef long no_type;
-		template <typename U> static yes_type test(decltype(&U::_TYPE_));
-		template <typename U> static no_type test(...);
+		template<typename U> static yes_type test(decltype(&U::_TYPE_));
+		template<typename U> static no_type test(...);
 
-		public:
+	public:
 		static constexpr bool value = sizeof(test<T>(0)) == sizeof(yes_type);
 	};
 
-	template <typename Event>
-	constexpr static void _type_check_()
+	template<typename Event> constexpr static void _type_check_()
 	{
 		static_assert(std::is_base_of<EventBase, Event>::value, "Event must be a derived class of MessageBase");
 		static_assert(_has_type_<Event>::value, "Event must contain a static atrribute _TYPE_");
@@ -159,21 +163,19 @@ public:
 	 * @brief 注册事件回调函数
 	 * 
 	 * 模版参数 `EventType` 必须为 `EventBase` 的派生类，且定义了 `EventType::_TYPE_` 属性
-	 * @tparam EventType 
+	 * @tparam EventType 事件类型
 	 * @param callback 回调函数
 	 */
-	template<typename EventType>
-	void On(EventCallback<EventType> callback)
+	template<typename EventType> void On(EventCallback<EventType> callback)
 	{
 		_type_check_<EventType>();
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_EventHandlers[std::string(EventType::_TYPE_)] =
-			[callback, this](const nlohmann::json& j)
-			{
-				EventType event(this);
-				event.FromJson(j);
-				callback(event);
-			};
+		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const nlohmann::json& j)
+		{
+			EventType event(this);
+			event.FromJson(j);
+			callback(event);
+		};
 	}
 
 
@@ -332,7 +334,8 @@ public:
 	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
-	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message,
+	                              std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
 
 	/**
 	 * @brief 发送群聊消息
@@ -343,7 +346,8 @@ public:
 	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
-	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message,
+	                             std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
 
 	/**
 	 * @brief 发送临时会话消息
@@ -355,7 +359,8 @@ public:
 	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
-	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message, std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
+	                            std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
 
 	/**
 	 * @brief 发送头像戳一戳消息
@@ -410,7 +415,8 @@ public:
 	 * @param TimeEnd 消息结束时间
 	 * @return `std::vector<MessageChain>` 
 	 */
-	std::vector<MessageChain> GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart = 0, std::time_t TimeEnd = std::numeric_limits<std::time_t>::max());
+	std::vector<MessageChain> GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart = 0,
+	                                                  std::time_t TimeEnd = std::numeric_limits<std::time_t>::max());
 
 	/**
 	 * @brief 获取群文件列表
@@ -422,8 +428,8 @@ public:
 	 * @param withDownloadInfo 是否附带下载地址
 	 * @return `std::vector<GroupFileInfo>`
 	 */
-	std::vector<GroupFileInfo> GetGroupFileList(GID_t GroupId, const FilePath& dir = {}, 
-		int64_t offset = 0, int64_t size = 0, bool withDownloadInfo = false);
+	std::vector<GroupFileInfo> GetGroupFileList(GID_t GroupId, const FilePath& dir = {}, int64_t offset = 0,
+	                                            int64_t size = 0, bool withDownloadInfo = false);
 
 	/**
 	 * @brief 获取群文件信息
@@ -699,7 +705,7 @@ public:
 	 * @param assign 设置管理员/撤销管理员
 	 */
 	void SetGroupAdmin(GID_t GroupId, QQ_t member, bool assign = true);
-	
+
 	/**
 	 * @brief 获取群公告列表
 	 * 
@@ -723,11 +729,9 @@ public:
 	 * @param RequireConfirm 是否需要群员确认
 	 * @return 发布的群公告 
 	 */
-	GroupAnnouncement PublishAnnouncement(GID_t GroupId, const string& content, 
-					const MiraiImage& cover = {}, 
-					bool ToNewMember = false, bool pinned = false,
-					bool ShowEditCard = false, bool ShowPopup = false, 
-					bool RequireConfirm = false);
+	GroupAnnouncement PublishAnnouncement(GID_t GroupId, const string& content, const MiraiImage& cover = {},
+	                                      bool ToNewMember = false, bool pinned = false, bool ShowEditCard = false,
+	                                      bool ShowPopup = false, bool RequireConfirm = false);
 
 	/**
 	 * @brief 删除群公告
@@ -752,7 +756,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, NewFriendRequestOp operation, const string& message);
+	void RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, NewFriendRequestOp operation,
+	                               const string& message);
 	/**
 	 * @brief 处理添加好友申请事件 `NewFriendRequestEvent`
 	 * 
@@ -760,7 +765,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespNewFriendRequestEvent(const NewFriendRequestEvent& event, NewFriendRequestOp operation, const string& message);
+	void RespNewFriendRequestEvent(const NewFriendRequestEvent& event, NewFriendRequestOp operation,
+	                               const string& message);
 
 	/**
 	 * @brief 处理用户申请入群事件 `MemberJoinRequestEvent`
@@ -771,7 +777,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, MemberJoinRequestOp operation, const string& message);
+	void RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, MemberJoinRequestOp operation,
+	                                const string& message);
 	/**
 	 * @brief 处理用户申请入群事件 `MemberJoinRequestEvent`
 	 * 
@@ -779,7 +786,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event, MemberJoinRequestOp operation, const string& message);
+	void RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event, MemberJoinRequestOp operation,
+	                                const string& message);
 
 	/**
 	 * @brief 处理Bot被邀请入群事件 `BotInvitedJoinGroupRequestEvent`
@@ -790,7 +798,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, BotInvitedJoinGroupRequestOp operation, const string& message);
+	void RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId,
+	                                         BotInvitedJoinGroupRequestOp operation, const string& message);
 	/**
 	 * @brief 处理Bot被邀请入群事件 `BotInvitedJoinGroupRequestEvent`
 	 * 
@@ -798,7 +807,8 @@ public:
 	 * @param operation 处理操作
 	 * @param message 回复消息
 	 */
-	void RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupRequestEvent& event, BotInvitedJoinGroupRequestOp operation, const string& message);
+	void RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupRequestEvent& event,
+	                                         BotInvitedJoinGroupRequestOp operation, const string& message);
 
 	/**
 	 * @brief 注册指令
@@ -808,7 +818,8 @@ public:
 	 * @param usage 使用说明
 	 * @param description 指令描述
 	 */
-	void RegisterCommand(const string& name, const std::vector<string>& alias, const string& usage, const string& description);
+	void RegisterCommand(const string& name, const std::vector<string>& alias, const string& usage,
+	                     const string& description);
 
 	/**
 	 * @brief 执行指令
@@ -824,7 +835,7 @@ public:
 	 * @param path 路径
 	 * @param content POST内容
 	 * @param ContentType 内容格式
-	 * @return json 
+	 * @return `nlohman::json`  
 	 */
 	json PostRaw(const string& path, const string& content, const string& ContentType);
 
@@ -833,21 +844,17 @@ public:
 	 * 
 	 * @param path 路径
 	 * @param params query参数
-	 * @return json 
+	 * @return `nlohman::json` 
 	 */
 	json GetRaw(const string& path, const std::multimap<string, string> params);
-
 };
 
 template<>
 void MiraiClient::On<ClientConnectionEstablishedEvent>(EventCallback<ClientConnectionEstablishedEvent> callback);
-template<>
-void MiraiClient::On<ClientConnectionErrorEvent>(EventCallback<ClientConnectionErrorEvent> callback);
-template<>
-void MiraiClient::On<ClientConnectionClosedEvent>(EventCallback<ClientConnectionClosedEvent> callback);
-template<>
-void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParseErrorEvent> callback);
+template<> void MiraiClient::On<ClientConnectionErrorEvent>(EventCallback<ClientConnectionErrorEvent> callback);
+template<> void MiraiClient::On<ClientConnectionClosedEvent>(EventCallback<ClientConnectionClosedEvent> callback);
+template<> void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParseErrorEvent> callback);
 
-}
+} // namespace Mirai
 
 #endif

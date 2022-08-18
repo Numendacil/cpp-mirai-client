@@ -1,7 +1,8 @@
+#include "AtAllMessage.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "AtAllMessage.hpp"
 
 namespace Mirai
 {
@@ -21,10 +22,10 @@ void AtAllMessage::FromJson(const json& data)
 json AtAllMessage::ToJson() const
 {
 	// assert(this->isValid());
-	
+
 	json data = json::object();
 	data["type"] = this->GetType();
 	return data;
 }
 
-}
+} // namespace Mirai
