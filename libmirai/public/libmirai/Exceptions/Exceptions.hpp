@@ -1,3 +1,18 @@
+// Copyright (C) 2022 Numendacil and contributors
+// 
+// This program is free software: you can redistribute it and/or modify
+// it under the terms of the GNU Affero General Public License as
+// published by the Free Software Foundation, either version 3 of the
+// License, or (at your option) any later version.
+// 
+// This program is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU Affero General Public License for more details.
+// 
+// You should have received a copy of the GNU Affero General Public License
+// along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
 #ifndef _MIRAI_EXCEPTIONS_HPP_
 #define _MIRAI_EXCEPTIONS_HPP_
 
@@ -34,29 +49,30 @@ public:
 		_name_(const std::string& message) : MiraiApiHttpException(_code_, message) {}                                 \
 	};
 
-/// 验证密钥错误
+/// MAH异常: 验证密钥错误
 REGISTER_STATUS_CODE(AuthKeyFail, 1)
-/// 不存在该Bot账号
+/// MAH异常: 不存在该Bot账号
 REGISTER_STATUS_CODE(NoBot, 2)
-/// 无效Session
+/// MAH异常: 无效Session
 REGISTER_STATUS_CODE(IllegalSession, 3)
-/// Session未绑定账号
+/// MAH异常: Session未绑定账号
 REGISTER_STATUS_CODE(NotVerifySession, 4)
-/// 指定对象不存在
+/// MAH异常: 指定对象不存在
 REGISTER_STATUS_CODE(NoElement, 5)
-/// 不支持该操作
+/// MAH异常: 不支持该操作
 REGISTER_STATUS_CODE(NoOperateSupport, 6)
-/// 文件不存在
+/// MAH异常: 文件不存在
 REGISTER_STATUS_CODE(NoSuchFile, 6)
-/// 缺少相关权限
+/// MAH异常: 缺少相关权限
 REGISTER_STATUS_CODE(PermissionDenied, 10)
-/// Bot被禁言
+/// MAH异常: Bot被禁言
 REGISTER_STATUS_CODE(BotMuted, 20)
-/// 消息过长
+/// MAH异常: 消息过长
 REGISTER_STATUS_CODE(MessageTooLarge, 30)
 // REGISTER_STATUS_CODE(InvalidParameter, 400)
 
 #undef REGISTER_STATUS_CODE
+
 
 /**
  * @brief 网络通信错误
