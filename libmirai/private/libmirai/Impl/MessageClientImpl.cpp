@@ -1,22 +1,17 @@
-#include <ixwebsocket/IXWebSocketMessageType.h>
-#include <ixwebsocket/IXNetSystem.h>
-
 #include "MessageClientImpl.hpp"
+
+#include <ixwebsocket/IXNetSystem.h>
+#include <ixwebsocket/IXWebSocketMessageType.h>
 
 namespace Mirai::Details
 {
 
-bool MessageClientImpl::_init =false;
+bool MessageClientImpl::_init = false;
 
-MessageClientImpl::MessageClientImpl(
-		std::chrono::seconds HeartbeatInterval, 
-		std::chrono::seconds HandshakeTimeout, 
-		bool EnablePong,
-		bool EnableDeflate,
-		bool AutoReconnect, 
-		std::chrono::milliseconds MinRetryInterval,
-		std::chrono::milliseconds MaxRetryInterval
-	)
+MessageClientImpl::MessageClientImpl(std::chrono::seconds HeartbeatInterval, std::chrono::seconds HandshakeTimeout,
+                                     bool EnablePong, bool EnableDeflate, bool AutoReconnect,
+                                     std::chrono::milliseconds MinRetryInterval,
+                                     std::chrono::milliseconds MaxRetryInterval)
 {
 	if (!MessageClientImpl::_init)
 	{
@@ -25,10 +20,8 @@ MessageClientImpl::MessageClientImpl(
 	}
 	this->_client.setPingInterval(HeartbeatInterval.count());
 	this->_client.setHandshakeTimeout(HandshakeTimeout.count());
-	if (!EnablePong)
-		this->_client.disablePong();
-	if (EnableDeflate)
-		this->_client.enablePerMessageDeflate();
+	if (!EnablePong) this->_client.disablePong();
+	if (EnableDeflate) this->_client.enablePerMessageDeflate();
 	if (AutoReconnect)
 	{
 		this->_client.enableAutomaticReconnection();
@@ -41,8 +34,7 @@ MessageClientImpl::MessageClientImpl(
 
 MessageClientImpl::~MessageClientImpl()
 {
-	if (this->isConnected())
-		this->_client.stop();
+	if (this->isConnected()) this->_client.stop();
 	if (MessageClientImpl::_init)
 	{
 		ix::uninitNetSystem();
@@ -52,54 +44,49 @@ MessageClientImpl::~MessageClientImpl()
 
 void MessageClientImpl::Connect(const std::string& url)
 {
-	if (this->isConnected())
-		return;
+	if (this->isConnected()) return;
 	this->_client.setUrl(url);
-	this->_client.setOnMessageCallback([this](const ix::WebSocketMessagePtr& msg)
-	{
-		switch(msg->type)
+	this->_client.setOnMessageCallback(
+		[this](const ix::WebSocketMessagePtr& msg)
 		{
-		case ix::WebSocketMessageType::Open:
-			if (this->_OpenCallback)
-				this->_OpenCallback(msg->openInfo);
-			break;
-		case ix::WebSocketMessageType::Message:
-			if (msg->binary)
+			switch (msg->type)
 			{
-				if (this->_BinaryCallback)
+			case ix::WebSocketMessageType::Open:
+				if (this->_OpenCallback) this->_OpenCallback(msg->openInfo);
+				break;
+			case ix::WebSocketMessageType::Message:
+				if (msg->binary)
 				{
-					this->_BinaryCallback(msg->str);
+					if (this->_BinaryCallback)
+					{
+						this->_BinaryCallback(msg->str);
+					}
 				}
-			}
-			else
-			{
-				if (this->_TextCallback)
+				else
 				{
-					this->_TextCallback(msg->str);
+					if (this->_TextCallback)
+					{
+						this->_TextCallback(msg->str);
+					}
 				}
+				break;
+			case ix::WebSocketMessageType::Ping:
+				if (this->_PingCallback) this->_PingCallback(msg->str);
+				break;
+			case ix::WebSocketMessageType::Pong:
+				if (this->_PongCallback) this->_PongCallback(msg->str);
+				break;
+			case ix::WebSocketMessageType::Error:
+				if (this->_ErrorCallback) this->_ErrorCallback(msg->errorInfo);
+				break;
+			case ix::WebSocketMessageType::Fragment:
+				// do nothing
+				break;
+			case ix::WebSocketMessageType::Close:
+				if (this->_CloseCallback) this->_CloseCallback(msg->closeInfo);
+				break;
 			}
-			break;
-		case ix::WebSocketMessageType::Ping:
-			if (this->_PingCallback)
-				this->_PingCallback(msg->str);
-			break;
-		case ix::WebSocketMessageType::Pong:
-			if (this->_PongCallback)
-				this->_PongCallback(msg->str);
-			break;
-		case ix::WebSocketMessageType::Error:
-			if (this->_ErrorCallback)
-				this->_ErrorCallback(msg->errorInfo);
-			break;
-		case ix::WebSocketMessageType::Fragment:
-			// do nothing
-			break;
-		case ix::WebSocketMessageType::Close:
-			if (this->_CloseCallback)
-				this->_CloseCallback(msg->closeInfo);
-			break;
-		}
-	});
+		});
 	this->_client.start();
 }
 
@@ -108,4 +95,4 @@ void MessageClientImpl::Disconnect()
 	this->_client.stop();
 }
 
-}
+} // namespace Mirai::Details

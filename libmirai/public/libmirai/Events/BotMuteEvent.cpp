@@ -1,7 +1,8 @@
+#include "BotMuteEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "BotMuteEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void BotMuteEvent::FromJson(const json& data)
 	this->_duration = Utils::GetValue(data, "durationSeconds", (std::time_t)0);
 }
 
-}
+} // namespace Mirai

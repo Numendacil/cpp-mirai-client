@@ -1,7 +1,8 @@
+#include "MemberHonorChangeEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberHonorChangeEvent.hpp"
 
 namespace Mirai
 {
@@ -16,4 +17,4 @@ void MemberHonorChangeEvent::FromJson(const json& data)
 	this->_member = Utils::GetValue(data, "member", GroupMember{});
 }
 
-}
+} // namespace Mirai

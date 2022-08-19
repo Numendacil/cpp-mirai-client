@@ -1,7 +1,8 @@
+#include "BotUnmuteEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "BotUnmuteEvent.hpp"
 
 namespace Mirai
 {
@@ -14,4 +15,4 @@ void BotUnmuteEvent::FromJson(const json& data)
 	this->_operator = Utils::GetValue(data, "operator", GroupMember{});
 }
 
-}
+} // namespace Mirai

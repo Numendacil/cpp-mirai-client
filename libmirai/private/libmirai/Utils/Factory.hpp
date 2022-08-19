@@ -1,29 +1,22 @@
 #ifndef _MIRAI_UTILS_FACTORY_HPP_
 #define _MIRAI_UTILS_FACTORY_HPP_
 
-#include <string>
-#include <vector>
-#include <unordered_map>
-#include <memory>
-#include <type_traits>
 #include <cassert>
+#include <memory>
+#include <string>
+#include <type_traits>
+#include <unordered_map>
+#include <vector>
 
 namespace Mirai::Utils
 {
 
-template <class Base>
-class Factory
+template<class Base> class Factory
 {
 public:
-	std::unique_ptr<Base> Make(const std::string& s) const
-	{
-		return (this->factory_map.at(s))();
-	}
+	std::unique_ptr<Base> Make(const std::string& s) const { return (this->factory_map.at(s))(); }
 
-	bool Exist(const std::string& s) const
-	{
-		return this->factory_map.count(s);
-	}
+	bool Exist(const std::string& s) const { return this->factory_map.count(s); }
 
 	std::vector<std::string> GetKeyList() const
 	{
@@ -34,23 +27,18 @@ public:
 		return v;
 	}
 
-	template <class T> 
-	bool Register(const std::string& s)
+	template<class T> bool Register(const std::string& s)
 	{
 		static_assert(std::is_base_of<Base, T>::value, "T must be a derived class of Base");
-		if (this->Exist(s))
-			return false;
-		this->factory_map[s] = []() -> std::unique_ptr<Base>
-		{
-			return std::make_unique<T>();
-		};
+		if (this->Exist(s)) return false;
+		this->factory_map[s] = []() -> std::unique_ptr<Base> { return std::make_unique<T>(); };
 		return true;
 	}
 
 private:
-	std::unordered_map<std::string, std::unique_ptr<Base>(*)()> factory_map;
+	std::unordered_map<std::string, std::unique_ptr<Base> (*)()> factory_map;
 };
 
-}
+} // namespace Mirai::Utils
 
 #endif

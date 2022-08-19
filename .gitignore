@@ -2,5 +2,6 @@
 **.history**
 **.vscode**
 **build**
+**.DS_Store**
 
 docs/html

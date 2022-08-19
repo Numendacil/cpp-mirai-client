@@ -1,7 +1,8 @@
+#include "MemberPermissionChangeEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberPermissionChangeEvent.hpp"
 
 namespace Mirai
 {
@@ -16,4 +17,4 @@ void MemberPermissionChangeEvent::FromJson(const json& data)
 	this->_member = Utils::GetValue(data, "member", GroupMember{});
 }
 
-}
+} // namespace Mirai

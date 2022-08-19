@@ -1,7 +1,8 @@
+#include "MemberUnmuteEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberUnmuteEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void MemberUnmuteEvent::FromJson(const json& data)
 	this->_operator = Utils::GetOptional<GroupMember>(data, "operator");
 }
 
-}
+} // namespace Mirai

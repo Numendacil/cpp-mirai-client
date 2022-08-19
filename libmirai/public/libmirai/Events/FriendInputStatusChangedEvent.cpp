@@ -1,7 +1,8 @@
+#include "FriendInputStatusChangedEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "FriendInputStatusChangedEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void FriendInputStatusChangedEvent::FromJson(const json& data)
 	this->_inputting = Utils::GetValue(data, "inputting", false);
 }
 
-}
+} // namespace Mirai

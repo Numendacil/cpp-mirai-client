@@ -150,7 +150,7 @@ public:
 	/// 获取连接配置
 	SessionConfigs GetSessionConfig() const { return this->_config; }
 
-	/// 获取机器人QQ
+	/// 获取BotQQ账号
 	QQ_t GetBotQQ() const { return this->_config.BotQQ; }
 
 	/// 返回是否已成功连接mirai-api-http
@@ -229,7 +229,7 @@ public:
 	string GetMiraiApiHttpVersion();
 
 	/**
-	 * @brief 获取mirai中可用的QQ机器人列表
+	 * @brief 获取mirai中可用的QQBot列表
 	 * 
 	 * @return `std::vector<QQ_t>`
 	 */
@@ -294,7 +294,7 @@ public:
 	std::vector<GroupMember> GetMemberList(GID_t GroupId);
 
 	/**
-	 * @brief 获取机器人用户资料
+	 * @brief 获取Bot用户资料
 	 * 
 	 * @return `UserProfile` 
 	 */

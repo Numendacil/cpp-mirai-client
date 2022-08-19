@@ -1,7 +1,8 @@
+#include "FriendNickChangedEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "FriendNickChangedEvent.hpp"
 
 namespace Mirai
 {
@@ -16,4 +17,4 @@ void FriendNickChangedEvent::FromJson(const json& data)
 	this->_to = Utils::GetValue(data, "to", "");
 }
 
-}
+} // namespace Mirai

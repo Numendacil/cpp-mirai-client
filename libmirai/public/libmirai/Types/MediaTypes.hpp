@@ -210,7 +210,8 @@ struct MiraiImage : public Serializable
 	/// 图片大小
 	int64_t size = 0;
 	/// 图片类型（JPEG，PNG，……）
-	std::string ImageType; // TODO: replace with enum
+	std::string
+		ImageType; // TODO: replace with enum, see https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/message/data/Image.kt#L493
 	/// 是否为表情
 	bool isEmoji = false;
 

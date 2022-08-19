@@ -2,24 +2,23 @@
 #define _MIRAI_BOT_ONLINE_EVENT_HPP_
 
 #include <string>
-#include <nlohmann/json_fwd.hpp>
-#include <libmirai/Types/BasicTypes.hpp>
 
 #include "BotEvent.hpp"
 
 namespace Mirai
 {
 
+/**
+ * @brief Bot上线事件
+ * 
+ */
 class BotOnlineEvent : public BotEvent
 {
 public:
 	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotOnlineEvent";
 
-	virtual std::string_view GetType() const override
-	{
-		return _TYPE_;
-	}
+	virtual std::string_view GetType() const override { return _TYPE_; }
 
 	// virtual BotOnlineEvent* Clone() const override
 	// {
@@ -27,7 +26,7 @@ public:
 	// }
 };
 
-}
+} // namespace Mirai
 
 
 #endif

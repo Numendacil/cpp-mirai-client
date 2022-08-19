@@ -2,8 +2,9 @@
 #define _MIRAI_MIRAI_CLIENT_EVENTS_HPP_
 
 #include <exception>
-#include <string>
 #include <map>
+#include <string>
+
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -42,6 +43,6 @@ struct ClientParseErrorEvent
 };
 
 
-}
+} // namespace Mirai
 
 #endif

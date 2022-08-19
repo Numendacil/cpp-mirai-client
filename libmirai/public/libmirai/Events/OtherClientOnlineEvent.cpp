@@ -1,7 +1,8 @@
+#include "OtherClientOnlineEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "OtherClientOnlineEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void OtherClientOnlineEvent::FromJson(const json& data)
 	this->_kind = Utils::GetOptional<int64_t>(data, "kind");
 }
 
-}
+} // namespace Mirai

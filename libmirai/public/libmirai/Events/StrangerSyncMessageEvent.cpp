@@ -1,7 +1,8 @@
+#include "StrangerSyncMessageEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "StrangerSyncMessageEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void StrangerSyncMessageEvent::FromJson(const json& data)
 	this->_message = Utils::GetValue(data, "messageChain", MessageChain{});
 }
 
-}
+} // namespace Mirai

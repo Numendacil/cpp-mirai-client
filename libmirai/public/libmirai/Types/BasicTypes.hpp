@@ -209,7 +209,7 @@ struct Group : public Serializable
 	GID_t id;
 	/// 群聊名称
 	std::string name;
-	/// 机器人在群聊中的权限
+	/// Bot在群聊中的权限
 	PERMISSION permission = PERMISSION::UNKNOWN;
 
 	Group(GID_t id = 0_gid, const std::string& name = "", PERMISSION permission = PERMISSION::UNKNOWN)

@@ -12,6 +12,14 @@
 namespace Mirai
 {
 
+/**
+ * @brief 群聊消息事件
+ * 
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `GroupMessageEvent::_sender` | `GroupMember{}`
+ * `GroupMessageEvent::_message` | `MessageChain{}`
+ */
 class GroupMessageEvent : public EventBase
 {
 
@@ -35,8 +43,12 @@ public:
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
+	/// 获取发送者资料
 	GroupMember GetSender() const { return this->_sender; }
+	/// 获取消息内容
 	MessageChain GetMessage() const { return this->_message; }
+
+	// TODO: add helper methods for quick reply
 };
 
 }

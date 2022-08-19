@@ -1,7 +1,8 @@
+#include "NudgeEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "NudgeEvent.hpp"
 
 namespace Mirai
 {
@@ -25,4 +26,4 @@ void NudgeEvent::FromJson(const json& data)
 	}
 }
 
-}
+} // namespace Mirai

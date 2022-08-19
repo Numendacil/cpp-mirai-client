@@ -1,7 +1,8 @@
+#include "GroupRecallEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "GroupRecallEvent.hpp"
 
 namespace Mirai
 {
@@ -18,4 +19,4 @@ void GroupRecallEvent::FromJson(const json& data)
 	this->_operator = Utils::GetOptional<GroupMember>(data, "operator");
 }
 
-}
+} // namespace Mirai

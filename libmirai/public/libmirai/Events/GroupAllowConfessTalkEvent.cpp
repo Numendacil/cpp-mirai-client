@@ -1,7 +1,8 @@
+#include "GroupAllowConfessTalkEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "GroupAllowConfessTalkEvent.hpp"
 
 namespace Mirai
 {
@@ -17,4 +18,4 @@ void GroupAllowConfessTalkEvent::FromJson(const json& data)
 	this->_group = Utils::GetValue(data, "group", Group{});
 }
 
-}
+} // namespace Mirai

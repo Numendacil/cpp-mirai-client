@@ -1,7 +1,8 @@
+#include "MemberLeaveEventQuit.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberLeaveEventQuit.hpp"
 
 namespace Mirai
 {
@@ -14,4 +15,4 @@ void MemberLeaveEventQuit::FromJson(const json& data)
 	this->_member = Utils::GetValue(data, "member", GroupMember{});
 }
 
-}
+} // namespace Mirai

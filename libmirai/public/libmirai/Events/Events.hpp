@@ -1,13 +1,7 @@
 #ifndef _MIRAI_EVENTS_HPP_
 #define _MIRAI_EVENTS_HPP_
 
-#include "EventBase.hpp"
 #include "BotEvent.hpp"
-#include "BotOfflineEventActive.hpp"
-#include "BotOfflineEventDropped.hpp"
-#include "BotOfflineEventForce.hpp"
-#include "BotOnlineEvent.hpp"
-#include "BotReloginEvent.hpp"
 #include "BotGroupPermissionChangeEvent.hpp"
 #include "BotInvitedJoinGroupRequestEvent.hpp"
 #include "BotJoinGroupEvent.hpp"
@@ -15,8 +9,14 @@
 #include "BotLeaveEventDisband.hpp"
 #include "BotLeaveEventKick.hpp"
 #include "BotMuteEvent.hpp"
+#include "BotOfflineEventActive.hpp"
+#include "BotOfflineEventDropped.hpp"
+#include "BotOfflineEventForce.hpp"
+#include "BotOnlineEvent.hpp"
+#include "BotReloginEvent.hpp"
 #include "BotUnmuteEvent.hpp"
 #include "CommandExecutedEvent.hpp"
+#include "EventBase.hpp"
 #include "FriendInputStatusChangedEvent.hpp"
 #include "FriendMessageEvent.hpp"
 #include "FriendNickChangedEvent.hpp"
@@ -41,6 +41,7 @@
 #include "MemberPermissionChangeEvent.hpp"
 #include "MemberSpecialTitleChangeEvent.hpp"
 #include "MemberUnmuteEvent.hpp"
+#include "MiraiClientEvents.hpp"
 #include "NewFriendRequestEvent.hpp"
 #include "NudgeEvent.hpp"
 #include "OtherClientMessageEvent.hpp"
@@ -50,7 +51,5 @@
 #include "StrangerSyncMessageEvent.hpp"
 #include "TempMessageEvent.hpp"
 #include "TempSyncMessageEvent.hpp"
-
-#include "MiraiClientEvents.hpp"
 
 #endif

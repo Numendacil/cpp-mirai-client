@@ -1,7 +1,8 @@
+#include "BotLeaveEventActive.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "BotLeaveEventActive.hpp"
 
 namespace Mirai
 {
@@ -14,4 +15,4 @@ void BotLeaveEventActive::FromJson(const json& data)
 	this->_group = Utils::GetValue(data, "group", Group{});
 }
 
-}
+} // namespace Mirai

@@ -12,12 +12,12 @@
 namespace Mirai
 {
 
+// TODO: Consider switching to typeid?
+
 /**
  * @brief Base class for all message types
  * 
  * 所有有效的派生类均需要定义 `_TYPE_`，对应于mirai-api-http传来的JSON消息中的"type"属性，并在 `GetType()` 中返回 `_TYPE_`
- *
- * TODO: Consider switching to typeid?
  */
 class MessageBase : public Serializable
 {

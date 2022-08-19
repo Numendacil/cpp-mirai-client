@@ -1,8 +1,10 @@
+#include "FriendRecallEvent.hpp"
+
 #include <cstdint>
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "FriendRecallEvent.hpp"
 
 namespace Mirai
 {
@@ -18,4 +20,4 @@ void FriendRecallEvent::FromJson(const json& data)
 	this->_operator = Utils::GetValue(data, "operator", QQ_t{});
 }
 
-}
+} // namespace Mirai

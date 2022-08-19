@@ -1,8 +1,10 @@
+#include "NewFriendRequestEvent.hpp"
+
 #include <cstdint>
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "NewFriendRequestEvent.hpp"
 
 namespace Mirai
 {
@@ -19,4 +21,4 @@ void NewFriendRequestEvent::FromJson(const json& data)
 	this->_message = Utils::GetValue(data, "message", "");
 }
 
-}
+} // namespace Mirai

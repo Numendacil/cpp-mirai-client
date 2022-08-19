@@ -1,7 +1,8 @@
+#include "BotEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "BotEvent.hpp"
 
 namespace Mirai
 {
@@ -14,4 +15,4 @@ void BotEvent::FromJson(const json& data)
 	this->_qq = Utils::GetValue(data, "qq", QQ_t{});
 }
 
-}
+} // namespace Mirai

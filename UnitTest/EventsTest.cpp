@@ -144,15 +144,14 @@ TEST(EventsTest, BotLeaveEventKick)
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
 	EXPECT_EQ(event.GetGroup().permission, PERMISSION::MEMBER);
-	EXPECT_TRUE(event.GetOperator());
-	EXPECT_EQ(event.GetOperator()->id, 1111_qq);
-	EXPECT_EQ(event.GetOperator()->MemberName, "Marisa");
-	EXPECT_EQ(event.GetOperator()->permission, PERMISSION::OWNER);
-	EXPECT_EQ(event.GetOperator()->SpecialTitle, "xxx");
-	EXPECT_EQ(event.GetOperator()->JoinTimestamp, 12345678);
-	EXPECT_EQ(event.GetOperator()->LastSpeakTimestamp, 8765432);
-	EXPECT_EQ(event.GetOperator()->MuteTimeRemaining.count(), 0);
-	EXPECT_EQ(event.GetOperator()->group, event.GetGroup());
+	EXPECT_EQ(event.GetOperator().id, 1111_qq);
+	EXPECT_EQ(event.GetOperator().MemberName, "Marisa");
+	EXPECT_EQ(event.GetOperator().permission, PERMISSION::OWNER);
+	EXPECT_EQ(event.GetOperator().SpecialTitle, "xxx");
+	EXPECT_EQ(event.GetOperator().JoinTimestamp, 12345678);
+	EXPECT_EQ(event.GetOperator().LastSpeakTimestamp, 8765432);
+	EXPECT_EQ(event.GetOperator().MuteTimeRemaining.count(), 0);
+	EXPECT_EQ(event.GetOperator().group, event.GetGroup());
 }
 
 TEST(EventsTest, BotLeaveEventDisband)
@@ -164,15 +163,14 @@ TEST(EventsTest, BotLeaveEventDisband)
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
 	EXPECT_EQ(event.GetGroup().permission, PERMISSION::MEMBER);
-	EXPECT_TRUE(event.GetOperator());
-	EXPECT_EQ(event.GetOperator()->id, 1111_qq);
-	EXPECT_EQ(event.GetOperator()->MemberName, "Marisa");
-	EXPECT_EQ(event.GetOperator()->permission, PERMISSION::OWNER);
-	EXPECT_EQ(event.GetOperator()->SpecialTitle, "xxx");
-	EXPECT_EQ(event.GetOperator()->JoinTimestamp, 12345678);
-	EXPECT_EQ(event.GetOperator()->LastSpeakTimestamp, 8765432);
-	EXPECT_EQ(event.GetOperator()->MuteTimeRemaining.count(), 0);
-	EXPECT_EQ(event.GetOperator()->group, event.GetGroup());
+	EXPECT_EQ(event.GetOperator().id, 1111_qq);
+	EXPECT_EQ(event.GetOperator().MemberName, "Marisa");
+	EXPECT_EQ(event.GetOperator().permission, PERMISSION::OWNER);
+	EXPECT_EQ(event.GetOperator().SpecialTitle, "xxx");
+	EXPECT_EQ(event.GetOperator().JoinTimestamp, 12345678);
+	EXPECT_EQ(event.GetOperator().LastSpeakTimestamp, 8765432);
+	EXPECT_EQ(event.GetOperator().MuteTimeRemaining.count(), 0);
+	EXPECT_EQ(event.GetOperator().group, event.GetGroup());
 }
 
 TEST(EventsTest, GroupRecallEvent)

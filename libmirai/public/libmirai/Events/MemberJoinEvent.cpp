@@ -1,7 +1,8 @@
+#include "MemberJoinEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberJoinEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void MemberJoinEvent::FromJson(const json& data)
 	this->_inviter = Utils::GetOptional<GroupMember>(data, "invitor");
 }
 
-}
+} // namespace Mirai

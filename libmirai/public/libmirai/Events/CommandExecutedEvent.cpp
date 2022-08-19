@@ -1,7 +1,8 @@
+#include "CommandExecutedEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "CommandExecutedEvent.hpp"
 
 namespace Mirai
 {
@@ -17,4 +18,4 @@ void CommandExecutedEvent::FromJson(const json& data)
 	this->_args = Utils::GetValue(data, "args", MessageChain{});
 }
 
-}
+} // namespace Mirai

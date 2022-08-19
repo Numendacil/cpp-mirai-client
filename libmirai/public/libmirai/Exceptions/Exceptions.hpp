@@ -27,16 +27,16 @@ public:
 	virtual ~MiraiApiHttpException() = default;
 };
 
-#define REGISTER_STATUS_CODE(_name_, _code_)	\
-	class _name_ : public MiraiApiHttpException	\
-	{	\
-	public:	\
-		_name_(const std::string& message) : MiraiApiHttpException(_code_, message) {}	\
+#define REGISTER_STATUS_CODE(_name_, _code_)                                                                           \
+	class _name_ : public MiraiApiHttpException                                                                        \
+	{                                                                                                                  \
+	public:                                                                                                            \
+		_name_(const std::string& message) : MiraiApiHttpException(_code_, message) {}                                 \
 	};
 
 /// 验证密钥错误
 REGISTER_STATUS_CODE(AuthKeyFail, 1)
-/// 不存在该机器人账号
+/// 不存在该Bot账号
 REGISTER_STATUS_CODE(NoBot, 2)
 /// 无效Session
 REGISTER_STATUS_CODE(IllegalSession, 3)
@@ -50,7 +50,7 @@ REGISTER_STATUS_CODE(NoOperateSupport, 6)
 REGISTER_STATUS_CODE(NoSuchFile, 6)
 /// 缺少相关权限
 REGISTER_STATUS_CODE(PermissionDenied, 10)
-/// 机器人被禁言
+/// Bot被禁言
 REGISTER_STATUS_CODE(BotMuted, 20)
 /// 消息过长
 REGISTER_STATUS_CODE(MessageTooLarge, 30)

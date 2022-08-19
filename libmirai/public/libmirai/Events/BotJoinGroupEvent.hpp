@@ -13,6 +13,14 @@
 namespace Mirai
 {
 
+/**
+ * @brief Bot加入群聊事件
+ * 
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `BotJoinGroupEvent::_group` | `Group{}`
+ * `BotJoinGroupEvent::_inviter` | `std::nullopt`
+ */
 class BotJoinGroupEvent : public EventBase
 {
 protected:
@@ -35,7 +43,9 @@ public:
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
+	/// 获取群聊信息
 	Group GetGroup() const { return this->_group; }
+	/// 获取邀请人信息，若无则返回 `std::nullopt`
 	std::optional<GroupMember> GetInviter() const { return this->_inviter; }
 };
 

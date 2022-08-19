@@ -1,7 +1,8 @@
+#include "GroupSyncMessageEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "GroupSyncMessageEvent.hpp"
 
 namespace Mirai
 {
@@ -15,4 +16,4 @@ void GroupSyncMessageEvent::FromJson(const json& data)
 	this->_message = Utils::GetValue(data, "messageChain", MessageChain{});
 }
 
-}
+} // namespace Mirai

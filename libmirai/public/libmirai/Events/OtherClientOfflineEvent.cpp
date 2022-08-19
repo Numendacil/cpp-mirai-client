@@ -1,7 +1,8 @@
+#include "OtherClientOfflineEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "OtherClientOfflineEvent.hpp"
 
 namespace Mirai
 {
@@ -14,4 +15,4 @@ void OtherClientOfflineEvent::FromJson(const json& data)
 	this->_client = Utils::GetValue(data, "client", ClientDevice{});
 }
 
-}
+} // namespace Mirai

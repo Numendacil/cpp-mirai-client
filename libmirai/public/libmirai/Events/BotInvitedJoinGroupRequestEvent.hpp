@@ -2,7 +2,9 @@
 #define _MIRAI_BOT_INVITED_JOIN_GROUP_REQUEST_EVENT_HPP_
 
 #include <string>
+
 #include <nlohmann/json_fwd.hpp>
+
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -10,6 +12,18 @@
 namespace Mirai
 {
 
+/**
+ * @brief Bot被邀请加群事件
+ * 
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `BotInvitedJoinGroupRequestEvent::_EventId` | `0`
+ * `BotInvitedJoinGroupRequestEvent::_FromId` | `0_qq`
+ * `BotInvitedJoinGroupRequestEvent::_GroupId` | `0_gid`
+ * `BotInvitedJoinGroupRequestEvent::_GroupName` | `""`
+ * `BotInvitedJoinGroupRequestEvent::_nickname` | `""`
+ * `BotInvitedJoinGroupRequestEvent::_message` | `""`
+ */
 class BotInvitedJoinGroupRequestEvent : public EventBase
 {
 
@@ -25,10 +39,7 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotInvitedJoinGroupRequestEvent";
 
-	virtual std::string_view GetType() const override
-	{
-		return _TYPE_;
-	}
+	virtual std::string_view GetType() const override { return _TYPE_; }
 
 	// virtual BotInvitedJoinGroupRequestEvent* Clone() const override
 	// {
@@ -37,15 +48,23 @@ public:
 
 	virtual void FromJson(const nlohmann::json& data) override;
 
+	/// 获取事件id，唯一标识符
 	int64_t GetEventId() const { return this->_EventId; }
+	/// 获取邀请人QQ
 	QQ_t GetUserId() const { return this->_FromId; }
+	/// 获取邀请人昵称
 	std::string GetNickname() const { return this->_nickname; }
+	/// 获取群聊id
 	GID_t GetGroupId() const { return this->_GroupId; }
+	/// 获取群聊名称
 	std::string GetGroupName() const { return this->_GroupName; }
+	/// 获取邀请信息
 	std::string GetMessage() const { return this->_message; }
+
+	// TODO: add helper methods for quick response
 };
 
-}
+} // namespace Mirai
 
 
 #endif

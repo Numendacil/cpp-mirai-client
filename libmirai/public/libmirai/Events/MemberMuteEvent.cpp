@@ -1,7 +1,8 @@
+#include "MemberMuteEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberMuteEvent.hpp"
 
 namespace Mirai
 {
@@ -16,4 +17,4 @@ void MemberMuteEvent::FromJson(const json& data)
 	this->_operator = Utils::GetOptional<GroupMember>(data, "operator");
 }
 
-}
+} // namespace Mirai

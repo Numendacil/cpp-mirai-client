@@ -1,7 +1,8 @@
+#include "BotGroupPermissionChangeEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "BotGroupPermissionChangeEvent.hpp"
 
 namespace Mirai
 {
@@ -16,4 +17,4 @@ void BotGroupPermissionChangeEvent::FromJson(const json& data)
 	this->_current = Utils::GetValue(data, "current", PERMISSION::UNKNOWN);
 }
 
-}
+} // namespace Mirai

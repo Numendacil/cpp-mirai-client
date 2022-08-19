@@ -1,7 +1,8 @@
+#include "GroupAllowAnonymousChatEvent.hpp"
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "GroupAllowAnonymousChatEvent.hpp"
 
 namespace Mirai
 {
@@ -17,4 +18,4 @@ void GroupAllowAnonymousChatEvent::FromJson(const json& data)
 	this->_operator = Utils::GetOptional<GroupMember>(data, "operator");
 }
 
-}
+} // namespace Mirai

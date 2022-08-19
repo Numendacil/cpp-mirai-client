@@ -50,7 +50,7 @@ struct SessionConfigs
 	/// 最大重连时间间隔
 	std::chrono::milliseconds MaxRetryInterval = std::chrono::seconds(30);
 
-	/// 机器人QQ
+	/// BotQQ
 	QQ_t BotQQ = 12345_qq;
 	/// 验证密钥
 	std::string VerifyKey = "";

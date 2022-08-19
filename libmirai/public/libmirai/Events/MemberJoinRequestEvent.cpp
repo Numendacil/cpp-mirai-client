@@ -1,8 +1,10 @@
+#include "MemberJoinRequestEvent.hpp"
+
 #include <cstdint>
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Utils/Common.hpp>
-#include "MemberJoinRequestEvent.hpp"
 
 namespace Mirai
 {
@@ -20,4 +22,4 @@ void MemberJoinRequestEvent::FromJson(const json& data)
 	this->_message = Utils::GetValue(data, "message", "");
 }
 
-}
+} // namespace Mirai
