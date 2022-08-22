@@ -1,0 +1,4 @@
+<map id="Mirai::MemberLeaveEventKick" name="Mirai::MemberLeaveEventKick">
+<area shape="rect" id="node1" title="成员被踢出群聊事件" alt="" coords="5,81,249,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="54,5,201,33"/>
+</map>

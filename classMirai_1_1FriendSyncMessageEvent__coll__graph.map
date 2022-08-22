@@ -1,0 +1,10 @@
+<map id="Mirai::FriendSyncMessageEvent" name="Mirai::FriendSyncMessageEvent">
+<area shape="rect" id="node1" title="好友消息同步事件" alt="" coords="636,84,848,128"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="349,9,495,37"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="33,5,180,33"/>
+<area shape="rect" id="node4" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="335,65,509,93"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,57,208,101"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="353,117,491,145"/>
+<area shape="rect" id="node7" title="STL class" alt="" coords="15,125,198,169"/>
+<area shape="rect" id="node8" href="$structMirai_1_1User.html" title="QQ用户" alt="" coords="371,169,473,197"/>
+</map>

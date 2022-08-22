@@ -1,0 +1,991 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>cpp-mirai-client: Mirai::ForwardMessage::Node类 参考</title>
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+	<link href="doxygen.css" rel="stylesheet" type="text/css" />
+	<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+	<script type="text/javascript">
+		DoxygenAwesomeDarkModeToggle.init()
+		DoxygenAwesomeFragmentCopyButton.init()
+		DoxygenAwesomeParagraphLink.init()
+	</script>
+</head>
+<body>
+	<!-- https://tholman.com/github-corners/ -->
+	<a href="https://github.com/numendacil/cpp-mirai-client" class="github-corner" title="View source on GitHub"
+		target="_blank">
+		<svg viewBox="0 0 250 250" width="40" height="40"
+			style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<style>
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+		@keyframes octocat-wave {
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+		}
+	</style>
+		<div id="top">
+			<!-- do not remove this div, it is closed by doxygen! -->
+			<div id="titlearea">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr style="height: 56px;">
+							<td id="projectalign" style="padding-left: 0.5em;">
+								<div id="projectname">cpp-mirai-client
+									&#160;<span id="projectnumber">v2.6.1</span>
+								</div>
+								<div id="projectbrief">cpp client for mirai-api-http</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classMirai_1_1ForwardMessage_1_1Node.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classMirai_1_1ForwardMessage_1_1Node-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">Mirai::ForwardMessage::Node类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>转发消息节点，代表一条转发消息  
+ <a href="classMirai_1_1ForwardMessage_1_1Node.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a>&gt;</code></p>
+<div class="dynheader">
+类 Mirai::ForwardMessage::Node 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1ForwardMessage_1_1Node__inherit__graph.svg" width="203" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+Mirai::ForwardMessage::Node 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1ForwardMessage_1_1Node__coll__graph.svg" width="862" height="203"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a049f5b5371bc1a330629f938406a2965"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a049f5b5371bc1a330629f938406a2965">Node</a> ()</td></tr>
+<tr class="separator:a049f5b5371bc1a330629f938406a2965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e482fb8ad3cdcc38711ecf983a84169"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a2e482fb8ad3cdcc38711ecf983a84169">Node</a> (const <a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;)=default</td></tr>
+<tr class="separator:a2e482fb8ad3cdcc38711ecf983a84169"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b0575076e7121e23c9762b63940ee46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a0b0575076e7121e23c9762b63940ee46">operator=</a> (const <a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;)=default</td></tr>
+<tr class="separator:a0b0575076e7121e23c9762b63940ee46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13a11cf910048925d4dd396fb9d0bc2d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a13a11cf910048925d4dd396fb9d0bc2d">Node</a> (<a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a13a11cf910048925d4dd396fb9d0bc2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0935d86f03ac3c89977296d54ebfd7e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a0935d86f03ac3c89977296d54ebfd7e8">operator=</a> (<a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="separator:a0935d86f03ac3c89977296d54ebfd7e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6fc0bd1e3c69f91abe4c7b0a6c62a68b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a6fc0bd1e3c69f91abe4c7b0a6c62a68b">isValid</a> () const</td></tr>
+<tr class="separator:a6fc0bd1e3c69f91abe4c7b0a6c62a68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a86b067d937fa0518f6f6c19386711b67"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a86b067d937fa0518f6f6c19386711b67">FromJson</a> (const nlohmann::json &amp;data) override</td></tr>
+<tr class="separator:a86b067d937fa0518f6f6c19386711b67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80b24660972709e20d2a3868d98c94d"><td class="memItemLeft" align="right" valign="top">virtual nlohmann::json&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#ad80b24660972709e20d2a3868d98c94d">ToJson</a> () const override</td></tr>
+<tr class="separator:ad80b24660972709e20d2a3868d98c94d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc8464ba58b2d64064ba3da67756c08c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#afc8464ba58b2d64064ba3da67756c08c">GetSenderId</a> () const</td></tr>
+<tr class="memdesc:afc8464ba58b2d64064ba3da67756c08c"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取发送者QQ  <a href="classMirai_1_1ForwardMessage_1_1Node.html#afc8464ba58b2d64064ba3da67756c08c">更多...</a><br /></td></tr>
+<tr class="separator:afc8464ba58b2d64064ba3da67756c08c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2e7f14cee36256c848fc3c0d91322602"><td class="memItemLeft" align="right" valign="top">std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a2e7f14cee36256c848fc3c0d91322602">GetTimestamp</a> () const</td></tr>
+<tr class="memdesc:a2e7f14cee36256c848fc3c0d91322602"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取发送时间  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a2e7f14cee36256c848fc3c0d91322602">更多...</a><br /></td></tr>
+<tr class="separator:a2e7f14cee36256c848fc3c0d91322602"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80ece8c706305283605dd89964997ae4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a80ece8c706305283605dd89964997ae4">GetSenderName</a> () const</td></tr>
+<tr class="memdesc:a80ece8c706305283605dd89964997ae4"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取发送者名称  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a80ece8c706305283605dd89964997ae4">更多...</a><br /></td></tr>
+<tr class="separator:a80ece8c706305283605dd89964997ae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a621d2f63d2fcada5159ddadc6dbc4985"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a621d2f63d2fcada5159ddadc6dbc4985">GetMessageChain</a> () const</td></tr>
+<tr class="memdesc:a621d2f63d2fcada5159ddadc6dbc4985"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取消息链  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a621d2f63d2fcada5159ddadc6dbc4985">更多...</a><br /></td></tr>
+<tr class="separator:a621d2f63d2fcada5159ddadc6dbc4985"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d3d8ddfd19771ae10ee2c1bb72872bb"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a4d3d8ddfd19771ae10ee2c1bb72872bb">hasMessageId</a> () const</td></tr>
+<tr class="memdesc:a4d3d8ddfd19771ae10ee2c1bb72872bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">是否含有消息id  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a4d3d8ddfd19771ae10ee2c1bb72872bb">更多...</a><br /></td></tr>
+<tr class="separator:a4d3d8ddfd19771ae10ee2c1bb72872bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa26cd42f1fe901f7c4b256a5e90bc605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aa26cd42f1fe901f7c4b256a5e90bc605">GetMessageId</a> () const</td></tr>
+<tr class="memdesc:aa26cd42f1fe901f7c4b256a5e90bc605"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取消息id，不存在时返回 <code>0</code>  <a href="classMirai_1_1ForwardMessage_1_1Node.html#aa26cd42f1fe901f7c4b256a5e90bc605">更多...</a><br /></td></tr>
+<tr class="separator:aa26cd42f1fe901f7c4b256a5e90bc605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a67a885b20a856dcfe8e6a2c32719d218"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a67a885b20a856dcfe8e6a2c32719d218">SetSenderId</a> (<a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a> SenderId)</td></tr>
+<tr class="memdesc:a67a885b20a856dcfe8e6a2c32719d218"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置发送者  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a67a885b20a856dcfe8e6a2c32719d218">更多...</a><br /></td></tr>
+<tr class="separator:a67a885b20a856dcfe8e6a2c32719d218"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3c29552882130695a1741684a7424cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#ab3c29552882130695a1741684a7424cb">SetTimestamp</a> (std::time_t time)</td></tr>
+<tr class="memdesc:ab3c29552882130695a1741684a7424cb"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置发送时间戳  <a href="classMirai_1_1ForwardMessage_1_1Node.html#ab3c29552882130695a1741684a7424cb">更多...</a><br /></td></tr>
+<tr class="separator:ab3c29552882130695a1741684a7424cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99c2744261c4a2dd2366074f9f3d2130"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a99c2744261c4a2dd2366074f9f3d2130">SetSenderName</a> (const std::string &amp;SenderName)</td></tr>
+<tr class="memdesc:a99c2744261c4a2dd2366074f9f3d2130"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置发送者名称  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a99c2744261c4a2dd2366074f9f3d2130">更多...</a><br /></td></tr>
+<tr class="separator:a99c2744261c4a2dd2366074f9f3d2130"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4690ced6369c57f60e865af78633895f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a4690ced6369c57f60e865af78633895f">SetMessageChain</a> (const <a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> &amp;message)</td></tr>
+<tr class="memdesc:a4690ced6369c57f60e865af78633895f"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置消息内容  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a4690ced6369c57f60e865af78633895f">更多...</a><br /></td></tr>
+<tr class="separator:a4690ced6369c57f60e865af78633895f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeecc9eaabc7b79538c146fe1781bca0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aeeecc9eaabc7b79538c146fe1781bca0">SetMessageChain</a> (<a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> &amp;&amp;message)</td></tr>
+<tr class="memdesc:aeeecc9eaabc7b79538c146fe1781bca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置消息内容  <a href="classMirai_1_1ForwardMessage_1_1Node.html#aeeecc9eaabc7b79538c146fe1781bca0">更多...</a><br /></td></tr>
+<tr class="separator:aeeecc9eaabc7b79538c146fe1781bca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a385c3645d54a235819e43f78ea48c26b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a385c3645d54a235819e43f78ea48c26b">SetMessageChain</a> (const nlohmann::json &amp;message)</td></tr>
+<tr class="memdesc:a385c3645d54a235819e43f78ea48c26b"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置消息内容  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a385c3645d54a235819e43f78ea48c26b">更多...</a><br /></td></tr>
+<tr class="separator:a385c3645d54a235819e43f78ea48c26b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac6252a24bf8c4e12c01e2b8bd44649"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#a3ac6252a24bf8c4e12c01e2b8bd44649">SetMessageId</a> (std::optional&lt; <a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> &gt; MessageId)</td></tr>
+<tr class="memdesc:a3ac6252a24bf8c4e12c01e2b8bd44649"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置消息id  <a href="classMirai_1_1ForwardMessage_1_1Node.html#a3ac6252a24bf8c4e12c01e2b8bd44649">更多...</a><br /></td></tr>
+<tr class="separator:a3ac6252a24bf8c4e12c01e2b8bd44649"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMirai_1_1Serializable"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMirai_1_1Serializable')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classMirai_1_1Serializable.html">Mirai::Serializable</a></td></tr>
+<tr class="memitem:ac9c9048709b2dc60dc3c895e2524355a inherit pub_methods_classMirai_1_1Serializable"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1Serializable.html#ac9c9048709b2dc60dc3c895e2524355a">~Serializable</a> ()=default</td></tr>
+<tr class="separator:ac9c9048709b2dc60dc3c895e2524355a inherit pub_methods_classMirai_1_1Serializable"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:ade836dc1768c06c210d100b0306f9e00"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#ade836dc1768c06c210d100b0306f9e00">_SenderId</a></td></tr>
+<tr class="separator:ade836dc1768c06c210d100b0306f9e00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacf334cd466a5527c0f09f7aa530903f"><td class="memItemLeft" align="right" valign="top">std::time_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aacf334cd466a5527c0f09f7aa530903f">_time</a></td></tr>
+<tr class="separator:aacf334cd466a5527c0f09f7aa530903f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afae7a4381ffef6e5d3df7cccf0755fc7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#afae7a4381ffef6e5d3df7cccf0755fc7">_SenderName</a></td></tr>
+<tr class="separator:afae7a4381ffef6e5d3df7cccf0755fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a2194ba4fbb89530cf8a256a6e87fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aa8a2194ba4fbb89530cf8a256a6e87fe">_message</a></td></tr>
+<tr class="separator:aa8a2194ba4fbb89530cf8a256a6e87fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7fe9f7ccca7c775ff406d7e63c86b3e"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#af7fe9f7ccca7c775ff406d7e63c86b3e">_MessageId</a></td></tr>
+<tr class="separator:af7fe9f7ccca7c775ff406d7e63c86b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>转发消息节点，代表一条转发消息 </p>
+<p>接收消息时会传入 <code><a class="el" href="classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成">MessageChain</a></code>，消息id一般为 <code>null</code>。 发送时可以选择使用消息链手动构造转发消息或传入消息id自动引用历史消息， 优先级为 <code>MessageId &gt; <a class="el" href="classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成">MessageChain</a></code></p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member Variable </th><th class="markdownTableHeadNone">Default Value  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#ade836dc1768c06c210d100b0306f9e00">Node::_SenderId</a></code> </td><td class="markdownTableBodyNone"><code>0_qq</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aacf334cd466a5527c0f09f7aa530903f">Node::_time</a></code> </td><td class="markdownTableBodyNone"><code>0</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#afae7a4381ffef6e5d3df7cccf0755fc7">Node::_SenderName</a></code> </td><td class="markdownTableBodyNone"><code>""</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#aa8a2194ba4fbb89530cf8a256a6e87fe">Node::_message</a></code> </td><td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成">MessageChain</a>{}</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html#af7fe9f7ccca7c775ff406d7e63c86b3e">Node::_MessageId</a></code> </td><td class="markdownTableBodyNone"><code>std::nullopt</code>  </td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00061">61</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a049f5b5371bc1a330629f938406a2965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a049f5b5371bc1a330629f938406a2965">&#9670;&nbsp;</a></span>Node() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::Node::Node </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2e482fb8ad3cdcc38711ecf983a84169"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e482fb8ad3cdcc38711ecf983a84169">&#9670;&nbsp;</a></span>Node() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::Node::Node </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a13a11cf910048925d4dd396fb9d0bc2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a13a11cf910048925d4dd396fb9d0bc2d">&#9670;&nbsp;</a></span>Node() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::Node::Node </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a0b0575076e7121e23c9762b63940ee46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b0575076e7121e23c9762b63940ee46">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0935d86f03ac3c89977296d54ebfd7e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0935d86f03ac3c89977296d54ebfd7e8">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a6fc0bd1e3c69f91abe4c7b0a6c62a68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6fc0bd1e3c69f91abe4c7b0a6c62a68b">&#9670;&nbsp;</a></span>isValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::ForwardMessage::Node::isValid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00031">31</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a86b067d937fa0518f6f6c19386711b67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a86b067d937fa0518f6f6c19386711b67">&#9670;&nbsp;</a></span>FromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::Node::FromJson </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classMirai_1_1Serializable.html#a23bdc287c71874ec192c208852893e6f">Mirai::Serializable</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00036">36</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad80b24660972709e20d2a3868d98c94d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad80b24660972709e20d2a3868d98c94d">&#9670;&nbsp;</a></span>ToJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a> Mirai::ForwardMessage::Node::ToJson </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classMirai_1_1Serializable.html#a405be53cd9b2e4be75335f75f7f3e461">Mirai::Serializable</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afc8464ba58b2d64064ba3da67756c08c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc8464ba58b2d64064ba3da67756c08c">&#9670;&nbsp;</a></span>GetSenderId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a> Mirai::ForwardMessage::Node::GetSenderId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取发送者QQ </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2e7f14cee36256c848fc3c0d91322602"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2e7f14cee36256c848fc3c0d91322602">&#9670;&nbsp;</a></span>GetTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::time_t Mirai::ForwardMessage::Node::GetTimestamp </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取发送时间 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00084">84</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80ece8c706305283605dd89964997ae4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80ece8c706305283605dd89964997ae4">&#9670;&nbsp;</a></span>GetSenderName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::ForwardMessage::Node::GetSenderName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取发送者名称 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a621d2f63d2fcada5159ddadc6dbc4985"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a621d2f63d2fcada5159ddadc6dbc4985">&#9670;&nbsp;</a></span>GetMessageChain()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> Mirai::ForwardMessage::Node::GetMessageChain </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取消息链 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4d3d8ddfd19771ae10ee2c1bb72872bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d3d8ddfd19771ae10ee2c1bb72872bb">&#9670;&nbsp;</a></span>hasMessageId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::ForwardMessage::Node::hasMessageId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>是否含有消息id </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa26cd42f1fe901f7c4b256a5e90bc605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa26cd42f1fe901f7c4b256a5e90bc605">&#9670;&nbsp;</a></span>GetMessageId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> Mirai::ForwardMessage::Node::GetMessageId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取消息id，不存在时返回 <code>0</code> </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00092">92</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a67a885b20a856dcfe8e6a2c32719d218"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67a885b20a856dcfe8e6a2c32719d218">&#9670;&nbsp;</a></span>SetSenderId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetSenderId </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a>&#160;</td>
+          <td class="paramname"><em>SenderId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置发送者 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab3c29552882130695a1741684a7424cb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3c29552882130695a1741684a7424cb">&#9670;&nbsp;</a></span>SetTimestamp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetTimestamp </td>
+          <td>(</td>
+          <td class="paramtype">std::time_t&#160;</td>
+          <td class="paramname"><em>time</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置发送时间戳 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00101">101</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a99c2744261c4a2dd2366074f9f3d2130"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c2744261c4a2dd2366074f9f3d2130">&#9670;&nbsp;</a></span>SetSenderName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetSenderName </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>SenderName</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置发送者名称 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a4690ced6369c57f60e865af78633895f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4690ced6369c57f60e865af78633895f">&#9670;&nbsp;</a></span>SetMessageChain() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetMessageChain </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置消息内容 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aeeecc9eaabc7b79538c146fe1781bca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeeecc9eaabc7b79538c146fe1781bca0">&#9670;&nbsp;</a></span>SetMessageChain() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetMessageChain </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置消息内容 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00120">120</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a385c3645d54a235819e43f78ea48c26b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a385c3645d54a235819e43f78ea48c26b">&#9670;&nbsp;</a></span>SetMessageChain() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetMessageChain </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>message</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置消息内容 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00127">127</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3ac6252a24bf8c4e12c01e2b8bd44649"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ac6252a24bf8c4e12c01e2b8bd44649">&#9670;&nbsp;</a></span>SetMessageId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&amp; Mirai::ForwardMessage::Node::SetMessageId </td>
+          <td>(</td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> &gt;&#160;</td>
+          <td class="paramname"><em>MessageId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置消息id </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00134">134</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="ade836dc1768c06c210d100b0306f9e00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade836dc1768c06c210d100b0306f9e00">&#9670;&nbsp;</a></span>_SenderId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a> Mirai::ForwardMessage::Node::_SenderId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00064">64</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aacf334cd466a5527c0f09f7aa530903f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacf334cd466a5527c0f09f7aa530903f">&#9670;&nbsp;</a></span>_time</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::time_t Mirai::ForwardMessage::Node::_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00065">65</a> 行定义.</p>
+
+</div>
+</div>
+<a id="afae7a4381ffef6e5d3df7cccf0755fc7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afae7a4381ffef6e5d3df7cccf0755fc7">&#9670;&nbsp;</a></span>_SenderName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::ForwardMessage::Node::_SenderName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00066">66</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa8a2194ba4fbb89530cf8a256a6e87fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a2194ba4fbb89530cf8a256a6e87fe">&#9670;&nbsp;</a></span>_message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a> Mirai::ForwardMessage::Node::_message</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00067">67</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af7fe9f7ccca7c775ff406d7e63c86b3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7fe9f7ccca7c775ff406d7e63c86b3e">&#9670;&nbsp;</a></span>_MessageId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;<a class="el" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a>&gt; Mirai::ForwardMessage::Node::_MessageId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00068">68</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>libmirai/public/libmirai/Messages/<a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a></li>
+<li>libmirai/public/libmirai/Messages/<a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMirai.html">Mirai</a></li><li class="navelem"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a></li><li class="navelem"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

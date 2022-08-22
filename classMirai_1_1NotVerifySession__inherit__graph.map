@@ -1,0 +1,5 @@
+<map id="Mirai::NotVerifySession" name="Mirai::NotVerifySession">
+<area shape="rect" id="node1" title="MAH异常: Session未绑定账号" alt="" coords="25,157,217,185"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MiraiApiHttpException.html" title="mirai&#45;api&#45;http相关的异常" alt="" coords="5,81,236,109"/>
+<area shape="rect" id="node3" title="STL class" alt="" coords="43,5,198,33"/>
+</map>

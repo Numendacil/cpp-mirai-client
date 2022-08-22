@@ -1,0 +1,698 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>cpp-mirai-client: Mirai::MemberJoinRequestEvent类 参考</title>
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+	<link href="doxygen.css" rel="stylesheet" type="text/css" />
+	<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+	<script type="text/javascript">
+		DoxygenAwesomeDarkModeToggle.init()
+		DoxygenAwesomeFragmentCopyButton.init()
+		DoxygenAwesomeParagraphLink.init()
+	</script>
+</head>
+<body>
+	<!-- https://tholman.com/github-corners/ -->
+	<a href="https://github.com/numendacil/cpp-mirai-client" class="github-corner" title="View source on GitHub"
+		target="_blank">
+		<svg viewBox="0 0 250 250" width="40" height="40"
+			style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<style>
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+		@keyframes octocat-wave {
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+		}
+	</style>
+		<div id="top">
+			<!-- do not remove this div, it is closed by doxygen! -->
+			<div id="titlearea">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr style="height: 56px;">
+							<td id="projectalign" style="padding-left: 0.5em;">
+								<div id="projectname">cpp-mirai-client
+									&#160;<span id="projectnumber">v2.6.1</span>
+								</div>
+								<div id="projectbrief">cpp client for mirai-api-http</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('classMirai_1_1MemberJoinRequestEvent.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pub-static-attribs">静态 Public 属性</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="classMirai_1_1MemberJoinRequestEvent-members.html">所有成员列表</a>  </div>
+  <div class="headertitle">
+<div class="title">Mirai::MemberJoinRequestEvent类 参考</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>用户申请入群事件  
+ <a href="classMirai_1_1MemberJoinRequestEvent.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a>&gt;</code></p>
+<div class="dynheader">
+类 Mirai::MemberJoinRequestEvent 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1MemberJoinRequestEvent__inherit__graph.svg" width="226" height="131"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+Mirai::MemberJoinRequestEvent 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1MemberJoinRequestEvent__coll__graph.svg" width="662" height="379"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:aad82cfd9cf7ce9140c45d4a83c84600c"><td class="memItemLeft" align="right" valign="top">virtual std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#aad82cfd9cf7ce9140c45d4a83c84600c">GetType</a> () const override</td></tr>
+<tr class="memdesc:aad82cfd9cf7ce9140c45d4a83c84600c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the type of the class  <a href="classMirai_1_1MemberJoinRequestEvent.html#aad82cfd9cf7ce9140c45d4a83c84600c">更多...</a><br /></td></tr>
+<tr class="separator:aad82cfd9cf7ce9140c45d4a83c84600c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acdf08723e3902d86369c8cb46e1f38a8"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#acdf08723e3902d86369c8cb46e1f38a8">FromJson</a> (const nlohmann::json &amp;data) override</td></tr>
+<tr class="separator:acdf08723e3902d86369c8cb46e1f38a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a80114205039ffab0fa1e48f12f8442ab"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a80114205039ffab0fa1e48f12f8442ab">GetEventId</a> () const</td></tr>
+<tr class="memdesc:a80114205039ffab0fa1e48f12f8442ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取事件id，唯一标识符  <a href="classMirai_1_1MemberJoinRequestEvent.html#a80114205039ffab0fa1e48f12f8442ab">更多...</a><br /></td></tr>
+<tr class="separator:a80114205039ffab0fa1e48f12f8442ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c9d7142d975b81ba5505578cfde86f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a44c9d7142d975b81ba5505578cfde86f">GetUserId</a> () const</td></tr>
+<tr class="memdesc:a44c9d7142d975b81ba5505578cfde86f"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取申请人QQ  <a href="classMirai_1_1MemberJoinRequestEvent.html#a44c9d7142d975b81ba5505578cfde86f">更多...</a><br /></td></tr>
+<tr class="separator:a44c9d7142d975b81ba5505578cfde86f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac2e7f38bd68bbf85eb69525e942a84dc"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#ac2e7f38bd68bbf85eb69525e942a84dc">GetNickname</a> () const</td></tr>
+<tr class="memdesc:ac2e7f38bd68bbf85eb69525e942a84dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取申请人昵称  <a href="classMirai_1_1MemberJoinRequestEvent.html#ac2e7f38bd68bbf85eb69525e942a84dc">更多...</a><br /></td></tr>
+<tr class="separator:ac2e7f38bd68bbf85eb69525e942a84dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70605309aec614e69538d836c81cb7f6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1GID__t.html">GID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a70605309aec614e69538d836c81cb7f6">GetGroupId</a> () const</td></tr>
+<tr class="memdesc:a70605309aec614e69538d836c81cb7f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取群聊id  <a href="classMirai_1_1MemberJoinRequestEvent.html#a70605309aec614e69538d836c81cb7f6">更多...</a><br /></td></tr>
+<tr class="separator:a70605309aec614e69538d836c81cb7f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0c80fd272a8968d09d1c0f66147c78a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#ac0c80fd272a8968d09d1c0f66147c78a">GetGroupName</a> () const</td></tr>
+<tr class="memdesc:ac0c80fd272a8968d09d1c0f66147c78a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取群聊名称  <a href="classMirai_1_1MemberJoinRequestEvent.html#ac0c80fd272a8968d09d1c0f66147c78a">更多...</a><br /></td></tr>
+<tr class="separator:ac0c80fd272a8968d09d1c0f66147c78a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e8bf2b64bbfe9cc6c81231c61c92b20"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a8e8bf2b64bbfe9cc6c81231c61c92b20">GetMessage</a> () const</td></tr>
+<tr class="memdesc:a8e8bf2b64bbfe9cc6c81231c61c92b20"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取申请信息  <a href="classMirai_1_1MemberJoinRequestEvent.html#a8e8bf2b64bbfe9cc6c81231c61c92b20">更多...</a><br /></td></tr>
+<tr class="separator:a8e8bf2b64bbfe9cc6c81231c61c92b20"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65743d8b6f05f9c65c03af96625b17e5"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase</a> (<a class="el" href="classMirai_1_1MiraiClient.html">MiraiClient</a> *client)</td></tr>
+<tr class="memdesc:a65743d8b6f05f9c65c03af96625b17e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">MiraiClient</a></code> pointer  <a href="classMirai_1_1MemberJoinRequestEvent.html#a65743d8b6f05f9c65c03af96625b17e5">更多...</a><br /></td></tr>
+<tr class="separator:a65743d8b6f05f9c65c03af96625b17e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMirai_1_1EventBase"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMirai_1_1EventBase')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classMirai_1_1EventBase.html">Mirai::EventBase</a></td></tr>
+<tr class="memitem:a65743d8b6f05f9c65c03af96625b17e5 inherit pub_methods_classMirai_1_1EventBase"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase</a> (<a class="el" href="classMirai_1_1MiraiClient.html">MiraiClient</a> *client)</td></tr>
+<tr class="memdesc:a65743d8b6f05f9c65c03af96625b17e5 inherit pub_methods_classMirai_1_1EventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">MiraiClient</a></code> pointer  <a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">更多...</a><br /></td></tr>
+<tr class="separator:a65743d8b6f05f9c65c03af96625b17e5 inherit pub_methods_classMirai_1_1EventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad6e87dfbdaa1a75257c2f0ef0e7e7c71 inherit pub_methods_classMirai_1_1EventBase"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1EventBase.html#ad6e87dfbdaa1a75257c2f0ef0e7e7c71">~EventBase</a> ()=default</td></tr>
+<tr class="separator:ad6e87dfbdaa1a75257c2f0ef0e7e7c71 inherit pub_methods_classMirai_1_1EventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69c8e71b48f92e4919e7eeed62afc563 inherit pub_methods_classMirai_1_1EventBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MiraiClient.html">MiraiClient</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1EventBase.html#a69c8e71b48f92e4919e7eeed62afc563">GetMiraiClient</a> () const</td></tr>
+<tr class="memdesc:a69c8e71b48f92e4919e7eeed62afc563 inherit pub_methods_classMirai_1_1EventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取接收该事件的 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">MiraiClient</a></code> 的引用  <a href="classMirai_1_1EventBase.html#a69c8e71b48f92e4919e7eeed62afc563">更多...</a><br /></td></tr>
+<tr class="separator:a69c8e71b48f92e4919e7eeed62afc563 inherit pub_methods_classMirai_1_1EventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+静态 Public 属性</h2></td></tr>
+<tr class="memitem:aac18aa9177068bf701a762eb854d7929"><td class="memItemLeft" align="right" valign="top">static constexpr std::string_view&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#aac18aa9177068bf701a762eb854d7929">_TYPE_</a> = &quot;MemberJoinRequestEvent&quot;</td></tr>
+<tr class="separator:aac18aa9177068bf701a762eb854d7929"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a7d636584f3632d7a27605379606749fb"><td class="memItemLeft" align="right" valign="top">int64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a7d636584f3632d7a27605379606749fb">_EventId</a> = 0</td></tr>
+<tr class="separator:a7d636584f3632d7a27605379606749fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92f50cc4cfac7a951921684f1bca14f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a92f50cc4cfac7a951921684f1bca14f1">_FromId</a></td></tr>
+<tr class="separator:a92f50cc4cfac7a951921684f1bca14f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a027ecf91b6a785e6d60276b3569eeb71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1GID__t.html">GID_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a027ecf91b6a785e6d60276b3569eeb71">_GroupId</a></td></tr>
+<tr class="separator:a027ecf91b6a785e6d60276b3569eeb71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8de57e8ac68c87b14287a562892491fa"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a8de57e8ac68c87b14287a562892491fa">_GroupName</a></td></tr>
+<tr class="separator:a8de57e8ac68c87b14287a562892491fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a358dc816a44d28d8008ff36b4ea51dce"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a358dc816a44d28d8008ff36b4ea51dce">_nickname</a></td></tr>
+<tr class="separator:a358dc816a44d28d8008ff36b4ea51dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad08fe2df010bf76cf820b2277e57589a"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#ad08fe2df010bf76cf820b2277e57589a">_message</a></td></tr>
+<tr class="separator:ad08fe2df010bf76cf820b2277e57589a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_attribs_classMirai_1_1EventBase"><td colspan="2" onclick="javascript:toggleInherit('pro_attribs_classMirai_1_1EventBase')"><img src="closed.png" alt="-"/>&#160;Protected 属性 继承自 <a class="el" href="classMirai_1_1EventBase.html">Mirai::EventBase</a></td></tr>
+<tr class="memitem:a167d7a3b3ad2da0f022c227a9f216d98 inherit pro_attribs_classMirai_1_1EventBase"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MiraiClient.html">MiraiClient</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1EventBase.html#a167d7a3b3ad2da0f022c227a9f216d98">_client</a></td></tr>
+<tr class="memdesc:a167d7a3b3ad2da0f022c227a9f216d98 inherit pro_attribs_classMirai_1_1EventBase"><td class="mdescLeft">&#160;</td><td class="mdescRight">指向 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">MiraiClient</a></code> 的指针  <a href="classMirai_1_1EventBase.html#a167d7a3b3ad2da0f022c227a9f216d98">更多...</a><br /></td></tr>
+<tr class="separator:a167d7a3b3ad2da0f022c227a9f216d98 inherit pro_attribs_classMirai_1_1EventBase"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p>用户申请入群事件 </p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member Variable </th><th class="markdownTableHeadNone">Default Value  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a7d636584f3632d7a27605379606749fb">MemberJoinRequestEvent::_EventId</a></code> </td><td class="markdownTableBodyNone"><code>0</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a92f50cc4cfac7a951921684f1bca14f1">MemberJoinRequestEvent::_FromId</a></code> </td><td class="markdownTableBodyNone"><code>0_qq</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a027ecf91b6a785e6d60276b3569eeb71">MemberJoinRequestEvent::_GroupId</a></code> </td><td class="markdownTableBodyNone"><code>0_gid</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a8de57e8ac68c87b14287a562892491fa">MemberJoinRequestEvent::_GroupName</a></code> </td><td class="markdownTableBodyNone"><code>""</code>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#a358dc816a44d28d8008ff36b4ea51dce">MemberJoinRequestEvent::_nickname</a></code> </td><td class="markdownTableBodyNone"><code>""</code>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html#ad08fe2df010bf76cf820b2277e57589a">MemberJoinRequestEvent::_message</a></code> </td><td class="markdownTableBodyNone"><code>""</code>  </td></tr>
+</table>
+<p>需要Bot为管理员或群主 </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00044">44</a> 行定义.</p>
+</div><h2 class="groupheader">成员函数说明</h2>
+<a id="aad82cfd9cf7ce9140c45d4a83c84600c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad82cfd9cf7ce9140c45d4a83c84600c">&#9670;&nbsp;</a></span>GetType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string_view Mirai::MemberJoinRequestEvent::GetType </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Return the type of the class </p>
+<p>Used for RTTI and message parsing, it should always return the value of the static <code>_TYPE_</code> member </p>
+
+<p>实现了 <a class="el" href="classMirai_1_1EventBase.html#ac90ea29520f229a4119e76e537f88daf">Mirai::EventBase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acdf08723e3902d86369c8cb46e1f38a8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acdf08723e3902d86369c8cb46e1f38a8">&#9670;&nbsp;</a></span>FromJson()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::MemberJoinRequestEvent::FromJson </td>
+          <td>(</td>
+          <td class="paramtype">const nlohmann::json &amp;&#160;</td>
+          <td class="paramname"><em>data</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classMirai_1_1EventBase.html#af27388e4ce5e31c7882b878089851e52">Mirai::EventBase</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8cpp_source.html">MemberJoinRequestEvent.cpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8cpp_source.html#l00029">29</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a80114205039ffab0fa1e48f12f8442ab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a80114205039ffab0fa1e48f12f8442ab">&#9670;&nbsp;</a></span>GetEventId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t Mirai::MemberJoinRequestEvent::GetEventId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取事件id，唯一标识符 </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00069">69</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a44c9d7142d975b81ba5505578cfde86f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c9d7142d975b81ba5505578cfde86f">&#9670;&nbsp;</a></span>GetUserId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a> Mirai::MemberJoinRequestEvent::GetUserId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取申请人QQ </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00071">71</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac2e7f38bd68bbf85eb69525e942a84dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2e7f38bd68bbf85eb69525e942a84dc">&#9670;&nbsp;</a></span>GetNickname()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::GetNickname </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取申请人昵称 </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00073">73</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a70605309aec614e69538d836c81cb7f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70605309aec614e69538d836c81cb7f6">&#9670;&nbsp;</a></span>GetGroupId()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1GID__t.html">GID_t</a> Mirai::MemberJoinRequestEvent::GetGroupId </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取群聊id </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00075">75</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac0c80fd272a8968d09d1c0f66147c78a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0c80fd272a8968d09d1c0f66147c78a">&#9670;&nbsp;</a></span>GetGroupName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::GetGroupName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取群聊名称 </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00077">77</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e8bf2b64bbfe9cc6c81231c61c92b20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e8bf2b64bbfe9cc6c81231c61c92b20">&#9670;&nbsp;</a></span>GetMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::GetMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取申请信息 </p>
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00079">79</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a65743d8b6f05f9c65c03af96625b17e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65743d8b6f05f9c65c03af96625b17e5">&#9670;&nbsp;</a></span>EventBase()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::EventBase::EventBase</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Sets the <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">MiraiClient</a></code> pointer </p>
+
+<p class="definition">在文件 <a class="el" href="EventBase_8hpp_source.html">EventBase.hpp</a> 第 <a class="el" href="EventBase_8hpp_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a7d636584f3632d7a27605379606749fb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d636584f3632d7a27605379606749fb">&#9670;&nbsp;</a></span>_EventId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int64_t Mirai::MemberJoinRequestEvent::_EventId = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00048">48</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a92f50cc4cfac7a951921684f1bca14f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92f50cc4cfac7a951921684f1bca14f1">&#9670;&nbsp;</a></span>_FromId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1QQ__t.html">QQ_t</a> Mirai::MemberJoinRequestEvent::_FromId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a027ecf91b6a785e6d60276b3569eeb71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a027ecf91b6a785e6d60276b3569eeb71">&#9670;&nbsp;</a></span>_GroupId</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1GID__t.html">GID_t</a> Mirai::MemberJoinRequestEvent::_GroupId</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00050">50</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8de57e8ac68c87b14287a562892491fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8de57e8ac68c87b14287a562892491fa">&#9670;&nbsp;</a></span>_GroupName</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::_GroupName</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00051">51</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a358dc816a44d28d8008ff36b4ea51dce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a358dc816a44d28d8008ff36b4ea51dce">&#9670;&nbsp;</a></span>_nickname</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::_nickname</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00052">52</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad08fe2df010bf76cf820b2277e57589a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad08fe2df010bf76cf820b2277e57589a">&#9670;&nbsp;</a></span>_message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Mirai::MemberJoinRequestEvent::_message</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aac18aa9177068bf701a762eb854d7929"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac18aa9177068bf701a762eb854d7929">&#9670;&nbsp;</a></span>_TYPE_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::string_view Mirai::MemberJoinRequestEvent::_TYPE_ = &quot;MemberJoinRequestEvent&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a> 第 <a class="el" href="MemberJoinRequestEvent_8hpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>libmirai/public/libmirai/Events/<a class="el" href="MemberJoinRequestEvent_8hpp_source.html">MemberJoinRequestEvent.hpp</a></li>
+<li>libmirai/public/libmirai/Events/<a class="el" href="MemberJoinRequestEvent_8cpp_source.html">MemberJoinRequestEvent.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMirai.html">Mirai</a></li><li class="navelem"><a class="el" href="classMirai_1_1MemberJoinRequestEvent.html">MemberJoinRequestEvent</a></li>
+    <li class="footer">制作者
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
+</body>
+</html>

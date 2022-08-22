@@ -1,0 +1,12 @@
+<map id="Mirai::MemberHonorChangeEvent" name="Mirai::MemberHonorChangeEvent">
+<area shape="rect" id="node1" title="群成员荣誉改变事件" alt="" coords="880,97,1107,141"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="599,62,746,90"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="319,46,466,74"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="33,89,130,117"/>
+<area shape="rect" id="node5" href="$structMirai_1_1GroupMember.html" title="群员资料" alt="" coords="587,179,759,207"/>
+<area shape="rect" id="node8" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="337,179,449,207"/>
+<area shape="rect" id="node6" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,214,157,242"/>
+<area shape="rect" id="node7" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="340,283,445,311"/>
+<area shape="rect" id="node9" title="STL class" alt="" coords="603,287,742,315"/>
+<area shape="rect" id="node10" title="STL class" alt="" coords="301,335,484,379"/>
+</map>

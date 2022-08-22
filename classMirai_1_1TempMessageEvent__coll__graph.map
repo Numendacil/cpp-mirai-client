@@ -1,0 +1,14 @@
+<map id="Mirai::TempMessageEvent" name="Mirai::TempMessageEvent">
+<area shape="rect" id="node1" title="临时会话消息事件" alt="" coords="932,228,1145,256"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="645,85,791,113"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="329,5,476,33"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="33,76,130,104"/>
+<area shape="rect" id="node7" href="$structMirai_1_1GroupMember.html" title="群员资料" alt="" coords="632,191,804,219"/>
+<area shape="rect" id="node10" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="347,139,459,167"/>
+<area shape="rect" id="node5" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="631,261,805,289"/>
+<area shape="rect" id="node6" title=" " alt="" coords="301,295,504,339"/>
+<area shape="rect" id="node8" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,173,157,201"/>
+<area shape="rect" id="node9" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="350,243,455,271"/>
+<area shape="rect" id="node11" title="STL class" alt="" coords="649,351,787,379"/>
+<area shape="rect" id="node12" title="STL class" alt="" coords="311,363,494,407"/>
+</map>

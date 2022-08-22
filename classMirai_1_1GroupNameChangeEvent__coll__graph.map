@@ -1,0 +1,11 @@
+<map id="Mirai::GroupNameChangeEvent" name="Mirai::GroupNameChangeEvent">
+<area shape="rect" id="node1" title="群聊名称更改事件" alt="" coords="72,313,324,341"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="30,221,177,249"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="22,105,169,133"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="7,5,104,33"/>
+<area shape="rect" id="node7" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="193,105,305,133"/>
+<area shape="rect" id="node5" title="STL class" alt="" coords="331,221,470,249"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="329,97,512,141"/>
+<area shape="rect" id="node8" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="173,5,325,33"/>
+<area shape="rect" id="node9" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="349,5,455,33"/>
+</map>

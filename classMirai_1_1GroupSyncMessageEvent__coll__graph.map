@@ -1,0 +1,13 @@
+<map id="Mirai::GroupSyncMessageEvent" name="Mirai::GroupSyncMessageEvent">
+<area shape="rect" id="node1" title="群聊消息同步事件" alt="" coords="932,109,1187,137"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="645,19,791,47"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="329,5,476,33"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="33,23,130,51"/>
+<area shape="rect" id="node9" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="347,91,459,119"/>
+<area shape="rect" id="node5" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="631,153,805,181"/>
+<area shape="rect" id="node6" title=" " alt="" coords="301,144,504,188"/>
+<area shape="rect" id="node7" title="STL class" alt="" coords="649,212,787,240"/>
+<area shape="rect" id="node8" title="STL class" alt="" coords="311,212,494,256"/>
+<area shape="rect" id="node10" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,93,157,121"/>
+<area shape="rect" id="node11" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="28,145,135,173"/>
+</map>

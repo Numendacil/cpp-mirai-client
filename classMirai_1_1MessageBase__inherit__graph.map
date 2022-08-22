@@ -1,0 +1,23 @@
+<map id="Mirai::MessageBase" name="Mirai::MessageBase">
+<area shape="rect" id="node1" title="Base class for all message types" alt="" coords="205,421,375,449"/>
+<area shape="rect" id="node3" href="$classMirai_1_1AppMessage.html" title="小程序消息" alt="" coords="451,5,612,33"/>
+<area shape="rect" id="node4" href="$classMirai_1_1AtAllMessage.html" title="At全体成员消息" alt="" coords="448,57,615,85"/>
+<area shape="rect" id="node5" href="$classMirai_1_1AtMessage.html" title="At用户消息" alt="" coords="457,109,606,137"/>
+<area shape="rect" id="node6" href="$classMirai_1_1AudioMessage.html" title="语音消息" alt="" coords="444,161,619,189"/>
+<area shape="rect" id="node7" href="$classMirai_1_1DiceMessage.html" title="骰子消息" alt="" coords="449,213,614,241"/>
+<area shape="rect" id="node8" href="$classMirai_1_1FaceMessage.html" title="QQ表情消息" alt="" coords="448,265,615,293"/>
+<area shape="rect" id="node10" href="$classMirai_1_1FileMessage.html" title="文件消息" alt="" coords="453,317,610,345"/>
+<area shape="rect" id="node11" href="$classMirai_1_1ForwardMessage.html" title="合并转发消息" alt="" coords="435,369,627,397"/>
+<area shape="rect" id="node12" href="$classMirai_1_1ImageMessage.html" title="图片消息" alt="" coords="442,421,621,449"/>
+<area shape="rect" id="node14" href="$classMirai_1_1JsonMessage.html" title="JSON消息" alt="" coords="450,473,613,501"/>
+<area shape="rect" id="node15" href="$classMirai_1_1MiraiCodeMessage.html" title=" " alt="" coords="428,525,635,553"/>
+<area shape="rect" id="node16" href="$classMirai_1_1MusicShareMessage.html" title="音乐分享卡片消息" alt="" coords="423,577,640,605"/>
+<area shape="rect" id="node17" href="$classMirai_1_1PlainMessage.html" title="文字消息" alt="" coords="447,629,615,657"/>
+<area shape="rect" id="node18" href="$classMirai_1_1PokeMessage.html" title="戳一戳消息" alt="" coords="448,681,615,709"/>
+<area shape="rect" id="node19" href="$classMirai_1_1QuoteMessage.html" title="引用回复消息" alt="" coords="442,733,621,761"/>
+<area shape="rect" id="node20" href="$classMirai_1_1SourceMessage.html" title="来源消息" alt="" coords="440,785,623,813"/>
+<area shape="rect" id="node21" href="$classMirai_1_1XmlMessage.html" title="XML消息" alt="" coords="451,837,612,865"/>
+<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,421,157,449"/>
+<area shape="rect" id="node9" href="$classMirai_1_1MarketFaceMessage.html" title="QQ商店表情消息" alt="" coords="688,265,905,293"/>
+<area shape="rect" id="node13" href="$classMirai_1_1FlashImageMessage.html" title="闪照消息" alt="" coords="689,421,905,449"/>
+</map>

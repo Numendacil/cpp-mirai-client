@@ -1,0 +1,10 @@
+<map id="Mirai::NudgeEvent" name="Mirai::NudgeEvent">
+<area shape="rect" id="node1" title="戳一戳事件" alt="" coords="231,313,389,341"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="70,221,217,249"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="70,105,217,133"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="5,5,103,33"/>
+<area shape="rect" id="node5" title="STL class" alt="" coords="241,221,379,249"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="241,97,424,141"/>
+<area shape="rect" id="node7" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="495,105,600,133"/>
+<area shape="rect" id="node8" href="$classMirai_1_1NudgeTarget.html" title="QQ移动端头像戳一戳动作的对象" alt="" coords="513,221,675,249"/>
+</map>

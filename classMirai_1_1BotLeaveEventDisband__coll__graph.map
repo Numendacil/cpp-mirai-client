@@ -1,0 +1,12 @@
+<map id="Mirai::BotLeaveEventDisband" name="Mirai::BotLeaveEventDisband">
+<area shape="rect" id="node1" title="群聊解散导致Bot退群事件" alt="" coords="881,160,1120,188"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="598,196,745,224"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="319,241,466,269"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="33,127,130,155"/>
+<area shape="rect" id="node5" href="$structMirai_1_1GroupMember.html" title="群员资料" alt="" coords="585,127,757,155"/>
+<area shape="rect" id="node8" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="337,5,449,33"/>
+<area shape="rect" id="node6" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,28,157,56"/>
+<area shape="rect" id="node7" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="340,189,445,217"/>
+<area shape="rect" id="node9" title="STL class" alt="" coords="602,283,741,311"/>
+<area shape="rect" id="node10" title="STL class" alt="" coords="301,293,484,337"/>
+</map>

@@ -1,0 +1,6 @@
+<map id="Mirai::BotEvent" name="Mirai::BotEvent">
+<area shape="rect" id="node1" title="与Bot本身相关的事件的基类" alt="" coords="86,189,221,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,97,152,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="5,5,152,33"/>
+<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="177,97,282,125"/>
+</map>

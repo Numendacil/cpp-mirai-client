@@ -1,0 +1,6 @@
+<map id="Mirai::NoBot" name="Mirai::NoBot">
+<area shape="rect" id="node1" title="MAH异常: 不存在该Bot账号" alt="" coords="101,175,214,203"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MiraiApiHttpException.html" title="mirai&#45;api&#45;http相关的异常" alt="" coords="42,97,273,125"/>
+<area shape="rect" id="node3" title="STL class" alt="" coords="5,5,160,33"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="185,5,282,33"/>
+</map>

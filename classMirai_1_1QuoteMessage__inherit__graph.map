@@ -1,0 +1,5 @@
+<map id="Mirai::QuoteMessage" name="Mirai::QuoteMessage">
+<area shape="rect" id="node1" title="引用回复消息" alt="" coords="5,157,184,185"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="10,81,179,109"/>
+<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="19,5,171,33"/>
+</map>

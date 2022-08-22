@@ -1,0 +1,8 @@
+<map id="Mirai::ClientConnectionEstablishedEvent" name="Mirai::ClientConnectionEstablishedEvent">
+<area shape="rect" id="node1" title="连接建立事件" alt="" coords="64,225,340,269"/>
+<area shape="rect" id="node2" title=" " alt="" coords="110,115,294,159"/>
+<area shape="rect" id="node3" title="STL class" alt="" coords="131,5,228,33"/>
+<area shape="rect" id="node4" href="$structMirai_1_1User.html" title="QQ用户" alt="" coords="319,123,421,151"/>
+<area shape="rect" id="node5" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="294,5,446,33"/>
+<area shape="rect" id="node6" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="471,5,576,33"/>
+</map>

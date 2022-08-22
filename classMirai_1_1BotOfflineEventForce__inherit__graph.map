@@ -1,0 +1,5 @@
+<map id="Mirai::BotOfflineEventForce" name="Mirai::BotOfflineEventForce">
+<area shape="rect" id="node1" title="Bot强制下线事件" alt="" coords="5,157,228,185"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotEvent.html" title="与Bot本身相关的事件的基类" alt="" coords="49,81,184,109"/>
+<area shape="rect" id="node3" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="43,5,190,33"/>
+</map>

@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['name_518',['name',['../structMirai_1_1Group.html#a63419a8af88cc2ce2976f8cb8e7878c7',1,'Mirai::Group::name()'],['../structMirai_1_1GroupConfig.html#ab1b1e71faf1aa5e3ca78f8d2915b1966',1,'Mirai::GroupConfig::name()'],['../structMirai_1_1GroupFileInfo.html#a2850071cdab4d8f07d841fa02d2e474e',1,'Mirai::GroupFileInfo::name()']]],
+  ['neteasecloudmusic_519',['NETEASECLOUDMUSIC',['../classMirai_1_1MusicShareMessage.html#af243b8fc262cc4dd7bc551a4edc07d16a5440b2186003ec77bf0436cb088a51d4',1,'Mirai::MusicShareMessage']]],
+  ['networkexception_520',['NetworkException',['../classMirai_1_1NetworkException.html',1,'Mirai::NetworkException'],['../classMirai_1_1NetworkException.html#ac7630601eca7d8472f76b4bb55e661dd',1,'Mirai::NetworkException::NetworkException()']]],
+  ['newfriendrequestevent_521',['NewFriendRequestEvent',['../classMirai_1_1NewFriendRequestEvent.html',1,'Mirai']]],
+  ['newfriendrequestevent_2ecpp_522',['NewFriendRequestEvent.cpp',['../NewFriendRequestEvent_8cpp.html',1,'']]],
+  ['newfriendrequestevent_2ehpp_523',['NewFriendRequestEvent.hpp',['../NewFriendRequestEvent_8hpp.html',1,'']]],
+  ['newfriendrequestop_524',['NewFriendRequestOp',['../namespaceMirai.html#a2e695ec07967da65495a009ab82a432d',1,'Mirai']]],
+  ['nickname_525',['nickname',['../structMirai_1_1User.html#a4504a9e302788bf41ca0f90657d6eb5d',1,'Mirai::User::nickname()'],['../structMirai_1_1UserProfile.html#ad0503d297e8ebeb8caeb236db613e8cb',1,'Mirai::UserProfile::nickname()']]],
+  ['nobot_526',['NoBot',['../classMirai_1_1NoBot.html',1,'Mirai::NoBot'],['../classMirai_1_1NoBot.html#aa3b54ac064ea35c365f0d8f57156e365',1,'Mirai::NoBot::NoBot()']]],
+  ['node_527',['Node',['../classMirai_1_1ForwardMessage_1_1Node.html',1,'Mirai::ForwardMessage::Node'],['../classMirai_1_1ForwardMessage_1_1Node.html#a049f5b5371bc1a330629f938406a2965',1,'Mirai::ForwardMessage::Node::Node()'],['../classMirai_1_1ForwardMessage_1_1Node.html#a2e482fb8ad3cdcc38711ecf983a84169',1,'Mirai::ForwardMessage::Node::Node(const Node &amp;)=default'],['../classMirai_1_1ForwardMessage_1_1Node.html#a13a11cf910048925d4dd396fb9d0bc2d',1,'Mirai::ForwardMessage::Node::Node(Node &amp;&amp;) noexcept=default']]],
+  ['nodelist_528',['NodeList',['../classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0',1,'Mirai::ForwardMessage']]],
+  ['noelement_529',['NoElement',['../classMirai_1_1NoElement.html',1,'Mirai::NoElement'],['../classMirai_1_1NoElement.html#ad6c606ffe36c17198c69f2f263eeaaf3',1,'Mirai::NoElement::NoElement()']]],
+  ['nooperatesupport_530',['NoOperateSupport',['../classMirai_1_1NoOperateSupport.html',1,'Mirai::NoOperateSupport'],['../classMirai_1_1NoOperateSupport.html#a5a195fd630267e39143237afe946a1b5',1,'Mirai::NoOperateSupport::NoOperateSupport()']]],
+  ['nosuchfile_531',['NoSuchFile',['../classMirai_1_1NoSuchFile.html',1,'Mirai::NoSuchFile'],['../classMirai_1_1NoSuchFile.html#a65e83f77bdcebe137fb58011a308db43',1,'Mirai::NoSuchFile::NoSuchFile()']]],
+  ['notverifysession_532',['NotVerifySession',['../classMirai_1_1NotVerifySession.html',1,'Mirai::NotVerifySession'],['../classMirai_1_1NotVerifySession.html#a546ba216992e754f376bff5a667c4126',1,'Mirai::NotVerifySession::NotVerifySession()']]],
+  ['nudgeevent_533',['NudgeEvent',['../classMirai_1_1NudgeEvent.html',1,'Mirai']]],
+  ['nudgeevent_2ecpp_534',['NudgeEvent.cpp',['../NudgeEvent_8cpp.html',1,'']]],
+  ['nudgeevent_2ehpp_535',['NudgeEvent.hpp',['../NudgeEvent_8hpp.html',1,'']]],
+  ['nudgefriend_536',['NudgeFriend',['../classMirai_1_1MiraiClient.html#ae3327c1b5f416166d766a4fc4f7144dc',1,'Mirai::MiraiClient::NudgeFriend()'],['../classMirai_1_1NudgeTarget.html#adf465653effc799ce4b089d212718a19',1,'Mirai::NudgeTarget::NudgeFriend()']]],
+  ['nudgegroup_537',['NudgeGroup',['../classMirai_1_1MiraiClient.html#a4f88253ed205fc287e0823b17f3c5331',1,'Mirai::MiraiClient']]],
+  ['nudgegroupmember_538',['NudgeGroupMember',['../classMirai_1_1NudgeTarget.html#a324013d4a9daa921a22aa9fe9bd7a493',1,'Mirai::NudgeTarget']]],
+  ['nudgestranger_539',['NudgeStranger',['../classMirai_1_1MiraiClient.html#aab1f8dbc6c11ee0fc291e42e918e68f6',1,'Mirai::MiraiClient::NudgeStranger()'],['../classMirai_1_1NudgeTarget.html#ab7a145efb74dea62d701f10a7769fcb7',1,'Mirai::NudgeTarget::NudgeStranger()']]],
+  ['nudgetarget_540',['NudgeTarget',['../classMirai_1_1NudgeTarget.html',1,'Mirai::NudgeTarget'],['../classMirai_1_1NudgeTarget.html#a5a504556d39260536572c2438c66a8d9',1,'Mirai::NudgeTarget::NudgeTarget()'],['../classMirai_1_1NudgeTarget.html#a5b4501e749d9fc38d0960b825616b9c3',1,'Mirai::NudgeTarget::NudgeTarget(TargetKind kind, QQ_t target, UID_t subject)']]],
+  ['nudgetarget_2ehpp_541',['NudgeTarget.hpp',['../NudgeTarget_8hpp.html',1,'']]]
+];

@@ -1,0 +1,8 @@
+<map id="Mirai::FriendInputStatusChangedEvent" name="Mirai::FriendInputStatusChangedEvent">
+<area shape="rect" id="node1" title="好友输入状态改变事件" alt="" coords="165,205,361,249"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="12,113,159,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="5,13,152,41"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="193,113,332,141"/>
+<area shape="rect" id="node5" title="STL class" alt="" coords="177,5,359,49"/>
+<area shape="rect" id="node6" href="$structMirai_1_1User.html" title="QQ用户" alt="" coords="357,113,459,141"/>
+</map>

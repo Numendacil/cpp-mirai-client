@@ -1,0 +1,4 @@
+<map id="Mirai::MemberJoinEvent" name="Mirai::MemberJoinEvent">
+<area shape="rect" id="node1" title="新成员加入群聊事件" alt="" coords="5,81,201,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="30,5,177,33"/>
+</map>

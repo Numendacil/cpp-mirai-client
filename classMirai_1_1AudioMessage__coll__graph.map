@@ -1,0 +1,9 @@
+<map id="Mirai::AudioMessage" name="Mirai::AudioMessage">
+<area shape="rect" id="node1" title="语音消息" alt="" coords="184,253,359,281"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,161,175,189"/>
+<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="38,13,190,41"/>
+<area shape="rect" id="node6" href="$structMirai_1_1MiraiAudio.html" title="Mirai语音" alt="" coords="199,161,344,189"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="369,161,507,189"/>
+<area shape="rect" id="node5" title="STL class" alt="" coords="347,5,529,49"/>
+<area shape="rect" id="node7" title="STL class" alt="" coords="223,13,320,41"/>
+</map>

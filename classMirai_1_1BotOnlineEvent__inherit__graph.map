@@ -1,0 +1,5 @@
+<map id="Mirai::BotOnlineEvent" name="Mirai::BotOnlineEvent">
+<area shape="rect" id="node1" title="Bot上线事件" alt="" coords="5,157,188,185"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotEvent.html" title="与Bot本身相关的事件的基类" alt="" coords="29,81,164,109"/>
+<area shape="rect" id="node3" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="23,5,170,33"/>
+</map>

@@ -1,0 +1,12 @@
+<map id="Mirai::EventBase" name="Mirai::EventBase">
+<area shape="rect" id="node1" title="Base class for all event types" alt="" coords="945,213,1092,241"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="697,213,844,241"/>
+<area shape="rect" id="node3" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="301,54,479,82"/>
+<area shape="rect" id="node4" title="STL class" alt="" coords="5,95,103,123"/>
+<area shape="rect" id="node5" href="$structMirai_1_1ClientConnectionEstablishedEvent.html" title="连接建立事件" alt="" coords="252,106,528,150"/>
+<area shape="rect" id="node7" title=" " alt="" coords="270,174,510,218"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="339,242,441,270"/>
+<area shape="rect" id="node8" title=" " alt="" coords="299,294,481,338"/>
+<area shape="rect" id="node9" title=" " alt="" coords="290,362,490,406"/>
+<area shape="rect" id="node10" title=" " alt="" coords="290,430,490,474"/>
+</map>

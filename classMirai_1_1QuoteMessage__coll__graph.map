@@ -1,0 +1,12 @@
+<map id="Mirai::QuoteMessage" name="Mirai::QuoteMessage">
+<area shape="rect" id="node1" title="引用回复消息" alt="" coords="635,117,813,145"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="337,9,507,37"/>
+<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="31,5,183,33"/>
+<area shape="rect" id="node4" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="335,65,509,93"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,57,208,101"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="353,117,491,145"/>
+<area shape="rect" id="node7" title="STL class" alt="" coords="15,125,198,169"/>
+<area shape="rect" id="node8" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="369,169,475,197"/>
+<area shape="rect" id="node9" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="53,203,160,231"/>
+<area shape="rect" id="node10" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="369,221,475,249"/>
+</map>

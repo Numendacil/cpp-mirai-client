@@ -1,0 +1,8 @@
+<map id="Mirai::BotReloginEvent" name="Mirai::BotReloginEvent">
+<area shape="rect" id="node1" title="Bot重新登录事件" alt="" coords="217,205,407,233"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotEvent.html" title="与Bot本身相关的事件的基类" alt="" coords="162,113,297,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,13,152,41"/>
+<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="177,13,282,41"/>
+<area shape="rect" id="node5" title="STL class" alt="" coords="325,113,464,141"/>
+<area shape="rect" id="node6" title="STL class" alt="" coords="306,5,489,49"/>
+</map>
