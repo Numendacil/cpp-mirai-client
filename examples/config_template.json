@@ -1,0 +1,19 @@
+{
+	"HttpUrl" : "http://localhost:8080",
+	"ConnectionTimeout" : 30,
+	"ReadTimeout" : 5,
+	"WriteTimeout" : 5,
+
+	"WebsocketUrl" : "ws://localhost:8080",
+	"HeartbeatInterval" : 60,
+	"HandshakeTimeout" : 60,
+	"EnablePong" : true,
+	"EnableDeflate" : false,
+	"AutoReconnect" : true,
+	"MinRetryInterval" : 1,
+	"MaxRetryInterval" : 30,
+
+	"BotQQ" : 12345,
+	"VerifyKey" : "",
+	"ThreadPoolSize" : 12
+}

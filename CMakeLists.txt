@@ -4,11 +4,8 @@ project (cpp-mirai-client VERSION 2.6.1 LANGUAGES CXX)
 # set(CMAKE_CXX_STANDARD 17)
 # SET(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-if(MSVC)
-	add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
-	add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
-	message(STATUS "optional: /UTF-8")
-endif(MSVC)
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 
 set(MIRAI_LIB_TARGET_NAME	cppmirai)
 
@@ -83,8 +80,15 @@ target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 add_subdirectory(libmirai)
 
 
-option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ON)
+option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" OFF)
 if(MIRAI_BUILD_UNIT_TESTS)
+	message("UnitTests enabled")
 	add_subdirectory(external/googletest)
 	add_subdirectory(UnitTest)
 endif(MIRAI_BUILD_UNIT_TESTS)
+
+option(MIRAI_BUILD_EXAMPLES "Build Examples" OFF)
+if(MIRAI_BUILD_EXAMPLES)
+	message("examples enabled")
+	add_subdirectory(examples)
+endif(MIRAI_BUILD_EXAMPLES)

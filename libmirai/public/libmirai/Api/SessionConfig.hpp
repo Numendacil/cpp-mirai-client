@@ -33,7 +33,7 @@ namespace Mirai
  */
 struct SessionConfigs
 {
-	/// Http Adaptor地址
+	/// Http adapter地址
 	std::string HttpUrl = "http://localhost:8080";
 	/// 连接超时时间
 	std::chrono::milliseconds ConnectionTimeout = std::chrono::seconds(30);
@@ -42,7 +42,7 @@ struct SessionConfigs
 	/// 写入超时时间
 	std::chrono::milliseconds WriteTimeout = std::chrono::seconds(5);
 
-	/// Websocket Adaptor地址
+	/// Websocket adapter地址
 	std::string WebsocketUrl = "ws://localhost:8080";
 	/// 心跳信息间隔
 	std::chrono::seconds HeartbeatInterval = std::chrono::seconds(60);
