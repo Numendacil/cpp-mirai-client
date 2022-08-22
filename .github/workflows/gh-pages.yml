@@ -15,12 +15,9 @@ jobs:
 
     - name: Git Checkout
       uses: actions/checkout@v3
-    
-    - name: Install dependencies
-      run: sudo apt-get update; sudo apt-get install -y doxygen graphviz
 
     - name: Create docs
-      run:  doxygen .
+      uses: mattnotmitt/doxygen-action@v1.9.4
   
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3
