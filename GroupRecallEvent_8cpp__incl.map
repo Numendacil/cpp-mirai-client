@@ -1,12 +1,12 @@
 <map id="libmirai/public/libmirai/Events/GroupRecallEvent.cpp" name="libmirai/public/libmirai/Events/GroupRecallEvent.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="432,5,674,49"/>
-<area shape="rect" id="node2" href="$GroupRecallEvent_8hpp.html" title=" " alt="" coords="264,97,448,125"/>
-<area shape="rect" id="node9" title=" " alt="" coords="472,97,634,125"/>
-<area shape="rect" id="node10" title=" " alt="" coords="658,97,874,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="35,249,98,277"/>
-<area shape="rect" id="node4" title=" " alt="" coords="550,173,631,201"/>
-<area shape="rect" id="node5" title=" " alt="" coords="246,249,310,277"/>
-<area shape="rect" id="node6" title=" " alt="" coords="334,249,529,277"/>
-<area shape="rect" id="node7" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,173,266,201"/>
-<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="342,173,474,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="397,5,611,49"/>
+<area shape="rect" id="node2" href="$GroupRecallEvent_8hpp.html" title=" " alt="" coords="243,97,408,125"/>
+<area shape="rect" id="node9" title=" " alt="" coords="432,97,576,125"/>
+<area shape="rect" id="node10" title=" " alt="" coords="600,97,789,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="32,249,88,277"/>
+<area shape="rect" id="node4" title=" " alt="" coords="509,173,581,201"/>
+<area shape="rect" id="node5" title=" " alt="" coords="227,249,285,277"/>
+<area shape="rect" id="node6" title=" " alt="" coords="309,249,483,277"/>
+<area shape="rect" id="node7" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,173,240,201"/>
+<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="315,173,434,201"/>
 </map>

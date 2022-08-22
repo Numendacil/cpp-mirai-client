@@ -1,7 +1,7 @@
 var hierarchy =
 [
-    [ "Mirai::MiraiClient::_has_type_< T >", "classMirai_1_1MiraiClient_1_1__has__type__.html", null ],
     [ "Mirai::MessageChain::_has_type_< T >", "classMirai_1_1MessageChain_1_1__has__type__.html", null ],
+    [ "Mirai::MiraiClient::_has_type_< T >", "classMirai_1_1MiraiClient_1_1__has__type__.html", null ],
     [ "Mirai::ClientConnectionClosedEvent", "structMirai_1_1ClientConnectionClosedEvent.html", null ],
     [ "Mirai::ClientConnectionErrorEvent", "structMirai_1_1ClientConnectionErrorEvent.html", null ],
     [ "Mirai::ClientConnectionEstablishedEvent", "structMirai_1_1ClientConnectionEstablishedEvent.html", null ],

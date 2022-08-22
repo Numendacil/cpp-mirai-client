@@ -1,11 +1,11 @@
 <map id="libmirai/public/libmirai/Messages/SourceMessage.hpp" name="libmirai/public/libmirai/Messages/SourceMessage.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="335,5,587,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,173,68,201"/>
-<area shape="rect" id="node3" title=" " alt="" coords="509,173,573,201"/>
-<area shape="rect" id="node4" title=" " alt="" coords="389,249,583,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="164,97,405,125"/>
-<area shape="rect" id="node8" href="$MessageBase_8hpp.html" title=" " alt="" coords="498,97,653,125"/>
-<area shape="rect" id="node6" title=" " alt="" coords="93,173,165,201"/>
-<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="240,173,484,201"/>
-<area shape="rect" id="node9" title=" " alt="" coords="647,173,730,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="308,5,535,49"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,173,61,201"/>
+<area shape="rect" id="node3" title=" " alt="" coords="467,173,525,201"/>
+<area shape="rect" id="node4" title=" " alt="" coords="361,249,535,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="152,97,368,125"/>
+<area shape="rect" id="node8" href="$MessageBase_8hpp.html" title=" " alt="" coords="459,97,600,125"/>
+<area shape="rect" id="node6" title=" " alt="" coords="85,173,152,201"/>
+<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="227,173,443,201"/>
+<area shape="rect" id="node9" title=" " alt="" coords="600,173,675,201"/>
 </map>

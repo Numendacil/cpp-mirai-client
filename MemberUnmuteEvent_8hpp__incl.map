@@ -1,12 +1,12 @@
 <map id="libmirai/public/libmirai/Events/MemberUnmuteEvent.hpp" name="libmirai/public/libmirai/Events/MemberUnmuteEvent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="366,5,641,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,97,87,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="665,173,729,201"/>
-<area shape="rect" id="node4" title=" " alt="" coords="354,249,549,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="383,97,624,125"/>
-<area shape="rect" id="node9" href="$EventBase_8hpp.html" title=" " alt="" coords="700,97,832,125"/>
-<area shape="rect" id="node6" title=" " alt="" coords="569,173,641,201"/>
-<area shape="rect" id="node7" title=" " alt="" coords="163,173,225,201"/>
-<area shape="rect" id="node8" href="$Serializable_8hpp.html" title=" " alt="" coords="249,173,493,201"/>
-<area shape="rect" id="node10" title=" " alt="" coords="803,173,886,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="346,5,587,49"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,97,77,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="614,173,671,201"/>
+<area shape="rect" id="node4" title=" " alt="" coords="325,249,499,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="359,97,575,125"/>
+<area shape="rect" id="node9" href="$EventBase_8hpp.html" title=" " alt="" coords="650,97,769,125"/>
+<area shape="rect" id="node6" title=" " alt="" coords="523,173,589,201"/>
+<area shape="rect" id="node7" title=" " alt="" coords="152,173,208,201"/>
+<area shape="rect" id="node8" href="$Serializable_8hpp.html" title=" " alt="" coords="232,173,448,201"/>
+<area shape="rect" id="node10" title=" " alt="" coords="747,173,821,201"/>
 </map>

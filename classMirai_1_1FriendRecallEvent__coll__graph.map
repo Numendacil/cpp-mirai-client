@@ -1,8 +1,8 @@
 <map id="Mirai::FriendRecallEvent" name="Mirai::FriendRecallEvent">
-<area shape="rect" id="node1" title="好友消息撤回事件" alt="" coords="163,221,362,249"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="12,113,159,141"/>
-<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="5,13,152,41"/>
-<area shape="rect" id="node4" title="STL class" alt="" coords="193,113,332,141"/>
-<area shape="rect" id="node5" title="STL class" alt="" coords="177,5,359,49"/>
-<area shape="rect" id="node6" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="357,113,462,141"/>
+<area shape="rect" id="node1" title="好友消息撤回事件" alt="" coords="119,221,297,249"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,113,136,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="7,13,135,41"/>
+<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="161,113,255,141"/>
+<area shape="rect" id="node5" title=" " alt="" coords="279,113,401,141"/>
+<area shape="rect" id="node6" title=" " alt="" coords="259,5,421,49"/>
 </map>

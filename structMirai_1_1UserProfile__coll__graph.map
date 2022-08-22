@@ -1,6 +1,6 @@
 <map id="Mirai::UserProfile" name="Mirai::UserProfile">
-<area shape="rect" id="node1" title="QQ用户资料" alt="" coords="29,223,177,251"/>
-<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,99,157,127"/>
-<area shape="rect" id="node3" title="STL class" alt="" coords="182,99,279,127"/>
-<area shape="rect" id="node4" title="STL class" alt="" coords="153,5,308,49"/>
+<area shape="rect" id="node1" title="QQ用户资料" alt="" coords="50,223,183,251"/>
+<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,99,140,127"/>
+<area shape="rect" id="node3" title=" " alt="" coords="164,99,248,127"/>
+<area shape="rect" id="node4" title=" " alt="" coords="139,5,273,49"/>
 </map>

@@ -1,9 +1,9 @@
 <map id="Mirai::BotEvent" name="Mirai::BotEvent">
-<area shape="rect" id="node1" title="与Bot本身相关的事件的基类" alt="" coords="200,109,335,137"/>
-<area shape="rect" id="node3" href="$classMirai_1_1BotOfflineEventActive.html" title="Bot主动下线事件" alt="" coords="391,5,620,33"/>
-<area shape="rect" id="node4" href="$classMirai_1_1BotOfflineEventDropped.html" title="Bot掉线事件" alt="" coords="383,57,628,85"/>
-<area shape="rect" id="node5" href="$classMirai_1_1BotOfflineEventForce.html" title="Bot强制下线事件" alt="" coords="394,109,617,137"/>
-<area shape="rect" id="node6" href="$classMirai_1_1BotOnlineEvent.html" title="Bot上线事件" alt="" coords="414,161,597,189"/>
-<area shape="rect" id="node7" href="$classMirai_1_1BotReloginEvent.html" title="Bot重新登录事件" alt="" coords="411,213,600,241"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,109,152,137"/>
+<area shape="rect" id="node1" title="与Bot本身相关的事件的基类" alt="" coords="184,109,303,137"/>
+<area shape="rect" id="node3" href="$classMirai_1_1BotOfflineEventActive.html" title="Bot主动下线事件" alt="" coords="359,5,556,33"/>
+<area shape="rect" id="node4" href="$classMirai_1_1BotOfflineEventDropped.html" title="Bot掉线事件" alt="" coords="351,57,564,85"/>
+<area shape="rect" id="node5" href="$classMirai_1_1BotOfflineEventForce.html" title="Bot强制下线事件" alt="" coords="360,109,555,137"/>
+<area shape="rect" id="node6" href="$classMirai_1_1BotOnlineEvent.html" title="Bot上线事件" alt="" coords="377,161,537,189"/>
+<area shape="rect" id="node7" href="$classMirai_1_1BotReloginEvent.html" title="Bot重新登录事件" alt="" coords="374,213,541,241"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,109,136,137"/>
 </map>

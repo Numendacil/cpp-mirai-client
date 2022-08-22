@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Messages/MiraiCodeMessage.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('MiraiCodeMessage_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,115 +138,115 @@ $(document).ready(function(){initNavTree('MiraiCodeMessage_8hpp_source.html','')
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">MiraiCodeMessage.hpp</div>  </div>
+  <div class="headertitle"><div class="title">MiraiCodeMessage.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="MiraiCodeMessage_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_MIRAICODE_MESSAGE_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_MIRAICODE_MESSAGE_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MessageBase_8hpp.html">MessageBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="comment"> * @brief  Mirai码消息</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment"> * Member Variable | Default Value</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> * --------------- | -------------</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> * `MiraiCodeMessage::_code` | `&quot;&quot;`</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html">   35</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a> : <span class="keyword">public</span> <a class="code" href="classMirai_1_1MessageBase.html">MessageBase</a></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">   38</a></span>&#160;    std::string <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">   41</a></span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>() {}</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">   42</a></span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">MiraiCodeMessage</a>(<span class="keyword">const</span> std::string&amp; code) : <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>(code) {}</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a32566895495b9890ce4cb3d74d1301bf">operator=</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>(<a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;&amp;) noexcept = default;</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; operator=(<a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;&amp;) noexcept = default;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">   48</a></span>&#160;    static constexpr std::string_view <a class="code" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">_TYPE_</a> = &quot;MiraiCode&quot;;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#afeaed8a5b2206d966791e2c37971955f">   50</a></span>&#160;    virtual std::string_view <a class="code" href="classMirai_1_1MiraiCodeMessage.html#afeaed8a5b2206d966791e2c37971955f">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">_TYPE_</a>; }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a1a4832743e4ae1cb03dc29c932dd55dc">   52</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>* <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a1a4832743e4ae1cb03dc29c932dd55dc">Clone</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>(*<span class="keyword">this</span>); }</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a5007d7c13def5e8ccbac8fe0c7c0b621">isValid</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#affe31592e97082ef40d52650b1fcf392">FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a57ac85842e8814149e2b148b3e24d2d3">ToJson</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">   60</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">operator==</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; rhs) { <span class="keywordflow">return</span> this-&gt;_code == rhs.<a class="code" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>; }</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">   62</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; rhs) { <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == rhs); }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /// 获取mirai码</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">   65</a></span>&#160;<span class="comment"></span>    std::string <a class="code" href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">GetCode</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>; }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="comment">    /// 设置mirai码</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a1fea63ab836d058effe9f94bac60c520">   68</a></span>&#160;<span class="comment"></span>    <a class="code" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; <a class="code" href="classMirai_1_1MiraiCodeMessage.html#a1fea63ab836d058effe9f94bac60c520">SetCode</a>(<span class="keyword">const</span> std::string&amp; code)</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        this-&gt;_code = code;</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    }</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;};</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;} <span class="comment">// namespace Mirai</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a57ac85842e8814149e2b148b3e24d2d3"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a57ac85842e8814149e2b148b3e24d2d3">Mirai::MiraiCodeMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8cpp_source.html#l00038">MiraiCodeMessage.cpp:38</a></div></div>
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a1fea63ab836d058effe9f94bac60c520"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a1fea63ab836d058effe9f94bac60c520">Mirai::MiraiCodeMessage::SetCode</a></div><div class="ttdeci">MiraiCodeMessage &amp; SetCode(const std::string &amp;code)</div><div class="ttdoc">设置mirai码</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00068">MiraiCodeMessage.hpp:68</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a5007d7c13def5e8ccbac8fe0c7c0b621"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a5007d7c13def5e8ccbac8fe0c7c0b621">Mirai::MiraiCodeMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8cpp_source.html#l00027">MiraiCodeMessage.cpp:27</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_ad04822ba72b8038788dea1679ab076a5"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">Mirai::MiraiCodeMessage::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00048">MiraiCodeMessage.hpp:48</a></div></div>
+<a href="MiraiCodeMessage_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_MIRAICODE_MESSAGE_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_MIRAICODE_MESSAGE_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="MessageBase_8hpp.html">MessageBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment"></span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment"> * @brief  Mirai码消息</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment"> * Member Variable | Default Value</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * --------------- | -------------</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * `MiraiCodeMessage::_code` | `&quot;&quot;`</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html">   35</a></span><span class="keyword">class </span><a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMirai_1_1MessageBase.html">MessageBase</a></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">   38</a></span>    std::string <a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">   41</a></span>    <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>() {}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">   42</a></span>    <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">MiraiCodeMessage</a>(<span class="keyword">const</span> std::string&amp; code) : <a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>(code) {}</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a4a9f5f9d5ffcea9b29dfea9c7ddc0b70">   43</a></span>    <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a4a9f5f9d5ffcea9b29dfea9c7ddc0b70">MiraiCodeMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a8d9bf7a5ebf6f5628c54f971907d3c29">   44</a></span>    <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a8d9bf7a5ebf6f5628c54f971907d3c29">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a86fafb5d881333ee8130e2ebb52dcdfb">   45</a></span>    <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a86fafb5d881333ee8130e2ebb52dcdfb">MiraiCodeMessage</a>(<a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;&amp;) noexcept = default;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a22b389dcc5ff71ec4494097c08a9dbab">   46</a></span>    <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; operator=(<a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp;&amp;) noexcept = default;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">   48</a></span>    static constexpr <a class="code hl_namespace" href="namespacestd.html">std</a>::string_view <a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">_TYPE_</a> = &quot;MiraiCode&quot;;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#afeaed8a5b2206d966791e2c37971955f">   50</a></span>    virtual <a class="code hl_namespace" href="namespacestd.html">std</a>::string_view <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#afeaed8a5b2206d966791e2c37971955f">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">_TYPE_</a>; }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#ac4982f160838af6c31dd14a0d8c8c94e">   52</a></span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>* <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#ac4982f160838af6c31dd14a0d8c8c94e">Clone</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">MiraiCodeMessage</a>(*<span class="keyword">this</span>); }</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a5007d7c13def5e8ccbac8fe0c7c0b621">isValid</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#affe31592e97082ef40d52650b1fcf392">FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">virtual</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a57ac85842e8814149e2b148b3e24d2d3">ToJson</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">   60</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; rhs) { <span class="keywordflow">return</span> this-&gt;_code == rhs.<a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>; }</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">   62</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">operator!=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; rhs) { <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == rhs); }</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"></span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// 获取mirai码</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">   65</a></span><span class="comment"></span>    std::string <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">GetCode</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">_code</a>; }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"></span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">    /// 设置mirai码</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classMirai_1_1MiraiCodeMessage.html#a9bae24288a9af10dbcfa22d61fa073b5">   68</a></span><span class="comment"></span>    <a class="code hl_class" href="classMirai_1_1MiraiCodeMessage.html">MiraiCodeMessage</a>&amp; <a class="code hl_function" href="classMirai_1_1MiraiCodeMessage.html#a9bae24288a9af10dbcfa22d61fa073b5">SetCode</a>(<span class="keyword">const</span> std::string&amp; code)</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>        this-&gt;_code = code;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>};</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aMessageBase_8hpp_html"><div class="ttname"><a href="MessageBase_8hpp.html">MessageBase.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a1a4832743e4ae1cb03dc29c932dd55dc"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a1a4832743e4ae1cb03dc29c932dd55dc">Mirai::MiraiCodeMessage::Clone</a></div><div class="ttdeci">virtual MiraiCodeMessage * Clone() const override</div><div class="ttdoc">Clone the class, used for copying polymorphic objects</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00052">MiraiCodeMessage.hpp:52</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a32566895495b9890ce4cb3d74d1301bf"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a32566895495b9890ce4cb3d74d1301bf">Mirai::MiraiCodeMessage::operator=</a></div><div class="ttdeci">MiraiCodeMessage &amp; operator=(const MiraiCodeMessage &amp;)=default</div></div>
+<div class="ttc" id="aclassMirai_1_1MessageBase_html"><div class="ttname"><a href="classMirai_1_1MessageBase.html">Mirai::MessageBase</a></div><div class="ttdoc">Base class for all message types</div><div class="ttdef"><b>Definition:</b> <a href="MessageBase_8hpp_source.html#l00037">MessageBase.hpp:38</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html">Mirai::MiraiCodeMessage</a></div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00035">MiraiCodeMessage.hpp:36</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a0dbc9b323cef8ea9f55ea1ee83011fa9"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage()</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00041">MiraiCodeMessage.hpp:41</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a25edee1bbf777601b3cefb503f648290"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">Mirai::MiraiCodeMessage::_code</a></div><div class="ttdeci">std::string _code</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00038">MiraiCodeMessage.hpp:38</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a2ea7ea33f74d92e77822859618735824"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage(const std::string &amp;code)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00042">MiraiCodeMessage.hpp:42</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a4a9f5f9d5ffcea9b29dfea9c7ddc0b70"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a4a9f5f9d5ffcea9b29dfea9c7ddc0b70">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage(const MiraiCodeMessage &amp;)=default</div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a5007d7c13def5e8ccbac8fe0c7c0b621"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a5007d7c13def5e8ccbac8fe0c7c0b621">Mirai::MiraiCodeMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8cpp_source.html#l00027">MiraiCodeMessage.cpp:27</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a57ac85842e8814149e2b148b3e24d2d3"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a57ac85842e8814149e2b148b3e24d2d3">Mirai::MiraiCodeMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8cpp_source.html#l00038">MiraiCodeMessage.cpp:38</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a752eebaed3adcfba57920ea7eb29a05f"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">Mirai::MiraiCodeMessage::operator!=</a></div><div class="ttdeci">bool operator!=(const MiraiCodeMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00062">MiraiCodeMessage.hpp:62</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a86fafb5d881333ee8130e2ebb52dcdfb"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a86fafb5d881333ee8130e2ebb52dcdfb">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage(MiraiCodeMessage &amp;&amp;) noexcept=default</div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a8d9bf7a5ebf6f5628c54f971907d3c29"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a8d9bf7a5ebf6f5628c54f971907d3c29">Mirai::MiraiCodeMessage::operator=</a></div><div class="ttdeci">MiraiCodeMessage &amp; operator=(const MiraiCodeMessage &amp;)=default</div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a9bae24288a9af10dbcfa22d61fa073b5"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a9bae24288a9af10dbcfa22d61fa073b5">Mirai::MiraiCodeMessage::SetCode</a></div><div class="ttdeci">MiraiCodeMessage &amp; SetCode(const std::string &amp;code)</div><div class="ttdoc">设置mirai码</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00068">MiraiCodeMessage.hpp:68</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_ab235f886f0a38cec8019cf8949501a92"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">Mirai::MiraiCodeMessage::operator==</a></div><div class="ttdeci">bool operator==(const MiraiCodeMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00060">MiraiCodeMessage.hpp:60</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_ac4982f160838af6c31dd14a0d8c8c94e"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#ac4982f160838af6c31dd14a0d8c8c94e">Mirai::MiraiCodeMessage::Clone</a></div><div class="ttdeci">virtual MiraiCodeMessage * Clone() const override</div><div class="ttdoc">Clone the class, used for copying polymorphic objects</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00052">MiraiCodeMessage.hpp:52</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_ad04822ba72b8038788dea1679ab076a5"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#ad04822ba72b8038788dea1679ab076a5">Mirai::MiraiCodeMessage::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00048">MiraiCodeMessage.hpp:48</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_afc4ce6e2f16cc26db726c7835abebcec"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">Mirai::MiraiCodeMessage::GetCode</a></div><div class="ttdeci">std::string GetCode() const</div><div class="ttdoc">获取mirai码</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00065">MiraiCodeMessage.hpp:65</a></div></div>
 <div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_afeaed8a5b2206d966791e2c37971955f"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#afeaed8a5b2206d966791e2c37971955f">Mirai::MiraiCodeMessage::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00050">MiraiCodeMessage.hpp:50</a></div></div>
 <div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_affe31592e97082ef40d52650b1fcf392"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#affe31592e97082ef40d52650b1fcf392">Mirai::MiraiCodeMessage::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8cpp_source.html#l00032">MiraiCodeMessage.cpp:32</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html">Mirai::MiraiCodeMessage</a></div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00035">MiraiCodeMessage.hpp:35</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a752eebaed3adcfba57920ea7eb29a05f"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a752eebaed3adcfba57920ea7eb29a05f">Mirai::MiraiCodeMessage::operator!=</a></div><div class="ttdeci">bool operator!=(const MiraiCodeMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00062">MiraiCodeMessage.hpp:62</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a0dbc9b323cef8ea9f55ea1ee83011fa9"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a0dbc9b323cef8ea9f55ea1ee83011fa9">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage()</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00041">MiraiCodeMessage.hpp:41</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
 <div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a2ea7ea33f74d92e77822859618735824"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a2ea7ea33f74d92e77822859618735824">Mirai::MiraiCodeMessage::MiraiCodeMessage</a></div><div class="ttdeci">MiraiCodeMessage(const std::string &amp;code)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00042">MiraiCodeMessage.hpp:42</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_afc4ce6e2f16cc26db726c7835abebcec"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#afc4ce6e2f16cc26db726c7835abebcec">Mirai::MiraiCodeMessage::GetCode</a></div><div class="ttdeci">std::string GetCode() const</div><div class="ttdoc">获取mirai码</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00065">MiraiCodeMessage.hpp:65</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MessageBase_html"><div class="ttname"><a href="classMirai_1_1MessageBase.html">Mirai::MessageBase</a></div><div class="ttdoc">Base class for all message types</div><div class="ttdef"><b>Definition:</b> <a href="MessageBase_8hpp_source.html#l00037">MessageBase.hpp:37</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_ab235f886f0a38cec8019cf8949501a92"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#ab235f886f0a38cec8019cf8949501a92">Mirai::MiraiCodeMessage::operator==</a></div><div class="ttdeci">bool operator==(const MiraiCodeMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00060">MiraiCodeMessage.hpp:60</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiCodeMessage_html_a25edee1bbf777601b3cefb503f648290"><div class="ttname"><a href="classMirai_1_1MiraiCodeMessage.html#a25edee1bbf777601b3cefb503f648290">Mirai::MiraiCodeMessage::_code</a></div><div class="ttdeci">std::string _code</div><div class="ttdef"><b>Definition:</b> <a href="MiraiCodeMessage_8hpp_source.html#l00038">MiraiCodeMessage.hpp:38</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_c64ef95c53891570beeeee3d656466cb.html">Messages</a></li><li class="navelem"><a class="el" href="MiraiCodeMessage_8hpp.html">MiraiCodeMessage.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

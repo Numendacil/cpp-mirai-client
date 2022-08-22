@@ -1,15 +1,15 @@
 <map id="Mirai::MiraiApiHttpException" name="Mirai::MiraiApiHttpException">
-<area shape="rect" id="node1" title="mirai&#45;api&#45;http相关的异常" alt="" coords="383,240,613,268"/>
-<area shape="rect" id="node4" href="$classMirai_1_1AuthKeyFail.html" title="MAH异常: 验证密钥错误" alt="" coords="687,5,841,33"/>
-<area shape="rect" id="node5" href="$classMirai_1_1BotMuted.html" title="MAH异常: Bot被禁言" alt="" coords="695,57,833,85"/>
-<area shape="rect" id="node6" href="$classMirai_1_1IllegalSession.html" title="MAH异常: 无效Session" alt="" coords="681,109,847,137"/>
-<area shape="rect" id="node7" href="$classMirai_1_1MessageTooLarge.html" title="MAH异常: 消息过长" alt="" coords="665,161,863,189"/>
-<area shape="rect" id="node8" href="$classMirai_1_1NoBot.html" title="MAH异常: 不存在该Bot账号" alt="" coords="707,213,821,241"/>
-<area shape="rect" id="node9" href="$classMirai_1_1NoElement.html" title="MAH异常: 指定对象不存在" alt="" coords="690,265,838,293"/>
-<area shape="rect" id="node10" href="$classMirai_1_1NoOperateSupport.html" title="MAH异常: 不支持该操作" alt="" coords="661,317,867,345"/>
-<area shape="rect" id="node11" href="$classMirai_1_1NoSuchFile.html" title="MAH异常: 文件不存在" alt="" coords="691,369,837,397"/>
-<area shape="rect" id="node12" href="$classMirai_1_1NotVerifySession.html" title="MAH异常: Session未绑定账号" alt="" coords="668,421,860,449"/>
-<area shape="rect" id="node13" href="$classMirai_1_1PermissionDenied.html" title="MAH异常: 缺少相关权限" alt="" coords="665,473,863,501"/>
-<area shape="rect" id="node2" title="STL class" alt="" coords="180,240,335,268"/>
-<area shape="rect" id="node3" title="STL class" alt="" coords="5,240,132,268"/>
+<area shape="rect" id="node1" title="mirai&#45;api&#45;http相关的异常" alt="" coords="348,240,551,268"/>
+<area shape="rect" id="node4" href="$classMirai_1_1AuthKeyFail.html" title="MAH异常: 验证密钥错误" alt="" coords="621,5,759,33"/>
+<area shape="rect" id="node5" href="$classMirai_1_1BotMuted.html" title="MAH异常: Bot被禁言" alt="" coords="629,57,751,85"/>
+<area shape="rect" id="node6" href="$classMirai_1_1IllegalSession.html" title="MAH异常: 无效Session" alt="" coords="615,109,765,137"/>
+<area shape="rect" id="node7" href="$classMirai_1_1MessageTooLarge.html" title="MAH异常: 消息过长" alt="" coords="599,161,781,189"/>
+<area shape="rect" id="node8" href="$classMirai_1_1NoBot.html" title="MAH异常: 不存在该Bot账号" alt="" coords="639,213,741,241"/>
+<area shape="rect" id="node9" href="$classMirai_1_1NoElement.html" title="MAH异常: 指定对象不存在" alt="" coords="624,265,756,293"/>
+<area shape="rect" id="node10" href="$classMirai_1_1NoOperateSupport.html" title="MAH异常: 不支持该操作" alt="" coords="599,317,781,345"/>
+<area shape="rect" id="node11" href="$classMirai_1_1NoSuchFile.html" title="MAH异常: 文件不存在" alt="" coords="622,369,758,397"/>
+<area shape="rect" id="node12" href="$classMirai_1_1NotVerifySession.html" title="MAH异常: Session未绑定账号" alt="" coords="605,421,775,449"/>
+<area shape="rect" id="node13" href="$classMirai_1_1PermissionDenied.html" title="MAH异常: 缺少相关权限" alt="" coords="601,473,779,501"/>
+<area shape="rect" id="node2" title=" " alt="" coords="164,240,300,268"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,240,116,268"/>
 </map>

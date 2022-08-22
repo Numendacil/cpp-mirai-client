@@ -1,9 +1,9 @@
 <map id="libmirai/public/libmirai/Types/GroupSettings.hpp" name="libmirai/public/libmirai/Types/GroupSettings.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,216,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="63,173,126,201"/>
-<area shape="rect" id="node3" title=" " alt="" coords="151,173,215,201"/>
-<area shape="rect" id="node4" title=" " alt="" coords="155,249,349,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="174,97,415,125"/>
-<area shape="rect" id="node6" title=" " alt="" coords="559,173,631,201"/>
-<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="290,173,534,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,195,49"/>
+<area shape="rect" id="node2" title=" " alt="" coords="55,173,111,201"/>
+<area shape="rect" id="node3" title=" " alt="" coords="135,173,193,201"/>
+<area shape="rect" id="node4" title=" " alt="" coords="143,249,318,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="163,97,379,125"/>
+<area shape="rect" id="node6" title=" " alt="" coords="508,173,575,201"/>
+<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="268,173,484,201"/>
 </map>

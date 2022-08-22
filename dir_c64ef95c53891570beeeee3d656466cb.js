@@ -1,86 +1,45 @@
 var dir_c64ef95c53891570beeeee3d656466cb =
 [
     [ "AppMessage.cpp", "AppMessage_8cpp.html", null ],
-    [ "AppMessage.hpp", "AppMessage_8hpp.html", [
-      [ "AppMessage", "classMirai_1_1AppMessage.html", "classMirai_1_1AppMessage" ]
-    ] ],
+    [ "AppMessage.hpp", "AppMessage_8hpp.html", "AppMessage_8hpp" ],
     [ "AtAllMessage.cpp", "AtAllMessage_8cpp.html", null ],
-    [ "AtAllMessage.hpp", "AtAllMessage_8hpp.html", [
-      [ "AtAllMessage", "classMirai_1_1AtAllMessage.html", "classMirai_1_1AtAllMessage" ]
-    ] ],
+    [ "AtAllMessage.hpp", "AtAllMessage_8hpp.html", "AtAllMessage_8hpp" ],
     [ "AtMessage.cpp", "AtMessage_8cpp.html", null ],
-    [ "AtMessage.hpp", "AtMessage_8hpp.html", [
-      [ "AtMessage", "classMirai_1_1AtMessage.html", "classMirai_1_1AtMessage" ]
-    ] ],
+    [ "AtMessage.hpp", "AtMessage_8hpp.html", "AtMessage_8hpp" ],
     [ "AudioMessage.cpp", "AudioMessage_8cpp.html", null ],
-    [ "AudioMessage.hpp", "AudioMessage_8hpp.html", [
-      [ "AudioMessage", "classMirai_1_1AudioMessage.html", "classMirai_1_1AudioMessage" ]
-    ] ],
+    [ "AudioMessage.hpp", "AudioMessage_8hpp.html", "AudioMessage_8hpp" ],
     [ "DiceMessage.cpp", "DiceMessage_8cpp.html", null ],
-    [ "DiceMessage.hpp", "DiceMessage_8hpp.html", [
-      [ "DiceMessage", "classMirai_1_1DiceMessage.html", "classMirai_1_1DiceMessage" ]
-    ] ],
+    [ "DiceMessage.hpp", "DiceMessage_8hpp.html", "DiceMessage_8hpp" ],
     [ "FaceMessage.cpp", "FaceMessage_8cpp.html", null ],
-    [ "FaceMessage.hpp", "FaceMessage_8hpp.html", [
-      [ "FaceMessage", "classMirai_1_1FaceMessage.html", "classMirai_1_1FaceMessage" ]
-    ] ],
+    [ "FaceMessage.hpp", "FaceMessage_8hpp.html", "FaceMessage_8hpp" ],
     [ "FileMessage.cpp", "FileMessage_8cpp.html", null ],
-    [ "FileMessage.hpp", "FileMessage_8hpp.html", [
-      [ "FileMessage", "classMirai_1_1FileMessage.html", "classMirai_1_1FileMessage" ]
-    ] ],
+    [ "FileMessage.hpp", "FileMessage_8hpp.html", "FileMessage_8hpp" ],
     [ "FlashImageMessage.cpp", "FlashImageMessage_8cpp.html", null ],
-    [ "FlashImageMessage.hpp", "FlashImageMessage_8hpp.html", [
-      [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html", "classMirai_1_1FlashImageMessage" ]
-    ] ],
+    [ "FlashImageMessage.hpp", "FlashImageMessage_8hpp.html", "FlashImageMessage_8hpp" ],
     [ "ForwardMessage.cpp", "ForwardMessage_8cpp.html", null ],
-    [ "ForwardMessage.hpp", "ForwardMessage_8hpp.html", [
-      [ "ForwardMessage", "classMirai_1_1ForwardMessage.html", "classMirai_1_1ForwardMessage" ],
-      [ "Node", "classMirai_1_1ForwardMessage_1_1Node.html", "classMirai_1_1ForwardMessage_1_1Node" ]
-    ] ],
+    [ "ForwardMessage.hpp", "ForwardMessage_8hpp.html", "ForwardMessage_8hpp" ],
     [ "ImageMessage.cpp", "ImageMessage_8cpp.html", null ],
-    [ "ImageMessage.hpp", "ImageMessage_8hpp.html", [
-      [ "ImageMessage", "classMirai_1_1ImageMessage.html", "classMirai_1_1ImageMessage" ]
-    ] ],
+    [ "ImageMessage.hpp", "ImageMessage_8hpp.html", "ImageMessage_8hpp" ],
     [ "JsonMessage.cpp", "JsonMessage_8cpp.html", null ],
-    [ "JsonMessage.hpp", "JsonMessage_8hpp.html", [
-      [ "JsonMessage", "classMirai_1_1JsonMessage.html", "classMirai_1_1JsonMessage" ]
-    ] ],
+    [ "JsonMessage.hpp", "JsonMessage_8hpp.html", "JsonMessage_8hpp" ],
     [ "MarketFaceMessage.cpp", "MarketFaceMessage_8cpp.html", null ],
-    [ "MarketFaceMessage.hpp", "MarketFaceMessage_8hpp.html", [
-      [ "MarketFaceMessage", "classMirai_1_1MarketFaceMessage.html", "classMirai_1_1MarketFaceMessage" ]
-    ] ],
-    [ "MessageBase.hpp", "MessageBase_8hpp.html", [
-      [ "MessageBase", "classMirai_1_1MessageBase.html", "classMirai_1_1MessageBase" ]
-    ] ],
+    [ "MarketFaceMessage.hpp", "MarketFaceMessage_8hpp.html", "MarketFaceMessage_8hpp" ],
+    [ "MessageBase.hpp", "MessageBase_8hpp.html", "MessageBase_8hpp" ],
     [ "MessageChain.cpp", "MessageChain_8cpp.html", "MessageChain_8cpp" ],
     [ "MessageChain.hpp", "MessageChain_8hpp.html", "MessageChain_8hpp" ],
     [ "Messages.hpp", "Messages_8hpp.html", null ],
     [ "MiraiCodeMessage.cpp", "MiraiCodeMessage_8cpp.html", null ],
-    [ "MiraiCodeMessage.hpp", "MiraiCodeMessage_8hpp.html", [
-      [ "MiraiCodeMessage", "classMirai_1_1MiraiCodeMessage.html", "classMirai_1_1MiraiCodeMessage" ]
-    ] ],
+    [ "MiraiCodeMessage.hpp", "MiraiCodeMessage_8hpp.html", "MiraiCodeMessage_8hpp" ],
     [ "MusicShareMessage.cpp", "MusicShareMessage_8cpp.html", null ],
-    [ "MusicShareMessage.hpp", "MusicShareMessage_8hpp.html", [
-      [ "MusicShareMessage", "classMirai_1_1MusicShareMessage.html", "classMirai_1_1MusicShareMessage" ]
-    ] ],
+    [ "MusicShareMessage.hpp", "MusicShareMessage_8hpp.html", "MusicShareMessage_8hpp" ],
     [ "PlainMessage.cpp", "PlainMessage_8cpp.html", null ],
-    [ "PlainMessage.hpp", "PlainMessage_8hpp.html", [
-      [ "PlainMessage", "classMirai_1_1PlainMessage.html", "classMirai_1_1PlainMessage" ]
-    ] ],
+    [ "PlainMessage.hpp", "PlainMessage_8hpp.html", "PlainMessage_8hpp" ],
     [ "PokeMessage.cpp", "PokeMessage_8cpp.html", null ],
-    [ "PokeMessage.hpp", "PokeMessage_8hpp.html", [
-      [ "PokeMessage", "classMirai_1_1PokeMessage.html", "classMirai_1_1PokeMessage" ]
-    ] ],
+    [ "PokeMessage.hpp", "PokeMessage_8hpp.html", "PokeMessage_8hpp" ],
     [ "QuoteMessage.cpp", "QuoteMessage_8cpp.html", null ],
-    [ "QuoteMessage.hpp", "QuoteMessage_8hpp.html", [
-      [ "QuoteMessage", "classMirai_1_1QuoteMessage.html", "classMirai_1_1QuoteMessage" ]
-    ] ],
+    [ "QuoteMessage.hpp", "QuoteMessage_8hpp.html", "QuoteMessage_8hpp" ],
     [ "SourceMessage.cpp", "SourceMessage_8cpp.html", null ],
-    [ "SourceMessage.hpp", "SourceMessage_8hpp.html", [
-      [ "SourceMessage", "classMirai_1_1SourceMessage.html", "classMirai_1_1SourceMessage" ]
-    ] ],
+    [ "SourceMessage.hpp", "SourceMessage_8hpp.html", "SourceMessage_8hpp" ],
     [ "XmlMessage.cpp", "XmlMessage_8cpp.html", null ],
-    [ "XmlMessage.hpp", "XmlMessage_8hpp.html", [
-      [ "XmlMessage", "classMirai_1_1XmlMessage.html", "classMirai_1_1XmlMessage" ]
-    ] ]
+    [ "XmlMessage.hpp", "XmlMessage_8hpp.html", "XmlMessage_8hpp" ]
 ];

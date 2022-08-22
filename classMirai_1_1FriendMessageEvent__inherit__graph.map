@@ -1,4 +1,4 @@
 <map id="Mirai::FriendMessageEvent" name="Mirai::FriendMessageEvent">
-<area shape="rect" id="node1" title="好友消息事件" alt="" coords="5,81,224,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="41,5,188,33"/>
+<area shape="rect" id="node1" title="好友消息事件" alt="" coords="5,81,201,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="38,5,169,33"/>
 </map>

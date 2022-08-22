@@ -1,4 +1,4 @@
 <map id="Mirai::NewFriendRequestEvent" name="Mirai::NewFriendRequestEvent">
-<area shape="rect" id="node1" title="用户申请添加Bot好友事件" alt="" coords="5,81,252,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="55,5,202,33"/>
+<area shape="rect" id="node1" title="用户申请添加Bot好友事件" alt="" coords="5,81,227,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="51,5,181,33"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="Mirai::MemberCardChangeEvent" name="Mirai::MemberCardChangeEvent">
-<area shape="rect" id="node1" title="群成员名片更改事件" alt="" coords="5,81,264,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="61,5,208,33"/>
+<area shape="rect" id="node1" title="群成员名片更改事件" alt="" coords="5,81,236,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="55,5,186,33"/>
 </map>

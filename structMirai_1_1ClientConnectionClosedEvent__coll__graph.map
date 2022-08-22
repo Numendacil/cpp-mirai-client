@@ -1,5 +1,5 @@
 <map id="Mirai::ClientConnectionClosedEvent" name="Mirai::ClientConnectionClosedEvent">
-<area shape="rect" id="node1" title="连接丢失事件" alt="" coords="5,191,247,235"/>
-<area shape="rect" id="node2" title="STL class" alt="" coords="77,99,175,127"/>
-<area shape="rect" id="node3" title="STL class" alt="" coords="49,5,203,49"/>
+<area shape="rect" id="node1" title="连接丢失事件" alt="" coords="5,191,219,235"/>
+<area shape="rect" id="node2" title=" " alt="" coords="70,99,154,127"/>
+<area shape="rect" id="node3" title=" " alt="" coords="45,5,179,49"/>
 </map>

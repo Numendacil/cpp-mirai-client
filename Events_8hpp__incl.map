@@ -1,65 +1,65 @@
 <map id="libmirai/public/libmirai/Events/Events.hpp" name="libmirai/public/libmirai/Events/Events.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="4663,5,4845,49"/>
-<area shape="rect" id="node2" href="$BotEvent_8hpp.html" title=" " alt="" coords="2963,181,3084,209"/>
-<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="6255,273,6387,301"/>
-<area shape="rect" id="node9" href="$BotGroupPermissionChangeEvent_8hpp.html" title=" " alt="" coords="5623,173,5848,217"/>
-<area shape="rect" id="node10" href="$BotInvitedJoinGroupRequestEvent_8hpp.html" title=" " alt="" coords="4522,173,4749,217"/>
-<area shape="rect" id="node11" href="$BotJoinGroupEvent_8hpp.html" title=" " alt="" coords="9964,181,10155,209"/>
-<area shape="rect" id="node13" href="$BotLeaveEventActive_8hpp.html" title=" " alt="" coords="2226,181,2437,209"/>
-<area shape="rect" id="node14" href="$BotLeaveEventDisband_8hpp.html" title=" " alt="" coords="7037,181,7261,209"/>
-<area shape="rect" id="node15" href="$BotLeaveEventKick_8hpp.html" title=" " alt="" coords="7794,181,7989,209"/>
-<area shape="rect" id="node16" href="$BotMuteEvent_8hpp.html" title=" " alt="" coords="5,181,164,209"/>
-<area shape="rect" id="node17" href="$BotOfflineEventActive_8hpp.html" title=" " alt="" coords="2373,97,2588,125"/>
-<area shape="rect" id="node18" href="$BotOfflineEventDropped_8hpp.html" title=" " alt="" coords="2664,97,2895,125"/>
-<area shape="rect" id="node19" href="$BotOfflineEventForce_8hpp.html" title=" " alt="" coords="2919,97,3128,125"/>
-<area shape="rect" id="node20" href="$BotOnlineEvent_8hpp.html" title=" " alt="" coords="3625,97,3793,125"/>
-<area shape="rect" id="node21" href="$BotReloginEvent_8hpp.html" title=" " alt="" coords="3817,97,3992,125"/>
-<area shape="rect" id="node22" href="$BotUnmuteEvent_8hpp.html" title=" " alt="" coords="189,181,367,209"/>
-<area shape="rect" id="node23" href="$CommandExecutedEvent_8hpp.html" title=" " alt="" coords="7041,97,7278,125"/>
-<area shape="rect" id="node26" href="$FriendInputStatusChangedEvent_8hpp.html" title=" " alt="" coords="7285,173,7500,217"/>
-<area shape="rect" id="node27" href="$FriendMessageEvent_8hpp.html" title=" " alt="" coords="4722,97,4927,125"/>
-<area shape="rect" id="node28" href="$FriendNickChangedEvent_8hpp.html" title=" " alt="" coords="3997,181,4231,209"/>
-<area shape="rect" id="node29" href="$FriendRecallEvent_8hpp.html" title=" " alt="" coords="1653,181,1837,209"/>
-<area shape="rect" id="node30" href="$FriendSyncMessageEvent_8hpp.html" title=" " alt="" coords="5221,97,5461,125"/>
-<area shape="rect" id="node31" href="$GroupAllowAnonymousChatEvent_8hpp.html" title=" " alt="" coords="8253,181,8551,209"/>
-<area shape="rect" id="node32" href="$GroupAllowConfessTalkEvent_8hpp.html" title=" " alt="" coords="4773,181,5039,209"/>
-<area shape="rect" id="node33" href="$GroupAllowMemberInviteEvent_8hpp.html" title=" " alt="" coords="8575,181,8855,209"/>
-<area shape="rect" id="node34" href="$GroupEntranceAnnouncementChangeEvent_8hpp.html" title=" " alt="" coords="9181,173,9423,217"/>
-<area shape="rect" id="node35" href="$GroupMessageEvent_8hpp.html" title=" " alt="" coords="6238,97,6443,125"/>
-<area shape="rect" id="node36" href="$GroupMuteAllEvent_8hpp.html" title=" " alt="" coords="10179,181,10374,209"/>
-<area shape="rect" id="node37" href="$GroupNameChangeEvent_8hpp.html" title=" " alt="" coords="9447,181,9685,209"/>
-<area shape="rect" id="node38" href="$GroupRecallEvent_8hpp.html" title=" " alt="" coords="5922,181,6106,209"/>
-<area shape="rect" id="node39" href="$GroupSyncMessageEvent_8hpp.html" title=" " alt="" coords="6726,97,6966,125"/>
-<area shape="rect" id="node40" href="$MemberCardChangeEvent_8hpp.html" title=" " alt="" coords="7525,181,7770,209"/>
-<area shape="rect" id="node41" href="$MemberHonorChangeEvent_8hpp.html" title=" " alt="" coords="3717,181,3972,209"/>
-<area shape="rect" id="node43" href="$MemberJoinEvent_8hpp.html" title=" " alt="" coords="10399,181,10581,209"/>
-<area shape="rect" id="node44" href="$MemberJoinRequestEvent_8hpp.html" title=" " alt="" coords="4255,181,4498,209"/>
-<area shape="rect" id="node45" href="$MemberLeaveEventKick_8hpp.html" title=" " alt="" coords="9709,181,9940,209"/>
-<area shape="rect" id="node46" href="$MemberLeaveEventQuit_8hpp.html" title=" " alt="" coords="2461,181,2692,209"/>
-<area shape="rect" id="node47" href="$MemberMuteEvent_8hpp.html" title=" " alt="" coords="1435,181,1628,209"/>
-<area shape="rect" id="node48" href="$MemberPermissionChangeEvent_8hpp.html" title=" " alt="" coords="1911,181,2202,209"/>
-<area shape="rect" id="node49" href="$MemberSpecialTitleChangeEvent_8hpp.html" title=" " alt="" coords="2717,173,2938,217"/>
-<area shape="rect" id="node50" href="$MemberUnmuteEvent_8hpp.html" title=" " alt="" coords="8013,181,8228,209"/>
-<area shape="rect" id="node51" href="$MiraiClientEvents_8hpp.html" title=" " alt="" coords="392,181,575,209"/>
-<area shape="rect" id="node54" href="$NewFriendRequestEvent_8hpp.html" title=" " alt="" coords="5114,181,5346,209"/>
-<area shape="rect" id="node55" href="$NudgeEvent_8hpp.html" title=" " alt="" coords="3204,97,3347,125"/>
-<area shape="rect" id="node57" href="$OtherClientMessageEvent_8hpp.html" title=" " alt="" coords="4951,97,5197,125"/>
-<area shape="rect" id="node58" href="$OtherClientOfflineEvent_8hpp.html" title=" " alt="" coords="5371,181,5599,209"/>
-<area shape="rect" id="node59" href="$OtherClientOnlineEvent_8hpp.html" title=" " alt="" coords="8879,181,9106,209"/>
-<area shape="rect" id="node60" href="$StrangerMessageEvent_8hpp.html" title=" " alt="" coords="5485,97,5709,125"/>
-<area shape="rect" id="node61" href="$StrangerSyncMessageEvent_8hpp.html" title=" " alt="" coords="5733,97,5991,125"/>
-<area shape="rect" id="node62" href="$TempMessageEvent_8hpp.html" title=" " alt="" coords="6015,97,6213,125"/>
-<area shape="rect" id="node63" href="$TempSyncMessageEvent_8hpp.html" title=" " alt="" coords="6467,97,6702,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="4041,357,4105,385"/>
-<area shape="rect" id="node4" title=" " alt="" coords="7447,357,7642,385"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="3559,273,3800,301"/>
-<area shape="rect" id="node6" title=" " alt="" coords="503,357,575,385"/>
-<area shape="rect" id="node7" title=" " alt="" coords="1713,357,1776,385"/>
-<area shape="rect" id="node12" title=" " alt="" coords="8952,273,9033,301"/>
-<area shape="rect" id="node24" href="$MessageChain_8hpp.html" title=" " alt="" coords="6485,173,6709,217"/>
-<area shape="rect" id="node25" href="$Exceptions_8hpp.html" title=" " alt="" coords="3875,265,4035,309"/>
-<area shape="rect" id="node42" title=" " alt="" coords="2755,273,2817,301"/>
-<area shape="rect" id="node52" title=" " alt="" coords="482,273,575,301"/>
-<area shape="rect" id="node53" title=" " alt="" coords="403,273,457,301"/>
-<area shape="rect" id="node56" href="$NudgeTarget_8hpp.html" title=" " alt="" coords="1157,181,1410,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="4379,5,4537,49"/>
+<area shape="rect" id="node2" href="$BotEvent_8hpp.html" title=" " alt="" coords="2728,181,2836,209"/>
+<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="5809,273,5928,301"/>
+<area shape="rect" id="node9" href="$BotGroupPermissionChangeEvent_8hpp.html" title=" " alt="" coords="5209,173,5414,217"/>
+<area shape="rect" id="node10" href="$BotInvitedJoinGroupRequestEvent_8hpp.html" title=" " alt="" coords="4205,173,4412,217"/>
+<area shape="rect" id="node11" href="$BotJoinGroupEvent_8hpp.html" title=" " alt="" coords="9203,181,9377,209"/>
+<area shape="rect" id="node13" href="$BotLeaveEventActive_8hpp.html" title=" " alt="" coords="2066,181,2253,209"/>
+<area shape="rect" id="node14" href="$BotLeaveEventDisband_8hpp.html" title=" " alt="" coords="6557,181,6756,209"/>
+<area shape="rect" id="node15" href="$BotLeaveEventKick_8hpp.html" title=" " alt="" coords="7244,181,7419,209"/>
+<area shape="rect" id="node16" href="$BotMuteEvent_8hpp.html" title=" " alt="" coords="5,181,145,209"/>
+<area shape="rect" id="node17" href="$BotOfflineEventActive_8hpp.html" title=" " alt="" coords="2202,97,2389,125"/>
+<area shape="rect" id="node18" href="$BotOfflineEventDropped_8hpp.html" title=" " alt="" coords="2463,97,2666,125"/>
+<area shape="rect" id="node19" href="$BotOfflineEventForce_8hpp.html" title=" " alt="" coords="2690,97,2874,125"/>
+<area shape="rect" id="node20" href="$BotOnlineEvent_8hpp.html" title=" " alt="" coords="3357,97,3506,125"/>
+<area shape="rect" id="node21" href="$BotReloginEvent_8hpp.html" title=" " alt="" coords="3531,97,3687,125"/>
+<area shape="rect" id="node22" href="$BotUnmuteEvent_8hpp.html" title=" " alt="" coords="169,181,328,209"/>
+<area shape="rect" id="node23" href="$CommandExecutedEvent_8hpp.html" title=" " alt="" coords="6545,97,6755,125"/>
+<area shape="rect" id="node26" href="$FriendInputStatusChangedEvent_8hpp.html" title=" " alt="" coords="6781,173,6975,217"/>
+<area shape="rect" id="node27" href="$FriendMessageEvent_8hpp.html" title=" " alt="" coords="4431,97,4616,125"/>
+<area shape="rect" id="node28" href="$FriendNickChangedEvent_8hpp.html" title=" " alt="" coords="3723,181,3937,209"/>
+<area shape="rect" id="node29" href="$FriendRecallEvent_8hpp.html" title=" " alt="" coords="1540,181,1707,209"/>
+<area shape="rect" id="node30" href="$FriendSyncMessageEvent_8hpp.html" title=" " alt="" coords="4881,97,5099,125"/>
+<area shape="rect" id="node31" href="$GroupAllowAnonymousChatEvent_8hpp.html" title=" " alt="" coords="7658,181,7925,209"/>
+<area shape="rect" id="node32" href="$GroupAllowConfessTalkEvent_8hpp.html" title=" " alt="" coords="4436,181,4677,209"/>
+<area shape="rect" id="node33" href="$GroupAllowMemberInviteEvent_8hpp.html" title=" " alt="" coords="7949,181,8197,209"/>
+<area shape="rect" id="node34" href="$GroupEntranceAnnouncementChangeEvent_8hpp.html" title=" " alt="" coords="8493,173,8709,217"/>
+<area shape="rect" id="node35" href="$GroupMessageEvent_8hpp.html" title=" " alt="" coords="5809,97,5993,125"/>
+<area shape="rect" id="node36" href="$GroupMuteAllEvent_8hpp.html" title=" " alt="" coords="9401,181,9576,209"/>
+<area shape="rect" id="node37" href="$GroupNameChangeEvent_8hpp.html" title=" " alt="" coords="8733,181,8948,209"/>
+<area shape="rect" id="node38" href="$GroupRecallEvent_8hpp.html" title=" " alt="" coords="5489,181,5654,209"/>
+<area shape="rect" id="node39" href="$GroupSyncMessageEvent_8hpp.html" title=" " alt="" coords="6254,97,6470,125"/>
+<area shape="rect" id="node40" href="$MemberCardChangeEvent_8hpp.html" title=" " alt="" coords="7000,181,7220,209"/>
+<area shape="rect" id="node41" href="$MemberHonorChangeEvent_8hpp.html" title=" " alt="" coords="3469,181,3698,209"/>
+<area shape="rect" id="node43" href="$MemberJoinEvent_8hpp.html" title=" " alt="" coords="9600,181,9767,209"/>
+<area shape="rect" id="node44" href="$MemberJoinRequestEvent_8hpp.html" title=" " alt="" coords="3962,181,4181,209"/>
+<area shape="rect" id="node45" href="$MemberLeaveEventKick_8hpp.html" title=" " alt="" coords="8972,181,9179,209"/>
+<area shape="rect" id="node46" href="$MemberLeaveEventQuit_8hpp.html" title=" " alt="" coords="2277,181,2481,209"/>
+<area shape="rect" id="node47" href="$MemberMuteEvent_8hpp.html" title=" " alt="" coords="1345,181,1515,209"/>
+<area shape="rect" id="node48" href="$MemberPermissionChangeEvent_8hpp.html" title=" " alt="" coords="1781,181,2041,209"/>
+<area shape="rect" id="node49" href="$MemberSpecialTitleChangeEvent_8hpp.html" title=" " alt="" coords="2505,173,2704,217"/>
+<area shape="rect" id="node50" href="$MemberUnmuteEvent_8hpp.html" title=" " alt="" coords="7443,181,7633,209"/>
+<area shape="rect" id="node51" href="$MiraiClientEvents_8hpp.html" title=" " alt="" coords="353,181,513,209"/>
+<area shape="rect" id="node54" href="$NewFriendRequestEvent_8hpp.html" title=" " alt="" coords="4753,181,4963,209"/>
+<area shape="rect" id="node55" href="$NudgeEvent_8hpp.html" title=" " alt="" coords="2949,97,3079,125"/>
+<area shape="rect" id="node57" href="$OtherClientMessageEvent_8hpp.html" title=" " alt="" coords="4641,97,4857,125"/>
+<area shape="rect" id="node58" href="$OtherClientOfflineEvent_8hpp.html" title=" " alt="" coords="4987,181,5185,209"/>
+<area shape="rect" id="node59" href="$OtherClientOnlineEvent_8hpp.html" title=" " alt="" coords="8220,181,8419,209"/>
+<area shape="rect" id="node60" href="$StrangerMessageEvent_8hpp.html" title=" " alt="" coords="5123,97,5323,125"/>
+<area shape="rect" id="node61" href="$StrangerSyncMessageEvent_8hpp.html" title=" " alt="" coords="5347,97,5579,125"/>
+<area shape="rect" id="node62" href="$TempMessageEvent_8hpp.html" title=" " alt="" coords="5603,97,5785,125"/>
+<area shape="rect" id="node63" href="$TempSyncMessageEvent_8hpp.html" title=" " alt="" coords="6017,97,6230,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="3764,357,3821,385"/>
+<area shape="rect" id="node4" title=" " alt="" coords="6940,357,7115,385"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="3323,273,3539,301"/>
+<area shape="rect" id="node6" title=" " alt="" coords="451,357,518,385"/>
+<area shape="rect" id="node7" title=" " alt="" coords="1595,357,1651,385"/>
+<area shape="rect" id="node12" title=" " alt="" coords="8283,273,8355,301"/>
+<area shape="rect" id="node24" href="$MessageChain_8hpp.html" title=" " alt="" coords="6032,173,6231,217"/>
+<area shape="rect" id="node25" href="$Exceptions_8hpp.html" title=" " alt="" coords="3615,265,3755,309"/>
+<area shape="rect" id="node42" title=" " alt="" coords="2608,273,2663,301"/>
+<area shape="rect" id="node52" title=" " alt="" coords="430,273,513,301"/>
+<area shape="rect" id="node53" title=" " alt="" coords="355,273,406,301"/>
+<area shape="rect" id="node56" href="$NudgeTarget_8hpp.html" title=" " alt="" coords="1094,181,1321,209"/>
 </map>

@@ -1,10 +1,10 @@
 <map id="libmirai/public/libmirai/Events/MemberSpecialTitleChangeEvent.cpp" name="libmirai/public/libmirai/Events/MemberSpecialTitleChangeEvent.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="326,5,608,65"/>
-<area shape="rect" id="node2" href="$MemberSpecialTitleChangeEvent_8hpp.html" title=" " alt="" coords="140,113,362,157"/>
-<area shape="rect" id="node7" title=" " alt="" coords="386,121,548,149"/>
-<area shape="rect" id="node8" title=" " alt="" coords="572,121,788,149"/>
-<area shape="rect" id="node3" title=" " alt="" coords="114,281,178,309"/>
-<area shape="rect" id="node4" title=" " alt="" coords="259,281,454,309"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="25,205,266,233"/>
-<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="290,205,422,233"/>
+<area shape="rect" id="node1" title=" " alt="" coords="299,5,549,65"/>
+<area shape="rect" id="node2" href="$MemberSpecialTitleChangeEvent_8hpp.html" title=" " alt="" coords="129,113,327,157"/>
+<area shape="rect" id="node7" title=" " alt="" coords="352,121,496,149"/>
+<area shape="rect" id="node8" title=" " alt="" coords="520,121,709,149"/>
+<area shape="rect" id="node3" title=" " alt="" coords="103,281,161,309"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,281,411,309"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,205,240,233"/>
+<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="265,205,383,233"/>
 </map>

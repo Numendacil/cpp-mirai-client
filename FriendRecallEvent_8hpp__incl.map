@@ -1,11 +1,11 @@
 <map id="libmirai/public/libmirai/Events/FriendRecallEvent.hpp" name="libmirai/public/libmirai/Events/FriendRecallEvent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="99,5,343,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="31,173,94,201"/>
-<area shape="rect" id="node3" title=" " alt="" coords="534,173,598,201"/>
-<area shape="rect" id="node4" title=" " alt="" coords="162,249,357,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="100,97,342,125"/>
-<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="535,97,667,125"/>
-<area shape="rect" id="node6" title=" " alt="" coords="169,173,241,201"/>
-<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="266,173,510,201"/>
-<area shape="rect" id="node9" title=" " alt="" coords="673,173,756,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="94,5,312,49"/>
+<area shape="rect" id="node2" title=" " alt="" coords="30,173,86,201"/>
+<area shape="rect" id="node3" title=" " alt="" coords="492,173,549,201"/>
+<area shape="rect" id="node4" title=" " alt="" coords="153,249,328,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="95,97,311,125"/>
+<area shape="rect" id="node8" href="$EventBase_8hpp.html" title=" " alt="" coords="494,97,613,125"/>
+<area shape="rect" id="node6" title=" " alt="" coords="160,173,227,201"/>
+<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="251,173,467,201"/>
+<area shape="rect" id="node9" title=" " alt="" coords="624,173,699,201"/>
 </map>

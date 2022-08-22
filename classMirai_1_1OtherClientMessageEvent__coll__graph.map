@@ -1,12 +1,12 @@
 <map id="Mirai::OtherClientMessageEvent" name="Mirai::OtherClientMessageEvent">
-<area shape="rect" id="node1" title="其它客户端消息事件" alt="" coords="932,73,1149,117"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="645,7,791,35"/>
-<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="329,7,476,35"/>
-<area shape="rect" id="node4" title="STL class" alt="" coords="33,27,130,55"/>
-<area shape="rect" id="node9" href="$structMirai_1_1ClientDevice.html" title="设备类型" alt="" coords="323,62,483,90"/>
-<area shape="rect" id="node5" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="631,125,805,153"/>
-<area shape="rect" id="node6" title=" " alt="" coords="301,115,504,159"/>
-<area shape="rect" id="node7" title="STL class" alt="" coords="649,183,787,211"/>
-<area shape="rect" id="node8" title="STL class" alt="" coords="311,183,494,227"/>
-<area shape="rect" id="node10" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,98,157,126"/>
+<area shape="rect" id="node1" title="其它客户端消息事件" alt="" coords="848,73,1039,117"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="586,7,717,35"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="302,7,430,35"/>
+<area shape="rect" id="node4" title=" " alt="" coords="31,27,115,55"/>
+<area shape="rect" id="node5" href="$structMirai_1_1ClientDevice.html" title="设备类型" alt="" coords="296,62,436,90"/>
+<area shape="rect" id="node6" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,98,140,126"/>
+<area shape="rect" id="node7" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="573,125,729,153"/>
+<area shape="rect" id="node8" title=" " alt="" coords="277,115,455,159"/>
+<area shape="rect" id="node9" title=" " alt="" coords="591,183,712,211"/>
+<area shape="rect" id="node10" title=" " alt="" coords="285,183,447,227"/>
 </map>

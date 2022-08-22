@@ -1,13 +1,13 @@
 <map id="libmirai/public/libmirai/Types/BasicTypes.cpp" name="libmirai/public/libmirai/Types/BasicTypes.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="484,5,671,49"/>
-<area shape="rect" id="node2" href="$BasicTypes_8hpp.html" title=" " alt="" coords="215,97,350,125"/>
-<area shape="rect" id="node5" title=" " alt="" coords="509,173,573,201"/>
-<area shape="rect" id="node8" title=" " alt="" coords="501,97,563,125"/>
-<area shape="rect" id="node9" title=" " alt="" coords="587,97,659,125"/>
-<area shape="rect" id="node10" title=" " alt="" coords="683,97,845,125"/>
-<area shape="rect" id="node11" title=" " alt="" coords="869,97,1085,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,173,77,201"/>
-<area shape="rect" id="node4" title=" " alt="" coords="102,173,165,201"/>
-<area shape="rect" id="node6" title=" " alt="" coords="185,249,380,277"/>
-<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="241,173,485,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="449,5,620,49"/>
+<area shape="rect" id="node2" href="$BasicTypes_8hpp.html" title=" " alt="" coords="199,97,323,125"/>
+<area shape="rect" id="node5" title=" " alt="" coords="467,173,525,201"/>
+<area shape="rect" id="node8" title=" " alt="" coords="466,97,521,125"/>
+<area shape="rect" id="node9" title=" " alt="" coords="545,97,607,125"/>
+<area shape="rect" id="node10" title=" " alt="" coords="632,97,776,125"/>
+<area shape="rect" id="node11" title=" " alt="" coords="800,97,989,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,173,72,201"/>
+<area shape="rect" id="node4" title=" " alt="" coords="96,173,152,201"/>
+<area shape="rect" id="node6" title=" " alt="" coords="174,249,349,277"/>
+<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="227,173,443,201"/>
 </map>

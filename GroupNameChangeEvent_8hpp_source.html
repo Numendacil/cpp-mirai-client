@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Events/GroupNameChangeEvent.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('GroupNameChangeEvent_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,115 +138,112 @@ $(document).ready(function(){initNavTree('GroupNameChangeEvent_8hpp_source.html'
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">GroupNameChangeEvent.hpp</div>  </div>
+  <div class="headertitle"><div class="title">GroupNameChangeEvent.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="GroupNameChangeEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_GROUP_NAME_CHANGE_EVENT_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_GROUP_NAME_CHANGE_EVENT_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;optional&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">// TODO: add a base class for all GroupSettingChangeEvent</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * @brief 群聊名称更改事件</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * Member Variable | Default Value</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * --------------- | -------------</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * `GroupNameChangeEvent::_group` | `Group{}`</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * `GroupNameChangeEvent::_origin` | `&quot;&quot;`</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> * `GroupNameChangeEvent::_current` | `&quot;&quot;`</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="comment"> * `GroupNameChangeEvent::_operator` | `std::nullopt`</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMirai_1_1GroupNameChangeEvent.html">GroupNameChangeEvent</a> : <span class="keyword">public</span> <a class="code" href="classMirai_1_1EventBase.html">EventBase</a></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">   46</a></span>&#160;    <a class="code" href="structMirai_1_1Group.html">Group</a> <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">_group</a>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">   47</a></span>&#160;    std::string <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">_origin</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">   48</a></span>&#160;    std::string <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">_current</a>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">   49</a></span>&#160;    std::optional&lt;GroupMember&gt; <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">_operator</a> = std::nullopt;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keyword">using</span> <a class="code" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">   53</a></span>&#160;    <span class="keyword">static</span> constexpr std::string_view <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">_TYPE_</a> = <span class="stringliteral">&quot;GroupNameChangeEvent&quot;</span>;</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">   55</a></span>&#160;    <span class="keyword">virtual</span> std::string_view <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">_TYPE_</a>; }</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">// virtual GroupNameChangeEvent* Clone() const override</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// {</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="comment">//  return new GroupNameChangeEvent(*this);</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="comment">// }</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87">FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /// 获取群聊信息</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">   65</a></span>&#160;<span class="comment"></span>    <a class="code" href="structMirai_1_1Group.html">Group</a> <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">GetGroup</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">_group</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /// 获取更改前的群聊名称</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af">   67</a></span>&#160;<span class="comment"></span>    std::string <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af">GetOriginal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">_origin</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /// 获取当前的群聊名称</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">   69</a></span>&#160;<span class="comment"></span>    std::string <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">GetCurrent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">_current</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="comment">    /// 获取操作员信息，为Bot时返回 `std::nullopt`</span></div>
-<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#ace671a513e85354cfa25fd1d36dd97af">   71</a></span>&#160;<span class="comment"></span>    std::optional&lt;GroupMember&gt; <a class="code" href="classMirai_1_1GroupNameChangeEvent.html#ace671a513e85354cfa25fd1d36dd97af">GetOperator</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">_operator</a>; }</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;};</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;} <span class="comment">// namespace Mirai</span></div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_adbe56102d0bb4e8376550c3cb01aa301"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">Mirai::GroupNameChangeEvent::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00053">GroupNameChangeEvent.hpp:53</a></div></div>
-<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a193550802473355b8d6334ed86be68b8"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">Mirai::GroupNameChangeEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00055">GroupNameChangeEvent.hpp:55</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a170b8876d1590449bfe7adff7e9e8221"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">Mirai::GroupNameChangeEvent::_group</a></div><div class="ttdeci">Group _group</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00046">GroupNameChangeEvent.hpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:36</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_ace671a513e85354cfa25fd1d36dd97af"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#ace671a513e85354cfa25fd1d36dd97af">Mirai::GroupNameChangeEvent::GetOperator</a></div><div class="ttdeci">std::optional&lt; GroupMember &gt; GetOperator() const</div><div class="ttdoc">获取操作员信息，为Bot时返回 std::nullopt</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00071">GroupNameChangeEvent.hpp:71</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a0c061783499d6e1e433336a117b784af"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">Mirai::GroupNameChangeEvent::GetCurrent</a></div><div class="ttdeci">std::string GetCurrent() const</div><div class="ttdoc">获取当前的群聊名称</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00069">GroupNameChangeEvent.hpp:69</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_ae580273505a34eed4f04dc800a12ff87"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87">Mirai::GroupNameChangeEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8cpp_source.html#l00027">GroupNameChangeEvent.cpp:27</a></div></div>
+<a href="GroupNameChangeEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_GROUP_NAME_CHANGE_EVENT_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_GROUP_NAME_CHANGE_EVENT_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;optional&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">// TODO: add a base class for all GroupSettingChangeEvent</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"></span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * @brief 群聊名称更改事件</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * Member Variable | Default Value</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * --------------- | -------------</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * `GroupNameChangeEvent::_group` | `Group{}`</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * `GroupNameChangeEvent::_origin` | `&quot;&quot;`</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> * `GroupNameChangeEvent::_current` | `&quot;&quot;`</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment"> * `GroupNameChangeEvent::_operator` | `std::nullopt`</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html">   43</a></span><span class="keyword">class </span><a class="code hl_class" href="classMirai_1_1GroupNameChangeEvent.html">GroupNameChangeEvent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMirai_1_1EventBase.html">EventBase</a></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">   46</a></span>    <a class="code hl_struct" href="structMirai_1_1Group.html">Group</a> <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">_group</a>;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">   47</a></span>    std::string <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">_origin</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">   48</a></span>    std::string <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">_current</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">   49</a></span>    std::optional&lt;GroupMember&gt; <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">_operator</a> = std::nullopt;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">using </span><a class="code hl_function" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">   53</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">_TYPE_</a> = <span class="stringliteral">&quot;GroupNameChangeEvent&quot;</span>;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">   55</a></span>    <span class="keyword">virtual</span> std::string_view <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">_TYPE_</a>; }</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">// virtual GroupNameChangeEvent* Clone() const override</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// {</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="comment">//  return new GroupNameChangeEvent(*this);</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="comment">// }</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87">FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"></span> </div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// 获取群聊信息</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">   65</a></span><span class="comment"></span>    <a class="code hl_struct" href="structMirai_1_1Group.html">Group</a> <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">GetGroup</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">_group</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    /// 获取更改前的群聊名称</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af">   67</a></span><span class="comment"></span>    std::string <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af">GetOriginal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">_origin</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// 获取当前的群聊名称</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">   69</a></span><span class="comment"></span>    std::string <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">GetCurrent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">_current</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">    /// 获取操作员信息，为Bot时返回 `std::nullopt`</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="classMirai_1_1GroupNameChangeEvent.html#a0d86deae8641debf3c604c3d54146bb8">   71</a></span><span class="comment"></span>    std::optional&lt;GroupMember&gt; <a class="code hl_function" href="classMirai_1_1GroupNameChangeEvent.html#a0d86deae8641debf3c604c3d54146bb8">GetOperator</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">_operator</a>; }</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>};</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aBasicTypes_8hpp_html"><div class="ttname"><a href="BasicTypes_8hpp.html">BasicTypes.hpp</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
+<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:37</a></div></div>
 <div class="ttc" id="aclassMirai_1_1EventBase_html_a65743d8b6f05f9c65c03af96625b17e5"><div class="ttname"><a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">Mirai::EventBase::EventBase</a></div><div class="ttdeci">EventBase(MiraiClient *client)</div><div class="ttdoc">Sets the MiraiClient pointer</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00050">EventBase.hpp:50</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html">Mirai::GroupNameChangeEvent</a></div><div class="ttdoc">群聊名称更改事件</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00043">GroupNameChangeEvent.hpp:44</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a0c061783499d6e1e433336a117b784af"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a0c061783499d6e1e433336a117b784af">Mirai::GroupNameChangeEvent::GetCurrent</a></div><div class="ttdeci">std::string GetCurrent() const</div><div class="ttdoc">获取当前的群聊名称</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00069">GroupNameChangeEvent.hpp:69</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a0d86deae8641debf3c604c3d54146bb8"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a0d86deae8641debf3c604c3d54146bb8">Mirai::GroupNameChangeEvent::GetOperator</a></div><div class="ttdeci">std::optional&lt; GroupMember &gt; GetOperator() const</div><div class="ttdoc">获取操作员信息，为Bot时返回 std::nullopt</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00071">GroupNameChangeEvent.hpp:71</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a170b8876d1590449bfe7adff7e9e8221"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a170b8876d1590449bfe7adff7e9e8221">Mirai::GroupNameChangeEvent::_group</a></div><div class="ttdeci">Group _group</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00046">GroupNameChangeEvent.hpp:46</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a193550802473355b8d6334ed86be68b8"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8">Mirai::GroupNameChangeEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00055">GroupNameChangeEvent.hpp:55</a></div></div>
 <div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a268d9773ec28f3095ef479f0fdea8a28"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a268d9773ec28f3095ef479f0fdea8a28">Mirai::GroupNameChangeEvent::_current</a></div><div class="ttdeci">std::string _current</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00048">GroupNameChangeEvent.hpp:48</a></div></div>
 <div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a3f6edb057b97323010025ea3f607a594"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a3f6edb057b97323010025ea3f607a594">Mirai::GroupNameChangeEvent::_origin</a></div><div class="ttdeci">std::string _origin</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00047">GroupNameChangeEvent.hpp:47</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html">Mirai::GroupNameChangeEvent</a></div><div class="ttdoc">群聊名称更改事件</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00043">GroupNameChangeEvent.hpp:43</a></div></div>
-<div class="ttc" id="astructMirai_1_1Group_html"><div class="ttname"><a href="structMirai_1_1Group.html">Mirai::Group</a></div><div class="ttdoc">群聊资料</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00221">BasicTypes.hpp:221</a></div></div>
-<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_ab74521bc19f92a5ce0287f6c6c966e50"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">Mirai::GroupNameChangeEvent::GetGroup</a></div><div class="ttdeci">Group GetGroup() const</div><div class="ttdoc">获取群聊信息</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00065">GroupNameChangeEvent.hpp:65</a></div></div>
 <div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a4bca35740e4c364f83a87eb7b2349aba"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a4bca35740e4c364f83a87eb7b2349aba">Mirai::GroupNameChangeEvent::_operator</a></div><div class="ttdeci">std::optional&lt; GroupMember &gt; _operator</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00049">GroupNameChangeEvent.hpp:49</a></div></div>
 <div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_a82927391c05c8f31d7722834ce5576af"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af">Mirai::GroupNameChangeEvent::GetOriginal</a></div><div class="ttdeci">std::string GetOriginal() const</div><div class="ttdoc">获取更改前的群聊名称</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00067">GroupNameChangeEvent.hpp:67</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_ab74521bc19f92a5ce0287f6c6c966e50"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50">Mirai::GroupNameChangeEvent::GetGroup</a></div><div class="ttdeci">Group GetGroup() const</div><div class="ttdoc">获取群聊信息</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00065">GroupNameChangeEvent.hpp:65</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_adbe56102d0bb4e8376550c3cb01aa301"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#adbe56102d0bb4e8376550c3cb01aa301">Mirai::GroupNameChangeEvent::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8hpp_source.html#l00053">GroupNameChangeEvent.hpp:53</a></div></div>
+<div class="ttc" id="aclassMirai_1_1GroupNameChangeEvent_html_ae580273505a34eed4f04dc800a12ff87"><div class="ttname"><a href="classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87">Mirai::GroupNameChangeEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="GroupNameChangeEvent_8cpp_source.html#l00027">GroupNameChangeEvent.cpp:27</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
+<div class="ttc" id="astructMirai_1_1Group_html"><div class="ttname"><a href="structMirai_1_1Group.html">Mirai::Group</a></div><div class="ttdoc">群聊资料</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00221">BasicTypes.hpp:222</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_b347b0cf57ea4859dbc7be1fc5cc5095.html">Events</a></li><li class="navelem"><a class="el" href="GroupNameChangeEvent_8hpp.html">GroupNameChangeEvent.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

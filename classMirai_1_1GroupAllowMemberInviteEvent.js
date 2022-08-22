@@ -5,7 +5,7 @@ var classMirai_1_1GroupAllowMemberInviteEvent =
     [ "GetGroup", "classMirai_1_1GroupAllowMemberInviteEvent.html#ad9cbb109327ec597112394cd5beb2a9a", null ],
     [ "GetOriginal", "classMirai_1_1GroupAllowMemberInviteEvent.html#aebe3d369bd80dfed9792e210abfe9ccd", null ],
     [ "GetCurrent", "classMirai_1_1GroupAllowMemberInviteEvent.html#a2da20801bf719ddd6cc9385abf79de0c", null ],
-    [ "GetOperator", "classMirai_1_1GroupAllowMemberInviteEvent.html#adf8492a9df970ba31b1d4ec9a4e3201b", null ],
+    [ "GetOperator", "classMirai_1_1GroupAllowMemberInviteEvent.html#a377e6b6863b58aa224256db3dc0dcc68", null ],
     [ "EventBase", "classMirai_1_1GroupAllowMemberInviteEvent.html#a65743d8b6f05f9c65c03af96625b17e5", null ],
     [ "_group", "classMirai_1_1GroupAllowMemberInviteEvent.html#ade7ca49f88f02f65657a28c3d1fa7b96", null ],
     [ "_origin", "classMirai_1_1GroupAllowMemberInviteEvent.html#af496bd9984eefc006866f872400004a2", null ],

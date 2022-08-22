@@ -1,4 +1,4 @@
 <map id="Mirai::GroupNameChangeEvent" name="Mirai::GroupNameChangeEvent">
-<area shape="rect" id="node1" title="群聊名称更改事件" alt="" coords="5,81,257,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="58,5,205,33"/>
+<area shape="rect" id="node1" title="群聊名称更改事件" alt="" coords="5,81,232,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="53,5,184,33"/>
 </map>

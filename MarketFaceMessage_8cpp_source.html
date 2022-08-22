@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Messages/MarketFaceMessage.cpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('MarketFaceMessage_8cpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,81 +138,78 @@ $(document).ready(function(){initNavTree('MarketFaceMessage_8cpp_source.html',''
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">MarketFaceMessage.cpp</div>  </div>
+  <div class="headertitle"><div class="title">MarketFaceMessage.cpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="MarketFaceMessage_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MarketFaceMessage_8hpp.html">MarketFaceMessage.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;libmirai/Utils/Common.hpp&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">using</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a> = <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">   27</a></span>&#160;<span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">MarketFaceMessage::isValid</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;}</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">   32</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">MarketFaceMessage::FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a>&amp; data)</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;{</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    assert(Utils::GetValue(data, <span class="stringliteral">&quot;type&quot;</span>, <span class="stringliteral">&quot;&quot;</span>) == this-&gt;<a class="code" href="classMirai_1_1MarketFaceMessage.html#af2dea800bca196813040fde17baff517">GetType</a>());</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    this-&gt;<a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> = Utils::GetValue(data, <span class="stringliteral">&quot;id&quot;</span>, (int64_t)-1);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;    this-&gt;<a class="code" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a> = Utils::GetValue(data, <span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;}</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">   39</a></span>&#160;<a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a> <a class="code" href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">MarketFaceMessage::ToJson</a>()<span class="keyword"> const</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword"></span>{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    <span class="comment">// assert(this-&gt;isValid());</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="comment">// json data = json::object();</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    <span class="comment">// data[&quot;type&quot;] = this-&gt;GetType();</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="comment">// data[&quot;id&quot;] = this-&gt;id;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="comment">// data[&quot;name&quot;] = this-&gt;name;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="comment">// return data;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="comment">// Sending MarketFace Message is currently not supported</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordflow">return</span> json::object();</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;}</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <span class="comment">// namespace Mirai</span></div>
+<a href="MarketFaceMessage_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="MarketFaceMessage_8hpp.html">MarketFaceMessage.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;libmirai/Utils/Common.hpp&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">using </span><a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a> = <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">   27</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">MarketFaceMessage::isValid</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">   32</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">MarketFaceMessage::FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a>&amp; data)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    assert(Utils::GetValue(data, <span class="stringliteral">&quot;type&quot;</span>, <span class="stringliteral">&quot;&quot;</span>) == this-&gt;<a class="code hl_function" href="classMirai_1_1MarketFaceMessage.html#af2dea800bca196813040fde17baff517">GetType</a>());</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    this-&gt;<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> = Utils::GetValue(data, <span class="stringliteral">&quot;id&quot;</span>, (int64_t)-1);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    this-&gt;<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a> = Utils::GetValue(data, <span class="stringliteral">&quot;name&quot;</span>, <span class="stringliteral">&quot;&quot;</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>}</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">   39</a></span><a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">json</a> <a class="code hl_function" href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">MarketFaceMessage::ToJson</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="comment">// assert(this-&gt;isValid());</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="comment">// json data = json::object();</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="comment">// data[&quot;type&quot;] = this-&gt;GetType();</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="comment">// data[&quot;id&quot;] = this-&gt;id;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// data[&quot;name&quot;] = this-&gt;name;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="comment">// return data;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="comment">// Sending MarketFace Message is currently not supported</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordflow">return</span> json::object();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="ttc" id="aMarketFaceMessage_8hpp_html"><div class="ttname"><a href="MarketFaceMessage_8hpp.html">MarketFaceMessage.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a2916cd58b54fef560656e7c0402dfdb1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">Mirai::FaceMessage::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00042">FaceMessage.hpp:42</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa1365b7922deda5b48b6d13a62ea2178"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">Mirai::FaceMessage::_id</a></div><div class="ttdeci">int64_t _id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00041">FaceMessage.hpp:41</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_a0e06b020198062e81c7080ba6f8e2260"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">Mirai::MarketFaceMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00039">MarketFaceMessage.cpp:39</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_a8429d3898f63723c048aea2b3e9a8b41"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">Mirai::MarketFaceMessage::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;) override</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00032">MarketFaceMessage.cpp:32</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_af21c5ad87efbdfc2abe6907f27f83dbc"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">Mirai::MarketFaceMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00027">MarketFaceMessage.cpp:27</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_af2dea800bca196813040fde17baff517"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#af2dea800bca196813040fde17baff517">Mirai::MarketFaceMessage::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8hpp_source.html#l00054">MarketFaceMessage.hpp:54</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_af21c5ad87efbdfc2abe6907f27f83dbc"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#af21c5ad87efbdfc2abe6907f27f83dbc">Mirai::MarketFaceMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00027">MarketFaceMessage.cpp:27</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_a0e06b020198062e81c7080ba6f8e2260"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#a0e06b020198062e81c7080ba6f8e2260">Mirai::MarketFaceMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00039">MarketFaceMessage.cpp:39</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a2916cd58b54fef560656e7c0402dfdb1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">Mirai::FaceMessage::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00042">FaceMessage.hpp:42</a></div></div>
-<div class="ttc" id="aMarketFaceMessage_8hpp_html"><div class="ttname"><a href="MarketFaceMessage_8hpp.html">MarketFaceMessage.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa1365b7922deda5b48b6d13a62ea2178"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">Mirai::FaceMessage::_id</a></div><div class="ttdeci">int64_t _id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00041">FaceMessage.hpp:41</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_af2dea800bca196813040fde17baff517"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#af2dea800bca196813040fde17baff517">Mirai::MarketFaceMessage::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8hpp_source.html#l00054">MarketFaceMessage.hpp:54</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MarketFaceMessage_html_a8429d3898f63723c048aea2b3e9a8b41"><div class="ttname"><a href="classMirai_1_1MarketFaceMessage.html#a8429d3898f63723c048aea2b3e9a8b41">Mirai::MarketFaceMessage::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;) override</div><div class="ttdef"><b>Definition:</b> <a href="MarketFaceMessage_8cpp_source.html#l00032">MarketFaceMessage.cpp:32</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_c64ef95c53891570beeeee3d656466cb.html">Messages</a></li><li class="navelem"><a class="el" href="MarketFaceMessage_8cpp.html">MarketFaceMessage.cpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

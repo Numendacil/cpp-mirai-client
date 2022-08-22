@@ -1,5 +1,5 @@
 <map id="Mirai::JsonMessage" name="Mirai::JsonMessage">
-<area shape="rect" id="node1" title="JSON消息" alt="" coords="9,157,171,185"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,81,175,109"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="14,5,166,33"/>
+<area shape="rect" id="node1" title="JSON消息" alt="" coords="6,157,157,185"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,81,157,109"/>
+<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="14,5,149,33"/>
 </map>

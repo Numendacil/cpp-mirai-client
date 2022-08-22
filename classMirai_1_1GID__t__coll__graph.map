@@ -1,4 +1,4 @@
 <map id="Mirai::GID_t" name="Mirai::GID_t">
-<area shape="rect" id="node1" title="群聊号码类型" alt="" coords="5,81,112,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="5,5,112,33"/>
+<area shape="rect" id="node1" title="群聊号码类型" alt="" coords="5,81,104,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="5,5,104,33"/>
 </map>

@@ -1,24 +1,26 @@
 /*
-@licstart  The following is the entire license notice for the
-JavaScript code in this file.
+ @licstart  The following is the entire license notice for the JavaScript code in this file.
 
-Copyright (C) 1997-2019 by Dimitri van Heesch
+ The MIT License (MIT)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of version 2 of the GNU General Public License as published by
-the Free Software Foundation
+ Copyright (C) 1997-2020 by Dimitri van Heesch
 
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute,
+ sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
 
-You should have received a copy of the GNU General Public License along
-with this program; if not, write to the Free Software Foundation, Inc.,
-51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+ The above copyright notice and this permission notice shall be included in all copies or
+ substantial portions of the Software.
 
-@licend  The above is the entire license notice
-for the JavaScript code in this file
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+ BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+ NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+ DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+ @licend  The above is the entire license notice for the JavaScript code in this file
 */
 var NAVTREE =
 [
@@ -76,14 +78,19 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-".html",
-"MemberMuteEvent_8cpp.html",
-"classMirai_1_1BotMuteEvent.html#ab235be393c18d56bcef0fa4e52f3fcd7",
-"classMirai_1_1FriendSyncMessageEvent.html#a856b4ac9c6d3b479c20c91533eb34714",
-"classMirai_1_1MemberSpecialTitleChangeEvent.html#ab309dfcc46280abf3d01a9bcf1e36bf3",
-"classMirai_1_1MusicShareMessage.html#a0b435b1ad2d58d9b7e40606e36e52198",
-"classMirai_1_1TempSyncMessageEvent.html#a4a2535b86165bafa8c54cea5ee9b24c6",
-"structMirai_1_1MiraiAudio.html#a3f9689565036f99828fc480c79e55792"
+"AppMessage_8cpp.html",
+"MemberMuteEvent_8cpp_source.html",
+"classMirai_1_1AuthKeyFail.html#a564b5bbc35a10b6c5e049e67001e779c",
+"classMirai_1_1EventBase.html#ac78beac14f4251f67b8a60ccde6e39fd",
+"classMirai_1_1ForwardMessage_1_1Node.html#a049f5b5371bc1a330629f938406a2965",
+"classMirai_1_1GroupMessageEvent.html#a54df00bce8e38c3a2fa65e4cf5ee5f84",
+"classMirai_1_1MemberHonorChangeEvent.html#ae04620f082cdc81edd74a2a2eb04f09e",
+"classMirai_1_1MessageChain.html#a806849a58a0800dbfb74f6259a96d028",
+"classMirai_1_1MiraiClient.html#aa3158466229eb78e958710b0f41200ce",
+"classMirai_1_1NoBot.html#aa3b54ac064ea35c365f0d8f57156e365",
+"classMirai_1_1QQ__t.html#afbe0b8ee85dde73e7fec2bf80a3568ec",
+"functions_func_h.html",
+"structMirai_1_1GroupFileInfo.html"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

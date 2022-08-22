@@ -1,11 +1,11 @@
 <map id="Mirai::NewFriendRequestEvent" name="Mirai::NewFriendRequestEvent">
-<area shape="rect" id="node1" title="用户申请添加Bot好友事件" alt="" coords="187,313,433,341"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="70,221,217,249"/>
-<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="70,105,217,133"/>
-<area shape="rect" id="node4" title="STL class" alt="" coords="5,5,103,33"/>
-<area shape="rect" id="node5" title="STL class" alt="" coords="241,221,379,249"/>
-<area shape="rect" id="node6" title="STL class" alt="" coords="241,97,424,141"/>
-<area shape="rect" id="node7" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="404,221,509,249"/>
-<area shape="rect" id="node8" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="491,105,598,133"/>
-<area shape="rect" id="node9" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="534,221,641,249"/>
+<area shape="rect" id="node1" title="用户申请添加Bot好友事件" alt="" coords="155,313,377,341"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="63,221,194,249"/>
+<area shape="rect" id="node3" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="65,105,193,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,5,89,33"/>
+<area shape="rect" id="node5" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="219,221,313,249"/>
+<area shape="rect" id="node6" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="266,105,365,133"/>
+<area shape="rect" id="node7" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="338,221,437,249"/>
+<area shape="rect" id="node8" title=" " alt="" coords="461,221,583,249"/>
+<area shape="rect" id="node9" title=" " alt="" coords="441,97,603,141"/>
 </map>

@@ -5,7 +5,7 @@ var classMirai_1_1GroupAllowAnonymousChatEvent =
     [ "GetGroup", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a44b074aebe32dd78a3280740a9ab5583", null ],
     [ "GetOriginal", "classMirai_1_1GroupAllowAnonymousChatEvent.html#abeca2ebcf9d10bedabf630b861cf44e9", null ],
     [ "GetCurrent", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a2d3d9c1f2a40982e21420fb1fd368d09", null ],
-    [ "GetOperator", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a1748fe132b1477c89161bad2d0456b55", null ],
+    [ "GetOperator", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a3d898d6ded50e40b4975abbd1294b6c2", null ],
     [ "EventBase", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a65743d8b6f05f9c65c03af96625b17e5", null ],
     [ "_group", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a3c9e1e1754107b6474063ab720fb5cae", null ],
     [ "_origin", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a5139d970ab3e6639183edb46d31f2b8a", null ],

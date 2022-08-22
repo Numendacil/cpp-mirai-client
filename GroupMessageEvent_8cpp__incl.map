@@ -1,11 +1,11 @@
 <map id="libmirai/public/libmirai/Events/GroupMessageEvent.cpp" name="libmirai/public/libmirai/Events/GroupMessageEvent.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="377,5,641,49"/>
-<area shape="rect" id="node2" href="$GroupMessageEvent_8hpp.html" title=" " alt="" coords="199,97,404,125"/>
-<area shape="rect" id="node8" title=" " alt="" coords="429,97,590,125"/>
-<area shape="rect" id="node9" title=" " alt="" coords="615,97,831,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="59,265,123,293"/>
-<area shape="rect" id="node4" title=" " alt="" coords="332,265,527,293"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="181,181,422,209"/>
-<area shape="rect" id="node6" href="$MessageChain_8hpp.html" title=" " alt="" coords="447,173,671,217"/>
-<area shape="rect" id="node7" href="$EventBase_8hpp.html" title=" " alt="" coords="25,181,157,209"/>
+<area shape="rect" id="node1" title=" " alt="" coords="347,5,581,49"/>
+<area shape="rect" id="node2" href="$GroupMessageEvent_8hpp.html" title=" " alt="" coords="184,97,368,125"/>
+<area shape="rect" id="node8" title=" " alt="" coords="392,97,536,125"/>
+<area shape="rect" id="node9" title=" " alt="" coords="560,97,749,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="55,265,113,293"/>
+<area shape="rect" id="node4" title=" " alt="" coords="305,265,479,293"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="168,181,384,209"/>
+<area shape="rect" id="node6" href="$MessageChain_8hpp.html" title=" " alt="" coords="409,173,607,217"/>
+<area shape="rect" id="node7" href="$EventBase_8hpp.html" title=" " alt="" coords="25,181,143,209"/>
 </map>

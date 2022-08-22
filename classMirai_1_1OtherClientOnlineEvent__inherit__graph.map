@@ -1,4 +1,4 @@
 <map id="Mirai::OtherClientOnlineEvent" name="Mirai::OtherClientOnlineEvent">
-<area shape="rect" id="node1" title="其它客户端上线事件" alt="" coords="5,81,204,125"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="31,5,178,33"/>
+<area shape="rect" id="node1" title="其它客户端上线事件" alt="" coords="5,81,180,125"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="27,5,158,33"/>
 </map>

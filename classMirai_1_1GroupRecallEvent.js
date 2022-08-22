@@ -6,7 +6,7 @@ var classMirai_1_1GroupRecallEvent =
     [ "GetMessageId", "classMirai_1_1GroupRecallEvent.html#a54788aee6b621f43251c39f89ded64cf", null ],
     [ "GetSendTime", "classMirai_1_1GroupRecallEvent.html#a026a959d38b3c0b76c1055bb64906684", null ],
     [ "GetGroup", "classMirai_1_1GroupRecallEvent.html#acf9bc2950900eaa7f24b982ca6e798ae", null ],
-    [ "GetOperator", "classMirai_1_1GroupRecallEvent.html#ae386e7d3ae5f0eb903cfbbe2afcb57e7", null ],
+    [ "GetOperator", "classMirai_1_1GroupRecallEvent.html#ae9f282ac97d764ab2346f6f9ecfdf5bc", null ],
     [ "EventBase", "classMirai_1_1GroupRecallEvent.html#a65743d8b6f05f9c65c03af96625b17e5", null ],
     [ "_AuthorId", "classMirai_1_1GroupRecallEvent.html#ac497a7a02adc442792edc6bea8a16295", null ],
     [ "_MessageId", "classMirai_1_1GroupRecallEvent.html#a740bc69364ec899457659f2a9b3493f1", null ],

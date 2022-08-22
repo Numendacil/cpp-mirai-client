@@ -1,4 +1,4 @@
 <map id="Mirai::ClientDevice" name="Mirai::ClientDevice">
-<area shape="rect" id="node1" title="设备类型" alt="" coords="5,81,165,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="9,5,161,33"/>
+<area shape="rect" id="node1" title="设备类型" alt="" coords="5,81,145,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="8,5,143,33"/>
 </map>

@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Events/Events.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('Events_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,139 +138,136 @@ $(document).ready(function(){initNavTree('Events_8hpp_source.html',''); initResi
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">Events.hpp</div>  </div>
+  <div class="headertitle"><div class="title">Events.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="Events_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_EVENTS_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_EVENTS_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotEvent_8hpp.html">BotEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotGroupPermissionChangeEvent_8hpp.html">BotGroupPermissionChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotInvitedJoinGroupRequestEvent_8hpp.html">BotInvitedJoinGroupRequestEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotJoinGroupEvent_8hpp.html">BotJoinGroupEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventActive_8hpp.html">BotLeaveEventActive.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventDisband_8hpp.html">BotLeaveEventDisband.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventKick_8hpp.html">BotLeaveEventKick.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotMuteEvent_8hpp.html">BotMuteEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventActive_8hpp.html">BotOfflineEventActive.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventDropped_8hpp.html">BotOfflineEventDropped.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventForce_8hpp.html">BotOfflineEventForce.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotOnlineEvent_8hpp.html">BotOnlineEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotReloginEvent_8hpp.html">BotReloginEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="BotUnmuteEvent_8hpp.html">BotUnmuteEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="CommandExecutedEvent_8hpp.html">CommandExecutedEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FriendInputStatusChangedEvent_8hpp.html">FriendInputStatusChangedEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FriendMessageEvent_8hpp.html">FriendMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FriendNickChangedEvent_8hpp.html">FriendNickChangedEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FriendRecallEvent_8hpp.html">FriendRecallEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="FriendSyncMessageEvent_8hpp.html">FriendSyncMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupAllowAnonymousChatEvent_8hpp.html">GroupAllowAnonymousChatEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupAllowConfessTalkEvent_8hpp.html">GroupAllowConfessTalkEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupAllowMemberInviteEvent_8hpp.html">GroupAllowMemberInviteEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupEntranceAnnouncementChangeEvent_8hpp.html">GroupEntranceAnnouncementChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupMessageEvent_8hpp.html">GroupMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupMuteAllEvent_8hpp.html">GroupMuteAllEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupNameChangeEvent_8hpp.html">GroupNameChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupRecallEvent_8hpp.html">GroupRecallEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="GroupSyncMessageEvent_8hpp.html">GroupSyncMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberCardChangeEvent_8hpp.html">MemberCardChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberHonorChangeEvent_8hpp.html">MemberHonorChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberJoinEvent_8hpp.html">MemberJoinEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberJoinRequestEvent_8hpp.html">MemberJoinRequestEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberLeaveEventKick_8hpp.html">MemberLeaveEventKick.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberLeaveEventQuit_8hpp.html">MemberLeaveEventQuit.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberMuteEvent_8hpp.html">MemberMuteEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberPermissionChangeEvent_8hpp.html">MemberPermissionChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberSpecialTitleChangeEvent_8hpp.html">MemberSpecialTitleChangeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MemberUnmuteEvent_8hpp.html">MemberUnmuteEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MiraiClientEvents_8hpp.html">MiraiClientEvents.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NewFriendRequestEvent_8hpp.html">NewFriendRequestEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="NudgeEvent_8hpp.html">NudgeEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OtherClientMessageEvent_8hpp.html">OtherClientMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OtherClientOfflineEvent_8hpp.html">OtherClientOfflineEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="OtherClientOnlineEvent_8hpp.html">OtherClientOnlineEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="StrangerMessageEvent_8hpp.html">StrangerMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="StrangerSyncMessageEvent_8hpp.html">StrangerSyncMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TempMessageEvent_8hpp.html">TempMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="TempSyncMessageEvent_8hpp.html">TempSyncMessageEvent.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="aBotOfflineEventForce_8hpp_html"><div class="ttname"><a href="BotOfflineEventForce_8hpp.html">BotOfflineEventForce.hpp</a></div></div>
-<div class="ttc" id="aGroupAllowMemberInviteEvent_8hpp_html"><div class="ttname"><a href="GroupAllowMemberInviteEvent_8hpp.html">GroupAllowMemberInviteEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberSpecialTitleChangeEvent_8hpp_html"><div class="ttname"><a href="MemberSpecialTitleChangeEvent_8hpp.html">MemberSpecialTitleChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aStrangerSyncMessageEvent_8hpp_html"><div class="ttname"><a href="StrangerSyncMessageEvent_8hpp.html">StrangerSyncMessageEvent.hpp</a></div></div>
+<a href="Events_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_EVENTS_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_EVENTS_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="BotEvent_8hpp.html">BotEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;<a class="code" href="BotGroupPermissionChangeEvent_8hpp.html">BotGroupPermissionChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;<a class="code" href="BotInvitedJoinGroupRequestEvent_8hpp.html">BotInvitedJoinGroupRequestEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;<a class="code" href="BotJoinGroupEvent_8hpp.html">BotJoinGroupEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventActive_8hpp.html">BotLeaveEventActive.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventDisband_8hpp.html">BotLeaveEventDisband.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="BotLeaveEventKick_8hpp.html">BotLeaveEventKick.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="BotMuteEvent_8hpp.html">BotMuteEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventActive_8hpp.html">BotOfflineEventActive.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventDropped_8hpp.html">BotOfflineEventDropped.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="BotOfflineEventForce_8hpp.html">BotOfflineEventForce.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;<a class="code" href="BotOnlineEvent_8hpp.html">BotOnlineEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#include &quot;<a class="code" href="BotReloginEvent_8hpp.html">BotReloginEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;<a class="code" href="BotUnmuteEvent_8hpp.html">BotUnmuteEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;<a class="code" href="CommandExecutedEvent_8hpp.html">CommandExecutedEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="FriendInputStatusChangedEvent_8hpp.html">FriendInputStatusChangedEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="FriendMessageEvent_8hpp.html">FriendMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="FriendNickChangedEvent_8hpp.html">FriendNickChangedEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;<a class="code" href="FriendRecallEvent_8hpp.html">FriendRecallEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="FriendSyncMessageEvent_8hpp.html">FriendSyncMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &quot;<a class="code" href="GroupAllowAnonymousChatEvent_8hpp.html">GroupAllowAnonymousChatEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">#include &quot;<a class="code" href="GroupAllowConfessTalkEvent_8hpp.html">GroupAllowConfessTalkEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">#include &quot;<a class="code" href="GroupAllowMemberInviteEvent_8hpp.html">GroupAllowMemberInviteEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">#include &quot;<a class="code" href="GroupEntranceAnnouncementChangeEvent_8hpp.html">GroupEntranceAnnouncementChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#include &quot;<a class="code" href="GroupMessageEvent_8hpp.html">GroupMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#include &quot;<a class="code" href="GroupMuteAllEvent_8hpp.html">GroupMuteAllEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#include &quot;<a class="code" href="GroupNameChangeEvent_8hpp.html">GroupNameChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">#include &quot;<a class="code" href="GroupRecallEvent_8hpp.html">GroupRecallEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#include &quot;<a class="code" href="GroupSyncMessageEvent_8hpp.html">GroupSyncMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#include &quot;<a class="code" href="MemberCardChangeEvent_8hpp.html">MemberCardChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#include &quot;<a class="code" href="MemberHonorChangeEvent_8hpp.html">MemberHonorChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">#include &quot;<a class="code" href="MemberJoinEvent_8hpp.html">MemberJoinEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#include &quot;<a class="code" href="MemberJoinRequestEvent_8hpp.html">MemberJoinRequestEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#include &quot;<a class="code" href="MemberLeaveEventKick_8hpp.html">MemberLeaveEventKick.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#include &quot;<a class="code" href="MemberLeaveEventQuit_8hpp.html">MemberLeaveEventQuit.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &quot;<a class="code" href="MemberMuteEvent_8hpp.html">MemberMuteEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#include &quot;<a class="code" href="MemberPermissionChangeEvent_8hpp.html">MemberPermissionChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;<a class="code" href="MemberSpecialTitleChangeEvent_8hpp.html">MemberSpecialTitleChangeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#include &quot;<a class="code" href="MemberUnmuteEvent_8hpp.html">MemberUnmuteEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#include &quot;<a class="code" href="MiraiClientEvents_8hpp.html">MiraiClientEvents.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#include &quot;<a class="code" href="NewFriendRequestEvent_8hpp.html">NewFriendRequestEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#include &quot;<a class="code" href="NudgeEvent_8hpp.html">NudgeEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#include &quot;<a class="code" href="OtherClientMessageEvent_8hpp.html">OtherClientMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#include &quot;<a class="code" href="OtherClientOfflineEvent_8hpp.html">OtherClientOfflineEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#include &quot;<a class="code" href="OtherClientOnlineEvent_8hpp.html">OtherClientOnlineEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="preprocessor">#include &quot;<a class="code" href="StrangerMessageEvent_8hpp.html">StrangerMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#include &quot;<a class="code" href="StrangerSyncMessageEvent_8hpp.html">StrangerSyncMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="preprocessor">#include &quot;<a class="code" href="TempMessageEvent_8hpp.html">TempMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="preprocessor">#include &quot;<a class="code" href="TempSyncMessageEvent_8hpp.html">TempSyncMessageEvent.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aBotEvent_8hpp_html"><div class="ttname"><a href="BotEvent_8hpp.html">BotEvent.hpp</a></div></div>
+<div class="ttc" id="aBotGroupPermissionChangeEvent_8hpp_html"><div class="ttname"><a href="BotGroupPermissionChangeEvent_8hpp.html">BotGroupPermissionChangeEvent.hpp</a></div></div>
 <div class="ttc" id="aBotInvitedJoinGroupRequestEvent_8hpp_html"><div class="ttname"><a href="BotInvitedJoinGroupRequestEvent_8hpp.html">BotInvitedJoinGroupRequestEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberLeaveEventKick_8hpp_html"><div class="ttname"><a href="MemberLeaveEventKick_8hpp.html">MemberLeaveEventKick.hpp</a></div></div>
+<div class="ttc" id="aBotJoinGroupEvent_8hpp_html"><div class="ttname"><a href="BotJoinGroupEvent_8hpp.html">BotJoinGroupEvent.hpp</a></div></div>
 <div class="ttc" id="aBotLeaveEventActive_8hpp_html"><div class="ttname"><a href="BotLeaveEventActive_8hpp.html">BotLeaveEventActive.hpp</a></div></div>
-<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
-<div class="ttc" id="aMemberPermissionChangeEvent_8hpp_html"><div class="ttname"><a href="MemberPermissionChangeEvent_8hpp.html">MemberPermissionChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aNudgeEvent_8hpp_html"><div class="ttname"><a href="NudgeEvent_8hpp.html">NudgeEvent.hpp</a></div></div>
-<div class="ttc" id="aBotReloginEvent_8hpp_html"><div class="ttname"><a href="BotReloginEvent_8hpp.html">BotReloginEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupEntranceAnnouncementChangeEvent_8hpp_html"><div class="ttname"><a href="GroupEntranceAnnouncementChangeEvent_8hpp.html">GroupEntranceAnnouncementChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aFriendMessageEvent_8hpp_html"><div class="ttname"><a href="FriendMessageEvent_8hpp.html">FriendMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aOtherClientOnlineEvent_8hpp_html"><div class="ttname"><a href="OtherClientOnlineEvent_8hpp.html">OtherClientOnlineEvent.hpp</a></div></div>
-<div class="ttc" id="aOtherClientMessageEvent_8hpp_html"><div class="ttname"><a href="OtherClientMessageEvent_8hpp.html">OtherClientMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aBotLeaveEventDisband_8hpp_html"><div class="ttname"><a href="BotLeaveEventDisband_8hpp.html">BotLeaveEventDisband.hpp</a></div></div>
+<div class="ttc" id="aBotLeaveEventKick_8hpp_html"><div class="ttname"><a href="BotLeaveEventKick_8hpp.html">BotLeaveEventKick.hpp</a></div></div>
 <div class="ttc" id="aBotMuteEvent_8hpp_html"><div class="ttname"><a href="BotMuteEvent_8hpp.html">BotMuteEvent.hpp</a></div></div>
 <div class="ttc" id="aBotOfflineEventActive_8hpp_html"><div class="ttname"><a href="BotOfflineEventActive_8hpp.html">BotOfflineEventActive.hpp</a></div></div>
-<div class="ttc" id="aMemberJoinRequestEvent_8hpp_html"><div class="ttname"><a href="MemberJoinRequestEvent_8hpp.html">MemberJoinRequestEvent.hpp</a></div></div>
-<div class="ttc" id="aNewFriendRequestEvent_8hpp_html"><div class="ttname"><a href="NewFriendRequestEvent_8hpp.html">NewFriendRequestEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupRecallEvent_8hpp_html"><div class="ttname"><a href="GroupRecallEvent_8hpp.html">GroupRecallEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupAllowConfessTalkEvent_8hpp_html"><div class="ttname"><a href="GroupAllowConfessTalkEvent_8hpp.html">GroupAllowConfessTalkEvent.hpp</a></div></div>
-<div class="ttc" id="aBotUnmuteEvent_8hpp_html"><div class="ttname"><a href="BotUnmuteEvent_8hpp.html">BotUnmuteEvent.hpp</a></div></div>
-<div class="ttc" id="aTempSyncMessageEvent_8hpp_html"><div class="ttname"><a href="TempSyncMessageEvent_8hpp.html">TempSyncMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberCardChangeEvent_8hpp_html"><div class="ttname"><a href="MemberCardChangeEvent_8hpp.html">MemberCardChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aBotOnlineEvent_8hpp_html"><div class="ttname"><a href="BotOnlineEvent_8hpp.html">BotOnlineEvent.hpp</a></div></div>
-<div class="ttc" id="aBotJoinGroupEvent_8hpp_html"><div class="ttname"><a href="BotJoinGroupEvent_8hpp.html">BotJoinGroupEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupMuteAllEvent_8hpp_html"><div class="ttname"><a href="GroupMuteAllEvent_8hpp.html">GroupMuteAllEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberMuteEvent_8hpp_html"><div class="ttname"><a href="MemberMuteEvent_8hpp.html">MemberMuteEvent.hpp</a></div></div>
-<div class="ttc" id="aFriendInputStatusChangedEvent_8hpp_html"><div class="ttname"><a href="FriendInputStatusChangedEvent_8hpp.html">FriendInputStatusChangedEvent.hpp</a></div></div>
-<div class="ttc" id="aBotEvent_8hpp_html"><div class="ttname"><a href="BotEvent_8hpp.html">BotEvent.hpp</a></div></div>
-<div class="ttc" id="aFriendRecallEvent_8hpp_html"><div class="ttname"><a href="FriendRecallEvent_8hpp.html">FriendRecallEvent.hpp</a></div></div>
 <div class="ttc" id="aBotOfflineEventDropped_8hpp_html"><div class="ttname"><a href="BotOfflineEventDropped_8hpp.html">BotOfflineEventDropped.hpp</a></div></div>
-<div class="ttc" id="aMemberLeaveEventQuit_8hpp_html"><div class="ttname"><a href="MemberLeaveEventQuit_8hpp.html">MemberLeaveEventQuit.hpp</a></div></div>
-<div class="ttc" id="aBotLeaveEventKick_8hpp_html"><div class="ttname"><a href="BotLeaveEventKick_8hpp.html">BotLeaveEventKick.hpp</a></div></div>
-<div class="ttc" id="aGroupNameChangeEvent_8hpp_html"><div class="ttname"><a href="GroupNameChangeEvent_8hpp.html">GroupNameChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberJoinEvent_8hpp_html"><div class="ttname"><a href="MemberJoinEvent_8hpp.html">MemberJoinEvent.hpp</a></div></div>
-<div class="ttc" id="aFriendSyncMessageEvent_8hpp_html"><div class="ttname"><a href="FriendSyncMessageEvent_8hpp.html">FriendSyncMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aMiraiClientEvents_8hpp_html"><div class="ttname"><a href="MiraiClientEvents_8hpp.html">MiraiClientEvents.hpp</a></div></div>
-<div class="ttc" id="aOtherClientOfflineEvent_8hpp_html"><div class="ttname"><a href="OtherClientOfflineEvent_8hpp.html">OtherClientOfflineEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupSyncMessageEvent_8hpp_html"><div class="ttname"><a href="GroupSyncMessageEvent_8hpp.html">GroupSyncMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberUnmuteEvent_8hpp_html"><div class="ttname"><a href="MemberUnmuteEvent_8hpp.html">MemberUnmuteEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupMessageEvent_8hpp_html"><div class="ttname"><a href="GroupMessageEvent_8hpp.html">GroupMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aMemberHonorChangeEvent_8hpp_html"><div class="ttname"><a href="MemberHonorChangeEvent_8hpp.html">MemberHonorChangeEvent.hpp</a></div></div>
-<div class="ttc" id="aBotLeaveEventDisband_8hpp_html"><div class="ttname"><a href="BotLeaveEventDisband_8hpp.html">BotLeaveEventDisband.hpp</a></div></div>
+<div class="ttc" id="aBotOfflineEventForce_8hpp_html"><div class="ttname"><a href="BotOfflineEventForce_8hpp.html">BotOfflineEventForce.hpp</a></div></div>
+<div class="ttc" id="aBotOnlineEvent_8hpp_html"><div class="ttname"><a href="BotOnlineEvent_8hpp.html">BotOnlineEvent.hpp</a></div></div>
+<div class="ttc" id="aBotReloginEvent_8hpp_html"><div class="ttname"><a href="BotReloginEvent_8hpp.html">BotReloginEvent.hpp</a></div></div>
+<div class="ttc" id="aBotUnmuteEvent_8hpp_html"><div class="ttname"><a href="BotUnmuteEvent_8hpp.html">BotUnmuteEvent.hpp</a></div></div>
 <div class="ttc" id="aCommandExecutedEvent_8hpp_html"><div class="ttname"><a href="CommandExecutedEvent_8hpp.html">CommandExecutedEvent.hpp</a></div></div>
-<div class="ttc" id="aGroupAllowAnonymousChatEvent_8hpp_html"><div class="ttname"><a href="GroupAllowAnonymousChatEvent_8hpp.html">GroupAllowAnonymousChatEvent.hpp</a></div></div>
-<div class="ttc" id="aTempMessageEvent_8hpp_html"><div class="ttname"><a href="TempMessageEvent_8hpp.html">TempMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aStrangerMessageEvent_8hpp_html"><div class="ttname"><a href="StrangerMessageEvent_8hpp.html">StrangerMessageEvent.hpp</a></div></div>
-<div class="ttc" id="aBotGroupPermissionChangeEvent_8hpp_html"><div class="ttname"><a href="BotGroupPermissionChangeEvent_8hpp.html">BotGroupPermissionChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
+<div class="ttc" id="aFriendInputStatusChangedEvent_8hpp_html"><div class="ttname"><a href="FriendInputStatusChangedEvent_8hpp.html">FriendInputStatusChangedEvent.hpp</a></div></div>
+<div class="ttc" id="aFriendMessageEvent_8hpp_html"><div class="ttname"><a href="FriendMessageEvent_8hpp.html">FriendMessageEvent.hpp</a></div></div>
 <div class="ttc" id="aFriendNickChangedEvent_8hpp_html"><div class="ttname"><a href="FriendNickChangedEvent_8hpp.html">FriendNickChangedEvent.hpp</a></div></div>
+<div class="ttc" id="aFriendRecallEvent_8hpp_html"><div class="ttname"><a href="FriendRecallEvent_8hpp.html">FriendRecallEvent.hpp</a></div></div>
+<div class="ttc" id="aFriendSyncMessageEvent_8hpp_html"><div class="ttname"><a href="FriendSyncMessageEvent_8hpp.html">FriendSyncMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupAllowAnonymousChatEvent_8hpp_html"><div class="ttname"><a href="GroupAllowAnonymousChatEvent_8hpp.html">GroupAllowAnonymousChatEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupAllowConfessTalkEvent_8hpp_html"><div class="ttname"><a href="GroupAllowConfessTalkEvent_8hpp.html">GroupAllowConfessTalkEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupAllowMemberInviteEvent_8hpp_html"><div class="ttname"><a href="GroupAllowMemberInviteEvent_8hpp.html">GroupAllowMemberInviteEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupEntranceAnnouncementChangeEvent_8hpp_html"><div class="ttname"><a href="GroupEntranceAnnouncementChangeEvent_8hpp.html">GroupEntranceAnnouncementChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupMessageEvent_8hpp_html"><div class="ttname"><a href="GroupMessageEvent_8hpp.html">GroupMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupMuteAllEvent_8hpp_html"><div class="ttname"><a href="GroupMuteAllEvent_8hpp.html">GroupMuteAllEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupNameChangeEvent_8hpp_html"><div class="ttname"><a href="GroupNameChangeEvent_8hpp.html">GroupNameChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupRecallEvent_8hpp_html"><div class="ttname"><a href="GroupRecallEvent_8hpp.html">GroupRecallEvent.hpp</a></div></div>
+<div class="ttc" id="aGroupSyncMessageEvent_8hpp_html"><div class="ttname"><a href="GroupSyncMessageEvent_8hpp.html">GroupSyncMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberCardChangeEvent_8hpp_html"><div class="ttname"><a href="MemberCardChangeEvent_8hpp.html">MemberCardChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberHonorChangeEvent_8hpp_html"><div class="ttname"><a href="MemberHonorChangeEvent_8hpp.html">MemberHonorChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberJoinEvent_8hpp_html"><div class="ttname"><a href="MemberJoinEvent_8hpp.html">MemberJoinEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberJoinRequestEvent_8hpp_html"><div class="ttname"><a href="MemberJoinRequestEvent_8hpp.html">MemberJoinRequestEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberLeaveEventKick_8hpp_html"><div class="ttname"><a href="MemberLeaveEventKick_8hpp.html">MemberLeaveEventKick.hpp</a></div></div>
+<div class="ttc" id="aMemberLeaveEventQuit_8hpp_html"><div class="ttname"><a href="MemberLeaveEventQuit_8hpp.html">MemberLeaveEventQuit.hpp</a></div></div>
+<div class="ttc" id="aMemberMuteEvent_8hpp_html"><div class="ttname"><a href="MemberMuteEvent_8hpp.html">MemberMuteEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberPermissionChangeEvent_8hpp_html"><div class="ttname"><a href="MemberPermissionChangeEvent_8hpp.html">MemberPermissionChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberSpecialTitleChangeEvent_8hpp_html"><div class="ttname"><a href="MemberSpecialTitleChangeEvent_8hpp.html">MemberSpecialTitleChangeEvent.hpp</a></div></div>
+<div class="ttc" id="aMemberUnmuteEvent_8hpp_html"><div class="ttname"><a href="MemberUnmuteEvent_8hpp.html">MemberUnmuteEvent.hpp</a></div></div>
+<div class="ttc" id="aMiraiClientEvents_8hpp_html"><div class="ttname"><a href="MiraiClientEvents_8hpp.html">MiraiClientEvents.hpp</a></div></div>
+<div class="ttc" id="aNewFriendRequestEvent_8hpp_html"><div class="ttname"><a href="NewFriendRequestEvent_8hpp.html">NewFriendRequestEvent.hpp</a></div></div>
+<div class="ttc" id="aNudgeEvent_8hpp_html"><div class="ttname"><a href="NudgeEvent_8hpp.html">NudgeEvent.hpp</a></div></div>
+<div class="ttc" id="aOtherClientMessageEvent_8hpp_html"><div class="ttname"><a href="OtherClientMessageEvent_8hpp.html">OtherClientMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aOtherClientOfflineEvent_8hpp_html"><div class="ttname"><a href="OtherClientOfflineEvent_8hpp.html">OtherClientOfflineEvent.hpp</a></div></div>
+<div class="ttc" id="aOtherClientOnlineEvent_8hpp_html"><div class="ttname"><a href="OtherClientOnlineEvent_8hpp.html">OtherClientOnlineEvent.hpp</a></div></div>
+<div class="ttc" id="aStrangerMessageEvent_8hpp_html"><div class="ttname"><a href="StrangerMessageEvent_8hpp.html">StrangerMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aStrangerSyncMessageEvent_8hpp_html"><div class="ttname"><a href="StrangerSyncMessageEvent_8hpp.html">StrangerSyncMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aTempMessageEvent_8hpp_html"><div class="ttname"><a href="TempMessageEvent_8hpp.html">TempMessageEvent.hpp</a></div></div>
+<div class="ttc" id="aTempSyncMessageEvent_8hpp_html"><div class="ttname"><a href="TempSyncMessageEvent_8hpp.html">TempSyncMessageEvent.hpp</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_b347b0cf57ea4859dbc7be1fc5cc5095.html">Events</a></li><li class="navelem"><a class="el" href="Events_8hpp.html">Events.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

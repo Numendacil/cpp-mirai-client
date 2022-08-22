@@ -1,6 +1,6 @@
 <map id="libmirai/public/libmirai/Events/GroupSyncMessageEvent.hpp" name="libmirai/public/libmirai/Events/GroupSyncMessageEvent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="79,5,379,49"/>
-<area shape="rect" id="node2" href="$Events_8hpp.html" title=" " alt="" coords="5,97,188,141"/>
-<area shape="rect" id="node4" href="$GroupSyncMessageEvent_8cpp.html" title=" " alt="" coords="213,97,511,141"/>
-<area shape="rect" id="node3" href="$mirai_8hpp.html" title=" " alt="" coords="5,189,188,233"/>
+<area shape="rect" id="node1" title=" " alt="" coords="68,5,335,49"/>
+<area shape="rect" id="node2" href="$Events_8hpp.html" title=" " alt="" coords="5,97,163,141"/>
+<area shape="rect" id="node4" href="$GroupSyncMessageEvent_8cpp.html" title=" " alt="" coords="187,97,453,141"/>
+<area shape="rect" id="node3" href="$mirai_8hpp.html" title=" " alt="" coords="5,189,163,233"/>
 </map>

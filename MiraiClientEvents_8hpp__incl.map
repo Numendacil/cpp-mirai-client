@@ -1,13 +1,13 @@
 <map id="libmirai/public/libmirai/Events/MiraiClientEvents.hpp" name="libmirai/public/libmirai/Events/MiraiClientEvents.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="161,5,404,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,105,99,133"/>
-<area shape="rect" id="node3" title=" " alt="" coords="123,105,178,133"/>
-<area shape="rect" id="node4" title=" " alt="" coords="340,189,404,217"/>
-<area shape="rect" id="node5" href="$Exceptions_8hpp.html" title=" " alt="" coords="203,97,363,141"/>
-<area shape="rect" id="node7" href="$BasicTypes_8hpp.html" title=" " alt="" coords="466,105,707,133"/>
-<area shape="rect" id="node6" title=" " alt="" coords="221,189,315,217"/>
-<area shape="rect" id="node8" title=" " alt="" coords="748,189,820,217"/>
-<area shape="rect" id="node9" title=" " alt="" coords="845,189,907,217"/>
-<area shape="rect" id="node10" title=" " alt="" coords="424,265,619,293"/>
-<area shape="rect" id="node11" href="$Serializable_8hpp.html" title=" " alt="" coords="479,189,723,217"/>
+<area shape="rect" id="node1" title=" " alt="" coords="152,5,363,49"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,105,88,133"/>
+<area shape="rect" id="node3" title=" " alt="" coords="112,105,163,133"/>
+<area shape="rect" id="node4" title=" " alt="" coords="310,189,367,217"/>
+<area shape="rect" id="node5" href="$Exceptions_8hpp.html" title=" " alt="" coords="187,97,327,141"/>
+<area shape="rect" id="node7" href="$BasicTypes_8hpp.html" title=" " alt="" coords="429,105,645,133"/>
+<area shape="rect" id="node6" title=" " alt="" coords="203,189,285,217"/>
+<area shape="rect" id="node8" title=" " alt="" coords="683,189,749,217"/>
+<area shape="rect" id="node9" title=" " alt="" coords="773,189,829,217"/>
+<area shape="rect" id="node10" title=" " alt="" coords="390,265,565,293"/>
+<area shape="rect" id="node11" href="$Serializable_8hpp.html" title=" " alt="" coords="443,189,659,217"/>
 </map>

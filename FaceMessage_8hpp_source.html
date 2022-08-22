@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Messages/FaceMessage.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('FaceMessage_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,136 +138,136 @@ $(document).ready(function(){initNavTree('FaceMessage_8hpp_source.html',''); ini
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">FaceMessage.hpp</div>  </div>
+  <div class="headertitle"><div class="title">FaceMessage.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="FaceMessage_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_FACE_MESSAGE_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_FACE_MESSAGE_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MessageBase_8hpp.html">MessageBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;{</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"> * @brief QQ表情消息</span></div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * 表情可以通过 `id` 或 `name` 发送，优先级 `id` &gt; `name`</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> *</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * Member Variable | Default Value</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * --------------- | -------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * `FaceMessage::_id` | `-1`</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * `FaceMessage::_name` | `&quot;&quot;`</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html">   38</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a> : <span class="keyword">public</span> <a class="code" href="classMirai_1_1MessageBase.html">MessageBase</a></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;{</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">   41</a></span>&#160;    int64_t <a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>;</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">   42</a></span>&#160;    std::string <a class="code" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">   45</a></span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>() : <a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>(-1) {}</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">   46</a></span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">FaceMessage</a>(int64_t <span class="keywordtype">id</span>) : <a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>(id) {}</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">   47</a></span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">FaceMessage</a>(<span class="keyword">const</span> std::string&amp; name) : <a class="code" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>(name) {}</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code" href="classMirai_1_1FaceMessage.html#ae2cdad442bacba781e80e03a70029b70">operator=</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>(<a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;&amp;) noexcept = default;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; operator=(<a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;&amp;) noexcept = default;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">   54</a></span>&#160;    static constexpr std::string_view <a class="code" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">_TYPE_</a> = &quot;Face&quot;;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">   56</a></span>&#160;    virtual std::string_view <a class="code" href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">_TYPE_</a>; }</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a0e0c59322f3a09d9fb39dedfacf6553b">   58</a></span>&#160;    <span class="keyword">virtual</span> <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>* <a class="code" href="classMirai_1_1FaceMessage.html#a0e0c59322f3a09d9fb39dedfacf6553b">Clone</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>(*<span class="keyword">this</span>); }</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1FaceMessage.html#ad5281c5003dcc408d3e3c86652b33813">isValid</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMirai_1_1FaceMessage.html#a9a8bb010d898955639948c4446bd1cb0">FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    <span class="keyword">virtual</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a> <a class="code" href="classMirai_1_1FaceMessage.html#aa66768cd666cd6d1c641d5f1e07dc629">ToJson</a>() <span class="keyword">const override</span>;</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">   65</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">operator==</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; rhs) { <span class="keywordflow">return</span> (<a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> &gt;= 0) ? this-&gt;_id == rhs.<a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> : this-&gt;_name == rhs.<a class="code" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>; }</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">   67</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">operator!=</a>(<span class="keyword">const</span> <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; rhs) { <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == rhs); }</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="comment">    /// 获取表情id</span></div>
-<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">   70</a></span>&#160;<span class="comment"></span>    int64_t <a class="code" href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">GetId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>; }</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="comment">    /// 获取表情名称</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">   73</a></span>&#160;<span class="comment"></span>    std::string <a class="code" href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">GetName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>; }</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">    /// 设置表情id</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a4ed79a3c19530afd2a5a4fbf6a785040">   76</a></span>&#160;<span class="comment"></span>    <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code" href="classMirai_1_1FaceMessage.html#a4ed79a3c19530afd2a5a4fbf6a785040">SetId</a>(int64_t <span class="keywordtype">id</span>)</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        this-&gt;_id = id;</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    }</div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="comment">    /// 设置表情名称。这一操作会清除已设置的id。</span></div>
-<div class="line"><a name="l00083"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#af08c7289ce122418968df6121643dc19">   83</a></span>&#160;<span class="comment"></span>    <a class="code" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code" href="classMirai_1_1FaceMessage.html#af08c7289ce122418968df6121643dc19">SetName</a>(<span class="keyword">const</span> std::string&amp; name)</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    {</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        this-&gt;_id = -1;</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;        this-&gt;_name = name;</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;};</div>
-<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;} <span class="comment">// namespace Mirai</span></div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160; </div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="FaceMessage_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_FACE_MESSAGE_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_FACE_MESSAGE_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &quot;<a class="code" href="MessageBase_8hpp.html">MessageBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment"></span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"> * @brief QQ表情消息</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * 表情可以通过 `id` 或 `name` 发送，优先级 `id` &gt; `name`</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * Member Variable | Default Value</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * --------------- | -------------</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * `FaceMessage::_id` | `-1`</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * `FaceMessage::_name` | `&quot;&quot;`</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html">   38</a></span><span class="keyword">class </span><a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMirai_1_1MessageBase.html">MessageBase</a></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>{</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">   41</a></span>    int64_t <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">   42</a></span>    std::string <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">   45</a></span>    <a class="code hl_function" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>() : <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>(-1) {}</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">   46</a></span>    <a class="code hl_function" href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">FaceMessage</a>(int64_t <span class="keywordtype">id</span>) : <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>(id) {}</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">   47</a></span>    <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">FaceMessage</a>(<span class="keyword">const</span> std::string&amp; name) : <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>(name) {}</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a40102a373012480e9bebc6bda0c25206">   48</a></span>    <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a40102a373012480e9bebc6bda0c25206">FaceMessage</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ada7a9a74abc337e93b20c8a0554d665c">   49</a></span>    <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code hl_function" href="classMirai_1_1FaceMessage.html#ada7a9a74abc337e93b20c8a0554d665c">operator=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a987fe03328336a911e7b109ca95c4e30">   50</a></span>    <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a987fe03328336a911e7b109ca95c4e30">FaceMessage</a>(<a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;&amp;) noexcept = default;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a85277de0c1a3fb0a9a213d64fb384c96">   51</a></span>    <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; operator=(<a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp;&amp;) noexcept = default;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">   54</a></span>    static constexpr <a class="code hl_namespace" href="namespacestd.html">std</a>::string_view <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">_TYPE_</a> = &quot;Face&quot;;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">   56</a></span>    virtual <a class="code hl_namespace" href="namespacestd.html">std</a>::string_view <a class="code hl_function" href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">_TYPE_</a>; }</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a492f1c3bfd6c74aab1aed1bcbc8904f0">   58</a></span>    <span class="keyword">virtual</span> <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>* <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a492f1c3bfd6c74aab1aed1bcbc8904f0">Clone</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <span class="keyword">new</span> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">FaceMessage</a>(*<span class="keyword">this</span>); }</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">virtual</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#ad5281c5003dcc408d3e3c86652b33813">isValid</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a9a8bb010d898955639948c4446bd1cb0">FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keyword">virtual</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#aa66768cd666cd6d1c641d5f1e07dc629">ToJson</a>() <span class="keyword">const override</span>;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">   65</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">operator==</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; rhs) { <span class="keywordflow">return</span> (<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> &gt;= 0) ? this-&gt;_id == rhs.<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a> : this-&gt;_name == rhs.<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>; }</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">   67</a></span>    <span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">operator!=</a>(<span class="keyword">const</span> <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; rhs) { <span class="keywordflow">return</span> !(*<span class="keyword">this</span> == rhs); }</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment"></span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">    /// 获取表情id</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">   70</a></span><span class="comment"></span>    int64_t <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">GetId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">_id</a>; }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment"></span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">    /// 获取表情名称</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">   73</a></span><span class="comment"></span>    std::string <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">GetName</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">_name</a>; }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment"></span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">    /// 设置表情id</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#a79089196015dbab6742f404ada9d07f5">   76</a></span><span class="comment"></span>    <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code hl_function" href="classMirai_1_1FaceMessage.html#a79089196015dbab6742f404ada9d07f5">SetId</a>(int64_t <span class="keywordtype">id</span>)</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>        this-&gt;_id = id;</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    }</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment"></span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">    /// 设置表情名称。这一操作会清除已设置的id。</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="classMirai_1_1FaceMessage.html#aa012dabef9c35820e1f309c048ffa345">   83</a></span><span class="comment"></span>    <a class="code hl_class" href="classMirai_1_1FaceMessage.html">FaceMessage</a>&amp; <a class="code hl_function" href="classMirai_1_1FaceMessage.html#aa012dabef9c35820e1f309c048ffa345">SetName</a>(<span class="keyword">const</span> std::string&amp; name)</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>        this-&gt;_id = -1;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>        this-&gt;_name = name;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        <span class="keywordflow">return</span> *<span class="keyword">this</span>;</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    }</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>};</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aMessageBase_8hpp_html"><div class="ttname"><a href="MessageBase_8hpp.html">MessageBase.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html"><div class="ttname"><a href="classMirai_1_1FaceMessage.html">Mirai::FaceMessage</a></div><div class="ttdoc">QQ表情消息</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00038">FaceMessage.hpp:39</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a2916cd58b54fef560656e7c0402dfdb1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">Mirai::FaceMessage::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00042">FaceMessage.hpp:42</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a40102a373012480e9bebc6bda0c25206"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a40102a373012480e9bebc6bda0c25206">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(const FaceMessage &amp;)=default</div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a492f1c3bfd6c74aab1aed1bcbc8904f0"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a492f1c3bfd6c74aab1aed1bcbc8904f0">Mirai::FaceMessage::Clone</a></div><div class="ttdeci">virtual FaceMessage * Clone() const override</div><div class="ttdoc">Clone the class, used for copying polymorphic objects</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00058">FaceMessage.hpp:58</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a6272e436d61a25405d1a9cf4e6560dd1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">Mirai::FaceMessage::GetId</a></div><div class="ttdeci">int64_t GetId() const</div><div class="ttdoc">获取表情id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00070">FaceMessage.hpp:70</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a6caf61b04c905ec9b65a11123322cfef"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">Mirai::FaceMessage::GetName</a></div><div class="ttdeci">std::string GetName() const</div><div class="ttdoc">获取表情名称</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00073">FaceMessage.hpp:73</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a79089196015dbab6742f404ada9d07f5"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a79089196015dbab6742f404ada9d07f5">Mirai::FaceMessage::SetId</a></div><div class="ttdeci">FaceMessage &amp; SetId(int64_t id)</div><div class="ttdoc">设置表情id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00076">FaceMessage.hpp:76</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a92ae1f69e9f2a4d25eb9e6dd834c2009"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(const std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00047">FaceMessage.hpp:47</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a987fe03328336a911e7b109ca95c4e30"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a987fe03328336a911e7b109ca95c4e30">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(FaceMessage &amp;&amp;) noexcept=default</div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a9a8bb010d898955639948c4446bd1cb0"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a9a8bb010d898955639948c4446bd1cb0">Mirai::FaceMessage::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00033">FaceMessage.cpp:33</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa012dabef9c35820e1f309c048ffa345"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa012dabef9c35820e1f309c048ffa345">Mirai::FaceMessage::SetName</a></div><div class="ttdeci">FaceMessage &amp; SetName(const std::string &amp;name)</div><div class="ttdoc">设置表情名称。这一操作会清除已设置的id。</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00083">FaceMessage.hpp:83</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa1365b7922deda5b48b6d13a62ea2178"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">Mirai::FaceMessage::_id</a></div><div class="ttdeci">int64_t _id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00041">FaceMessage.hpp:41</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa66768cd666cd6d1c641d5f1e07dc629"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa66768cd666cd6d1c641d5f1e07dc629">Mirai::FaceMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00040">FaceMessage.cpp:40</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ab416a04b9bc98dc1c7a9284c5c8d0f4b"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">Mirai::FaceMessage::operator!=</a></div><div class="ttdeci">bool operator!=(const FaceMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00067">FaceMessage.hpp:67</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ac03650fad7240f87f5b99235bf358c1d"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(int64_t id)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00046">FaceMessage.hpp:46</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aca9cfc0e16b2aa38e692068892b888c7"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage()</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00045">FaceMessage.hpp:45</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ad5281c5003dcc408d3e3c86652b33813"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ad5281c5003dcc408d3e3c86652b33813">Mirai::FaceMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00028">FaceMessage.cpp:28</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ada7a9a74abc337e93b20c8a0554d665c"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ada7a9a74abc337e93b20c8a0554d665c">Mirai::FaceMessage::operator=</a></div><div class="ttdeci">FaceMessage &amp; operator=(const FaceMessage &amp;)=default</div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ae74033738766eba9ec89e0cf1a7ec8bf"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">Mirai::FaceMessage::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00056">FaceMessage.hpp:56</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_af3e3145ad937d21625e6d5a91e4680f2"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">Mirai::FaceMessage::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00054">FaceMessage.hpp:54</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FaceMessage_html_afbbce8e814700aece434121b1354da5a"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">Mirai::FaceMessage::operator==</a></div><div class="ttdeci">bool operator==(const FaceMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00065">FaceMessage.hpp:65</a></div></div>
+<div class="ttc" id="aclassMirai_1_1MessageBase_html"><div class="ttname"><a href="classMirai_1_1MessageBase.html">Mirai::MessageBase</a></div><div class="ttdoc">Base class for all message types</div><div class="ttdef"><b>Definition:</b> <a href="MessageBase_8hpp_source.html#l00037">MessageBase.hpp:38</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
+<div class="ttc" id="anamespacestd_html"><div class="ttname"><a href="namespacestd.html">std</a></div><div class="ttdoc">STL namespace</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html"><div class="ttname"><a href="classMirai_1_1FaceMessage.html">Mirai::FaceMessage</a></div><div class="ttdoc">QQ表情消息</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00038">FaceMessage.hpp:38</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ae74033738766eba9ec89e0cf1a7ec8bf"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ae74033738766eba9ec89e0cf1a7ec8bf">Mirai::FaceMessage::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00056">FaceMessage.hpp:56</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_afbbce8e814700aece434121b1354da5a"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#afbbce8e814700aece434121b1354da5a">Mirai::FaceMessage::operator==</a></div><div class="ttdeci">bool operator==(const FaceMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00065">FaceMessage.hpp:65</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a92ae1f69e9f2a4d25eb9e6dd834c2009"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a92ae1f69e9f2a4d25eb9e6dd834c2009">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(const std::string &amp;name)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00047">FaceMessage.hpp:47</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ac03650fad7240f87f5b99235bf358c1d"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ac03650fad7240f87f5b99235bf358c1d">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage(int64_t id)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00046">FaceMessage.hpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a6caf61b04c905ec9b65a11123322cfef"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a6caf61b04c905ec9b65a11123322cfef">Mirai::FaceMessage::GetName</a></div><div class="ttdeci">std::string GetName() const</div><div class="ttdoc">获取表情名称</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00073">FaceMessage.hpp:73</a></div></div>
-<div class="ttc" id="aMessageBase_8hpp_html"><div class="ttname"><a href="MessageBase_8hpp.html">MessageBase.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a2916cd58b54fef560656e7c0402dfdb1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a2916cd58b54fef560656e7c0402dfdb1">Mirai::FaceMessage::_name</a></div><div class="ttdeci">std::string _name</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00042">FaceMessage.hpp:42</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ab416a04b9bc98dc1c7a9284c5c8d0f4b"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ab416a04b9bc98dc1c7a9284c5c8d0f4b">Mirai::FaceMessage::operator!=</a></div><div class="ttdeci">bool operator!=(const FaceMessage &amp;rhs)</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00067">FaceMessage.hpp:67</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa66768cd666cd6d1c641d5f1e07dc629"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa66768cd666cd6d1c641d5f1e07dc629">Mirai::FaceMessage::ToJson</a></div><div class="ttdeci">virtual nlohmann::json ToJson() const override</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00040">FaceMessage.cpp:40</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aa1365b7922deda5b48b6d13a62ea2178"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aa1365b7922deda5b48b6d13a62ea2178">Mirai::FaceMessage::_id</a></div><div class="ttdeci">int64_t _id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00041">FaceMessage.hpp:41</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_af3e3145ad937d21625e6d5a91e4680f2"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#af3e3145ad937d21625e6d5a91e4680f2">Mirai::FaceMessage::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00054">FaceMessage.hpp:54</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a4ed79a3c19530afd2a5a4fbf6a785040"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a4ed79a3c19530afd2a5a4fbf6a785040">Mirai::FaceMessage::SetId</a></div><div class="ttdeci">FaceMessage &amp; SetId(int64_t id)</div><div class="ttdoc">设置表情id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00076">FaceMessage.hpp:76</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a0e0c59322f3a09d9fb39dedfacf6553b"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a0e0c59322f3a09d9fb39dedfacf6553b">Mirai::FaceMessage::Clone</a></div><div class="ttdeci">virtual FaceMessage * Clone() const override</div><div class="ttdoc">Clone the class, used for copying polymorphic objects</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00058">FaceMessage.hpp:58</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ad5281c5003dcc408d3e3c86652b33813"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ad5281c5003dcc408d3e3c86652b33813">Mirai::FaceMessage::isValid</a></div><div class="ttdeci">virtual bool isValid() const override</div><div class="ttdoc">检查消息是否有效</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00028">FaceMessage.cpp:28</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a9a8bb010d898955639948c4446bd1cb0"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a9a8bb010d898955639948c4446bd1cb0">Mirai::FaceMessage::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8cpp_source.html#l00033">FaceMessage.cpp:33</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_a6272e436d61a25405d1a9cf4e6560dd1"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1">Mirai::FaceMessage::GetId</a></div><div class="ttdeci">int64_t GetId() const</div><div class="ttdoc">获取表情id</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00070">FaceMessage.hpp:70</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_ae2cdad442bacba781e80e03a70029b70"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#ae2cdad442bacba781e80e03a70029b70">Mirai::FaceMessage::operator=</a></div><div class="ttdeci">FaceMessage &amp; operator=(const FaceMessage &amp;)=default</div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_aca9cfc0e16b2aa38e692068892b888c7"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#aca9cfc0e16b2aa38e692068892b888c7">Mirai::FaceMessage::FaceMessage</a></div><div class="ttdeci">FaceMessage()</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00045">FaceMessage.hpp:45</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MessageBase_html"><div class="ttname"><a href="classMirai_1_1MessageBase.html">Mirai::MessageBase</a></div><div class="ttdoc">Base class for all message types</div><div class="ttdef"><b>Definition:</b> <a href="MessageBase_8hpp_source.html#l00037">MessageBase.hpp:37</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FaceMessage_html_af08c7289ce122418968df6121643dc19"><div class="ttname"><a href="classMirai_1_1FaceMessage.html#af08c7289ce122418968df6121643dc19">Mirai::FaceMessage::SetName</a></div><div class="ttdeci">FaceMessage &amp; SetName(const std::string &amp;name)</div><div class="ttdoc">设置表情名称。这一操作会清除已设置的id。</div><div class="ttdef"><b>Definition:</b> <a href="FaceMessage_8hpp_source.html#l00083">FaceMessage.hpp:83</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_c64ef95c53891570beeeee3d656466cb.html">Messages</a></li><li class="navelem"><a class="el" href="FaceMessage_8hpp.html">FaceMessage.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

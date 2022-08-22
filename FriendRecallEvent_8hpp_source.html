@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Events/FriendRecallEvent.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('FriendRecallEvent_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,114 +138,111 @@ $(document).ready(function(){initNavTree('FriendRecallEvent_8hpp_source.html',''
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">FriendRecallEvent.hpp</div>  </div>
+  <div class="headertitle"><div class="title">FriendRecallEvent.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="FriendRecallEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_FRIEND_RECALL_EVENT_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_FRIEND_RECALL_EVENT_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;ctime&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;{</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * @brief 好友消息撤回事件</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * Member Variable | Default Value</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * --------------- | -------------</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * `FriendRecallEvent::_AuthorId` | `0_qq`</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * `FriendRecallEvent::_MessageId` | `0`</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> * `FriendRecallEvent::_time` | `0`</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="comment"> * `FriendRecallEvent::_operator` | `0_qq`</span></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html">   41</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMirai_1_1FriendRecallEvent.html">FriendRecallEvent</a> : <span class="keyword">public</span> <a class="code" href="classMirai_1_1EventBase.html">EventBase</a></div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;{</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">   44</a></span>&#160;    <a class="code" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">_AuthorId</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">   45</a></span>&#160;    <a class="code" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">_MessageId</a> = 0;</div>
-<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">   46</a></span>&#160;    std::time_t <a class="code" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">_time</a> = 0;</div>
-<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">   47</a></span>&#160;    <a class="code" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">_operator</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keyword">using</span> <a class="code" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
-<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">   51</a></span>&#160;    <span class="keyword">static</span> constexpr std::string_view <a class="code" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">_TYPE_</a> = <span class="stringliteral">&quot;FriendRecallEvent&quot;</span>;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">   53</a></span>&#160;    <span class="keyword">virtual</span> std::string_view <a class="code" href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">_TYPE_</a>; }</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// virtual FriendRecallEvent* Clone() const override</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="comment">// {</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="comment">//  return new FriendRecallEvent(*this);</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <span class="comment">// }</span></div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMirai_1_1FriendRecallEvent.html#ae8376bc7d13296e4c39073786d97aed8">FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="comment">    /// 获取被撤回消息的发送者QQ</span></div>
-<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">   63</a></span>&#160;<span class="comment"></span>    <a class="code" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">GetSender</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">_AuthorId</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="comment">    /// 获取被撤回消息的消息id</span></div>
-<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">   65</a></span>&#160;<span class="comment"></span>    <a class="code" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">GetMessageId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">_MessageId</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="comment">    /// 获取被撤回消息的发送时间</span></div>
-<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a3142a0d2bb753c6023321cff22ca5bf5">   67</a></span>&#160;<span class="comment"></span>    std::time_t <a class="code" href="classMirai_1_1FriendRecallEvent.html#a3142a0d2bb753c6023321cff22ca5bf5">GetSendTime</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">_time</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="comment">    /// 获取操作员QQ</span></div>
-<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">   69</a></span>&#160;<span class="comment"></span>    <a class="code" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code" href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">GetOperator</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">_operator</a>; }</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;};</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;} <span class="comment">// namespace Mirai</span></div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="preprocessor">#endif</span></div>
-</div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aa80f5f9df1cc427e340cbade24936da2"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">Mirai::FriendRecallEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00053">FriendRecallEvent.hpp:53</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html">Mirai::FriendRecallEvent</a></div><div class="ttdoc">好友消息撤回事件</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00041">FriendRecallEvent.hpp:41</a></div></div>
-<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aaec70d03364a697aa30728dc4b00582f"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">Mirai::FriendRecallEvent::GetMessageId</a></div><div class="ttdeci">MessageId_t GetMessageId() const</div><div class="ttdoc">获取被撤回消息的消息id</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00065">FriendRecallEvent.hpp:65</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_ae8376bc7d13296e4c39073786d97aed8"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#ae8376bc7d13296e4c39073786d97aed8">Mirai::FriendRecallEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8cpp_source.html#l00029">FriendRecallEvent.cpp:29</a></div></div>
-<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:36</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a0137f4e10d81f06d4ed6b23024bf6146"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">Mirai::FriendRecallEvent::_MessageId</a></div><div class="ttdeci">MessageId_t _MessageId</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00045">FriendRecallEvent.hpp:45</a></div></div>
+<a href="FriendRecallEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_FRIEND_RECALL_EVENT_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_FRIEND_RECALL_EVENT_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;ctime&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment"></span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> * @brief 好友消息撤回事件</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * Member Variable | Default Value</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * --------------- | -------------</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * `FriendRecallEvent::_AuthorId` | `0_qq`</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * `FriendRecallEvent::_MessageId` | `0`</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> * `FriendRecallEvent::_time` | `0`</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment"> * `FriendRecallEvent::_operator` | `0_qq`</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html">   41</a></span><span class="keyword">class </span><a class="code hl_class" href="classMirai_1_1FriendRecallEvent.html">FriendRecallEvent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMirai_1_1EventBase.html">EventBase</a></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">   44</a></span>    <a class="code hl_class" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">_AuthorId</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">   45</a></span>    <a class="code hl_typedef" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">_MessageId</a> = 0;</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">   46</a></span>    std::time_t <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">_time</a> = 0;</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">   47</a></span>    <a class="code hl_class" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">_operator</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">using </span><a class="code hl_function" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">   51</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">_TYPE_</a> = <span class="stringliteral">&quot;FriendRecallEvent&quot;</span>;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">   53</a></span>    <span class="keyword">virtual</span> std::string_view <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">_TYPE_</a>; }</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// virtual FriendRecallEvent* Clone() const override</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    <span class="comment">// {</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="comment">//  return new FriendRecallEvent(*this);</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="comment">// }</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#ae8376bc7d13296e4c39073786d97aed8">FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment"></span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">    /// 获取被撤回消息的发送者QQ</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">   63</a></span><span class="comment"></span>    <a class="code hl_class" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">GetSender</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">_AuthorId</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">    /// 获取被撤回消息的消息id</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">   65</a></span><span class="comment"></span>    <a class="code hl_typedef" href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">MessageId_t</a> <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">GetMessageId</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">_MessageId</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">    /// 获取被撤回消息的发送时间</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#a3142a0d2bb753c6023321cff22ca5bf5">   67</a></span><span class="comment"></span>    std::time_t <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#a3142a0d2bb753c6023321cff22ca5bf5">GetSendTime</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">_time</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">    /// 获取操作员QQ</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">   69</a></span><span class="comment"></span>    <a class="code hl_class" href="classMirai_1_1QQ__t.html">QQ_t</a> <a class="code hl_function" href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">GetOperator</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">_operator</a>; }</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aBasicTypes_8hpp_html"><div class="ttname"><a href="BasicTypes_8hpp.html">BasicTypes.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aea75e70746f3721d45b8cf752b3b8862"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">Mirai::FriendRecallEvent::GetSender</a></div><div class="ttdeci">QQ_t GetSender() const</div><div class="ttdoc">获取被撤回消息的发送者QQ</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00063">FriendRecallEvent.hpp:63</a></div></div>
-<div class="ttc" id="aclassMirai_1_1QQ__t_html"><div class="ttname"><a href="classMirai_1_1QQ__t.html">Mirai::QQ_t</a></div><div class="ttdoc">QQ号码类型</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00074">BasicTypes.hpp:74</a></div></div>
+<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:37</a></div></div>
+<div class="ttc" id="aclassMirai_1_1EventBase_html_a65743d8b6f05f9c65c03af96625b17e5"><div class="ttname"><a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">Mirai::EventBase::EventBase</a></div><div class="ttdeci">EventBase(MiraiClient *client)</div><div class="ttdoc">Sets the MiraiClient pointer</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00050">EventBase.hpp:50</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html">Mirai::FriendRecallEvent</a></div><div class="ttdoc">好友消息撤回事件</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00041">FriendRecallEvent.hpp:42</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a0137f4e10d81f06d4ed6b23024bf6146"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a0137f4e10d81f06d4ed6b23024bf6146">Mirai::FriendRecallEvent::_MessageId</a></div><div class="ttdeci">MessageId_t _MessageId</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00045">FriendRecallEvent.hpp:45</a></div></div>
 <div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a3142a0d2bb753c6023321cff22ca5bf5"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a3142a0d2bb753c6023321cff22ca5bf5">Mirai::FriendRecallEvent::GetSendTime</a></div><div class="ttdeci">std::time_t GetSendTime() const</div><div class="ttdoc">获取被撤回消息的发送时间</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00067">FriendRecallEvent.hpp:67</a></div></div>
 <div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a3c9e622f5e507ec91871a5432678851d"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a3c9e622f5e507ec91871a5432678851d">Mirai::FriendRecallEvent::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00051">FriendRecallEvent.hpp:51</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
 <div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a48d4e3e4067785d4b0547af453e418bf"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a48d4e3e4067785d4b0547af453e418bf">Mirai::FriendRecallEvent::_AuthorId</a></div><div class="ttdeci">QQ_t _AuthorId</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00044">FriendRecallEvent.hpp:44</a></div></div>
-<div class="ttc" id="aclassMirai_1_1EventBase_html_a65743d8b6f05f9c65c03af96625b17e5"><div class="ttname"><a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">Mirai::EventBase::EventBase</a></div><div class="ttdeci">EventBase(MiraiClient *client)</div><div class="ttdoc">Sets the MiraiClient pointer</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00050">EventBase.hpp:50</a></div></div>
 <div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_a56960c78eb10e0d156658a4b2eb84596"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#a56960c78eb10e0d156658a4b2eb84596">Mirai::FriendRecallEvent::_operator</a></div><div class="ttdeci">QQ_t _operator</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00047">FriendRecallEvent.hpp:47</a></div></div>
-<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_af0bd0ce59cacfa431345575baeb30914"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">Mirai::FriendRecallEvent::GetOperator</a></div><div class="ttdeci">QQ_t GetOperator() const</div><div class="ttdoc">获取操作员QQ</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00069">FriendRecallEvent.hpp:69</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aa80f5f9df1cc427e340cbade24936da2"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2">Mirai::FriendRecallEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00053">FriendRecallEvent.hpp:53</a></div></div>
 <div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aa96dd9591583b5a63f0554594aca66a0"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aa96dd9591583b5a63f0554594aca66a0">Mirai::FriendRecallEvent::_time</a></div><div class="ttdeci">std::time_t _time</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00046">FriendRecallEvent.hpp:46</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aaec70d03364a697aa30728dc4b00582f"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f">Mirai::FriendRecallEvent::GetMessageId</a></div><div class="ttdeci">MessageId_t GetMessageId() const</div><div class="ttdoc">获取被撤回消息的消息id</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00065">FriendRecallEvent.hpp:65</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_ae8376bc7d13296e4c39073786d97aed8"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#ae8376bc7d13296e4c39073786d97aed8">Mirai::FriendRecallEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8cpp_source.html#l00029">FriendRecallEvent.cpp:29</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_aea75e70746f3721d45b8cf752b3b8862"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862">Mirai::FriendRecallEvent::GetSender</a></div><div class="ttdeci">QQ_t GetSender() const</div><div class="ttdoc">获取被撤回消息的发送者QQ</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00063">FriendRecallEvent.hpp:63</a></div></div>
+<div class="ttc" id="aclassMirai_1_1FriendRecallEvent_html_af0bd0ce59cacfa431345575baeb30914"><div class="ttname"><a href="classMirai_1_1FriendRecallEvent.html#af0bd0ce59cacfa431345575baeb30914">Mirai::FriendRecallEvent::GetOperator</a></div><div class="ttdeci">QQ_t GetOperator() const</div><div class="ttdoc">获取操作员QQ</div><div class="ttdef"><b>Definition:</b> <a href="FriendRecallEvent_8hpp_source.html#l00069">FriendRecallEvent.hpp:69</a></div></div>
+<div class="ttc" id="aclassMirai_1_1QQ__t_html"><div class="ttname"><a href="classMirai_1_1QQ__t.html">Mirai::QQ_t</a></div><div class="ttdoc">QQ号码类型</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00074">BasicTypes.hpp:75</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
 <div class="ttc" id="anamespaceMirai_html_a94d563158b3be29a718a7bbfbfa2877f"><div class="ttname"><a href="namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f">Mirai::MessageId_t</a></div><div class="ttdeci">int64_t MessageId_t</div><div class="ttdoc">消息id类型，用于撤回消息和引用消息</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00038">BasicTypes.hpp:38</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_b347b0cf57ea4859dbc7be1fc5cc5095.html">Events</a></li><li class="navelem"><a class="el" href="FriendRecallEvent_8hpp.html">FriendRecallEvent.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

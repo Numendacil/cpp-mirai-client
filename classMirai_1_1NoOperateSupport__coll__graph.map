@@ -1,6 +1,6 @@
 <map id="Mirai::NoOperateSupport" name="Mirai::NoOperateSupport">
-<area shape="rect" id="node1" title="MAH异常: 不支持该操作" alt="" coords="55,175,260,203"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MiraiApiHttpException.html" title="mirai&#45;api&#45;http相关的异常" alt="" coords="42,97,273,125"/>
-<area shape="rect" id="node3" title="STL class" alt="" coords="5,5,160,33"/>
-<area shape="rect" id="node4" title="STL class" alt="" coords="185,5,282,33"/>
+<area shape="rect" id="node1" title="MAH异常: 不支持该操作" alt="" coords="49,175,231,203"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MiraiApiHttpException.html" title="mirai&#45;api&#45;http相关的异常" alt="" coords="39,97,241,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,5,141,33"/>
+<area shape="rect" id="node4" title=" " alt="" coords="166,5,250,33"/>
 </map>

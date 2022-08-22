@@ -1,6 +1,5 @@
 var NAVTREEINDEX0 =
 {
-".html":[5,1,0,1],
 "AppMessage_8cpp.html":[5,2,0,2,0,0,3,0],
 "AppMessage_8cpp_source.html":[5,2,0,2,0,0,3,0],
 "AppMessage_8hpp.html":[5,2,0,2,0,0,3,1],
@@ -249,5 +248,6 @@ var NAVTREEINDEX0 =
 "MemberLeaveEventQuit_8cpp.html":[5,2,0,2,0,0,1,65],
 "MemberLeaveEventQuit_8cpp_source.html":[5,2,0,2,0,0,1,65],
 "MemberLeaveEventQuit_8hpp.html":[5,2,0,2,0,0,1,66],
-"MemberLeaveEventQuit_8hpp_source.html":[5,2,0,2,0,0,1,66]
+"MemberLeaveEventQuit_8hpp_source.html":[5,2,0,2,0,0,1,66],
+"MemberMuteEvent_8cpp.html":[5,2,0,2,0,0,1,67]
 };

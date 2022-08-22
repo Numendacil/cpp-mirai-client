@@ -1,10 +1,10 @@
 <map id="libmirai/public/libmirai/Events/BotLeaveEventActive.cpp" name="libmirai/public/libmirai/Events/BotLeaveEventActive.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="325,5,596,49"/>
-<area shape="rect" id="node2" href="$BotLeaveEventActive_8hpp.html" title=" " alt="" coords="146,97,357,125"/>
-<area shape="rect" id="node7" title=" " alt="" coords="380,97,541,125"/>
-<area shape="rect" id="node8" title=" " alt="" coords="566,97,782,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="114,249,178,277"/>
-<area shape="rect" id="node4" title=" " alt="" coords="259,249,454,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="25,173,267,201"/>
-<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="291,173,423,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="299,5,535,49"/>
+<area shape="rect" id="node2" href="$BotLeaveEventActive_8hpp.html" title=" " alt="" coords="135,97,321,125"/>
+<area shape="rect" id="node7" title=" " alt="" coords="345,97,489,125"/>
+<area shape="rect" id="node8" title=" " alt="" coords="513,97,703,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="103,249,161,277"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,249,411,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,173,240,201"/>
+<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="265,173,383,201"/>
 </map>

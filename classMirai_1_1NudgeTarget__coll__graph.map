@@ -1,5 +1,7 @@
 <map id="Mirai::NudgeTarget" name="Mirai::NudgeTarget">
-<area shape="rect" id="node1" title="QQ移动端头像戳一戳动作的对象" alt="" coords="5,175,167,203"/>
-<area shape="rect" id="node2" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="33,83,139,111"/>
-<area shape="rect" id="node3" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="33,5,139,33"/>
+<area shape="rect" id="node1" title="QQ移动端头像戳一戳动作的对象" alt="" coords="645,40,792,68"/>
+<area shape="rect" id="node2" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="319,5,413,33"/>
+<area shape="rect" id="node3" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="17,5,115,33"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,57,495,117"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,73,127,101"/>
 </map>

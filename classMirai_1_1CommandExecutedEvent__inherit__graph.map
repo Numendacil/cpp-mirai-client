@@ -1,4 +1,4 @@
 <map id="Mirai::CommandExecutedEvent" name="Mirai::CommandExecutedEvent">
-<area shape="rect" id="node1" title="命令执行事件" alt="" coords="5,81,256,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="57,5,204,33"/>
+<area shape="rect" id="node1" title="命令执行事件" alt="" coords="5,81,228,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="51,5,182,33"/>
 </map>

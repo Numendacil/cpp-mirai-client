@@ -5,7 +5,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=11" />
-	<meta name="generator" content="Doxygen 1.8.17" />
+	<meta name="generator" content="Doxygen 1.9.4" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title>cpp-mirai-client: libmirai/public/libmirai/Events/BotGroupPermissionChangeEvent.hpp 源文件</title>
 	<link href="tabs.css" rel="stylesheet" type="text/css" />
@@ -89,21 +89,22 @@
 					</tbody>
 				</table>
 			</div>
-			<!-- end header part --><!-- 制作者 Doxygen 1.8.17 -->
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-var searchBox = new SearchBox("searchBox", "search",false,'搜索');
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
 /* @license-end */
 </script>
 <script type="text/javascript" src="menudata.js"></script>
 <script type="text/javascript" src="menu.js"></script>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(function() {
   initMenu('',true,false,'search.php','搜索');
   $(document).ready(function() { init_search(); });
 });
-/* @license-end */</script>
+/* @license-end */
+</script>
 <div id="main-nav"></div>
 </div><!-- top -->
 <div id="side-nav" class="ui-resizable side-nav-resizable">
@@ -117,7 +118,7 @@ $(function() {
   </div>
 </div>
 <script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
 $(document).ready(function(){initNavTree('BotGroupPermissionChangeEvent_8hpp_source.html',''); initResizable(); });
 /* @license-end */
 </script>
@@ -137,108 +138,105 @@ $(document).ready(function(){initNavTree('BotGroupPermissionChangeEvent_8hpp_sou
 </div>
 
 <div class="header">
-  <div class="headertitle">
-<div class="title">BotGroupPermissionChangeEvent.hpp</div>  </div>
+  <div class="headertitle"><div class="title">BotGroupPermissionChangeEvent.hpp</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="BotGroupPermissionChangeEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="comment">// License, or (at your option) any later version.</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">// GNU Affero General Public License for more details.</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">// </span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#ifndef _MIRAI_BOT_GROUP_PERMISSION_CHANGED_EVENT_HPP_</span></div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#define _MIRAI_BOT_GROUP_PERMISSION_CHANGED_EVENT_HPP_</span></div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#include &lt;string&gt;</span></div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespaceMirai.html">Mirai</a></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;{</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="comment">/**</span></div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="comment"> * @brief Bot群聊权限改变事件</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="comment"> * </span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="comment"> * Member Variable | Default Value</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="comment"> * --------------- | -------------</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="comment"> * `BotGroupPermissionChangeEvent::_group` | `Group{}`</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="comment"> * `BotGroupPermissionChangeEvent::_origin` | `PERMISSION::UNKNOWN`</span></div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="comment"> * `BotGroupPermissionChangeEvent::_current` | `PERMISSION::UNKNOWN`</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="comment"> */</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html">   39</a></span>&#160;<span class="keyword">class </span><a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html">BotGroupPermissionChangeEvent</a> : <span class="keyword">public</span> <a class="code" href="classMirai_1_1EventBase.html">EventBase</a></div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keyword">protected</span>:</div>
-<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">   42</a></span>&#160;    <a class="code" href="structMirai_1_1Group.html">Group</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">_group</a>;</div>
-<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">   43</a></span>&#160;    <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">_origin</a> = <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">PERMISSION::UNKNOWN</a>;</div>
-<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">   44</a></span>&#160;    <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">_current</a> = <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">PERMISSION::UNKNOWN</a>;</div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keyword">public</span>:</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keyword">using</span> <a class="code" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
-<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">   48</a></span>&#160;    <span class="keyword">static</span> constexpr std::string_view <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">_TYPE_</a> = <span class="stringliteral">&quot;BotGroupPermissionChangeEvent&quot;</span>;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
-<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">   50</a></span>&#160;    <span class="keyword">virtual</span> std::string_view <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">_TYPE_</a>; }</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="comment">// virtual BotGroupPermissionChangeEvent* Clone() const override</span></div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="comment">// {</span></div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    <span class="comment">//  return new BotGroupPermissionChangeEvent(*this);</span></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="comment">// }</span></div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#ab3e588cbffa72b532e401df55ae80e67">FromJson</a>(<span class="keyword">const</span> <a class="code" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="comment"></span> </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="comment">    /// 获取群聊信息</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">   60</a></span>&#160;<span class="comment"></span>    <a class="code" href="structMirai_1_1Group.html">Group</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">GetGroup</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">_group</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="comment">    /// 获取Bot更改前的权限</span></div>
-<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">   62</a></span>&#160;<span class="comment"></span>    <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">GetOriginal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">_origin</a>; }<span class="comment"></span></div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="comment">    /// 获取Bot当前权限</span></div>
-<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">   64</a></span>&#160;<span class="comment"></span>    <a class="code" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">GetCurrent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">_current</a>; }</div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;};</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;} <span class="comment">// namespace Mirai</span></div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="preprocessor">#endif</span></div>
+<a href="BotGroupPermissionChangeEvent_8hpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// </span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">// </span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// </span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#ifndef _MIRAI_BOT_GROUP_PERMISSION_CHANGED_EVENT_HPP_</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#define _MIRAI_BOT_GROUP_PERMISSION_CHANGED_EVENT_HPP_</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;nlohmann/json_fwd.hpp&gt;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;<a class="code" href="BasicTypes_8hpp.html">libmirai/Types/BasicTypes.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="EventBase_8hpp.html">EventBase.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="comment"></span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/**</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment"> * @brief Bot群聊权限改变事件</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment"> * </span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment"> * Member Variable | Default Value</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment"> * --------------- | -------------</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment"> * `BotGroupPermissionChangeEvent::_group` | `Group{}`</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment"> * `BotGroupPermissionChangeEvent::_origin` | `PERMISSION::UNKNOWN`</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment"> * `BotGroupPermissionChangeEvent::_current` | `PERMISSION::UNKNOWN`</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html">   39</a></span><span class="keyword">class </span><a class="code hl_class" href="classMirai_1_1BotGroupPermissionChangeEvent.html">BotGroupPermissionChangeEvent</a> : <span class="keyword">public</span> <a class="code hl_class" href="classMirai_1_1EventBase.html">EventBase</a></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>{</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="keyword">protected</span>:</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">   42</a></span>    <a class="code hl_struct" href="structMirai_1_1Group.html">Group</a> <a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">_group</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">   43</a></span>    <a class="code hl_enumeration" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">_origin</a> = <a class="code hl_enumvalue" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">PERMISSION::UNKNOWN</a>;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">   44</a></span>    <a class="code hl_enumeration" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">_current</a> = <a class="code hl_enumvalue" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">PERMISSION::UNKNOWN</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keyword">using </span><a class="code hl_function" href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">EventBase::EventBase</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">   48</a></span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> std::string_view <a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">_TYPE_</a> = <span class="stringliteral">&quot;BotGroupPermissionChangeEvent&quot;</span>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">   50</a></span>    <span class="keyword">virtual</span> std::string_view <a class="code hl_function" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">GetType</a>()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> <a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">_TYPE_</a>; }</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="comment">// virtual BotGroupPermissionChangeEvent* Clone() const override</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// {</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">//  return new BotGroupPermissionChangeEvent(*this);</span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="comment">// }</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <span class="keyword">virtual</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1BotGroupPermissionChangeEvent.html#ab3e588cbffa72b532e401df55ae80e67">FromJson</a>(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">nlohmann::json</a>&amp; data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="comment"></span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">    /// 获取群聊信息</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">   60</a></span><span class="comment"></span>    <a class="code hl_struct" href="structMirai_1_1Group.html">Group</a> <a class="code hl_function" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">GetGroup</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">_group</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">    /// 获取Bot更改前的权限</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">   62</a></span><span class="comment"></span>    <a class="code hl_enumeration" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code hl_function" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">GetOriginal</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">_origin</a>; }<span class="comment"></span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">    /// 获取Bot当前权限</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">   64</a></span><span class="comment"></span>    <a class="code hl_enumeration" href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">PERMISSION</a> <a class="code hl_function" href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">GetCurrent</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">_current</a>; }</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>};</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aBasicTypes_8hpp_html"><div class="ttname"><a href="BasicTypes_8hpp.html">BasicTypes.hpp</a></div></div>
+<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html">Mirai::BotGroupPermissionChangeEvent</a></div><div class="ttdoc">Bot群聊权限改变事件</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00039">BotGroupPermissionChangeEvent.hpp:40</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a0a6f2fd7d67f9914e93cfee2d9f07e37"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">Mirai::BotGroupPermissionChangeEvent::_group</a></div><div class="ttdeci">Group _group</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00042">BotGroupPermissionChangeEvent.hpp:42</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a20d19d7ba5899dcb9bf1b4c9db5e6cbe"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">Mirai::BotGroupPermissionChangeEvent::GetGroup</a></div><div class="ttdeci">Group GetGroup() const</div><div class="ttdoc">获取群聊信息</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00060">BotGroupPermissionChangeEvent.hpp:60</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a23f708b60d80fa1d931e7d69ae7a07c5"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">Mirai::BotGroupPermissionChangeEvent::GetOriginal</a></div><div class="ttdeci">PERMISSION GetOriginal() const</div><div class="ttdoc">获取Bot更改前的权限</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00062">BotGroupPermissionChangeEvent.hpp:62</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a4d3d8b3164c292ba136f3a8483aabf82"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">Mirai::BotGroupPermissionChangeEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00050">BotGroupPermissionChangeEvent.hpp:50</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a5f124c4a2ffe23d082081c75f0cd8d4c"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">Mirai::BotGroupPermissionChangeEvent::_origin</a></div><div class="ttdeci">PERMISSION _origin</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00043">BotGroupPermissionChangeEvent.hpp:43</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a9d7da2696e2d51ae1980e0e975fb88f0"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">Mirai::BotGroupPermissionChangeEvent::GetCurrent</a></div><div class="ttdeci">PERMISSION GetCurrent() const</div><div class="ttdoc">获取Bot当前权限</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00064">BotGroupPermissionChangeEvent.hpp:64</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_aa535d9c52f13292c63487c19a58361a9"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">Mirai::BotGroupPermissionChangeEvent::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00048">BotGroupPermissionChangeEvent.hpp:48</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_aac99c8dc10f8ed3db465507de02a8ea2"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">Mirai::BotGroupPermissionChangeEvent::_current</a></div><div class="ttdeci">PERMISSION _current</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00044">BotGroupPermissionChangeEvent.hpp:44</a></div></div>
+<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_ab3e588cbffa72b532e401df55ae80e67"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#ab3e588cbffa72b532e401df55ae80e67">Mirai::BotGroupPermissionChangeEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8cpp_source.html#l00027">BotGroupPermissionChangeEvent.cpp:27</a></div></div>
+<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:37</a></div></div>
+<div class="ttc" id="aclassMirai_1_1EventBase_html_a65743d8b6f05f9c65c03af96625b17e5"><div class="ttname"><a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">Mirai::EventBase::EventBase</a></div><div class="ttdeci">EventBase(MiraiClient *client)</div><div class="ttdoc">Sets the MiraiClient pointer</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00050">EventBase.hpp:50</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:44</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a046e3f0ace0f18017330a99944cf53f0"><div class="ttname"><a href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">Mirai::PERMISSION</a></div><div class="ttdeci">PERMISSION</div><div class="ttdoc">群成员权限</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00175">BasicTypes.hpp:176</a></div></div>
+<div class="ttc" id="anamespaceMirai_html_a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3"><div class="ttname"><a href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">Mirai::PERMISSION::UNKNOWN</a></div><div class="ttdeci">@ UNKNOWN</div></div>
+<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
+<div class="ttc" id="astructMirai_1_1Group_html"><div class="ttname"><a href="structMirai_1_1Group.html">Mirai::Group</a></div><div class="ttdoc">群聊资料</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00221">BasicTypes.hpp:222</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00043">Client.cpp:43</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html">Mirai::BotGroupPermissionChangeEvent</a></div><div class="ttdoc">Bot群聊权限改变事件</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00039">BotGroupPermissionChangeEvent.hpp:39</a></div></div>
-<div class="ttc" id="aEventBase_8hpp_html"><div class="ttname"><a href="EventBase_8hpp.html">EventBase.hpp</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a4d3d8b3164c292ba136f3a8483aabf82"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a4d3d8b3164c292ba136f3a8483aabf82">Mirai::BotGroupPermissionChangeEvent::GetType</a></div><div class="ttdeci">virtual std::string_view GetType() const override</div><div class="ttdoc">Return the type of the class</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00050">BotGroupPermissionChangeEvent.hpp:50</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a23f708b60d80fa1d931e7d69ae7a07c5"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a23f708b60d80fa1d931e7d69ae7a07c5">Mirai::BotGroupPermissionChangeEvent::GetOriginal</a></div><div class="ttdeci">PERMISSION GetOriginal() const</div><div class="ttdoc">获取Bot更改前的权限</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00062">BotGroupPermissionChangeEvent.hpp:62</a></div></div>
-<div class="ttc" id="aclassMirai_1_1EventBase_html"><div class="ttname"><a href="classMirai_1_1EventBase.html">Mirai::EventBase</a></div><div class="ttdoc">Base class for all event types</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00036">EventBase.hpp:36</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a20d19d7ba5899dcb9bf1b4c9db5e6cbe"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a20d19d7ba5899dcb9bf1b4c9db5e6cbe">Mirai::BotGroupPermissionChangeEvent::GetGroup</a></div><div class="ttdeci">Group GetGroup() const</div><div class="ttdoc">获取群聊信息</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00060">BotGroupPermissionChangeEvent.hpp:60</a></div></div>
-<div class="ttc" id="aBasicTypes_8hpp_html"><div class="ttname"><a href="BasicTypes_8hpp.html">BasicTypes.hpp</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a046e3f0ace0f18017330a99944cf53f0"><div class="ttname"><a href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0">Mirai::PERMISSION</a></div><div class="ttdeci">PERMISSION</div><div class="ttdoc">群成员权限</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00175">BasicTypes.hpp:175</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_aac99c8dc10f8ed3db465507de02a8ea2"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#aac99c8dc10f8ed3db465507de02a8ea2">Mirai::BotGroupPermissionChangeEvent::_current</a></div><div class="ttdeci">PERMISSION _current</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00044">BotGroupPermissionChangeEvent.hpp:44</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a9d7da2696e2d51ae1980e0e975fb88f0"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a9d7da2696e2d51ae1980e0e975fb88f0">Mirai::BotGroupPermissionChangeEvent::GetCurrent</a></div><div class="ttdeci">PERMISSION GetCurrent() const</div><div class="ttdoc">获取Bot当前权限</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00064">BotGroupPermissionChangeEvent.hpp:64</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_ab3e588cbffa72b532e401df55ae80e67"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#ab3e588cbffa72b532e401df55ae80e67">Mirai::BotGroupPermissionChangeEvent::FromJson</a></div><div class="ttdeci">virtual void FromJson(const nlohmann::json &amp;data) override</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8cpp_source.html#l00027">BotGroupPermissionChangeEvent.cpp:27</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a5f124c4a2ffe23d082081c75f0cd8d4c"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a5f124c4a2ffe23d082081c75f0cd8d4c">Mirai::BotGroupPermissionChangeEvent::_origin</a></div><div class="ttdeci">PERMISSION _origin</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00043">BotGroupPermissionChangeEvent.hpp:43</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a5a6fc7013c6e05bcda922d5ea776de03"><div class="ttname"><a href="namespaceMirai.html#a5a6fc7013c6e05bcda922d5ea776de03">Mirai::json</a></div><div class="ttdeci">nlohmann::json json</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00046">Client.cpp:46</a></div></div>
-<div class="ttc" id="aclassMirai_1_1EventBase_html_a65743d8b6f05f9c65c03af96625b17e5"><div class="ttname"><a href="classMirai_1_1EventBase.html#a65743d8b6f05f9c65c03af96625b17e5">Mirai::EventBase::EventBase</a></div><div class="ttdeci">EventBase(MiraiClient *client)</div><div class="ttdoc">Sets the MiraiClient pointer</div><div class="ttdef"><b>Definition:</b> <a href="EventBase_8hpp_source.html#l00050">EventBase.hpp:50</a></div></div>
-<div class="ttc" id="anamespaceMirai_html_a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3"><div class="ttname"><a href="namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3">Mirai::PERMISSION::UNKNOWN</a></div><div class="ttdeci">@ UNKNOWN</div></div>
-<div class="ttc" id="astructMirai_1_1Group_html"><div class="ttname"><a href="structMirai_1_1Group.html">Mirai::Group</a></div><div class="ttdoc">群聊资料</div><div class="ttdef"><b>Definition:</b> <a href="BasicTypes_8hpp_source.html#l00221">BasicTypes.hpp:221</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_a0a6f2fd7d67f9914e93cfee2d9f07e37"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#a0a6f2fd7d67f9914e93cfee2d9f07e37">Mirai::BotGroupPermissionChangeEvent::_group</a></div><div class="ttdeci">Group _group</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00042">BotGroupPermissionChangeEvent.hpp:42</a></div></div>
-<div class="ttc" id="aclassMirai_1_1BotGroupPermissionChangeEvent_html_aa535d9c52f13292c63487c19a58361a9"><div class="ttname"><a href="classMirai_1_1BotGroupPermissionChangeEvent.html#aa535d9c52f13292c63487c19a58361a9">Mirai::BotGroupPermissionChangeEvent::_TYPE_</a></div><div class="ttdeci">static constexpr std::string_view _TYPE_</div><div class="ttdef"><b>Definition:</b> <a href="BotGroupPermissionChangeEvent_8hpp_source.html#l00048">BotGroupPermissionChangeEvent.hpp:48</a></div></div>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_2432e6d01588bf5829668ddc0aacd348.html">public</a></li><li class="navelem"><a class="el" href="dir_6046cf5b588b7c8cda8a2c8a9a5afa80.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_b347b0cf57ea4859dbc7be1fc5cc5095.html">Events</a></li><li class="navelem"><a class="el" href="BotGroupPermissionChangeEvent_8hpp.html">BotGroupPermissionChangeEvent.hpp</a></li>
-    <li class="footer">制作者
-    <a href="http://www.doxygen.org/index.html">
-    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>

@@ -1,9 +1,9 @@
 <map id="Mirai::ImageMessage" name="Mirai::ImageMessage">
-<area shape="rect" id="node1" title="图片消息" alt="" coords="185,269,363,297"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,177,175,205"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="41,13,193,41"/>
-<area shape="rect" id="node4" href="$structMirai_1_1MiraiImage.html" title="Mirai图片" alt="" coords="199,177,349,205"/>
-<area shape="rect" id="node5" title="STL class" alt="" coords="225,13,323,41"/>
-<area shape="rect" id="node6" title="STL class" alt="" coords="373,177,511,205"/>
-<area shape="rect" id="node7" title="STL class" alt="" coords="351,5,533,49"/>
+<area shape="rect" id="node1" title="图片消息" alt="" coords="169,269,327,297"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,177,157,205"/>
+<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="39,13,174,41"/>
+<area shape="rect" id="node4" href="$structMirai_1_1MiraiImage.html" title="Mirai图片" alt="" coords="182,177,314,205"/>
+<area shape="rect" id="node5" title=" " alt="" coords="206,13,290,41"/>
+<area shape="rect" id="node6" title=" " alt="" coords="338,177,459,205"/>
+<area shape="rect" id="node7" title=" " alt="" coords="317,5,480,49"/>
 </map>

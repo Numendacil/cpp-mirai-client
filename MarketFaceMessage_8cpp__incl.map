@@ -1,10 +1,10 @@
 <map id="libmirai/public/libmirai/Messages/MarketFaceMessage.cpp" name="libmirai/public/libmirai/Messages/MarketFaceMessage.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="321,5,606,49"/>
-<area shape="rect" id="node2" href="$MarketFaceMessage_8hpp.html" title=" " alt="" coords="155,97,358,125"/>
-<area shape="rect" id="node7" title=" " alt="" coords="383,97,544,125"/>
-<area shape="rect" id="node8" title=" " alt="" coords="569,97,785,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="114,249,178,277"/>
-<area shape="rect" id="node4" title=" " alt="" coords="270,249,465,277"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="25,173,267,201"/>
-<area shape="rect" id="node6" href="$FaceMessage_8hpp.html" title=" " alt="" coords="291,173,443,201"/>
+<area shape="rect" id="node1" title=" " alt="" coords="294,5,552,49"/>
+<area shape="rect" id="node2" href="$MarketFaceMessage_8hpp.html" title=" " alt="" coords="141,97,326,125"/>
+<area shape="rect" id="node7" title=" " alt="" coords="351,97,495,125"/>
+<area shape="rect" id="node8" title=" " alt="" coords="519,97,708,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="104,249,161,277"/>
+<area shape="rect" id="node4" title=" " alt="" coords="248,249,422,277"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,173,240,201"/>
+<area shape="rect" id="node6" href="$FaceMessage_8hpp.html" title=" " alt="" coords="265,173,405,201"/>
 </map>

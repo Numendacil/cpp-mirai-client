@@ -1,13 +1,13 @@
 <map id="libmirai/public/libmirai/Types/MediaTypes.cpp" name="libmirai/public/libmirai/Types/MediaTypes.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="429,5,620,49"/>
-<area shape="rect" id="node2" href="$MediaTypes_8hpp.html" title=" " alt="" coords="285,97,425,125"/>
-<area shape="rect" id="node4" title=" " alt="" coords="433,173,515,201"/>
-<area shape="rect" id="node5" title=" " alt="" coords="540,173,621,201"/>
-<area shape="rect" id="node10" title=" " alt="" coords="563,97,724,125"/>
-<area shape="rect" id="node11" title=" " alt="" coords="749,97,965,125"/>
-<area shape="rect" id="node3" title=" " alt="" coords="171,249,233,277"/>
-<area shape="rect" id="node6" title=" " alt="" coords="31,249,95,277"/>
-<area shape="rect" id="node7" title=" " alt="" coords="35,325,230,353"/>
-<area shape="rect" id="node8" href="$BasicTypes_8hpp.html" title=" " alt="" coords="65,173,307,201"/>
-<area shape="rect" id="node9" href="$Serializable_8hpp.html" title=" " alt="" coords="257,249,501,277"/>
+<area shape="rect" id="node1" title=" " alt="" coords="408,5,583,49"/>
+<area shape="rect" id="node2" href="$MediaTypes_8hpp.html" title=" " alt="" coords="267,97,395,125"/>
+<area shape="rect" id="node4" title=" " alt="" coords="407,173,482,201"/>
+<area shape="rect" id="node5" title=" " alt="" coords="506,173,578,201"/>
+<area shape="rect" id="node10" title=" " alt="" coords="533,97,677,125"/>
+<area shape="rect" id="node11" title=" " alt="" coords="701,97,890,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="173,249,229,277"/>
+<area shape="rect" id="node6" title=" " alt="" coords="32,249,89,277"/>
+<area shape="rect" id="node7" title=" " alt="" coords="48,325,223,353"/>
+<area shape="rect" id="node8" href="$BasicTypes_8hpp.html" title=" " alt="" coords="66,173,282,201"/>
+<area shape="rect" id="node9" href="$Serializable_8hpp.html" title=" " alt="" coords="253,249,469,277"/>
 </map>

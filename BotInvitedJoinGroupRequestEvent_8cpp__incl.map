@@ -1,11 +1,11 @@
 <map id="libmirai/public/libmirai/Events/BotInvitedJoinGroupRequestEvent.cpp" name="libmirai/public/libmirai/Events/BotInvitedJoinGroupRequestEvent.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="352,5,638,65"/>
-<area shape="rect" id="node2" href="$BotInvitedJoinGroupRequestEvent_8hpp.html" title=" " alt="" coords="138,113,364,157"/>
-<area shape="rect" id="node7" title=" " alt="" coords="388,121,460,149"/>
-<area shape="rect" id="node8" title=" " alt="" coords="485,121,646,149"/>
-<area shape="rect" id="node9" title=" " alt="" coords="671,121,887,149"/>
-<area shape="rect" id="node3" title=" " alt="" coords="114,281,178,309"/>
-<area shape="rect" id="node4" title=" " alt="" coords="259,281,454,309"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="25,205,266,233"/>
-<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="290,205,422,233"/>
+<area shape="rect" id="node1" title=" " alt="" coords="322,5,579,65"/>
+<area shape="rect" id="node2" href="$BotInvitedJoinGroupRequestEvent_8hpp.html" title=" " alt="" coords="125,113,331,157"/>
+<area shape="rect" id="node7" title=" " alt="" coords="355,121,418,149"/>
+<area shape="rect" id="node8" title=" " alt="" coords="443,121,587,149"/>
+<area shape="rect" id="node9" title=" " alt="" coords="611,121,800,149"/>
+<area shape="rect" id="node3" title=" " alt="" coords="103,281,161,309"/>
+<area shape="rect" id="node4" title=" " alt="" coords="237,281,411,309"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="24,205,240,233"/>
+<area shape="rect" id="node6" href="$EventBase_8hpp.html" title=" " alt="" coords="265,205,383,233"/>
 </map>
