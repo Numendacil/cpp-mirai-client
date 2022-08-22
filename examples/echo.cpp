@@ -1,6 +1,3 @@
-#include "libmirai/Api/SessionConfig.hpp"
-#include "libmirai/Events/EventBase.hpp"
-#include "libmirai/Events/FriendMessageEvent.hpp"
 #include <iostream>
 #include <libmirai/mirai.hpp>
 #include <string>

@@ -1,0 +1,29 @@
+name: gh-pages
+
+# Trigger this when a pull request is merged (which implies pushing to master).
+on:
+  push:
+    branches: [ "master" ]
+
+  workflow_dispatch:
+
+jobs:
+  docs:
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Git Checkout
+      uses: actions/checkout@v3
+    
+    - name: Install dependencies
+      run: sudo apt-get update; sudo apt-get install -y doxygen graphviz
+
+    - name: Create docs
+      run:  doxygen .
+  
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./docs/html

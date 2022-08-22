@@ -16,7 +16,7 @@ html {
 
 	--page-font-size: 1em;
 	--navigation-font-size: 1em;
-	--code-font-size: 0.9em; /* affects code, fragment */
+	--code-font-size: 0.93em; /* affects code, fragment */
 	--title-font-size: 1.5em;
 
 	--border-radius-large: 22px;
@@ -150,6 +150,17 @@ span.mlabel {
 
 div.contents div.dyncontent iframe:not([id]) {
 	font-weight: 600;
+}
+
+blockquote {
+	background: none;
+	padding: 0 var(--spacing-large);
+	border-left: .25em solid #d0d7de;
+	border-radius: 0;
+}
+
+blockquote::before, blockquote::after {
+	content: none;
 }
 
 /* .fieldtable td.fieldname {
