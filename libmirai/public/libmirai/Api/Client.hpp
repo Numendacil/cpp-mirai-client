@@ -172,7 +172,10 @@ public:
 	bool isConnected() const { return this->_connected && this->_SessionKeySet; }
 
 	/// 返回cpp-mirai-client的版本号
-	constexpr std::string_view GetVersion();
+	constexpr std::string_view GetVersion()
+	{
+		return CPP_MIRAI_CLIENT_VERSION;
+	}
 
 	/**
 	 * @brief 注册事件回调函数
