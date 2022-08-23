@@ -290,11 +290,6 @@ template<> void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParse
 
 using std::string;
 
-constexpr std::string_view MiraiClient::GetVersion()
-{
-	return CPP_MIRAI_CLIENT_VERSION;
-}
-
 string MiraiClient::GetMiraiApiHttpVersion()
 {
 	json resp = this->_HttpClient->About();
