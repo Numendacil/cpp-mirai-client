@@ -22,6 +22,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
+#include <utility>
 
 #include "MessageBase.hpp"
 
@@ -38,31 +39,28 @@ namespace Mirai
 class ImageMessage : public MessageBase
 {
 protected:
-	MiraiImage _image;
+	MiraiImage _image{};
 
 	void _clear() noexcept { this->_image = {}; }
 
 public:
-	ImageMessage(const MiraiImage& image = {}) : _image(image) {}
+	ImageMessage() = default;
+	ImageMessage(MiraiImage image) : _image(std::move(image)) {}
 	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64)
 		: _image(ImageId, url, path, base64)
 	{
 	}
-	ImageMessage(const ImageMessage&) = default;
-	ImageMessage& operator=(const ImageMessage&) = default;
-	ImageMessage(ImageMessage&&) noexcept = default;
-	ImageMessage& operator=(ImageMessage&&) noexcept = default;
 
 	static constexpr std::string_view _TYPE_ = "Image";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual ImageMessage* Clone() const override { return new ImageMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ImageMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 获取消息中的图片

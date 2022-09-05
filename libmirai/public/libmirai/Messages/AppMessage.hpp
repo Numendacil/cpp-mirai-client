@@ -36,28 +36,22 @@ class AppMessage : public MessageBase
 {
 
 protected:
-	std::string _content;
+	std::string _content{};
 
 
 public:
-	AppMessage() {}
-	AppMessage(const std::string& content) : _content(content) {}
-	AppMessage(const AppMessage&) = default;
-	AppMessage& operator=(const AppMessage&) = default;
-	AppMessage(AppMessage&&) noexcept = default;
-	AppMessage& operator=(AppMessage&&) noexcept = default;
-
+	AppMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "App";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual AppMessage* Clone() const override { return new AppMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AppMessage>(*this); }
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
 
 	bool operator==(const AppMessage& rhs) { return this->_content == rhs._content; }

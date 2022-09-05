@@ -163,7 +163,7 @@ Utils::Factory<MessageBase> InitFactory()
 	return f;
 }
 
-Utils::Factory<MessageBase> MessageFactory{std::move(InitFactory())};
+const Utils::Factory<MessageBase> MessageFactory{std::move(InitFactory())};
 
 } // namespace
 

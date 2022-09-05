@@ -2,7 +2,7 @@
 #define _MIRAI_MIRAI_HPP_
 
 #include <libmirai/Api/Client.hpp>
-#include <libmirai/Api/SessionConfig.hpp>
+#include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Events/Events.hpp>
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Messages/Messages.hpp>

@@ -45,30 +45,26 @@ class QuoteMessage : public MessageBase
 {
 
 protected:
-	MessageId_t _QuoteId;
-	GID_t _GroupId;
-	QQ_t _SenderId;
-	int64_t _TargetId;
-	MessageChain _origin;
+	MessageId_t _QuoteId = -1;
+	GID_t _GroupId{};
+	QQ_t _SenderId{};
+	int64_t _TargetId = 0;
+	MessageChain _origin{};
 
 public:
-	QuoteMessage() : _QuoteId(-1), _TargetId(0) {}
-	QuoteMessage(const QuoteMessage&) = default;
-	QuoteMessage& operator=(const QuoteMessage&) = default;
-	QuoteMessage(QuoteMessage&&) noexcept = default;
-	QuoteMessage& operator=(QuoteMessage&&) noexcept = default;
+	QuoteMessage() = default;
 
 
 	static constexpr std::string_view _TYPE_ = "Quote";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual QuoteMessage* Clone() const override { return new QuoteMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<QuoteMessage>(*this); }
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
 	/// 获取被引用消息id
 	MessageId_t GetQuoteId() const { return this->_QuoteId; }

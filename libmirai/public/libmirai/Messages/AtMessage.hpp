@@ -38,28 +38,22 @@ namespace Mirai
 class AtMessage : public MessageBase
 {
 protected:
-	QQ_t _target;
-	std::string _display;
+	QQ_t _target{};
+	std::string _display{};
 
 public:
-	AtMessage() {}
-	AtMessage(QQ_t target) : _target(target) {}
-	AtMessage(const AtMessage&) = default;
-	AtMessage& operator=(const AtMessage&) = default;
-	AtMessage(AtMessage&&) noexcept = default;
-	AtMessage& operator=(AtMessage&&) noexcept = default;
-
+	AtMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "At";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual AtMessage* Clone() const override { return new AtMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AtMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 
 	bool operator==(const AtMessage& rhs) { return this->_target == rhs._target; }

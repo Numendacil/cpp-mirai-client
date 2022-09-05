@@ -52,14 +52,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberMuteEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual MemberMuteEvent* Clone() const override
+	// MemberMuteEvent* Clone() const override
 	// {
 	//	return new MemberMuteEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群成员资料
 	GroupMember GetMember() const { return this->_member; }

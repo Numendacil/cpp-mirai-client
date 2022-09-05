@@ -20,6 +20,7 @@
 #include <string>
 
 #include <nlohmann/json_fwd.hpp>
+#include <utility>
 
 #include "MessageBase.hpp"
 
@@ -40,24 +41,19 @@ protected:
 	std::string _content;
 
 public:
-	XmlMessage() {}
-	XmlMessage(const std::string& content) : _content(content) {}
-	XmlMessage(const XmlMessage&) = default;
-	XmlMessage& operator=(const XmlMessage&) = default;
-	XmlMessage(XmlMessage&&) noexcept = default;
-	XmlMessage& operator=(XmlMessage&&) noexcept = default;
-
+	XmlMessage() = default;
+	XmlMessage(std::string  content) : _content(std::move(content)) {}
 
 	static constexpr std::string_view _TYPE_ = "Xml";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual XmlMessage* Clone() const override { return new XmlMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<XmlMessage>(*this); }
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
 
 	bool operator==(const XmlMessage& rhs) { return this->_content == rhs._content; }

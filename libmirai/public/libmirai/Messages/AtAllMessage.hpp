@@ -32,23 +32,18 @@ namespace Mirai
 class AtAllMessage : public MessageBase
 {
 public:
-	AtAllMessage() {}
-	AtAllMessage(const AtAllMessage&) = default;
-	AtAllMessage& operator=(const AtAllMessage&) = default;
-	AtAllMessage(AtAllMessage&&) noexcept = default;
-	AtAllMessage& operator=(AtAllMessage&&) noexcept = default;
-
+	AtAllMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "AtAll";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual AtAllMessage* Clone() const override { return new AtAllMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AtAllMessage>(*this); }
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 };
 
 } // namespace Mirai

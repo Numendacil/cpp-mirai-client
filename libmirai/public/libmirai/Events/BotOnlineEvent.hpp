@@ -33,9 +33,9 @@ public:
 	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotOnlineEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual BotOnlineEvent* Clone() const override
+	// BotOnlineEvent* Clone() const override
 	// {
 	//	return new BotOnlineEvent(*this);
 	// }

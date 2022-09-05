@@ -52,14 +52,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupNameChangeEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual GroupNameChangeEvent* Clone() const override
+	// GroupNameChangeEvent* Clone() const override
 	// {
 	//	return new GroupNameChangeEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群聊信息
 	Group GetGroup() const { return this->_group; }

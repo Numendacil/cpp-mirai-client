@@ -62,8 +62,8 @@ protected:
 
 	template<typename T> class _has_type_
 	{
-		typedef char yes_type;
-		typedef long no_type;
+		using yes_type = char;
+		using no_type = long;
 		template<typename U> static yes_type test(decltype(&U::_TYPE_));
 		template<typename U> static no_type test(...);
 

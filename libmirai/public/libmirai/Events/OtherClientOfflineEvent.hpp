@@ -44,14 +44,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientOfflineEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual OtherClientOfflineEvent* Clone() const override
+	// OtherClientOfflineEvent* Clone() const override
 	// {
 	//	return new OtherClientOfflineEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取设备信息
 	ClientDevice GetClient() const { return this->_client; }

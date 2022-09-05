@@ -46,17 +46,17 @@ public:
 	using EventBase::EventBase;
 	// static constexpr std::string_view _TYPE_ = "BotEvent";
 
-	// virtual std::string_view GetType() const override
+	// std::string_view GetType() const override
 	// {
 	// 	return _TYPE_;
 	// }
 
-	// virtual BotEvent* Clone() const override
+	// BotEvent* Clone() const override
 	// {
 	// 	return new BotEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取BotQQ
 	QQ_t GetQQ() const { return this->_qq; }

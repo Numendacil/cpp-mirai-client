@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -40,8 +40,7 @@
 #include <libmirai/Events/TempMessageEvent.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
-
-#include "SessionConfig.hpp"
+#include <libmirai/Utils/SessionConfig.hpp>
 
 /// 所有mirai相关的对象的命名空间
 namespace Mirai
@@ -83,9 +82,9 @@ protected:
 	mutable std::mutex _mtx;
 	mutable std::condition_variable _cv;
 
-	SessionConfigs _config;
+	SessionConfigs _config{};
 
-	std::string _SessionKey;
+	std::string _SessionKey{};
 	bool _SessionKeySet = false;
 	bool _connected = false; // Probably can be removed, but just in case
 
@@ -94,22 +93,22 @@ protected:
 
 	std::unique_ptr<Utils::ThreadPool> _ThreadPool;
 
-	ClientConnectionEstablishedEvent _HandshakeInfo;
+	ClientConnectionEstablishedEvent _HandshakeInfo{};
 
 	EventCallback<ClientConnectionEstablishedEvent> _ConnectionEstablishedCallback;
 	EventCallback<ClientConnectionClosedEvent> _ConnectionClosedCallback;
 	EventCallback<ClientConnectionErrorEvent> _ConnectionErrorCallback;
 	EventCallback<ClientParseErrorEvent> _ParseErrorCallback;
 
-	std::unordered_map<std::string, EventHandler> _EventHandlers;
+	std::unordered_map<std::string, EventHandler> _EventHandlers{};
 
 	bool _ReadSessionKey(const nlohmann::json& data);
 	void _DispatchEvent(const nlohmann::json& data);
 
 	template<typename T> class _has_type_
 	{
-		typedef char yes_type;
-		typedef long no_type;
+		using yes_type = char;
+		using no_type = long;
 		template<typename U> static yes_type test(decltype(&U::_TYPE_));
 		template<typename U> static no_type test(...);
 
@@ -149,11 +148,11 @@ protected:
 
 public:
 	MiraiClient();
-	MiraiClient(const SessionConfigs& config);
+	MiraiClient(SessionConfigs config);
 	MiraiClient(const MiraiClient&) = delete;
 	MiraiClient& operator=(const MiraiClient&) = delete;
-	MiraiClient(MiraiClient&& rhs);
-	MiraiClient& operator=(MiraiClient&& rhs);
+	MiraiClient(MiraiClient&& rhs) noexcept;
+	MiraiClient& operator=(MiraiClient&& rhs) noexcept;
 	~MiraiClient();
 
 	/// 获取连接mirai-api-http的session key，若尚未建立链接则返回 `std::nullopt`
@@ -172,10 +171,7 @@ public:
 	bool isConnected() const { return this->_connected && this->_SessionKeySet; }
 
 	/// 返回cpp-mirai-client的版本号
-	constexpr std::string_view GetVersion()
-	{
-		return CPP_MIRAI_CLIENT_VERSION;
-	}
+	constexpr std::string_view GetVersion() { return CPP_MIRAI_CLIENT_VERSION; }
 
 	/**
 	 * @brief 注册事件回调函数

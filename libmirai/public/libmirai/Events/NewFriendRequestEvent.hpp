@@ -51,14 +51,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "NewFriendRequestEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual NewFriendRequestEvent* Clone() const override
+	// NewFriendRequestEvent* Clone() const override
 	// {
 	//	return new NewFriendRequestEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取事件id，唯一标识符
 	int64_t GetEventId() const { return this->_EventId; }

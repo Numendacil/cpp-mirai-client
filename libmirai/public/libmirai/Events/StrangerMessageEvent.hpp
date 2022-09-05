@@ -47,14 +47,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "StrangerMessage";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual StrangerMessageEvent* Clone() const override
+	// StrangerMessageEvent* Clone() const override
 	// {
 	//	return new StrangerMessageEvent(*this);
 	// }/ }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取发送者资料
 	User GetSender() const { return this->_sender; }

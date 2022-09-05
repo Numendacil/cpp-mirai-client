@@ -47,14 +47,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "TempSyncMessage";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual TempSyncMessageEvent* Clone() const override
+	// TempSyncMessageEvent* Clone() const override
 	// {
 	//	return new TempSyncMessageEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取会话目标对象信息
 	GroupMember GetGroupMember() const { return this->_subject; }

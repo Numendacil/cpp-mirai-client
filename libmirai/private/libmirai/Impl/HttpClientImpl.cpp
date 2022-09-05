@@ -31,7 +31,7 @@ using std::string;
 namespace
 {
 
-const char* JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
+const char* const JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
 
 }
 

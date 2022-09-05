@@ -51,14 +51,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "CommandExecutedEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual CommandExecutedEvent* Clone() const override
+	// CommandExecutedEvent* Clone() const override
 	// {
 	//	return new CommandExecutedEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 发送者类型: 好友/群聊/控制台
 	enum SenderType

@@ -61,22 +61,18 @@ public:
 	class Node : public Serializable
 	{
 	protected:
-		QQ_t _SenderId;
-		std::time_t _time;
-		std::string _SenderName;
-		MessageChain _message;
-		std::optional<MessageId_t> _MessageId;
+		QQ_t _SenderId{};
+		std::time_t _time = 0;
+		std::string _SenderName{};
+		MessageChain _message{};
+		std::optional<MessageId_t> _MessageId = std::nullopt;
 
 	public:
-		Node() : _time(0), _MessageId(std::nullopt) {}
-		Node(const Node&) = default;
-		Node& operator=(const Node&) = default;
-		Node(Node&&) noexcept = default;
-		Node& operator=(Node&&) noexcept = default;
+		Node() = default;
 
 		bool isValid() const;
-		virtual void FromJson(const nlohmann::json& data) override;
-		virtual nlohmann::json ToJson() const override;
+		void FromJson(const nlohmann::json& data) override;
+		nlohmann::json ToJson() const override;
 
 		/// 获取发送者QQ
 		QQ_t GetSenderId() const { return this->_SenderId; }
@@ -143,22 +139,18 @@ protected:
 	NodeList _NodeList;
 
 public:
-	ForwardMessage() {}
-	ForwardMessage(const ForwardMessage&) = default;
-	ForwardMessage& operator=(const ForwardMessage&) = default;
-	ForwardMessage(ForwardMessage&&) noexcept = default;
-	ForwardMessage& operator=(ForwardMessage&&) noexcept = default;
+	ForwardMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "Forward";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual ForwardMessage* Clone() const override { return new ForwardMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ForwardMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief STL-like interface

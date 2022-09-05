@@ -38,17 +38,13 @@ class FlashImageMessage : public ImageMessage
 {
 
 public:
-	FlashImageMessage(const MiraiImage& image = {}) : ImageMessage(image) {}
-	FlashImageMessage(const FlashImageMessage&) = default;
-	FlashImageMessage& operator=(const FlashImageMessage&) = default;
-	FlashImageMessage(FlashImageMessage&&) noexcept = default;
-	FlashImageMessage& operator=(FlashImageMessage&&) noexcept = default;
-
+	FlashImageMessage() = default;
+	FlashImageMessage(const MiraiImage& image) : ImageMessage(image) {}
 	static constexpr std::string_view _TYPE_ = "FlashImage";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual FlashImageMessage* Clone() const override { return new FlashImageMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FlashImageMessage>(*this); }
 };
 
 } // namespace Mirai

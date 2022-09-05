@@ -36,28 +36,23 @@ class JsonMessage : public MessageBase
 {
 
 protected:
-	std::string _content;
+	std::string _content{};
 
 
 public:
-	JsonMessage() {}
-	JsonMessage(const std::string& content) : _content(content) {}
-	JsonMessage(const JsonMessage&) = default;
-	JsonMessage& operator=(const JsonMessage&) = default;
-	JsonMessage(JsonMessage&&) noexcept = default;
-	JsonMessage& operator=(JsonMessage&&) noexcept = default;
+	JsonMessage() = default;
 
 
 	static constexpr std::string_view _TYPE_ = "Json";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual JsonMessage* Clone() const override { return new JsonMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<JsonMessage>(*this); }
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
 
 	bool operator==(const JsonMessage& rhs) { return this->_content == rhs._content; }

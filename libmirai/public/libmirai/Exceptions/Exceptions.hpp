@@ -38,8 +38,6 @@ public:
 		, _message(message)
 	{
 	}
-
-	virtual ~MiraiApiHttpException() = default;
 };
 
 #define REGISTER_STATUS_CODE(_name_, _code_)                                                                           \
@@ -91,8 +89,6 @@ public:
 		, _message(message)
 	{
 	}
-
-	virtual ~NetworkException() = default;
 };
 
 /**

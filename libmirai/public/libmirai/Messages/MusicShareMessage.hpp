@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -18,6 +18,7 @@
 
 #include <array>
 #include <string>
+#include <utility>
 
 #include <nlohmann/json_fwd.hpp>
 
@@ -53,13 +54,13 @@ public:
 	};
 
 protected:
-	MusicKind _kind;
-	std::string _title;
-	std::string _summary;
-	std::string _JumpUrl;
-	std::string _PictureUrl;
-	std::string _MusicUrl;
-	std::string _brief;
+	MusicKind _kind = MusicKind::UNKNOWN;
+	std::string _title{};
+	std::string _summary{};
+	std::string _JumpUrl{};
+	std::string _PictureUrl{};
+	std::string _MusicUrl{};
+	std::string _brief{};
 
 
 	static constexpr std::array<std::string_view, static_cast<std::size_t>(MusicKind::UNKNOWN)> _MusicKindStr = {
@@ -68,7 +69,7 @@ protected:
 	static constexpr std::string_view _to_string(const MusicKind& m)
 	{
 		auto i = static_cast<std::size_t>(m);
-		if (i < _MusicKindStr.size()) return _MusicKindStr[i];
+		if (i < _MusicKindStr.size()) return _MusicKindStr.at(i);
 		else
 			return "";
 	}
@@ -76,7 +77,7 @@ protected:
 	static constexpr MusicKind _to_enum(std::string_view s)
 	{
 		for (std::size_t i = 0; i < _MusicKindStr.size(); i++)
-			if (_MusicKindStr[i] == s) return static_cast<MusicKind>(i);
+			if (_MusicKindStr.at(i) == s) return static_cast<MusicKind>(i);
 
 		return MusicKind::UNKNOWN;
 	}
@@ -84,31 +85,27 @@ protected:
 public:
 	static constexpr std::string_view _TYPE_ = "MusicShare";
 
-	MusicShareMessage() {}
-	MusicShareMessage(MusicKind kind, const std::string& title, const std::string& summary, const std::string& JumpUrl,
-	                  const std::string& PictureUrl, const std::string& MusicUrl, const std::string& brief)
+	MusicShareMessage() = default;
+	MusicShareMessage(MusicKind kind, std::string title, std::string summary, std::string JumpUrl,
+	                  std::string PictureUrl, std::string MusicUrl, std::string brief)
 		: _kind(kind)
-		, _title(title)
-		, _summary(summary)
-		, _JumpUrl(JumpUrl)
-		, _PictureUrl(PictureUrl)
-		, _MusicUrl(MusicUrl)
-		, _brief(brief)
+		, _title(std::move(title))
+		, _summary(std::move(summary))
+		, _JumpUrl(std::move(JumpUrl))
+		, _PictureUrl(std::move(PictureUrl))
+		, _MusicUrl(std::move(MusicUrl))
+		, _brief(std::move(brief))
 	{
 	}
-	MusicShareMessage(const MusicShareMessage&) = default;
-	MusicShareMessage& operator=(const MusicShareMessage&) = default;
-	MusicShareMessage(MusicShareMessage&&) noexcept = default;
-	MusicShareMessage& operator=(MusicShareMessage&&) noexcept = default;
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual MusicShareMessage* Clone() const override { return new MusicShareMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<MusicShareMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 	/// 获取分享种类
 	MusicKind GetKind() const { return this->_kind; }

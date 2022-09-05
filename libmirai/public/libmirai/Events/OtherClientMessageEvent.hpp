@@ -46,14 +46,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientMessage";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual OtherClientMessageEvent* Clone() const override
+	// OtherClientMessageEvent* Clone() const override
 	// {
 	//	return new OtherClientMessageEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取发送客户端信息
 	ClientDevice GetSender() const { return this->_sender; }

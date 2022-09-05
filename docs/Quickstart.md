@@ -8,11 +8,11 @@ cpp-mirai-client 依赖 mirai-api-http 的 [http adapter](https://github.com/pro
 ```yaml
 ## 启用 http 和 ws adapter
 adapters:
-	- http
-	- ws
+    - http
+    - ws
 ```
 此外，你还可能需要根据需求来配置其他选项，详情可以见 mirai-api-http 对应的文档。其中与 cpp-mirai-client 相关的部分为
-`verifyKey`, http 监听地址以及 websocket 监听地址。
+verifyKey, http 监听地址以及 websocket 监听地址。
 
 ### 链接cpp-mirai-client
 你需要用自己喜欢的方式编译cpp-mirai-client并确保你的项目链接到对应的库文件。如果不知道具体怎么做，可以使用 cppmirai-template 

@@ -56,14 +56,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberJoinRequestEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual MemberJoinRequestEvent* Clone() const override
+	// MemberJoinRequestEvent* Clone() const override
 	// {
 	//	return new MemberJoinRequestEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取事件id，唯一标识符
 	int64_t GetEventId() const { return this->_EventId; }

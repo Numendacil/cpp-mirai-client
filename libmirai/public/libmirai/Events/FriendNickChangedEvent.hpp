@@ -47,14 +47,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendNickChangedEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual FriendNickChangedEvent* Clone() const override
+	// FriendNickChangedEvent* Clone() const override
 	// {
 	//	return new FriendNickChangedEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取好友信息
 	User GetFriend() const { return this->_friend; }

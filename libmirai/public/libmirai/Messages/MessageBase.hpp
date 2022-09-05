@@ -48,10 +48,7 @@ public:
 	virtual std::string_view GetType() const = 0;
 
 	/// Clone the class, used for copying polymorphic objects
-	virtual MessageBase* Clone() const = 0;
-
-	/// Wrapper of `Clone()` using smart pointers, recommmended over `Clone()`
-	virtual std::unique_ptr<MessageBase> CloneUnique() const { return std::unique_ptr<MessageBase>(this->Clone()); }
+	virtual std::unique_ptr<MessageBase> CloneUnique() const = 0;
 
 	/**
 	 * @brief 检查消息是否有效
@@ -61,8 +58,6 @@ public:
 	 * @return `bool`
 	 */
 	virtual bool isValid() const = 0;
-
-	virtual ~MessageBase() = default;
 };
 
 } // namespace Mirai

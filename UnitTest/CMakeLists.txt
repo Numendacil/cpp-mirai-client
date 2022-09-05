@@ -22,6 +22,10 @@ target_link_libraries(unit_test PRIVATE GTest::gtest_main GTest::gtest)
 target_link_libraries(unit_test PRIVATE httplib::httplib)
 target_link_libraries(unit_test PRIVATE ixwebsocket::ixwebsocket)
 
+target_link_libraries(unit_test PRIVATE -static-libasan)
+target_compile_options(unit_test PRIVATE -fsanitize=address -fno-omit-frame-pointer)
+target_link_options(unit_test PRIVATE -fsanitize=address -fno-omit-frame-pointer)
+
 target_include_directories(unit_test PRIVATE ../libmirai/private)
 
 target_compile_features(unit_test PRIVATE cxx_std_17)

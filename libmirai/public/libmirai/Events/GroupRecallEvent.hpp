@@ -53,14 +53,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupRecallEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual GroupRecallEvent* Clone() const override
+	// GroupRecallEvent* Clone() const override
 	// {
 	//	return new GroupRecallEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取被撤回消息的发送者QQ
 	QQ_t GetSender() const { return this->_AuthorId; }

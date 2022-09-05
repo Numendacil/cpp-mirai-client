@@ -45,11 +45,11 @@ namespace Mirai
 
 using json = nlohmann::json;
 
-MiraiClient::MiraiClient() : _config{}, _SessionKeySet(false), _connected(false) {}
+MiraiClient::MiraiClient() = default;
 
-MiraiClient::MiraiClient(const SessionConfigs& config) : _config(config), _connected(false) {}
+MiraiClient::MiraiClient(SessionConfigs config) : _config(std::move(config)) {}
 
-MiraiClient::MiraiClient(MiraiClient&& rhs)
+MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
 	: _config(std::move(rhs._config))
 	, _SessionKey(std::move(rhs._SessionKey))
 	, _SessionKeySet(rhs._SessionKeySet)
@@ -60,13 +60,7 @@ MiraiClient::MiraiClient(MiraiClient&& rhs)
 {
 }
 
-MiraiClient::~MiraiClient()
-{
-	// if (this->_MessageClient)
-	// 	this->_MessageClient->Disconnect();
-}
-
-MiraiClient& MiraiClient::operator=(MiraiClient&& rhs)
+MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
 {
 	this->_config = std::move(rhs._config);
 	this->_SessionKey = std::move(rhs._SessionKey);
@@ -77,6 +71,8 @@ MiraiClient& MiraiClient::operator=(MiraiClient&& rhs)
 	this->_ThreadPool = std::move(rhs._ThreadPool);
 	return *this;
 }
+
+MiraiClient::~MiraiClient() = default;
 
 void MiraiClient::Connect()
 {

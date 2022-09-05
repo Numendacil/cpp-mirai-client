@@ -46,17 +46,17 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupMessage";
 
-	virtual std::string_view GetType() const override
+	std::string_view GetType() const override
 	{
 		return _TYPE_;
 	}
 
-	// virtual GroupMessageEvent* Clone() const override
+	// GroupMessageEvent* Clone() const override
 	// {
 	//	return new GroupMessageEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取发送者资料
 	GroupMember GetSender() const { return this->_sender; }

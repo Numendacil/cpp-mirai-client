@@ -41,26 +41,22 @@ namespace Mirai
 class SourceMessage : public MessageBase
 {
 protected:
-	MessageId_t _id;
-	std::time_t _timestamp;
+	MessageId_t _id = -1;
+	std::time_t _timestamp = 0;
 
 public:
-	SourceMessage() : _id(-1), _timestamp(0) {}
-	SourceMessage(const SourceMessage&) = default;
-	SourceMessage& operator=(const SourceMessage&) = default;
-	SourceMessage(SourceMessage&&) noexcept = default;
-	SourceMessage& operator=(SourceMessage&&) noexcept = default;
+	SourceMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "Source";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual SourceMessage* Clone() const override { return new SourceMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<SourceMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 	/// 获取消息id
 	MessageId_t GetMessageId() const { return this->_id; }

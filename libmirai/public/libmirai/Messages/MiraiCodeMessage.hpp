@@ -35,26 +35,21 @@ namespace Mirai
 class MiraiCodeMessage : public MessageBase
 {
 protected:
-	std::string _code;
+	std::string _code{};
 
 public:
-	MiraiCodeMessage() {}
-	MiraiCodeMessage(const std::string& code) : _code(code) {}
-	MiraiCodeMessage(const MiraiCodeMessage&) = default;
-	MiraiCodeMessage& operator=(const MiraiCodeMessage&) = default;
-	MiraiCodeMessage(MiraiCodeMessage&&) noexcept = default;
-	MiraiCodeMessage& operator=(MiraiCodeMessage&&) noexcept = default;
+	MiraiCodeMessage() = default;
 
 	static constexpr std::string_view _TYPE_ = "MiraiCode";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual MiraiCodeMessage* Clone() const override { return new MiraiCodeMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<MiraiCodeMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 
 	bool operator==(const MiraiCodeMessage& rhs) { return this->_code == rhs._code; }

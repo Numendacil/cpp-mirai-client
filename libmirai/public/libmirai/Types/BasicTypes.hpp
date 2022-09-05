@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -19,6 +19,7 @@
 #include <chrono>
 #include <ctime>
 #include <string>
+#include <utility>
 
 #include <nlohmann/json_fwd.hpp>
 
@@ -45,10 +46,10 @@ using MessageId_t = int64_t;
 class UID_t
 {
 protected:
-	int64_t _number;
+	int64_t _number = 0;
 
-	UID_t() : _number(0) {}
-	explicit UID_t(int64_t num) : _number(num) {}
+	UID_t() = default;
+	explicit UID_t(int64_t num) : _number{num} {}
 
 public:
 	explicit operator int64_t() const { return this->_number; }
@@ -199,12 +200,12 @@ struct User : public Serializable
 	/// 用户备注（仅对好友有效）
 	std::string remark;
 
-	User(QQ_t id = 0_qq, const std::string& nickname = "", const std::string& remark = "")
-		: id(id), nickname(nickname), remark(remark)
+	User(QQ_t id = 0_qq, std::string nickname = "", std::string remark = "")
+		: id(id), nickname(std::move(nickname)), remark(std::move(remark))
 	{
 	}
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 判定两用户是否为同一人
@@ -227,13 +228,13 @@ struct Group : public Serializable
 	/// Bot在群聊中的权限
 	PERMISSION permission = PERMISSION::UNKNOWN;
 
-	Group(GID_t id = 0_gid, const std::string& name = "", PERMISSION permission = PERMISSION::UNKNOWN)
-		: id(id), name(name), permission(permission)
+	Group(GID_t id = 0_gid, std::string name = "", PERMISSION permission = PERMISSION::UNKNOWN)
+		: id(id), name(std::move(name)), permission(permission)
 	{
 	}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 判定两群聊是否为同一群
@@ -267,22 +268,22 @@ struct GroupMember : public Serializable
 	/// 群聊资料
 	Group group;
 
-	GroupMember(QQ_t id = 0_qq, const std::string& MemberName = "", PERMISSION permission = PERMISSION::UNKNOWN,
-	            const std::string& SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
-	            std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), const Group& group = {})
+	GroupMember(QQ_t id = 0_qq, std::string MemberName = "", PERMISSION permission = PERMISSION::UNKNOWN,
+	            std::string SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
+	            std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), Group group = {})
 		: id(id)
-		, MemberName(MemberName)
+		, MemberName(std::move(MemberName))
 		, permission(permission)
-		, SpecialTitle(SpecialTitle)
+		, SpecialTitle(std::move(SpecialTitle))
 		, JoinTimestamp(JoinTimestamp)
 		, LastSpeakTimestamp(LastSpeakTimestamp)
 		, MuteTimeRemaining(MuteTimeRemaining)
-		, group(group)
+		, group(std::move(group))
 	{
 	}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 判定两群员是否为同一人
@@ -311,14 +312,19 @@ struct UserProfile : public Serializable
 	/// 性别
 	SEX sex = SEX::UNKNOWN;
 
-	UserProfile(const std::string& nickname = "", const std::string& email = "", int age = 0, int level = 0,
-	            const std::string& sign = "", SEX sex = SEX::UNKNOWN)
-		: nickname(nickname), email(email), age(age), level(level), sign(sign), sex(sex)
+	UserProfile(std::string nickname = "", std::string email = "", int age = 0, int level = 0, std::string sign = "",
+	            SEX sex = SEX::UNKNOWN)
+		: nickname(std::move(nickname))
+		, email(std::move(email))
+		, age(age)
+		, level(level)
+		, sign(std::move(sign))
+		, sex(sex)
 	{
 	}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 比较用户资料是否相同
@@ -343,10 +349,10 @@ struct ClientDevice : public Serializable
 	/// 设备平台
 	std::string platform; // TODO：replace with enum
 
-	ClientDevice(int64_t id = 0, const std::string& platform = "") : id(id), platform(platform) {}
+	ClientDevice(int64_t id = 0, std::string platform = "") : id(id), platform(std::move(platform)) {}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 判断设备是否相同

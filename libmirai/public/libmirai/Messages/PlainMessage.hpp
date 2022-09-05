@@ -19,6 +19,7 @@
 #include <string>
 
 #include <nlohmann/json_fwd.hpp>
+#include <utility>
 
 #include "MessageBase.hpp"
 
@@ -35,27 +36,22 @@ namespace Mirai
 class PlainMessage : public MessageBase
 {
 protected:
-	std::string _text;
+	std::string _text{};
 
 public:
-	PlainMessage() {}
-	PlainMessage(const std::string& text) : _text(text) {}
-	PlainMessage(const PlainMessage&) = default;
-	PlainMessage& operator=(const PlainMessage&) = default;
-	PlainMessage(PlainMessage&&) noexcept = default;
-	PlainMessage& operator=(PlainMessage&&) noexcept = default;
-
+	PlainMessage() = default;
+	PlainMessage(std::string text) : _text(std::move(text)) {}
 
 	static constexpr std::string_view _TYPE_ = "Plain";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual PlainMessage* Clone() const override { return new PlainMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<PlainMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 
 	bool operator==(const PlainMessage& rhs) { return this->_text == rhs._text; }

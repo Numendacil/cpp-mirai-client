@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -48,7 +48,7 @@ constexpr std::array<std::string_view, static_cast<std::size_t>(SEX::UNKNOWN) + 
 constexpr std::string_view sex_to_str(const SEX& m)
 {
 	auto i = static_cast<std::size_t>(m);
-	if (i < sex_names.size()) return sex_names[i];
+	if (i < sex_names.size()) return sex_names.at(i);
 	else
 		return "UNKNOWN";
 }
@@ -56,7 +56,7 @@ constexpr std::string_view sex_to_str(const SEX& m)
 constexpr SEX str_to_sex(std::string_view s)
 {
 	for (std::size_t i = 0; i < sex_names.size(); i++)
-		if (sex_names[i] == s) return static_cast<SEX>(i);
+		if (sex_names.at(i) == s) return static_cast<SEX>(i);
 
 	return SEX::UNKNOWN;
 }
@@ -81,7 +81,7 @@ static constexpr std::array<std::string_view, static_cast<std::size_t>(PERMISSIO
 constexpr std::string_view permission_to_str(const PERMISSION& m)
 {
 	auto i = static_cast<std::size_t>(m);
-	if (i < permission_names.size()) return permission_names[i];
+	if (i < permission_names.size()) return permission_names.at(i);
 	else
 		return "";
 }
@@ -89,7 +89,7 @@ constexpr std::string_view permission_to_str(const PERMISSION& m)
 constexpr PERMISSION str_to_permission(std::string_view s)
 {
 	for (std::size_t i = 0; i < permission_names.size(); i++)
-		if (permission_names[i] == s) return static_cast<PERMISSION>(i);
+		if (permission_names.at(i) == s) return static_cast<PERMISSION>(i);
 
 	return PERMISSION::UNKNOWN;
 }

@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -51,7 +51,7 @@ public:
 
 protected:
 	TargetKind _kind = TargetKind::UNKNOWN;
-	QQ_t _target;
+	QQ_t _target{};
 	int64_t _subject = 0;
 
 	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::UNKNOWN)> _TargetKindStr = {
@@ -60,7 +60,7 @@ protected:
 	static constexpr std::string_view _to_string(const TargetKind& m)
 	{
 		auto i = static_cast<std::size_t>(m);
-		if (i < _TargetKindStr.size()) return _TargetKindStr[i];
+		if (i < _TargetKindStr.size()) return _TargetKindStr.at(i);
 		else
 			return "";
 	}
@@ -68,7 +68,7 @@ protected:
 	static constexpr TargetKind _to_enum(std::string_view s)
 	{
 		for (std::size_t i = 0; i < _TargetKindStr.size(); i++)
-			if (_TargetKindStr[i] == s) return static_cast<TargetKind>(i);
+			if (_TargetKindStr.at(i) == s) return static_cast<TargetKind>(i);
 
 		return TargetKind::UNKNOWN;
 	}
@@ -78,7 +78,7 @@ public:
 	 * @brief 构造函数
 	 * 
 	 */
-	NudgeTarget() : _kind(TargetKind::UNKNOWN), _target(0), _subject(0) {}
+	NudgeTarget() = default;
 
 	/**
 	 * @brief 构造函数

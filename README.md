@@ -46,7 +46,7 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 
 其中 [google/googletest](https://github.com/google/googletest) 仅用于测试，实际使用时可以不用安装。
 这些项目都已经以submodule的形式被包含在了 `external/` 目录下，可以通过 `git clone --recursive` 来拉取对应的模块并本地编译链接。
-也可以单独安装这些第三方库，cpp-mirai-client会自动使用 `find_package` 来找到对应的文件。
+你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 `find_package` 来找到对应的文件。
 
 本项目的文档生成使用了 [Doxygen](https://doxygen.org/index.html) 与 [jothepro/doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)。
 
@@ -63,7 +63,7 @@ Read Next: [快速入门](docs/Quickstart.md)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[unittest-shield]: https://img.shields.io/github/workflow/status/numendacil/cpp-mirai-client/UnitTest?style=flat
+[unittest-shield]: https://img.shields.io/github/workflow/status/numendacil/cpp-mirai-client/UnitTest?style=flat&logo=github
 [unittest-url]: https://github.com/numendacil/cpp-mirai-client
 [license-shield]: https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat
 [license-url]: https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE

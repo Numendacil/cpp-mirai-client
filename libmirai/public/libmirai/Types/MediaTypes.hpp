@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -20,6 +20,7 @@
 #include <memory>
 #include <optional>
 #include <string>
+#include <utility>
 
 #include <nlohmann/json_fwd.hpp>
 
@@ -125,7 +126,7 @@ public:
 	 * @brief 构造函数
 	 * 
 	 */
-	FilePath() : _isPath(false) {}
+	FilePath() = default;
 
 	/**
 	 * @brief 构造函数
@@ -133,13 +134,13 @@ public:
 	 * @param dir 文件路径，可能为id或文件名路径
 	 * @param isPath 是否为文件名路径
 	 */
-	FilePath(const std::string& dir, bool isPath = false) : _dir(dir), _isPath(isPath) {}
+	FilePath(std::string dir, bool isPath = false) : _dir(std::move(dir)), _isPath(isPath) {}
 
 	/**
 	 * @brief 构造函数
 	 * @param file `GroupFileInfo` 对象
 	 */
-	FilePath(const GroupFileInfo& file) : _dir(file.id), _isPath(false) {}
+	FilePath(const GroupFileInfo& file) : _dir(file.id) {}
 
 	/**
 	 * @brief 判定是否为文件名路径
@@ -230,9 +231,8 @@ struct MiraiImage : public Serializable
 	/// 是否为表情
 	bool isEmoji = false;
 
-	MiraiImage(const std::string& id = {}, const std::string& url = {}, const std::string& path = {},
-	           const std::string& base64 = {})
-		: id(id), url(url), path(path), base64(base64)
+	MiraiImage(std::string id = {}, std::string url = {}, std::string path = {}, std::string base64 = {})
+		: id(std::move(id)), url(std::move(url)), path(std::move(path)), base64(std::move(base64))
 	{
 	}
 
@@ -246,8 +246,8 @@ struct MiraiImage : public Serializable
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 };
 
 using FriendImage = MiraiImage;
@@ -281,9 +281,8 @@ struct MiraiAudio : public Serializable
 	/// 音频长度
 	int64_t length = 0;
 
-	MiraiAudio(const std::string& id = {}, const std::string& url = {}, const std::string& path = {},
-	           const std::string& base64 = {})
-		: id(id), url(url), path(path), base64(base64)
+	MiraiAudio(std::string id = {}, std::string url = {}, std::string path = {}, std::string base64 = {})
+		: id(std::move(id)), url(std::move(url)), path(std::move(path)), base64(std::move(base64))
 	{
 	}
 
@@ -297,8 +296,8 @@ struct MiraiAudio : public Serializable
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}
 
-	virtual void FromJson(const nlohmann::json&) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json&) override;
+	nlohmann::json ToJson() const override;
 };
 
 // only group audio uploads are supported for now

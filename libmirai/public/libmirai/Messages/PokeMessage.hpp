@@ -60,8 +60,7 @@ public:
 	};
 
 protected:
-	PokeKind _kind;
-
+	PokeKind _kind = PokeKind::UNKNOWN;
 
 	static constexpr std::array<std::string_view, static_cast<std::size_t>(PokeKind::UNKNOWN)> _PokeKindStr = {
 		"ChuoYiChuo", "BiXin",       "DianZan",  "XinSui", "LiuLiuLiu", "FangDaZhao", "GouYin",  "BaoBeiQiu",
@@ -70,7 +69,7 @@ protected:
 	static constexpr std::string_view _to_string(const PokeKind& m)
 	{
 		auto i = static_cast<std::size_t>(m);
-		if (i < _PokeKindStr.size()) return _PokeKindStr[i];
+		if (i < _PokeKindStr.size()) return _PokeKindStr.at(i);
 		else
 			return "";
 	}
@@ -78,30 +77,25 @@ protected:
 	static constexpr PokeKind _to_enum(std::string_view s)
 	{
 		for (std::size_t i = 0; i < _PokeKindStr.size(); i++)
-			if (_PokeKindStr[i] == s) return static_cast<PokeKind>(i);
+			if (_PokeKindStr.at(i) == s) return static_cast<PokeKind>(i);
 
 		return PokeKind::UNKNOWN;
 	}
 
 public:
-	PokeMessage() {}
+	PokeMessage() = default;
 	PokeMessage(PokeKind kind) : _kind(kind) {}
-	PokeMessage(const PokeMessage&) = default;
-	PokeMessage& operator=(const PokeMessage&) = default;
-	PokeMessage(PokeMessage&&) noexcept = default;
-	PokeMessage& operator=(PokeMessage&&) noexcept = default;
-
 
 	static constexpr std::string_view _TYPE_ = "Poke";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	virtual PokeMessage* Clone() const override { return new PokeMessage(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<PokeMessage>(*this); }
 
-	virtual bool isValid() const override;
+	bool isValid() const override;
 
-	virtual void FromJson(const nlohmann::json& data) override;
-	virtual nlohmann::json ToJson() const override;
+	void FromJson(const nlohmann::json& data) override;
+	nlohmann::json ToJson() const override;
 
 	bool operator==(const PokeMessage& rhs) { return this->_kind == rhs._kind; }
 

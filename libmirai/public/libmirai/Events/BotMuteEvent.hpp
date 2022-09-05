@@ -47,14 +47,14 @@ public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotMuteEvent";
 
-	virtual std::string_view GetType() const override { return _TYPE_; }
+	std::string_view GetType() const override { return _TYPE_; }
 
-	// virtual BotMuteEvent* Clone() const override
+	// BotMuteEvent* Clone() const override
 	// {
 	//	return new BotMuteEvent(*this);
 	// }
 
-	virtual void FromJson(const nlohmann::json& data) override;
+	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取操作员信息
 	GroupMember GetOperator() const { return this->_operator; }

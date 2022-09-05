@@ -58,7 +58,7 @@ protected:
 	}
 
 public:
-	ThreadPool(std::size_t n) : _stop(false)
+	ThreadPool(std::size_t n)
 	{
 		_workers.reserve(n);
 		for (std::size_t i = 0; i < n; i++)
@@ -66,6 +66,10 @@ public:
 			_workers.emplace_back([this]() { this->_loop(); });
 		}
 	}
+	ThreadPool(const ThreadPool&) = delete;
+	ThreadPool& operator=(const ThreadPool&) = delete;
+	ThreadPool(ThreadPool&&) = delete;
+	ThreadPool& operator=(ThreadPool&&) = delete;
 
 	~ThreadPool()
 	{

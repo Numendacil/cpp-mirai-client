@@ -1,10 +1,15 @@
 ---
-Checks:		'bugprone-*, clang-diagnostic-*,clang-analyzer-*,cppcoreguidelines-*,modernize-*,-modernize-use-trailing-return-type, -modernize-use-nodiscard, readability-*'
+Checks:		-'bugprone-*, clang-diagnostic-*,clang-analyzer-*,
+            cppcoreguidelines-*,modernize-*,
+            -modernize-use-trailing-return-type, -modernize-use-nodiscard, -cppcoreguidelines-avoid-magic-numbers,
+            -readability-identifier-length, -cppcoreguidelines-non-private-member-variables-in-classes,
+            -cppcoreguidelines-pro-type-static-cast-downcast, -cppcoreguidelines-macro-usage,
+            readability-*'
 WarningsAsErrors: true
 HeaderFilterRegex: ''
 AnalyzeTemporaryDtors: true
 CheckOptions:
-	- key: cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
-  	  value: true
+  - key: cppcoreguidelines-special-member-functions.AllowSoleDefaultDtor
+    value: true
 ...
 
