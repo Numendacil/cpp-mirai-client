@@ -1,6 +1,6 @@
 var classMirai_1_1FriendInputStatusChangedEvent =
 [
-    [ "GetType", "classMirai_1_1FriendInputStatusChangedEvent.html#a19ad49afe3de2a2ea44312a3a7de92da", null ],
+    [ "GetType", "classMirai_1_1FriendInputStatusChangedEvent.html#a5f72e3306211c946e999bc0402eca8c0", null ],
     [ "FromJson", "classMirai_1_1FriendInputStatusChangedEvent.html#a1b11aff2b7771f715e5d919cd6712bc1", null ],
     [ "GetFriend", "classMirai_1_1FriendInputStatusChangedEvent.html#aada6b68dd7e9df98585c38a59365ae88", null ],
     [ "isInputting", "classMirai_1_1FriendInputStatusChangedEvent.html#a9af9162cbb18a75f90df5ab07ce5bd4e", null ],

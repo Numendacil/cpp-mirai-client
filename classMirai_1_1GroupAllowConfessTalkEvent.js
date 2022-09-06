@@ -1,6 +1,6 @@
 var classMirai_1_1GroupAllowConfessTalkEvent =
 [
-    [ "GetType", "classMirai_1_1GroupAllowConfessTalkEvent.html#aac809df23e70ebb616a9e5933ca4d8d6", null ],
+    [ "GetType", "classMirai_1_1GroupAllowConfessTalkEvent.html#a987a38136ae2a77c5e617829fdc77a33", null ],
     [ "FromJson", "classMirai_1_1GroupAllowConfessTalkEvent.html#ad68d1ab3595bd49504af2ec49a1e4165", null ],
     [ "GetGroup", "classMirai_1_1GroupAllowConfessTalkEvent.html#a472ade916680259506bbe0292f456a5b", null ],
     [ "GetOriginal", "classMirai_1_1GroupAllowConfessTalkEvent.html#afd447111b0f999cae92d3589409732e6", null ],

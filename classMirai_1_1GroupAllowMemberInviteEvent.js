@@ -1,6 +1,6 @@
 var classMirai_1_1GroupAllowMemberInviteEvent =
 [
-    [ "GetType", "classMirai_1_1GroupAllowMemberInviteEvent.html#a460d8bc5b60743c4c0f9962f1ce5b099", null ],
+    [ "GetType", "classMirai_1_1GroupAllowMemberInviteEvent.html#a4e9cd0800786e99129506a45ed7e99c1", null ],
     [ "FromJson", "classMirai_1_1GroupAllowMemberInviteEvent.html#a91268fdd6f0172c3bde27436a7f85a69", null ],
     [ "GetGroup", "classMirai_1_1GroupAllowMemberInviteEvent.html#ad9cbb109327ec597112394cd5beb2a9a", null ],
     [ "GetOriginal", "classMirai_1_1GroupAllowMemberInviteEvent.html#aebe3d369bd80dfed9792e210abfe9ccd", null ],

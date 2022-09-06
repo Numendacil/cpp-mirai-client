@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['shoulei_0',['SHOULEI',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fea8649049751341d0d8bba26e70eca71f7',1,'Mirai::PokeMessage']]],
-  ['stranger_1',['STRANGER',['../classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089a88a8f25eef5665fd48c997efb8e5ce12',1,'Mirai::NudgeTarget']]],
-  ['suiping_2',['SUIPING',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fea079cc13482bab934fa7e2c7f4087d792',1,'Mirai::PokeMessage']]]
+  ['rangnipi_0',['RANGNIPI',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70feabda470bd0dd7162f32643db043894976',1,'Mirai::PokeMessage']]],
+  ['refuse_1',['REFUSE',['../namespaceMirai.html#a2e695ec07967da65495a009ab82a432da499a6c694b83db642a374bbc7cb07711',1,'Mirai::REFUSE()'],['../namespaceMirai.html#abf9de3b5f610389eacaef2b16ea3a7f5a499a6c694b83db642a374bbc7cb07711',1,'Mirai::REFUSE()'],['../namespaceMirai.html#a676ad4eefc836dff0ad0a0eff08e617aa499a6c694b83db642a374bbc7cb07711',1,'Mirai::REFUSE()']]],
+  ['refuse_5fblacklist_2',['REFUSE_BLACKLIST',['../namespaceMirai.html#abf9de3b5f610389eacaef2b16ea3a7f5aed7ef934a6206cda545c0de1db842e60',1,'Mirai']]],
+  ['rose_3',['ROSE',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70feadce628868efe660b603b35bdc74172e4',1,'Mirai::PokeMessage']]]
 ];

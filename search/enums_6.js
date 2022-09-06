@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['targetkind_0',['TargetKind',['../classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089',1,'Mirai::NudgeTarget']]]
+  ['sendertype_0',['SenderType',['../classMirai_1_1CommandExecutedEvent.html#afd2730220621ee454bbaa00cdb6fa353',1,'Mirai::CommandExecutedEvent']]],
+  ['sex_1',['SEX',['../namespaceMirai.html#ab34e8f10186988d6b406264b98495120',1,'Mirai']]]
 ];

@@ -1,6 +1,6 @@
 var classMirai_1_1NewFriendRequestEvent =
 [
-    [ "GetType", "classMirai_1_1NewFriendRequestEvent.html#a0d679cc4c7173ac51a267096fe002f85", null ],
+    [ "GetType", "classMirai_1_1NewFriendRequestEvent.html#a0d09d21647d8e73afdb3398a6e6ecdb5", null ],
     [ "FromJson", "classMirai_1_1NewFriendRequestEvent.html#a873e80da32c3c43a1d93a2a73e4c8e4d", null ],
     [ "GetEventId", "classMirai_1_1NewFriendRequestEvent.html#ac062b8ac5ef12a27e9d1df62f1ee6a68", null ],
     [ "GetUserId", "classMirai_1_1NewFriendRequestEvent.html#ab9233a41bdcb0d34063e0e8e2429bd43", null ],

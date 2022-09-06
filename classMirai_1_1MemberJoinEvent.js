@@ -1,6 +1,6 @@
 var classMirai_1_1MemberJoinEvent =
 [
-    [ "GetType", "classMirai_1_1MemberJoinEvent.html#a5d02575d4e7f2c318b8a9d6394873d69", null ],
+    [ "GetType", "classMirai_1_1MemberJoinEvent.html#aab0abc9b8a06abf184fedd8141d7eb84", null ],
     [ "FromJson", "classMirai_1_1MemberJoinEvent.html#a481e2d3a75031a914af281788313cc7e", null ],
     [ "GetMember", "classMirai_1_1MemberJoinEvent.html#a3a9cbad32b9becddf36b3cd488d441e9", null ],
     [ "GetInviter", "classMirai_1_1MemberJoinEvent.html#ad8964bf471710e582802a341eb0f56a2", null ],

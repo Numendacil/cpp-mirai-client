@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['sendertype_0',['SenderType',['../classMirai_1_1CommandExecutedEvent.html#afd2730220621ee454bbaa00cdb6fa353',1,'Mirai::CommandExecutedEvent']]],
-  ['sex_1',['SEX',['../namespaceMirai.html#ab34e8f10186988d6b406264b98495120',1,'Mirai']]]
+  ['permission_0',['PERMISSION',['../namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0',1,'Mirai']]],
+  ['pokekind_1',['PokeKind',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fe',1,'Mirai::PokeMessage']]]
 ];

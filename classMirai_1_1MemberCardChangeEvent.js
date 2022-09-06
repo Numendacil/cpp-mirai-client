@@ -1,6 +1,6 @@
 var classMirai_1_1MemberCardChangeEvent =
 [
-    [ "GetType", "classMirai_1_1MemberCardChangeEvent.html#a76e8efbcd23ad6e73b8c5888b0c7ebc3", null ],
+    [ "GetType", "classMirai_1_1MemberCardChangeEvent.html#a9e4aa6da15210ab0fb12beb8eb5b7bc4", null ],
     [ "FromJson", "classMirai_1_1MemberCardChangeEvent.html#ad160ee46b7680b56ee8e27b41e7b3bce", null ],
     [ "GetMember", "classMirai_1_1MemberCardChangeEvent.html#a004405c72e20093ba4680fa4eb09c436", null ],
     [ "GetOriginal", "classMirai_1_1MemberCardChangeEvent.html#aec4092522026725d92c7c634451cc676", null ],

@@ -1,6 +1,6 @@
 var classMirai_1_1GroupAllowAnonymousChatEvent =
 [
-    [ "GetType", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a5ef2171771bb8bd588b7716cf7de2eed", null ],
+    [ "GetType", "classMirai_1_1GroupAllowAnonymousChatEvent.html#af779237e4bf1a4c48d8d2827ad96fb37", null ],
     [ "FromJson", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a78511894a8e7e725d167390116099683", null ],
     [ "GetGroup", "classMirai_1_1GroupAllowAnonymousChatEvent.html#a44b074aebe32dd78a3280740a9ab5583", null ],
     [ "GetOriginal", "classMirai_1_1GroupAllowAnonymousChatEvent.html#abeca2ebcf9d10bedabf630b861cf44e9", null ],

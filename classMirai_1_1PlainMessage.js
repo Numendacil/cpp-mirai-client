@@ -1,13 +1,9 @@
 var classMirai_1_1PlainMessage =
 [
-    [ "PlainMessage", "classMirai_1_1PlainMessage.html#aef5eaba28d5e76670e81be6b463a0031", null ],
-    [ "PlainMessage", "classMirai_1_1PlainMessage.html#a5a28e638d253ad1244e3c08c6116288f", null ],
-    [ "PlainMessage", "classMirai_1_1PlainMessage.html#a7c1f29e6d5eb98e2e548cbbe7804a3af", null ],
-    [ "PlainMessage", "classMirai_1_1PlainMessage.html#adaeae529bc74e5f3cb4ceb579868526c", null ],
-    [ "operator=", "classMirai_1_1PlainMessage.html#a91885cdfc11c1b5acc978259eff656b0", null ],
-    [ "operator=", "classMirai_1_1PlainMessage.html#ace099cf035aa06e4cd73c2b77cda913f", null ],
-    [ "GetType", "classMirai_1_1PlainMessage.html#a803bbf0fd41ca796576541b01b304faa", null ],
-    [ "Clone", "classMirai_1_1PlainMessage.html#ae3bed474c77f09a3a94e2126e50f5d7c", null ],
+    [ "PlainMessage", "classMirai_1_1PlainMessage.html#a97d55dc50b38ce7f86fb66ed879f5581", null ],
+    [ "PlainMessage", "classMirai_1_1PlainMessage.html#a59a7d4766d40e1946c2e00eec0057610", null ],
+    [ "GetType", "classMirai_1_1PlainMessage.html#a6a868daef8173207a931dee4f59482f3", null ],
+    [ "CloneUnique", "classMirai_1_1PlainMessage.html#ac2b024861af123c96c1149a9e692528d", null ],
     [ "isValid", "classMirai_1_1PlainMessage.html#a5b1dca48d8e8ea52b56e57f351752db7", null ],
     [ "FromJson", "classMirai_1_1PlainMessage.html#afd810135005558fa2976c4be5a43ae3d", null ],
     [ "ToJson", "classMirai_1_1PlainMessage.html#a3c87d40b771d891e54f3200647a68d6c", null ],

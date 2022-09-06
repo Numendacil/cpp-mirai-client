@@ -1,6 +1,6 @@
 var classMirai_1_1BotMuteEvent =
 [
-    [ "GetType", "classMirai_1_1BotMuteEvent.html#ab0f1602c7195e713c4fca7970ecf0eae", null ],
+    [ "GetType", "classMirai_1_1BotMuteEvent.html#a05a68f7dfa51f2b378d1fcdc6682f9d2", null ],
     [ "FromJson", "classMirai_1_1BotMuteEvent.html#af2c78ced4ae21ba64165c927f0a9fb02", null ],
     [ "GetOperator", "classMirai_1_1BotMuteEvent.html#a609a024477998ccc88d3544edcd8308d", null ],
     [ "GetMuteTime", "classMirai_1_1BotMuteEvent.html#ab235be393c18d56bcef0fa4e52f3fcd7", null ],

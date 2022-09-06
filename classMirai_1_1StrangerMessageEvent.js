@@ -1,6 +1,6 @@
 var classMirai_1_1StrangerMessageEvent =
 [
-    [ "GetType", "classMirai_1_1StrangerMessageEvent.html#a70783ac1e916d4e17b671ecf8157ebe1", null ],
+    [ "GetType", "classMirai_1_1StrangerMessageEvent.html#adb0f7899ae050ca9d12618a79a4b1e0f", null ],
     [ "FromJson", "classMirai_1_1StrangerMessageEvent.html#aacc03463b1b1fa1b64f4479b718ba119", null ],
     [ "GetSender", "classMirai_1_1StrangerMessageEvent.html#a8a3fb43e165ded6320d31b08e39a27bf", null ],
     [ "GetMessage", "classMirai_1_1StrangerMessageEvent.html#ace3c8017f08de297224fd3b562bcf974", null ],

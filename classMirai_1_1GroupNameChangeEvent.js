@@ -1,6 +1,6 @@
 var classMirai_1_1GroupNameChangeEvent =
 [
-    [ "GetType", "classMirai_1_1GroupNameChangeEvent.html#a193550802473355b8d6334ed86be68b8", null ],
+    [ "GetType", "classMirai_1_1GroupNameChangeEvent.html#a91106b3efeb9af0dd83d1724fcc1dbc3", null ],
     [ "FromJson", "classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87", null ],
     [ "GetGroup", "classMirai_1_1GroupNameChangeEvent.html#ab74521bc19f92a5ce0287f6c6c966e50", null ],
     [ "GetOriginal", "classMirai_1_1GroupNameChangeEvent.html#a82927391c05c8f31d7722834ce5576af", null ],

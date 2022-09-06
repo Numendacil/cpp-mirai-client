@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['owner_0',['OWNER',['../namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0ade06d20060c639c59c42737ddf002535',1,'Mirai']]]
+  ['neteasecloudmusic_0',['NETEASECLOUDMUSIC',['../classMirai_1_1MusicShareMessage.html#af243b8fc262cc4dd7bc551a4edc07d16a5440b2186003ec77bf0436cb088a51d4',1,'Mirai::MusicShareMessage']]]
 ];

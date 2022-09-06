@@ -1,6 +1,6 @@
 var classMirai_1_1GroupMuteAllEvent =
 [
-    [ "GetType", "classMirai_1_1GroupMuteAllEvent.html#af68800d1891a2abbf193e9c2049d55ec", null ],
+    [ "GetType", "classMirai_1_1GroupMuteAllEvent.html#a2e1384092af1064bc81ea8e772bcfadf", null ],
     [ "FromJson", "classMirai_1_1GroupMuteAllEvent.html#a1ebfa6a184ec68ee8a7f46eccb777e74", null ],
     [ "GetGroup", "classMirai_1_1GroupMuteAllEvent.html#a18df378f86415971abc039c2b7a8fcb6", null ],
     [ "GetOriginal", "classMirai_1_1GroupMuteAllEvent.html#a51e898e8ea821d83ee9d98008889dead", null ],

@@ -6,7 +6,7 @@ var classMirai_1_1NudgeTarget =
       [ "STRANGER", "classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089a88a8f25eef5665fd48c997efb8e5ce12", null ],
       [ "UNKNOWN", "classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089ac7464de20f9de21e4a7ed40db3113e4b", null ]
     ] ],
-    [ "NudgeTarget", "classMirai_1_1NudgeTarget.html#a5a504556d39260536572c2438c66a8d9", null ],
+    [ "NudgeTarget", "classMirai_1_1NudgeTarget.html#a6a6578f643803ab2e8decc891c5ed99d", null ],
     [ "NudgeTarget", "classMirai_1_1NudgeTarget.html#a5b4501e749d9fc38d0960b825616b9c3", null ],
     [ "GetTargetKind", "classMirai_1_1NudgeTarget.html#ae4a937deb521964f6d0b9baeb84a8551", null ],
     [ "GetTargetKindStr", "classMirai_1_1NudgeTarget.html#a5de6b6c92fb69c09b53cc33e1386d2f1", null ],

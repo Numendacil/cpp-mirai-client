@@ -1,12 +1,8 @@
 var classMirai_1_1QuoteMessage =
 [
-    [ "QuoteMessage", "classMirai_1_1QuoteMessage.html#a01b137c0c779cb6ea4194152e4b05d0a", null ],
-    [ "QuoteMessage", "classMirai_1_1QuoteMessage.html#a55451539b67486a126207df5305d6343", null ],
-    [ "QuoteMessage", "classMirai_1_1QuoteMessage.html#ad9f81727fdcd105528f2a24c0d37f139", null ],
-    [ "operator=", "classMirai_1_1QuoteMessage.html#a1573818ba98d9446ded19ed393d938c0", null ],
-    [ "operator=", "classMirai_1_1QuoteMessage.html#a8318cb0272b2999d277d896bd296b4e8", null ],
-    [ "GetType", "classMirai_1_1QuoteMessage.html#a70b68d61e496d980782022fa370f6be5", null ],
-    [ "Clone", "classMirai_1_1QuoteMessage.html#a0bfbf8466e124e5a89b2790e6d9defc2", null ],
+    [ "QuoteMessage", "classMirai_1_1QuoteMessage.html#a021ed6b57092113897155f0e45b29278", null ],
+    [ "GetType", "classMirai_1_1QuoteMessage.html#a5bed55012bd3b53df1433cca290f6091", null ],
+    [ "CloneUnique", "classMirai_1_1QuoteMessage.html#ab04774293b147c390b671295b63c2654", null ],
     [ "FromJson", "classMirai_1_1QuoteMessage.html#a98e926bcce37d8a120254cabd1abffa6", null ],
     [ "ToJson", "classMirai_1_1QuoteMessage.html#adf0cc0500387a694dd03997963167ea7", null ],
     [ "isValid", "classMirai_1_1QuoteMessage.html#a008bdc21450fa6f24838ec74bd697779", null ],

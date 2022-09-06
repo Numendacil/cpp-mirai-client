@@ -1,10 +1,7 @@
 var classMirai_1_1FlashImageMessage =
 [
-    [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html#ad8efafa2bba9795b435057d2a40a2c72", null ],
-    [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html#aeca1ad3b7606eb46bfa54c83fde614fc", null ],
-    [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html#ab200235cb80c414e6663eeaa2ac31eed", null ],
-    [ "operator=", "classMirai_1_1FlashImageMessage.html#a0295ea2abe63612f64b095d78b167729", null ],
-    [ "operator=", "classMirai_1_1FlashImageMessage.html#a2502ad1376692fc3f794dd6d5ff6c537", null ],
-    [ "GetType", "classMirai_1_1FlashImageMessage.html#aa7880eddc806b3e089976407178d9064", null ],
-    [ "Clone", "classMirai_1_1FlashImageMessage.html#afac9a07bfe83213188755a542383e437", null ]
+    [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html#a0eba9a832936f116084e330ad716a2e9", null ],
+    [ "FlashImageMessage", "classMirai_1_1FlashImageMessage.html#ad44f101ef9ec2642ba91409860bf79a4", null ],
+    [ "GetType", "classMirai_1_1FlashImageMessage.html#a483c5cdb884326e108d12abf54a288a8", null ],
+    [ "CloneUnique", "classMirai_1_1FlashImageMessage.html#adea5e08c3b063e21aa7d14b24fb4785f", null ]
 ];

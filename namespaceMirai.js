@@ -57,6 +57,7 @@ var namespaceMirai =
     [ "GroupRecallEvent", "classMirai_1_1GroupRecallEvent.html", "classMirai_1_1GroupRecallEvent" ],
     [ "GroupSyncMessageEvent", "classMirai_1_1GroupSyncMessageEvent.html", "classMirai_1_1GroupSyncMessageEvent" ],
     [ "IllegalSession", "classMirai_1_1IllegalSession.html", "classMirai_1_1IllegalSession" ],
+    [ "ILogger", "classMirai_1_1ILogger.html", "classMirai_1_1ILogger" ],
     [ "ImageMessage", "classMirai_1_1ImageMessage.html", "classMirai_1_1ImageMessage" ],
     [ "JsonMessage", "classMirai_1_1JsonMessage.html", "classMirai_1_1JsonMessage" ],
     [ "MarketFaceMessage", "classMirai_1_1MarketFaceMessage.html", "classMirai_1_1MarketFaceMessage" ],
@@ -88,6 +89,7 @@ var namespaceMirai =
     [ "NotVerifySession", "classMirai_1_1NotVerifySession.html", "classMirai_1_1NotVerifySession" ],
     [ "NudgeEvent", "classMirai_1_1NudgeEvent.html", "classMirai_1_1NudgeEvent" ],
     [ "NudgeTarget", "classMirai_1_1NudgeTarget.html", "classMirai_1_1NudgeTarget" ],
+    [ "NullLogger", "classMirai_1_1NullLogger.html", "classMirai_1_1NullLogger" ],
     [ "OtherClientMessageEvent", "classMirai_1_1OtherClientMessageEvent.html", "classMirai_1_1OtherClientMessageEvent" ],
     [ "OtherClientOfflineEvent", "classMirai_1_1OtherClientOfflineEvent.html", "classMirai_1_1OtherClientOfflineEvent" ],
     [ "OtherClientOnlineEvent", "classMirai_1_1OtherClientOnlineEvent.html", "classMirai_1_1OtherClientOnlineEvent" ],
@@ -141,6 +143,15 @@ var namespaceMirai =
       [ "ADMINISTRATOR", "namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a99fedb09f0f5da90e577784e5f9fdc23", null ],
       [ "MEMBER", "namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a77e6cb59f088a2937324f798be141b4b", null ],
       [ "UNKNOWN", "namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3", null ]
+    ] ],
+    [ "LoggingLevels", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19", [
+      [ "TRACE", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a2d3e4144aa384b18849ab9a8abad74d6", null ],
+      [ "DEBUG", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19adc30ec20708ef7b0f641ef78b7880a15", null ],
+      [ "INFO", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a551b723eafd6a31d444fcb2f5920fbd3", null ],
+      [ "WARN", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a32bd8a1db2275458673903bdb84cb277", null ],
+      [ "ERROR", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19abb1ca97ec761fc37101737ba0aa2e7c5", null ],
+      [ "FATAL", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a19da7170bea36556dde582519795f3fc", null ],
+      [ "OFF", "namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a88559a0cfd8250c9d65970cc145c92d4", null ]
     ] ],
     [ "operator+", "namespaceMirai.html#a145f9dfd06b22c26d2d93948067aba33", null ],
     [ "operator+", "namespaceMirai.html#a3c569c3d95fdb4b93ba58a9a6816b4f3", null ],

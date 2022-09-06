@@ -5,7 +5,7 @@ var classMirai_1_1CommandExecutedEvent =
       [ "MEMBER", "classMirai_1_1CommandExecutedEvent.html#afd2730220621ee454bbaa00cdb6fa353a595d5f7b3f95bbeafb81bc0fb229914e", null ],
       [ "CONSOLE", "classMirai_1_1CommandExecutedEvent.html#afd2730220621ee454bbaa00cdb6fa353a32659c6c9c1072745be395fd6d6d05bc", null ]
     ] ],
-    [ "GetType", "classMirai_1_1CommandExecutedEvent.html#aca55893a684a75be50acbe83ea68c2fe", null ],
+    [ "GetType", "classMirai_1_1CommandExecutedEvent.html#a50fe46e1dd32ddf55194510210f05b29", null ],
     [ "FromJson", "classMirai_1_1CommandExecutedEvent.html#a68a643951e20a35eeffc8856dab52ead", null ],
     [ "GetName", "classMirai_1_1CommandExecutedEvent.html#a081387e61d12ac15cec2e5b26f373e4e", null ],
     [ "GetSenderType", "classMirai_1_1CommandExecutedEvent.html#ae1719ba89b393a0ab2d52883b67eba6b", null ],

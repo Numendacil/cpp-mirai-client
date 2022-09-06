@@ -1,6 +1,6 @@
 var structMirai_1_1MiraiImage =
 [
-    [ "MiraiImage", "structMirai_1_1MiraiImage.html#a900a4020457ba8dc39769a90e8cf4c25", null ],
+    [ "MiraiImage", "structMirai_1_1MiraiImage.html#aefb6dca96d464781270481ec1b8ea440", null ],
     [ "isValid", "structMirai_1_1MiraiImage.html#a11dc056ca72d807c700cf6f0c80a4f8e", null ],
     [ "FromJson", "structMirai_1_1MiraiImage.html#a51eb64dfd0f30cd68180cf7985e48b01", null ],
     [ "ToJson", "structMirai_1_1MiraiImage.html#aee6b6200d6c7c0b0a4fc2d21eac642f3", null ],

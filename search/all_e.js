@@ -9,7 +9,7 @@ var searchData=
   ['newfriendrequestop_6',['NewFriendRequestOp',['../namespaceMirai.html#a2e695ec07967da65495a009ab82a432d',1,'Mirai']]],
   ['nickname_7',['nickname',['../structMirai_1_1UserProfile.html#ad0503d297e8ebeb8caeb236db613e8cb',1,'Mirai::UserProfile::nickname()'],['../structMirai_1_1User.html#a4504a9e302788bf41ca0f90657d6eb5d',1,'Mirai::User::nickname()']]],
   ['nobot_8',['NoBot',['../classMirai_1_1NoBot.html',1,'Mirai::NoBot'],['../classMirai_1_1NoBot.html#aa3b54ac064ea35c365f0d8f57156e365',1,'Mirai::NoBot::NoBot()']]],
-  ['node_9',['Node',['../classMirai_1_1ForwardMessage_1_1Node.html',1,'Mirai::ForwardMessage::Node'],['../classMirai_1_1ForwardMessage_1_1Node.html#a13a11cf910048925d4dd396fb9d0bc2d',1,'Mirai::ForwardMessage::Node::Node(Node &amp;&amp;) noexcept=default'],['../classMirai_1_1ForwardMessage_1_1Node.html#a2e482fb8ad3cdcc38711ecf983a84169',1,'Mirai::ForwardMessage::Node::Node(const Node &amp;)=default'],['../classMirai_1_1ForwardMessage_1_1Node.html#a049f5b5371bc1a330629f938406a2965',1,'Mirai::ForwardMessage::Node::Node()']]],
+  ['node_9',['Node',['../classMirai_1_1ForwardMessage_1_1Node.html',1,'Mirai::ForwardMessage::Node'],['../classMirai_1_1ForwardMessage_1_1Node.html#af7d5fed5b4273003f3152aa9ddcd64bb',1,'Mirai::ForwardMessage::Node::Node()']]],
   ['nodelist_10',['NodeList',['../classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0',1,'Mirai::ForwardMessage']]],
   ['noelement_11',['NoElement',['../classMirai_1_1NoElement.html',1,'Mirai::NoElement'],['../classMirai_1_1NoElement.html#ad6c606ffe36c17198c69f2f263eeaaf3',1,'Mirai::NoElement::NoElement()']]],
   ['nooperatesupport_12',['NoOperateSupport',['../classMirai_1_1NoOperateSupport.html',1,'Mirai::NoOperateSupport'],['../classMirai_1_1NoOperateSupport.html#a5a195fd630267e39143237afe946a1b5',1,'Mirai::NoOperateSupport::NoOperateSupport()']]],
@@ -22,6 +22,7 @@ var searchData=
   ['nudgegroup_19',['NudgeGroup',['../classMirai_1_1MiraiClient.html#a4f88253ed205fc287e0823b17f3c5331',1,'Mirai::MiraiClient']]],
   ['nudgegroupmember_20',['NudgeGroupMember',['../classMirai_1_1NudgeTarget.html#aa65aac10dc49bd249145f3d179453ab9',1,'Mirai::NudgeTarget']]],
   ['nudgestranger_21',['NudgeStranger',['../classMirai_1_1MiraiClient.html#aab1f8dbc6c11ee0fc291e42e918e68f6',1,'Mirai::MiraiClient::NudgeStranger()'],['../classMirai_1_1NudgeTarget.html#a874382b69b019aac96fed11a2122d791',1,'Mirai::NudgeTarget::NudgeStranger()']]],
-  ['nudgetarget_22',['NudgeTarget',['../classMirai_1_1NudgeTarget.html',1,'Mirai::NudgeTarget'],['../classMirai_1_1NudgeTarget.html#a5a504556d39260536572c2438c66a8d9',1,'Mirai::NudgeTarget::NudgeTarget()'],['../classMirai_1_1NudgeTarget.html#a5b4501e749d9fc38d0960b825616b9c3',1,'Mirai::NudgeTarget::NudgeTarget(TargetKind kind, QQ_t target, UID_t subject)']]],
-  ['nudgetarget_2ehpp_23',['NudgeTarget.hpp',['../NudgeTarget_8hpp.html',1,'']]]
+  ['nudgetarget_22',['NudgeTarget',['../classMirai_1_1NudgeTarget.html',1,'Mirai::NudgeTarget'],['../classMirai_1_1NudgeTarget.html#a6a6578f643803ab2e8decc891c5ed99d',1,'Mirai::NudgeTarget::NudgeTarget()=default'],['../classMirai_1_1NudgeTarget.html#a5b4501e749d9fc38d0960b825616b9c3',1,'Mirai::NudgeTarget::NudgeTarget(TargetKind kind, QQ_t target, UID_t subject)']]],
+  ['nudgetarget_2ehpp_23',['NudgeTarget.hpp',['../NudgeTarget_8hpp.html',1,'']]],
+  ['nulllogger_24',['NullLogger',['../classMirai_1_1NullLogger.html',1,'Mirai::NullLogger'],['../classMirai_1_1NullLogger.html#a92998f604c70cc70b8a79a3eb7afb009',1,'Mirai::NullLogger::NullLogger()']]]
 ];

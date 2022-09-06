@@ -1,13 +1,9 @@
 var classMirai_1_1XmlMessage =
 [
-    [ "XmlMessage", "classMirai_1_1XmlMessage.html#a78afd4f7f70164fc9c7f1496112f4a3a", null ],
-    [ "XmlMessage", "classMirai_1_1XmlMessage.html#aae1bc06e937a6a1d518e6729cdd40bee", null ],
-    [ "XmlMessage", "classMirai_1_1XmlMessage.html#ae938bc2c2e079f58ecfc3ed77a2654db", null ],
-    [ "XmlMessage", "classMirai_1_1XmlMessage.html#a4f93a7c8efea4149aa493935220651dd", null ],
-    [ "operator=", "classMirai_1_1XmlMessage.html#aceea9d7a6d5b607df112f12497a9fa34", null ],
-    [ "operator=", "classMirai_1_1XmlMessage.html#af462971d9c7dc9536d91d5dfc3f0d8f8", null ],
-    [ "GetType", "classMirai_1_1XmlMessage.html#a425a69f9e47369413c100746fc5d777a", null ],
-    [ "Clone", "classMirai_1_1XmlMessage.html#a7f96356d17ef182cdde458b3cecf43e1", null ],
+    [ "XmlMessage", "classMirai_1_1XmlMessage.html#affea8cead5e8a2eb8a793176000f5314", null ],
+    [ "XmlMessage", "classMirai_1_1XmlMessage.html#a01c60700ee46609ea5f081d0b70b5dea", null ],
+    [ "GetType", "classMirai_1_1XmlMessage.html#adad89b9c0f603c1408b198e62e96b326", null ],
+    [ "CloneUnique", "classMirai_1_1XmlMessage.html#aa1861e3fcf5c9fef1816dcc81c80d875", null ],
     [ "FromJson", "classMirai_1_1XmlMessage.html#aa4f98951711db94732835d15cfbfd17d", null ],
     [ "ToJson", "classMirai_1_1XmlMessage.html#adeaf376580165ad2c49c4d911c8f0f10", null ],
     [ "isValid", "classMirai_1_1XmlMessage.html#aa4fd1951dda7106c0b256969a5499c59", null ],

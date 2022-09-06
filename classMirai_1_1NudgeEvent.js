@@ -1,6 +1,6 @@
 var classMirai_1_1NudgeEvent =
 [
-    [ "GetType", "classMirai_1_1NudgeEvent.html#a9cba2cc8f52f764aba79e58a88bd13c2", null ],
+    [ "GetType", "classMirai_1_1NudgeEvent.html#a673d4de00c356d9b191a0dda8cc7a14d", null ],
     [ "FromJson", "classMirai_1_1NudgeEvent.html#af92265b1e8670417c954df736e8bb39f", null ],
     [ "GetSender", "classMirai_1_1NudgeEvent.html#a53f34b1b8137e27026caabdf20950dc7", null ],
     [ "GetTarget", "classMirai_1_1NudgeEvent.html#abc21447135b8919cdf1efa0fbbe4dfd3", null ],

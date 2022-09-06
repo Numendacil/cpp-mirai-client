@@ -5,7 +5,7 @@ var classMirai_1_1MemberHonorChangeEvent =
       [ "LOSE", "classMirai_1_1MemberHonorChangeEvent.html#a4ffeee5db9f0cef7ac0c8fdc159b4ef5a984fe6c2192d5739ec6a7b9fb7089b7c", null ],
       [ "UNKNOWN", "classMirai_1_1MemberHonorChangeEvent.html#a4ffeee5db9f0cef7ac0c8fdc159b4ef5a647a1add065b32e9d446fdeea6aa8980", null ]
     ] ],
-    [ "GetType", "classMirai_1_1MemberHonorChangeEvent.html#a50651a0952d758433e588c296618826d", null ],
+    [ "GetType", "classMirai_1_1MemberHonorChangeEvent.html#afddd3a6a5e7a70463d07f98c43966449", null ],
     [ "FromJson", "classMirai_1_1MemberHonorChangeEvent.html#ae04620f082cdc81edd74a2a2eb04f09e", null ],
     [ "GetMember", "classMirai_1_1MemberHonorChangeEvent.html#a1f6f850186ea73ad1f6ed9c5bc4d26dc", null ],
     [ "GetAction", "classMirai_1_1MemberHonorChangeEvent.html#adb24c16338e20ee5a0d8c5298afd8b3e", null ],

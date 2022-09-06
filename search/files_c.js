@@ -1,7 +1,9 @@
 var searchData=
 [
-  ['plainmessage_2ecpp_0',['PlainMessage.cpp',['../PlainMessage_8cpp.html',1,'']]],
-  ['plainmessage_2ehpp_1',['PlainMessage.hpp',['../PlainMessage_8hpp.html',1,'']]],
-  ['pokemessage_2ecpp_2',['PokeMessage.cpp',['../PokeMessage_8cpp.html',1,'']]],
-  ['pokemessage_2ehpp_3',['PokeMessage.hpp',['../PokeMessage_8hpp.html',1,'']]]
+  ['otherclientmessageevent_2ecpp_0',['OtherClientMessageEvent.cpp',['../OtherClientMessageEvent_8cpp.html',1,'']]],
+  ['otherclientmessageevent_2ehpp_1',['OtherClientMessageEvent.hpp',['../OtherClientMessageEvent_8hpp.html',1,'']]],
+  ['otherclientofflineevent_2ecpp_2',['OtherClientOfflineEvent.cpp',['../OtherClientOfflineEvent_8cpp.html',1,'']]],
+  ['otherclientofflineevent_2ehpp_3',['OtherClientOfflineEvent.hpp',['../OtherClientOfflineEvent_8hpp.html',1,'']]],
+  ['otherclientonlineevent_2ecpp_4',['OtherClientOnlineEvent.cpp',['../OtherClientOnlineEvent_8cpp.html',1,'']]],
+  ['otherclientonlineevent_2ehpp_5',['OtherClientOnlineEvent.hpp',['../OtherClientOnlineEvent_8hpp.html',1,'']]]
 ];

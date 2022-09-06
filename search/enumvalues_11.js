@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['xinsui_0',['XINSUI',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fea3eb69d7eda65ad63ecdeab35fa98a8a1',1,'Mirai::PokeMessage']]]
+  ['trace_0',['TRACE',['../namespaceMirai.html#ae745b380453e5e1069edcc7e42f68d19a2d3e4144aa384b18849ab9a8abad74d6',1,'Mirai']]]
 ];

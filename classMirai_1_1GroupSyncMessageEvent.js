@@ -1,6 +1,6 @@
 var classMirai_1_1GroupSyncMessageEvent =
 [
-    [ "GetType", "classMirai_1_1GroupSyncMessageEvent.html#ab489a1a7a4b6115fe6826b7302671268", null ],
+    [ "GetType", "classMirai_1_1GroupSyncMessageEvent.html#a068ef37f7f7555c551e948d1b335f521", null ],
     [ "FromJson", "classMirai_1_1GroupSyncMessageEvent.html#a82fa04ff8e20aaa51095176f977d4392", null ],
     [ "GetGroup", "classMirai_1_1GroupSyncMessageEvent.html#a9c0a09bb7071dfee00f185e715b66be3", null ],
     [ "GetMessage", "classMirai_1_1GroupSyncMessageEvent.html#a7c84ff2a45bad37d7e86972dcce756d9", null ],

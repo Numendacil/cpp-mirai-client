@@ -1,5 +1,3 @@
 <map id="类继承关系图" name="类继承关系图">
-<area shape="rect" id="node1" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="5,32,104,60"/>
-<area shape="rect" id="node2" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="152,5,251,33"/>
-<area shape="rect" id="node3" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="154,57,249,85"/>
+<area shape="rect" id="node1" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="5,5,165,33"/>
 </map>

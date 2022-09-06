@@ -1,6 +1,6 @@
 var classMirai_1_1MemberPermissionChangeEvent =
 [
-    [ "GetType", "classMirai_1_1MemberPermissionChangeEvent.html#aa33463fc51bbbca65d16f03feb8c7af7", null ],
+    [ "GetType", "classMirai_1_1MemberPermissionChangeEvent.html#a7da4cc74d53e646a355bc6c197d86d8a", null ],
     [ "FromJson", "classMirai_1_1MemberPermissionChangeEvent.html#a1aa3048ab88b9a75735953782377297f", null ],
     [ "GetMember", "classMirai_1_1MemberPermissionChangeEvent.html#a31f4b901b02bcb7f7a9595bdba77b738", null ],
     [ "GetOriginal", "classMirai_1_1MemberPermissionChangeEvent.html#a8d62a27a628428bb21cd1c1563485490", null ],

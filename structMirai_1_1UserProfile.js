@@ -1,6 +1,6 @@
 var structMirai_1_1UserProfile =
 [
-    [ "UserProfile", "structMirai_1_1UserProfile.html#a7817d1a63f792ff6b4cb78b18d77fd3c", null ],
+    [ "UserProfile", "structMirai_1_1UserProfile.html#a4d2e16eed71816ff6ba8c1a27aca31fe", null ],
     [ "FromJson", "structMirai_1_1UserProfile.html#ac9107b2193fdbf1f92aa5ac98dfe6e68", null ],
     [ "ToJson", "structMirai_1_1UserProfile.html#aac3505667494db387984e196f9f67420", null ],
     [ "operator==", "structMirai_1_1UserProfile.html#a30bad44663fad00e98bba150b7dc9f03", null ],

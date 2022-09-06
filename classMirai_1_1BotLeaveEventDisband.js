@@ -1,6 +1,6 @@
 var classMirai_1_1BotLeaveEventDisband =
 [
-    [ "GetType", "classMirai_1_1BotLeaveEventDisband.html#abab896d8132902d05bca1d66c342d10f", null ],
+    [ "GetType", "classMirai_1_1BotLeaveEventDisband.html#a2fde650afc78310f5e0381a722985ac2", null ],
     [ "FromJson", "classMirai_1_1BotLeaveEventDisband.html#a1b55eac068f4ac94b511c18ad7b3b71c", null ],
     [ "GetGroup", "classMirai_1_1BotLeaveEventDisband.html#a4fbbaebaa1d72ffb50e5435851db5580", null ],
     [ "GetOperator", "classMirai_1_1BotLeaveEventDisband.html#a7f7b625c47183a14501bde765fea19a2", null ],

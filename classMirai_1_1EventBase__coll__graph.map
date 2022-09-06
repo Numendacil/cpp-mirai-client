@@ -1,12 +1,13 @@
 <map id="Mirai::EventBase" name="Mirai::EventBase">
-<area shape="rect" id="node1" title="Base class for all event types" alt="" coords="852,219,983,247"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="631,219,759,247"/>
-<area shape="rect" id="node3" title=" " alt="" coords="307,10,395,38"/>
-<area shape="rect" id="node4" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="271,130,431,158"/>
-<area shape="rect" id="node5" title=" " alt="" coords="5,173,89,201"/>
-<area shape="rect" id="node9" href="$structMirai_1_1ClientConnectionEstablishedEvent.html" title="连接建立事件" alt="" coords="229,182,472,226"/>
-<area shape="rect" id="node10" title=" " alt="" coords="248,250,453,294"/>
-<area shape="rect" id="node6" title=" " alt="" coords="264,318,437,362"/>
-<area shape="rect" id="node7" title=" " alt="" coords="264,386,437,430"/>
-<area shape="rect" id="node8" title=" " alt="" coords="271,454,430,498"/>
+<area shape="rect" id="node1" title="Base class for all event types" alt="" coords="852,259,983,287"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MiraiClient.html" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="631,259,759,287"/>
+<area shape="rect" id="node3" title=" " alt="" coords="307,11,395,39"/>
+<area shape="rect" id="node4" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="271,131,431,159"/>
+<area shape="rect" id="node5" title=" " alt="" coords="5,174,89,202"/>
+<area shape="rect" id="node10" href="$structMirai_1_1ClientConnectionEstablishedEvent.html" title="连接建立事件" alt="" coords="229,183,472,227"/>
+<area shape="rect" id="node11" title=" " alt="" coords="248,251,453,295"/>
+<area shape="rect" id="node6" title=" " alt="" coords="269,319,432,363"/>
+<area shape="rect" id="node7" title=" " alt="" coords="264,387,437,431"/>
+<area shape="rect" id="node8" title=" " alt="" coords="264,455,437,499"/>
+<area shape="rect" id="node9" title=" " alt="" coords="271,523,430,567"/>
 </map>

@@ -1,6 +1,6 @@
 var classMirai_1_1FriendNickChangedEvent =
 [
-    [ "GetType", "classMirai_1_1FriendNickChangedEvent.html#aea86f5ba24263bab63db6ee88b93d5ef", null ],
+    [ "GetType", "classMirai_1_1FriendNickChangedEvent.html#a0fd74ac32695696f95bee283755600c3", null ],
     [ "FromJson", "classMirai_1_1FriendNickChangedEvent.html#ae1b6e9ebe68179f6fab8ba750ac53581", null ],
     [ "GetFriend", "classMirai_1_1FriendNickChangedEvent.html#a7573cec7b600819b2f74ac363a332a73", null ],
     [ "GetOriginalNickname", "classMirai_1_1FriendNickChangedEvent.html#ab778b73fddd4406c3cbf48ab360481a4", null ],

@@ -1,6 +1,6 @@
 var classMirai_1_1FriendRecallEvent =
 [
-    [ "GetType", "classMirai_1_1FriendRecallEvent.html#aa80f5f9df1cc427e340cbade24936da2", null ],
+    [ "GetType", "classMirai_1_1FriendRecallEvent.html#a18639e144bb892c406ad234118128eab", null ],
     [ "FromJson", "classMirai_1_1FriendRecallEvent.html#ae8376bc7d13296e4c39073786d97aed8", null ],
     [ "GetSender", "classMirai_1_1FriendRecallEvent.html#aea75e70746f3721d45b8cf752b3b8862", null ],
     [ "GetMessageId", "classMirai_1_1FriendRecallEvent.html#aaec70d03364a697aa30728dc4b00582f", null ],

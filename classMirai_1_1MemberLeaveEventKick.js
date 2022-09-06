@@ -1,6 +1,6 @@
 var classMirai_1_1MemberLeaveEventKick =
 [
-    [ "GetType", "classMirai_1_1MemberLeaveEventKick.html#ab7fd2d77d3127459b9cc5e314ebb5410", null ],
+    [ "GetType", "classMirai_1_1MemberLeaveEventKick.html#a5574ce5c028bb476065360daf11b9d8a", null ],
     [ "FromJson", "classMirai_1_1MemberLeaveEventKick.html#a8f497538f512021afb2e699b320a7619", null ],
     [ "GetMember", "classMirai_1_1MemberLeaveEventKick.html#aa5f92e330f9f90b79218ccd7ea2d7c1c", null ],
     [ "GetOperator", "classMirai_1_1MemberLeaveEventKick.html#a59f2dfcbad4655af885983b6106a822d", null ],

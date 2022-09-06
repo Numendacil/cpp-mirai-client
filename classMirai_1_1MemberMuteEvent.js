@@ -1,6 +1,6 @@
 var classMirai_1_1MemberMuteEvent =
 [
-    [ "GetType", "classMirai_1_1MemberMuteEvent.html#a5b02e28379cedd51832786f2c68baea3", null ],
+    [ "GetType", "classMirai_1_1MemberMuteEvent.html#aa2803d382dbe2a6040ea01776a118e87", null ],
     [ "FromJson", "classMirai_1_1MemberMuteEvent.html#ac4851b02b70c797d147600ed2472dafc", null ],
     [ "GetMember", "classMirai_1_1MemberMuteEvent.html#a9d773509b3a75e93458982c24b42e858", null ],
     [ "GetDuration", "classMirai_1_1MemberMuteEvent.html#a9e8b7e031c54a5297a0b6ab6140a70ff", null ],

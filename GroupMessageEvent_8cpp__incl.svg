@@ -108,9 +108,9 @@
 <path fill="none" stroke="midnightblue" d="M202.91,-126.5C202.91,-117.94 202.91,-104.78 202.91,-93.85"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="206.41,-93.54 202.91,-83.54 199.41,-93.54 206.41,-93.54"/>
 </g>
-<!-- Node9 -->
+<!-- Node10 -->
 <g id="node6" class="node">
-<title>Node9</title>
+<title>Node10</title>
 <g id="a_node6"><a xlink:href="MessageChain_8hpp.html" target="_top" xlink:title=" ">
 <polygon fill="none" stroke="red" points="302.41,-57.5 302.41,-89.5 451.41,-89.5 451.41,-57.5 302.41,-57.5"/>
 <text text-anchor="start" x="310.41" y="-76.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">libmirai/Messages/Message</text>
@@ -118,9 +118,9 @@
 </a>
 </g>
 </g>
-<!-- Node2&#45;&gt;Node9 -->
+<!-- Node2&#45;&gt;Node10 -->
 <g id="edge7" class="edge">
-<title>Node2&#45;&gt;Node9</title>
+<title>Node2&#45;&gt;Node10</title>
 <path fill="none" stroke="midnightblue" d="M228.58,-126.5C253.68,-117.7 292.64,-104.04 324.34,-92.93"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="325.64,-96.18 333.91,-89.57 323.32,-89.58 325.64,-96.18"/>
 </g>
@@ -151,9 +151,9 @@
 <path fill="none" stroke="midnightblue" d="M215.74,-63.5C229.62,-53.77 251.97,-38.1 268.52,-26.5"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="270.84,-29.14 277.02,-20.54 266.82,-23.41 270.84,-29.14"/>
 </g>
-<!-- Node9&#45;&gt;Node4 -->
+<!-- Node10&#45;&gt;Node4 -->
 <g id="edge8" class="edge">
-<title>Node9&#45;&gt;Node4</title>
+<title>Node10&#45;&gt;Node4</title>
 <path fill="none" stroke="midnightblue" d="M355.4,-57.42C341.86,-47.93 324.47,-35.73 311.01,-26.29"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="313.01,-23.42 302.81,-20.55 308.99,-29.15 313.01,-23.42"/>
 </g>

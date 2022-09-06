@@ -72,79 +72,79 @@
 <polygon fill="#9a32cd" stroke="#9a32cd" points="25.8,-221.6 29.96,-231.35 32.79,-221.14 25.8,-221.6"/>
 <text text-anchor="middle" x="66" y="-204.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00"> _SessionKey</text>
 </g>
-<!-- Node18 -->
+<!-- Node21 -->
 <g id="node5" class="node">
-<title>Node18</title>
+<title>Node21</title>
 <g id="a_node5"><a xlink:href="structMirai_1_1Group.html" target="_top" xlink:title="群聊资料">
 <polygon fill="none" stroke="black" points="129.5,-156.5 129.5,-176.5 205.5,-176.5 205.5,-156.5 129.5,-156.5"/>
 <text text-anchor="middle" x="167.5" y="-163.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">Mirai::Group</text>
 </a>
 </g>
 </g>
-<!-- Node6&#45;&gt;Node18 -->
+<!-- Node6&#45;&gt;Node21 -->
 <g id="edge7" class="edge">
-<title>Node6&#45;&gt;Node18</title>
+<title>Node6&#45;&gt;Node21</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M67.03,-227.73C77.68,-223.48 89.25,-218.43 99.5,-213 120.09,-202.1 142.2,-186.49 155.44,-176.68"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="65.63,-224.52 57.57,-231.4 68.16,-231.04 65.63,-224.52"/>
 <text text-anchor="middle" x="135" y="-204.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00"> name</text>
 </g>
-<!-- Node18&#45;&gt;Node1 -->
+<!-- Node21&#45;&gt;Node1 -->
 <g id="edge4" class="edge">
-<title>Node18&#45;&gt;Node1</title>
+<title>Node21&#45;&gt;Node1</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M163.42,-146.46C156.29,-113.16 141.79,-45.54 136.5,-20.82"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="160.02,-147.28 165.53,-156.33 166.86,-145.82 160.02,-147.28"/>
 <text text-anchor="middle" x="170" y="-76.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00"> _group</text>
 </g>
-<!-- Node16 -->
+<!-- Node19 -->
 <g id="node6" class="node">
-<title>Node16</title>
+<title>Node19</title>
 <g id="a_node6"><a xlink:href="classMirai_1_1Serializable.html" target="_top" xlink:title="Base class for all json serializable type">
 <polygon fill="none" stroke="black" points="117,-231.5 117,-251.5 218,-251.5 218,-231.5 117,-231.5"/>
 <text text-anchor="middle" x="167.5" y="-238.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">Mirai::Serializable</text>
 </a>
 </g>
 </g>
-<!-- Node16&#45;&gt;Node18 -->
+<!-- Node19&#45;&gt;Node21 -->
 <g id="edge5" class="edge">
-<title>Node16&#45;&gt;Node18</title>
+<title>Node19&#45;&gt;Node21</title>
 <path fill="none" stroke="midnightblue" d="M167.5,-221C167.5,-206.73 167.5,-187.99 167.5,-176.9"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="164,-221.25 167.5,-231.25 171,-221.25 164,-221.25"/>
 </g>
-<!-- Node19 -->
+<!-- Node22 -->
 <g id="node7" class="node">
-<title>Node19</title>
+<title>Node22</title>
 <g id="a_node7"><a xlink:href="classMirai_1_1GID__t.html" target="_top" xlink:title="群聊号码类型">
 <polygon fill="none" stroke="red" points="236.5,-231.5 236.5,-251.5 310.5,-251.5 310.5,-231.5 236.5,-231.5"/>
 <text text-anchor="middle" x="273.5" y="-238.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">Mirai::GID_t</text>
 </a>
 </g>
 </g>
-<!-- Node19&#45;&gt;Node18 -->
+<!-- Node22&#45;&gt;Node21 -->
 <g id="edge6" class="edge">
-<title>Node19&#45;&gt;Node18</title>
+<title>Node22&#45;&gt;Node21</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M251.65,-225.45C230.33,-210.77 198.6,-188.92 180.82,-176.67"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="249.85,-228.47 260.08,-231.25 253.82,-222.7 249.85,-228.47"/>
 <text text-anchor="middle" x="239.5" y="-204.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00"> id</text>
 </g>
-<!-- Node20 -->
+<!-- Node23 -->
 <g id="node8" class="node">
-<title>Node20</title>
+<title>Node23</title>
 <g id="a_node8"><a xlink:title=" ">
 <polygon fill="none" stroke="black" points="227,-69.5 227,-89.5 318,-89.5 318,-69.5 227,-69.5"/>
 <text text-anchor="middle" x="272.5" y="-76.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">std::string_view</text>
 </a>
 </g>
 </g>
-<!-- Node20&#45;&gt;Node1 -->
+<!-- Node23&#45;&gt;Node1 -->
 <g id="edge9" class="edge">
-<title>Node20&#45;&gt;Node1</title>
+<title>Node23&#45;&gt;Node1</title>
 <path fill="none" stroke="#9a32cd" stroke-dasharray="5,2" d="M244.89,-65.09C217.69,-51.89 176.89,-32.08 153.26,-20.61"/>
 <polygon fill="#9a32cd" stroke="#9a32cd" points="243.36,-68.25 253.89,-69.46 246.42,-61.95 243.36,-68.25"/>
 <text text-anchor="middle" x="234.5" y="-42.2" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00"> _TYPE_</text>
 </g>
-<!-- Node21 -->
+<!-- Node24 -->
 <g id="node9" class="node">
-<title>Node21</title>
+<title>Node24</title>
 <g id="a_node9"><a xlink:title=" ">
 <polygon fill="none" stroke="black" points="223.5,-150.5 223.5,-182.5 345.5,-182.5 345.5,-150.5 223.5,-150.5"/>
 <text text-anchor="start" x="231.5" y="-169.7" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif" font-size="11.00">std::basic_string_view</text>
@@ -152,9 +152,9 @@
 </a>
 </g>
 </g>
-<!-- Node21&#45;&gt;Node20 -->
+<!-- Node24&#45;&gt;Node23 -->
 <g id="edge10" class="edge">
-<title>Node21&#45;&gt;Node20</title>
+<title>Node24&#45;&gt;Node23</title>
 <path fill="none" stroke="midnightblue" d="M280.89,-139.93C278.5,-122.98 275.5,-101.74 273.81,-89.79"/>
 <polygon fill="midnightblue" stroke="midnightblue" points="277.49,-140.89 282.35,-150.3 284.42,-139.91 277.49,-140.89"/>
 </g>

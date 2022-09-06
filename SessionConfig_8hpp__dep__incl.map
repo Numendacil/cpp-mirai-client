@@ -1,7 +1,7 @@
-<map id="libmirai/public/libmirai/Api/SessionConfig.hpp" name="libmirai/public/libmirai/Api/SessionConfig.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="180,5,351,49"/>
+<map id="libmirai/public/libmirai/Utils/SessionConfig.hpp" name="libmirai/public/libmirai/Utils/SessionConfig.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="176,5,355,49"/>
 <area shape="rect" id="node2" href="$Client_8hpp.html" title=" " alt="" coords="71,97,228,141"/>
 <area shape="rect" id="node4" href="$mirai_8hpp.html" title=" " alt="" coords="187,189,344,233"/>
-<area shape="rect" id="node5" href="$SessionConfig_8cpp.html" title=" " alt="" coords="303,97,473,141"/>
+<area shape="rect" id="node5" href="$SessionConfig_8cpp.html" title=" " alt="" coords="303,97,481,141"/>
 <area shape="rect" id="node3" href="$Client_8cpp.html" title=" " alt="" coords="5,189,163,233"/>
 </map>

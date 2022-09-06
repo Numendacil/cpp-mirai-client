@@ -1,8 +1,9 @@
 <map id="libmirai/public/libmirai/Messages/XmlMessage.hpp" name="libmirai/public/libmirai/Messages/XmlMessage.hpp">
 <area shape="rect" id="node1" title=" " alt="" coords="5,5,212,49"/>
-<area shape="rect" id="node2" title=" " alt="" coords="80,173,137,201"/>
-<area shape="rect" id="node3" title=" " alt="" coords="183,249,357,277"/>
-<area shape="rect" id="node4" href="$MessageBase_8hpp.html" title=" " alt="" coords="199,97,341,125"/>
-<area shape="rect" id="node5" title=" " alt="" coords="453,173,527,201"/>
-<area shape="rect" id="node6" href="$Serializable_8hpp.html" title=" " alt="" coords="162,173,378,201"/>
+<area shape="rect" id="node2" title=" " alt="" coords="56,173,113,201"/>
+<area shape="rect" id="node3" title=" " alt="" coords="159,249,333,277"/>
+<area shape="rect" id="node4" title=" " alt="" coords="115,97,169,125"/>
+<area shape="rect" id="node5" href="$MessageBase_8hpp.html" title=" " alt="" coords="194,97,335,125"/>
+<area shape="rect" id="node6" title=" " alt="" coords="429,173,503,201"/>
+<area shape="rect" id="node7" href="$Serializable_8hpp.html" title=" " alt="" coords="138,173,354,201"/>
 </map>

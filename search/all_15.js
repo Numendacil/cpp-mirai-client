@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['uid_5ft_0',['UID_t',['../classMirai_1_1UID__t.html',1,'Mirai::UID_t'],['../classMirai_1_1UID__t.html#a67112a96c16c1881babc06ce94555a3a',1,'Mirai::UID_t::UID_t()'],['../classMirai_1_1UID__t.html#a930668591b57db3a3c48a779981a95e1',1,'Mirai::UID_t::UID_t(int64_t num)']]],
+  ['uid_5ft_0',['UID_t',['../classMirai_1_1UID__t.html',1,'Mirai::UID_t'],['../classMirai_1_1UID__t.html#afca91575d15f2ced0a77eb345fe44ec7',1,'Mirai::UID_t::UID_t()=default'],['../classMirai_1_1UID__t.html#a930668591b57db3a3c48a779981a95e1',1,'Mirai::UID_t::UID_t(int64_t num)']]],
   ['unknown_1',['UNKNOWN',['../namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a696b031073e74bf2cb98e5ef201d4aa3',1,'Mirai::UNKNOWN()'],['../namespaceMirai.html#ab34e8f10186988d6b406264b98495120a696b031073e74bf2cb98e5ef201d4aa3',1,'Mirai::UNKNOWN()'],['../classMirai_1_1MemberHonorChangeEvent.html#a4ffeee5db9f0cef7ac0c8fdc159b4ef5a647a1add065b32e9d446fdeea6aa8980',1,'Mirai::MemberHonorChangeEvent::UNKNOWN()'],['../classMirai_1_1MusicShareMessage.html#af243b8fc262cc4dd7bc551a4edc07d16a5b6771b21dbdcfd2a3671bf81e42e0c4',1,'Mirai::MusicShareMessage::UNKNOWN()'],['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fea9e1409093bc5e9a7f285bd9f915c22cf',1,'Mirai::PokeMessage::UNKNOWN()'],['../classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089ac7464de20f9de21e4a7ed40db3113e4b',1,'Mirai::NudgeTarget::UNKNOWN()']]],
   ['unmute_2',['Unmute',['../classMirai_1_1MiraiClient.html#a520ab28863fb7fd8d043039e3ab60c09',1,'Mirai::MiraiClient::Unmute(GID_t GroupId, QQ_t member)'],['../classMirai_1_1MiraiClient.html#a8e3c05c0f0b511514624597e753ecbb6',1,'Mirai::MiraiClient::Unmute(const GroupMember &amp;member)']]],
   ['unmuteall_3',['UnmuteAll',['../classMirai_1_1MiraiClient.html#abcc66f6ea0687becb2ab94f837627bd9',1,'Mirai::MiraiClient']]],
@@ -13,6 +13,6 @@ var searchData=
   ['uploadtime_10',['UploadTime',['../structMirai_1_1FileInfo.html#a6d0ff6366e0ddfe665644a747a2cf27d',1,'Mirai::FileInfo']]],
   ['uri_11',['uri',['../structMirai_1_1ClientConnectionEstablishedEvent.html#a0bb5855483e38ffca9a52e72cc9b4c28',1,'Mirai::ClientConnectionEstablishedEvent']]],
   ['url_12',['url',['../structMirai_1_1MiraiImage.html#a7c9138146379d6fede641a0d743169d1',1,'Mirai::MiraiImage::url()'],['../structMirai_1_1MiraiAudio.html#aeefeba16e6dc48ca88a527cdec1d1b5a',1,'Mirai::MiraiAudio::url()']]],
-  ['user_13',['User',['../structMirai_1_1User.html',1,'Mirai::User'],['../structMirai_1_1User.html#ac5c7e44e0e4750a06ea80421c219da69',1,'Mirai::User::User()']]],
-  ['userprofile_14',['UserProfile',['../structMirai_1_1UserProfile.html',1,'Mirai::UserProfile'],['../structMirai_1_1UserProfile.html#a7817d1a63f792ff6b4cb78b18d77fd3c',1,'Mirai::UserProfile::UserProfile()']]]
+  ['user_13',['User',['../structMirai_1_1User.html',1,'Mirai::User'],['../structMirai_1_1User.html#ab31f2b61afa9e4cf6da70db374f71273',1,'Mirai::User::User()']]],
+  ['userprofile_14',['UserProfile',['../structMirai_1_1UserProfile.html',1,'Mirai::UserProfile'],['../structMirai_1_1UserProfile.html#a4d2e16eed71816ff6ba8c1a27aca31fe',1,'Mirai::UserProfile::UserProfile()']]]
 ];

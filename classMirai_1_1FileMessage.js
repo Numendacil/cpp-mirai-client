@@ -1,12 +1,8 @@
 var classMirai_1_1FileMessage =
 [
-    [ "FileMessage", "classMirai_1_1FileMessage.html#a5e711c5304deb664dfa94357813b23bb", null ],
-    [ "FileMessage", "classMirai_1_1FileMessage.html#ab8a466b7e1c9d6eef3c15aff9475bbbd", null ],
-    [ "FileMessage", "classMirai_1_1FileMessage.html#ac582065a6662d2cd8eb8cc04e039ca3d", null ],
-    [ "operator=", "classMirai_1_1FileMessage.html#a2e9867aadb605393933791b2ec561923", null ],
-    [ "operator=", "classMirai_1_1FileMessage.html#a2d55df36f1f1e2e85c0df8e435f9ba55", null ],
-    [ "GetType", "classMirai_1_1FileMessage.html#a86b7628b749fdaeb6ecd22bd89b2ea56", null ],
-    [ "Clone", "classMirai_1_1FileMessage.html#ae4545ae0ab8730fb255a22256a034a2d", null ],
+    [ "FileMessage", "classMirai_1_1FileMessage.html#a8cef32fc984fad95b77e886a569683fe", null ],
+    [ "GetType", "classMirai_1_1FileMessage.html#ac50ce93ce627f64fc9b47ca59cd1c653", null ],
+    [ "CloneUnique", "classMirai_1_1FileMessage.html#aada3ec01522111c24a612faebc71a74a", null ],
     [ "isValid", "classMirai_1_1FileMessage.html#a1880d64f727c3dd04833df2434509344", null ],
     [ "FromJson", "classMirai_1_1FileMessage.html#aa236c0abf05bbb089db4735531247f8b", null ],
     [ "ToJson", "classMirai_1_1FileMessage.html#a7cac650ba0e8fa2a066947159e3cdc62", null ],

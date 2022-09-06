@@ -83,6 +83,9 @@ var hierarchy =
     [ "Mirai::GroupFileInfo", "structMirai_1_1GroupFileInfo.html", null ],
     [ "std::hash< Mirai::GID_t >", "structstd_1_1hash_3_01Mirai_1_1GID__t_01_4.html", null ],
     [ "std::hash< Mirai::QQ_t >", "structstd_1_1hash_3_01Mirai_1_1QQ__t_01_4.html", null ],
+    [ "Mirai::ILogger", "classMirai_1_1ILogger.html", [
+      [ "Mirai::NullLogger", "classMirai_1_1NullLogger.html", null ]
+    ] ],
     [ "Mirai::MessageChain", "classMirai_1_1MessageChain.html", null ],
     [ "Mirai::MiraiClient", "classMirai_1_1MiraiClient.html", null ],
     [ "Mirai::NudgeTarget", "classMirai_1_1NudgeTarget.html", null ],

@@ -1,6 +1,6 @@
 var structMirai_1_1MiraiAudio =
 [
-    [ "MiraiAudio", "structMirai_1_1MiraiAudio.html#a3ebd78972e220b8ed4b65c813c54c7d0", null ],
+    [ "MiraiAudio", "structMirai_1_1MiraiAudio.html#a2850b5edc7cd5c6eb6dbe4c90b5325e4", null ],
     [ "isValid", "structMirai_1_1MiraiAudio.html#add1f2d48f131cb333e5f70b50797834a", null ],
     [ "FromJson", "structMirai_1_1MiraiAudio.html#ac988b05804acdc5922fcada17e08af50", null ],
     [ "ToJson", "structMirai_1_1MiraiAudio.html#a51f01465228b91c8bab877c302cc1683", null ],

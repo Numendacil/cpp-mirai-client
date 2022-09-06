@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['male_0',['MALE',['../namespaceMirai.html#ab34e8f10186988d6b406264b98495120a797e877326f44c5763d1458d7f56d87a',1,'Mirai']]],
-  ['member_1',['MEMBER',['../classMirai_1_1CommandExecutedEvent.html#afd2730220621ee454bbaa00cdb6fa353a595d5f7b3f95bbeafb81bc0fb229914e',1,'Mirai::CommandExecutedEvent::MEMBER()'],['../namespaceMirai.html#a046e3f0ace0f18017330a99944cf53f0a77e6cb59f088a2937324f798be141b4b',1,'Mirai::MEMBER()']]],
-  ['migumusic_2',['MIGUMUSIC',['../classMirai_1_1MusicShareMessage.html#af243b8fc262cc4dd7bc551a4edc07d16a4bdd1af4a991fae62f4c472ba3f97702',1,'Mirai::MusicShareMessage']]]
+  ['liuliuliu_0',['LIULIULIU',['../classMirai_1_1PokeMessage.html#a84fd9a760b7e9da74c75991404af70fea7cc5c9d3f1a4a5126bddf305b4cb3cbb',1,'Mirai::PokeMessage']]],
+  ['lose_1',['LOSE',['../classMirai_1_1MemberHonorChangeEvent.html#a4ffeee5db9f0cef7ac0c8fdc159b4ef5a984fe6c2192d5739ec6a7b9fb7089b7c',1,'Mirai::MemberHonorChangeEvent']]]
 ];

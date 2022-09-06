@@ -1,12 +1,13 @@
 <map id="libmirai/public/libmirai/Events/GroupAllowAnonymousChatEvent.hpp" name="libmirai/public/libmirai/Events/GroupAllowAnonymousChatEvent.hpp">
-<area shape="rect" id="node1" title=" " alt="" coords="339,5,594,65"/>
+<area shape="rect" id="node1" title=" " alt="" coords="307,5,562,65"/>
 <area shape="rect" id="node2" title=" " alt="" coords="5,113,77,141"/>
-<area shape="rect" id="node3" title=" " alt="" coords="614,189,671,217"/>
-<area shape="rect" id="node4" title=" " alt="" coords="325,265,499,293"/>
-<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="359,113,575,141"/>
-<area shape="rect" id="node9" href="$EventBase_8hpp.html" title=" " alt="" coords="650,113,769,141"/>
-<area shape="rect" id="node6" title=" " alt="" coords="523,189,589,217"/>
+<area shape="rect" id="node3" title=" " alt="" coords="694,189,751,217"/>
+<area shape="rect" id="node4" title=" " alt="" coords="405,265,579,293"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="327,113,543,141"/>
+<area shape="rect" id="node10" href="$EventBase_8hpp.html" title=" " alt="" coords="709,113,827,141"/>
+<area shape="rect" id="node6" title=" " alt="" coords="603,189,669,217"/>
 <area shape="rect" id="node7" title=" " alt="" coords="152,189,208,217"/>
-<area shape="rect" id="node8" href="$Serializable_8hpp.html" title=" " alt="" coords="232,189,448,217"/>
-<area shape="rect" id="node10" title=" " alt="" coords="747,189,821,217"/>
+<area shape="rect" id="node8" title=" " alt="" coords="233,189,287,217"/>
+<area shape="rect" id="node9" href="$Serializable_8hpp.html" title=" " alt="" coords="312,189,528,217"/>
+<area shape="rect" id="node11" title=" " alt="" coords="776,189,851,217"/>
 </map>

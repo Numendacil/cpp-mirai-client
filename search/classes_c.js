@@ -9,5 +9,6 @@ var searchData=
   ['nosuchfile_6',['NoSuchFile',['../classMirai_1_1NoSuchFile.html',1,'Mirai']]],
   ['notverifysession_7',['NotVerifySession',['../classMirai_1_1NotVerifySession.html',1,'Mirai']]],
   ['nudgeevent_8',['NudgeEvent',['../classMirai_1_1NudgeEvent.html',1,'Mirai']]],
-  ['nudgetarget_9',['NudgeTarget',['../classMirai_1_1NudgeTarget.html',1,'Mirai']]]
+  ['nudgetarget_9',['NudgeTarget',['../classMirai_1_1NudgeTarget.html',1,'Mirai']]],
+  ['nulllogger_10',['NullLogger',['../classMirai_1_1NullLogger.html',1,'Mirai']]]
 ];
