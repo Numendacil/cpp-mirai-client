@@ -23,7 +23,7 @@ target_link_libraries(unit_test PRIVATE httplib::httplib)
 target_link_libraries(unit_test PRIVATE ixwebsocket::ixwebsocket)
 
 if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
-	target_link_libraries(unit_test PRIVATE -static-libasan)
+	# target_link_libraries(unit_test PRIVATE -static-libasan)
 	target_compile_options(unit_test PRIVATE -fsanitize=address -fno-omit-frame-pointer)
 	target_link_options(unit_test PRIVATE -fsanitize=address -fno-omit-frame-pointer)
 endif()

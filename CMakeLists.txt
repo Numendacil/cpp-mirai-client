@@ -37,6 +37,7 @@ target_compile_definitions(${MIRAI_LIB_TARGET_NAME} PUBLIC CPP_MIRAI_CLIENT_VERS
 find_package(httplib QUIET)
 if(NOT HTTPLIB_FOUND)
 	message("cpp-httplib not found. Building from local subdirectories")
+	set(HTTPLIB_USE_BROTLI_IF_AVAILABLE OFF CACHE BOOL "Uses Brotli (if available) to enable Brotli decompression support." FORCE)
 	add_subdirectory(external/cpp-httplib)
 endif()
 
@@ -113,7 +114,7 @@ if(MIRAI_INSTALL_CURRENT_DIR)
 	# Sets the correct RPATH
 	if(BUILD_SHARED_LIBS)
 		if(UNIX)
-			set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES CMAKE_INSTALL_RPATH "$\{ORIGIN\};${CMAKE_INSTALL_RPATH}")
+			set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES INSTALL_RPATH "$\{ORIGIN\};${INSTALL_RPATH}")
 		endif(UNIX)
 		if(APPLE)
 			set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES MACOSX_RPATH TRUE)
