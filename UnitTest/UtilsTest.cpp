@@ -65,7 +65,7 @@ TEST(UtilsTest, Logger)
 	};
 	std::shared_ptr<Mirai::ILogger> logger = std::make_shared<TestLogger>();
 
-	#define xstr(a) str(a)
+	#define xstr(a) std::string(str(a))
 	#define str(a) #a
 
 	int i = 0;
@@ -73,6 +73,6 @@ TEST(UtilsTest, Logger)
 	EXPECT_EQ(i, 1);
 	LOG_INFO(*logger, [&](){i++; return ""; }());
 	EXPECT_EQ(i, 1);
-	EXPECT_EQ(xstr(LOG_TRACE(*logger, [&](){i++; return ""; }())), "(void)0");
+	EXPECT_EQ(xstr(LOG_TRACE(*logger, [&](){i++; return ""; }())), xstr((void)0));
 	EXPECT_EQ(i, 1);
 }

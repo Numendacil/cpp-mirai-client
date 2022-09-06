@@ -21,6 +21,28 @@
 #include <string>
 #include <type_traits>
 
+#ifdef TRACE
+#undef TRACE
+#endif
+#ifdef DEBUG
+#undef DEBUG
+#endif
+#ifdef INFO
+#undef INFO
+#endif
+#ifdef WARN
+#undef WARN
+#endif
+#ifdef ERROR
+#undef ERROR
+#endif
+#ifdef FATAL
+#undef FATAL
+#endif
+#ifdef OFF
+#undef OFF
+#endif
+
 namespace Mirai
 {
 
