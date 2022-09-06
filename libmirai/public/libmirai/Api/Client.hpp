@@ -40,6 +40,7 @@
 #include <libmirai/Events/TempMessageEvent.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
+#include <libmirai/Utils/Logger.hpp>
 #include <libmirai/Utils/SessionConfig.hpp>
 
 /// 所有mirai相关的对象的命名空间
@@ -83,6 +84,8 @@ protected:
 	mutable std::condition_variable _cv;
 
 	SessionConfigs _config{};
+
+	std::shared_ptr<ILogger> _logger;
 
 	std::string _SessionKey{};
 	bool _SessionKeySet = false;
@@ -146,6 +149,8 @@ protected:
 		return this->_ParseErrorCallback;
 	}
 
+	ILogger& _GetLogger() const { return *(this->_logger); }
+
 public:
 	MiraiClient();
 	MiraiClient(SessionConfigs config);
@@ -163,6 +168,12 @@ public:
 
 	/// 获取连接配置
 	SessionConfigs GetSessionConfig() const { return this->_config; }
+
+	/// 设置日志记录类
+	void SetLogger(std::shared_ptr<ILogger> logger) { this->_logger = logger; }
+
+	/// 获取日志记录类
+	std::shared_ptr<ILogger> GetLogger() const { return this->_logger; }
 
 	/// 获取BotQQ账号
 	QQ_t GetBotQQ() const { return this->_config.BotQQ; }

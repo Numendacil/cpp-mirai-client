@@ -51,7 +51,6 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 本项目的文档生成使用了 [Doxygen](https://doxygen.org/index.html) 与 [jothepro/doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)。
 
 ## TODO
-- Customizable logging
 - Docs and example usages
 - Project templates for creating a simple QQBot
 - Benchmark and performance tests
