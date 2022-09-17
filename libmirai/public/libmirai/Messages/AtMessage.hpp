@@ -43,6 +43,7 @@ protected:
 
 public:
 	AtMessage() = default;
+	AtMessage(QQ_t target) : _target(target) {};
 
 	static constexpr std::string_view _TYPE_ = "At";
 

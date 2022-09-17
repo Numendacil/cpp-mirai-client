@@ -42,7 +42,7 @@ protected:
 
 public:
 	XmlMessage() = default;
-	XmlMessage(std::string  content) : _content(std::move(content)) {}
+	XmlMessage(std::string content) : _content(std::move(content)) {}
 
 	static constexpr std::string_view _TYPE_ = "Xml";
 

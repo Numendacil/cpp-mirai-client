@@ -1,7 +1,7 @@
 #include <chrono>
 #include <gtest/gtest.h>
 
-#define MIRAI_LOGGING_LEVELS MIRAI_LOGGING_LEVELS_INFO
+#define MIRAI_LOGGING_LEVEL MIRAI_LOGGING_LEVELS_INFO
 
 #include <memory>
 #include <mutex>

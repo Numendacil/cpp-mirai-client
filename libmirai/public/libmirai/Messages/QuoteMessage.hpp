@@ -54,7 +54,6 @@ protected:
 public:
 	QuoteMessage() = default;
 
-
 	static constexpr std::string_view _TYPE_ = "Quote";
 
 	std::string_view GetType() const override { return _TYPE_; }

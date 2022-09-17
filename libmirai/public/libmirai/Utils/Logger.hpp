@@ -119,11 +119,11 @@ public:
 #define MIRAI_LOGGING_LEVELS_FATAL 5
 #define MIRAI_LOGGING_LEVELS_OFF 6
 
-#ifndef MIRAI_LOGGING_LEVELS
-#define MIRAI_LOGGING_LEVELS MIRAI_LOGGING_LEVELS_INFO
+#ifndef MIRAI_LOGGING_LEVEL
+#define MIRAI_LOGGING_LEVEL MIRAI_LOGGING_LEVELS_INFO
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_TRACE
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_TRACE
 	#define LOG_TRACE(_logger_, _msg_)	\
 	do	\
 	{	\
@@ -134,7 +134,7 @@ public:
 	#define LOG_TRACE(_logger_, _msg_) (void)0
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_DEBUG
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_DEBUG
 #define LOG_DEBUG(_logger_, _msg_)	\
 do	\
 {	\
@@ -145,7 +145,7 @@ do	\
 	#define LOG_DEBUG(_logger_, _msg_) (void)0
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_INFO
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_INFO
 #define LOG_INFO(_logger_, _msg_)	\
 do	\
 {	\
@@ -156,7 +156,7 @@ do	\
 	#define LOG_INFO(_logger_, _msg_) (void)0
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_WARN
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_WARN
 #define LOG_WARN(_logger_, _msg_)	\
 do	\
 {	\
@@ -167,7 +167,7 @@ do	\
 	#define LOG_WARN(_logger_, _msg_) (void)0
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_ERROR
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_ERROR
 #define LOG_ERROR(_logger_, _msg_)	\
 do	\
 {	\
@@ -178,7 +178,7 @@ do	\
 	#define LOG_ERROR(_logger_, _msg_) (void)0
 #endif
 
-#if MIRAI_LOGGING_LEVELS <= MIRAI_LOGGING_LEVELS_FATAL
+#if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_FATAL
 #define LOG_FATAL(_logger_, _msg_)	\
 do	\
 {	\

@@ -17,6 +17,7 @@
 #define _MIRAI_APP_MESSAGE_HPP_
 
 #include <string>
+#include <utility>
 
 #include <nlohmann/json_fwd.hpp>
 
@@ -41,6 +42,7 @@ protected:
 
 public:
 	AppMessage() = default;
+	AppMessage(std::string content) : _content(std::move(content)) {};
 
 	static constexpr std::string_view _TYPE_ = "App";
 
