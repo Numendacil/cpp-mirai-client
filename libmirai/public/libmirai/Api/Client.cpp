@@ -55,25 +55,23 @@ MiraiClient::MiraiClient()
 MiraiClient::MiraiClient(SessionConfigs config) : _config(std::move(config)) {}
 
 MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
-	: _config(std::move(rhs._config))
-	, _SessionKey(std::move(rhs._SessionKey))
-	, _SessionKeySet(rhs._SessionKeySet)
-	, _connected(rhs._connected)
-	, _HttpClient(std::move(rhs._HttpClient))
-	, _MessageClient(std::move(rhs._MessageClient))
-	, _ThreadPool(std::move(rhs._ThreadPool))
 {
+	*this = std::move(rhs);
 }
 
 MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
 {
-	this->_config = std::move(rhs._config);
-	this->_SessionKey = std::move(rhs._SessionKey);
-	this->_SessionKeySet = rhs._SessionKeySet;
-	this->_connected = rhs._connected;
-	this->_HttpClient = std::move(rhs._HttpClient);
-	this->_MessageClient = std::move(rhs._MessageClient);
-	this->_ThreadPool = std::move(rhs._ThreadPool);
+	if (this != &rhs)
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		this->_config = std::move(rhs._config);
+		this->_SessionKey = std::move(rhs._SessionKey);
+		this->_SessionKeySet = rhs._SessionKeySet.load();
+		this->_connected = rhs._connected;
+		this->_HttpClient = std::move(rhs._HttpClient);
+		this->_MessageClient = std::move(rhs._MessageClient);
+		this->_ThreadPool = std::move(rhs._ThreadPool);
+	}
 	return *this;
 }
 
@@ -81,6 +79,7 @@ MiraiClient::~MiraiClient() = default;
 
 void MiraiClient::Connect()
 {
+	std::unique_lock<std::mutex> lk(this->_mtx);
 	if (this->_connected) return;
 
 	LOG_DEBUG(this->_GetLogger(), "Connecting to Mirai-Api-Http, initializing clients and threadpool");
@@ -113,7 +112,6 @@ void MiraiClient::Connect()
 					return header;
 				}());
 
-			this->_connected = true;
 			this->_HandshakeInfo = {info.uri, {info.headers.begin(), info.headers.end()}, info.protocol};
 		});
 
@@ -156,7 +154,10 @@ void MiraiClient::Connect()
 					return msg;
 				}());
 
-			this->_connected = false;
+			{
+				std::lock_guard<std::mutex> lk(this->_mtx);
+				this->_connected = false;
+			}
 			this->_SessionKeySet = false;
 			auto callback = this->_GetClosedCallback();
 			if (callback)
@@ -220,16 +221,13 @@ void MiraiClient::Connect()
 	this->_MessageClient->Connect(this->_config.WebsocketUrl + "/all?verifyKey=" + this->_config.VerifyKey
 	                              + "&qq=" + this->_config.BotQQ.to_string());
 
+	if (!this->_cv.wait_for(lk, std::chrono::seconds(10), [this]() -> bool { return this->_connected; }))
 	{
-		std::unique_lock<std::mutex> lk(this->_mtx);
-		if (!this->_cv.wait_for(lk, std::chrono::seconds(10), [this]() -> bool { return this->_SessionKeySet; }))
-		{
-			LOG_DEBUG(this->_GetLogger(), "Timeout waiting for session key, closing down");
+		LOG_DEBUG(this->_GetLogger(), "Timeout waiting for session key, closing down");
 
-			// failed to get sessionKey
-			this->_MessageClient->Disconnect();
-			throw NetworkException(-2, "Failed to receive session key from server");
-		}
+		// failed to get sessionKey
+		this->_MessageClient->Disconnect();
+		throw NetworkException(-2, "Failed to receive session key from server");
 	}
 
 	LOG_DEBUG(this->_GetLogger(), "Successfully connected");
@@ -237,6 +235,7 @@ void MiraiClient::Connect()
 
 void MiraiClient::Disconnect()
 {
+	std::unique_lock<std::mutex> lk(this->_mtx);
 	if (this->_MessageClient)
 	{
 		this->_MessageClient->Disconnect();
@@ -270,17 +269,20 @@ bool MiraiClient::_ReadSessionKey(const json& data)
 	std::string validate = Utils::GetValue(resp, "sessionKey", "");
 	if (session != validate)
 		throw MiraiApiHttpException(-1, "Dismatched sessionKey: \"" + session + "\" <-> \"" + validate);
-	this->_HandshakeInfo.SessionKey = session;
-	this->_HandshakeInfo.BotProfile = Utils::GetValue(resp, "qq", User{});
-
+	
+	ClientConnectionEstablishedEvent event;
 	{
 		std::unique_lock<std::mutex> lk(this->_mtx);
 		this->_SessionKey = session;
 		this->_SessionKeySet = true;
+		this->_connected = true;
+		this->_HandshakeInfo.SessionKey = session;
+		this->_HandshakeInfo.BotProfile = Utils::GetValue(resp, "qq", User{});
+		event = this->_HandshakeInfo;
 	}
 
 	auto callback = this->_GetEstablishedCallback();
-	if (callback) callback(this->_HandshakeInfo);
+	if (callback) callback(event);
 
 	this->_cv.notify_one();
 	return true;
@@ -370,7 +372,8 @@ std::vector<QQ_t> MiraiClient::GetBotList()
 
 FriendMessageEvent MiraiClient::GetFriendMessage(MessageId_t id, QQ_t qq)
 {
-	json resp = this->_HttpClient->MessageFromId(this->_SessionKey, id, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MessageFromId(SessionKey, id, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
@@ -383,7 +386,8 @@ FriendMessageEvent MiraiClient::GetFriendMessage(MessageId_t id, QQ_t qq)
 
 GroupMessageEvent MiraiClient::GetGroupMessage(MessageId_t id, GID_t GroupId)
 {
-	json resp = this->_HttpClient->MessageFromId(this->_SessionKey, id, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MessageFromId(SessionKey, id, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
@@ -396,7 +400,8 @@ GroupMessageEvent MiraiClient::GetGroupMessage(MessageId_t id, GID_t GroupId)
 
 TempMessageEvent MiraiClient::GetTempMessage(MessageId_t id, GID_t GroupId)
 {
-	json resp = this->_HttpClient->MessageFromId(this->_SessionKey, id, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MessageFromId(SessionKey, id, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
@@ -409,7 +414,8 @@ TempMessageEvent MiraiClient::GetTempMessage(MessageId_t id, GID_t GroupId)
 
 StrangerMessageEvent MiraiClient::GetStrangerMessage(MessageId_t id, QQ_t qq)
 {
-	json resp = this->_HttpClient->MessageFromId(this->_SessionKey, id, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MessageFromId(SessionKey, id, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
@@ -423,7 +429,8 @@ StrangerMessageEvent MiraiClient::GetStrangerMessage(MessageId_t id, QQ_t qq)
 
 std::vector<User> MiraiClient::GetFriendList()
 {
-	json resp = this->_HttpClient->FriendList(this->_SessionKey);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FriendList(SessionKey);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FriendList received " + resp.dump());
 
@@ -432,7 +439,8 @@ std::vector<User> MiraiClient::GetFriendList()
 
 std::vector<Group> MiraiClient::GetGroupList()
 {
-	json resp = this->_HttpClient->GroupList(this->_SessionKey);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->GroupList(SessionKey);
 
 	LOG_TRACE(this->_GetLogger(), "Calling GroupList received " + resp.dump());
 
@@ -441,7 +449,8 @@ std::vector<Group> MiraiClient::GetGroupList()
 
 std::vector<GroupMember> MiraiClient::GetMemberList(GID_t GroupId)
 {
-	json resp = this->_HttpClient->MemberList(this->_SessionKey, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MemberList(SessionKey, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MemberList received " + resp.dump());
 
@@ -451,7 +460,8 @@ std::vector<GroupMember> MiraiClient::GetMemberList(GID_t GroupId)
 
 UserProfile MiraiClient::GetBotProfile()
 {
-	json resp = this->_HttpClient->BotProfile(this->_SessionKey);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->BotProfile(SessionKey);
 
 	LOG_TRACE(this->_GetLogger(), "Calling BotProfile received " + resp.dump());
 
@@ -460,7 +470,8 @@ UserProfile MiraiClient::GetBotProfile()
 
 UserProfile MiraiClient::GetFriendProfile(QQ_t qq)
 {
-	json resp = this->_HttpClient->FriendProfile(this->_SessionKey, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FriendProfile(SessionKey, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FriendProfile received " + resp.dump());
 
@@ -469,7 +480,8 @@ UserProfile MiraiClient::GetFriendProfile(QQ_t qq)
 
 UserProfile MiraiClient::GetMemberProfile(GID_t GroupId, QQ_t MemberId)
 {
-	json resp = this->_HttpClient->MemberProfile(this->_SessionKey, GroupId, MemberId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MemberProfile(SessionKey, GroupId, MemberId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MemberProfile received " + resp.dump());
 
@@ -478,7 +490,8 @@ UserProfile MiraiClient::GetMemberProfile(GID_t GroupId, QQ_t MemberId)
 
 UserProfile MiraiClient::GetUserProfile(QQ_t qq)
 {
-	json resp = this->_HttpClient->UserProfile(this->_SessionKey, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UserProfile(SessionKey, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UserProfile received " + resp.dump());
 
@@ -488,7 +501,8 @@ UserProfile MiraiClient::GetUserProfile(QQ_t qq)
 MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message, std::optional<MessageId_t> QuoteId,
                                            bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendFriendMessage(this->_SessionKey, qq, message.ToJson(ignoreInvalid), QuoteId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendFriendMessage(SessionKey, qq, message.ToJson(ignoreInvalid), QuoteId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendFriendMessage received " + resp.dump());
 
@@ -498,7 +512,8 @@ MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message,
 MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& message,
                                           std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendGroupMessage(this->_SessionKey, GroupId, message.ToJson(ignoreInvalid), QuoteId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendGroupMessage(SessionKey, GroupId, message.ToJson(ignoreInvalid), QuoteId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendGroupMessage received " + resp.dump());
 
@@ -508,7 +523,8 @@ MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& mes
 MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
                                          std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
-	json resp = this->_HttpClient->SendTempMessage(this->_SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid),
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendTempMessage(SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid),
 	                                               QuoteId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendTempMessage received " + resp.dump());
@@ -518,12 +534,13 @@ MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const Mes
 
 void MiraiClient::SendNudge(const NudgeTarget& target)
 {
+	string SessionKey = this->_GetSessionKeyCopy();
 	json resp;
 	if (target.GetTargetKind() == NudgeTarget::GROUP)
-		resp = this->_HttpClient->SendNudge(this->_SessionKey, target.GetTarget(), target.GetGroup(),
+		resp = this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetGroup(),
 		                                    target.GetTargetKindStr());
 	else
-		resp = this->_HttpClient->SendNudge(this->_SessionKey, target.GetTarget(), target.GetTarget(),
+		resp = this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetTarget(),
 		                                    target.GetTargetKindStr());
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendNudge received " + resp.dump());
@@ -531,42 +548,48 @@ void MiraiClient::SendNudge(const NudgeTarget& target)
 
 void MiraiClient::NudgeFriend(QQ_t qq)
 {
-	json resp = this->_HttpClient->SendNudge(this->_SessionKey, qq, qq, "Friend");
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendNudge(SessionKey, qq, qq, "Friend");
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendNudge received " + resp.dump());
 }
 
 void MiraiClient::NudgeGroup(QQ_t MemberId, GID_t GroupId)
 {
-	json resp = this->_HttpClient->SendNudge(this->_SessionKey, MemberId, GroupId, "Group");
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendNudge(SessionKey, MemberId, GroupId, "Group");
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendNudge received " + resp.dump());
 }
 
 void MiraiClient::NudgeStranger(QQ_t qq)
 {
-	json resp = this->_HttpClient->SendNudge(this->_SessionKey, qq, qq, "Stranger");
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SendNudge(SessionKey, qq, qq, "Stranger");
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendNudge received " + resp.dump());
 }
 
 void MiraiClient::RecallFriendMessage(MessageId_t id, QQ_t qq)
 {
-	json resp = this->_HttpClient->Recall(this->_SessionKey, id, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Recall(SessionKey, id, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Recall received " + resp.dump());
 }
 
 void MiraiClient::RecallGroupMessage(MessageId_t id, GID_t GroupId)
 {
-	json resp = this->_HttpClient->Recall(this->_SessionKey, id, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Recall(SessionKey, id, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Recall received " + resp.dump());
 }
 
 std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart, std::time_t TimeEnd)
 {
-	json resp = this->_HttpClient->RoamingMessages(this->_SessionKey, TimeStart, TimeEnd, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RoamingMessages(SessionKey, TimeStart, TimeEnd, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RoamingMessages received " + resp.dump());
 
@@ -577,7 +600,8 @@ std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::tim
 std::vector<GroupFileInfo> MiraiClient::GetGroupFileList(GID_t GroupId, const FilePath& dir, int64_t offset,
                                                          int64_t size, bool withDownloadInfo)
 {
-	json resp = this->_HttpClient->FileList(this->_SessionKey, dir.GetId(), dir.GetPath(), GroupId, offset, size,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileList(SessionKey, dir.GetId(), dir.GetPath(), GroupId, offset, size,
 	                                        withDownloadInfo);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileList received " + resp.dump());
@@ -587,7 +611,8 @@ std::vector<GroupFileInfo> MiraiClient::GetGroupFileList(GID_t GroupId, const Fi
 
 GroupFileInfo MiraiClient::GetGroupFileInfo(GID_t GroupId, const FilePath& dir, bool withDownloadInfo)
 {
-	json resp = this->_HttpClient->FileInfo(this->_SessionKey, dir.GetId(), dir.GetPath(), GroupId, withDownloadInfo);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileInfo(SessionKey, dir.GetId(), dir.GetPath(), GroupId, withDownloadInfo);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileInfo received " + resp.dump());
 
@@ -596,7 +621,8 @@ GroupFileInfo MiraiClient::GetGroupFileInfo(GID_t GroupId, const FilePath& dir, 
 
 void MiraiClient::GetGroupFileInfo(GID_t GroupId, GroupFileInfo& file, bool withDownloadInfo)
 {
-	json resp = this->_HttpClient->FileInfo(this->_SessionKey, file.id, "", GroupId, withDownloadInfo);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileInfo(SessionKey, file.id, "", GroupId, withDownloadInfo);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileInfo received " + resp.dump());
 
@@ -605,7 +631,8 @@ void MiraiClient::GetGroupFileInfo(GID_t GroupId, GroupFileInfo& file, bool with
 
 GroupFileInfo MiraiClient::CreateGroupFileDirectory(GID_t GroupId, const string& directory)
 {
-	json resp = this->_HttpClient->FileMkdir(this->_SessionKey, "", "", GroupId, directory);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileMkdir(SessionKey, "", "", GroupId, directory);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileMkdir received " + resp.dump());
 
@@ -614,14 +641,16 @@ GroupFileInfo MiraiClient::CreateGroupFileDirectory(GID_t GroupId, const string&
 
 void MiraiClient::RemoveGroupFile(GID_t GroupId, const FilePath& dir)
 {
-	json resp = this->_HttpClient->FileDelete(this->_SessionKey, dir.GetId(), dir.GetPath(), GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileDelete(SessionKey, dir.GetId(), dir.GetPath(), GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RemoveGroupFile received " + resp.dump());
 }
 
 void MiraiClient::MoveGroupFile(GID_t GroupId, const FilePath& FileDir, const FilePath& MoveToDir)
 {
-	json resp = this->_HttpClient->FileMove(this->_SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileMove(SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId,
 	                                        MoveToDir.GetId(), MoveToDir.GetPath());
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileMove received " + resp.dump());
@@ -629,7 +658,8 @@ void MiraiClient::MoveGroupFile(GID_t GroupId, const FilePath& FileDir, const Fi
 
 void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const string& NewName)
 {
-	json resp = this->_HttpClient->FileRename(this->_SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId, NewName);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileRename(SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId, NewName);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileRename received " + resp.dump());
 }
@@ -637,7 +667,8 @@ void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const 
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
                                            const string& content)
 {
-	json resp = this->_HttpClient->FileUpload(this->_SessionKey, UploadPath, GroupId, "group", name, content);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileUpload(SessionKey, UploadPath, GroupId, "group", name, content);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileUpload received " + resp.dump());
 
@@ -664,7 +695,8 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 
 FriendImage MiraiClient::UploadFriendImage(const string& content)
 {
-	json resp = this->_HttpClient->UploadImage(this->_SessionKey, "friend", content);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImage(SessionKey, "friend", content);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadImage received " + resp.dump());
 
@@ -683,7 +715,8 @@ FriendImage MiraiClient::UploadFriendImage(std::istream& file)
 
 GroupImage MiraiClient::UploadGroupImage(const string& content)
 {
-	json resp = this->_HttpClient->UploadImage(this->_SessionKey, "group", content);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImage(SessionKey, "group", content);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadImage received " + resp.dump());
 
@@ -702,7 +735,8 @@ GroupImage MiraiClient::UploadGroupImage(std::istream& file)
 
 TempImage MiraiClient::UploadTempImage(const string& content)
 {
-	json resp = this->_HttpClient->UploadImage(this->_SessionKey, "temp", content);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImage(SessionKey, "temp", content);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadImage received " + resp.dump());
 
@@ -721,7 +755,8 @@ TempImage MiraiClient::UploadTempImage(std::istream& file)
 
 GroupAudio MiraiClient::UploadGroupAudio(const string& content)
 {
-	json resp = this->_HttpClient->UploadAudio(this->_SessionKey, "group", content);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadAudio(SessionKey, "group", content);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadAudio received " + resp.dump());
 
@@ -740,77 +775,88 @@ GroupAudio MiraiClient::UploadGroupAudio(std::istream& file)
 
 void MiraiClient::DeleteFriend(QQ_t qq)
 {
-	json resp = this->_HttpClient->DeleteFriend(this->_SessionKey, qq);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->DeleteFriend(SessionKey, qq);
 
 	LOG_TRACE(this->_GetLogger(), "Calling DeleteFriend received " + resp.dump());
 }
 
 void MiraiClient::Mute(GID_t GroupId, QQ_t member, std::chrono::seconds time)
 {
-	json resp = this->_HttpClient->Mute(this->_SessionKey, GroupId, member, time);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Mute(SessionKey, GroupId, member, time);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Mute received " + resp.dump());
 }
 
 void MiraiClient::Mute(const GroupMember& member, std::chrono::seconds time)
 {
-	json resp = this->_HttpClient->Mute(this->_SessionKey, member.group.id, member.id, time);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Mute(SessionKey, member.group.id, member.id, time);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Mute received " + resp.dump());
 }
 
 void MiraiClient::Unmute(GID_t GroupId, QQ_t member)
 {
-	json resp = this->_HttpClient->Unmute(this->_SessionKey, GroupId, member);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Unmute(SessionKey, GroupId, member);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Unmute received " + resp.dump());
 }
 
 void MiraiClient::Unmute(const GroupMember& member)
 {
-	json resp = this->_HttpClient->Unmute(this->_SessionKey, member.group.id, member.id);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Unmute(SessionKey, member.group.id, member.id);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Unmute received " + resp.dump());
 }
 
 void MiraiClient::Kick(GID_t GroupId, QQ_t member, const string& message)
 {
-	json resp = this->_HttpClient->Kick(this->_SessionKey, GroupId, member, message);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Kick(SessionKey, GroupId, member, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Kick received " + resp.dump());
 }
 
 void MiraiClient::Kick(const GroupMember& member, const string& message)
 {
-	json resp = this->_HttpClient->Kick(this->_SessionKey, member.group.id, member.id, message);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Kick(SessionKey, member.group.id, member.id, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Kick received " + resp.dump());
 }
 
 void MiraiClient::LeaveGroup(GID_t GroupId)
 {
-	json resp = this->_HttpClient->Quit(this->_SessionKey, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->Quit(SessionKey, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling Quit received " + resp.dump());
 }
 
 void MiraiClient::MuteAll(GID_t GroupId)
 {
-	json resp = this->_HttpClient->MuteAll(this->_SessionKey, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MuteAll(SessionKey, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MuteAll received " + resp.dump());
 }
 
 void MiraiClient::UnmuteAll(GID_t GroupId)
 {
-	json resp = this->_HttpClient->UnmuteAll(this->_SessionKey, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UnmuteAll(SessionKey, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling UnmuteAll received " + resp.dump());
 }
 
 void MiraiClient::SetEssence(GID_t GroupId, MessageId_t MessageId)
 {
-	json resp = this->_HttpClient->SetEssence(this->_SessionKey, MessageId, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->SetEssence(SessionKey, MessageId, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling SetEssence received " + resp.dump());
 }
@@ -818,7 +864,8 @@ void MiraiClient::SetEssence(GID_t GroupId, MessageId_t MessageId)
 
 GroupConfig MiraiClient::GetGroupConfig(GID_t GroupId)
 {
-	json resp = this->_HttpClient->GetGroupConfig(this->_SessionKey, GroupId);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->GetGroupConfig(SessionKey, GroupId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling GetGroupConfig received " + resp.dump());
 
@@ -827,14 +874,16 @@ GroupConfig MiraiClient::GetGroupConfig(GID_t GroupId)
 
 void MiraiClient::SetGroupConfig(GID_t GroupId, const string& name, std::optional<bool> AllowMemberInvite)
 {
-	json resp = this->_HttpClient->PostGroupConfig(this->_SessionKey, GroupId, name, std::nullopt, AllowMemberInvite);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->PostGroupConfig(SessionKey, GroupId, name, std::nullopt, AllowMemberInvite);
 
 	LOG_TRACE(this->_GetLogger(), "Calling PostGroupConfig received " + resp.dump());
 }
 
 GroupMember MiraiClient::GetMemberInfo(GID_t GroupId, QQ_t member)
 {
-	json resp = this->_HttpClient->GetMemberInfo(this->_SessionKey, GroupId, member);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->GetMemberInfo(SessionKey, GroupId, member);
 
 	LOG_TRACE(this->_GetLogger(), "Calling GetMemberInfo received " + resp.dump());
 
@@ -843,14 +892,16 @@ GroupMember MiraiClient::GetMemberInfo(GID_t GroupId, QQ_t member)
 
 void MiraiClient::SetMemberInfo(GID_t GroupId, QQ_t member, const string& name, const string& title)
 {
-	json resp = this->_HttpClient->PostMemberInfo(this->_SessionKey, GroupId, member, name, title);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->PostMemberInfo(SessionKey, GroupId, member, name, title);
 
 	LOG_TRACE(this->_GetLogger(), "Calling PostMemberInfo received " + resp.dump());
 }
 
 void MiraiClient::SetGroupAdmin(GID_t GroupId, QQ_t member, bool assign)
 {
-	json resp = this->_HttpClient->MemberAdmin(this->_SessionKey, GroupId, member, assign);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->MemberAdmin(SessionKey, GroupId, member, assign);
 
 	LOG_TRACE(this->_GetLogger(), "Calling MemberAdmin received " + resp.dump());
 }
@@ -858,7 +909,8 @@ void MiraiClient::SetGroupAdmin(GID_t GroupId, QQ_t member, bool assign)
 
 std::vector<GroupAnnouncement> MiraiClient::GetAnnouncementList(GID_t GroupId, int64_t offset, int64_t size)
 {
-	json resp = this->_HttpClient->AnnoList(this->_SessionKey, GroupId, offset, size);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->AnnoList(SessionKey, GroupId, offset, size);
 
 	LOG_TRACE(this->_GetLogger(), "Calling AnnoList received " + resp.dump());
 
@@ -869,7 +921,8 @@ GroupAnnouncement MiraiClient::PublishAnnouncement(GID_t GroupId, const string& 
                                                    bool ToNewMember, bool pinned, bool ShowEditCard, bool ShowPopup,
                                                    bool RequireConfirm)
 {
-	json resp = this->_HttpClient->AnnoPublish(this->_SessionKey, GroupId, content, cover.url, cover.path, cover.base64,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->AnnoPublish(SessionKey, GroupId, content, cover.url, cover.path, cover.base64,
 	                                           ToNewMember, pinned, ShowEditCard, ShowPopup, RequireConfirm);
 
 	LOG_TRACE(this->_GetLogger(), "Calling AnnoPublish received " + resp.dump());
@@ -879,14 +932,16 @@ GroupAnnouncement MiraiClient::PublishAnnouncement(GID_t GroupId, const string& 
 
 void MiraiClient::DeleteAnnouncement(GID_t GroupId, const string& fid)
 {
-	json resp = this->_HttpClient->AnnoDelete(this->_SessionKey, GroupId, fid);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->AnnoDelete(SessionKey, GroupId, fid);
 
 	LOG_TRACE(this->_GetLogger(), "Calling AnnoDelete received " + resp.dump());
 }
 
 void MiraiClient::DeleteAnnouncement(const GroupAnnouncement& announcement)
 {
-	json resp = this->_HttpClient->AnnoDelete(this->_SessionKey, announcement.group.id, announcement.fid);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->AnnoDelete(SessionKey, announcement.group.id, announcement.fid);
 
 	LOG_TRACE(this->_GetLogger(), "Calling AnnoDelete received " + resp.dump());
 }
@@ -895,7 +950,8 @@ void MiraiClient::DeleteAnnouncement(const GroupAnnouncement& announcement)
 void MiraiClient::RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, NewFriendRequestOp operation,
                                             const string& message)
 {
-	json resp = this->_HttpClient->RespNewFriendRequestEvent(this->_SessionKey, EventId, FromId, GroupId,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RespNewFriendRequestEvent(SessionKey, EventId, FromId, GroupId,
 	                                                         (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespNewFriendRequestEvent received " + resp.dump());
@@ -904,7 +960,8 @@ void MiraiClient::RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t 
 void MiraiClient::RespNewFriendRequestEvent(const NewFriendRequestEvent& event, NewFriendRequestOp operation,
                                             const string& message)
 {
-	json resp = this->_HttpClient->RespNewFriendRequestEvent(this->_SessionKey, event.GetEventId(), event.GetUserId(),
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RespNewFriendRequestEvent(SessionKey, event.GetEventId(), event.GetUserId(),
 	                                                         event.GetGroupId(), (int)operation, message);
 
 
@@ -914,7 +971,8 @@ void MiraiClient::RespNewFriendRequestEvent(const NewFriendRequestEvent& event, 
 void MiraiClient::RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, MemberJoinRequestOp operation,
                                              const string& message)
 {
-	json resp = this->_HttpClient->RespMemberJoinRequestEvent(this->_SessionKey, EventId, FromId, GroupId,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RespMemberJoinRequestEvent(SessionKey, EventId, FromId, GroupId,
 	                                                          (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespMemberJoinRequestEvent received " + resp.dump());
@@ -923,7 +981,8 @@ void MiraiClient::RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t
 void MiraiClient::RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event, MemberJoinRequestOp operation,
                                              const string& message)
 {
-	json resp = this->_HttpClient->RespMemberJoinRequestEvent(this->_SessionKey, event.GetEventId(), event.GetUserId(),
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RespMemberJoinRequestEvent(SessionKey, event.GetEventId(), event.GetUserId(),
 	                                                          event.GetGroupId(), (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespMemberJoinRequestEvent received " + resp.dump());
@@ -932,7 +991,8 @@ void MiraiClient::RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event
 void MiraiClient::RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId,
                                                       BotInvitedJoinGroupRequestOp operation, const string& message)
 {
-	json resp = this->_HttpClient->RespBotInvitedJoinGroupRequestEvent(this->_SessionKey, EventId, FromId, GroupId,
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->RespBotInvitedJoinGroupRequestEvent(SessionKey, EventId, FromId, GroupId,
 	                                                                   (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespBotInvitedJoinGroupRequestEvent received " + resp.dump());
@@ -941,8 +1001,9 @@ void MiraiClient::RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t From
 void MiraiClient::RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupRequestEvent& event,
                                                       BotInvitedJoinGroupRequestOp operation, const string& message)
 {
+	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_HttpClient->RespBotInvitedJoinGroupRequestEvent(
-		this->_SessionKey, event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, message);
+		SessionKey, event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespBotInvitedJoinGroupRequestEvent received " + resp.dump());
 }
@@ -951,13 +1012,15 @@ void MiraiClient::RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupR
 void MiraiClient::RegisterCommand(const string& name, const std::vector<string>& alias, const string& usage,
                                   const string& description)
 {
-	json resp = this->_HttpClient->CmdRegister(this->_SessionKey, name, alias, usage, description);
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->CmdRegister(SessionKey, name, alias, usage, description);
 
 	LOG_TRACE(this->_GetLogger(), "Calling CmdRegister received " + resp.dump());
 }
 void MiraiClient::ExecuteCommand(const MessageChain& command)
 {
-	json resp = this->_HttpClient->CmdExecute(this->_SessionKey, command.ToJson(false));
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->CmdExecute(SessionKey, command.ToJson(false));
 
 	LOG_TRACE(this->_GetLogger(), "Calling CmdExecute received " + resp.dump());
 }

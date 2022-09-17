@@ -88,8 +88,8 @@ protected:
 	std::shared_ptr<ILogger> _logger;
 
 	std::string _SessionKey{};
-	bool _SessionKeySet = false;
-	bool _connected = false; // Probably can be removed, but just in case
+	std::atomic<bool> _SessionKeySet = false;
+	bool _connected = false;
 
 	std::unique_ptr<Details::HttpClientImpl> _HttpClient;
 	std::unique_ptr<Details::MessageClientImpl> _MessageClient;
@@ -151,6 +151,12 @@ protected:
 
 	ILogger& _GetLogger() const { return *(this->_logger); }
 
+	std::string _GetSessionKeyCopy()
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_SessionKey;
+	}
+
 public:
 	MiraiClient();
 	MiraiClient(SessionConfigs config);
@@ -163,11 +169,16 @@ public:
 	/// 获取连接mirai-api-http的session key，若尚未建立链接则返回 `std::nullopt`
 	std::optional<std::string> GetSessionKey() const
 	{
-		return (this->_SessionKeySet) ? std::optional<std::string>(this->_SessionKey) : std::nullopt;
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return (this->_connected) ? std::optional<std::string>(this->_SessionKey) : std::nullopt;
 	}
 
 	/// 获取连接配置
-	SessionConfigs GetSessionConfig() const { return this->_config; }
+	SessionConfigs GetSessionConfig() const 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_config; 
+	}
 
 	/// 设置日志记录类
 	void SetLogger(std::shared_ptr<ILogger> logger) { this->_logger = logger; }
@@ -176,10 +187,18 @@ public:
 	std::shared_ptr<ILogger> GetLogger() const { return this->_logger; }
 
 	/// 获取BotQQ账号
-	QQ_t GetBotQQ() const { return this->_config.BotQQ; }
+	QQ_t GetBotQQ() const 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_config.BotQQ; 
+	}
 
 	/// 返回是否已成功连接mirai-api-http
-	bool isConnected() const { return this->_connected && this->_SessionKeySet; }
+	bool isConnected() const 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		return this->_connected; 
+	}
 
 	/// 返回cpp-mirai-client的版本号
 	constexpr std::string_view GetVersion() { return CPP_MIRAI_CLIENT_VERSION; }
@@ -209,21 +228,33 @@ public:
 	 * 
 	 * @param config 连接配置
 	 */
-	void SetSessionConfig(const SessionConfigs& config) { this->_config = config; };
+	void SetSessionConfig(const SessionConfigs& config) 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		this->_config = config; 
+	}
 
 	/**
 	 * @brief 设置连接选项
 	 * 
 	 * @param path 配置文件(JSON格式)的路径
 	 */
-	void SetSessionConfig(const std::string& path) { this->_config.FromFile(path); };
+	void SetSessionConfig(const std::string& path) 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		this->_config.FromFile(path); 
+	}
 
 	/**
 	 * @brief 设置连接选项
 	 * 
 	 * @param json_config JSON格式的配置
 	 */
-	void SetSessionConfig(const nlohmann::json& json_config) { this->_config.FromJson(json_config); };
+	void SetSessionConfig(const nlohmann::json& json_config) 
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		this->_config.FromJson(json_config); 
+	}
 
 
 	/**
