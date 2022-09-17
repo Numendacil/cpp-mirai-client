@@ -262,11 +262,11 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#aa554a665a4ded026cb78ee03599ed0f6">  119</a></span><span class="preprocessor">#define MIRAI_LOGGING_LEVELS_FATAL 5</span></div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#ac72cf68b3338941294a2d018c4b15dc2">  120</a></span><span class="preprocessor">#define MIRAI_LOGGING_LEVELS_OFF 6</span></div>
 <div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#ifndef MIRAI_LOGGING_LEVELS</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a9ef39e9036ddd013d4544d14861244f4">  123</a></span><span class="preprocessor">#define MIRAI_LOGGING_LEVELS MIRAI_LOGGING_LEVELS_INFO</span></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span><span class="preprocessor">#ifndef MIRAI_LOGGING_LEVEL</span></div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#aa0d5d442301c1aa7070cf0603ab73431">  123</a></span><span class="preprocessor">#define MIRAI_LOGGING_LEVEL MIRAI_LOGGING_LEVELS_INFO</span></div>
 <div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_TRACE</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_TRACE</span></div>
 <div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="preprocessor">    #define LOG_TRACE(_logger_, _msg_)  \</span></div>
 <div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="preprocessor">    do  \</span></div>
 <div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="preprocessor">    {   \</span></div>
@@ -277,7 +277,7 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a628369cdc5d7e0566423f9c9d3ce6fb8">  134</a></span><span class="preprocessor">    #define LOG_TRACE(_logger_, _msg_) (void)0</span></div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
-<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_DEBUG</span></div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_DEBUG</span></div>
 <div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#define LOG_DEBUG(_logger_, _msg_)  \</span></div>
 <div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">do  \</span></div>
 <div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">{   \</span></div>
@@ -288,7 +288,7 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a9d8e06852a936753e4c585f970ad6858">  145</a></span><span class="preprocessor">    #define LOG_DEBUG(_logger_, _msg_) (void)0</span></div>
 <div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_INFO</span></div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_INFO</span></div>
 <div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a057435fcf1c208755d5352dd5936a049">  149</a></span><span class="preprocessor">#define LOG_INFO(_logger_, _msg_)   \</span></div>
 <div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">do  \</span></div>
 <div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">{   \</span></div>
@@ -299,7 +299,7 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">    #define LOG_INFO(_logger_, _msg_) (void)0</span></div>
 <div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_WARN</span></div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_WARN</span></div>
 <div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#ad36ffea91d0223c8430ae47fc00dc4fe">  160</a></span><span class="preprocessor">#define LOG_WARN(_logger_, _msg_)   \</span></div>
 <div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">do  \</span></div>
 <div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">{   \</span></div>
@@ -310,7 +310,7 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">    #define LOG_WARN(_logger_, _msg_) (void)0</span></div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
-<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_ERROR</span></div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_ERROR</span></div>
 <div class="line"><a id="l00171" name="l00171"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a16f7163ad0f4357b7d4500c0a76d2d97">  171</a></span><span class="preprocessor">#define LOG_ERROR(_logger_, _msg_)  \</span></div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span><span class="preprocessor">do  \</span></div>
 <div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">{   \</span></div>
@@ -321,7 +321,7 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span><span class="preprocessor">    #define LOG_ERROR(_logger_, _msg_) (void)0</span></div>
 <div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#if MIRAI_LOGGING_LEVELS &lt;= MIRAI_LOGGING_LEVELS_FATAL</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#if MIRAI_LOGGING_LEVEL &lt;= MIRAI_LOGGING_LEVELS_FATAL</span></div>
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno"><a class="line" href="Logger_8hpp.html#a29eb275284413260b64ca396beda040b">  182</a></span><span class="preprocessor">#define LOG_FATAL(_logger_, _msg_)  \</span></div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">do  \</span></div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">{   \</span></div>

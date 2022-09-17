@@ -58,7 +58,7 @@ var searchData=
   ['minretryinterval_55',['MinRetryInterval',['../structMirai_1_1SessionConfigs.html#a39fab5c9d8666d44f5a3d2d02946bb93',1,'Mirai::SessionConfigs']]],
   ['mirai_56',['Mirai',['../namespaceMirai.html',1,'']]],
   ['mirai_2ehpp_57',['mirai.hpp',['../mirai_8hpp.html',1,'']]],
-  ['mirai_5flogging_5flevels_58',['MIRAI_LOGGING_LEVELS',['../Logger_8hpp.html#a9ef39e9036ddd013d4544d14861244f4',1,'Logger.hpp']]],
+  ['mirai_5flogging_5flevel_58',['MIRAI_LOGGING_LEVEL',['../Logger_8hpp.html#aa0d5d442301c1aa7070cf0603ab73431',1,'Logger.hpp']]],
   ['mirai_5flogging_5flevels_5fdebug_59',['MIRAI_LOGGING_LEVELS_DEBUG',['../Logger_8hpp.html#aa54bfd3ad0b57b2712282e362d6f292a',1,'Logger.hpp']]],
   ['mirai_5flogging_5flevels_5ferror_60',['MIRAI_LOGGING_LEVELS_ERROR',['../Logger_8hpp.html#a853ba4ed1893255696f84f5dfa47d0cf',1,'Logger.hpp']]],
   ['mirai_5flogging_5flevels_5ffatal_61',['MIRAI_LOGGING_LEVELS_FATAL',['../Logger_8hpp.html#aa554a665a4ded026cb78ee03599ed0f6',1,'Logger.hpp']]],

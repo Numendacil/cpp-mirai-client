@@ -9,7 +9,7 @@ var Logger_8hpp =
     [ "MIRAI_LOGGING_LEVELS_ERROR", "Logger_8hpp.html#a853ba4ed1893255696f84f5dfa47d0cf", null ],
     [ "MIRAI_LOGGING_LEVELS_FATAL", "Logger_8hpp.html#aa554a665a4ded026cb78ee03599ed0f6", null ],
     [ "MIRAI_LOGGING_LEVELS_OFF", "Logger_8hpp.html#ac72cf68b3338941294a2d018c4b15dc2", null ],
-    [ "MIRAI_LOGGING_LEVELS", "Logger_8hpp.html#a9ef39e9036ddd013d4544d14861244f4", null ],
+    [ "MIRAI_LOGGING_LEVEL", "Logger_8hpp.html#aa0d5d442301c1aa7070cf0603ab73431", null ],
     [ "LOG_TRACE", "Logger_8hpp.html#a628369cdc5d7e0566423f9c9d3ce6fb8", null ],
     [ "LOG_DEBUG", "Logger_8hpp.html#a9d8e06852a936753e4c585f970ad6858", null ],
     [ "LOG_INFO", "Logger_8hpp.html#a057435fcf1c208755d5352dd5936a049", null ],

@@ -1,6 +1,7 @@
 var classMirai_1_1AppMessage =
 [
     [ "AppMessage", "classMirai_1_1AppMessage.html#acb581cc0790f69158d06f0d730143301", null ],
+    [ "AppMessage", "classMirai_1_1AppMessage.html#a8fae60800164b6502de90c33d30354cd", null ],
     [ "GetType", "classMirai_1_1AppMessage.html#a18392b3f68a9088815e425a9ed7ed732", null ],
     [ "CloneUnique", "classMirai_1_1AppMessage.html#a9afcd691fcfcd86faedfeeb35c43ce6c", null ],
     [ "FromJson", "classMirai_1_1AppMessage.html#a267e8b9d408bdb66be999740383ccd75", null ],

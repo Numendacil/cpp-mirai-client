@@ -1,16 +1,17 @@
 <map id="Mirai::MiraiClient" name="Mirai::MiraiClient">
-<area shape="rect" id="node1" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="1055,257,1183,285"/>
-<area shape="rect" id="node2" title=" " alt="" coords="731,11,819,39"/>
-<area shape="rect" id="node3" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="240,523,400,551"/>
-<area shape="rect" id="node4" title=" " alt="" coords="11,325,95,353"/>
-<area shape="rect" id="node11" href="$structMirai_1_1ClientConnectionEstablishedEvent.html" title="连接建立事件" alt="" coords="653,453,896,497"/>
-<area shape="rect" id="node12" title=" " alt="" coords="242,269,398,313"/>
-<area shape="rect" id="node13" href="$structMirai_1_1User.html" title="QQ用户" alt="" coords="274,461,366,489"/>
-<area shape="rect" id="node14" title=" " alt="" coords="424,63,629,107"/>
-<area shape="rect" id="node5" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="5,571,100,599"/>
-<area shape="rect" id="node6" title=" " alt="" coords="693,129,856,173"/>
-<area shape="rect" id="node7" href="$classMirai_1_1ILogger.html" title="日志接口类" alt="" coords="265,137,375,165"/>
-<area shape="rect" id="node8" title=" " alt="" coords="688,249,861,293"/>
-<area shape="rect" id="node9" title=" " alt="" coords="688,317,861,361"/>
-<area shape="rect" id="node10" title=" " alt="" coords="695,385,854,429"/>
+<area shape="rect" id="node1" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="1055,281,1183,309"/>
+<area shape="rect" id="node2" title=" " alt="" coords="731,13,819,41"/>
+<area shape="rect" id="node3" href="$structMirai_1_1SessionConfigs.html" title="连接mirai&#45;api&#45;http的配置" alt="" coords="240,577,400,605"/>
+<area shape="rect" id="node4" title=" " alt="" coords="11,353,95,381"/>
+<area shape="rect" id="node12" href="$structMirai_1_1ClientConnectionEstablishedEvent.html" title="连接建立事件" alt="" coords="653,506,896,550"/>
+<area shape="rect" id="node13" title=" " alt="" coords="242,297,398,341"/>
+<area shape="rect" id="node14" href="$structMirai_1_1User.html" title="QQ用户" alt="" coords="274,514,366,542"/>
+<area shape="rect" id="node15" title=" " alt="" coords="424,65,629,109"/>
+<area shape="rect" id="node5" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="5,599,100,627"/>
+<area shape="rect" id="node6" title=" " alt="" coords="693,130,856,174"/>
+<area shape="rect" id="node7" href="$classMirai_1_1ILogger.html" title="日志接口类" alt="" coords="265,138,375,166"/>
+<area shape="rect" id="node8" title=" " alt="" coords="703,250,847,278"/>
+<area shape="rect" id="node9" title=" " alt="" coords="688,302,861,346"/>
+<area shape="rect" id="node10" title=" " alt="" coords="688,370,861,414"/>
+<area shape="rect" id="node11" title=" " alt="" coords="695,438,854,482"/>
 </map>

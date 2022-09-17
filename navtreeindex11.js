@@ -1,5 +1,11 @@
 var NAVTREEINDEX11 =
 {
+"namespaceMirai.html#a775ca2b7f08bebfadc765377a4225522":[5,0,0,0,141],
+"namespaceMirai.html#a7f31abdf0d06e1a96bb96e99e761dc64":[5,0,0,0,132],
+"namespaceMirai.html#a7fce8c3440d48675e716245a844f229d":[5,0,0,0,115],
+"namespaceMirai.html#a94d563158b3be29a718a7bbfbfa2877f":[5,0,0,0,112],
+"namespaceMirai.html#a97d2e1d36e4e9f32ac1419ae5aed6f88":[5,0,0,0,131],
+"namespaceMirai.html#a9ce2c1627db875edd2710ab9f88c8983":[5,0,0,0,138],
 "namespaceMirai.html#aa6db03a9b5478f5ac8ca7ed8f5b78ea2":[5,0,0,0,130],
 "namespaceMirai.html#aafebd385a48774b5a356f91601fa43c9":[5,0,0,0,136],
 "namespaceMirai.html#ab34e8f10186988d6b406264b98495120":[5,0,0,0,120],
@@ -243,11 +249,5 @@ var NAVTREEINDEX11 =
 "structMirai_1_1MiraiImage.html#abeec7da9a5ee7e38391934660c8a27d5":[5,1,0,0,76,8],
 "structMirai_1_1MiraiImage.html#adf156b96c1a095e43779bd12c7fb31c8":[5,1,0,0,76,11],
 "structMirai_1_1MiraiImage.html#adf156b96c1a095e43779bd12c7fb31c8":[5,0,0,0,78,11],
-"structMirai_1_1MiraiImage.html#ae78fab80402fbab9d5596ebd3ae656a6":[5,1,0,0,76,10],
-"structMirai_1_1MiraiImage.html#ae78fab80402fbab9d5596ebd3ae656a6":[5,0,0,0,78,10],
-"structMirai_1_1MiraiImage.html#aee6b6200d6c7c0b0a4fc2d21eac642f3":[5,1,0,0,76,3],
-"structMirai_1_1MiraiImage.html#aee6b6200d6c7c0b0a4fc2d21eac642f3":[5,0,0,0,78,3],
-"structMirai_1_1MiraiImage.html#aefb6dca96d464781270481ec1b8ea440":[5,1,0,0,76,0],
-"structMirai_1_1MiraiImage.html#aefb6dca96d464781270481ec1b8ea440":[5,0,0,0,78,0],
-"structMirai_1_1SessionConfigs.html":[5,0,0,0,100]
+"structMirai_1_1MiraiImage.html#ae78fab80402fbab9d5596ebd3ae656a6":[5,1,0,0,76,10]
 };

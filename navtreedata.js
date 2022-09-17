@@ -80,17 +80,17 @@ var NAVTREEINDEX =
 [
 "AppMessage_8cpp.html",
 "MemberCardChangeEvent_8cpp_source.html",
-"classMirai_1_1BotEvent.html#abce062da7a6d227d16617827b85ff8f4",
-"classMirai_1_1FaceMessage.html#a7836f26c3897ef70c63c933b805040cf",
-"classMirai_1_1FriendInputStatusChangedEvent.html#a7688b0b0e0983e9a531b84694eefbc8a",
-"classMirai_1_1GroupRecallEvent.html#a026a959d38b3c0b76c1055bb64906684",
-"classMirai_1_1MemberLeaveEventKick.html#a8ef06ddcc8f2db6e801e6be74832e036",
-"classMirai_1_1MessageChain.html#ae0c5576dbf3105c63db20c0418e7a6e6",
-"classMirai_1_1MiraiClient.html#adf06ba384b4feb356016f08177be433e",
-"classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089a88a8f25eef5665fd48c997efb8e5ce12",
-"classMirai_1_1StrangerSyncMessageEvent.html#a4e41a5891ae8659df2a2cf365ea0a820",
-"namespaceMirai.html#aa6db03a9b5478f5ac8ca7ed8f5b78ea2",
-"structMirai_1_1SessionConfigs.html"
+"classMirai_1_1BotEvent.html#a65743d8b6f05f9c65c03af96625b17e5",
+"classMirai_1_1FaceMessage.html#a6272e436d61a25405d1a9cf4e6560dd1",
+"classMirai_1_1FriendInputStatusChangedEvent.html#a65743d8b6f05f9c65c03af96625b17e5",
+"classMirai_1_1GroupNameChangeEvent.html#ae580273505a34eed4f04dc800a12ff87",
+"classMirai_1_1MemberLeaveEventKick.html#a59f2dfcbad4655af885983b6106a822d",
+"classMirai_1_1MessageChain.html#ad256206cd4f2ac5b6771b19844d51da9",
+"classMirai_1_1MiraiClient.html#adc5d3b7e7abd862114dc3048753e5064",
+"classMirai_1_1NudgeTarget.html#ad0489c7479ce6e4ec932eeea387b7089",
+"classMirai_1_1StrangerSyncMessageEvent.html",
+"namespaceMirai.html#a775ca2b7f08bebfadc765377a4225522",
+"structMirai_1_1MiraiImage.html#ae78fab80402fbab9d5596ebd3ae656a6"
 ];
 
 var SYNCONMSG = '点击 关闭 面板同步';

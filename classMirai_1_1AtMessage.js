@@ -1,6 +1,7 @@
 var classMirai_1_1AtMessage =
 [
     [ "AtMessage", "classMirai_1_1AtMessage.html#ae057ba2971b4e2e85d6351addc52d225", null ],
+    [ "AtMessage", "classMirai_1_1AtMessage.html#ae767a71e374690a653e36243da8839ff", null ],
     [ "GetType", "classMirai_1_1AtMessage.html#add3441eb013f8b462cf213af575d0cf9", null ],
     [ "CloneUnique", "classMirai_1_1AtMessage.html#ab56b71e5bbe0cc56fdf5cb60ae7dc0c8", null ],
     [ "isValid", "classMirai_1_1AtMessage.html#a4d1eec1eaf70cde293e75b136b0b28a7", null ],

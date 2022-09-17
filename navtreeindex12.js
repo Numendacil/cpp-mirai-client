@@ -1,5 +1,11 @@
 var NAVTREEINDEX12 =
 {
+"structMirai_1_1MiraiImage.html#ae78fab80402fbab9d5596ebd3ae656a6":[5,0,0,0,78,10],
+"structMirai_1_1MiraiImage.html#aee6b6200d6c7c0b0a4fc2d21eac642f3":[5,1,0,0,76,3],
+"structMirai_1_1MiraiImage.html#aee6b6200d6c7c0b0a4fc2d21eac642f3":[5,0,0,0,78,3],
+"structMirai_1_1MiraiImage.html#aefb6dca96d464781270481ec1b8ea440":[5,1,0,0,76,0],
+"structMirai_1_1MiraiImage.html#aefb6dca96d464781270481ec1b8ea440":[5,0,0,0,78,0],
+"structMirai_1_1SessionConfigs.html":[5,0,0,0,100],
 "structMirai_1_1SessionConfigs.html":[5,1,0,0,98],
 "structMirai_1_1SessionConfigs.html#a03f269bd59db39aaa939413850e0fbe2":[5,0,0,0,100,0],
 "structMirai_1_1SessionConfigs.html#a03f269bd59db39aaa939413850e0fbe2":[5,1,0,0,98,0],

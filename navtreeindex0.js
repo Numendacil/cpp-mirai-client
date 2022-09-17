@@ -219,7 +219,7 @@ var NAVTREEINDEX0 =
 "Logger_8hpp.html#a853ba4ed1893255696f84f5dfa47d0cf":[5,2,0,2,0,0,5,0,6],
 "Logger_8hpp.html#a8fc3e8836271ea44ea6c2357f9cfa083":[5,2,0,2,0,0,5,0,2],
 "Logger_8hpp.html#a9d8e06852a936753e4c585f970ad6858":[5,2,0,2,0,0,5,0,11],
-"Logger_8hpp.html#a9ef39e9036ddd013d4544d14861244f4":[5,2,0,2,0,0,5,0,9],
+"Logger_8hpp.html#aa0d5d442301c1aa7070cf0603ab73431":[5,2,0,2,0,0,5,0,9],
 "Logger_8hpp.html#aa54bfd3ad0b57b2712282e362d6f292a":[5,2,0,2,0,0,5,0,3],
 "Logger_8hpp.html#aa554a665a4ded026cb78ee03599ed0f6":[5,2,0,2,0,0,5,0,7],
 "Logger_8hpp.html#ac72cf68b3338941294a2d018c4b15dc2":[5,2,0,2,0,0,5,0,8],

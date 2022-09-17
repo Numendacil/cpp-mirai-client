@@ -65,7 +65,7 @@ var searchData=
   ['_5fsenderid_62',['_SenderId',['../classMirai_1_1ForwardMessage_1_1Node.html#ade836dc1768c06c210d100b0306f9e00',1,'Mirai::ForwardMessage::Node::_SenderId()'],['../classMirai_1_1QuoteMessage.html#a5b405f6cd51bfc6860d2cb13119dc9ff',1,'Mirai::QuoteMessage::_SenderId()']]],
   ['_5fsendername_63',['_SenderName',['../classMirai_1_1ForwardMessage_1_1Node.html#afae7a4381ffef6e5d3df7cccf0755fc7',1,'Mirai::ForwardMessage::Node']]],
   ['_5fsessionkey_64',['_SessionKey',['../classMirai_1_1MiraiClient.html#a31a131da9f7fc8d7c7f5931e9c5dd8c6',1,'Mirai::MiraiClient']]],
-  ['_5fsessionkeyset_65',['_SessionKeySet',['../classMirai_1_1MiraiClient.html#a6ee770fcf1c87761de2404c9683f55fb',1,'Mirai::MiraiClient']]],
+  ['_5fsessionkeyset_65',['_SessionKeySet',['../classMirai_1_1MiraiClient.html#a73e4ddb74f786d94aee1820d8f5bac7d',1,'Mirai::MiraiClient']]],
   ['_5fsize_66',['_size',['../classMirai_1_1FileMessage.html#aa81591d22dedfba8f11753d7a6dff526',1,'Mirai::FileMessage']]],
   ['_5fsubject_67',['_subject',['../classMirai_1_1FriendSyncMessageEvent.html#ade7dcae992b6c5b9714e8653c0113f14',1,'Mirai::FriendSyncMessageEvent::_subject()'],['../classMirai_1_1GroupSyncMessageEvent.html#a60b3429db7da1a6156d4c3b94337878b',1,'Mirai::GroupSyncMessageEvent::_subject()'],['../classMirai_1_1StrangerSyncMessageEvent.html#a29f89f8009dadd439f442efe61f6939e',1,'Mirai::StrangerSyncMessageEvent::_subject()'],['../classMirai_1_1TempSyncMessageEvent.html#a7cc5cafc6906f1b242d4d0cc0e63260f',1,'Mirai::TempSyncMessageEvent::_subject()'],['../classMirai_1_1NudgeTarget.html#af3e20e183a07a2ad26b1fbe97d9fe676',1,'Mirai::NudgeTarget::_subject()']]],
   ['_5fsuffix_68',['_suffix',['../classMirai_1_1NudgeEvent.html#adf4371cca745274dc0caacaccccc10cb',1,'Mirai::NudgeEvent']]],
