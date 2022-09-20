@@ -81,6 +81,7 @@ protected:
 	using EventHandler = std::function<void(const nlohmann::json&)>;
 
 	mutable std::mutex _mtx;
+	mutable std::mutex _ConnectMtx;		// Only one Connect() / Disconnect() can be called at the same time
 	mutable std::condition_variable _cv;
 
 	SessionConfigs _config{};

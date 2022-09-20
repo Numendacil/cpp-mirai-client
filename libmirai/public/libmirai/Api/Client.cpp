@@ -79,8 +79,12 @@ MiraiClient::~MiraiClient() = default;
 
 void MiraiClient::Connect()
 {
-	std::unique_lock<std::mutex> lk(this->_mtx);
-	if (this->_connected) return;
+	std::lock_guard<std::mutex> lk_c(this->_ConnectMtx);
+
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		if (this->_connected) return;
+	}
 
 	LOG_DEBUG(this->_GetLogger(), "Connecting to Mirai-Api-Http, initializing clients and threadpool");
 
@@ -221,13 +225,16 @@ void MiraiClient::Connect()
 	this->_MessageClient->Connect(this->_config.WebsocketUrl + "/all?verifyKey=" + this->_config.VerifyKey
 	                              + "&qq=" + this->_config.BotQQ.to_string());
 
-	if (!this->_cv.wait_for(lk, std::chrono::seconds(10), [this]() -> bool { return this->_connected; }))
 	{
-		LOG_DEBUG(this->_GetLogger(), "Timeout waiting for session key, closing down");
+		std::unique_lock<std::mutex> lk(this->_mtx);
+		if (!this->_cv.wait_for(lk, std::chrono::seconds(10), [this]() -> bool { return this->_connected; }))
+		{
+			LOG_DEBUG(this->_GetLogger(), "Timeout waiting for session key, closing down");
 
-		// failed to get sessionKey
-		this->_MessageClient->Disconnect();
-		throw NetworkException(-2, "Failed to receive session key from server");
+			// failed to get sessionKey
+			this->_MessageClient->Disconnect();
+			throw NetworkException(-2, "Failed to receive session key from server");
+		}
 	}
 
 	LOG_DEBUG(this->_GetLogger(), "Successfully connected");
@@ -235,7 +242,11 @@ void MiraiClient::Connect()
 
 void MiraiClient::Disconnect()
 {
-	std::unique_lock<std::mutex> lk(this->_mtx);
+	std::lock_guard<std::mutex> lk(this->_ConnectMtx);
+	{
+		std::lock_guard<std::mutex> lk(this->_mtx);
+		if (!this->_connected)	return;
+	}
 	if (this->_MessageClient)
 	{
 		this->_MessageClient->Disconnect();
