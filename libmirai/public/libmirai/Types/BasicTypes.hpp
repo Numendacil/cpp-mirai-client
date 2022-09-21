@@ -81,7 +81,7 @@ public:
 
 inline QQ_t operator""_qq(unsigned long long num)
 {
-	return QQ_t(num);
+	return QQ_t(static_cast<int64_t>(num));
 }
 
 /**
@@ -98,7 +98,7 @@ public:
 
 inline GID_t operator""_gid(unsigned long long num)
 {
-	return GID_t(num);
+	return GID_t(static_cast<int64_t>(num));
 }
 
 /**

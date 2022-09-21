@@ -81,7 +81,7 @@ protected:
 	using EventHandler = std::function<void(const nlohmann::json&)>;
 
 	mutable std::mutex _mtx;
-	mutable std::mutex _ConnectMtx;		// Only one Connect() / Disconnect() can be called at the same time
+	mutable std::mutex _ConnectMtx; // Only one Connect() / Disconnect() can be called at the same time
 	mutable std::condition_variable _cv;
 
 	SessionConfigs _config{};
@@ -175,10 +175,10 @@ public:
 	}
 
 	/// 获取连接配置
-	SessionConfigs GetSessionConfig() const 
+	SessionConfigs GetSessionConfig() const
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		return this->_config; 
+		return this->_config;
 	}
 
 	/// 设置日志记录类
@@ -188,17 +188,17 @@ public:
 	std::shared_ptr<ILogger> GetLogger() const { return this->_logger; }
 
 	/// 获取BotQQ账号
-	QQ_t GetBotQQ() const 
+	QQ_t GetBotQQ() const
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		return this->_config.BotQQ; 
+		return this->_config.BotQQ;
 	}
 
 	/// 返回是否已成功连接mirai-api-http
-	bool isConnected() const 
+	bool isConnected() const
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		return this->_connected; 
+		return this->_connected;
 	}
 
 	/// 返回cpp-mirai-client的版本号
@@ -229,10 +229,10 @@ public:
 	 * 
 	 * @param config 连接配置
 	 */
-	void SetSessionConfig(const SessionConfigs& config) 
+	void SetSessionConfig(const SessionConfigs& config)
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config = config; 
+		this->_config = config;
 	}
 
 	/**
@@ -240,10 +240,10 @@ public:
 	 * 
 	 * @param path 配置文件(JSON格式)的路径
 	 */
-	void SetSessionConfig(const std::string& path) 
+	void SetSessionConfig(const std::string& path)
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromFile(path); 
+		this->_config.FromFile(path);
 	}
 
 	/**
@@ -251,10 +251,10 @@ public:
 	 * 
 	 * @param json_config JSON格式的配置
 	 */
-	void SetSessionConfig(const nlohmann::json& json_config) 
+	void SetSessionConfig(const nlohmann::json& json_config)
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromJson(json_config); 
+		this->_config.FromJson(json_config);
 	}
 
 

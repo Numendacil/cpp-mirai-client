@@ -245,7 +245,7 @@ void MiraiClient::Disconnect()
 	std::lock_guard<std::mutex> lk(this->_ConnectMtx);
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		if (!this->_connected)	return;
+		if (!this->_connected) return;
 	}
 	if (this->_MessageClient)
 	{
@@ -280,7 +280,7 @@ bool MiraiClient::_ReadSessionKey(const json& data)
 	std::string validate = Utils::GetValue(resp, "sessionKey", "");
 	if (session != validate)
 		throw MiraiApiHttpException(-1, "Dismatched sessionKey: \"" + session + "\" <-> \"" + validate);
-	
+
 	ClientConnectionEstablishedEvent event;
 	{
 		std::unique_lock<std::mutex> lk(this->_mtx);
@@ -535,8 +535,8 @@ MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const Mes
                                          std::optional<MessageId_t> QuoteId, bool ignoreInvalid)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_HttpClient->SendTempMessage(SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid),
-	                                               QuoteId);
+	json resp =
+		this->_HttpClient->SendTempMessage(SessionKey, MemberId, GroupId, message.ToJson(ignoreInvalid), QuoteId);
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendTempMessage received " + resp.dump());
 
@@ -548,11 +548,11 @@ void MiraiClient::SendNudge(const NudgeTarget& target)
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp;
 	if (target.GetTargetKind() == NudgeTarget::GROUP)
-		resp = this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetGroup(),
-		                                    target.GetTargetKindStr());
+		resp =
+			this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetGroup(), target.GetTargetKindStr());
 	else
-		resp = this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetTarget(),
-		                                    target.GetTargetKindStr());
+		resp =
+			this->_HttpClient->SendNudge(SessionKey, target.GetTarget(), target.GetTarget(), target.GetTargetKindStr());
 
 	LOG_TRACE(this->_GetLogger(), "Calling SendNudge received " + resp.dump());
 }
@@ -612,8 +612,8 @@ std::vector<GroupFileInfo> MiraiClient::GetGroupFileList(GID_t GroupId, const Fi
                                                          int64_t size, bool withDownloadInfo)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_HttpClient->FileList(SessionKey, dir.GetId(), dir.GetPath(), GroupId, offset, size,
-	                                        withDownloadInfo);
+	json resp =
+		this->_HttpClient->FileList(SessionKey, dir.GetId(), dir.GetPath(), GroupId, offset, size, withDownloadInfo);
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileList received " + resp.dump());
 
@@ -661,8 +661,8 @@ void MiraiClient::RemoveGroupFile(GID_t GroupId, const FilePath& dir)
 void MiraiClient::MoveGroupFile(GID_t GroupId, const FilePath& FileDir, const FilePath& MoveToDir)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_HttpClient->FileMove(SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId,
-	                                        MoveToDir.GetId(), MoveToDir.GetPath());
+	json resp = this->_HttpClient->FileMove(SessionKey, FileDir.GetId(), FileDir.GetPath(), GroupId, MoveToDir.GetId(),
+	                                        MoveToDir.GetPath());
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileMove received " + resp.dump());
 }
@@ -690,10 +690,10 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
                                            std::istream& file)
 {
 	string s;
-	char buffer[4096];
-	while (file.read(buffer, sizeof(buffer)))
-		s.append(buffer, sizeof(buffer));
-	s.append(buffer, file.gcount());
+	char buffer[4096];                        // NOLINT(*-avoid-c-arrays)
+	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
+		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
+	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadGroupFile(GroupId, UploadPath, name, s);
 }
 
@@ -717,10 +717,10 @@ FriendImage MiraiClient::UploadFriendImage(const string& content)
 FriendImage MiraiClient::UploadFriendImage(std::istream& file)
 {
 	string s;
-	char buffer[4096];
-	while (file.read(buffer, sizeof(buffer)))
-		s.append(buffer, sizeof(buffer));
-	s.append(buffer, file.gcount());
+	char buffer[4096];                        // NOLINT(*-avoid-c-arrays)
+	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
+		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
+	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadFriendImage(s);
 }
 
@@ -737,10 +737,10 @@ GroupImage MiraiClient::UploadGroupImage(const string& content)
 GroupImage MiraiClient::UploadGroupImage(std::istream& file)
 {
 	string s;
-	char buffer[4096];
-	while (file.read(buffer, sizeof(buffer)))
-		s.append(buffer, sizeof(buffer));
-	s.append(buffer, file.gcount());
+	char buffer[4096];                        // NOLINT(*-avoid-c-arrays)
+	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
+		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
+	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadGroupImage(s);
 }
 
@@ -757,10 +757,10 @@ TempImage MiraiClient::UploadTempImage(const string& content)
 TempImage MiraiClient::UploadTempImage(std::istream& file)
 {
 	string s;
-	char buffer[4096];
-	while (file.read(buffer, sizeof(buffer)))
-		s.append(buffer, sizeof(buffer));
-	s.append(buffer, file.gcount());
+	char buffer[4096];                        // NOLINT(*-avoid-c-arrays)
+	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
+		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
+	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadTempImage(s);
 }
 
@@ -776,10 +776,10 @@ GroupAudio MiraiClient::UploadGroupAudio(const string& content)
 GroupAudio MiraiClient::UploadGroupAudio(std::istream& file)
 {
 	string s;
-	char buffer[4096];
-	while (file.read(buffer, sizeof(buffer)))
-		s.append(buffer, sizeof(buffer));
-	s.append(buffer, file.gcount());
+	char buffer[4096];                        // NOLINT(*-avoid-c-arrays)
+	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
+		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
+	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadGroupAudio(s);
 }
 
@@ -962,8 +962,8 @@ void MiraiClient::RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t 
                                             const string& message)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_HttpClient->RespNewFriendRequestEvent(SessionKey, EventId, FromId, GroupId,
-	                                                         (int)operation, message);
+	json resp =
+		this->_HttpClient->RespNewFriendRequestEvent(SessionKey, EventId, FromId, GroupId, (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespNewFriendRequestEvent received " + resp.dump());
 }
@@ -983,8 +983,8 @@ void MiraiClient::RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t
                                              const string& message)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_HttpClient->RespMemberJoinRequestEvent(SessionKey, EventId, FromId, GroupId,
-	                                                          (int)operation, message);
+	json resp =
+		this->_HttpClient->RespMemberJoinRequestEvent(SessionKey, EventId, FromId, GroupId, (int)operation, message);
 
 	LOG_TRACE(this->_GetLogger(), "Calling RespMemberJoinRequestEvent received " + resp.dump());
 }

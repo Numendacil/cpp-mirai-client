@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -73,8 +73,10 @@ protected:
 
 	template<typename Message> constexpr static void _type_check_()
 	{
-		static_assert(std::is_base_of<MessageBase, Message>::value, "Message must be a derived class of MessageBase");
-		static_assert(_has_type_<Message>::value, "Message must contain a static atrribute _TYPE_");
+		static_assert(std::is_base_of<MessageBase, Message>::value,
+		              "Message must be a derived class of MessageBase"); // NOLINT(*-array-to-pointer-decay)
+		static_assert(_has_type_<Message>::value,
+		              "Message must contain a static atrribute _TYPE_"); // NOLINT(*-array-to-pointer-decay)
 	};
 
 public:

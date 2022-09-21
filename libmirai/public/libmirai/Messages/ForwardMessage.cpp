@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -44,7 +44,7 @@ void ForwardMessage::Node::FromJson(const json& data)
 
 json ForwardMessage::Node::ToJson() const
 {
-	// assert(this->isValid());
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	json data = json::object();
 	if (this->_MessageId.has_value()) data["messageId"] = this->_MessageId.value();
@@ -67,16 +67,16 @@ bool ForwardMessage::isValid() const
 
 void ForwardMessage::FromJson(const json& data)
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType());
+	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
 	json nodelist = Utils::GetValue(data, "nodeList", json::array());
-	assert(nodelist.is_array());
+	assert(nodelist.is_array()); // NOLINT(*-array-to-pointer-decay)
 
 	this->_NodeList = nodelist.get<std::vector<Node>>();
 }
 
 json ForwardMessage::ToJson() const
 {
-	// assert(this->isValid());
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	json data = json::object();
 	data["type"] = this->GetType();

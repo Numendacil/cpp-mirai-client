@@ -90,7 +90,7 @@ void MiraiImage::FromJson(const json& data)
 
 json MiraiImage::ToJson() const
 {
-	// assert(this->isValid());
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	json data = json::object();
 	if (!this->id.empty()) data["imageId"] = this->id;
@@ -114,7 +114,7 @@ void MiraiAudio::FromJson(const json& data)
 
 json MiraiAudio::ToJson() const
 {
-	// assert(this->isValid());
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	json data = json::object();
 	if (!this->id.empty()) data["voiceId"] = this->id;

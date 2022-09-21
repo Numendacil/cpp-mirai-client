@@ -11,6 +11,12 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 set(MIRAI_LIB_TARGET_NAME	cppmirai)
 
 
+set(MIRAI_LIB_MAIN_PROJECT OFF)
+if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
+  set(MIRAI_LIB_MAIN_PROJECT ON)
+endif()
+
+
 # Options with regard to building shared library
 option(BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
 
@@ -34,6 +40,8 @@ target_compile_definitions(${MIRAI_LIB_TARGET_NAME} PUBLIC CPP_MIRAI_CLIENT_VERS
 
 
 # External packages
+find_package(Threads REQUIRED)
+
 find_package(httplib QUIET)
 if(NOT HTTPLIB_FOUND)
 	message("cpp-httplib not found. Building from local subdirectories")
@@ -91,7 +99,7 @@ add_subdirectory(libmirai)
 
 
 # UnitTests
-option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" OFF)
+option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_BUILD_UNIT_TESTS)
 	message("UnitTests enabled")
 	add_subdirectory(external/googletest)
@@ -99,7 +107,7 @@ if(MIRAI_BUILD_UNIT_TESTS)
 endif(MIRAI_BUILD_UNIT_TESTS)
 
 # Examples
-option(MIRAI_BUILD_EXAMPLES "Build Examples" OFF)
+option(MIRAI_BUILD_EXAMPLES "Build Examples" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_BUILD_EXAMPLES)
 	message("examples enabled")
 	add_subdirectory(examples)
@@ -107,7 +115,7 @@ endif(MIRAI_BUILD_EXAMPLES)
 
 
 # Install
-option(MIRAI_INSTALL_CURRENT_DIR "Install library in the current directory for portability" ON)
+option(MIRAI_INSTALL_CURRENT_DIR "Install library in the current directory for portability" OFF)
 if(MIRAI_INSTALL_CURRENT_DIR)
 	set(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install" CACHE PATH "Install library in the current directory" FORCE)
 
@@ -122,7 +130,7 @@ if(MIRAI_INSTALL_CURRENT_DIR)
 	endif(BUILD_SHARED_LIBS)
 endif(MIRAI_INSTALL_CURRENT_DIR)
 
-option(MIRAI_INSTALL "Install library" ON)
+option(MIRAI_INSTALL "Install library" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_INSTALL)
 	install(
 		TARGETS ${MIRAI_LIB_TARGET_NAME}

@@ -1,15 +1,15 @@
 // Copyright (C) 2022 Numendacil and contributors
-// 
+//
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU Affero General Public License as
 // published by the Free Software Foundation, either version 3 of the
 // License, or (at your option) any later version.
-// 
+//
 // This program is distributed in the hope that it will be useful,
 // but WITHOUT ANY WARRANTY; without even the implied warranty of
 // MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 // GNU Affero General Public License for more details.
-// 
+//
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -138,25 +138,25 @@ Utils::Factory<MessageBase> InitFactory()
 #define _REGISTER_(_class_) assert(f.Register<_class_>(std::string(_class_::_TYPE_)))
 #endif
 
-	_REGISTER_(AppMessage);
-	_REGISTER_(AtAllMessage);
-	_REGISTER_(AtMessage);
-	_REGISTER_(AudioMessage);
-	_REGISTER_(DiceMessage);
-	_REGISTER_(FaceMessage);
-	_REGISTER_(FileMessage);
-	_REGISTER_(FlashImageMessage);
-	_REGISTER_(ForwardMessage);
-	_REGISTER_(ImageMessage);
-	_REGISTER_(JsonMessage);
-	_REGISTER_(MarketFaceMessage);
-	_REGISTER_(MiraiCodeMessage);
-	_REGISTER_(MusicShareMessage);
-	_REGISTER_(PlainMessage);
-	_REGISTER_(PokeMessage);
-	_REGISTER_(QuoteMessage);
-	_REGISTER_(SourceMessage);
-	_REGISTER_(XmlMessage);
+	_REGISTER_(AppMessage);        // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(AtAllMessage);      // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(AtMessage);         // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(AudioMessage);      // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(DiceMessage);       // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(FaceMessage);       // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(FileMessage);       // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(FlashImageMessage); // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(ForwardMessage);    // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(ImageMessage);      // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(JsonMessage);       // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(MarketFaceMessage); // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(MiraiCodeMessage);  // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(MusicShareMessage); // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(PlainMessage);      // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(PokeMessage);       // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(QuoteMessage);      // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(SourceMessage);     // NOLINT(*-array-to-pointer-decay)
+	_REGISTER_(XmlMessage);        // NOLINT(*-array-to-pointer-decay)
 
 #undef _REGISTER_
 
