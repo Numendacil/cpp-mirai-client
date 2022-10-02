@@ -1,22 +1,22 @@
 #include <chrono>
 #include <condition_variable>
 #include <mutex>
+#include <random>
 #include <stdexcept>
 #include <memory>
 #include <string>
 #include <thread>
 #include <type_traits>
+#include <vector>
 
 #include <gtest/gtest.h>
 
 #include <nlohmann/json.hpp>
-#include <httplib.h>
-#include <ixwebsocket/IXWebSocketServer.h>
 
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Types/Types.hpp>
-#include <libmirai/Utils/Common.hpp>
-#include <libmirai/mirai.hpp>
+#include <libmirai/Events/Events.hpp>
+#include <libmirai/MockApi/MockClient.hpp>
 
 #include "JsonData.hpp"
 
@@ -24,132 +24,7 @@ using json = nlohmann::json;
 using namespace Mirai;
 using namespace std::chrono_literals;
 
-class ClientTest : public testing::Test
-{
-protected:
-	static std::unique_ptr<httplib::Server> HttpSvr;
-	static std::unique_ptr<ix::WebSocketServer> WsSvr;
-	static std::thread th;
-
-	static void SetUpTestSuite()
-	{
-		if (!HttpSvr)
-		{
-			HttpSvr = std::make_unique<httplib::Server>();
-
-			HttpSvr->Get(R"(/sessionInfo)", [](const httplib::Request& req, httplib::Response& res) {
-				json param = req.params;
-				if (!param.contains("sessionKey") || param.at("sessionKey").get<std::string>() != "aaabbbccc")
-				{
-					json resp = 
-					{
-						{"code", 3},
-						{"msg", "Unknown session " + param.dump()}
-					};
-					res.set_content(resp.dump(), "application/json;charset=UTF-8");
-				}
-				else
-				{
-					json resp = 
-					{
-						{"code", 0},
-						{"msg", ""},
-						{"data", {
-							{"sessionKey", "aaabbbccc"},
-							{"qq", User{123456_qq, "xxx", "xx"}}
-						}}
-					};
-					res.set_content(resp.dump(), "application/json;charset=UTF-8");
-				}
-			});
-
-			th = std::thread([]{HttpSvr->listen("localhost", 1234);});
-			std::this_thread::sleep_for(std::chrono::milliseconds(100));
-		}
-
-		if (!WsSvr)
-		{
-			WsSvr = std::make_unique<ix::WebSocketServer>(4321);
-			WsSvr->disablePerMessageDeflate();
-
-			WsSvr->setOnClientMessageCallback([](
-				std::shared_ptr<ix::ConnectionState>,
-				ix::WebSocket& websocket, 
-				const ix::WebSocketMessagePtr& msg
-			)
-			{
-				if (msg->type == ix::WebSocketMessageType::Open)
-				{
-					if (msg->openInfo.uri != "/all?verifyKey=xxx&qq=111" && msg->openInfo.uri != "/all?qq=111&verifyKey=xxx")
-					{
-						json resp = {
-							{"syncId", ""},
-							{"data", {{"code", -1}, {"msg", "Invalid uri: " + msg->openInfo.uri}}}
-						}; 
-						websocket.send(resp.dump());
-					}
-					else
-					{
-						json resp = {
-							{"syncId", ""},
-							{"data", {{"code", 0}, {"session", "aaabbbccc"}}}
-						}; 
-						websocket.send(resp.dump());
-
-						std::random_device dev;
-						std::mt19937 rng(dev());
-						json data;
-						for (const auto& p : Data::EventData.items())
-						{
-							data += p.value();
-						}
-						std::uniform_int_distribution<unsigned long> randidx(0, data.size() - 1);
-						for (std::size_t i = 0; i < 1000; i++)
-						{
-							auto idx = randidx(rng);
-							json event = {
-								{"syncId", ""},
-								{"data", data[idx]}
-							};
-							websocket.send(event.dump());
-						}
-						std::this_thread::sleep_for(100ms);
-						websocket.close();
-					}
-				}
-			}
-			);
-			
-			if (!WsSvr->listenAndStart())
-				throw std::runtime_error("Can't start server");
-		}
-	}
-
-	static void TearDownTestSuite()
-	{
-		if (HttpSvr)
-		{
-			if (HttpSvr->is_running())
-				HttpSvr->stop();
-			if (th.joinable())
-				th.join();
-			HttpSvr = nullptr;
-		}
-
-		if (WsSvr)
-		{
-			WsSvr->stop();
-			WsSvr = nullptr;
-		}
-	}
-
-};
-
-std::unique_ptr<httplib::Server> ClientTest::HttpSvr;
-std::unique_ptr<ix::WebSocketServer> ClientTest::WsSvr;
-std::thread ClientTest::th;
-
-TEST_F(ClientTest, ApplicationTest)
+TEST(MockClientTest, FunctionTest)
 {
 	SessionConfigs opts;
 	opts.HttpUrl = "http://localhost:1234";
@@ -236,10 +111,68 @@ TEST_F(ClientTest, ApplicationTest)
 
 	client.Connect();
 	EXPECT_TRUE(client.isConnected());
+	
 	{
-		std::unique_lock<std::mutex> lk(mtx);
-		EXPECT_TRUE(cv.wait_for(lk, 30s, [&]{ return !start; }));
+		std::random_device dev;
+		std::mt19937 rng(dev());
+		json data;
+		for (const auto& p : Data::EventData.items())
+		{
+			data += p.value();
+		}
+		std::uniform_int_distribution<unsigned long> randidx(0, data.size() - 1);
+		for (std::size_t i = 0; i < 1000; i++)
+		{
+			auto idx = randidx(rng);
+			json event = {
+				{"syncId", ""},
+				{"data", data[idx]}
+			};
+			client.Received(event.dump());
+		}
+		client.Disconnect();
 	}
+
 	EXPECT_FALSE(client.isConnected());
 	EXPECT_EQ(count, 1000);
+}
+
+void foo(MiraiClient& client)
+{
+	auto list = client.GetMemberList(1234_gid);
+	for (const auto& member : list)
+		client.SendGroupMessage(1234_gid, MessageChain().At(member.id));
+}
+
+TEST(MockClientTest, MockTest)
+{
+	class MockClient : public MiraiClient
+	{
+	public:
+		std::vector<GroupMember> list = { GroupMember(1_qq), GroupMember(2_qq), GroupMember(3_qq) };
+		int64_t count = 0;
+
+		std::vector<GroupMember> GetMemberList(GID_t GroupId) override
+		{
+			return this->list;
+		}
+
+		MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message,
+	                                     std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false) override
+		{
+			auto At = message.GetAll<AtMessage>();
+			for (const auto& m : At)
+				count += (int64_t)m.GetTarget();
+			return 0;
+		}
+	};
+
+	MockClient client;
+	foo(client);
+	EXPECT_EQ(client.count, [&]() -> int64_t { 
+		int64_t result{};
+		for (const auto& m : client.list)
+			result += (int64_t)m.id;
+		return result;
+	}() );
 }

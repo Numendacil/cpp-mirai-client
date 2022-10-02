@@ -10,6 +10,9 @@ add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>")
 # Target name for the main library
 set(MIRAI_LIB_TARGET_NAME	cppmirai)
 
+# Target name for the mock library
+set(MIRAI_MOCKLIB_TARGET_NAME	cppmiraiMock)
+
 
 set(MIRAI_LIB_MAIN_PROJECT OFF)
 if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
@@ -94,6 +97,21 @@ target_link_libraries(${MIRAI_LIB_TARGET_NAME} PUBLIC nlohmann_json::nlohmann_js
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE httplib::httplib)
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 
+
+option(MIRAI_BUILD_MOCK_CLIENT "Build MockLibs" OFF)
+if(MIRAI_BUILD_MOCK_CLIENT)
+	add_library(${MIRAI_MOCKLIB_TARGET_NAME} STATIC)
+	add_library(${PROJECT_NAME}::${MIRAI_MOCKLIB_TARGET_NAME} ALIAS ${MIRAI_MOCKLIB_TARGET_NAME})
+
+	target_compile_features(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE cxx_std_17)
+	set_target_properties(${MIRAI_MOCKLIB_TARGET_NAME} PROPERTIES CXX_STANDARD 17)
+	set_target_properties(${MIRAI_MOCKLIB_TARGET_NAME} PROPERTIES CXX_STANDARD_REQUIRED ON)
+
+	target_compile_definitions(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC CPP_MIRAI_CLIENT_VERSION="${PROJECT_VERSION}")
+
+	target_link_libraries(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC nlohmann_json::nlohmann_json)
+	target_link_libraries(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE httplib::httplib)
+endif(MIRAI_BUILD_MOCK_CLIENT)
 
 add_subdirectory(libmirai)
 

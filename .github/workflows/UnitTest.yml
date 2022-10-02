@@ -22,17 +22,23 @@ jobs:
             os: windows-latest
             cc: cl
             cxx: cl
-            exe: Debug/unit_test.exe
+            exe: |
+              ./Debug/unit_test.exe
+              ./Debug/unit_test_mock.exe
           - name: Ubuntu Latest GCC
             os: ubuntu-latest
             cc: gcc
             cxx: g++
-            exe: unit_test
+            exe: |
+              ./unit_test
+              ./unit_test_mock
           - name: macOS Latest Clang
             os: macos-latest
             cc: clang
             cxx: clang++
-            exe: unit_test
+            exe: |
+              ./unit_test
+              ./unit_test_mock
 
     steps:
     - name: Git Checkout
@@ -46,6 +52,7 @@ jobs:
       run: >
         cmake -S . -B ${{github.workspace}}/build 
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} 
+        -DMIRAI_BUILD_MOCK_CLIENT=ON
         -DMIRAI_BUILD_UNIT_TESTS=ON
         -DMIRAI_BUILD_EXAMPLES=ON
 
@@ -56,4 +63,4 @@ jobs:
     - name: Test
       working-directory: ${{github.workspace}}/build/UnitTest
       # Execute tests defined by the CMake configuration.  
-      run: ./${{ matrix.config.exe }}
+      run: ${{ matrix.config.exe }}

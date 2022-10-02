@@ -38,9 +38,8 @@
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
+#include <libmirai/Utils/Logger.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
-
-#include "libmirai/Utils/Logger.hpp"
 
 namespace Mirai
 {
@@ -52,7 +51,10 @@ MiraiClient::MiraiClient()
 	this->_logger = std::make_shared<NullLogger>();
 }
 
-MiraiClient::MiraiClient(SessionConfigs config) : _config(std::move(config)) {}
+MiraiClient::MiraiClient(SessionConfigs config) : _config(std::move(config)) 
+{
+	this->_logger = std::make_shared<NullLogger>();
+}
 
 MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
 {
