@@ -157,8 +157,15 @@ if(MIRAI_INSTALL)
 	)
 
 	install(
-		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/public/"
-		DESTINATION "include"
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/models/"
+		DESTINATION "include/cppmirai"
+		FILES_MATCHING
+		PATTERN "*.hpp"
+	)
+
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/api/"
+		DESTINATION "include/cppmirai/api"
 		FILES_MATCHING
 		PATTERN "*.hpp"
 	)

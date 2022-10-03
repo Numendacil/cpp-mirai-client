@@ -1,7 +1,6 @@
 #ifndef _MIRAI_MIRAI_HPP_
 #define _MIRAI_MIRAI_HPP_
 
-#include <libmirai/Api/Client.hpp>
 #include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Events/Events.hpp>
 #include <libmirai/Exceptions/Exceptions.hpp>

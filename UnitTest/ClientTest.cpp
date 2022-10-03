@@ -13,10 +13,9 @@
 #include <httplib.h>
 #include <ixwebsocket/IXWebSocketServer.h>
 
-#include <libmirai/Exceptions/Exceptions.hpp>
-#include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/mirai.hpp>
+#include <libmirai/Client.hpp>
 
 #include "JsonData.hpp"
 

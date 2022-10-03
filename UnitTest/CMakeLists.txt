@@ -28,7 +28,7 @@ if (CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
 	target_link_options(unit_test PRIVATE -fsanitize=address -fno-omit-frame-pointer)
 endif()
 
-target_include_directories(unit_test PRIVATE ../libmirai/private)
+target_include_directories(unit_test PRIVATE ../libmirai/details)
 
 target_compile_features(unit_test PRIVATE cxx_std_17)
 set_target_properties(unit_test PROPERTIES CXX_STANDARD 17)

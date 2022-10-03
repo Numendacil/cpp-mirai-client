@@ -1,5 +1,6 @@
 target_sources(
 	${MIRAI_LIB_TARGET_NAME} PRIVATE 
-	Client.hpp
-	Client.cpp
+	
+	libmirai/Client.hpp
+	libmirai/Client.cpp
 )
