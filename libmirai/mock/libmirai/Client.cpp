@@ -376,4 +376,12 @@ template<> void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParse
 	this->_ParseErrorCallback = callback;
 }
 
+
+GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path)
+{	
+	string name = (path.has_filename()) ? path.filename().u8string() : path.u8string();
+	std::ifstream f(path, std::ios_base::binary);
+	return this->UploadGroupFile(GroupId, UploadPath, name, f);
+}
+
 } // namespace Mirai

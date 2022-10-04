@@ -688,12 +688,7 @@ public:
 	 * @param path 本地文件路径
 	 * @return 上传的群文件信息 
 	 */
-	virtual GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path)
-	{	
-		string name = (path.has_filename()) ? path.filename().u8string() : path.u8string();
-		std::ifstream f(path, std::ios_base::binary);
-		return this->UploadGroupFile(GroupId, UploadPath, name, f);
-	}
+	virtual GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path);
 
 	/**
 	 * @brief 上传好友图片
