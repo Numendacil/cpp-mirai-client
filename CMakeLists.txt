@@ -21,16 +21,18 @@ endif()
 
 
 # Options with regard to building shared library
-option(BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
+option(MIRAI_BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
 
-if(BUILD_SHARED_LIBS)
+if(MIRAI_BUILD_SHARED_LIBS)
 	if(MSVC)
 		set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
 	endif()
 	add_library(${MIRAI_LIB_TARGET_NAME} SHARED)
 else()
-	add_library(${MIRAI_LIB_TARGET_NAME} STATIC)
-endif()
+	# default, controlled by BUILD_SHARED_LIBS
+	add_library(${MIRAI_LIB_TARGET_NAME})
+endif(MIRAI_BUILD_SHARED_LIBS)
+
 add_library(${PROJECT_NAME}::${MIRAI_LIB_TARGET_NAME} ALIAS ${MIRAI_LIB_TARGET_NAME})
 
 
@@ -100,7 +102,7 @@ target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 
 option(MIRAI_BUILD_MOCK_CLIENT "Build MockLibs" OFF)
 if(MIRAI_BUILD_MOCK_CLIENT)
-	add_library(${MIRAI_MOCKLIB_TARGET_NAME} STATIC)
+	add_library(${MIRAI_MOCKLIB_TARGET_NAME})
 	add_library(${PROJECT_NAME}::${MIRAI_MOCKLIB_TARGET_NAME} ALIAS ${MIRAI_MOCKLIB_TARGET_NAME})
 
 	target_compile_features(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE cxx_std_17)
