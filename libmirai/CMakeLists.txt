@@ -3,12 +3,15 @@
 target_include_directories(${MIRAI_LIB_TARGET_NAME} PRIVATE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/details>)
 target_include_directories(
 	${MIRAI_LIB_TARGET_NAME} PUBLIC 
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/aggregate>
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/api>
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/models>
+	$<INSTALL_INTERFACE:include/cppmirai/aggregate>
 	$<INSTALL_INTERFACE:include/cppmirai/api>
 	$<INSTALL_INTERFACE:include/cppmirai>
 )
 
+add_subdirectory(aggregate)
 add_subdirectory(api)
 add_subdirectory(details)
 add_subdirectory(models)

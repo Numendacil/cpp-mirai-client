@@ -1,6 +1,5 @@
 #include <iostream>
 #include <libmirai/mirai.hpp>
-#include <libmirai/Client.hpp>
 #include <string>
 
 int main()

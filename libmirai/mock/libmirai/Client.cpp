@@ -322,7 +322,7 @@ void MiraiClient::_DispatchEvent(const json& data)
 
 	std::string type = data.at("type").get<std::string>();
 
-	LOG_DEBUG(this->_GetLogger(), "Dispatching message, type: " + type);
+	LOG_TRACE(this->_GetLogger(), "Dispatching message, type: " + type);
 
 	EventHandler handler;
 	{
@@ -331,7 +331,7 @@ void MiraiClient::_DispatchEvent(const json& data)
 	}
 	if (handler)
 	{
-		LOG_DEBUG(this->_GetLogger(), "Found handler");
+		LOG_TRACE(this->_GetLogger(), "Found handler");
 		(void)this->_ThreadPool->enqueue(
 			[data, handler, this]()
 			{
@@ -347,7 +347,7 @@ void MiraiClient::_DispatchEvent(const json& data)
 			});
 		return;
 	}
-	LOG_DEBUG(this->_GetLogger(), "No matching handler found");
+	LOG_TRACE(this->_GetLogger(), "No matching handler found");
 }
 
 

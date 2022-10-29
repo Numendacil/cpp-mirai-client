@@ -1,5 +1,5 @@
-#ifndef _MIRAI_MIRAI_HPP_
-#define _MIRAI_MIRAI_HPP_
+#ifndef _MIRAI_MODELS_HPP_
+#define _MIRAI_MODELS_HPP_
 
 #include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Events/Events.hpp>

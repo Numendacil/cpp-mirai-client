@@ -1,4 +1,4 @@
-target_sources(${MIRAI_LIB_TARGET_NAME} PRIVATE libmirai/mirai.hpp)
+target_sources(${MIRAI_LIB_TARGET_NAME} PRIVATE libmirai/models.hpp)
 
 add_subdirectory(libmirai/Events)
 add_subdirectory(libmirai/Exceptions)

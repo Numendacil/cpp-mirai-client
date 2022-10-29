@@ -52,6 +52,7 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 
 ## TODO
 - Docs and example usages
+- Remove nlohmann/json from public interface
 - Project templates for creating a simple QQBot
 - Benchmark and performance tests
 
@@ -66,7 +67,7 @@ Read Next: [快速入门](docs/Quickstart.md)
 [unittest-url]: https://github.com/numendacil/cpp-mirai-client
 [license-shield]: https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat
 [license-url]: https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE
-[projversion-shield]: https://img.shields.io/badge/version-2.6.1-blue.svg?style=flat
+[projversion-shield]: https://img.shields.io/badge/version-2.6.2-blue.svg?style=flat
 [projversion-url]: https://github.com/numendacil/cpp-mirai-client
 [cppversion-shield]: https://img.shields.io/badge/c++-17-yellow.svg?style=flat
 [cppversion-url]: https://github.com/numendacil/cpp-mirai-client
