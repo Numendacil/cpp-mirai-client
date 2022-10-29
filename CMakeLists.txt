@@ -1,6 +1,6 @@
 cmake_minimum_required (VERSION 3.16)
 
-project (cpp-mirai-client VERSION 2.6.1 LANGUAGES CXX)
+project (cpp-mirai-client VERSION 2.6.2 LANGUAGES CXX)
 
 
 add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")
