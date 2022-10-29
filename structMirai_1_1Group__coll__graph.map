@@ -1,8 +1,0 @@
-<map id="Mirai::Group" name="Mirai::Group">
-<area shape="rect" id="node1" title="群聊资料" alt="" coords="163,191,265,219"/>
-<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,99,140,127"/>
-<area shape="rect" id="node3" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="165,99,263,127"/>
-<area shape="rect" id="node4" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="158,13,257,41"/>
-<area shape="rect" id="node5" title=" " alt="" coords="295,99,379,127"/>
-<area shape="rect" id="node6" title=" " alt="" coords="281,5,416,49"/>
-</map>

@@ -1,7 +1,0 @@
-<map id="Mirai::PokeMessage" name="Mirai::PokeMessage">
-<area shape="rect" id="node1" title="戳一戳消息" alt="" coords="643,60,796,88"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="299,5,451,33"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="5,5,140,33"/>
-<area shape="rect" id="node4" title=" " alt="" coords="251,123,500,183"/>
-<area shape="rect" id="node5" title=" " alt="" coords="12,88,133,116"/>
-</map>

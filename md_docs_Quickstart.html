@@ -159,63 +159,47 @@ $(document).ready(function(){initNavTree('md_docs_Quickstart.html',''); initResi
 <p >我们将以一个简单的复读机Bot为例，介绍cpp-mirai-client的基本用法。完整的代码可见 <a href="../examples/echo.cpp">examples/echo</a></p>
 <h2><a class="anchor" id="autotoc_md10"></a>
 头文件</h2>
-<p >为了使用 cpp-mirai-client 中的接口，你需要包含对应的头文件 </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="mirai_8hpp.html">libmirai/mirai.hpp</a>&gt;</span></div>
-<div class="ttc" id="amirai_8hpp_html"><div class="ttname"><a href="mirai_8hpp.html">mirai.hpp</a></div></div>
-</div><!-- fragment --><p> 这将包含所有的 cpp-mirai-client 相关类与函数的声明。你也可以根据自己的需求仅包含部分头文件 </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="Events_8hpp.html">libmirai/Events/Events.hpp</a>&gt;</span>   <span class="comment">// include all event classes</span></div>
-<div class="line"><span class="preprocessor">#include &lt;<a class="code" href="PlainMessage_8hpp.html">libmirai/Messages/PlainMessage.hpp</a>&gt;</span>   <span class="comment">// include declaration for PlainMessage class only</span></div>
-<div class="ttc" id="aEvents_8hpp_html"><div class="ttname"><a href="Events_8hpp.html">Events.hpp</a></div></div>
-<div class="ttc" id="aPlainMessage_8hpp_html"><div class="ttname"><a href="PlainMessage_8hpp.html">PlainMessage.hpp</a></div></div>
+<p >为了使用 cpp-mirai-client 中的接口，你需要包含对应的头文件 </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;libmirai/mirai.hpp&gt;</span></div>
+</div><!-- fragment --><p> 这将包含所有的 cpp-mirai-client 相关类与函数的声明。你也可以根据自己的需求仅包含部分头文件 </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;libmirai/Events/Events.hpp&gt;</span>   <span class="comment">// include all event classes</span></div>
+<div class="line"><span class="preprocessor">#include &lt;libmirai/Messages/PlainMessage.hpp&gt;</span>   <span class="comment">// include declaration for PlainMessage class only</span></div>
 </div><!-- fragment --><p> 如果你需要在程序中使用json对象，你还应该包括 </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;nlohmann/json.hpp&gt;</span>    <span class="comment">// include nlohmann&#39;s json library</span></div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md11"></a>
 连接mirai-api-http</h2>
-<p >为了与mirai-api-http通信，你需要一个 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">Mirai::MiraiClient</a></code> 对象 </p><div class="fragment"><div class="line"><a class="code hl_class" href="classMirai_1_1MiraiClient.html">Mirai::MiraiClient</a> client;</div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html"><div class="ttname"><a href="classMirai_1_1MiraiClient.html">Mirai::MiraiClient</a></div><div class="ttdoc">提供与mirai-api-http网络交互的封装</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00075">Client.hpp:76</a></div></div>
-</div><!-- fragment --><p> 在连接之前，你需要设置一些基本的选项，这些配置被保存在 <code><a class="el" href="structMirai_1_1SessionConfigs.html" title="连接mirai-api-http的配置">Mirai::SessionConfigs</a></code> 对象中 </p><div class="fragment"><div class="line"><a class="code hl_struct" href="structMirai_1_1SessionConfigs.html">Mirai::SessionConfigs</a> config;</div>
+<p >为了与mirai-api-http通信，你需要一个 <code>Mirai::MiraiClient</code> 对象 </p><div class="fragment"><div class="line">Mirai::MiraiClient client;</div>
+</div><!-- fragment --><p> 在连接之前，你需要设置一些基本的选项，这些配置被保存在 <code>Mirai::SessionConfigs</code> 对象中 </p><div class="fragment"><div class="line">Mirai::SessionConfigs config;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// You can set them manually</span></div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#a6e001e9d87605e2979108d1a785834e3">HttpUrl</a> = <span class="stringliteral">&quot;http://localhost:8080&quot;</span>;</div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#afba153d8135b05616eff32d1a244ae5f">WebsocketUrl</a> = <span class="stringliteral">&quot;ws://localhost:8080&quot;</span>;</div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#ad53f5b7c475d3dd795be97d126b05fa2">VerifyKey</a> = <span class="stringliteral">&quot;xxx&quot;</span>;</div>
+<div class="line">config.HttpUrl = <span class="stringliteral">&quot;http://localhost:8080&quot;</span>;</div>
+<div class="line">config.WebsocketUrl = <span class="stringliteral">&quot;ws://localhost:8080&quot;</span>;</div>
+<div class="line">config.VerifyKey = <span class="stringliteral">&quot;xxx&quot;</span>;</div>
 <div class="line"> </div>
-<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a>;</div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#ab853f91f6c14a7c7576cc5b823af523f">BotQQ</a> = 12345_qq;</div>
+<div class="line"><span class="keyword">using namespace </span>Mirai;</div>
+<div class="line">config.BotQQ = 12345_qq;</div>
 <div class="line"> </div>
 <div class="line"><span class="keyword">using namespace </span>std::chrono_literals;</div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#af4526729c8609081de82c59de5a48329">ReadTimeout</a> = 10s;</div>
-<div class="line">config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#a941ff2cc1725a6c5db9a1b1c14c2c240">HeartbeatInterval</a> = 1min;</div>
+<div class="line">config.ReadTimeout = 10s;</div>
+<div class="line">config.HeartbeatInterval = 1min;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Or you can read them from file</span></div>
-<div class="line">config.<a class="code hl_function" href="structMirai_1_1SessionConfigs.html#a03f269bd59db39aaa939413850e0fbe2">FromFile</a>(<span class="stringliteral">&quot;/path/to/config.json&quot;</span>);</div>
+<div class="line">config.FromFile(<span class="stringliteral">&quot;/path/to/config.json&quot;</span>);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Now set the client with the configs</span></div>
-<div class="line">client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a915988667e4e39319f564439c05c5c94">SetSessionConfig</a>(config);</div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a915988667e4e39319f564439c05c5c94"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a915988667e4e39319f564439c05c5c94">Mirai::MiraiClient::SetSessionConfig</a></div><div class="ttdeci">void SetSessionConfig(const SessionConfigs &amp;config)</div><div class="ttdoc">设置连接选项</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00231">Client.hpp:231</a></div></div>
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00045">Client.cpp:46</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html">Mirai::SessionConfigs</a></div><div class="ttdoc">连接mirai-api-http的配置</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00034">SessionConfig.hpp:35</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_a03f269bd59db39aaa939413850e0fbe2"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#a03f269bd59db39aaa939413850e0fbe2">Mirai::SessionConfigs::FromFile</a></div><div class="ttdeci">void FromFile(const std::string &amp;path)</div><div class="ttdoc">从JSON文件中读取配置</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8cpp_source.html#l00028">SessionConfig.cpp:28</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_a6e001e9d87605e2979108d1a785834e3"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#a6e001e9d87605e2979108d1a785834e3">Mirai::SessionConfigs::HttpUrl</a></div><div class="ttdeci">std::string HttpUrl</div><div class="ttdoc">Http adapter地址</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00037">SessionConfig.hpp:37</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_a941ff2cc1725a6c5db9a1b1c14c2c240"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#a941ff2cc1725a6c5db9a1b1c14c2c240">Mirai::SessionConfigs::HeartbeatInterval</a></div><div class="ttdeci">std::chrono::seconds HeartbeatInterval</div><div class="ttdoc">心跳信息间隔</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00048">SessionConfig.hpp:48</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_ab853f91f6c14a7c7576cc5b823af523f"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#ab853f91f6c14a7c7576cc5b823af523f">Mirai::SessionConfigs::BotQQ</a></div><div class="ttdeci">QQ_t BotQQ</div><div class="ttdoc">BotQQ</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00069">SessionConfig.hpp:69</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_ad53f5b7c475d3dd795be97d126b05fa2"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#ad53f5b7c475d3dd795be97d126b05fa2">Mirai::SessionConfigs::VerifyKey</a></div><div class="ttdeci">std::string VerifyKey</div><div class="ttdoc">验证密钥</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00071">SessionConfig.hpp:71</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_af4526729c8609081de82c59de5a48329"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#af4526729c8609081de82c59de5a48329">Mirai::SessionConfigs::ReadTimeout</a></div><div class="ttdeci">std::chrono::milliseconds ReadTimeout</div><div class="ttdoc">读取超时时间</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00041">SessionConfig.hpp:41</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_afba153d8135b05616eff32d1a244ae5f"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#afba153d8135b05616eff32d1a244ae5f">Mirai::SessionConfigs::WebsocketUrl</a></div><div class="ttdeci">std::string WebsocketUrl</div><div class="ttdoc">Websocket adapter地址</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00046">SessionConfig.hpp:46</a></div></div>
+<div class="line">client.SetSessionConfig(config);</div>
 </div><!-- fragment --><p> 万事俱备，现在可以开始连接mirai了 </p><div class="fragment"><div class="line"><span class="keywordflow">try</span></div>
 <div class="line">{</div>
-<div class="line">    client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a0aaa67c802a2f3fe4e823229a79f070a">Connect</a>();</div>
+<div class="line">    client.Connect();</div>
 <div class="line">}</div>
 <div class="line"><span class="keywordflow">catch</span>(<span class="keyword">const</span> std::exception&amp; e)</div>
 <div class="line">{</div>
 <div class="line">    <span class="comment">// do something...</span></div>
 <div class="line">}</div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a0aaa67c802a2f3fe4e823229a79f070a"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a0aaa67c802a2f3fe4e823229a79f070a">Mirai::MiraiClient::Connect</a></div><div class="ttdeci">void Connect()</div><div class="ttdoc">连接mirai-api-http</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00080">Client.cpp:80</a></div></div>
-</div><!-- fragment --><p> 如果你想关闭连接，只需要调用 </p><div class="fragment"><div class="line">client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f">Disconnect</a>();</div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a88453664439899302af31de7cda91c2f"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f">Mirai::MiraiClient::Disconnect</a></div><div class="ttdeci">void Disconnect()</div><div class="ttdoc">断开与mirai-api-http的连接</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00236">Client.cpp:236</a></div></div>
+</div><!-- fragment --><p> 如果你想关闭连接，只需要调用 </p><div class="fragment"><div class="line">client.Disconnect();</div>
 </div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
 处理事件</h2>
-<p >显然，仅仅只连接mirai是不够的。我们希望能接收到QQ传来的消息并做出相应的处理。一般来说， 除了好友和群聊发来的消息外，Bot还会收到消息撤回、群体禁言之类的信息，这些被统称为事件 <code>Events</code> 。 完整的事件列表可以参考 <code><a class="el" href="Events_8hpp.html">libmirai/Events/Events.hpp</a></code> 。</p>
-<p >在复读机Bot中，我们需要处理的是 <code><a class="el" href="classMirai_1_1FriendMessageEvent.html" title="好友消息事件">Mirai::FriendMessageEvent</a></code> </p><div class="fragment"><div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a>;</div>
-<div class="line">client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#ac302304149ec1b449d272110d5926431">On</a>&lt;<a class="code hl_class" href="classMirai_1_1FriendMessageEvent.html">FriendMessageEvent</a>&gt;(</div>
-<div class="line">    [](<a class="code hl_class" href="classMirai_1_1FriendMessageEvent.html">FriendMessageEvent</a> event)</div>
+<p >显然，仅仅只连接mirai是不够的。我们希望能接收到QQ传来的消息并做出相应的处理。一般来说， 除了好友和群聊发来的消息外，Bot还会收到消息撤回、群体禁言之类的信息，这些被统称为事件 <code>Events</code> 。 完整的事件列表可以参考 <code>libmirai/Events/Events.hpp</code> 。</p>
+<p >在复读机Bot中，我们需要处理的是 <code>Mirai::FriendMessageEvent</code> </p><div class="fragment"><div class="line"><span class="keyword">using namespace </span>Mirai;</div>
+<div class="line">client.On&lt;FriendMessageEvent&gt;(</div>
+<div class="line">    [](FriendMessageEvent event)</div>
 <div class="line">    {</div>
 <div class="line">        <span class="keywordflow">try</span></div>
 <div class="line">        {</div>
@@ -232,27 +216,25 @@ $(document).ready(function(){initNavTree('md_docs_Quickstart.html',''); initResi
 <div class="line">        }</div>
 <div class="line">    }</div>
 <div class="line">);</div>
-<div class="ttc" id="aclassMirai_1_1FriendMessageEvent_html"><div class="ttname"><a href="classMirai_1_1FriendMessageEvent.html">Mirai::FriendMessageEvent</a></div><div class="ttdoc">好友消息事件</div><div class="ttdef"><b>Definition:</b> <a href="FriendMessageEvent_8hpp_source.html#l00039">FriendMessageEvent.hpp:40</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_ac302304149ec1b449d272110d5926431"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#ac302304149ec1b449d272110d5926431">Mirai::MiraiClient::On</a></div><div class="ttdeci">void On(EventCallback&lt; EventType &gt; callback)</div><div class="ttdoc">注册事件回调函数</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00213">Client.hpp:213</a></div></div>
-</div><!-- fragment --><p> 我们来一点点分析这段代码。首先为了注册响应事件的回调函数，我们需要调用 <code><a class="el" href="classMirai_1_1MiraiClient.html#ac302304149ec1b449d272110d5926431" title="注册事件回调函数">Mirai::MiraiClient::On</a>&lt;EventType&gt;(callback)</code> ， 其中回调函数的格式为 <code>std::function&lt;void(EventType)&gt;</code>。为了简便，我们直接使用了lambda作为事件处理函数。</p>
+</div><!-- fragment --><p> 我们来一点点分析这段代码。首先为了注册响应事件的回调函数，我们需要调用 <code>Mirai::MiraiClient::On&lt;EventType&gt;(callback)</code> ， 其中回调函数的格式为 <code>std::function&lt;void(EventType)&gt;</code>。为了简便，我们直接使用了lambda作为事件处理函数。</p>
 <p >回调函数的核心语句只有一条： </p><div class="fragment"><div class="line"><span class="keyword">event</span>.GetMiraiClient().SendFriendMessage(</div>
 <div class="line">    event.GetSender().id, </div>
 <div class="line">    event.GetMessage(),</div>
 <div class="line">    std::nullopt,</div>
 <div class="line">    <span class="keyword">true</span></div>
 <div class="line">);</div>
-</div><!-- fragment --><p> 它可以拆分为两个部分。首先，<code><a class="el" href="classMirai_1_1EventBase.html#ac78beac14f4251f67b8a60ccde6e39fd" title="获取接收该事件的 MiraiClient 的引用">Mirai::EventBase::GetMiraiClient()</a></code> 方法负责返回一个 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">Mirai::MiraiClient</a></code> 对象 的引用，这是大部分事件（除了mirai连接相关的事件）所共有的方法。这个对象为接收到对应消息的client，即注册回调函数所用的client。我们需要这个对象来进行消息的回复以及其他可能的 操作。</p>
+</div><!-- fragment --><p> 它可以拆分为两个部分。首先，<code>Mirai::EventBase::GetMiraiClient()</code> 方法负责返回一个 <code>Mirai::MiraiClient</code> 对象 的引用，这是大部分事件（除了mirai连接相关的事件）所共有的方法。这个对象为接收到对应消息的client，即注册回调函数所用的client。我们需要这个对象来进行消息的回复以及其他可能的 操作。</p>
 <blockquote class="doxtable">
-<p >&zwj;<code><a class="el" href="classMirai_1_1EventBase.html#ac78beac14f4251f67b8a60ccde6e39fd" title="获取接收该事件的 MiraiClient 的引用">Mirai::EventBase::GetMiraiClient()</a></code> 返回的类型是 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">Mirai::MiraiClient</a>&amp;</code>，而出于显而易见的原因 <code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">Mirai::MiraiClient</a></code> 是non-copyable的。 因此如果你想为了方便暂时储存该对象的话，你应该使用 <code>auto&amp; client = event.GetMiraiClient()</code> 而非 <code>auto client = event.GetMiraiClient()</code> </p>
+<p >&zwj;<code>Mirai::EventBase::GetMiraiClient()</code> 返回的类型是 <code>Mirai::MiraiClient&amp;</code>，而出于显而易见的原因 <code>Mirai::MiraiClient</code> 是non-copyable的。 因此如果你想为了方便暂时储存该对象的话，你应该使用 <code>auto&amp; client = event.GetMiraiClient()</code> 而非 <code>auto client = event.GetMiraiClient()</code> </p>
 </blockquote>
 <blockquote class="doxtable">
 <p >&zwj;当然，你也可以直接在lambda捕获里直接捕获 <code>client</code> 对象，但是要注意循环引用的问题（如果你在用 <code>std::shared_ptr</code> 保存对象的话） </p>
 </blockquote>
-<p>为了复读，我们需要获得发送者的资料以及发送的具体消息，这些对象是通过 <code><a class="el" href="classMirai_1_1FriendMessageEvent.html#a33aaec395e8ef831725cb6d31f84d6c9" title="获取发送者资料">Mirai::FriendMessageEvent::GetSender()</a></code> 与 <code><a class="el" href="classMirai_1_1FriendMessageEvent.html#afe8e119c0e9d150c9131060b15ff5d41" title="获取消息内容">Mirai::FriendMessageEvent::GetMessage()</a></code> 获取的。</p>
+<p>为了复读，我们需要获得发送者的资料以及发送的具体消息，这些对象是通过 <code>Mirai::FriendMessageEvent::GetSender()</code> 与 <code>Mirai::FriendMessageEvent::GetMessage()</code> 获取的。</p>
 <blockquote class="doxtable">
 <p >&zwj;大部分事件对象都定义了很多Get方法，你可以通过这些方法获取事件相关的信息。利用IDE的语法提示以及API文档可以快速获知 每种事件所拥有的属性。 </p>
 </blockquote>
-<p>最后，我们通过 <code><a class="el" href="classMirai_1_1MiraiClient.html#afe5c7f0171eec1737faeb7ef3e9b8fa3" title="发送好友消息">Mirai::MiraiClient::SendFriendMessage()</a></code> 将复读的信息发送给对方。你也可以加入其他事件的处理函数， 实现对群聊消息的复读或者对戳一戳消息的复读。 </p>
+<p>最后，我们通过 <code>Mirai::MiraiClient::SendFriendMessage()</code> 将复读的信息发送给对方。你也可以加入其他事件的处理函数， 实现对群聊消息的复读或者对戳一戳消息的复读。 </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 </div><!-- doc-content -->

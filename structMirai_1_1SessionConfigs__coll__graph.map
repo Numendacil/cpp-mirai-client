@@ -1,7 +1,0 @@
-<map id="Mirai::SessionConfigs" name="Mirai::SessionConfigs">
-<area shape="rect" id="node1" title="连接mirai&#45;api&#45;http的配置" alt="" coords="65,223,225,251"/>
-<area shape="rect" id="node2" title=" " alt="" coords="40,99,124,127"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,5,140,49"/>
-<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="164,99,259,127"/>
-<area shape="rect" id="node5" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="165,13,263,41"/>
-</map>

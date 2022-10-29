@@ -1,28 +1,4 @@
 var searchData=
 [
-  ['basictypes_2ecpp_0',['BasicTypes.cpp',['../BasicTypes_8cpp.html',1,'']]],
-  ['basictypes_2ehpp_1',['BasicTypes.hpp',['../BasicTypes_8hpp.html',1,'']]],
-  ['botevent_2ecpp_2',['BotEvent.cpp',['../BotEvent_8cpp.html',1,'']]],
-  ['botevent_2ehpp_3',['BotEvent.hpp',['../BotEvent_8hpp.html',1,'']]],
-  ['botgrouppermissionchangeevent_2ecpp_4',['BotGroupPermissionChangeEvent.cpp',['../BotGroupPermissionChangeEvent_8cpp.html',1,'']]],
-  ['botgrouppermissionchangeevent_2ehpp_5',['BotGroupPermissionChangeEvent.hpp',['../BotGroupPermissionChangeEvent_8hpp.html',1,'']]],
-  ['botinvitedjoingrouprequestevent_2ecpp_6',['BotInvitedJoinGroupRequestEvent.cpp',['../BotInvitedJoinGroupRequestEvent_8cpp.html',1,'']]],
-  ['botinvitedjoingrouprequestevent_2ehpp_7',['BotInvitedJoinGroupRequestEvent.hpp',['../BotInvitedJoinGroupRequestEvent_8hpp.html',1,'']]],
-  ['botjoingroupevent_2ecpp_8',['BotJoinGroupEvent.cpp',['../BotJoinGroupEvent_8cpp.html',1,'']]],
-  ['botjoingroupevent_2ehpp_9',['BotJoinGroupEvent.hpp',['../BotJoinGroupEvent_8hpp.html',1,'']]],
-  ['botleaveeventactive_2ecpp_10',['BotLeaveEventActive.cpp',['../BotLeaveEventActive_8cpp.html',1,'']]],
-  ['botleaveeventactive_2ehpp_11',['BotLeaveEventActive.hpp',['../BotLeaveEventActive_8hpp.html',1,'']]],
-  ['botleaveeventdisband_2ecpp_12',['BotLeaveEventDisband.cpp',['../BotLeaveEventDisband_8cpp.html',1,'']]],
-  ['botleaveeventdisband_2ehpp_13',['BotLeaveEventDisband.hpp',['../BotLeaveEventDisband_8hpp.html',1,'']]],
-  ['botleaveeventkick_2ecpp_14',['BotLeaveEventKick.cpp',['../BotLeaveEventKick_8cpp.html',1,'']]],
-  ['botleaveeventkick_2ehpp_15',['BotLeaveEventKick.hpp',['../BotLeaveEventKick_8hpp.html',1,'']]],
-  ['botmuteevent_2ecpp_16',['BotMuteEvent.cpp',['../BotMuteEvent_8cpp.html',1,'']]],
-  ['botmuteevent_2ehpp_17',['BotMuteEvent.hpp',['../BotMuteEvent_8hpp.html',1,'']]],
-  ['botofflineeventactive_2ehpp_18',['BotOfflineEventActive.hpp',['../BotOfflineEventActive_8hpp.html',1,'']]],
-  ['botofflineeventdropped_2ehpp_19',['BotOfflineEventDropped.hpp',['../BotOfflineEventDropped_8hpp.html',1,'']]],
-  ['botofflineeventforce_2ehpp_20',['BotOfflineEventForce.hpp',['../BotOfflineEventForce_8hpp.html',1,'']]],
-  ['botonlineevent_2ehpp_21',['BotOnlineEvent.hpp',['../BotOnlineEvent_8hpp.html',1,'']]],
-  ['botreloginevent_2ehpp_22',['BotReloginEvent.hpp',['../BotReloginEvent_8hpp.html',1,'']]],
-  ['botunmuteevent_2ecpp_23',['BotUnmuteEvent.cpp',['../BotUnmuteEvent_8cpp.html',1,'']]],
-  ['botunmuteevent_2ehpp_24',['BotUnmuteEvent.hpp',['../BotUnmuteEvent_8hpp.html',1,'']]]
+  ['quickstart_2emd_0',['Quickstart.md',['../Quickstart_8md.html',1,'']]]
 ];

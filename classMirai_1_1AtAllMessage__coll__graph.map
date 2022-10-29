@@ -1,7 +1,0 @@
-<map id="Mirai::AtAllMessage" name="Mirai::AtAllMessage">
-<area shape="rect" id="node1" title="At全体成员消息" alt="" coords="87,191,236,219"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,99,157,127"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="10,13,145,41"/>
-<area shape="rect" id="node4" title=" " alt="" coords="187,99,309,127"/>
-<area shape="rect" id="node5" title=" " alt="" coords="169,5,332,49"/>
-</map>

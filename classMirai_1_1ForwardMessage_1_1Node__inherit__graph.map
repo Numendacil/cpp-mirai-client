@@ -1,4 +1,0 @@
-<map id="Mirai::ForwardMessage::Node" name="Mirai::ForwardMessage::Node">
-<area shape="rect" id="node1" title="转发消息节点，代表一条转发消息" alt="" coords="5,81,179,125"/>
-<area shape="rect" id="node2" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="25,5,159,33"/>
-</map>

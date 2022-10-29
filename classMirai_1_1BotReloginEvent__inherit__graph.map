@@ -1,5 +1,0 @@
-<map id="Mirai::BotReloginEvent" name="Mirai::BotReloginEvent">
-<area shape="rect" id="node1" title="Bot重新登录事件" alt="" coords="5,157,172,185"/>
-<area shape="rect" id="node2" href="$classMirai_1_1BotEvent.html" title="与Bot本身相关的事件的基类" alt="" coords="29,81,148,109"/>
-<area shape="rect" id="node3" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="23,5,154,33"/>
-</map>

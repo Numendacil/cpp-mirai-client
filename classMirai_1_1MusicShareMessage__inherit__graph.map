@@ -1,5 +1,0 @@
-<map id="Mirai::MusicShareMessage" name="Mirai::MusicShareMessage">
-<area shape="rect" id="node1" title="音乐分享卡片消息" alt="" coords="5,157,200,185"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="27,81,179,109"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="35,5,170,33"/>
-</map>

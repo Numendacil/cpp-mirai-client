@@ -142,24 +142,24 @@ $(document).ready(function(){initNavTree('echo_8cpp_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <a href="echo_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;iostream&gt;</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;<a class="code" href="mirai_8hpp.html">libmirai/mirai.hpp</a>&gt;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;libmirai/mirai.hpp&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;string&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno"><a class="line" href="echo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">    5</a></span><span class="keywordtype">int</span> <a class="code hl_function" href="echo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a>()</div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>{</div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a>;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    <a class="code hl_class" href="classMirai_1_1MiraiClient.html">MiraiClient</a> client;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_struct" href="structMirai_1_1SessionConfigs.html">SessionConfigs</a> config;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>    <span class="keyword">using namespace </span>Mirai;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>    MiraiClient client;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    SessionConfigs config;</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <span class="comment">/*  Set your other configs here</span></div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">    config.FromFile(&quot;config.json&quot;);</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">    */</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    config.<a class="code hl_variable" href="structMirai_1_1SessionConfigs.html#ac85586b8ad45de65d89f1930d7057a6b">AutoReconnect</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    config.AutoReconnect = <span class="keyword">false</span>;</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a915988667e4e39319f564439c05c5c94">SetSessionConfig</a>(config);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    client.SetSessionConfig(config);</div>
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#ac302304149ec1b449d272110d5926431">On</a>&lt;<a class="code hl_class" href="classMirai_1_1FriendMessageEvent.html">FriendMessageEvent</a>&gt;(</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        [](<a class="code hl_class" href="classMirai_1_1FriendMessageEvent.html">FriendMessageEvent</a> event)</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    client.On&lt;FriendMessageEvent&gt;(</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>        [](FriendMessageEvent event)</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>        {</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>            <span class="keywordflow">try</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>            {</div>
@@ -179,7 +179,7 @@ $(document).ready(function(){initNavTree('echo_8cpp_source.html',''); initResiza
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">try</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    {</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a0aaa67c802a2f3fe4e823229a79f070a">Connect</a>();</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        client.Connect();</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    }</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordflow">catch</span>(std::exception&amp; e)</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    {</div>
@@ -193,24 +193,14 @@ $(document).ready(function(){initNavTree('echo_8cpp_source.html',''); initResiza
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    {</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <span class="keywordflow">if</span> (cmd == <span class="stringliteral">&quot;exit&quot;</span>)</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>        {</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            client.<a class="code hl_function" href="classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f">Disconnect</a>();</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>            client.Disconnect();</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>            <span class="keywordflow">break</span>;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>        }</div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>    }</div>
 <div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>}</div>
-<div class="ttc" id="aclassMirai_1_1FriendMessageEvent_html"><div class="ttname"><a href="classMirai_1_1FriendMessageEvent.html">Mirai::FriendMessageEvent</a></div><div class="ttdoc">好友消息事件</div><div class="ttdef"><b>Definition:</b> <a href="FriendMessageEvent_8hpp_source.html#l00039">FriendMessageEvent.hpp:40</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html"><div class="ttname"><a href="classMirai_1_1MiraiClient.html">Mirai::MiraiClient</a></div><div class="ttdoc">提供与mirai-api-http网络交互的封装</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00075">Client.hpp:76</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a0aaa67c802a2f3fe4e823229a79f070a"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a0aaa67c802a2f3fe4e823229a79f070a">Mirai::MiraiClient::Connect</a></div><div class="ttdeci">void Connect()</div><div class="ttdoc">连接mirai-api-http</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00080">Client.cpp:80</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a88453664439899302af31de7cda91c2f"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f">Mirai::MiraiClient::Disconnect</a></div><div class="ttdeci">void Disconnect()</div><div class="ttdoc">断开与mirai-api-http的连接</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00236">Client.cpp:236</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_a915988667e4e39319f564439c05c5c94"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#a915988667e4e39319f564439c05c5c94">Mirai::MiraiClient::SetSessionConfig</a></div><div class="ttdeci">void SetSessionConfig(const SessionConfigs &amp;config)</div><div class="ttdoc">设置连接选项</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00231">Client.hpp:231</a></div></div>
-<div class="ttc" id="aclassMirai_1_1MiraiClient_html_ac302304149ec1b449d272110d5926431"><div class="ttname"><a href="classMirai_1_1MiraiClient.html#ac302304149ec1b449d272110d5926431">Mirai::MiraiClient::On</a></div><div class="ttdeci">void On(EventCallback&lt; EventType &gt; callback)</div><div class="ttdoc">注册事件回调函数</div><div class="ttdef"><b>Definition:</b> <a href="Client_8hpp_source.html#l00213">Client.hpp:213</a></div></div>
 <div class="ttc" id="aecho_8cpp_html_ae66f6b31b5ad750f1fe042a706a4e3d4"><div class="ttname"><a href="echo_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a></div><div class="ttdeci">int main()</div><div class="ttdef"><b>Definition:</b> <a href="echo_8cpp_source.html#l00005">echo.cpp:5</a></div></div>
-<div class="ttc" id="amirai_8hpp_html"><div class="ttname"><a href="mirai_8hpp.html">mirai.hpp</a></div></div>
-<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="Client_8cpp_source.html#l00045">Client.cpp:46</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html">Mirai::SessionConfigs</a></div><div class="ttdoc">连接mirai-api-http的配置</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00034">SessionConfig.hpp:35</a></div></div>
-<div class="ttc" id="astructMirai_1_1SessionConfigs_html_ac85586b8ad45de65d89f1930d7057a6b"><div class="ttname"><a href="structMirai_1_1SessionConfigs.html#ac85586b8ad45de65d89f1930d7057a6b">Mirai::SessionConfigs::AutoReconnect</a></div><div class="ttdeci">bool AutoReconnect</div><div class="ttdoc">开启自动重连</div><div class="ttdef"><b>Definition:</b> <a href="SessionConfig_8hpp_source.html#l00062">SessionConfig.hpp:62</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

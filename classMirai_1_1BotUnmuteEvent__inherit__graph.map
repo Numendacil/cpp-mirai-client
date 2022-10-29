@@ -1,4 +1,0 @@
-<map id="Mirai::BotUnmuteEvent" name="Mirai::BotUnmuteEvent">
-<area shape="rect" id="node1" title="Bot被取消禁言事件" alt="" coords="5,81,176,109"/>
-<area shape="rect" id="node2" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="25,5,156,33"/>
-</map>

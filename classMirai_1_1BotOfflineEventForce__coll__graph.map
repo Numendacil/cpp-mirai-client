@@ -1,8 +1,0 @@
-<map id="Mirai::BotOfflineEventForce" name="Mirai::BotOfflineEventForce">
-<area shape="rect" id="node1" title="Bot强制下线事件" alt="" coords="187,205,381,233"/>
-<area shape="rect" id="node2" href="$classMirai_1_1BotEvent.html" title="与Bot本身相关的事件的基类" alt="" coords="149,113,267,141"/>
-<area shape="rect" id="node3" href="$classMirai_1_1EventBase.html" title="Base class for all event types" alt="" coords="5,13,136,41"/>
-<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="161,13,255,41"/>
-<area shape="rect" id="node5" title=" " alt="" coords="297,113,418,141"/>
-<area shape="rect" id="node6" title=" " alt="" coords="280,5,443,49"/>
-</map>

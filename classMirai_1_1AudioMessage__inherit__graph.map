@@ -1,5 +1,0 @@
-<map id="Mirai::AudioMessage" name="Mirai::AudioMessage">
-<area shape="rect" id="node1" title="语音消息" alt="" coords="5,157,161,185"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="7,81,159,109"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="16,5,151,33"/>
-</map>

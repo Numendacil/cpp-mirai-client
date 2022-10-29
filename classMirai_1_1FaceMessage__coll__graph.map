@@ -1,9 +1,0 @@
-<map id="Mirai::FaceMessage" name="Mirai::FaceMessage">
-<area shape="rect" id="node1" title="QQ表情消息" alt="" coords="157,191,307,219"/>
-<area shape="rect" id="node2" href="$classMirai_1_1MessageBase.html" title="Base class for all message types" alt="" coords="5,99,157,127"/>
-<area shape="rect" id="node3" href="$classMirai_1_1Serializable.html" title="Base class for all json serializable type" alt="" coords="6,13,141,41"/>
-<area shape="rect" id="node4" title=" " alt="" coords="190,99,274,127"/>
-<area shape="rect" id="node5" title=" " alt="" coords="165,5,299,49"/>
-<area shape="rect" id="node6" title=" " alt="" coords="322,99,443,127"/>
-<area shape="rect" id="node7" title=" " alt="" coords="324,5,487,49"/>
-</map>
