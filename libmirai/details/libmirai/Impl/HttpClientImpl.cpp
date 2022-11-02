@@ -338,9 +338,9 @@ json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UI
 		{"type", type, "", ""},
 		{"file", content, name, "application/octet-stream"}
 	};
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/file/upload", items);
-	this->_client.set_compress(false);
+	
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
 }
@@ -358,7 +358,7 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/file/upload", 
 	[&](size_t offset, httplib::DataSink& sink) -> bool
 	{
@@ -379,8 +379,7 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 
 			sink.os << "--" + boundary + "\r\n";
 			sink.os << "Content-Disposition: form-data; name=\"file\"";
-			if (!name.empty())
-				sink.os << "; filename=\"" + name + "\"";
+			sink.os << "; filename=\"" + name + "\"";
 			sink.os << "\r\n";
 			sink.os << "Content-Type: application/octet-stream\r\n";
 			sink.os << "\r\n";
@@ -396,7 +395,7 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""
 	);
-	this->_client.set_compress(false);
+	
 
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
@@ -408,11 +407,11 @@ json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, c
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""}, 
 		{"type", type, "", ""}, 
-		{"img", image, "", "application/octet-stream"}
+		{"img", image, "Image", "application/octet-stream"}
 	};
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/uploadImage", items);
-	this->_client.set_compress(false);
+	
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
@@ -429,7 +428,7 @@ json HttpClientImpl::UploadImageChunked(
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/uploadImage", 
 	[&](size_t offset, httplib::DataSink& sink) -> bool
 	{
@@ -450,6 +449,7 @@ json HttpClientImpl::UploadImageChunked(
 
 			sink.os << "--" + boundary + "\r\n";
 			sink.os << "Content-Disposition: form-data; name=\"img\"";
+			sink.os << "; filename=\"Image\"";
 			sink.os << "\r\n";
 			sink.os << "Content-Type: application/octet-stream\r\n";
 			sink.os << "\r\n";
@@ -465,7 +465,7 @@ json HttpClientImpl::UploadImageChunked(
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""
 	);
-	this->_client.set_compress(false);
+	
 
 	json resp = Utils::ParseResponse(result);
 	return resp;
@@ -476,11 +476,11 @@ json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, c
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""}, 
 		{"type", type, "", ""}, 
-		{"voice", Audio, "", "application/octet-stream"}
+		{"voice", Audio, "Audio", "application/octet-stream"}
 	};
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/uploadVoice", items);
-	this->_client.set_compress(false);
+	
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
@@ -497,7 +497,7 @@ json HttpClientImpl::UploadAudioChunked(
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	this->_client.set_compress(true);
+	
 	auto result = this->_client.Post("/uploadVoice", 
 	[&](size_t offset, httplib::DataSink& sink) -> bool
 	{
@@ -518,6 +518,7 @@ json HttpClientImpl::UploadAudioChunked(
 
 			sink.os << "--" + boundary + "\r\n";
 			sink.os << "Content-Disposition: form-data; name=\"voice\"";
+			sink.os << "; filename=\"Audio\"";
 			sink.os << "\r\n";
 			sink.os << "Content-Type: application/octet-stream\r\n";
 			sink.os << "\r\n";
@@ -533,7 +534,7 @@ json HttpClientImpl::UploadAudioChunked(
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""
 	);
-	this->_client.set_compress(false);
+	
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
