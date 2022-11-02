@@ -331,14 +331,73 @@ json HttpClientImpl::FileRename(const string& SessionKey, const string& id, cons
 json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UID_t target, const string& type,
                                 const string& name, const string& content)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""},
-	                                         {"path", path, "", ""},
-	                                         {"target", target.to_string(), "", ""},
-	                                         {"type", type, "", ""},
-	                                         {"file", content, name, "application/octet-stream"}};
+	httplib::MultipartFormDataItems items = {
+		{"sessionKey", SessionKey, "", ""},
+		{"path", path, "", ""},
+		{"target", target.to_string(), "", ""},
+		{"type", type, "", ""},
+		{"file", content, name, "application/octet-stream"}
+	};
 	this->_client.set_compress(true);
 	auto result = this->_client.Post("/file/upload", items);
 	this->_client.set_compress(false);
+	json resp = Utils::ParseResponse(result);
+	return resp.at("data");
+}
+
+json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& path, UID_t target, const string& type,
+                                const string& name, std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	httplib::MultipartFormDataItems items = {
+		{"sessionKey", SessionKey, "", ""},
+		{"path", path, "", ""},
+		{"target", target.to_string(), "", ""},
+		{"type", type, "", ""}
+	};
+
+	// TODO: Remove httplib::detail dependency
+	string boundary = httplib::detail::make_multipart_data_boundary();
+
+	this->_client.set_compress(true);
+	auto result = this->_client.Post("/file/upload", 
+	[&](size_t offset, httplib::DataSink& sink) -> bool
+	{
+		if (offset == 0)
+		{
+			for (const auto &item : items) 
+			{
+				sink.os << "--" + boundary + "\r\n";
+				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+				if (!item.filename.empty())
+					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "\r\n";
+				if (!item.content_type.empty())
+					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "\r\n";
+				sink.os << item.content + "\r\n";
+			}
+
+			sink.os << "--" + boundary + "\r\n";
+			sink.os << "Content-Disposition: form-data; name=\"file\"";
+			if (!name.empty())
+				sink.os << "; filename=\"" + name + "\"";
+			sink.os << "\r\n";
+			sink.os << "Content-Type: application/octet-stream\r\n";
+			sink.os << "\r\n";
+		}
+
+		if (!ContentProvider(offset, sink.os))
+		{
+			sink.os << "\r\n--" + boundary + "--\r\n";
+			sink.done();
+		}
+
+		return true;
+	},
+	"multipart/form-data;boundary=\"" + boundary + "\""
+	);
+	this->_client.set_compress(false);
+
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
 }
@@ -347,7 +406,10 @@ json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UI
 json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, const string& image)
 {
 	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}, {"img", image, "", "application/octet-stream"}};
+		{"sessionKey", SessionKey, "", ""}, 
+		{"type", type, "", ""}, 
+		{"img", image, "", "application/octet-stream"}
+	};
 	this->_client.set_compress(true);
 	auto result = this->_client.Post("/uploadImage", items);
 	this->_client.set_compress(false);
@@ -355,12 +417,122 @@ json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, c
 	return resp;
 }
 
+json HttpClientImpl::UploadImageChunked(
+	const string& SessionKey, const string& type, 
+	std::function<bool(size_t, std::ostream& sink)> ContentProvider
+)
+{
+	httplib::MultipartFormDataItems items = {
+		{"sessionKey", SessionKey, "", ""}, 
+		{"type", type, "", ""}
+	};
+	// TODO: Remove httplib::detail dependency
+	string boundary = httplib::detail::make_multipart_data_boundary();
+
+	this->_client.set_compress(true);
+	auto result = this->_client.Post("/uploadImage", 
+	[&](size_t offset, httplib::DataSink& sink) -> bool
+	{
+		if (offset == 0)
+		{
+			for (const auto &item : items) 
+			{
+				sink.os << "--" + boundary + "\r\n";
+				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+				if (!item.filename.empty())
+					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "\r\n";
+				if (!item.content_type.empty())
+					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "\r\n";
+				sink.os << item.content + "\r\n";
+			}
+
+			sink.os << "--" + boundary + "\r\n";
+			sink.os << "Content-Disposition: form-data; name=\"img\"";
+			sink.os << "\r\n";
+			sink.os << "Content-Type: application/octet-stream\r\n";
+			sink.os << "\r\n";
+		}
+
+		if (!ContentProvider(offset, sink.os))
+		{
+			sink.os << "\r\n--" + boundary + "--\r\n";
+			sink.done();
+		}
+
+		return true;
+	},
+	"multipart/form-data;boundary=\"" + boundary + "\""
+	);
+	this->_client.set_compress(false);
+
+	json resp = Utils::ParseResponse(result);
+	return resp;
+}
+
 json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, const string& Audio)
 {
 	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}, {"img", Audio, "", "application/octet-stream"}};
+		{"sessionKey", SessionKey, "", ""}, 
+		{"type", type, "", ""}, 
+		{"voice", Audio, "", "application/octet-stream"}
+	};
 	this->_client.set_compress(true);
 	auto result = this->_client.Post("/uploadVoice", items);
+	this->_client.set_compress(false);
+	json resp = Utils::ParseResponse(result);
+	return resp;
+}
+
+json HttpClientImpl::UploadAudioChunked(
+	const string& SessionKey, const string& type, 
+	std::function<bool(size_t, std::ostream& sink)> ContentProvider
+)
+{
+	httplib::MultipartFormDataItems items = {
+		{"sessionKey", SessionKey, "", ""}, 
+		{"type", type, "", ""}
+	};
+	// TODO: Remove httplib::detail dependency
+	string boundary = httplib::detail::make_multipart_data_boundary();
+
+	this->_client.set_compress(true);
+	auto result = this->_client.Post("/uploadVoice", 
+	[&](size_t offset, httplib::DataSink& sink) -> bool
+	{
+		if (offset == 0)
+		{
+			for (const auto &item : items) 
+			{
+				sink.os << "--" + boundary + "\r\n";
+				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+				if (!item.filename.empty())
+					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "\r\n";
+				if (!item.content_type.empty())
+					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "\r\n";
+				sink.os << item.content + "\r\n";
+			}
+
+			sink.os << "--" + boundary + "\r\n";
+			sink.os << "Content-Disposition: form-data; name=\"voice\"";
+			sink.os << "\r\n";
+			sink.os << "Content-Type: application/octet-stream\r\n";
+			sink.os << "\r\n";
+		}
+
+		if (!ContentProvider(offset, sink.os))
+		{
+			sink.os << "\r\n--" + boundary + "--\r\n";
+			sink.done();
+		}
+
+		return true;
+	},
+	"multipart/form-data;boundary=\"" + boundary + "\""
+	);
 	this->_client.set_compress(false);
 	json resp = Utils::ParseResponse(result);
 	return resp;

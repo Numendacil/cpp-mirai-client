@@ -18,6 +18,7 @@
 
 #include <map>
 #include <optional>
+#include <ostream>
 #include <string>
 #include <vector>
 
@@ -108,9 +109,16 @@ public:
 	                const std::string& name);
 	json FileUpload(const std::string& SessionKey, const std::string& path, UID_t target, const std::string& type,
 	                const std::string& name, const std::string& content);
+	// Experimental API
+	json FileUploadChunked(const std::string& SessionKey, const std::string& path, UID_t target, const std::string& type,
+	                const std::string& name, std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	json UploadImage(const std::string& SessionKey, const std::string& type, const std::string& image);
+	// Experimental API
+	json UploadImageChunked(const std::string& SessionKey, const std::string& type, std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 	json UploadAudio(const std::string& SessionKey, const std::string& type, const std::string& Audio);
+	// Experimental API
+	json UploadAudioChunked(const std::string& SessionKey, const std::string& type, std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	json DeleteFriend(const std::string& SessionKey, QQ_t target);
 

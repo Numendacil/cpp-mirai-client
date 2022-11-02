@@ -568,11 +568,27 @@ public:
 	/**
 	 * @brief 上传群文件
 	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param GroupId 群聊id
+	 * @param UploadPath 上传路径
+	 * @param name 文件名称
+	 * @param ContentProvider 文件内容，返回false表示已发送完全部内容
+	 * @return 上传的群文件信息 
+	 */
+	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
+		std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+
+	/**
+	 * @brief 上传群文件
+	 * 
 	 * @param GroupId 群聊id
 	 * @param UploadPath 上传路径
 	 * @param path 本地文件路径
 	 * @return 上传的群文件信息 
+	 * @deprecated Redundant method
 	 */
+	 [[deprecated("Redundant method")]]
 	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path);
 
 	/**
@@ -589,6 +605,15 @@ public:
 	 * @return `FriendImage` 
 	 */
 	FriendImage UploadFriendImage(std::istream& file);
+	/**
+	 * @brief 上传好友图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @return `FriendImage` 
+	 */
+	FriendImage UploadFriendImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	/**
 	 * @brief 上传群聊图片
@@ -604,6 +629,15 @@ public:
 	 * @return `GroupImage` 
 	 */
 	GroupImage UploadGroupImage(std::istream& file);
+	/**
+	 * @brief 上传群聊图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @return `GroupImage` 
+	 */
+	GroupImage UploadGroupImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	/**
 	 * @brief 上传临时会话图片
@@ -619,6 +653,15 @@ public:
 	 * @return `TempImage` 
 	 */
 	TempImage UploadTempImage(std::istream& file);
+	/**
+	 * @brief 上传临时会话图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @return `TempImage` 
+	 */
+	TempImage UploadTempImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	/**
 	 * @brief 上传群聊语音
@@ -634,6 +677,15 @@ public:
 	 * @return `GroupAudio` 
 	 */
 	GroupAudio UploadGroupAudio(std::istream& file);
+	/**
+	 * @brief 上传群聊语音
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 语音内容，返回false表示已发送完全部内容
+	 * @return `GroupAudio` 
+	 */
+	GroupAudio UploadGroupAudio(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
 
 	/**
 	 * @brief 删除好友

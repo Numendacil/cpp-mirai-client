@@ -21,6 +21,7 @@
 #include <memory>
 #include <mutex>
 #include <string>
+#include <utility>
 
 #include <nlohmann/json.hpp>
 
@@ -677,6 +678,7 @@ void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const 
 	LOG_TRACE(this->_GetLogger(), "Calling FileRename received " + resp.dump());
 }
 
+
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
                                            const string& content)
 {
@@ -699,12 +701,26 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 	return this->UploadGroupFile(GroupId, UploadPath, name, s);
 }
 
+GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
+                                           std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->FileUploadChunked(
+		SessionKey, UploadPath, GroupId, "group", name, std::move(ContentProvider)
+	);
+
+	LOG_TRACE(this->_GetLogger(), "Calling FileUploadChunked received " + resp.dump());
+
+	return resp.get<GroupFileInfo>();
+}
+
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path)
 {
 	string name = (path.has_filename()) ? path.filename().u8string() : path.u8string();
 	std::ifstream f(path, std::ios_base::binary);
 	return this->UploadGroupFile(GroupId, UploadPath, name, f);
 }
+
 
 FriendImage MiraiClient::UploadFriendImage(const string& content)
 {
@@ -726,6 +742,19 @@ FriendImage MiraiClient::UploadFriendImage(std::istream& file)
 	return this->UploadFriendImage(s);
 }
 
+FriendImage MiraiClient::UploadFriendImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImageChunked(
+		SessionKey, "friend", std::move(ContentProvider)
+	);
+
+	LOG_TRACE(this->_GetLogger(), "Calling UploadImageChunked received " + resp.dump());
+
+	return resp.get<FriendImage>();
+}
+
+
 GroupImage MiraiClient::UploadGroupImage(const string& content)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
@@ -745,6 +774,19 @@ GroupImage MiraiClient::UploadGroupImage(std::istream& file)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadGroupImage(s);
 }
+
+GroupImage MiraiClient::UploadGroupImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImageChunked(
+		SessionKey, "group", std::move(ContentProvider)
+	);
+
+	LOG_TRACE(this->_GetLogger(), "Calling UploadImageChunked received " + resp.dump());
+
+	return resp.get<GroupImage>();
+}
+
 
 TempImage MiraiClient::UploadTempImage(const string& content)
 {
@@ -766,6 +808,19 @@ TempImage MiraiClient::UploadTempImage(std::istream& file)
 	return this->UploadTempImage(s);
 }
 
+TempImage MiraiClient::UploadTempImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadImageChunked(
+		SessionKey, "temp", std::move(ContentProvider)
+	);
+
+	LOG_TRACE(this->_GetLogger(), "Calling UploadImageChunked received " + resp.dump());
+
+	return resp.get<TempImage>();
+}
+
+
 GroupAudio MiraiClient::UploadGroupAudio(const string& content)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
@@ -775,6 +830,7 @@ GroupAudio MiraiClient::UploadGroupAudio(const string& content)
 
 	return resp.get<GroupAudio>();
 }
+
 GroupAudio MiraiClient::UploadGroupAudio(std::istream& file)
 {
 	string s;
@@ -783,6 +839,18 @@ GroupAudio MiraiClient::UploadGroupAudio(std::istream& file)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 	return this->UploadGroupAudio(s);
+}
+
+GroupAudio MiraiClient::UploadGroupAudio(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+{
+	string SessionKey = this->_GetSessionKeyCopy();
+	json resp = this->_HttpClient->UploadAudioChunked(
+		SessionKey, "group", std::move(ContentProvider)
+	);
+
+	LOG_TRACE(this->_GetLogger(), "Calling UploadAudioChunked received " + resp.dump());
+
+	return resp.get<GroupAudio>();
 }
 
 
