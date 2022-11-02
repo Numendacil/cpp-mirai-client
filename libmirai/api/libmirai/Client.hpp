@@ -25,6 +25,7 @@
 #include <mutex>
 #include <optional>
 #include <string>
+#include <thread>
 #include <unordered_map>
 #include <vector>
 
@@ -92,8 +93,10 @@ protected:
 	std::atomic<bool> _SessionKeySet = false;
 	bool _connected = false;
 
-	std::unique_ptr<Details::HttpClientImpl> _HttpClient;
+	std::map<std::thread::id, std::unique_ptr<Details::HttpClientImpl>> _HttpClients;
 	std::unique_ptr<Details::MessageClientImpl> _MessageClient;
+
+	Details::HttpClientImpl* _GetClient();
 
 	std::unique_ptr<Utils::ThreadPool> _ThreadPool;
 
