@@ -346,7 +346,7 @@ json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UI
 }
 
 json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& path, UID_t target, const string& type,
-                                const string& name, std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+                                const string& name, std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""},
@@ -385,12 +385,15 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 			sink.os << "\r\n";
 		}
 
-		if (!ContentProvider(offset, sink.os))
+		bool finish = false;
+		if (!ContentProvider(offset, sink.os, finish))
+			return false;
+		
+		if (finish)
 		{
 			sink.os << "\r\n--" + boundary + "--\r\n";
 			sink.done();
 		}
-
 		return true;
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""
@@ -418,7 +421,7 @@ json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, c
 
 json HttpClientImpl::UploadImageChunked(
 	const string& SessionKey, const string& type, 
-	std::function<bool(size_t, std::ostream& sink)> ContentProvider
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider
 )
 {
 	httplib::MultipartFormDataItems items = {
@@ -455,12 +458,15 @@ json HttpClientImpl::UploadImageChunked(
 			sink.os << "\r\n";
 		}
 
-		if (!ContentProvider(offset, sink.os))
+		bool finish = false;
+		if (!ContentProvider(offset, sink.os, finish))
+			return false;
+		
+		if (finish)
 		{
 			sink.os << "\r\n--" + boundary + "--\r\n";
 			sink.done();
 		}
-
 		return true;
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""
@@ -487,7 +493,7 @@ json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, c
 
 json HttpClientImpl::UploadAudioChunked(
 	const string& SessionKey, const string& type, 
-	std::function<bool(size_t, std::ostream& sink)> ContentProvider
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider
 )
 {
 	httplib::MultipartFormDataItems items = {
@@ -524,12 +530,15 @@ json HttpClientImpl::UploadAudioChunked(
 			sink.os << "\r\n";
 		}
 
-		if (!ContentProvider(offset, sink.os))
+		bool finish = false;
+		if (!ContentProvider(offset, sink.os, finish))
+			return false;
+		
+		if (finish)
 		{
 			sink.os << "\r\n--" + boundary + "--\r\n";
 			sink.done();
 		}
-
 		return true;
 	},
 	"multipart/form-data;boundary=\"" + boundary + "\""

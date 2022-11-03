@@ -709,7 +709,7 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 }
 
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
-                                           std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+                                           std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_GetClient()->FileUploadChunked(
@@ -749,7 +749,7 @@ FriendImage MiraiClient::UploadFriendImage(std::istream& file)
 	return this->UploadFriendImage(s);
 }
 
-FriendImage MiraiClient::UploadFriendImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+FriendImage MiraiClient::UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_GetClient()->UploadImageChunked(
@@ -782,7 +782,7 @@ GroupImage MiraiClient::UploadGroupImage(std::istream& file)
 	return this->UploadGroupImage(s);
 }
 
-GroupImage MiraiClient::UploadGroupImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+GroupImage MiraiClient::UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_GetClient()->UploadImageChunked(
@@ -815,7 +815,7 @@ TempImage MiraiClient::UploadTempImage(std::istream& file)
 	return this->UploadTempImage(s);
 }
 
-TempImage MiraiClient::UploadTempImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+TempImage MiraiClient::UploadTempImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_GetClient()->UploadImageChunked(
@@ -848,7 +848,7 @@ GroupAudio MiraiClient::UploadGroupAudio(std::istream& file)
 	return this->UploadGroupAudio(s);
 }
 
-GroupAudio MiraiClient::UploadGroupAudio(std::function<bool(size_t, std::ostream& sink)> ContentProvider)
+GroupAudio MiraiClient::UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
 	json resp = this->_GetClient()->UploadAudioChunked(

@@ -576,11 +576,11 @@ public:
 	 * @param GroupId 群聊id
 	 * @param UploadPath 上传路径
 	 * @param name 文件名称
-	 * @param ContentProvider 文件内容，返回false表示已发送完全部内容
+	 * @param ContentProvider 文件内容，返回false表示取消请求
 	 * @return 上传的群文件信息 
 	 */
 	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
-		std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 上传群文件
@@ -613,10 +613,10 @@ public:
 	 * 
 	 * Experimental: chunked data transfer is only supported in HTTP/1.1
 	 *
-	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `FriendImage` 
 	 */
-	FriendImage UploadFriendImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+	FriendImage UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 上传群聊图片
@@ -637,10 +637,10 @@ public:
 	 * 
 	 * Experimental: chunked data transfer is only supported in HTTP/1.1
 	 *
-	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `GroupImage` 
 	 */
-	GroupImage UploadGroupImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+	GroupImage UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 上传临时会话图片
@@ -661,10 +661,10 @@ public:
 	 * 
 	 * Experimental: chunked data transfer is only supported in HTTP/1.1
 	 *
-	 * @param ContentProvider 图片内容，返回false表示已发送完全部内容
+	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `TempImage` 
 	 */
-	TempImage UploadTempImage(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+	TempImage UploadTempImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 上传群聊语音
@@ -685,10 +685,10 @@ public:
 	 * 
 	 * Experimental: chunked data transfer is only supported in HTTP/1.1
 	 *
-	 * @param ContentProvider 语音内容，返回false表示已发送完全部内容
+	 * @param ContentProvider 语音内容，返回false表示取消请求
 	 * @return `GroupAudio` 
 	 */
-	GroupAudio UploadGroupAudio(std::function<bool(size_t, std::ostream& sink)> ContentProvider);
+	GroupAudio UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 删除好友
