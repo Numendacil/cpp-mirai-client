@@ -555,7 +555,7 @@ public:
 	 * @param content 文件内容
 	 * @return 上传的群文件信息 
 	 */
-	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name, const string& content);
+	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name, string content);
 
 	/**
 	 * @brief 上传群文件
@@ -600,7 +600,7 @@ public:
 	 * @param content 图片文件内容（原始二进制，不是base64编码）
 	 * @return `FriendImage` 
 	 */
-	FriendImage UploadFriendImage(const string& content);
+	FriendImage UploadFriendImage(string content);
 	/**
 	 * @brief 上传好友图片
 	 * 
@@ -624,7 +624,7 @@ public:
 	 * @param content 图片文件内容（原始二进制，不是base64编码）
 	 * @return `GroupImage` 
 	 */
-	GroupImage UploadGroupImage(const string& content);
+	GroupImage UploadGroupImage(string content);
 	/**
 	 * @brief 上传群聊图片
 	 * 

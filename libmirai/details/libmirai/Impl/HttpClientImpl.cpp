@@ -329,16 +329,17 @@ json HttpClientImpl::FileRename(const string& SessionKey, const string& id, cons
 }
 
 json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UID_t target, const string& type,
-                                const string& name, const string& content)
+                                const string& name, string content)
 {
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""},
 		{"path", path, "", ""},
 		{"target", target.to_string(), "", ""},
-		{"type", type, "", ""},
-		{"file", content, name, "application/octet-stream"}
+		{"type", type, "", ""}
 	};
-	
+	items.emplace_back("file", std::move(content), name, "application/octet-stream");
+
+	this->_client.set_compress(true);
 	auto result = this->_client.Post("/file/upload", items);
 	
 	json resp = Utils::ParseResponse(result);
@@ -405,13 +406,13 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 }
 
 
-json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, const string& image)
+json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, string image)
 {
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""}, 
-		{"type", type, "", ""}, 
-		{"img", image, "Image", "application/octet-stream"}
+		{"type", type, "", ""}
 	};
+	items.emplace_back("img", std::move(image), "Image", "application/octet-stream");
 	
 	auto result = this->_client.Post("/uploadImage", items);
 	
@@ -477,13 +478,13 @@ json HttpClientImpl::UploadImageChunked(
 	return resp;
 }
 
-json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, const string& Audio)
+json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, string Audio)
 {
 	httplib::MultipartFormDataItems items = {
 		{"sessionKey", SessionKey, "", ""}, 
-		{"type", type, "", ""}, 
-		{"voice", Audio, "Audio", "application/octet-stream"}
+		{"type", type, "", ""},
 	};
+	items.emplace_back("voice", std::move(Audio), "Audio", "application/octet-stream");
 	
 	auto result = this->_client.Post("/uploadVoice", items);
 	

@@ -108,16 +108,16 @@ public:
 	json FileRename(const std::string& SessionKey, const std::string& id, const std::string& path, UID_t target,
 	                const std::string& name);
 	json FileUpload(const std::string& SessionKey, const std::string& path, UID_t target, const std::string& type,
-	                const std::string& name, const std::string& content);
+	                const std::string& name, std::string content);
 	// Experimental API
 	json FileUploadChunked(const std::string& SessionKey, const std::string& path, UID_t target, const std::string& type,
 	                const std::string& name, std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
-	json UploadImage(const std::string& SessionKey, const std::string& type, const std::string& image);
+	json UploadImage(const std::string& SessionKey, const std::string& type, std::string image);
 	// Experimental API
 	json UploadImageChunked(const std::string& SessionKey, const std::string& type, 
 		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
-	json UploadAudio(const std::string& SessionKey, const std::string& type, const std::string& Audio);
+	json UploadAudio(const std::string& SessionKey, const std::string& type, std::string Audio);
 	// Experimental API
 	json UploadAudioChunked(const std::string& SessionKey, const std::string& type, 
 		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);

@@ -687,10 +687,10 @@ void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const 
 
 
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
-                                           const string& content)
+                                        string content)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_GetClient()->FileUpload(SessionKey, UploadPath, GroupId, "group", name, content);
+	json resp = this->_GetClient()->FileUpload(SessionKey, UploadPath, GroupId, "group", name, std::move(content));
 
 	LOG_TRACE(this->_GetLogger(), "Calling FileUpload received " + resp.dump());
 
@@ -705,7 +705,7 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadGroupFile(GroupId, UploadPath, name, s);
+	return this->UploadGroupFile(GroupId, UploadPath, name, std::move(s));
 }
 
 GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
@@ -729,10 +729,10 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 }
 
 
-FriendImage MiraiClient::UploadFriendImage(const string& content)
+FriendImage MiraiClient::UploadFriendImage(string content)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_GetClient()->UploadImage(SessionKey, "friend", content);
+	json resp = this->_GetClient()->UploadImage(SessionKey, "friend", std::move(content));
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadImage received " + resp.dump());
 
@@ -746,7 +746,7 @@ FriendImage MiraiClient::UploadFriendImage(std::istream& file)
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadFriendImage(s);
+	return this->UploadFriendImage(std::move(s));
 }
 
 FriendImage MiraiClient::UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
@@ -762,10 +762,10 @@ FriendImage MiraiClient::UploadFriendImage(std::function<bool(size_t offset, std
 }
 
 
-GroupImage MiraiClient::UploadGroupImage(const string& content)
+GroupImage MiraiClient::UploadGroupImage(string content)
 {
 	string SessionKey = this->_GetSessionKeyCopy();
-	json resp = this->_GetClient()->UploadImage(SessionKey, "group", content);
+	json resp = this->_GetClient()->UploadImage(SessionKey, "group", std::move(content));
 
 	LOG_TRACE(this->_GetLogger(), "Calling UploadImage received " + resp.dump());
 
@@ -779,7 +779,7 @@ GroupImage MiraiClient::UploadGroupImage(std::istream& file)
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadGroupImage(s);
+	return this->UploadGroupImage(std::move(s));
 }
 
 GroupImage MiraiClient::UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
