@@ -337,7 +337,7 @@ json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UI
 		{"target", target.to_string(), "", ""},
 		{"type", type, "", ""}
 	};
-	items.emplace_back("file", std::move(content), name, "application/octet-stream");
+	items.emplace_back(httplib::MultipartFormData{"file", std::move(content), name, "application/octet-stream"});
 
 	this->_client.set_compress(true);
 	auto result = this->_client.Post("/file/upload", items);
@@ -412,7 +412,7 @@ json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, s
 		{"sessionKey", SessionKey, "", ""}, 
 		{"type", type, "", ""}
 	};
-	items.emplace_back("img", std::move(image), "Image", "application/octet-stream");
+	items.emplace_back(httplib::MultipartFormData{"img", std::move(image), "Image", "application/octet-stream"});
 	
 	auto result = this->_client.Post("/uploadImage", items);
 	
@@ -484,7 +484,7 @@ json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, s
 		{"sessionKey", SessionKey, "", ""}, 
 		{"type", type, "", ""},
 	};
-	items.emplace_back("voice", std::move(Audio), "Audio", "application/octet-stream");
+	items.emplace_back(httplib::MultipartFormData{"voice", std::move(Audio), "Audio", "application/octet-stream"});
 	
 	auto result = this->_client.Post("/uploadVoice", items);
 	
