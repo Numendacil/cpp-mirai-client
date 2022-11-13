@@ -19,45 +19,53 @@
 
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
+
 namespace Mirai
+{
+
+namespace
 {
 
 using json = nlohmann::json;
 
-void SessionConfigs::FromFile(const std::string& path)
+void ConfigFromJson(SessionConfigs& config, const nlohmann::json& json_config)
+{
+	config.HttpUrl = Utils::GetValue(json_config, "HttpUrl", config.HttpUrl);
+	config.ConnectionTimeout =
+		std::chrono::milliseconds(Utils::GetValue(json_config, "ConnectionTimeout", config.ConnectionTimeout.count()));
+	config.ReadTimeout =
+		std::chrono::milliseconds(Utils::GetValue(json_config, "ReadTimeout", config.ReadTimeout.count()));
+	config.WriteTimeout =
+		std::chrono::milliseconds(Utils::GetValue(json_config, "WriteTimeout", config.WriteTimeout.count()));
+
+	config.WebsocketUrl = Utils::GetValue(json_config, "WebsocketUrl", config.WebsocketUrl);
+	config.HeartbeatInterval =
+		std::chrono::seconds(Utils::GetValue(json_config, "HeartbeatInterval", config.HeartbeatInterval.count()));
+	config.HandshakeTimeout =
+		std::chrono::seconds(Utils::GetValue(json_config, "HandshakeTimeout", config.HandshakeTimeout.count()));
+	config.EnablePong = Utils::GetValue(json_config, "EnablePong", config.EnablePong);
+	config.EnableDeflate = Utils::GetValue(json_config, "EnableDeflate", config.EnableDeflate);
+	config.AutoReconnect = Utils::GetValue(json_config, "AutoReconnect", config.AutoReconnect);
+	config.MinRetryInterval =
+		std::chrono::milliseconds(Utils::GetValue(json_config, "MinRetryInterval", config.MinRetryInterval.count()));
+	config.MaxRetryInterval =
+		std::chrono::milliseconds(Utils::GetValue(json_config, "MaxRetryInterval", config.MaxRetryInterval.count()));
+
+	config.BotQQ = Utils::GetValue(json_config, "BotQQ", config.BotQQ);
+	config.VerifyKey = Utils::GetValue(json_config, "VerifyKey", config.VerifyKey);
+	config.ThreadPoolSize = Utils::GetValue(json_config, "ThreadPoolSize", config.ThreadPoolSize);
+}
+
+} // namespace
+
+void SessionConfigs::FromJsonFile(const std::string& path)
 {
 	std::ifstream file(path);
 	json content = json::parse(file);
-	this->FromJson(content);
+	ConfigFromJson(*this, content);
 }
 
-void SessionConfigs::FromJson(const nlohmann::json& json_config)
-{
-	this->HttpUrl = Utils::GetValue(json_config, "HttpUrl", this->HttpUrl);
-	this->ConnectionTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "ConnectionTimeout", this->ConnectionTimeout.count()));
-	this->ReadTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "ReadTimeout", this->ReadTimeout.count()));
-	this->WriteTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "WriteTimeout", this->WriteTimeout.count()));
-
-	this->WebsocketUrl = Utils::GetValue(json_config, "WebsocketUrl", this->WebsocketUrl);
-	this->HeartbeatInterval =
-		std::chrono::seconds(Utils::GetValue(json_config, "HeartbeatInterval", this->HeartbeatInterval.count()));
-	this->HandshakeTimeout =
-		std::chrono::seconds(Utils::GetValue(json_config, "HandshakeTimeout", this->HandshakeTimeout.count()));
-	this->EnablePong = Utils::GetValue(json_config, "EnablePong", this->EnablePong);
-	this->EnableDeflate = Utils::GetValue(json_config, "EnableDeflate", this->EnableDeflate);
-	this->AutoReconnect = Utils::GetValue(json_config, "AutoReconnect", this->AutoReconnect);
-	this->MinRetryInterval =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "MinRetryInterval", this->MinRetryInterval.count()));
-	this->MaxRetryInterval =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "MaxRetryInterval", this->MaxRetryInterval.count()));
-
-	this->BotQQ = Utils::GetValue(json_config, "BotQQ", this->BotQQ);
-	this->VerifyKey = Utils::GetValue(json_config, "VerifyKey", this->VerifyKey);
-	this->ThreadPoolSize = Utils::GetValue(json_config, "ThreadPoolSize", this->ThreadPoolSize);
-}
 
 } // namespace Mirai

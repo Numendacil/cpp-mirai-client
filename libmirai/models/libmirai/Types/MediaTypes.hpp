@@ -22,10 +22,8 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
-#include <libmirai/Types/Serializable.hpp>
 
 
 namespace Mirai
@@ -54,11 +52,7 @@ struct FileInfo
 	std::time_t LastModifyTime = 0;
 	/// 上传者QQ
 	QQ_t UploaderId;
-
-	void FromJson(const nlohmann::json&);
 };
-
-void from_json(const nlohmann::json&, FileInfo&);
 
 /**
  * @brief 群文件信息
@@ -98,11 +92,7 @@ struct GroupFileInfo
 	std::optional<FileInfo> file = std::nullopt;
 	/// 文件下载链接
 	std::optional<std::string> DownloadUrl = std::nullopt;
-
-	void FromJson(const nlohmann::json&);
 };
-
-void from_json(const nlohmann::json&, GroupFileInfo&);
 
 /**
  * @brief 文件路径
@@ -209,7 +199,7 @@ public:
  * `MiraiImage::ImageType` 	| `""`
  * `MiraiImage::isEmoji` 	| `false`
  */
-struct MiraiImage : public Serializable
+struct MiraiImage
 {
 	/// 图片id，从mirai获得
 	std::string id;
@@ -245,9 +235,6 @@ struct MiraiImage : public Serializable
 	{
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}
-
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
 };
 
 using FriendImage = MiraiImage;
@@ -268,7 +255,7 @@ using TempImage = MiraiImage;
  * `MiraiAudio::base64` 	| `""`
  * `MiraiAudio::length` 	| `0`
  */
-struct MiraiAudio : public Serializable
+struct MiraiAudio
 {
 	/// 音频id，从mirai获得
 	std::string id;
@@ -295,9 +282,6 @@ struct MiraiAudio : public Serializable
 	{
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}
-
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
 };
 
 // only group audio uploads are supported for now

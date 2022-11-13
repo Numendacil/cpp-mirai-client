@@ -21,10 +21,6 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
-
-#include <libmirai/Types/Serializable.hpp>
-
 #ifdef IGNORE // Oh well, Windows.h again
 #undef IGNORE
 #endif
@@ -63,8 +59,7 @@ public:
 	bool operator>=(const UID_t& uid) const { return !(*this < uid); }
 	bool operator<=(const UID_t& uid) const { return !(uid < *this); }
 
-	friend void to_json(nlohmann::json&, const UID_t&);
-	friend void from_json(const nlohmann::json&, UID_t&);
+	struct Serializable;
 };
 
 /**
@@ -163,11 +158,6 @@ enum class SEX : std::size_t
 	UNKNOWN
 };
 
-/// Custom serialization to nlohmann::json type for `SEX` enum
-void to_json(nlohmann::json&, const SEX&);
-/// Custom serialization from nlohmann::json type for `SEX` enum
-void from_json(const nlohmann::json&, SEX&);
-
 /**
  * @brief 群成员权限
  * 
@@ -181,17 +171,12 @@ enum class PERMISSION : std::size_t
 	UNKNOWN
 };
 
-/// Custom serialization to nlohmann::json type for `PERMISSION` enum
-void to_json(nlohmann::json&, const PERMISSION&);
-/// Custom serialization from nlohmann::json type for `PERMISSION` enum
-void from_json(const nlohmann::json&, PERMISSION&);
-
 /**
  * @brief QQ用户
  * 
  * 最基础的用户资料，需要更详细的内容请使用 `UserProfile` 类
  */
-struct User : public Serializable
+struct User
 {
 	/// 用户QQ号
 	QQ_t id;
@@ -204,22 +189,22 @@ struct User : public Serializable
 		: id(id), nickname(std::move(nickname)), remark(std::move(remark))
 	{
 	}
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 判定两用户是否为同一人
 	 * 
-	 * 仅判断QQ号，更严格的判断请直接比较 `User::ToJson()` 的结果
+	 * 仅判断QQ号
 	 */
 	bool operator==(const User& rhs) const { return this->id == rhs.id; }
+
+	struct Serializable;
 };
 
 /**
  * @brief 群聊资料
  * 
  */
-struct Group : public Serializable
+struct Group
 {
 	/// 群聊号码
 	GID_t id;
@@ -233,15 +218,14 @@ struct Group : public Serializable
 	{
 	}
 
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
-
 	/**
 	 * @brief 判定两群聊是否为同一群
 	 * 
-	 * 仅判断群号，更严格的判断请直接比较 `Group::ToJson()` 的结果
+	 * 仅判断群号
 	 */
 	bool operator==(const Group& rhs) const { return this->id == rhs.id; }
+
+	struct Serializable;
 };
 
 /**
@@ -249,7 +233,7 @@ struct Group : public Serializable
  * 
  * 仅含有与群聊相关的部分，个人资料请使用 `User` 与 `UserProfile` 类
  */
-struct GroupMember : public Serializable
+struct GroupMember
 {
 	/// 群员id
 	QQ_t id;
@@ -282,22 +266,21 @@ struct GroupMember : public Serializable
 	{
 	}
 
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
-
 	/**
 	 * @brief 判定两群员是否为同一人
 	 * 
-	 * 仅判断群号与QQ号，更严格的判断请直接比较 `GroupMember::ToJson()` 的结果
+	 * 仅判断群号与QQ号
 	 */
 	bool operator==(const GroupMember& rhs) const { return this->id == rhs.id && this->group == rhs.group; }
+
+	struct Serializable;
 };
 
 /**
  * @brief QQ用户资料
  * 
  */
-struct UserProfile : public Serializable
+struct UserProfile
 {
 	/// QQ昵称
 	std::string nickname;
@@ -323,26 +306,25 @@ struct UserProfile : public Serializable
 	{
 	}
 
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
-
 	/**
 	 * @brief 比较用户资料是否相同
 	 * 
-	 * 等价与所有成员分别判断相等。由于用户资料可能巧合，因此不保证真的为同一人
+	 * 等价与所有成员变量分别判断相等。由于用户资料可能巧合，因此不保证真的为同一人
 	 */
 	bool operator==(const UserProfile& rhs) const
 	{
 		return this->nickname == rhs.nickname && this->email == rhs.email && this->age == rhs.age
 			&& this->level == rhs.level && this->sign == rhs.sign && this->sex == rhs.sex;
 	}
+
+	struct Serializable;
 };
 
 /**
  * @brief 设备类型
  * 
  */
-struct ClientDevice : public Serializable
+struct ClientDevice
 {
 	/// 设备id，唯一标识符
 	int64_t id = 0;
@@ -351,14 +333,13 @@ struct ClientDevice : public Serializable
 
 	ClientDevice(int64_t id = 0, std::string platform = "") : id(id), platform(std::move(platform)) {}
 
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
-
 	/**
 	 * @brief 判断设备是否相同
 	 * 
 	 */
 	bool operator==(const ClientDevice& rhs) const { return this->id == rhs.id && this->platform == rhs.platform; }
+
+	struct Serializable;
 };
 
 

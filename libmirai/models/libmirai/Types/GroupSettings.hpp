@@ -18,8 +18,6 @@
 #include <ctime>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 
@@ -49,12 +47,7 @@ struct GroupConfig
 	bool AutoApprove = false;
 	/// 是否允许匿名聊天
 	bool AllowAnonymousChat = false;
-
-	void FromJson(const nlohmann::json&);
 };
-
-/// Custom serialization from nlohmann::json type for `GroupConfig` class
-void from_json(const nlohmann::json&, GroupConfig&);
 
 /**
  * @brief 群公告
@@ -85,12 +78,7 @@ struct GroupAnnouncement
 	int ConfirmedCount = 0;
 	/// 发布时间
 	std::time_t PublicationTime = 0;
-
-	void FromJson(const nlohmann::json&);
 };
-
-/// Custom serialization from nlohmann::json type for `GroupAnnouncement` class
-void from_json(const nlohmann::json&, GroupAnnouncement&);
 
 } // namespace Mirai
 

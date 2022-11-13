@@ -20,8 +20,6 @@
 #include <ctime>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 namespace Mirai
@@ -74,9 +72,7 @@ struct SessionConfigs
 	std::size_t ThreadPoolSize = 12;
 
 	/// 从JSON文件中读取配置
-	void FromFile(const std::string& path);
-	/// 从JSON对象中读取配置
-	void FromJson(const nlohmann::json& json_config);
+	void FromJsonFile(const std::string& path);
 };
 
 } // namespace Mirai

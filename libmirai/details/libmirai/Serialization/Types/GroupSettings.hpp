@@ -13,12 +13,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_TYPES_HPP_
-#define _MIRAI_TYPES_HPP_
+#ifndef _MIRAI_SERIALIZABLE_TYPES_GROUP_SETTINGS_HPP_
+#define _MIRAI_SERIALIZABLE_TYPES_GROUP_SETTINGS_HPP_
+#include <ctime>
+#include <string>
 
-#include "BasicTypes.hpp"
-#include "GroupSettings.hpp"
-#include "MediaTypes.hpp"
-#include "NudgeTarget.hpp"
+#include <libmirai/Types/GroupSettings.hpp>
+
+#include <libmirai/Serialization/Types/Serializable.hpp>
+
+
+namespace Mirai
+{
+
+MIRAI_DECLARE_FROM_TO_JSON(GroupConfig);
+MIRAI_DECLARE_FROM_TO_JSON(GroupAnnouncement);
+
+} // namespace Mirai
 
 #endif

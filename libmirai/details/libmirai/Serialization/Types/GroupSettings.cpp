@@ -17,42 +17,31 @@
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Serialization/Types/BasicTypes.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-void GroupConfig::FromJson(const json& data)
-{
-	this->name = Utils::GetValue(data, "name", "");
-	this->AllowConfessTalk = Utils::GetValue(data, "confessTalk", false);
-	this->AllowMemberInvite = Utils::GetValue(data, "allowMemberInvite", false);
-	this->AutoApprove = Utils::GetValue(data, "autoApprove", false);
-	this->AllowAnonymousChat = Utils::GetValue(data, "anonymousChat", false);
-}
-
 void from_json(const json& j, GroupConfig& p)
 {
-	p.FromJson(j);
-}
-
-
-void GroupAnnouncement::FromJson(const json& data)
-{
-	this->group = Utils::GetValue(data, "group", Group{});
-	this->content = Utils::GetValue(data, "content", "");
-	this->SenderId = Utils::GetValue(data, "senderId", QQ_t{});
-	this->fid = Utils::GetValue(data, "fid", "");
-	this->AllConfirmed = Utils::GetValue(data, "allConfirmed", false);
-	this->ConfirmedCount = Utils::GetValue(data, "confirmedMembersCount", 0);
-	this->PublicationTime = Utils::GetValue(data, "publicationTime", 0);
+	j.at("name").get_to(p.name);
+	j.at("confessTalk").get_to(p.AllowConfessTalk);
+	j.at("allowMemberInvite").get_to(p.AllowMemberInvite);
+	j.at("autoApprove").get_to(p.AutoApprove);
+	j.at("anonymousChat").get_to(p.AllowAnonymousChat);
 }
 
 void from_json(const json& j, GroupAnnouncement& p)
 {
-	p.FromJson(j);
+	j.at("group").get_to(p.group);
+	j.at("content").get_to(p.content);
+	j.at("senderId").get_to(p.SenderId);
+	j.at("fid").get_to(p.fid);
+	j.at("allConfirmed").get_to(p.AllConfirmed);
+	j.at("confirmedMembersCount").get_to(p.ConfirmedCount);
+	j.at("publicationTime").get_to(p.PublicationTime);
 }
 
 

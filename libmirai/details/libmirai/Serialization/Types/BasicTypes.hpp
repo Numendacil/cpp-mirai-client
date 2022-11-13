@@ -13,23 +13,31 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "Serializable.hpp"
+#ifndef _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
+#define _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
 
-#include <nlohmann/json.hpp>
+#include <chrono>
+#include <ctime>
+#include <string>
+#include <utility>
+
+#include <libmirai/Types/BasicTypes.hpp>
+
+#include <libmirai/Serialization/Types/Serializable.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
+MIRAI_DECLARE_SERIALIZABLE_JSON(UID_t);
+MIRAI_DECLARE_SERIALIZABLE_JSON(User);
+MIRAI_DECLARE_SERIALIZABLE_JSON(Group);
+MIRAI_DECLARE_SERIALIZABLE_JSON(GroupMember);
+MIRAI_DECLARE_SERIALIZABLE_JSON(UserProfile);
+MIRAI_DECLARE_SERIALIZABLE_JSON(ClientDevice);
 
-void to_json(json& j, const Serializable& p)
-{
-	j = p.ToJson();
-}
-
-void from_json(const json& j, Serializable& p)
-{
-	p.FromJson(j);
-}
+MIRAI_DECLARE_FROM_TO_JSON(SEX);
+MIRAI_DECLARE_FROM_TO_JSON(PERMISSION);
 
 } // namespace Mirai
+
+#endif
