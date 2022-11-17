@@ -13,13 +13,33 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "FlashImageMessage.hpp"
+#include <libmirai/Messages/PlainMessage.hpp>
+
+#include <cassert>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
+void PlainMessage::Deserialize(const void* data)
+{
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	j.at("text").get_to(this->_text);
 }
+
+void PlainMessage::Serialize(void* data) const
+{
+	auto& j = *static_cast<json*>(data);
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+
+	j["type"] = this->GetType();
+	j["text"] = this->_text;
+}
+
+} // namespace Mirai

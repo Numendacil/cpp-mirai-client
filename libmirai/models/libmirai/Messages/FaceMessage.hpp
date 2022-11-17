@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include "MessageBase.hpp"
 
@@ -41,19 +40,21 @@ protected:
 	int64_t _id = -1;
 	std::string _name{};
 
+	void Serialize(void*) const override;
+	void Deserialize(const void*) override;
+
+	FaceMessage(MessageTypes type, bool SupportSend = true) : MessageBase(type, SupportSend) {}
 public:
-	FaceMessage() = default;
-
-	static constexpr std::string_view _TYPE_ = "Face";
-
-	std::string_view GetType() const override { return _TYPE_; }
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
+	
+	FaceMessage() : MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FaceMessage>(*this); }
 
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const override
+	{
+		return this->_id != -1 || !this->_name.empty();
+	}
 
 	bool operator==(const FaceMessage& rhs) { return (_id >= 0) ? this->_id == rhs._id : this->_name == rhs._name; }
 
@@ -79,6 +80,12 @@ public:
 		this->_name = name;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<FaceMessage::_TYPE_>
+{
+	using type = FaceMessage;
 };
 
 } // namespace Mirai

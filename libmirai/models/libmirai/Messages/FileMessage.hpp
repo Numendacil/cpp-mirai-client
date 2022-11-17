@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include "MessageBase.hpp"
 
@@ -43,19 +42,20 @@ protected:
 	std::string _name{};
 	int64_t _size = 0;
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	FileMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FILE;
 
-	static constexpr std::string_view _TYPE_ = "File";
+	FileMessage() : MessageBase(_TYPE_, false) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<FileMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FileMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return true;
+	}
 
 	bool operator==(const FileMessage& rhs) { return this->_id == rhs._id; }
 
@@ -67,6 +67,12 @@ public:
 	std::string GetName() const { return this->_name; }
 	/// 获取文件大小
 	int64_t GetSize() const { return this->_size; }
+};
+
+template <>
+struct GetType<FileMessage::_TYPE_>
+{
+	using type = FileMessage;
 };
 
 } // namespace Mirai

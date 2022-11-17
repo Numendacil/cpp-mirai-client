@@ -19,18 +19,10 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json.hpp>
-
-#include <libmirai/Utils/Common.hpp>
-#include <libmirai/Utils/Factory.hpp>
-
-#include "ForwardMessage.hpp"
-#include "Messages.hpp"
+#include "SourceMessage.hpp"
 
 namespace Mirai
 {
-
-using json = nlohmann::json;
 
 MessageChain::MessageChain(const MessageChain& rhs)
 {
@@ -125,48 +117,6 @@ std::optional<MessageChain::SourceInfo> MessageChain::GetSourceInfo() const
 }
 
 
-namespace
-{
-
-Utils::Factory<MessageBase> InitFactory()
-{
-	Utils::Factory<MessageBase> f;
-
-#ifdef NDEBUG
-#define _REGISTER_(_class_) f.Register<_class_>(std::string(_class_::_TYPE_))
-#else
-#define _REGISTER_(_class_) assert(f.Register<_class_>(std::string(_class_::_TYPE_)))
-#endif
-
-	_REGISTER_(AppMessage);        // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(AtAllMessage);      // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(AtMessage);         // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(AudioMessage);      // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(DiceMessage);       // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(FaceMessage);       // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(FileMessage);       // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(FlashImageMessage); // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(ForwardMessage);    // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(ImageMessage);      // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(JsonMessage);       // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(MarketFaceMessage); // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(MiraiCodeMessage);  // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(MusicShareMessage); // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(PlainMessage);      // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(PokeMessage);       // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(QuoteMessage);      // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(SourceMessage);     // NOLINT(*-array-to-pointer-decay)
-	_REGISTER_(XmlMessage);        // NOLINT(*-array-to-pointer-decay)
-
-#undef _REGISTER_
-
-	return f;
-}
-
-const Utils::Factory<MessageBase> MessageFactory{std::move(InitFactory())};
-
-} // namespace
-
 void MessageChain::RemoveInvalid()
 {
 	this->_message.erase(
@@ -180,50 +130,9 @@ bool MessageChain::isValid() const
 	for (const auto& p : this->_message)
 	{
 		if (!p->isValid()) return false;
-		if (empty && !p->ToJson().empty()) empty = false;
+		if (p->isSendSupported()) empty = false;
 	}
 	return !empty;
-}
-
-void MessageChain::FromJson(const json& data)
-{
-	if (!data.is_array()) return;
-	this->_message.clear();
-	this->_message.reserve(data.size());
-	for (const auto& p : data)
-	{
-		if (!p.is_object() || !p.contains("type") || !p["type"].is_string()) continue;
-		std::string type = p["type"].get<std::string>();
-		if (!MessageFactory.Exist(type)) continue;
-		this->_message.emplace_back(MessageFactory.Make(type))->FromJson(p);
-	}
-}
-
-json MessageChain::ToJson(bool ignoreInvalid) const
-{
-	json data = json::array();
-	for (const auto& p : this->_message)
-	{
-		if (ignoreInvalid && !p->isValid()) continue;
-		json msg = p->ToJson();
-		if (!msg.empty() && msg.contains("type")) data += msg;
-	}
-	return data;
-}
-
-MessageChain& MessageChain::Forward(ForwardMessage&& forward)
-{
-	return this->Append(std::forward<ForwardMessage>(forward));
-}
-
-void to_json(json& j, const MessageChain& p)
-{
-	j = p.ToJson();
-}
-
-void from_json(const json& j, MessageChain& p)
-{
-	p.FromJson(j);
 }
 
 } // namespace Mirai

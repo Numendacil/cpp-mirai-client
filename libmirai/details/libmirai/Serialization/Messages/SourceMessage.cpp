@@ -13,36 +13,37 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "XmlMessage.hpp"
+#include <libmirai/Messages/SourceMessage.hpp>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool XmlMessage::isValid() const
+void SourceMessage::Deserialize(const void* data)
 {
-	return !this->_content.empty();
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+
+	j.at("id").get_to(this->_id);
+	j.at("time").get_to(this->_timestamp);
 }
 
-void XmlMessage::FromJson(const json& data)
+void SourceMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_content = Utils::GetValue(data, "xml", "");
-}
-
-json XmlMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	json data = json::object();
-	data["type"] = this->GetType();
-	data["xml"] = this->_content;
-	return data;
+	// json data = json::object();
+	// j["type"] = this->GetType();
+	// j["id"] = this->id;
+	// j["time"] = this->timestamp;
+	// return data;
 }
 
 } // namespace Mirai

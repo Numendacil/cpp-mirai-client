@@ -16,11 +16,6 @@
 #ifndef _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
 #define _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
 
-#include <chrono>
-#include <ctime>
-#include <string>
-#include <utility>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include <libmirai/Serialization/Types/Serializable.hpp>
@@ -37,6 +32,8 @@ MIRAI_DECLARE_SERIALIZABLE_JSON(ClientDevice);
 
 MIRAI_DECLARE_FROM_TO_JSON(SEX);
 MIRAI_DECLARE_FROM_TO_JSON(PERMISSION);
+MIRAI_DECLARE_FROM_TO_JSON(MusicShareType);
+MIRAI_DECLARE_FROM_TO_JSON(PokeType);
 
 } // namespace Mirai
 

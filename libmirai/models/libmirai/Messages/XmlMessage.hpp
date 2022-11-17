@@ -20,7 +20,6 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include "MessageBase.hpp"
 
@@ -40,20 +39,21 @@ class XmlMessage : public MessageBase
 protected:
 	std::string _content;
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	XmlMessage() = default;
-	XmlMessage(std::string content) : _content(std::move(content)) {}
+	static constexpr MessageTypes _TYPE_ = MessageTypes::XML;
 
-	static constexpr std::string_view _TYPE_ = "Xml";
+	XmlMessage() : MessageBase(_TYPE_) {}
+	XmlMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<XmlMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<XmlMessage>(*this); }
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
-
-	bool isValid() const override;
+	bool isValid() const final
+	{
+		return !this->_content.empty();
+	}
 
 
 	bool operator==(const XmlMessage& rhs) { return this->_content == rhs._content; }
@@ -69,6 +69,12 @@ public:
 		this->_content = content;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<XmlMessage::_TYPE_>
+{
+	using type = XmlMessage;
 };
 
 } // namespace Mirai

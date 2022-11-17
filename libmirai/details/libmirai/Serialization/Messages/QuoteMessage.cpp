@@ -13,46 +13,44 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "QuoteMessage.hpp"
+#include <libmirai/Messages/QuoteMessage.hpp>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Serialization/Messages/MessageChain.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool QuoteMessage::isValid() const
+void QuoteMessage::Deserialize(const void* data)
 {
-	return true;
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+
+	j.at("id").get_to(this->_QuoteId);
+	j.at("groupId").get_to(this->_GroupId);
+	j.at("senderId").get_to(this->_SenderId);
+	j.at("targetId").get_to(this->_TargetId);
+	j.at("origin").get_to(this->_origin);
 }
 
-void QuoteMessage::FromJson(const json& data)
+void QuoteMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-
-	this->_QuoteId = Utils::GetValue(data, "id", (MessageId_t)-1);
-	this->_GroupId = Utils::GetValue(data, "groupId", GID_t{});
-	this->_SenderId = Utils::GetValue(data, "senderId", QQ_t{});
-	this->_TargetId = Utils::GetValue(data, "targetId", (int64_t)0);
-	this->_origin = Utils::GetValue(data, "origin", MessageChain{});
-}
-
-json QuoteMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	// json data = json::object();
-	// data["type"] = this->GetType();
-	// data["id"] = this->id;
-	// data["name"] = this->name;
-	// data["size"] = this->size;
+	// j["type"] = this->GetType();
+	// j["id"] = this->id;
+	// j["name"] = this->name;
+	// j["size"] = this->size;
 	// return data;
 
 	// Not allowed for sending
-	return json::object();
 }
 
 } // namespace Mirai

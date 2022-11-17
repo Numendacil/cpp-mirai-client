@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -41,20 +40,21 @@ protected:
 	QQ_t _target{};
 	std::string _display{};
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	AtMessage() = default;
-	AtMessage(QQ_t target) : _target(target){};
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AT;
 
-	static constexpr std::string_view _TYPE_ = "At";
+	AtMessage() : MessageBase(_TYPE_) {}
+	AtMessage(QQ_t target) : _target(target), MessageBase(_TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AtMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return this->_target != QQ_t();
+	}
 
 
 	bool operator==(const AtMessage& rhs) { return this->_target == rhs._target; }
@@ -73,6 +73,12 @@ public:
 		this->_target = target;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<AtMessage::_TYPE_>
+{
+	using type = AtMessage;
 };
 
 } // namespace Mirai

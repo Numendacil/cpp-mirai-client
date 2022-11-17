@@ -22,6 +22,7 @@
 #include "FileMessage.hpp"
 #include "FlashImageMessage.hpp"
 #include "ForwardMessage.hpp"
+#include "ForwardMessageNode.hpp"
 #include "ImageMessage.hpp"
 #include "JsonMessage.hpp"
 #include "MarketFaceMessage.hpp"

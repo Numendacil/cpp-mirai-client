@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -51,19 +50,20 @@ protected:
 	int64_t _TargetId = 0;
 	MessageChain _origin{};
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	QuoteMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::QUOTE;
+	
+	QuoteMessage() : MessageBase(_TYPE_) {}
 
-	static constexpr std::string_view _TYPE_ = "Quote";
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<QuoteMessage>(*this); }
 
-	std::string_view GetType() const override { return _TYPE_; }
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<QuoteMessage>(*this); }
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
-
-	bool isValid() const override;
+	bool isValid() const final
+	{
+		return true;
+	}
 
 	/// 获取被引用消息id
 	MessageId_t GetQuoteId() const { return this->_QuoteId; }
@@ -80,6 +80,12 @@ public:
 	}
 	/// 获取被引用消息
 	MessageChain GetOriginMessage() const { return this->_origin; }
+};
+
+template <>
+struct GetType<QuoteMessage::_TYPE_>
+{
+	using type = QuoteMessage;
 };
 
 } // namespace Mirai

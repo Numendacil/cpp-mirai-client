@@ -20,9 +20,9 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include "MessageBase.hpp"
+
+#include <libmirai/Types/BasicTypes.hpp>
 
 namespace Mirai
 {
@@ -32,7 +32,7 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `MusicShareMessage::_kind` | `MusicKind::UNKNOWN`
+ * `MusicShareMessage::_kind` | `MusicShareType::ENUM_END`
  * `MusicShareMessage::_title` | `""`
  * `MusicShareMessage::_summary` | `""`
  * `MusicShareMessage::_JumpUrl` | `""`
@@ -42,19 +42,8 @@ namespace Mirai
  */
 class MusicShareMessage : public MessageBase
 {
-public:
-	enum MusicKind : std::size_t
-	{
-		NETEASECLOUDMUSIC = 0,
-		QQMUSIC,
-		MIGUMUSIC,
-		KUGOUMUSIC,
-		KUWOMUSIC,
-		UNKNOWN
-	};
-
 protected:
-	MusicKind _kind = MusicKind::UNKNOWN;
+	MusicShareType _kind = MusicShareType::ENUM_END;
 	std::string _title{};
 	std::string _summary{};
 	std::string _JumpUrl{};
@@ -63,30 +52,13 @@ protected:
 	std::string _brief{};
 
 
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(MusicKind::UNKNOWN)> _MusicKindStr = {
-		"NeteaseCloudMusic", "QQMusic", "MiguMusic", "KugouMusic", "KuwoMusic"};
-
-	static constexpr std::string_view _to_string(const MusicKind& m)
-	{
-		auto i = static_cast<std::size_t>(m);
-		if (i < _MusicKindStr.size()) return _MusicKindStr.at(i);
-		else
-			return "";
-	}
-
-	static constexpr MusicKind _to_enum(std::string_view s)
-	{
-		for (std::size_t i = 0; i < _MusicKindStr.size(); i++)
-			if (_MusicKindStr.at(i) == s) return static_cast<MusicKind>(i);
-
-		return MusicKind::UNKNOWN;
-	}
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
 
 public:
-	static constexpr std::string_view _TYPE_ = "MusicShare";
+	MusicShareMessage() : MessageBase(_TYPE_) {}
 
-	MusicShareMessage() = default;
-	MusicShareMessage(MusicKind kind, std::string title, std::string summary, std::string JumpUrl,
+	MusicShareMessage(MusicShareType kind, std::string title, std::string summary, std::string JumpUrl,
 	                  std::string PictureUrl, std::string MusicUrl, std::string brief)
 		: _kind(kind)
 		, _title(std::move(title))
@@ -95,20 +67,22 @@ public:
 		, _PictureUrl(std::move(PictureUrl))
 		, _MusicUrl(std::move(MusicUrl))
 		, _brief(std::move(brief))
+		, MessageBase(_TYPE_)
 	{
 	}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MUSIC_SHARE;
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<MusicShareMessage>(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MusicShareMessage>(*this); }
 
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return !(this->_kind == MusicShareType::ENUM_END || this->_title.empty() || this->_summary.empty()
+	         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty() || this->_brief.empty());
+	}
 
 	/// 获取分享种类
-	MusicKind GetKind() const { return this->_kind; }
+	MusicShareType GetKind() const { return this->_kind; }
 	/// 获取标题
 	std::string GetTitle() const { return this->_title; }
 	/// 获取介绍
@@ -127,7 +101,7 @@ public:
 	std::string GetBrief() const { return this->_brief; }
 
 	/// 设置分享种类
-	MusicShareMessage& SetKind(MusicKind kind)
+	MusicShareMessage& SetKind(MusicShareType kind)
 	{
 		this->_kind = kind;
 		return *this;
@@ -168,6 +142,12 @@ public:
 		this->_brief = brief;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<MusicShareMessage::_TYPE_>
+{
+	using type = MusicShareMessage;
 };
 
 

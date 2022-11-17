@@ -19,7 +19,6 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/MediaTypes.hpp>
 
@@ -42,24 +41,24 @@ protected:
 
 	void _clear() noexcept { this->_audio = {}; }
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	AudioMessage() = default;
-	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)) {}
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AUDIO;
+
+	AudioMessage() : MessageBase(_TYPE_) {}
+	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)), MessageBase(_TYPE_) {}
 	AudioMessage(std::string AudioId, std::string url, std::string path, std::string base64)
-		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}
+		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)},
+		MessageBase(_TYPE_) {}
+
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AudioMessage>(*this); }
+
+	bool isValid() const final
 	{
+		return this->_audio.isValid();
 	}
-
-	static constexpr std::string_view _TYPE_ = "Voice";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AudioMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
 
 	/**
 	 * @brief 获取消息中的音频内容
@@ -126,6 +125,12 @@ public:
 		this->_audio = audio;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<AudioMessage::_TYPE_>
+{
+	using type = AudioMessage;
 };
 
 } // namespace Mirai

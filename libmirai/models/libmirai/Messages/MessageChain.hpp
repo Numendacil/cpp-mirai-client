@@ -25,8 +25,6 @@
 #include <utility>
 #include <vector>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Exceptions/Exceptions.hpp>
 
 #include "AppMessage.hpp"
@@ -36,6 +34,7 @@
 #include "DiceMessage.hpp"
 #include "FaceMessage.hpp"
 #include "FlashImageMessage.hpp"
+#include "ForwardMessage.hpp"
 #include "ImageMessage.hpp"
 #include "JsonMessage.hpp"
 #include "MessageBase.hpp"
@@ -46,8 +45,6 @@
 
 namespace Mirai
 {
-
-class ForwardMessage; // Avoid circular reference
 
 /**
  * @brief 消息链对象，由一系列消息元素组成
@@ -71,12 +68,15 @@ protected:
 		static constexpr bool value = sizeof(test<T>(0)) == sizeof(yes_type);
 	};
 
-	template<typename Message> constexpr static void _type_check_()
+	template<typename Message> 
+	constexpr static void _type_check_()
 	{
 		static_assert(std::is_base_of<MessageBase, Message>::value,
 		              "Message must be a derived class of MessageBase"); // NOLINT(*-array-to-pointer-decay)
 		static_assert(_has_type_<Message>::value,
 		              "Message must contain a static atrribute _TYPE_"); // NOLINT(*-array-to-pointer-decay)
+		static_assert(std::is_same_v<GetType_t<Message::_TYPE_>, Message>,
+		              "The resulting type from GetType does not match the original type"); // NOLINT(*-array-to-pointer-decay)
 	};
 
 public:
@@ -118,7 +118,8 @@ public:
 	 * @param m 要添加的消息
 	 * @return reference to *this
 	 */
-	template<typename MessageType> MessageChain& Append(MessageType&& m)
+	template<typename MessageType> 
+	MessageChain& Append(MessageType&& m)
 	{
 		_type_check_<MessageType>();
 
@@ -142,6 +143,20 @@ public:
 
 		this->_message.push_back(std::make_unique<MessageType>(std::forward<Args>(args)...));
 		return *this;
+	}
+
+	/**
+	 * @brief 在消息链结尾直接构造消息元素
+	 * 
+	 * 类似 `std::vector::emplace_back()`。
+	 * @tparam Type `MessageTypes`
+	 * @tparam Args 参数类型
+	 * @param args 构造消息元素的参数
+	 * @return reference to *this
+	 */
+	template<MessageTypes Type, typename... Args> MessageChain& Append(Args&&... args)
+	{
+		return this->Append<GetType_t<Type>>(std::forward<Args>(args)...);
 	}
 
 	/**
@@ -175,6 +190,20 @@ public:
 		return this->_message.insert(pos, std::make_unique<MessageType>(std::forward<Args>(args)...));
 	}
 
+	/**
+	 * @brief 在消息链中插入元素
+	 * 
+	 * @tparam Type `MessageTypes`
+	 * @tparam Args 参数类型
+	 * @param pos 插入位置
+	 * @param args 构造对应消息的参数
+	 * @return 插入后新元素所在的位置 
+	 */
+	template<MessageTypes Type, typename... Args> iterator Insert(const_iterator pos, Args&&... args)
+	{
+		return this->Insert<GetType_t<Type>>(pos, std::forward<Args>(args)...);
+	}
+
 	/// 拼接两个消息链
 	MessageChain& operator+=(const MessageChain& rhs);
 	/// 添加消息元素到消息链结尾
@@ -204,8 +233,21 @@ public:
 		const auto& m = this->_message.at(i);
 		if (!m) throw std::runtime_error("Unexpected null pointer in MessageChain::at");
 		if (m->GetType() != MessageType::_TYPE_)
-			throw TypeDismatch(std::string(m->GetType()), std::string(MessageType::_TYPE_));
+			throw TypeDismatch(to_string(m->GetType()), to_string(MessageType::_TYPE_));
 		return *static_cast<MessageType*>(m.get());
+	}
+
+	/**
+	 * @brief 获取指定下标出的消息
+	 * 
+	 * 若消息类型与实际类型不匹配会抛出 `TypeDismatch` 异常
+	 * @tparam Type `MessageTypes`
+	 * @param i 下标
+	 * @return 该消息元素的引用
+	 */
+	template<MessageTypes Type> GetType_t<Type>& GetAt(size_type i) const
+	{
+		return this->GetAt<GetType_t<Type>>(i);
 	}
 
 	/**
@@ -218,7 +260,7 @@ public:
 	MessageBase& GetAt(size_type i) const
 	{
 		const auto& m = this->_message.at(i);
-		if (!m) throw std::runtime_error("Unexpected null pointer in MessageChain::at");
+		if (!m) throw std::runtime_error("Unexpected null pointer in MessageChain::GetAt");
 		return *m;
 	}
 
@@ -226,6 +268,7 @@ public:
 	 * @brief 获取所有指定类型的消息元素
 	 * 
 	 * 模版参数 `MessageType` 必须为 `MessageBase` 的派生类，且定义了 `MessageType::_TYPE_` 属性。
+	 * 该方法将拷贝消息元素
 	 * @tparam MessageType 消息类型
 	 * @return `std::vector<MessageType>` 
 	 */
@@ -237,6 +280,25 @@ public:
 		for (const auto& p : this->_message)
 		{
 			if (p->GetType() == MessageType::_TYPE_) v.emplace_back(*static_cast<MessageType*>(p.get()));
+		}
+		return v;
+	}
+
+	/**
+	 * @brief 获取所有指定类型的消息元素指针
+	 * 
+	 * 模版参数 `MessageType` 必须为 `MessageBase` 的派生类，且定义了 `MessageType::_TYPE_` 属性。
+	 * @tparam MessageType 消息类型
+	 * @return `std::vector<MessageType*>` 
+	 */
+	template<typename MessageType> std::vector<MessageType*> GetAllPtr() const
+	{
+		_type_check_<MessageType>();
+
+		std::vector<MessageType*> v;
+		for (const auto& p : this->_message)
+		{
+			if (p->GetType() == MessageType::_TYPE_) v.emplace_back(static_cast<MessageType*>(p.get()));
 		}
 		return v;
 	}
@@ -273,15 +335,10 @@ public:
 	/**
 	 * @brief 检查消息链是否有效
 	 * 
-	 * 要求所有消息元素均有效且存在至少一个可用于发送( `MessageBase::ToJson()` 非空)的消息
+	 * 要求所有消息元素均有效，且消息不为空（存在至少一条可以发送的消息元素）
 	 * @return `bool`
 	 */
 	bool isValid() const;
-
-	void FromJson(const nlohmann::json& data);
-
-	/// 序列化到JSON，若 `ignoreInvalid = true` 则会自动忽略无效消息
-	nlohmann::json ToJson(bool ignoreInvalid = false) const;
 
 	// Helper functions
 
@@ -364,7 +421,10 @@ public:
 	}
 
 	/// 在消息链结尾插入 `ForwardMessage`，返回自身的引用
-	MessageChain& Forward(ForwardMessage&& forward);
+	template<typename... Args> MessageChain& Forward(Args&&... args)
+	{
+		return this->Append<ForwardMessage>(std::forward<Args>(args)...);
+	}
 
 
 	/**
@@ -415,11 +475,9 @@ public:
 	reverse_iterator rend() noexcept { return this->_message.rend(); }
 	const_reverse_iterator crend() const noexcept { return this->_message.crend(); }
 	///@}
+
+	class Serializable;
 };
-
-void to_json(nlohmann::json& j, const MessageChain& p);
-
-void from_json(const nlohmann::json& j, MessageChain& p);
 
 } // namespace Mirai
 

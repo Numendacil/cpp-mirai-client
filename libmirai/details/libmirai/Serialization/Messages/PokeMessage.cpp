@@ -13,37 +13,32 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "MiraiCodeMessage.hpp"
+#include <libmirai/Messages/PokeMessage.hpp>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool MiraiCodeMessage::isValid() const
+void PokeMessage::Deserialize(const void* data)
 {
-	return !this->_code.empty();
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	j.at("name").get_to(this->_kind);
 }
 
-void MiraiCodeMessage::FromJson(const json& data)
+void PokeMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_code = Utils::GetValue(data, "code", "");
-}
-
-json MiraiCodeMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	json data = json::object();
-	data["type"] = this->GetType();
-	data["code"] = this->_code;
-
-	return data;
+	j["type"] = this->GetType();
+	j["name"] = this->_kind;
 }
 
 } // namespace Mirai

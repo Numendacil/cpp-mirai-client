@@ -13,43 +13,28 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "FileMessage.hpp"
+#include <libmirai/Messages/MarketFaceMessage.hpp>
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool FileMessage::isValid() const
+void MarketFaceMessage::Serialize(void* data) const
 {
-	return true;
-}
-
-void FileMessage::FromJson(const json& data)
-{
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_id = Utils::GetValue(data, "id", "");
-	this->_name = Utils::GetValue(data, "name", "");
-	this->_size = Utils::GetValue(data, "size", 0);
-}
-
-json FileMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
 	// json data = json::object();
-	// data["type"] = this->GetType();
-	// data["id"] = this->id;
-	// data["name"] = this->name;
-	// data["size"] = this->size;
+	// j["type"] = this->GetType();
+	// j["id"] = this->id;
+	// j["name"] = this->name;
 	// return data;
 
-	// Not allowed for sending
-	return json::object();
+	// Sending MarketFace Message is currently not supported
 }
 
 } // namespace Mirai

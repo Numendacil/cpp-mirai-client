@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include "MessageBase.hpp"
 
@@ -37,19 +36,20 @@ class MiraiCodeMessage : public MessageBase
 protected:
 	std::string _code{};
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	MiraiCodeMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MIRAI_CODE;
 
-	static constexpr std::string_view _TYPE_ = "MiraiCode";
+	MiraiCodeMessage() : MessageBase(_TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MiraiCodeMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<MiraiCodeMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return !this->_code.empty();
+	}
 
 
 	bool operator==(const MiraiCodeMessage& rhs) { return this->_code == rhs._code; }
@@ -65,6 +65,12 @@ public:
 		this->_code = code;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<MiraiCodeMessage::_TYPE_>
+{
+	using type = MiraiCodeMessage;
 };
 
 } // namespace Mirai

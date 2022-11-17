@@ -21,12 +21,10 @@
 #include <utility>
 #include <vector>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
-#include "MessageChain.hpp"
 
 namespace Mirai
 {
@@ -43,114 +41,23 @@ namespace Mirai
 class ForwardMessage : public MessageBase
 {
 public:
-	/**
-	* @brief 转发消息节点，代表一条转发消息
-	*
-	* 接收消息时会传入 `MessageChain`，消息id一般为 `null`。
-	* 发送时可以选择使用消息链手动构造转发消息或传入消息id自动引用历史消息，
-	* 优先级为 `MessageId > MessageChain`
-	*
-	* Member Variable | Default Value
-	* --------------- | -------------
-	* `Node::_SenderId` | `0_qq`
-	* `Node::_time` | `0`
-	* `Node::_SenderName` | `""`
-	* `Node::_message` | `MessageChain{}`
-	* `Node::_MessageId` | `std::nullopt`
-	*/
-	class Node : public Serializable
-	{
-	protected:
-		QQ_t _SenderId{};
-		std::time_t _time = 0;
-		std::string _SenderName{};
-		MessageChain _message{};
-		std::optional<MessageId_t> _MessageId = std::nullopt;
-
-	public:
-		Node() = default;
-
-		bool isValid() const;
-		void FromJson(const nlohmann::json& data) override;
-		nlohmann::json ToJson() const override;
-
-		/// 获取发送者QQ
-		QQ_t GetSenderId() const { return this->_SenderId; }
-		/// 获取发送时间
-		std::time_t GetTimestamp() const { return this->_time; }
-		/// 获取发送者名称
-		std::string GetSenderName() const { return this->_SenderName; }
-		/// 获取消息链
-		MessageChain GetMessageChain() const { return this->_message; }
-		/// 是否含有消息id
-		bool hasMessageId() const { return this->_MessageId.has_value(); }
-		/// 获取消息id，不存在时返回 `0`
-		MessageId_t GetMessageId() const { return this->_MessageId.value_or(0); }
-
-		/// 设置发送者
-		Node& SetSenderId(QQ_t SenderId)
-		{
-			this->_SenderId = SenderId;
-			return *this;
-		}
-		/// 设置发送时间戳
-		Node& SetTimestamp(std::time_t time)
-		{
-			this->_time = time;
-			return *this;
-		}
-		/// 设置发送者名称
-		Node& SetSenderName(const std::string& SenderName)
-		{
-			this->_SenderName = SenderName;
-			return *this;
-		}
-		/// 设置消息内容
-		Node& SetMessageChain(const MessageChain& message)
-		{
-			this->_MessageId = std::nullopt;
-			this->_message = message;
-			return *this;
-		}
-		/// 设置消息内容
-		Node& SetMessageChain(MessageChain&& message)
-		{
-			this->_MessageId = std::nullopt;
-			this->_message = std::move(message);
-			return *this;
-		}
-		/// 设置消息内容
-		Node& SetMessageChain(const nlohmann::json& message)
-		{
-			this->_MessageId = std::nullopt;
-			this->_message.FromJson(message);
-			return *this;
-		}
-		/// 设置消息id
-		Node& SetMessageId(std::optional<MessageId_t> MessageId)
-		{
-			this->_MessageId = MessageId;
-			return *this;
-		}
-	};
+	class Node;
 
 protected:
 	using NodeList = std::vector<Node>;
 	NodeList _NodeList;
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	ForwardMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FORWARD;
 
-	static constexpr std::string_view _TYPE_ = "Forward";
+	ForwardMessage() : MessageBase(_TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<ForwardMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ForwardMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final;
 
 	/**
 	 * @brief STL-like interface
@@ -224,6 +131,12 @@ public:
 	reverse_iterator rend() noexcept { return this->_NodeList.rend(); }
 	const_reverse_iterator crend() const noexcept { return this->_NodeList.crend(); }
 	///@}
+};
+
+template <>
+struct GetType<ForwardMessage::_TYPE_>
+{
+	using type = ForwardMessage;
 };
 
 } // namespace Mirai

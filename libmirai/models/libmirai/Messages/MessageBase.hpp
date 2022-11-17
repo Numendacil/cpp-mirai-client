@@ -20,9 +20,7 @@
 #include <memory>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
-#include <libmirai/Types/Serializable.hpp>
+#include <libmirai/Types/MessageTypes.hpp>
 
 namespace Mirai
 {
@@ -32,12 +30,20 @@ namespace Mirai
 /**
  * @brief Base class for all message types
  * 
- * 所有有效的派生类均需要定义 `_TYPE_`，对应于mirai-api-http传来的JSON消息中的"type"属性，并在 `GetType()` 中返回 `_TYPE_`
+ * 所有有效的派生类均需要定义 `_TYPE_`，对应于mirai-api-http传来的JSON消息中的"type"属性
  */
-class MessageBase : public Serializable
+class MessageBase
 {
+protected:
+	const MessageTypes _type;
+	const bool _SupportSend;
+
+	MessageBase(MessageTypes type, bool SupportSend = true) : _type(type), _SupportSend(SupportSend) {}
+
+	virtual void Serialize(void*) const = 0;
+	virtual void Deserialize(const void*) = 0;
 public:
-	// static constexpr std::string_view _TYPE_ = "MessageBase";
+	// static constexpr MessageTypes _TYPE_ = MessageTypes::"MessageBase";
 
 	/**
 	 * @brief Return the type of the class
@@ -45,7 +51,15 @@ public:
 	 * Used for RTTI and message parsing, it should always return
 	 * the value of the static `_TYPE_` member
 	 */
-	virtual std::string_view GetType() const = 0;
+	MessageTypes GetType() const { return this->_type; }
+
+	/**
+	 * @brief 检查消息是否可以用于发送
+	 * 
+	 * 部分消息仅支持接收
+	 * @return `bool`
+	 */
+	bool isSendSupported() const { return this->_SupportSend; }
 
 	/// Clone the class, used for copying polymorphic objects
 	virtual std::unique_ptr<MessageBase> CloneUnique() const = 0;
@@ -58,6 +72,11 @@ public:
 	 * @return `bool`
 	 */
 	virtual bool isValid() const = 0;
+
+	virtual ~MessageBase() = default;
+
+
+	class Serializable;
 };
 
 } // namespace Mirai

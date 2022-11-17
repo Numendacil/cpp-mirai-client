@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include "MessageBase.hpp"
 
@@ -37,25 +36,26 @@ class DiceMessage : public MessageBase
 protected:
 	int _value = -1;
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	DiceMessage() = default;
-	DiceMessage(int value)
+	static constexpr MessageTypes _TYPE_ = MessageTypes::DICE;
+
+	DiceMessage() : MessageBase(_TYPE_) {}
+	DiceMessage(int value) : MessageBase(_TYPE_)
 	{
 		if (value > 0 && value <= 6) this->_value = value;
 		else
 			this->_value = -1;
 	}
 
-	static constexpr std::string_view _TYPE_ = "Dice";
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<DiceMessage>(*this); }
 
-	std::string_view GetType() const override { return _TYPE_; }
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<DiceMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return this->_value > 0 && this->_value <= 6;
+	}
 
 
 	bool operator==(const DiceMessage& rhs) { return this->_value == rhs._value; }
@@ -71,6 +71,12 @@ public:
 		if (value > 0 && value <= 6) this->_value = value;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<DiceMessage::_TYPE_>
+{
+	using type = DiceMessage;
 };
 
 } // namespace Mirai

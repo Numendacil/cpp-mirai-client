@@ -19,6 +19,7 @@
 #include "BasicTypes.hpp"
 #include "GroupSettings.hpp"
 #include "MediaTypes.hpp"
+#include "MessageTypes.hpp"
 #include "Serializable.hpp"
 
 #endif

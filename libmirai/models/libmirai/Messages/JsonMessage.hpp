@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -38,21 +36,20 @@ class JsonMessage : public MessageBase
 protected:
 	std::string _content{};
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
 
 public:
-	JsonMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::JSON;
 
+	JsonMessage() : MessageBase(_TYPE_) {}
 
-	static constexpr std::string_view _TYPE_ = "Json";
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<JsonMessage>(*this); }
 
-	std::string_view GetType() const override { return _TYPE_; }
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<JsonMessage>(*this); }
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
-
-	bool isValid() const override;
+	bool isValid() const final
+	{
+		return !this->_content.empty();
+	}
 
 
 	bool operator==(const JsonMessage& rhs) { return this->_content == rhs._content; }
@@ -61,8 +58,6 @@ public:
 
 	/// 获取消息内容
 	std::string GetContent() const { return this->_content; }
-	/// 获取JSON格式的消息内容
-	nlohmann::json GetJson() const;
 
 	/// 设置消息内容
 	JsonMessage& SetContent(const std::string& content)
@@ -70,6 +65,12 @@ public:
 		this->_content = content;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<JsonMessage::_TYPE_>
+{
+	using type = JsonMessage;
 };
 
 } // namespace Mirai

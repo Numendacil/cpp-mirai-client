@@ -13,38 +13,33 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "PlainMessage.hpp"
-
-#include <cassert>
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Messages/AppMessage.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool PlainMessage::isValid() const
+void AppMessage::Deserialize(const void* data)
 {
-	return !this->_text.empty();
+	const auto& j = *static_cast<const json*>(data);
+	
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	
+	j.at("content").get_to(this->_content);
 }
 
-void PlainMessage::FromJson(const json& data)
-{
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_text = Utils::GetValue(data, "text", "");
-}
-
-json PlainMessage::ToJson() const
+void AppMessage::Serialize(void* data) const
 {
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+	auto& j = *static_cast<json*>(data);
 
-	json data = json::object();
-	data["type"] = this->GetType();
-	data["text"] = this->_text;
-	return data;
+	j["type"] = this->GetType();
+	j["content"] = this->_content;
 }
 
 } // namespace Mirai

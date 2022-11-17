@@ -19,7 +19,6 @@
 #include <string>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
@@ -43,24 +42,28 @@ protected:
 
 	void _clear() noexcept { this->_image = {}; }
 
+	void Serialize(void*) const override;
+	void Deserialize(const void*) override;
+
+	ImageMessage(MessageTypes type) : MessageBase(type) {}
+	ImageMessage(MiraiImage image, MessageTypes type) : _image(std::move(image)), MessageBase(type) {}
+	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64, MessageTypes type)
+		: _image(ImageId, url, path, base64), MessageBase(type) {}
+
 public:
-	ImageMessage() = default;
-	ImageMessage(MiraiImage image) : _image(std::move(image)) {}
+	static constexpr MessageTypes _TYPE_ = MessageTypes::IMAGE;
+
+	ImageMessage() : MessageBase(_TYPE_) {}
+	ImageMessage(MiraiImage image) : _image(std::move(image)), MessageBase(_TYPE_) {}
 	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64)
-		: _image(ImageId, url, path, base64)
-	{
-	}
-
-	static constexpr std::string_view _TYPE_ = "Image";
-
-	std::string_view GetType() const override { return _TYPE_; }
+		: _image(ImageId, url, path, base64), MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ImageMessage>(*this); }
 
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const override
+	{
+		return this->_image.isValid();
+	}
 
 	/**
 	 * @brief 获取消息中的图片
@@ -128,6 +131,12 @@ public:
 		this->_image = image;
 		return *this;
 	}
+};
+
+template <>
+struct GetType<ImageMessage::_TYPE_>
+{
+	using type = ImageMessage;
 };
 
 } // namespace Mirai

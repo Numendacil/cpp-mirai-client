@@ -13,44 +13,33 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "AtMessage.hpp"
-
-#include <cassert>
+#include <libmirai/Messages/MiraiCodeMessage.hpp>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool AtMessage::isValid() const
+void MiraiCodeMessage::Deserialize(const void* data)
 {
-	return this->_target != QQ_t();
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	j.at("code").get_to(this->_code);
 }
 
-void AtMessage::FromJson(const json& data)
+void MiraiCodeMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-
-	this->_target = Utils::GetValue(data, "target", QQ_t{});
-	this->_display = Utils::GetValue(data, "display", "");
-}
-
-json AtMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	json data = json::object();
-	data["type"] = this->GetType();
-	data["target"] = _target;
+	j["type"] = this->GetType();
+	j["code"] = this->_code;
 
-	// Not used for sending
-	// data["display"] = this->display;
-
-	return data;
 }
 
 } // namespace Mirai

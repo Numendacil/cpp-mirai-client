@@ -13,34 +13,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "AtAllMessage.hpp"
+#ifndef _MIRAI_SERIALIZATION_MESSAGECHAIN_HPP_
+#define _MIRAI_SERIALIZATION_MESSAGECHAIN_HPP_
 
-#include <nlohmann/json.hpp>
-
-#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Serialization/Types/Serializable.hpp>
+#include <libmirai/Messages/MessageChain.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-bool AtAllMessage::isValid() const
-{
-	return true;
-}
-
-void AtAllMessage::FromJson(const json& data)
-{
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-}
-
-json AtAllMessage::ToJson() const
-{
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
-
-	json data = json::object();
-	data["type"] = this->GetType();
-	return data;
-}
+MIRAI_DECLARE_SERIALIZABLE_JSON(MessageChain);
 
 } // namespace Mirai
+
+#endif

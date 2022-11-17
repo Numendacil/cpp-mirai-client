@@ -3,6 +3,7 @@ target_sources(
 	BasicTypes.hpp
 	GroupSettings.hpp
 	MediaTypes.hpp
+	MessageTypes.hpp
 	NudgeTarget.hpp
 
 	Types.hpp

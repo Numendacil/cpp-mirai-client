@@ -19,7 +19,6 @@
 #include <ctime>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -44,24 +43,31 @@ protected:
 	MessageId_t _id = -1;
 	std::time_t _timestamp = 0;
 
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	SourceMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::SOURCE;
 
-	static constexpr std::string_view _TYPE_ = "Source";
+	SourceMessage() : MessageBase(_TYPE_, false) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<SourceMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<SourceMessage>(*this); }
-
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
+	bool isValid() const final
+	{
+		return true;
+	}
 
 	/// 获取消息id
 	MessageId_t GetMessageId() const { return this->_id; }
 	/// 获取消息时间戳
 	std::time_t GetTimestamp() const { return this->_timestamp; }
+};
+
+template <>
+struct GetType<SourceMessage::_TYPE_>
+{
+	using type = SourceMessage;
 };
 
 } // namespace Mirai

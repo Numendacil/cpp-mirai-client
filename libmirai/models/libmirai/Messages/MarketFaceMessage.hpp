@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -39,20 +38,26 @@ namespace Mirai
  */
 class MarketFaceMessage : public FaceMessage
 {
+protected:
+	void Serialize(void *) const final;
 
 public:
-	MarketFaceMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MARKET_FACE;
 
-	static constexpr std::string_view _TYPE_ = "MarketFace";
+	MarketFaceMessage() : FaceMessage(_TYPE_, false) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MarketFaceMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<MarketFaceMessage>(*this); }
+	bool isValid() const final
+	{
+		return true;
+	}
+};
 
-	bool isValid() const override;
-
-	void FromJson(const nlohmann::json&) override;
-	nlohmann::json ToJson() const override;
+template <>
+struct GetType<MarketFaceMessage::_TYPE_>
+{
+	using type = MarketFaceMessage;
 };
 
 } // namespace Mirai

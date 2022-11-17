@@ -149,26 +149,76 @@ enum class BotInvitedJoinGroupRequestOp
 /**
  * @brief QQ用户性别
  * 
- * `UNKNOWN` 为未知性别
+ * `UNKNOWN` 为未知性别，`ENUM_END` 为保留字段，使用时出现说明数据不合法
  */
-enum class SEX : std::size_t
+enum class SEX
 {
 	MALE = 0,
 	FEMALE,
-	UNKNOWN
+	UNKNOWN,
+
+	// Used for counting
+	ENUM_END
 };
 
 /**
  * @brief 群成员权限
  * 
- * `UNKNOWN` 为保留字段，使用时出现说明数据不合法
+ * `ENUM_END` 为保留字段，使用时出现说明数据不合法
  */
-enum class PERMISSION : std::size_t
+enum class PERMISSION
 {
 	OWNER = 0,
 	ADMINISTRATOR,
 	MEMBER,
-	UNKNOWN
+
+	// Used for counting
+	ENUM_END
+};
+
+/**
+ * @brief 音乐卡片类型
+ * 
+ * `ENUM_END` 为保留字段，使用时出现说明数据不合法
+ */
+enum class MusicShareType
+{
+	NETEASECLOUDMUSIC = 0,
+	QQMUSIC,
+	MIGUMUSIC,
+	KUGOUMUSIC,
+	KUWOMUSIC,
+
+	// Used for counting
+	ENUM_END
+};
+
+/**
+ * @brief 戳一戳（原窗口抖动）类型
+ * 
+ * `ENUM_END` 为保留字段，使用时出现说明数据不合法
+ */
+enum class PokeType
+{
+	CHUOYICHUO = 0, // 戳一戳
+	BIXIN,          // 比心
+	DIANZAN,        // 点赞
+	XINSUI,         // 心碎
+	LIULIULIU,      // 666
+	FANGDAZHAO,     // 放大招
+	GOUYIN,         // 勾引
+	BAOBEIQIU,      // 宝贝球 (SVIP)
+	ROSE,           // 玫瑰花 (SVIP)
+	ZHAOHUANSHU,    // 召唤术 (SVIP)
+	RANGNIPI,       // 让你皮 (SVIP)
+	JIEYIN,         // 结印 (SVIP)
+	SHOULEI,        // 手雷 (SVIP)
+	ZHUAYIXIA,      // 抓一下 (SVIP)
+	SUIPING,        // 碎屏 (SVIP)
+	QIAOMEN,        // 敲门 (SVIP)
+
+	// Used for counting
+	ENUM_END
 };
 
 /**
@@ -211,9 +261,9 @@ struct Group
 	/// 群聊名称
 	std::string name;
 	/// Bot在群聊中的权限
-	PERMISSION permission = PERMISSION::UNKNOWN;
+	PERMISSION permission = PERMISSION::ENUM_END;
 
-	Group(GID_t id = 0_gid, std::string name = "", PERMISSION permission = PERMISSION::UNKNOWN)
+	Group(GID_t id = 0_gid, std::string name = "", PERMISSION permission = PERMISSION::ENUM_END)
 		: id(id), name(std::move(name)), permission(permission)
 	{
 	}
@@ -240,7 +290,7 @@ struct GroupMember
 	/// 群员名片
 	std::string MemberName;
 	/// 群员权限
-	PERMISSION permission = PERMISSION::UNKNOWN;
+	PERMISSION permission = PERMISSION::ENUM_END;
 	/// 群头衔
 	std::string SpecialTitle;
 	/// 入群时间
@@ -252,7 +302,7 @@ struct GroupMember
 	/// 群聊资料
 	Group group;
 
-	GroupMember(QQ_t id = 0_qq, std::string MemberName = "", PERMISSION permission = PERMISSION::UNKNOWN,
+	GroupMember(QQ_t id = 0_qq, std::string MemberName = "", PERMISSION permission = PERMISSION::ENUM_END,
 	            std::string SpecialTitle = "", std::time_t JoinTimestamp = 0, std::time_t LastSpeakTimestamp = 0,
 	            std::chrono::seconds MuteTimeRemaining = std::chrono::seconds(0), Group group = {})
 		: id(id)
@@ -293,10 +343,10 @@ struct UserProfile
 	/// QQ签名
 	std::string sign;
 	/// 性别
-	SEX sex = SEX::UNKNOWN;
+	SEX sex = SEX::ENUM_END;
 
 	UserProfile(std::string nickname = "", std::string email = "", int age = 0, int level = 0, std::string sign = "",
-	            SEX sex = SEX::UNKNOWN)
+	            SEX sex = SEX::ENUM_END)
 		: nickname(std::move(nickname))
 		, email(std::move(email))
 		, age(age)
@@ -341,7 +391,6 @@ struct ClientDevice
 
 	struct Serializable;
 };
-
 
 } // namespace Mirai
 

@@ -13,38 +13,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "AudioMessage.hpp"
+#ifndef _MIRAI_SERIALIZABLE_TYPES_FORWARD_MESSAGE_NODE_HPP_
+#define _MIRAI_SERIALIZABLE_TYPES_FORWARD_MESSAGE_NODE_HPP_
 
-#include <nlohmann/json.hpp>
-
-#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Messages/ForwardMessageNode.hpp>
+#include <libmirai/Serialization/Types/Serializable.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
+MIRAI_DECLARE_SERIALIZABLE_JSON(ForwardMessage::Node);
 
-bool AudioMessage::isValid() const
-{
-	return this->_audio.isValid();
 }
 
-void AudioMessage::FromJson(const json& data)
-{
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-
-	this->_audio = data.get<MiraiAudio>();
-}
-
-json AudioMessage::ToJson() const
-{
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
-
-	json data = json::object();
-	data["type"] = this->GetType();
-	data.update(this->_audio);
-
-	return data;
-}
-
-} // namespace Mirai
+#endif

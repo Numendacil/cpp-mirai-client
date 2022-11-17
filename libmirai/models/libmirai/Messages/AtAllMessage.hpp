@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -31,19 +29,27 @@ namespace Mirai
  */
 class AtAllMessage : public MessageBase
 {
+protected:
+	void Serialize(void*) const final;
+	void Deserialize(const void*) final;
+
 public:
-	AtAllMessage() = default;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AT_ALL;
 
-	static constexpr std::string_view _TYPE_ = "AtAll";
+	AtAllMessage() : MessageBase(_TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtAllMessage>(*this); }
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<AtAllMessage>(*this); }
+	bool isValid() const final
+	{
+		return true;
+	}
+};
 
-	void FromJson(const nlohmann::json& data) override;
-	nlohmann::json ToJson() const override;
-
-	bool isValid() const override;
+template <>
+struct GetType<AtAllMessage::_TYPE_>
+{
+	using type = AtAllMessage;
 };
 
 } // namespace Mirai

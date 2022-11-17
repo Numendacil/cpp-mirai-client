@@ -13,37 +13,31 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "DiceMessage.hpp"
+#include <libmirai/Messages/DiceMessage.hpp>
 
 #include <nlohmann/json.hpp>
-
-#include <libmirai/Utils/Common.hpp>
-
+#include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool DiceMessage::isValid() const
+void DiceMessage::Deserialize(const void* data)
 {
-	return this->_value > 0 && this->_value <= 6;
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	j.at("value").get_to(this->_value);
 }
 
-void DiceMessage::FromJson(const json& data)
+void DiceMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_value = Utils::GetValue(data, "value", -1);
-}
-
-json DiceMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	json data = json::object();
-	data["type"] = this->GetType();
-	data["value"] = this->_value;
-	return data;
+	j["type"] = this->GetType();
+	j["value"] = this->_value;
 }
 
 } // namespace Mirai

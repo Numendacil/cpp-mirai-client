@@ -13,41 +13,38 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "MarketFaceMessage.hpp"
+#include <cassert>
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
+#include <libmirai/Messages/AtMessage.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
 
-bool MarketFaceMessage::isValid() const
+void AtMessage::Deserialize(const void* data)
 {
-	return true;
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+
+	j.at("target").get_to(this->_target);
+	j.at("display").get_to(this->_display);
 }
 
-void MarketFaceMessage::FromJson(const json& data)
+void AtMessage::Serialize(void* data) const
 {
-	assert(Utils::GetValue(data, "type", "") == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_id = Utils::GetValue(data, "id", (int64_t)-1);
-	this->_name = Utils::GetValue(data, "name", "");
-}
-
-json MarketFaceMessage::ToJson() const
-{
+	auto& j = *static_cast<json*>(data);
 	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	// json data = json::object();
-	// data["type"] = this->GetType();
-	// data["id"] = this->id;
-	// data["name"] = this->name;
-	// return data;
+	j["type"] = this->GetType();
+	j["target"] = this->_target;
 
-	// Sending MarketFace Message is currently not supported
-	return json::object();
+	// Not used for sending
+	// j["display"] = this->display;
 }
 
 } // namespace Mirai

@@ -20,6 +20,7 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
+#include "libmirai/Types/BasicTypes.hpp"
 
 namespace Mirai
 {
@@ -37,71 +38,97 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 }
 
 
-namespace
-{
 
-constexpr std::array<std::string_view, static_cast<std::size_t>(SEX::UNKNOWN) + 1> sex_names = {"MALE", "FEMALE",
-                                                                                                "UNKNOWN"};
+// *********************************************
+// ************ ENUM DEFINITIONS ***************
+// *********************************************
 
-constexpr std::string_view sex_to_str(const SEX& m)
-{
-	auto i = static_cast<std::size_t>(m);
-	if (i < sex_names.size()) return sex_names.at(i);
-	else
-		return "UNKNOWN";
+#define ENUM_TO_STR_FUNCNAME(_enum_) _##_enum_##_TO_STR_ 
+#define STR_TO_ENUM_FUNCNAME(_enum_) _STR_TO_##_enum_##_
+#define ENUM_STR_ARRAY(_enum_) _enum_##Str
+
+#define DECLARE_ENUM_STR(_enum_, ...)	\
+namespace	\
+{	\
+constexpr std::array<std::string_view, static_cast<size_t>(_enum_::ENUM_END)> ENUM_STR_ARRAY(_enum_) = {__VA_ARGS__};	\
+constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)	\
+{	\
+	auto i = static_cast<std::size_t>(m);	\
+	if (i < ENUM_STR_ARRAY(_enum_).size()) return ENUM_STR_ARRAY(_enum_).at(i);	\
+	else return "";	\
+}	\
+constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)	\
+{	\
+	for (std::size_t i = 0; i < ENUM_STR_ARRAY(_enum_).size(); i++)	\
+		if (ENUM_STR_ARRAY(_enum_).at(i) == s) return static_cast<_enum_>(i);	\
+	return _enum_::ENUM_END;	\
+}	\
 }
 
-constexpr SEX str_to_sex(std::string_view s)
-{
-	for (std::size_t i = 0; i < sex_names.size(); i++)
-		if (sex_names.at(i) == s) return static_cast<SEX>(i);
+#define ENUM_TO_STR(_enum_, _input_) ENUM_TO_STR_FUNCNAME(_enum_)(_input_)
+#define STR_TO_ENUM(_enum_, _input_) STR_TO_ENUM_FUNCNAME(_enum_)(_input_)
 
-	return SEX::UNKNOWN;
-}
 
-} // namespace
+
+DECLARE_ENUM_STR(SEX, "MALE", "FEMALE", "UNKNOWN")
 
 void from_json(const json& j, SEX& p)
 {
-	p = str_to_sex(j.get<std::string>());
+	p = STR_TO_ENUM(SEX, j.get<std::string>());
 }
 void to_json(json& j, const SEX& p)
 {
-	j = sex_to_str(p);
+	j = ENUM_TO_STR(SEX, p);
 }
 
-namespace
-{
 
-static constexpr std::array<std::string_view, static_cast<std::size_t>(PERMISSION::UNKNOWN)> permission_names = {
-	"OWNER", "ADMINISTRATOR", "MEMBER"};
-
-constexpr std::string_view permission_to_str(const PERMISSION& m)
-{
-	auto i = static_cast<std::size_t>(m);
-	if (i < permission_names.size()) return permission_names.at(i);
-	else
-		return "";
-}
-
-constexpr PERMISSION str_to_permission(std::string_view s)
-{
-	for (std::size_t i = 0; i < permission_names.size(); i++)
-		if (permission_names.at(i) == s) return static_cast<PERMISSION>(i);
-
-	return PERMISSION::UNKNOWN;
-}
-
-} // namespace
+DECLARE_ENUM_STR(PERMISSION, "OWNER", "ADMINISTRATOR", "MEMBER")
 
 void from_json(const json& j, PERMISSION& p)
 {
-	p = str_to_permission(j.get<std::string>());
+	p = STR_TO_ENUM(PERMISSION, j.get<std::string>());
 }
 void to_json(json& j, const PERMISSION& p)
 {
-	j = permission_to_str(p);
+	j = ENUM_TO_STR(PERMISSION, p);
 }
+
+
+DECLARE_ENUM_STR(MusicShareType, "NeteaseCloudMusic", "QQMusic", "MiguMusic", "KugouMusic", "KuwoMusic");
+
+void from_json(const json& j, MusicShareType& p)
+{
+	p = STR_TO_ENUM(MusicShareType, j.get<std::string>());
+}
+void to_json(json& j, const MusicShareType& p)
+{
+	j = ENUM_TO_STR(MusicShareType, p);
+}
+
+
+DECLARE_ENUM_STR(PokeType,
+	"ChuoYiChuo", "BiXin",
+	"DianZan",  "XinSui", 
+	"LiuLiuLiu", "FangDaZhao", 
+	"GouYin",  "BaoBeiQiu",
+	"Rose", "ZhaoHuanShu", 
+	"RangNiPi", "JieYin", 
+	"ShouLei", "ZhuaYiXia", 
+	"SuiPing", "QiaoMen"
+);
+
+void from_json(const json& j, PokeType& p)
+{
+	p = STR_TO_ENUM(PokeType, j.get<std::string>());
+}
+void to_json(json& j, const PokeType& p)
+{
+	j = ENUM_TO_STR(PokeType, p);
+}
+
+// *********************************************
+// ********** ENUM DEFINITIONS END *************
+// *********************************************
 
 
 void from_json(const json& j, User& p)

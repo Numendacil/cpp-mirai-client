@@ -18,7 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -36,15 +35,19 @@ namespace Mirai
  */
 class FlashImageMessage : public ImageMessage
 {
-
 public:
-	FlashImageMessage() = default;
-	FlashImageMessage(const MiraiImage& image) : ImageMessage(image) {}
-	static constexpr std::string_view _TYPE_ = "FlashImage";
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FLASH_IMAGE;
+	
+	FlashImageMessage() : ImageMessage(_TYPE_) {}
+	FlashImageMessage(const MiraiImage& image) : ImageMessage(image, _TYPE_) {}
 
-	std::string_view GetType() const override { return _TYPE_; }
+	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<FlashImageMessage>(*this); }
+};
 
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FlashImageMessage>(*this); }
+template <>
+struct GetType<FlashImageMessage::_TYPE_>
+{
+	using type = FlashImageMessage;
 };
 
 } // namespace Mirai

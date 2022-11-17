@@ -13,17 +13,29 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include "ForwardMessage.hpp"
-#include "ForwardMessageNode.hpp"
+#include <nlohmann/json.hpp>
+
+#include <libmirai/Messages/AtAllMessage.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
-bool ForwardMessage::isValid() const
+using json = nlohmann::json;
+
+void AtAllMessage::Deserialize(const void* data)
 {
-	for (const auto& n : this->_NodeList)
-		if (!n.isValid()) return false;
-	return true;
+	const auto& j = *static_cast<const json*>(data);
+	
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
 }
 
+void AtAllMessage::Serialize(void* data) const
+{
+	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+	auto& j = *static_cast<json*>(data);
+
+	j["type"] = this->GetType();
 }
+
+} // namespace Mirai

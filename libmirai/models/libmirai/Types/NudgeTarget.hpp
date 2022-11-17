@@ -29,7 +29,7 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `NudgeTarget::_kind` | `TargetKind::UNKNOWN`
+ * `NudgeTarget::_kind` | `TargetKind::ENUM_END`
  * `NudgeTarget::_target` | `0_qq`
  * `NudgeTarget::_subject` | `0`
  */
@@ -39,22 +39,24 @@ public:
 	/**
 	 * @brief 戳一戳类型
 	 * 
-	 * `UNKNOWN` 为保留字段，使用时出现说明数据不合法
+	 * `ENUM_END` 为保留字段，使用时出现说明数据不合法
 	 */
 	enum TargetKind : std::size_t
 	{
 		FRIEND = 0,
 		GROUP,
 		STRANGER,
-		UNKNOWN
+
+		// Used for counting
+		ENUM_END
 	};
 
 protected:
-	TargetKind _kind = TargetKind::UNKNOWN;
+	TargetKind _kind = TargetKind::ENUM_END;
 	QQ_t _target{};
 	int64_t _subject = 0;
 
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::UNKNOWN)> _TargetKindStr = {
+	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::ENUM_END)> _TargetKindStr = {
 		"Friend", "Group", "Stranger"};
 
 	static constexpr std::string_view _to_string(const TargetKind& m)
@@ -70,7 +72,7 @@ protected:
 		for (std::size_t i = 0; i < _TargetKindStr.size(); i++)
 			if (_TargetKindStr.at(i) == s) return static_cast<TargetKind>(i);
 
-		return TargetKind::UNKNOWN;
+		return TargetKind::ENUM_END;
 	}
 
 public:
