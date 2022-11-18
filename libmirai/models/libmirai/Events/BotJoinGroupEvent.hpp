@@ -19,8 +19,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -42,18 +40,11 @@ protected:
 	Group _group;
 	std::optional<GroupMember> _inviter = std::nullopt;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
+
 	static constexpr std::string_view _TYPE_ = "BotJoinGroupEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// BotJoinGroupEvent* Clone() const override
-	// {
-	//	return new BotJoinGroupEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群聊信息
 	Group GetGroup() const { return this->_group; }

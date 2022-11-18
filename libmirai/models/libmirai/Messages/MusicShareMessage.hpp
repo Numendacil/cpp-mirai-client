@@ -107,39 +107,39 @@ public:
 		return *this;
 	}
 	/// 设置标题
-	MusicShareMessage& SetTitle(const std::string& title)
+	MusicShareMessage& SetTitle(std::string title)
 	{
-		this->_title = title;
+		this->_title = std::move(title);
 		return *this;
 	}
 	/// 设置介绍
-	MusicShareMessage& SetSummary(const std::string& summary)
+	MusicShareMessage& SetSummary(std::string summary)
 	{
-		this->_summary = summary;
+		this->_summary = std::move(summary);
 		return *this;
 	}
 	/// 设置转跳链接
-	MusicShareMessage& SetJumpUrl(const std::string& JumpUrl)
+	MusicShareMessage& SetJumpUrl(std::string JumpUrl)
 	{
-		this->_JumpUrl = JumpUrl;
+		this->_JumpUrl = std::move(JumpUrl);
 		return *this;
 	}
 	/// 设置封面图片连接
-	MusicShareMessage& SetPictureUrl(const std::string& PictureUrl)
+	MusicShareMessage& SetPictureUrl(std::string PictureUrl)
 	{
-		this->_PictureUrl = PictureUrl;
+		this->_PictureUrl = std::move(PictureUrl);
 		return *this;
 	}
 	/// 设置音乐链接
-	MusicShareMessage& SetMusicUrl(const std::string& MusicUrl)
+	MusicShareMessage& SetMusicUrl(std::string MusicUrl)
 	{
-		this->_MusicUrl = MusicUrl;
+		this->_MusicUrl = std::move(MusicUrl);
 		return *this;
 	}
 	/// 设置简介
-	MusicShareMessage& SetBrief(const std::string& brief)
+	MusicShareMessage& SetBrief(std::string brief)
 	{
-		this->_brief = brief;
+		this->_brief = std::move(brief);
 		return *this;
 	}
 };

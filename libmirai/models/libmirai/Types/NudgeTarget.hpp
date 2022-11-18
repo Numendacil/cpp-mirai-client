@@ -29,51 +29,16 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `NudgeTarget::_kind` | `TargetKind::ENUM_END`
+ * `NudgeTarget::_kind` | `NudgeType::ENUM_END`
  * `NudgeTarget::_target` | `0_qq`
  * `NudgeTarget::_subject` | `0`
  */
 class NudgeTarget
 {
-public:
-	/**
-	 * @brief 戳一戳类型
-	 * 
-	 * `ENUM_END` 为保留字段，使用时出现说明数据不合法
-	 */
-	enum TargetKind : std::size_t
-	{
-		FRIEND = 0,
-		GROUP,
-		STRANGER,
-
-		// Used for counting
-		ENUM_END
-	};
-
 protected:
-	TargetKind _kind = TargetKind::ENUM_END;
+	NudgeType _kind = NudgeType::ENUM_END;
 	QQ_t _target{};
 	int64_t _subject = 0;
-
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(TargetKind::ENUM_END)> _TargetKindStr = {
-		"Friend", "Group", "Stranger"};
-
-	static constexpr std::string_view _to_string(const TargetKind& m)
-	{
-		auto i = static_cast<std::size_t>(m);
-		if (i < _TargetKindStr.size()) return _TargetKindStr.at(i);
-		else
-			return "";
-	}
-
-	static constexpr TargetKind _to_enum(std::string_view s)
-	{
-		for (std::size_t i = 0; i < _TargetKindStr.size(); i++)
-			if (_TargetKindStr.at(i) == s) return static_cast<TargetKind>(i);
-
-		return TargetKind::ENUM_END;
-	}
 
 public:
 	/**
@@ -89,7 +54,7 @@ public:
 	 * @param target 戳一戳的对象
 	 * @param subject 戳一戳的发送主体，群聊消息时为群号，私聊时为对方QQ号码
 	 */
-	NudgeTarget(TargetKind kind, QQ_t target, UID_t subject) : _kind(kind), _target(target), _subject((int64_t)subject)
+	NudgeTarget(NudgeType kind, QQ_t target, UID_t subject) : _kind(kind), _target(target), _subject((int64_t)subject)
 	{
 	}
 
@@ -98,14 +63,7 @@ public:
 	 * 
 	 * @return 戳一戳类型 `enum`
 	 */
-	TargetKind GetTargetKind() const { return this->_kind; }
-
-	/**
-	 * @brief 返回戳一戳类型字符串
-	 * 
-	 * @return 戳一戳类型 `std::string`
-	 */
-	std::string GetTargetKindStr() const { return std::string(_to_string(this->_kind)); }
+	NudgeType GetNudgeType() const { return this->_kind; }
 
 	/**
 	 * @brief 返回戳一戳的对象
@@ -117,10 +75,10 @@ public:
 	/**
 	 * @brief 返回戳一戳所在的群聊
 	 * 
-	 * 仅在类型为 `TargetKind::GROUP` 时有效，否则返回 `0`
+	 * 仅在类型为 `NudgeType::GROUP` 时有效，否则返回 `0`
 	 * @return 戳一戳的群号
 	 */
-	GID_t GetGroup() const { return (this->_kind == TargetKind::GROUP) ? (GID_t)this->_subject : (GID_t)0; }
+	GID_t GetGroup() const { return (this->_kind == NudgeType::GROUP) ? (GID_t)this->_subject : (GID_t)0; }
 
 	/**
 	 * @brief 设置戳一戳类型
@@ -128,21 +86,9 @@ public:
 	 * @param kind 戳一戳类型 `enum`
 	 * @return Reference to *this
 	 */
-	NudgeTarget& SetTargetKind(TargetKind kind)
+	NudgeTarget& SetNudgeType(NudgeType kind)
 	{
 		this->_kind = kind;
-		return *this;
-	}
-
-	/**
-	 * @brief 设置戳一戳类型
-	 * 
-	 * @param kind 戳一戳类型 `std::string`
-	 * @return Reference to *this
-	 */
-	NudgeTarget& SetTargetKind(const std::string& kind)
-	{
-		this->_kind = _to_enum(kind);
 		return *this;
 	}
 
@@ -180,7 +126,7 @@ public:
 	 */
 	NudgeTarget& NudgeFriend(QQ_t target)
 	{
-		this->_kind = TargetKind::FRIEND;
+		this->_kind = NudgeType::FRIEND;
 		this->_target = target;
 		return *this;
 	}
@@ -194,7 +140,7 @@ public:
 	 */
 	NudgeTarget& NudgeGroupMember(QQ_t target, GID_t group)
 	{
-		this->_kind = TargetKind::GROUP;
+		this->_kind = NudgeType::GROUP;
 		this->_target = target;
 		this->_subject = (int64_t)group;
 		return *this;
@@ -208,7 +154,7 @@ public:
 	 */
 	NudgeTarget& NudgeStranger(QQ_t target)
 	{
-		this->_kind = TargetKind::STRANGER;
+		this->_kind = NudgeType::STRANGER;
 		this->_target = target;
 		return *this;
 	}

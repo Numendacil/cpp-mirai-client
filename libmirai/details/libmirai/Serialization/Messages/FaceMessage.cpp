@@ -17,6 +17,7 @@
 
 #include <nlohmann/json.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -28,8 +29,8 @@ void FaceMessage::Deserialize(const void* data)
 	const auto& j = *static_cast<const json*>(data);
 
 	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	j.at("faceId").get_to(this->_id);
-	j.at("name").get_to(this->_name);
+	this->_id = Utils::GetValue(j, "faceId", (int64_t)-1);
+	this->_name = Utils::GetValue(j, "name", "");
 }
 
 void FaceMessage::Serialize(void* data) const

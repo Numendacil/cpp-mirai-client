@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -42,21 +40,11 @@ class BotEvent : public EventBase
 protected:
 	QQ_t _qq;
 
+	virtual std::string GetEventType() const = 0;
+
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
-	// static constexpr std::string_view _TYPE_ = "BotEvent";
-
-	// std::string_view GetType() const override
-	// {
-	// 	return _TYPE_;
-	// }
-
-	// BotEvent* Clone() const override
-	// {
-	// 	return new BotEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取BotQQ
 	QQ_t GetQQ() const { return this->_qq; }

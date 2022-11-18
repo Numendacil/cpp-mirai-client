@@ -92,7 +92,7 @@ public:
 	                      std::optional<MessageId_t> QuoteId = std::nullopt);
 	json SendTempMessage(const std::string& SessionKey, QQ_t qq, GID_t group, const json& message,
 	                     std::optional<MessageId_t> QuoteId = std::nullopt);
-	json SendNudge(const std::string& SessionKey, QQ_t target, UID_t subject, const std::string& kind);
+	json SendNudge(const std::string& SessionKey, QQ_t target, UID_t subject, NudgeType kind);
 	json Recall(const std::string& SessionKey, MessageId_t id, UID_t target);
 	json RoamingMessages(const std::string& SessionKey, std::time_t TimeStart, std::time_t TimeEnd, UID_t target);
 
@@ -159,8 +159,8 @@ public:
 	json CmdRegister(const std::string& SessionKey, const std::string& name, const std::vector<std::string>& alias,
 	                 const std::string& usage, const std::string& description);
 
-	json PostRaw(const std::string& path, const std::string& content, const std::string& ContentType);
-	json GetRaw(const std::string& path, const std::multimap<std::string, std::string> params);
+	std::string PostRaw(const std::string& path, const std::string& content, const std::string& ContentType);
+	std::string GetRaw(const std::string& path, const std::multimap<std::string, std::string> params);
 };
 
 } // namespace Mirai::Details

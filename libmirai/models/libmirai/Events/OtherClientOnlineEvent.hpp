@@ -19,8 +19,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -43,18 +41,10 @@ protected:
 	ClientDevice _client;
 	std::optional<int64_t> _kind = std::nullopt;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientOnlineEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// OtherClientOnlineEvent* Clone() const override
-	// {
-	//	return new OtherClientOnlineEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取设备信息
 	ClientDevice GetClient() const { return this->_client; }

@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -52,18 +50,10 @@ protected:
 	std::string _nickname;
 	std::string _message;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberJoinRequestEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// MemberJoinRequestEvent* Clone() const override
-	// {
-	//	return new MemberJoinRequestEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取事件id，唯一标识符
 	int64_t GetEventId() const { return this->_EventId; }

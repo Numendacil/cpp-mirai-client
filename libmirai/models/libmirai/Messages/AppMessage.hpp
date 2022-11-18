@@ -60,9 +60,9 @@ public:
 	std::string GetContent() const { return this->_content; }
 
 	/// 设置App消息内容
-	AppMessage& SetContent(const std::string& content)
+	AppMessage& SetContent(std::string content)
 	{
-		this->_content = content;
+		this->_content = std::move(content);
 		return *this;
 	}
 };

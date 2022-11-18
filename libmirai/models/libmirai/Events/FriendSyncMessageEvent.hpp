@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -43,18 +41,10 @@ protected:
 	User _subject;
 	MessageChain _message;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendSyncMessage";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// FriendSyncMessageEvent* Clone() const override
-	// {
-	//	return new FriendSyncMessageEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取目标好友信息
 	User GetFriend() const { return this->_subject; }

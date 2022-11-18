@@ -20,8 +20,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -49,18 +47,10 @@ protected:
 	Group _group;
 	std::optional<GroupMember> _operator = std::nullopt;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupRecallEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// GroupRecallEvent* Clone() const override
-	// {
-	//	return new GroupRecallEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取被撤回消息的发送者QQ
 	QQ_t GetSender() const { return this->_AuthorId; }

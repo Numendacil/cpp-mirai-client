@@ -96,6 +96,14 @@ inline GID_t operator""_gid(unsigned long long num)
 	return GID_t(static_cast<int64_t>(num));
 }
 
+
+
+// *********************************************
+// ************ ENUM DECLARATIONS **************
+// *********************************************
+
+
+
 /**
  * @brief 处理好友申请的操作
  * 
@@ -149,7 +157,11 @@ enum class BotInvitedJoinGroupRequestOp
 /**
  * @brief QQ用户性别
  * 
- * `UNKNOWN` 为未知性别，`ENUM_END` 为保留字段，使用时出现说明数据不合法
+ *  Value	| Operation
+ * ---------|----------
+ * `MALE` | 男性
+ * `FEMALE` | 女性
+ * `UNKNOWN` | 未知性别
  */
 enum class SEX
 {
@@ -165,12 +177,37 @@ enum class SEX
  * @brief 群成员权限
  * 
  * `ENUM_END` 为保留字段，使用时出现说明数据不合法
+ *   Value	| Operation
+ * ---------|----------
+ * `OWNER` | 群主
+ * `ADMINISTRATOR` | 管理员
+ * `MEMBER` | 普通成员
  */
 enum class PERMISSION
 {
 	OWNER = 0,
 	ADMINISTRATOR,
 	MEMBER,
+
+	// Used for counting
+	ENUM_END
+};
+
+/**
+ * @brief 头像戳一戳消息的发送环境
+ * 
+ * `ENUM_END` 为保留字段，使用时出现说明数据不合法
+ *   Value	| Operation
+ * ---------|----------
+ * `FRIEND` | 好友发送
+ * `GROUP` | 群聊发送
+ * `STRANGER` | 陌生人发送
+ */
+enum class NudgeType
+{
+	FRIEND = 0,
+	GROUP,
+	STRANGER,
 
 	// Used for counting
 	ENUM_END
@@ -220,6 +257,48 @@ enum class PokeType
 	// Used for counting
 	ENUM_END
 };
+
+/**
+ * @brief 群称号改变类型
+ * 
+ * `ENUM_END` 为保留字段，使用时出现说明数据不合法
+ *   Value	| Operation
+ * ---------|----------
+ * `ACHIEVE` | 获得称号
+ * `LOSE` | 失去称号
+ */
+enum class HonorChangeType
+{
+	ACHIEVE = 0,
+	LOSE,
+
+	// Used for counting
+	ENUM_END
+};
+
+/**
+ * @brief 指令发送者类型
+ * 
+ *   Value	| Operation
+ * ---------|----------
+ * `FRIEND` | 好友
+ * `MEMBER` | 群聊
+ * `CONSOLE` | 控制台 (MCL)
+ */
+enum class CommandSender
+{
+	FRIEND = 0,
+	MEMBER,
+	CONSOLE
+};
+
+
+
+// *********************************************
+// ********** ENUM DECLARATIONS END ************
+// *********************************************
+
+
 
 /**
  * @brief QQ用户

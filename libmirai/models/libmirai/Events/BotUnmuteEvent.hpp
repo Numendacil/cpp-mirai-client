@@ -20,8 +20,6 @@
 #include <ctime>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -41,18 +39,10 @@ class BotUnmuteEvent : public EventBase
 protected:
 	GroupMember _operator;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotUnmuteEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// BotUnmuteEvent* Clone() const override
-	// {
-	//	return new BotUnmuteEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取操作员信息
 	GroupMember GetOperator() const { return this->_operator; }

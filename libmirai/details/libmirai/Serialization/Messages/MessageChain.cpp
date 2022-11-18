@@ -75,6 +75,8 @@ void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
 
 void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	if (!j.is_array()) return;
 	p._message.clear();
 	p._message.reserve(j.size());
@@ -90,6 +92,8 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 		);
 	}
 	p._message.shrink_to_fit();
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 } // namespace Mirai

@@ -32,13 +32,8 @@ class BotReloginEvent : public BotEvent
 public:
 	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotReloginEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// BotReloginEvent* Clone() const override
-	// {
-	//	return new BotReloginEvent(*this);
-	// }
+protected:
+	std::string GetEventType() const final { return std::string(_TYPE_); }
 };
 
 } // namespace Mirai

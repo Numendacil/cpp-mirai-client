@@ -33,13 +33,8 @@ class BotOfflineEventDropped : public BotEvent
 public:
 	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotOfflineEventDropped";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// BotOfflineEventDropped* Clone() const override
-	// {
-	//	return new BotOfflineEventDropped(*this);
-	// }
+protected:
+	std::string GetEventType() const final { return std::string(_TYPE_); }
 };
 
 } // namespace Mirai

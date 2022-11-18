@@ -20,7 +20,8 @@
 #include <string>
 
 #include <nlohmann/json.hpp>
-#include "libmirai/Types/BasicTypes.hpp"
+
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -29,7 +30,11 @@ using json = nlohmann::json;
 
 void UID_t::Serializable::from_json(const json& j, UID_t& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+	
 	p = UID_t(j.get<int64_t>());
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void UID_t::Serializable::to_json(json& j, const UID_t& p)
@@ -94,6 +99,18 @@ void to_json(json& j, const PERMISSION& p)
 }
 
 
+DECLARE_ENUM_STR(NudgeType, "Friend", "Group", "Stranger")
+
+void from_json(const json& j, NudgeType& p)
+{
+	p = STR_TO_ENUM(NudgeType, j.get<std::string>());
+}
+void to_json(json& j, const NudgeType& p)
+{
+	j = ENUM_TO_STR(NudgeType, p);
+}
+
+
 DECLARE_ENUM_STR(MusicShareType, "NeteaseCloudMusic", "QQMusic", "MiguMusic", "KugouMusic", "KuwoMusic");
 
 void from_json(const json& j, MusicShareType& p)
@@ -126,17 +143,34 @@ void to_json(json& j, const PokeType& p)
 	j = ENUM_TO_STR(PokeType, p);
 }
 
+
+DECLARE_ENUM_STR(HonorChangeType, "achieve", "lose");
+
+void from_json(const json& j, HonorChangeType& p)
+{
+	p = STR_TO_ENUM(HonorChangeType, j.get<std::string>());
+}
+void to_json(json& j, const HonorChangeType& p)
+{
+	j = ENUM_TO_STR(HonorChangeType, p);
+}
+
+
 // *********************************************
 // ********** ENUM DEFINITIONS END *************
 // *********************************************
 
 
-void from_json(const json& j, User& p)
+void User::Serializable::from_json(const json& j, User& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("id").get_to(p.id);
 	j.at("id").get_to(p.id);
 	j.at("nickname").get_to(p.nickname);
 	j.at("remark").get_to(p.remark);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void User::Serializable::to_json(json& j, const User& p)
@@ -147,11 +181,15 @@ void User::Serializable::to_json(json& j, const User& p)
 }
 
 
-void from_json(const json& j, Group& p)
+void Group::Serializable::from_json(const json& j, Group& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("id").get_to(p.id);
 	j.at("name").get_to(p.name);
 	j.at("permission").get_to(p.permission);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void Group::Serializable::to_json(json& j, const Group& p)
@@ -162,16 +200,20 @@ void Group::Serializable::to_json(json& j, const Group& p)
 }
 
 
-void from_json(const json& j, GroupMember& p)
+void GroupMember::Serializable::from_json(const json& j, GroupMember& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("id").get_to(p.id);
 	j.at("memberName").get_to(p.MemberName);
 	j.at("permission").get_to(p.permission);
-	j.at("specialTitle").get_to(p.SpecialTitle);
-	j.at("joinTimestamp").get_to(p.JoinTimestamp);
-	j.at("lastSpeakTimestamp").get_to(p.LastSpeakTimestamp);
-	p.MuteTimeRemaining = std::chrono::seconds(j.at("muteTimeRemaining").get<int64_t>());
+	p.SpecialTitle = Utils::GetValue(j, "specialTitle", "");	// Can be empty
+	p.JoinTimestamp = Utils::GetValue(j, "joinTimestamp", (std::time_t)0);	// Can be empty
+	p.LastSpeakTimestamp = Utils::GetValue(j, "lastSpeakTimestamp", (std::time_t)0);	// Can be empty
+	p.MuteTimeRemaining = std::chrono::seconds(Utils::GetValue(j, "muteTimeRemaining", (int64_t)0));	// Can be empty
 	j.at("group").get_to(p.group);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void GroupMember::Serializable::to_json(json& j, const GroupMember& p)
@@ -187,7 +229,7 @@ void GroupMember::Serializable::to_json(json& j, const GroupMember& p)
 }
 
 
-void from_json(const json& j, UserProfile& p)
+void UserProfile::Serializable::from_json(const json& j, UserProfile& p)
 {
 	j.at("nickname").get_to(p.nickname);
 	j.at("email").get_to(p.email);
@@ -208,10 +250,14 @@ void UserProfile::Serializable::to_json(json& j, const UserProfile& p)
 }
 
 
-void from_json(const json& j, ClientDevice& p)
+void ClientDevice::Serializable::from_json(const json& j, ClientDevice& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("id").get_to(p.id);
 	j.at("platform").get_to(p.platform);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void ClientDevice::Serializable::to_json(json& j, const ClientDevice& p)

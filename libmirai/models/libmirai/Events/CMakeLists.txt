@@ -2,7 +2,6 @@ target_sources(
 	${MIRAI_LIB_TARGET_NAME} PRIVATE
 	EventBase.hpp
 
-	BotEvent.cpp
 	BotEvent.hpp
 	BotOfflineEventActive.hpp
 	BotOfflineEventDropped.hpp
@@ -10,89 +9,47 @@ target_sources(
 	BotOnlineEvent.hpp
 	BotReloginEvent.hpp
 	
-	BotGroupPermissionChangeEvent.cpp
 	BotGroupPermissionChangeEvent.hpp
-	BotInvitedJoinGroupRequestEvent.cpp
 	BotInvitedJoinGroupRequestEvent.hpp
-	BotJoinGroupEvent.cpp
 	BotJoinGroupEvent.hpp
-	BotLeaveEventActive.cpp
 	BotLeaveEventActive.hpp
-	BotLeaveEventDisband.cpp
 	BotLeaveEventDisband.hpp
-	BotLeaveEventKick.cpp
 	BotLeaveEventKick.hpp
-	BotMuteEvent.cpp
 	BotMuteEvent.hpp
-	BotUnmuteEvent.cpp
 	BotUnmuteEvent.hpp
-	CommandExecutedEvent.cpp
 	CommandExecutedEvent.hpp
-	FriendInputStatusChangedEvent.cpp
 	FriendInputStatusChangedEvent.hpp
-	FriendMessageEvent.cpp
 	FriendMessageEvent.hpp
-	FriendNickChangedEvent.cpp
 	FriendNickChangedEvent.hpp
-	FriendRecallEvent.cpp
 	FriendRecallEvent.hpp
-	FriendSyncMessageEvent.cpp
 	FriendSyncMessageEvent.hpp
-	GroupAllowAnonymousChatEvent.cpp
 	GroupAllowAnonymousChatEvent.hpp
-	GroupAllowConfessTalkEvent.cpp
 	GroupAllowConfessTalkEvent.hpp
-	GroupAllowMemberInviteEvent.cpp
 	GroupAllowMemberInviteEvent.hpp
-	GroupEntranceAnnouncementChangeEvent.cpp
 	GroupEntranceAnnouncementChangeEvent.hpp
-	GroupMessageEvent.cpp
 	GroupMessageEvent.hpp
-	GroupMuteAllEvent.cpp
 	GroupMuteAllEvent.hpp
-	GroupNameChangeEvent.cpp
 	GroupNameChangeEvent.hpp
-	GroupRecallEvent.cpp
 	GroupRecallEvent.hpp
-	GroupSyncMessageEvent.cpp
 	GroupSyncMessageEvent.hpp
-	MemberCardChangeEvent.cpp
 	MemberCardChangeEvent.hpp
-	MemberHonorChangeEvent.cpp
 	MemberHonorChangeEvent.hpp
-	MemberJoinEvent.cpp
 	MemberJoinEvent.hpp
-	MemberJoinRequestEvent.cpp
 	MemberJoinRequestEvent.hpp
-	MemberLeaveEventKick.cpp
 	MemberLeaveEventKick.hpp
-	MemberLeaveEventQuit.cpp
 	MemberLeaveEventQuit.hpp
-	MemberMuteEvent.cpp
 	MemberMuteEvent.hpp
-	MemberPermissionChangeEvent.cpp
 	MemberPermissionChangeEvent.hpp
-	MemberSpecialTitleChangeEvent.cpp
 	MemberSpecialTitleChangeEvent.hpp
-	MemberUnmuteEvent.cpp
 	MemberUnmuteEvent.hpp
-	NewFriendRequestEvent.cpp
 	NewFriendRequestEvent.hpp
-	NudgeEvent.cpp
 	NudgeEvent.hpp
-	OtherClientMessageEvent.cpp
 	OtherClientMessageEvent.hpp
-	OtherClientOfflineEvent.cpp
 	OtherClientOfflineEvent.hpp
-	OtherClientOnlineEvent.cpp
 	OtherClientOnlineEvent.hpp
-	StrangerMessageEvent.cpp
 	StrangerMessageEvent.hpp
-	StrangerSyncMessageEvent.cpp
 	StrangerSyncMessageEvent.hpp
-	TempMessageEvent.cpp
 	TempMessageEvent.hpp
-	TempSyncMessageEvent.cpp
 	TempSyncMessageEvent.hpp
 
 	MiraiClientEvents.hpp

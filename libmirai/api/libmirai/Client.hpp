@@ -26,10 +26,9 @@
 #include <optional>
 #include <string>
 #include <thread>
+#include <type_traits>
 #include <unordered_map>
 #include <vector>
-
-#include <nlohmann/json_fwd.hpp>
 
 #include <libmirai/Events/BotInvitedJoinGroupRequestEvent.hpp>
 #include <libmirai/Events/FriendMessageEvent.hpp>
@@ -79,7 +78,7 @@ public:
 	template<typename Event> using EventCallback = std::function<void(Event)>;
 
 protected:
-	using EventHandler = std::function<void(const nlohmann::json&)>;
+	using EventHandler = std::function<void(const void*)>;
 
 	mutable std::mutex _mtx;
 	mutable std::mutex _ConnectMtx; // Only one Connect() / Disconnect() can be called at the same time
@@ -108,26 +107,6 @@ protected:
 	EventCallback<ClientParseErrorEvent> _ParseErrorCallback;
 
 	std::unordered_map<std::string, EventHandler> _EventHandlers{};
-
-	bool _ReadSessionKey(const nlohmann::json& data);
-	void _DispatchEvent(const nlohmann::json& data);
-
-	template<typename T> class _has_type_
-	{
-		using yes_type = char;
-		using no_type = long;
-		template<typename U> static yes_type test(decltype(&U::_TYPE_));
-		template<typename U> static no_type test(...);
-
-	public:
-		static constexpr bool value = sizeof(test<T>(0)) == sizeof(yes_type);
-	};
-
-	template<typename Event> constexpr static void _type_check_()
-	{
-		static_assert(std::is_base_of<EventBase, Event>::value, "Event must be a derived class of MessageBase");
-		static_assert(_has_type_<Event>::value, "Event must contain a static atrribute _TYPE_");
-	};
 
 	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
 	{
@@ -160,6 +139,21 @@ protected:
 		std::lock_guard<std::mutex> lk(this->_mtx);
 		return this->_SessionKey;
 	}
+
+	void _DeserializeWrapper(EventBase&, const void*) const;
+
+	template <typename T>
+	class _has_type_
+	{
+		template<typename U>
+		static std::true_type test(decltype(U::_TYPE_)*);
+
+		template<typename>
+		static std::false_type test(...);
+
+	public:
+		static constexpr bool value = decltype(test<T>(0))::value;
+	};
 
 public:
 	MiraiClient();
@@ -214,15 +208,18 @@ public:
 	 * @tparam EventType 事件类型
 	 * @param callback 回调函数
 	 */
-	template<typename EventType> void On(EventCallback<EventType> callback)
+	template<typename EventType> 
+	void On(EventCallback<EventType> callback)
 	{
-		_type_check_<EventType>();
+		static_assert(std::is_base_of_v<EventBase, EventType>, "EventType must be a derived class of EventBase");
+		static_assert(_has_type_<EventType>::value, "EventType must define EventType::_TYPE_");
+
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const nlohmann::json& j)
+		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const void* data)
 		{
-			EventType event(this);
-			event.FromJson(j);
-			callback(event);
+			EventType event{this};
+			this->_DeserializeWrapper(event, data);
+			callback(std::move(event));
 		};
 	}
 
@@ -246,18 +243,7 @@ public:
 	void SetSessionConfig(const std::string& path)
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromFile(path);
-	}
-
-	/**
-	 * @brief 设置连接选项
-	 * 
-	 * @param json_config JSON格式的配置
-	 */
-	void SetSessionConfig(const nlohmann::json& json_config)
-	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromJson(json_config);
+		this->_config.FromJsonFile(path);
 	}
 
 
@@ -279,7 +265,6 @@ public:
 
 
 	using string = std::string;
-	using json = nlohmann::json;
 
 	/**
 	 * @brief 获取mirai-api-http插件的版本号
@@ -391,11 +376,10 @@ public:
 	 * @param qq 好友QQ
 	 * @param message 消息内容
 	 * @param QuoteId 引用回复内容的消息id
-	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
 	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message,
-	                              std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	                              std::optional<MessageId_t> QuoteId = std::nullopt);
 
 	/**
 	 * @brief 发送群聊消息
@@ -403,11 +387,10 @@ public:
 	 * @param GroupId 群聊id
 	 * @param message 消息内容
 	 * @param QuoteId 引用回复内容的消息id
-	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
 	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message,
-	                             std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	                             std::optional<MessageId_t> QuoteId = std::nullopt);
 
 	/**
 	 * @brief 发送临时会话消息
@@ -416,11 +399,10 @@ public:
 	 * @param GroupId 群聊id
 	 * @param message 消息内容
 	 * @param QuoteId 引用回复内容的消息id
-	 * @param ignoreInvalid 是否忽略无效消息，见 `MessageChain::ToJson()`
 	 * @return 发送的消息id
 	 */
 	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
-	                            std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false);
+	                            std::optional<MessageId_t> QuoteId = std::nullopt);
 
 	/**
 	 * @brief 发送头像戳一戳消息
@@ -581,18 +563,6 @@ public:
 	 */
 	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
 		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
-
-	/**
-	 * @brief 上传群文件
-	 * 
-	 * @param GroupId 群聊id
-	 * @param UploadPath 上传路径
-	 * @param path 本地文件路径
-	 * @return 上传的群文件信息 
-	 * @deprecated Redundant method
-	 */
-	 [[deprecated("Redundant method")]]
-	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path);
 
 	/**
 	 * @brief 上传好友图片
@@ -947,18 +917,18 @@ public:
 	 * @param path 路径
 	 * @param content POST内容
 	 * @param ContentType 内容格式
-	 * @return `nlohman::json`  
+	 * @return `std::string`  
 	 */
-	json PostRaw(const string& path, const string& content, const string& ContentType);
+	string PostRaw(const string& path, const string& content, const string& ContentType);
 
 	/**
 	 * @brief 直接向mirai-api-http发送GET请求
 	 * 
 	 * @param path 路径
 	 * @param params query参数
-	 * @return `nlohman::json` 
+	 * @return `std::string` 
 	 */
-	json GetRaw(const string& path, const std::multimap<string, string> params);
+	string GetRaw(const string& path, const std::multimap<string, string> params);
 };
 
 template<>

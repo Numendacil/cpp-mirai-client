@@ -62,9 +62,9 @@ public:
 	std::string GetText() const { return this->_text; }
 
 	/// 设置文字消息
-	PlainMessage& SetText(const std::string& text)
+	PlainMessage& SetText(std::string text)
 	{
-		this->_text = text;
+		this->_text = std::move(text);
 		return *this;
 	}
 };

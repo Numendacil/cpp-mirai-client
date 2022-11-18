@@ -93,6 +93,7 @@ public:
 	 * 
 	 */
 	///@{
+	
 	using value_type = MessageContainer::value_type;
 	using allocator_type = MessageContainer::allocator_type;
 	using size_type = MessageContainer::size_type;
@@ -105,6 +106,35 @@ public:
 	using const_reverse_iterator = MessageContainer::const_reverse_iterator;
 	using iterator = MessageContainer::iterator;
 	using const_iterator = MessageContainer::const_iterator;
+
+	bool empty() const noexcept { return this->_message.empty(); }
+	size_type size() const noexcept { return this->_message.size(); }
+	void reserve(size_type new_cap) { return this->_message.reserve(new_cap); }
+	void shrink_to_fit() noexcept { return this->_message.shrink_to_fit(); }
+	size_type max_size() const noexcept { return this->_message.max_size(); }
+	size_type capacity() const noexcept { return this->_message.capacity(); }
+
+	void clear() noexcept { return this->_message.clear(); }
+	iterator erase(const_iterator pos) { return this->_message.erase(pos); }
+	iterator erase(const_iterator first, const_iterator last) { return this->_message.erase(first, last); }
+	void pop_back() { return this->_message.pop_back(); }
+	void resize(size_type count) { return this->_message.resize(count); }
+
+	iterator begin() noexcept { return this->_message.begin(); }
+	const_iterator begin() const noexcept { return this->_message.begin(); }
+	const_iterator cbegin() const noexcept { return this->_message.cbegin(); }
+	iterator end() noexcept { return this->_message.end(); }
+	const_iterator end() const noexcept { return this->_message.end(); }
+	const_iterator cend() const noexcept { return this->_message.cend(); }
+	reverse_iterator rbegin() noexcept { return this->_message.rbegin(); }
+	const_reverse_iterator crbegin() const noexcept { return this->_message.crbegin(); }
+	reverse_iterator rend() noexcept { return this->_message.rend(); }
+	const_reverse_iterator crend() const noexcept { return this->_message.crend(); }
+
+	
+	const MessageBase& operator[](size_type n) const noexcept { return *this->_message[n]; }
+	MessageBase& operator[](size_type n) noexcept { return *this->_message[n]; }
+
 	///@}
 
 	// Element Insertion
@@ -427,56 +457,7 @@ public:
 	}
 
 
-	/**
-	 * @brief STL-like interface
-	 * 
-	 */
-	///@{
-	bool empty() const noexcept { return this->_message.empty(); }
-	size_type size() const noexcept { return this->_message.size(); }
-	void reserve(size_type new_cap) { return this->_message.reserve(new_cap); }
-	void shrink_to_fit() noexcept { return this->_message.shrink_to_fit(); }
-	size_type max_size() const noexcept { return this->_message.max_size(); }
-	size_type capacity() const noexcept { return this->_message.capacity(); }
-
-	const_reference at(size_type n) const { return this->_message.at(n); }
-	reference at(size_type n) { return this->_message.at(n); }
-	const_reference operator[](size_type n) const noexcept { return this->_message[n]; }
-	reference operator[](size_type n) noexcept { return this->_message[n]; }
-
-	void clear() noexcept { return this->_message.clear(); }
-	iterator insert(const_iterator pos, value_type&& value) { return this->_message.insert(pos, std::move(value)); }
-	template<class InputIt> iterator insert(const_iterator pos, InputIt first, InputIt last)
-	{
-		return this->_message.insert(pos, std::forward<InputIt>(first), std::forward<InputIt>(last));
-	}
-	template<class... Args > iterator emplace(const_iterator pos, Args&&... args)
-	{
-		return this->emplace(pos, std::forward<Args>(args)...);
-	}
-	iterator erase(const_iterator pos) { return this->_message.erase(pos); }
-	iterator erase(const_iterator first, const_iterator last) { return this->_message.erase(first, last); }
-	void push_back(value_type&& node) { return this->_message.push_back(std::move(node)); }
-	template< class... Args > reference emplace_back(Args&&... args)
-	{
-		return this->_message.emplace_back(std::forward<Args>(args)...);
-	}
-	void pop_back() { return this->_message.pop_back(); }
-	void resize(size_type count) { return this->_message.resize(count); }
-
-	iterator begin() noexcept { return this->_message.begin(); }
-	const_iterator begin() const noexcept { return this->_message.begin(); }
-	const_iterator cbegin() const noexcept { return this->_message.cbegin(); }
-	iterator end() noexcept { return this->_message.end(); }
-	const_iterator end() const noexcept { return this->_message.end(); }
-	const_iterator cend() const noexcept { return this->_message.cend(); }
-	reverse_iterator rbegin() noexcept { return this->_message.rbegin(); }
-	const_reverse_iterator crbegin() const noexcept { return this->_message.crbegin(); }
-	reverse_iterator rend() noexcept { return this->_message.rend(); }
-	const_reverse_iterator crend() const noexcept { return this->_message.crend(); }
-	///@}
-
-	class Serializable;
+	struct Serializable;;
 };
 
 } // namespace Mirai

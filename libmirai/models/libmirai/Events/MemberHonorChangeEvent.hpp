@@ -19,8 +19,6 @@
 #include <array>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -34,62 +32,27 @@ namespace Mirai
  * Member Variable | Default Value
  * --------------- | -------------
  * `MemberHonorChangeEvent::_member` | `GroupMember{}`
- * `MemberHonorChangeEvent::_action` | `ActionKind::UNKNOWN`
+ * `MemberHonorChangeEvent::_action` | `HonorChangeType::ENUM_END`
  * `MemberHonorChangeEvent::_honor` | `""`
  *
  * 目前只支持龙王
  */
 class MemberHonorChangeEvent : public EventBase
 {
-public:
-	enum ActionKind : std::size_t
-	{
-		ACHIEVE = 0,
-		LOSE,
-		UNKNOWN
-	};
-
 protected:
 	GroupMember _member;
-	ActionKind _action = ActionKind::UNKNOWN; // {achieve, lose}
+	HonorChangeType _action = HonorChangeType::ENUM_END; // {achieve, lose}
 	std::string _honor;
 
-	static constexpr std::array<std::string_view, static_cast<std::size_t>(ActionKind::UNKNOWN)> _ActionKindStr = {
-		"achieve", "lose"};
-
-	static constexpr std::string_view _to_string(const ActionKind& m)
-	{
-		auto i = static_cast<std::size_t>(m);
-		if (i < _ActionKindStr.size()) return _ActionKindStr.at(i);
-		else
-			return "";
-	}
-
-	static constexpr ActionKind _to_enum(std::string_view s)
-	{
-		for (std::size_t i = 0; i < _ActionKindStr.size(); i++)
-			if (_ActionKindStr.at(i) == s) return static_cast<ActionKind>(i);
-
-		return ActionKind::UNKNOWN;
-	}
-
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberHonorChangeEvent";
 
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// MemberHonorChangeEvent* Clone() const override
-	// {
-	//	return new MemberHonorChangeEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
-
 	/// 获取群成员资料
 	GroupMember GetMember() const { return this->_member; }
 	/// 获取群荣誉变化行为
-	ActionKind GetAction() const { return this->_action; }
+	HonorChangeType GetAction() const { return this->_action; }
 	/// 获取群荣耀名称
 	std::string GetHonor() const { return this->_honor; }
 };

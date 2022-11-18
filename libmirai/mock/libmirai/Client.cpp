@@ -30,21 +30,16 @@
 #include <httplib.h>
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Events/BotInvitedJoinGroupRequestEvent.hpp>
-#include <libmirai/Events/FriendMessageEvent.hpp>
-#include <libmirai/Events/GroupMessageEvent.hpp>
-#include <libmirai/Events/MemberJoinRequestEvent.hpp>
-#include <libmirai/Events/MiraiClientEvents.hpp>
-#include <libmirai/Events/NewFriendRequestEvent.hpp>
-#include <libmirai/Events/StrangerMessageEvent.hpp>
-#include <libmirai/Events/TempMessageEvent.hpp>
 #include <libmirai/Exceptions/Exceptions.hpp>
-#include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
 
 #include <libmirai/Utils/Logger.hpp>
+
+#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Serialization/Messages/MessageChain.hpp>
+#include <libmirai/Serialization/Events/EventBase.hpp>
 
 namespace Mirai
 {
@@ -159,17 +154,91 @@ void MiraiClient::_OnText(const std::string& message)
 		json data = msg.at("data");
 		if (!data.is_object()) return;
 
-		json resp = Utils::ParseResponse(data);
+		data = Utils::ParseResponse(data);
 
 		if (!this->_SessionKeySet) // check for sessionKey
 		{
-			if (this->_ReadSessionKey(data))
+			if (!(data.contains("session") && data.at("session").is_string())) return;
+
+			std::string session = data.at("session").get<std::string>();
+
+			LOG_DEBUG(this->_GetLogger(), "Session key obtained: " + session);
+
+			// Check http connection
+			LOG_DEBUG(this->_GetLogger(), "Checking HTTP connection, calling /sessionInfo with session key: " + session);
+
+			json resp = {
+				{"code", 0},
+				{"msg", ""},
+				{"data", {
+					{"sessionKey", "Numendacil"},
+					{"qq", {
+						{"id", 1234567890},
+						{"nickname", ""},
+						{"remark", ""}
+					}
+					}
+				}
+				}
+			};
+
+			resp = resp["data"];
+
+			LOG_DEBUG(this->_GetLogger(), "Checking HTTP connection, received: " + resp.dump());
+
+			std::string validate = Utils::GetValue(resp, "sessionKey", "");
+			if (session != validate)
+				throw MiraiApiHttpException(-1, "Dismatched sessionKey: \"" + session + "\" <-> \"" + validate);
+
+			ClientConnectionEstablishedEvent event;
 			{
-				return;
+				std::unique_lock<std::mutex> lk(this->_mtx);
+				this->_SessionKey = session;
+				this->_SessionKeySet = true;
+				this->_connected = true;
+				this->_HandshakeInfo.SessionKey = session;
+				resp.at("qq").get_to(this->_HandshakeInfo.BotProfile);
+				event = this->_HandshakeInfo;
 			}
+
+			auto callback = this->_GetEstablishedCallback();
+			if (callback) callback(event);
+
+			this->_cv.notify_one();
+			return;
 		}
 
-		this->_DispatchEvent(data);
+		if (!(data.contains("type") && data.at("type").is_string())) return;
+
+		std::string type = data.at("type").get<std::string>();
+
+		LOG_TRACE(this->_GetLogger(), "Dispatching message, type: " + type);
+
+		EventHandler handler;
+		{
+			std::lock_guard<std::mutex> lk(this->_mtx);
+			if (this->_EventHandlers.count(type)) handler = this->_EventHandlers.at(type);
+		}
+		if (handler)
+		{
+			LOG_TRACE(this->_GetLogger(), "Found handler");
+			(void)this->_ThreadPool->enqueue(
+				[data, handler, this]()
+				{
+					try
+					{
+						handler(&data);
+					}
+					catch (const ParseError& e)
+					{
+						auto callback = this->_GetParseErrorCallback();
+						if (this->_ParseErrorCallback) this->_ParseErrorCallback({e, data.dump()});
+					}
+				});
+			return;
+		}
+		LOG_TRACE(this->_GetLogger(), "No matching handler found");
+
 	}
 	catch (const ParseError& e)
 	{
@@ -264,93 +333,6 @@ void MiraiClient::Disconnect()
 	LOG_DEBUG(this->_GetLogger(), "Clients shutdown complete");
 }
 
-bool MiraiClient::_ReadSessionKey(const json& data)
-{
-	if (!(data.contains("session") && data.at("session").is_string())) return false;
-
-	std::string session = data.at("session").get<std::string>();
-
-	LOG_DEBUG(this->_GetLogger(), "Session key obtained: " + session);
-
-	// Check http connection
-	LOG_DEBUG(this->_GetLogger(), "Checking HTTP connection, calling /sessionInfo with session key: " + session);
-
-	json resp = {
-		{"code", 0},
-		{"msg", ""},
-		{"data", {
-			{"sessionKey", "Numendacil"},
-			{"qq", {
-				{"id", 1234567890},
-				{"nickname", ""},
-				{"remark", ""}
-			}
-			}
-		}
-		}
-	};
-
-	resp = resp["data"];
-
-	LOG_DEBUG(this->_GetLogger(), "Checking HTTP connection, received: " + resp.dump());
-
-	std::string validate = Utils::GetValue(resp, "sessionKey", "");
-	if (session != validate)
-		throw MiraiApiHttpException(-1, "Dismatched sessionKey: \"" + session + "\" <-> \"" + validate);
-
-	ClientConnectionEstablishedEvent event;
-	{
-		std::unique_lock<std::mutex> lk(this->_mtx);
-		this->_SessionKey = session;
-		this->_SessionKeySet = true;
-		this->_connected = true;
-		this->_HandshakeInfo.SessionKey = session;
-		this->_HandshakeInfo.BotProfile = Utils::GetValue(resp, "qq", User{});
-		event = this->_HandshakeInfo;
-	}
-
-	auto callback = this->_GetEstablishedCallback();
-	if (callback) callback(event);
-
-	this->_cv.notify_one();
-	return true;
-}
-
-void MiraiClient::_DispatchEvent(const json& data)
-{
-	if (!(data.contains("type") && data.at("type").is_string())) return;
-
-	std::string type = data.at("type").get<std::string>();
-
-	LOG_TRACE(this->_GetLogger(), "Dispatching message, type: " + type);
-
-	EventHandler handler;
-	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
-		if (this->_EventHandlers.count(type)) handler = this->_EventHandlers.at(type);
-	}
-	if (handler)
-	{
-		LOG_TRACE(this->_GetLogger(), "Found handler");
-		(void)this->_ThreadPool->enqueue(
-			[data, handler, this]()
-			{
-				try
-				{
-					handler(data);
-				}
-				catch (const ParseError& e)
-				{
-					auto callback = this->_GetParseErrorCallback();
-					if (this->_ParseErrorCallback) this->_ParseErrorCallback({e, data.dump()});
-				}
-			});
-		return;
-	}
-	LOG_TRACE(this->_GetLogger(), "No matching handler found");
-}
-
-
 template<>
 void MiraiClient::On<ClientConnectionEstablishedEvent>(EventCallback<ClientConnectionEstablishedEvent> callback)
 {
@@ -374,14 +356,6 @@ template<> void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParse
 {
 	std::lock_guard<std::mutex> lk(this->_mtx);
 	this->_ParseErrorCallback = callback;
-}
-
-
-GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path)
-{	
-	string name = (path.has_filename()) ? path.filename().u8string() : path.u8string();
-	std::ifstream f(path, std::ios_base::binary);
-	return this->UploadGroupFile(GroupId, UploadPath, name, f);
 }
 
 } // namespace Mirai

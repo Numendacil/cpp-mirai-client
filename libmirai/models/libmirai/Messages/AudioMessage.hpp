@@ -73,10 +73,10 @@ public:
 	 * 发送音频只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param AudioId 音频id
 	 */
-	AudioMessage& SetAudioId(const std::string& AudioId)
+	AudioMessage& SetAudioId(std::string AudioId)
 	{
 		this->_clear();
-		this->_audio.id = AudioId;
+		this->_audio.id = std::move(AudioId);
 		return *this;
 	}
 
@@ -86,10 +86,10 @@ public:
 	 * 发送音频只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param url 音频链接
 	 */
-	AudioMessage& SetUrl(const std::string& url)
+	AudioMessage& SetUrl(std::string url)
 	{
 		this->_clear();
-		this->_audio.url = url;
+		this->_audio.url = std::move(url);
 		return *this;
 	}
 
@@ -99,10 +99,10 @@ public:
 	 * 发送音频只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param path 音频路径
 	 */
-	AudioMessage& SetPath(const std::string& path)
+	AudioMessage& SetPath(std::string path)
 	{
 		this->_clear();
-		this->_audio.path = path;
+		this->_audio.path = std::move(path);
 		return *this;
 	}
 
@@ -112,17 +112,17 @@ public:
 	 * 发送音频只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param base64 音频base64编码
 	 */
-	AudioMessage& SetBase64(const std::string& base64)
+	AudioMessage& SetBase64(std::string base64)
 	{
 		this->_clear();
-		this->_audio.base64 = base64;
+		this->_audio.base64 = std::move(base64);
 		return *this;
 	}
 
 	/// 由 `MiraiAudio` 设置音频内容
-	AudioMessage& SetAudio(const MiraiAudio& audio)
+	AudioMessage& SetAudio(MiraiAudio audio)
 	{
-		this->_audio = audio;
+		this->_audio = std::move(audio);
 		return *this;
 	}
 };

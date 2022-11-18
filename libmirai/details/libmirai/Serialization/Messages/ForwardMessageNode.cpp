@@ -29,11 +29,15 @@ using json = nlohmann::json;
 
 void ForwardMessage::Node::Serializable::from_json(const json& j, ForwardMessage::Node& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("senderId").get_to(p._SenderId);
 	j.at("time").get_to(p._time);
 	j.at("senderName").get_to(p._SenderName);
 	j.at("messageChain").get_to(p._message);
 	p._MessageId = Utils::GetOptional<MessageId_t>(j, "messageId");
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void ForwardMessage::Node::Serializable::to_json(nlohmann::json& j, const ForwardMessage::Node& p)

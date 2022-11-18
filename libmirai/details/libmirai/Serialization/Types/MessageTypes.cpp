@@ -28,7 +28,7 @@ constexpr std::array<std::string_view, static_cast<std::size_t>(MessageTypes::EN
 	"MusicShare",
 	"Plain",
 	"Poke",
-	"Poke",
+	"Quote",
 	"Source",
 	"Xml",
 };
@@ -53,7 +53,11 @@ constexpr MessageTypes str_to_enum(std::string_view s)
 
 void from_json(const json& j, MessageTypes& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	p = str_to_enum(j.get<std::string>());
+
+	MIRAI_PARSE_GUARD_END;
 }
 void to_json(json& j, const MessageTypes& p)
 {

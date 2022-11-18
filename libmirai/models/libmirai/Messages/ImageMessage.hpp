@@ -45,11 +45,6 @@ protected:
 	void Serialize(void*) const override;
 	void Deserialize(const void*) override;
 
-	ImageMessage(MessageTypes type) : MessageBase(type) {}
-	ImageMessage(MiraiImage image, MessageTypes type) : _image(std::move(image)), MessageBase(type) {}
-	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64, MessageTypes type)
-		: _image(ImageId, url, path, base64), MessageBase(type) {}
-
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::IMAGE;
 
@@ -78,10 +73,10 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param ImageId 图片id
 	 */
-	ImageMessage& SetImageId(const std::string& ImageId)
+	ImageMessage& SetImageId(std::string ImageId)
 	{
 		this->_clear();
-		this->_image.id = ImageId;
+		this->_image.id = std::move(ImageId);
 		return *this;
 	}
 
@@ -91,10 +86,10 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param url 图片链接
 	 */
-	ImageMessage& SetUrl(const std::string& url)
+	ImageMessage& SetUrl(std::string url)
 	{
 		this->_clear();
-		this->_image.url = url;
+		this->_image.url = std::move(url);
 		return *this;
 	}
 
@@ -104,10 +99,10 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param path 图片路径
 	 */
-	ImageMessage& SetPath(const std::string& path)
+	ImageMessage& SetPath(std::string path)
 	{
 		this->_clear();
-		this->_image.path = path;
+		this->_image.path = std::move(path);
 		return *this;
 	}
 
@@ -117,18 +112,18 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param base64 图片base64编码
 	 */
-	ImageMessage& SetBase64(const std::string& base64)
+	ImageMessage& SetBase64(std::string base64)
 	{
 		this->_clear();
-		this->_image.base64 = base64;
+		this->_image.base64 = std::move(base64);
 		return *this;
 	}
 
 	/// 由 `MiraiImage` 设置图片内容
-	ImageMessage& SetImage(const MiraiImage& image)
+	ImageMessage& SetImage(MiraiImage image)
 	{
 		this->_clear();
-		this->_image = image;
+		this->_image = std::move(image);
 		return *this;
 	}
 };

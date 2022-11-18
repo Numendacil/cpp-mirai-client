@@ -19,8 +19,6 @@
 #include <ctime>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -46,18 +44,10 @@ protected:
 	std::time_t _time = 0;
 	QQ_t _operator;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendRecallEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// FriendRecallEvent* Clone() const override
-	// {
-	//	return new FriendRecallEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取被撤回消息的发送者QQ
 	QQ_t GetSender() const { return this->_AuthorId; }

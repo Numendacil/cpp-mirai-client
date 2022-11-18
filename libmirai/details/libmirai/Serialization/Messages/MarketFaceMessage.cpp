@@ -16,12 +16,23 @@
 #include <libmirai/Messages/MarketFaceMessage.hpp>
 
 #include <nlohmann/json.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Utils/Common.hpp>
 
 
 namespace Mirai
 {
 
 using json = nlohmann::json;
+
+void MarketFaceMessage::Deserialize(const void* data)
+{
+	const auto& j = *static_cast<const json*>(data);
+
+	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	this->_id = Utils::GetValue(j, "id", (int64_t)-1);
+	this->_name = Utils::GetValue(j, "name", "");
+}
 
 void MarketFaceMessage::Serialize(void* data) const
 {

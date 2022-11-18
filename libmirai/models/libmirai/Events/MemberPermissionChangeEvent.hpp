@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -33,8 +31,8 @@ namespace Mirai
  * Member Variable | Default Value
  * --------------- | -------------
  * `MemberPermissionChangeEvent::_member` | `GroupMember{}`
- * `MemberPermissionChangeEvent::_origin` | `PERMISSION::UNKNOWN`
- * `MemberPermissionChangeEvent::_current` | `PERMISSION::UNKNOWN`
+ * `MemberPermissionChangeEvent::_origin` | `PERMISSION::ENUM_END`
+ * `MemberPermissionChangeEvent::_current` | `PERMISSION::ENUM_END`
  *
  * 该成员不是Bot自己
  */
@@ -42,21 +40,13 @@ class MemberPermissionChangeEvent : public EventBase
 {
 protected:
 	GroupMember _member;
-	PERMISSION _origin = PERMISSION::UNKNOWN;
-	PERMISSION _current = PERMISSION::UNKNOWN;
+	PERMISSION _origin = PERMISSION::ENUM_END;
+	PERMISSION _current = PERMISSION::ENUM_END;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberPermissionChangeEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// MemberPermissionChangeEvent* Clone() const override
-	// {
-	//	return new MemberPermissionChangeEvent(*this);
-	// }/ }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群成员资料
 	GroupMember GetMember() const { return this->_member; }

@@ -29,15 +29,21 @@ using json = nlohmann::json;
 
 void from_json(const json& j, FileInfo& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("md5").get_to(p.md5);
 	j.at("sha1").get_to(p.sha1);
 	j.at("uploaderId").get_to(p.UploaderId);
 	j.at("uploadTime").get_to(p.UploadTime);
 	j.at("lastModifyTime").get_to(p.LastModifyTime);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void from_json(const json& j, GroupFileInfo& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("name").get_to(p.name);
 	j.at("id").get_to(p.id);
 	j.at("path").get_to(p.path);
@@ -62,19 +68,25 @@ void from_json(const json& j, GroupFileInfo& p)
 		p.DownloadUrl = Utils::GetOptional<std::string>(j.at("downloadInfo"), "url");
 	else
 		p.DownloadUrl = std::nullopt;
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void from_json(const json& j, MiraiImage& p)
 {
-	j.at("imageId").get_to(p.id);
-	j.at("url").get_to(p.url);
-	j.at("path").get_to(p.path);
-	j.at("base64").get_to(p.base64);
-	j.at("width").get_to(p.width);
-	j.at("height").get_to(p.height);
-	j.at("size").get_to(p.size);
-	j.at("imageType").get_to(p.ImageType);
-	j.at("isEmoji").get_to(p.isEmoji);
+	MIRAI_PARSE_GUARD_BEGIN;
+
+	p.id = Utils::GetValue(j, "imageId", "");
+	p.url = Utils::GetValue(j, "url", "");
+	p.path = Utils::GetValue(j, "path", "");
+	p.base64 = Utils::GetValue(j, "base64", "");
+	p.width = Utils::GetValue(j, "width", 0);
+	p.height = Utils::GetValue(j, "height", 0);
+	p.size = Utils::GetValue(j, "size", (int64_t)0);
+	p.ImageType = Utils::GetValue(j, "imageType", "");
+	p.isEmoji = Utils::GetValue(j, "isEmoji", false);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void to_json(json& j, const MiraiImage& p)
@@ -92,11 +104,15 @@ void to_json(json& j, const MiraiImage& p)
 }
 void from_json(const json& j, MiraiAudio& p)
 {
-	j.at("voiceId").get_to(p.id);
-	j.at("url").get_to(p.url);
-	j.at("path").get_to(p.path);
-	j.at("base64").get_to(p.base64);
-	j.at("length").get_to(p.length);
+	MIRAI_PARSE_GUARD_BEGIN;
+
+	p.id = Utils::GetValue(j, "voiceId", "");
+	p.url = Utils::GetValue(j, "url", "");
+	p.path = Utils::GetValue(j, "path", "");
+	p.base64 = Utils::GetValue(j, "base64", "");
+	p.length = Utils::GetValue(j, "length", (int64_t)0);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void to_json(json& j, const MiraiAudio& p)

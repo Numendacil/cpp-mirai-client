@@ -19,8 +19,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -44,18 +42,10 @@ protected:
 	GroupMember _member;
 	std::optional<GroupMember> _operator = std::nullopt;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberUnmuteEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// MemberUnmuteEvent* Clone() const override
-	// {
-	//	return new MemberUnmuteEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群成员资料
 	GroupMember GetMember() const { return this->_member; }

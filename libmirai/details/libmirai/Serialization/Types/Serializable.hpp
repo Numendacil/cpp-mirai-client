@@ -16,9 +16,11 @@
 #ifndef _MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
 #define _MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
 
+#include <exception>
 #include <type_traits>
 #include <utility>
 #include <nlohmann/json_fwd.hpp>
+#include <libmirai/Exceptions/Exceptions.hpp>
 
 namespace Mirai
 {
@@ -92,18 +94,17 @@ struct _type_::Serializable	\
 void from_json(const nlohmann::json&, _type_&);	\
 void to_json(nlohmann::json&, const _type_&)
 
+#define MIRAI_PARSE_GUARD_BEGIN \
+try	\
+{
+
+#define MIRAI_PARSE_GUARD_END	\
+}	\
+catch(const std::exception& e)	\
+{	\
+	throw ParseError(e.what(), j.dump());	\
+}
+
 } // namespace Mirai
-
-// this->(.+) = Utils::GetValue\(.+, (".*"), .*\);
-// j.at($2).get_to(p.$1);
-
-// .* (.*)::FromJson\(.*\)
-// void $1::Serializable::from_json(const json& j, $1& p)
-
-// .* (.*)::ToJson\(\) const
-// void $1::Serializable::to_json(json& j, const $1& p)
-
-// data\[(".*")\] = this->(.*);
-// j[$1] = p.$2;
 
 #endif

@@ -30,8 +30,6 @@
 #include <unordered_map>
 #include <vector>
 
-#include <nlohmann/json.hpp>
-
 #include <libmirai/Events/BotInvitedJoinGroupRequestEvent.hpp>
 #include <libmirai/Events/FriendMessageEvent.hpp>
 #include <libmirai/Events/GroupMessageEvent.hpp>
@@ -44,6 +42,7 @@
 #include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Utils/Logger.hpp>
+#include <libmirai/Exceptions/Exceptions.hpp>
 
 namespace Mirai
 {
@@ -61,7 +60,7 @@ public:
 	template<typename Event> using EventCallback = std::function<void(Event)>;
 
 protected:
-	using EventHandler = std::function<void(const nlohmann::json&)>;
+	using EventHandler = std::function<void(const void*)>;
 
 	mutable std::mutex _mtx;
 	mutable std::mutex _ConnectMtx; // Only one Connect() / Disconnect() can be called at the same time
@@ -86,30 +85,10 @@ protected:
 
 	std::unordered_map<std::string, EventHandler> _EventHandlers{};
 
-	bool _ReadSessionKey(const nlohmann::json& data);
-	void _DispatchEvent(const nlohmann::json& data);
-
 	void _OnOpen();
 	void _OnClose();
 	void _OnError();
 	void _OnText(const std::string& message);
-
-	template<typename T> class _has_type_
-	{
-		using yes_type = char;
-		using no_type = long;
-		template<typename U> static yes_type test(decltype(&U::_TYPE_));
-		template<typename U> static no_type test(...);
-
-	public:
-		static constexpr bool value = sizeof(test<T>(0)) == sizeof(yes_type);
-	};
-
-	template<typename Event> constexpr static void _type_check_()
-	{
-		static_assert(std::is_base_of<EventBase, Event>::value, "Event must be a derived class of MessageBase");
-		static_assert(_has_type_<Event>::value, "Event must contain a static atrribute _TYPE_");
-	};
 
 	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
 	{
@@ -143,7 +122,7 @@ protected:
 		return this->_SessionKey;
 	}
 
-	
+	void _DeserializeWrapper(EventBase&, const void*) const;
 
 public:
 	MiraiClient();
@@ -203,15 +182,17 @@ public:
 	 * @tparam EventType 事件类型
 	 * @param callback 回调函数
 	 */
-	template<typename EventType> void On(EventCallback<EventType> callback)
+	template<typename EventType> 
+	void On(EventCallback<EventType> callback)
 	{
-		_type_check_<EventType>();
+		static_assert(std::is_base_of_v<EventBase, EventType>, "EventType must be a derived class of EventBase");
+		static_assert(std::is_same_v<decltype(EventType::_TYPE_), std::string_view>, "EventType must define EventType::_TYPE_");
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const nlohmann::json& j)
+		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const void* data)
 		{
-			EventType event(this);
-			event.FromJson(j);
-			callback(event);
+			EventType event{this};
+			this->_DeserializeWrapper(event, data);
+			callback(std::move(event));
 		};
 	}
 
@@ -235,18 +216,7 @@ public:
 	void SetSessionConfig(const std::string& path)
 	{
 		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromFile(path);
-	}
-
-	/**
-	 * @brief 设置连接选项
-	 * 
-	 * @param json_config JSON格式的配置
-	 */
-	void SetSessionConfig(const nlohmann::json& json_config)
-	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
-		this->_config.FromJson(json_config);
+		this->_config.FromJsonFile(path);
 	}
 
 
@@ -268,7 +238,6 @@ public:
 
 
 	using string = std::string;
-	using json = nlohmann::json;
 
 	/**
 	 * @brief 获取mirai-api-http插件的版本号
@@ -436,7 +405,7 @@ public:
 	 * @return 发送的消息id
 	 */
 	virtual MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message,
-	                              std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false)
+	                              std::optional<MessageId_t> QuoteId = std::nullopt)
 	{
 		LOG_TRACE(this->_GetLogger(), "SendFriendMessage() called");
 		return {}; 
@@ -452,7 +421,7 @@ public:
 	 * @return 发送的消息id
 	 */
 	virtual MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message,
-	                             std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false)
+	                             std::optional<MessageId_t> QuoteId = std::nullopt)
 	{
 		LOG_TRACE(this->_GetLogger(), "SendGroupMessage() called");
 		return {}; 
@@ -469,7 +438,7 @@ public:
 	 * @return 发送的消息id
 	 */
 	virtual MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
-	                            std::optional<MessageId_t> QuoteId = std::nullopt, bool ignoreInvalid = false)
+	                            std::optional<MessageId_t> QuoteId = std::nullopt)
 	{
 		LOG_TRACE(this->_GetLogger(), "SendTempMessage() called");
 		return {}; 
@@ -683,12 +652,26 @@ public:
 	/**
 	 * @brief 上传群文件
 	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
 	 * @param GroupId 群聊id
 	 * @param UploadPath 上传路径
-	 * @param path 本地文件路径
+	 * @param name 文件名称
+	 * @param ContentProvider 文件内容，返回false表示取消请求
 	 * @return 上传的群文件信息 
 	 */
-	virtual GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const std::filesystem::path& path);
+	virtual GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
+		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+	{
+		std::ostringstream os;
+		bool finish = false;
+		while(!finish)
+		{
+			if (!ContentProvider(os.tellp(), os, finish))
+				throw NetworkException(-1, "Request Canceled");
+		}
+		return this->UploadGroupFile(GroupId, UploadPath, name, os.str());
+	}
 
 	/**
 	 * @brief 上传好友图片
@@ -716,6 +699,26 @@ public:
 			s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 		return this->UploadFriendImage(s);
+	}
+
+	/**
+	 * @brief 上传好友图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示取消请求
+	 * @return `FriendImage` 
+	 */
+	FriendImage UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+	{
+		std::ostringstream os;
+		bool finish = false;
+		while(!finish)
+		{
+			if (!ContentProvider(os.tellp(), os, finish))
+				throw NetworkException(-1, "Request Canceled");
+		}
+		return this->UploadFriendImage(os.str());
 	}
 
 	/**
@@ -747,6 +750,26 @@ public:
 	}
 
 	/**
+	 * @brief 上传群聊图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示取消请求
+	 * @return `GroupImage` 
+	 */
+	GroupImage UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+	{
+		std::ostringstream os;
+		bool finish = false;
+		while(!finish)
+		{
+			if (!ContentProvider(os.tellp(), os, finish))
+				throw NetworkException(-1, "Request Canceled");
+		}
+		return this->UploadGroupImage(os.str());
+	}
+
+	/**
 	 * @brief 上传临时会话图片
 	 * 
 	 * @param content 图片文件内容（原始二进制，不是base64编码）
@@ -775,6 +798,26 @@ public:
 	}
 
 	/**
+	 * @brief 上传临时会话图片
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 图片内容，返回false表示取消请求
+	 * @return `TempImage` 
+	 */
+	TempImage UploadTempImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+	{
+		std::ostringstream os;
+		bool finish = false;
+		while(!finish)
+		{
+			if (!ContentProvider(os.tellp(), os, finish))
+				throw NetworkException(-1, "Request Canceled");
+		}
+		return this->UploadTempImage(os.str());
+	}
+
+	/**
 	 * @brief 上传群聊语音
 	 * 
 	 * @param content 语音文件内容（原始二进制，不是base64编码）
@@ -800,6 +843,26 @@ public:
 			s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
 		return this->UploadGroupAudio(s);
+	}
+
+	/**
+	 * @brief 上传群聊语音
+	 * 
+	 * Experimental: chunked data transfer is only supported in HTTP/1.1
+	 *
+	 * @param ContentProvider 语音内容，返回false表示取消请求
+	 * @return `GroupAudio` 
+	 */
+	GroupAudio UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+	{
+		std::ostringstream os;
+		bool finish = false;
+		while(!finish)
+		{
+			if (!ContentProvider(os.tellp(), os, finish))
+				throw NetworkException(-1, "Request Canceled");
+		}
+		return this->UploadGroupAudio(os.str());
 	}
 
 	/**
@@ -1157,9 +1220,9 @@ public:
 	 * @param path 路径
 	 * @param content POST内容
 	 * @param ContentType 内容格式
-	 * @return `nlohman::json`  
+	 * @return `std::string`  
 	 */
-	virtual json PostRaw(const string& path, const string& content, const string& ContentType)
+	virtual string PostRaw(const string& path, const string& content, const string& ContentType)
 	{
 		LOG_TRACE(this->_GetLogger(), "PostRaw() called");
 		return {}; 
@@ -1170,9 +1233,9 @@ public:
 	 * 
 	 * @param path 路径
 	 * @param params query参数
-	 * @return `nlohman::json` 
+	 * @return `std::string` 
 	 */
-	virtual json GetRaw(const string& path, const std::multimap<string, string> params)
+	virtual string GetRaw(const string& path, const std::multimap<string, string> params)
 	{
 		LOG_TRACE(this->_GetLogger(), "GetRaw() called");
 		return {}; 

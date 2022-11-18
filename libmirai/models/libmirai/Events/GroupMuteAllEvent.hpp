@@ -19,8 +19,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -46,18 +44,10 @@ protected:
 	bool _current = false;
 	std::optional<GroupMember> _operator = std::nullopt;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupMuteAllEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// GroupMuteAllEvent* Clone() const override
-	// {
-	//	return new GroupMuteAllEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群聊信息
 	Group GetGroup() const { return this->_group; }

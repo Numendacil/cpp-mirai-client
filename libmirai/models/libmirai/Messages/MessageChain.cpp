@@ -81,11 +81,11 @@ MessageChain operator+(const MessageChain& lhs, const MessageChain& rhs)
 	m.reserve(lhs.size() + rhs.size());
 	for (const auto& p : lhs)
 	{
-		m.push_back(p->CloneUnique());
+		m._message.push_back(p->CloneUnique());
 	}
 	for (const auto& p : rhs)
 	{
-		m.push_back(p->CloneUnique());
+		m._message.push_back(p->CloneUnique());
 	}
 	return m;
 }

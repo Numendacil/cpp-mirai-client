@@ -1,0 +1,50 @@
+target_sources(
+	${MIRAI_LIB_TARGET_NAME} PRIVATE
+	EventBase.hpp
+	EventBase.cpp
+
+	BotEvent.cpp
+	
+	BotGroupPermissionChangeEvent.cpp
+	BotInvitedJoinGroupRequestEvent.cpp
+	BotJoinGroupEvent.cpp
+	BotLeaveEventActive.cpp
+	BotLeaveEventDisband.cpp
+	BotLeaveEventKick.cpp
+	BotMuteEvent.cpp
+	BotUnmuteEvent.cpp
+	CommandExecutedEvent.cpp
+	FriendInputStatusChangedEvent.cpp
+	FriendMessageEvent.cpp
+	FriendNickChangedEvent.cpp
+	FriendRecallEvent.cpp
+	FriendSyncMessageEvent.cpp
+	GroupAllowAnonymousChatEvent.cpp
+	GroupAllowConfessTalkEvent.cpp
+	GroupAllowMemberInviteEvent.cpp
+	GroupEntranceAnnouncementChangeEvent.cpp
+	GroupMessageEvent.cpp
+	GroupMuteAllEvent.cpp
+	GroupNameChangeEvent.cpp
+	GroupRecallEvent.cpp
+	GroupSyncMessageEvent.cpp
+	MemberCardChangeEvent.cpp
+	MemberHonorChangeEvent.cpp
+	MemberJoinEvent.cpp
+	MemberJoinRequestEvent.cpp
+	MemberLeaveEventKick.cpp
+	MemberLeaveEventQuit.cpp
+	MemberMuteEvent.cpp
+	MemberPermissionChangeEvent.cpp
+	MemberSpecialTitleChangeEvent.cpp
+	MemberUnmuteEvent.cpp
+	NewFriendRequestEvent.cpp
+	NudgeEvent.cpp
+	OtherClientMessageEvent.cpp
+	OtherClientOfflineEvent.cpp
+	OtherClientOnlineEvent.cpp
+	StrangerMessageEvent.cpp
+	StrangerSyncMessageEvent.cpp
+	TempMessageEvent.cpp
+	TempSyncMessageEvent.cpp
+)

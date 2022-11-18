@@ -22,6 +22,8 @@
 
 #include <libmirai/Utils/Common.hpp>
 
+#include <libmirai/Serialization/Types/Types.hpp>
+
 namespace Mirai::Details
 {
 
@@ -223,7 +225,7 @@ json HttpClientImpl::SendTempMessage(const string& SessionKey, QQ_t qq, GID_t gr
 	return resp;
 }
 
-json HttpClientImpl::SendNudge(const string& SessionKey, QQ_t target, UID_t subject, const string& kind)
+json HttpClientImpl::SendNudge(const string& SessionKey, QQ_t target, UID_t subject, NudgeType kind)
 {
 	json body = {{"sessionKey", SessionKey}, {"target", target}, {"subject", subject}, {"kind", kind}};
 	auto result = this->_client.Post("/sendNudge", body.dump(), JSON_CONTENT_TYPE);
@@ -754,18 +756,28 @@ json HttpClientImpl::CmdRegister(const string& SessionKey, const string& name, c
 }
 
 
-json HttpClientImpl::PostRaw(const string& path, const string& content, const string& ContentType)
+string HttpClientImpl::PostRaw(const string& path, const string& content, const string& ContentType)
 {
 	auto result = this->_client.Post(path, content, ContentType);
-	json resp = Utils::ParseResponse(result);
-	return resp;
+
+	if (!result || result.error() != httplib::Error::Success)
+		throw NetworkException(-1, httplib::to_string(result.error()));
+	if (result->status < 200 || result->status > 299) 
+		throw NetworkException(result->status, result->body);
+
+	return result->body;
 }
 
-json HttpClientImpl::GetRaw(const string& path, const std::multimap<string, string> params)
+string HttpClientImpl::GetRaw(const string& path, const std::multimap<string, string> params)
 {
 	auto result = this->_client.Get(path, params, httplib::Headers{});
-	json resp = Utils::ParseResponse(result);
-	return resp;
+
+	if (!result || result.error() != httplib::Error::Success)
+		throw NetworkException(-1, httplib::to_string(result.error()));
+	if (result->status < 200 || result->status > 299) 
+		throw NetworkException(result->status, result->body);
+		
+	return result->body;
 }
 
 } // namespace Mirai::Details

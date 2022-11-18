@@ -7,7 +7,6 @@
 #include <mutex>
 #include <nlohmann/json.hpp>
 #include <libmirai/Utils/Common.hpp>
-#include <libmirai/Utils/Factory.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
 #include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Utils/Logger.hpp>

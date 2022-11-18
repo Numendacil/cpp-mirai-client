@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -43,18 +41,10 @@ protected:
 	GroupMember _subject;
 	MessageChain _message;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "TempSyncMessage";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// TempSyncMessageEvent* Clone() const override
-	// {
-	//	return new TempSyncMessageEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取会话目标对象信息
 	GroupMember GetGroupMember() const { return this->_subject; }

@@ -106,7 +106,7 @@ public:
 		return *this;
 	}
 
-	class Serializable;
+	struct Serializable;;
 };
 
 }

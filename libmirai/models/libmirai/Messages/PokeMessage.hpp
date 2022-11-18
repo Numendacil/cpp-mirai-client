@@ -33,7 +33,7 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `PokeMessage::_kind` | `PokeKind::ENUM_END`
+ * `PokeMessage::_kind` | `PokeType::ENUM_END`
  */
 class PokeMessage : public MessageBase
 {

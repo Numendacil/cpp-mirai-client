@@ -43,6 +43,7 @@ public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::MIRAI_CODE;
 
 	MiraiCodeMessage() : MessageBase(_TYPE_) {}
+	MiraiCodeMessage(std::string code) : _code(std::move(code)), MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MiraiCodeMessage>(*this); }
 
@@ -60,9 +61,9 @@ public:
 	std::string GetCode() const { return this->_code; }
 
 	/// 设置mirai码
-	MiraiCodeMessage& SetCode(const std::string& code)
+	MiraiCodeMessage& SetCode(std::string code)
 	{
-		this->_code = code;
+		this->_code = std::move(code);
 		return *this;
 	}
 };

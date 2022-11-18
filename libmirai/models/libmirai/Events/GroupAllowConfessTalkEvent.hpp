@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -47,18 +45,10 @@ protected:
 	bool _current = false;
 	bool _ByBot = false; // 无法获得操作员
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupAllowConfessTalkEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// GroupAllowConfessTalkEvent* Clone() const override
-	// {
-	//	return new GroupAllowConfessTalkEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取群聊信息
 	Group GetGroup() const { return this->_group; }

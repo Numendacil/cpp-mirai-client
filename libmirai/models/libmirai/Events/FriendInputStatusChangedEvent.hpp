@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "EventBase.hpp"
@@ -41,18 +39,10 @@ protected:
 	User _friend;
 	bool _inputting = false;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendInputStatusChangedEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// FriendInputStatusChangedEvent* Clone() const override
-	// {
-	//	return new FriendInputStatusChangedEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取好友信息
 	User GetFriend() const { return this->_friend; }

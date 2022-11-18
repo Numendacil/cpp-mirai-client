@@ -3,6 +3,7 @@ target_sources(
 	MessageBase.hpp
 
 	MessageChain.hpp
+	MessageChain.cpp
 
 	AppMessage.hpp
 	AtAllMessage.hpp

@@ -43,6 +43,7 @@ public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::JSON;
 
 	JsonMessage() : MessageBase(_TYPE_) {}
+	JsonMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<JsonMessage>(*this); }
 
@@ -60,9 +61,9 @@ public:
 	std::string GetContent() const { return this->_content; }
 
 	/// 设置消息内容
-	JsonMessage& SetContent(const std::string& content)
+	JsonMessage& SetContent(std::string content)
 	{
-		this->_content = content;
+		this->_content = std::move(content);
 		return *this;
 	}
 };

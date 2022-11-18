@@ -18,8 +18,6 @@
 
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/NudgeTarget.hpp>
 
@@ -46,18 +44,10 @@ protected:
 	std::string _action;
 	std::string _suffix;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "NudgeEvent";
-
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// NudgeEvent* Clone() const override
-	// {
-	//	return new NudgeEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
 
 	/// 获取发送者QQ
 	QQ_t GetSender() const { return this->_FromId; }

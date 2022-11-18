@@ -26,15 +26,21 @@ using json = nlohmann::json;
 
 void from_json(const json& j, GroupConfig& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("name").get_to(p.name);
 	j.at("confessTalk").get_to(p.AllowConfessTalk);
 	j.at("allowMemberInvite").get_to(p.AllowMemberInvite);
 	j.at("autoApprove").get_to(p.AutoApprove);
 	j.at("anonymousChat").get_to(p.AllowAnonymousChat);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 void from_json(const json& j, GroupAnnouncement& p)
 {
+	MIRAI_PARSE_GUARD_BEGIN;
+
 	j.at("group").get_to(p.group);
 	j.at("content").get_to(p.content);
 	j.at("senderId").get_to(p.SenderId);
@@ -42,6 +48,8 @@ void from_json(const json& j, GroupAnnouncement& p)
 	j.at("allConfirmed").get_to(p.AllConfirmed);
 	j.at("confirmedMembersCount").get_to(p.ConfirmedCount);
 	j.at("publicationTime").get_to(p.PublicationTime);
+
+	MIRAI_PARSE_GUARD_END;
 }
 
 

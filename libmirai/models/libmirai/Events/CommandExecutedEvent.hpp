@@ -19,8 +19,6 @@
 #include <optional>
 #include <string>
 
-#include <nlohmann/json_fwd.hpp>
-
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
@@ -47,33 +45,17 @@ protected:
 	std::optional<GroupMember> _member = std::nullopt;
 	MessageChain _args;
 
+	void Deserialize(const void *) final;
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "CommandExecutedEvent";
 
-	std::string_view GetType() const override { return _TYPE_; }
-
-	// CommandExecutedEvent* Clone() const override
-	// {
-	//	return new CommandExecutedEvent(*this);
-	// }
-
-	void FromJson(const nlohmann::json& data) override;
-
-	/// 发送者类型: 好友/群聊/控制台
-	enum SenderType
-	{
-		FRIEND,
-		MEMBER,
-		CONSOLE
-	};
-
 	/// 获取命令名称（不含前缀 `/` ）
 	std::string GetName() const { return this->_name; }
 	/// 获取发送者类型
-	SenderType GetSenderType() const
+	CommandSender GetSenderType() const
 	{
-		return this->_friend ? SenderType::FRIEND : (this->_member ? SenderType::MEMBER : SenderType::CONSOLE);
+		return this->_friend ? CommandSender::FRIEND : (this->_member ? CommandSender::MEMBER : CommandSender::CONSOLE);
 	}
 	/// 获取好友发送者QQ，非好友发送时返回 `std::nullopt`
 	std::optional<User> GetFriendSender() const { return this->_friend; }

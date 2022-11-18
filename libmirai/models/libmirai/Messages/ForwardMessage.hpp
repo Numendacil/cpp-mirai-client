@@ -53,9 +53,9 @@ protected:
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::FORWARD;
 
-	ForwardMessage() : MessageBase(_TYPE_) {}
+	ForwardMessage();
 
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<ForwardMessage>(*this); }
+	std::unique_ptr<MessageBase> CloneUnique() const final;
 
 	bool isValid() const final;
 
@@ -64,6 +64,7 @@ public:
 	 * 
 	 */
 	///@{
+	
 	using value_type = NodeList::value_type;
 	using allocator_type = NodeList::allocator_type;
 	using size_type = NodeList::size_type;
@@ -77,59 +78,54 @@ public:
 	using iterator = NodeList::iterator;
 	using const_iterator = NodeList::const_iterator;
 
-	bool empty() const noexcept { return this->_NodeList.empty(); }
-	size_type size() const noexcept { return this->_NodeList.size(); }
-	void reserve(size_type new_cap) { return this->_NodeList.reserve(new_cap); }
-	void shrink_to_fit() noexcept { return this->_NodeList.shrink_to_fit(); }
-	size_type max_size() const noexcept { return this->_NodeList.max_size(); }
-	size_type capacity() const noexcept { return this->_NodeList.capacity(); }
+	bool empty() const noexcept;
+	size_type size() const noexcept;
+	void reserve(size_type new_cap);
+	void shrink_to_fit() noexcept;
+	size_type max_size() const noexcept;
+	size_type capacity() const noexcept;
 
-	const_reference at(size_type n) const { return this->_NodeList.at(n); }
-	reference at(size_type n) { return this->_NodeList.at(n); }
-	const_reference operator[](size_type n) const noexcept { return this->_NodeList[n]; }
-	reference operator[](size_type n) noexcept { return this->_NodeList[n]; }
+	const_reference at(size_type n) const;
+	reference at(size_type n);
+	const_reference operator[](size_type n) const noexcept;
+	reference operator[](size_type n) noexcept;
 
-	void clear() noexcept { return this->_NodeList.clear(); }
-	iterator insert(const_iterator pos, const_reference value) { return this->_NodeList.insert(pos, value); }
-	iterator insert(const_iterator pos, value_type&& value) { return this->_NodeList.insert(pos, std::move(value)); }
-	iterator insert(const_iterator pos, size_type count, const_reference value)
-	{
-		return this->_NodeList.insert(pos, count, value);
-	}
+	void clear() noexcept;
+	iterator insert(const_iterator pos, const_reference value);
+	iterator insert(const_iterator pos, value_type&& value);
+	iterator insert(const_iterator pos, size_type count, const_reference value);
 	template<class InputIt> iterator insert(const_iterator pos, InputIt first, InputIt last)
 	{
 		return this->_NodeList.insert(pos, std::forward<InputIt>(first), std::forward<InputIt>(last));
 	}
-	iterator insert(const_iterator pos, std::initializer_list<value_type> ilist)
-	{
-		return this->_NodeList.insert(pos, ilist);
-	}
+	iterator insert(const_iterator pos, std::initializer_list<value_type> ilist);
 	template<class... Args > iterator emplace(const_iterator pos, Args&&... args)
 	{
 		return this->emplace(pos, std::forward<Args>(args)...);
 	}
-	iterator erase(const_iterator pos) { return this->_NodeList.erase(pos); }
-	iterator erase(const_iterator first, const_iterator last) { return this->_NodeList.erase(first, last); }
-	void push_back(const_reference node) { return this->_NodeList.push_back(node); }
-	void push_back(value_type&& node) { return this->_NodeList.push_back(std::move(node)); }
+	iterator erase(const_iterator pos);
+	iterator erase(const_iterator first, const_iterator last);
+	void push_back(const_reference node);
+	void push_back(value_type&& node);
 	template< class... Args > reference emplace_back(Args&&... args)
 	{
 		return this->_NodeList.emplace_back(std::forward<Args>(args)...);
 	}
-	void pop_back() { return this->_NodeList.pop_back(); }
-	void resize(size_type count) { return this->_NodeList.resize(count); }
-	void resize(size_type count, const value_type& value) { return this->_NodeList.resize(count, value); }
+	void pop_back();
+	void resize(size_type count);
+	void resize(size_type count, const value_type& value);
 
-	iterator begin() noexcept { return this->_NodeList.begin(); }
-	const_iterator begin() const noexcept { return this->_NodeList.begin(); }
-	const_iterator cbegin() const noexcept { return this->_NodeList.cbegin(); }
-	iterator end() noexcept { return this->_NodeList.end(); }
-	const_iterator end() const noexcept { return this->_NodeList.end(); }
-	const_iterator cend() const noexcept { return this->_NodeList.cend(); }
-	reverse_iterator rbegin() noexcept { return this->_NodeList.rbegin(); }
-	const_reverse_iterator crbegin() const noexcept { return this->_NodeList.crbegin(); }
-	reverse_iterator rend() noexcept { return this->_NodeList.rend(); }
-	const_reverse_iterator crend() const noexcept { return this->_NodeList.crend(); }
+	iterator begin() noexcept;
+	const_iterator begin() const noexcept;
+	const_iterator cbegin() const noexcept;
+	iterator end() noexcept;
+	const_iterator end() const noexcept;
+	const_iterator cend() const noexcept;
+	reverse_iterator rbegin() noexcept;
+	const_reverse_iterator crbegin() const noexcept;
+	reverse_iterator rend() noexcept;
+	const_reverse_iterator crend() const noexcept;
+
 	///@}
 };
 

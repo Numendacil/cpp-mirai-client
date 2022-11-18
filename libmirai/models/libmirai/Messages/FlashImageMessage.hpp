@@ -38,8 +38,8 @@ class FlashImageMessage : public ImageMessage
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::FLASH_IMAGE;
 	
-	FlashImageMessage() : ImageMessage(_TYPE_) {}
-	FlashImageMessage(const MiraiImage& image) : ImageMessage(image, _TYPE_) {}
+	FlashImageMessage() : ImageMessage() { this->_type = _TYPE_; }
+	FlashImageMessage(const MiraiImage& image) : ImageMessage(image) { this->_type = _TYPE_; }
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<FlashImageMessage>(*this); }
 };

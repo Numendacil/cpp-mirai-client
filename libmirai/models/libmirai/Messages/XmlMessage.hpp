@@ -64,9 +64,9 @@ public:
 	std::string GetContent() const { return this->_content; }
 
 	/// 设置消息内容
-	XmlMessage& SetContent(const std::string& content)
+	XmlMessage& SetContent(std::string content)
 	{
-		this->_content = content;
+		this->_content = std::move(content);
 		return *this;
 	}
 };

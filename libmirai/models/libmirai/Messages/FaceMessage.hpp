@@ -42,12 +42,12 @@ protected:
 
 	void Serialize(void*) const override;
 	void Deserialize(const void*) override;
-
-	FaceMessage(MessageTypes type, bool SupportSend = true) : MessageBase(type, SupportSend) {}
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
 	
 	FaceMessage() : MessageBase(_TYPE_) {}
+	FaceMessage(int64_t id) : _id(id), MessageBase(_TYPE_) {}
+	FaceMessage(std::string name) : _name(std::move(name)), MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FaceMessage>(*this); }
 
@@ -74,10 +74,10 @@ public:
 	}
 
 	/// 设置表情名称。这一操作会清除已设置的id。
-	FaceMessage& SetName(const std::string& name)
+	FaceMessage& SetName(std::string name)
 	{
 		this->_id = -1;
-		this->_name = name;
+		this->_name = std::move(name);
 		return *this;
 	}
 };

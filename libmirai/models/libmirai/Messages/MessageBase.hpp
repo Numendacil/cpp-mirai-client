@@ -35,8 +35,8 @@ namespace Mirai
 class MessageBase
 {
 protected:
-	const MessageTypes _type;
-	const bool _SupportSend;
+	MessageTypes _type;
+	bool _SupportSend;
 
 	MessageBase(MessageTypes type, bool SupportSend = true) : _type(type), _SupportSend(SupportSend) {}
 
@@ -76,7 +76,7 @@ public:
 	virtual ~MessageBase() = default;
 
 
-	class Serializable;
+	struct Serializable;;
 };
 
 } // namespace Mirai

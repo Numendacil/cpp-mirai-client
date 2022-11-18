@@ -95,8 +95,11 @@ if(NOT TARGET ixwebsocket::ixwebsocket)
 
 endif()
 
-target_link_libraries(${MIRAI_LIB_TARGET_NAME} PUBLIC nlohmann_json::nlohmann_json)
+target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
+target_compile_definitions(${MIRAI_LIB_TARGET_NAME} PRIVATE JSON_DISABLE_ENUM_SERIALIZATION=1)
+
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE httplib::httplib)
+
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 
 
@@ -111,7 +114,9 @@ if(MIRAI_BUILD_MOCK_CLIENT)
 
 	target_compile_definitions(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC CPP_MIRAI_CLIENT_VERSION="${PROJECT_VERSION}")
 
-	target_link_libraries(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC nlohmann_json::nlohmann_json)
+	target_link_libraries(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
+	target_compile_definitions(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE JSON_DISABLE_ENUM_SERIALIZATION=1)
+
 	target_link_libraries(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE httplib::httplib)
 endif(MIRAI_BUILD_MOCK_CLIENT)
 
