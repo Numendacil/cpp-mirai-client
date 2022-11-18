@@ -16,13 +16,12 @@
 #ifndef _MIRAI_CLIENT_HPP_
 #define _MIRAI_CLIENT_HPP_
 
-#include <condition_variable>
 #include <filesystem>
 #include <fstream>
 #include <functional>
 #include <limits>
 #include <memory>
-#include <mutex>
+#include <shared_mutex>
 #include <optional>
 #include <string>
 #include <thread>
@@ -80,9 +79,7 @@ public:
 protected:
 	using EventHandler = std::function<void(const void*)>;
 
-	mutable std::mutex _mtx;
-	mutable std::mutex _ConnectMtx; // Only one Connect() / Disconnect() can be called at the same time
-	mutable std::condition_variable _cv;
+	mutable std::shared_mutex _mtx;
 
 	SessionConfigs _config{};
 
@@ -110,33 +107,37 @@ protected:
 
 	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_ConnectionEstablishedCallback;
 	}
 
 	EventCallback<ClientConnectionClosedEvent> _GetClosedCallback() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_ConnectionClosedCallback;
 	}
 
 	EventCallback<ClientConnectionErrorEvent> _GetErrorCallback() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_ConnectionErrorCallback;
 	}
 
 	EventCallback<ClientParseErrorEvent> _GetParseErrorCallback() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_ParseErrorCallback;
 	}
 
-	ILogger& _GetLogger() const { return *(this->_logger); }
+	ILogger& _GetLogger() const 
+	{
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
+		return *(this->_logger); 
+	}
 
 	std::string _GetSessionKeyCopy()
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_SessionKey;
 	}
 
@@ -167,34 +168,42 @@ public:
 	/// 获取连接mirai-api-http的session key，若尚未建立链接则返回 `std::nullopt`
 	std::optional<std::string> GetSessionKey() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return (this->_connected) ? std::optional<std::string>(this->_SessionKey) : std::nullopt;
 	}
 
 	/// 获取连接配置
 	SessionConfigs GetSessionConfig() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_config;
 	}
 
 	/// 设置日志记录类
-	void SetLogger(std::shared_ptr<ILogger> logger) { this->_logger = logger; }
+	void SetLogger(std::shared_ptr<ILogger> logger) 
+	{
+		std::unique_lock<std::shared_mutex> lk(this->_mtx);
+		this->_logger = logger; 
+	}
 
 	/// 获取日志记录类
-	std::shared_ptr<ILogger> GetLogger() const { return this->_logger; }
+	std::shared_ptr<ILogger> GetLogger() const 
+	{ 
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
+		return this->_logger; 
+	}
 
 	/// 获取BotQQ账号
 	QQ_t GetBotQQ() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_config.BotQQ;
 	}
 
 	/// 返回是否已成功连接mirai-api-http
 	bool isConnected() const
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_connected;
 	}
 
@@ -214,7 +223,7 @@ public:
 		static_assert(std::is_base_of_v<EventBase, EventType>, "EventType must be a derived class of EventBase");
 		static_assert(_has_type_<EventType>::value, "EventType must define EventType::_TYPE_");
 
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::unique_lock<std::shared_mutex> lk(this->_mtx);
 		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const void* data)
 		{
 			EventType event{this};
@@ -231,7 +240,7 @@ public:
 	 */
 	void SetSessionConfig(const SessionConfigs& config)
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::unique_lock<std::shared_mutex> lk(this->_mtx);
 		this->_config = config;
 	}
 
@@ -242,7 +251,7 @@ public:
 	 */
 	void SetSessionConfig(const std::string& path)
 	{
-		std::lock_guard<std::mutex> lk(this->_mtx);
+		std::unique_lock<std::shared_mutex> lk(this->_mtx);
 		this->_config.FromJsonFile(path);
 	}
 
