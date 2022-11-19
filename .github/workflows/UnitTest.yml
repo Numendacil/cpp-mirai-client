@@ -24,21 +24,18 @@ jobs:
             cxx: cl
             exe: |
               ./Debug/unit_test.exe
-              ./Debug/unit_test_mock.exe
           - name: Ubuntu Latest GCC
             os: ubuntu-latest
             cc: gcc
             cxx: g++
             exe: |
               ./unit_test
-              ./unit_test_mock
           - name: macOS Latest Clang
             os: macos-latest
             cc: clang
             cxx: clang++
             exe: |
               ./unit_test
-              ./unit_test_mock
 
     steps:
     - name: Git Checkout
@@ -52,7 +49,6 @@ jobs:
       run: >
         cmake -S . -B ${{github.workspace}}/build 
         -DCMAKE_BUILD_TYPE=${{env.BUILD_TYPE}} 
-        -DMIRAI_BUILD_MOCK_CLIENT=ON
         -DMIRAI_BUILD_UNIT_TESTS=ON
         -DMIRAI_BUILD_EXAMPLES=ON
 
