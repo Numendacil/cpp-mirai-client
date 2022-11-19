@@ -41,7 +41,8 @@ protected:
 	ClientDevice _client;
 	std::optional<int64_t> _kind = std::nullopt;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "OtherClientOnlineEvent";

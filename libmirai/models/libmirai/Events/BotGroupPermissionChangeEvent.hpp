@@ -41,7 +41,8 @@ protected:
 	PERMISSION _origin = PERMISSION::ENUM_END;
 	PERMISSION _current = PERMISSION::ENUM_END;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 

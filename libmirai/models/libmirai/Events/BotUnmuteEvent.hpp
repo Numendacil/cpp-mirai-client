@@ -39,7 +39,8 @@ class BotUnmuteEvent : public EventBase
 protected:
 	GroupMember _operator;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotUnmuteEvent";

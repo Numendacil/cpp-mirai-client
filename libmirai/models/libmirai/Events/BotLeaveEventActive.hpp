@@ -39,7 +39,8 @@ class BotLeaveEventActive : public EventBase
 protected:
 	Group _group;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 

@@ -18,9 +18,8 @@
 #include <ctime>
 #include <string>
 
-#include <libmirai/Types/GroupSettings.hpp>
-
 #include <libmirai/Serialization/Types/Serializable.hpp>
+#include <libmirai/Types/GroupSettings.hpp>
 
 
 namespace Mirai

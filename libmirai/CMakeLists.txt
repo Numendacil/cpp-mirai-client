@@ -15,16 +15,3 @@ add_subdirectory(aggregate)
 add_subdirectory(api)
 add_subdirectory(details)
 add_subdirectory(models)
-
-if(MIRAI_BUILD_MOCK_CLIENT)
-target_include_directories(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE details)
-target_include_directories(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC models)
-target_include_directories(${MIRAI_MOCKLIB_TARGET_NAME} PUBLIC mock)
-
-get_target_property(SOURCE_LIST ${MIRAI_LIB_TARGET_NAME} SOURCES)
-list(FILTER SOURCE_LIST EXCLUDE REGEX ".*/details/libmirai/Impl/.*")
-list(FILTER SOURCE_LIST EXCLUDE REGEX ".*/api/libmirai/.*")
-target_sources(${MIRAI_MOCKLIB_TARGET_NAME} PRIVATE ${SOURCE_LIST})
-
-add_subdirectory(mock)
-endif(MIRAI_BUILD_MOCK_CLIENT)

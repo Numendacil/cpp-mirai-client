@@ -27,9 +27,9 @@ using json = nlohmann::json;
 void AppMessage::Deserialize(const void* data)
 {
 	const auto& j = *static_cast<const json*>(data);
-	
+
 	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	
+
 	j.at("content").get_to(this->_content);
 }
 

@@ -20,7 +20,6 @@
 #include <string>
 #include <utility>
 
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -50,10 +49,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<XmlMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return !this->_content.empty();
-	}
+	bool isValid() const final { return !this->_content.empty(); }
 
 
 	bool operator==(const XmlMessage& rhs) { return this->_content == rhs._content; }
@@ -71,8 +67,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<XmlMessage::_TYPE_>
+template<> struct GetType<XmlMessage::_TYPE_>
 {
 	using type = XmlMessage;
 };

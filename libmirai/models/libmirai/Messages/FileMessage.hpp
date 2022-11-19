@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -52,10 +51,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<FileMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return true;
-	}
+	bool isValid() const final { return true; }
 
 	bool operator==(const FileMessage& rhs) { return this->_id == rhs._id; }
 
@@ -69,8 +65,7 @@ public:
 	int64_t GetSize() const { return this->_size; }
 };
 
-template <>
-struct GetType<FileMessage::_TYPE_>
+template<> struct GetType<FileMessage::_TYPE_>
 {
 	using type = FileMessage;
 };

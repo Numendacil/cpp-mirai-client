@@ -32,6 +32,7 @@ class BotOfflineEventActive : public BotEvent
 public:
 	using BotEvent::BotEvent;
 	static constexpr std::string_view _TYPE_ = "BotOfflineEventActive";
+
 protected:
 	std::string GetEventType() const final { return std::string(_TYPE_); }
 };

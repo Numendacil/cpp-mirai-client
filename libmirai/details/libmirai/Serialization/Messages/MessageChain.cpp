@@ -22,10 +22,9 @@
 
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Messages/Messages.hpp>
 #include <libmirai/Serialization/Messages/MessageBase.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
-
-#include <libmirai/Messages/Messages.hpp>
 #include <libmirai/Types/MessageTypes.hpp>
 
 namespace Mirai
@@ -36,8 +35,7 @@ using json = nlohmann::json;
 namespace
 {
 
-template <auto Start, auto End, auto Inc, class F>
-constexpr void constexpr_for(F&& f)
+template<auto Start, auto End, auto Inc, class F> constexpr void constexpr_for(F&& f)
 {
 	if constexpr (Start < End)
 	{
@@ -46,16 +44,17 @@ constexpr void constexpr_for(F&& f)
 	}
 }
 
-constexpr std::array<std::unique_ptr<MessageBase>(*)(), MessageTypesList.size()> Factory =
-[]() {
-	std::array<std::unique_ptr<MessageBase>(*)(), MessageTypesList.size()> arr{};
-	constexpr_for<0, arr.size(), 1>([&arr](auto i){
-		using type = GetType_t<MessageTypesList[i]>;
-		arr.at(i) = []() -> std::unique_ptr<MessageBase> { return std::make_unique<type>(); };
-	});
+constexpr std::array<std::unique_ptr<MessageBase> (*)(), MessageTypesList.size()> Factory = []()
+{
+	std::array<std::unique_ptr<MessageBase> (*)(), MessageTypesList.size()> arr{};
+	constexpr_for<0, arr.size(), 1>(
+		[&arr](auto i)
+		{
+			using type = GetType_t<MessageTypesList[i]>;
+			arr.at(i) = []() -> std::unique_ptr<MessageBase> { return std::make_unique<type>(); };
+		});
 	return arr;
 }();
-
 
 
 } // namespace
@@ -65,10 +64,9 @@ void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
 	j = json::array();
 	for (const auto& msg : p._message)
 	{
-		// if (!msg->isValid()) 
+		// if (!msg->isValid())
 		// 	continue;
-		if (!msg->isSendSupported())
-			continue;
+		if (!msg->isSendSupported()) continue;
 		j += *msg;
 	}
 }
@@ -82,14 +80,9 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 	p._message.reserve(j.size());
 	for (const auto& msg : j)
 	{
-		if (!msg.is_object() || !msg.contains("type") || !msg.at("type").is_string()) 
-			continue;
+		if (!msg.is_object() || !msg.contains("type") || !msg.at("type").is_string()) continue;
 		MessageTypes type = msg.at("type").get<MessageTypes>();
-		msg.get_to(
-			*(p._message.emplace_back(
-				Factory.at(static_cast<size_t>(type))()
-			))
-		);
+		msg.get_to(*(p._message.emplace_back(Factory.at(static_cast<size_t>(type))())));
 	}
 	p._message.shrink_to_fit();
 

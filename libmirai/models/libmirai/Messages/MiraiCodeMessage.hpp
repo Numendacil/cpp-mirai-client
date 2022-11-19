@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include "MessageBase.hpp"
 
 /**
@@ -47,10 +46,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MiraiCodeMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return !this->_code.empty();
-	}
+	bool isValid() const final { return !this->_code.empty(); }
 
 
 	bool operator==(const MiraiCodeMessage& rhs) { return this->_code == rhs._code; }
@@ -68,8 +64,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<MiraiCodeMessage::_TYPE_>
+template<> struct GetType<MiraiCodeMessage::_TYPE_>
 {
 	using type = MiraiCodeMessage;
 };

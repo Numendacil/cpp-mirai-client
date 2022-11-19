@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "FaceMessage.hpp"
@@ -39,26 +38,34 @@ namespace Mirai
 class MarketFaceMessage : public FaceMessage
 {
 protected:
-	void Deserialize(const void *) final;
-	void Serialize(void *) const final;
+	void Deserialize(const void*) final;
+	void Serialize(void*) const final;
 
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::MARKET_FACE;
 
-	MarketFaceMessage() : FaceMessage() { this->_type = _TYPE_; this->_SupportSend = false; }
-	MarketFaceMessage(int64_t id) : FaceMessage(id) { this->_type = _TYPE_; this->_SupportSend = false; }
-	MarketFaceMessage(std::string name) : FaceMessage(std::move(name)) { this->_type = _TYPE_; this->_SupportSend = false; }
+	MarketFaceMessage() : FaceMessage()
+	{
+		this->_type = _TYPE_;
+		this->_SupportSend = false;
+	}
+	MarketFaceMessage(int64_t id) : FaceMessage(id)
+	{
+		this->_type = _TYPE_;
+		this->_SupportSend = false;
+	}
+	MarketFaceMessage(std::string name) : FaceMessage(std::move(name))
+	{
+		this->_type = _TYPE_;
+		this->_SupportSend = false;
+	}
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MarketFaceMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return true;
-	}
+	bool isValid() const final { return true; }
 };
 
-template <>
-struct GetType<MarketFaceMessage::_TYPE_>
+template<> struct GetType<MarketFaceMessage::_TYPE_>
 {
 	using type = MarketFaceMessage;
 };

@@ -20,9 +20,9 @@
 #include <string>
 #include <utility>
 
-#include "MessageBase.hpp"
-
 #include <libmirai/Types/BasicTypes.hpp>
+
+#include "MessageBase.hpp"
 
 namespace Mirai
 {
@@ -78,7 +78,8 @@ public:
 	bool isValid() const final
 	{
 		return !(this->_kind == MusicShareType::ENUM_END || this->_title.empty() || this->_summary.empty()
-	         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty() || this->_brief.empty());
+		         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
+		         || this->_brief.empty());
 	}
 
 	/// 获取分享种类
@@ -144,8 +145,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<MusicShareMessage::_TYPE_>
+template<> struct GetType<MusicShareMessage::_TYPE_>
 {
 	using type = MusicShareMessage;
 };

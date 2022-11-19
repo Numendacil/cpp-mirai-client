@@ -21,8 +21,8 @@
 #include <functional>
 #include <limits>
 #include <memory>
-#include <shared_mutex>
 #include <optional>
+#include <shared_mutex>
 #include <string>
 #include <thread>
 #include <type_traits>
@@ -129,10 +129,10 @@ protected:
 		return this->_ParseErrorCallback;
 	}
 
-	ILogger& _GetLogger() const 
+	ILogger& _GetLogger() const
 	{
 		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return *(this->_logger); 
+		return *(this->_logger);
 	}
 
 	std::string _GetSessionKeyCopy()
@@ -143,14 +143,11 @@ protected:
 
 	void _DeserializeWrapper(EventBase&, const void*) const;
 
-	template <typename T>
-	class _has_type_
+	template<typename T> class _has_type_
 	{
-		template<typename U>
-		static std::true_type test(decltype(U::_TYPE_)*);
+		template<typename U> static std::true_type test(decltype(U::_TYPE_)*);
 
-		template<typename>
-		static std::false_type test(...);
+		template<typename> static std::false_type test(...);
 
 	public:
 		static constexpr bool value = decltype(test<T>(0))::value;
@@ -180,17 +177,17 @@ public:
 	}
 
 	/// 设置日志记录类
-	void SetLogger(std::shared_ptr<ILogger> logger) 
+	void SetLogger(std::shared_ptr<ILogger> logger)
 	{
 		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_logger = logger; 
+		this->_logger = logger;
 	}
 
 	/// 获取日志记录类
-	std::shared_ptr<ILogger> GetLogger() const 
-	{ 
+	std::shared_ptr<ILogger> GetLogger() const
+	{
 		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_logger; 
+		return this->_logger;
 	}
 
 	/// 获取BotQQ账号
@@ -207,8 +204,8 @@ public:
 		return this->_connected;
 	}
 
-	/// 返回cpp-mirai-client的版本号
-	constexpr std::string_view GetVersion() { return CPP_MIRAI_CLIENT_VERSION; }
+	/// 返回兼容的mirai-api-http的版本号
+	constexpr std::string_view GetCompatibleVersion() { return "2.6.2"; }
 
 	/**
 	 * @brief 注册事件回调函数
@@ -217,8 +214,7 @@ public:
 	 * @tparam EventType 事件类型
 	 * @param callback 回调函数
 	 */
-	template<typename EventType> 
-	void On(EventCallback<EventType> callback)
+	template<typename EventType> void On(EventCallback<EventType> callback)
 	{
 		static_assert(std::is_base_of_v<EventBase, EventType>, "EventType must be a derived class of EventBase");
 		static_assert(_has_type_<EventType>::value, "EventType must define EventType::_TYPE_");
@@ -571,7 +567,7 @@ public:
 	 * @return 上传的群文件信息 
 	 */
 	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
-		std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
+	                              std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider);
 
 	/**
 	 * @brief 上传好友图片

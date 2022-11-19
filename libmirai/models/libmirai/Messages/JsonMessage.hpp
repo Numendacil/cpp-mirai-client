@@ -47,10 +47,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<JsonMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return !this->_content.empty();
-	}
+	bool isValid() const final { return !this->_content.empty(); }
 
 
 	bool operator==(const JsonMessage& rhs) { return this->_content == rhs._content; }
@@ -68,8 +65,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<JsonMessage::_TYPE_>
+template<> struct GetType<JsonMessage::_TYPE_>
 {
 	using type = JsonMessage;
 };

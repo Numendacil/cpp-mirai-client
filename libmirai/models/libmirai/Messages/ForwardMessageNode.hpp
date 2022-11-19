@@ -106,9 +106,10 @@ public:
 		return *this;
 	}
 
-	struct Serializable;;
+	struct Serializable;
+	;
 };
 
-}
+} // namespace Mirai
 
 #endif

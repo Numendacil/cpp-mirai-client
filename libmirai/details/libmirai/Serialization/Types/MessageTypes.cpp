@@ -10,27 +10,9 @@ using json = nlohmann::json;
 namespace
 {
 
-constexpr std::array<std::string_view, static_cast<std::size_t>(MessageTypes::ENUM_END)> names = 
-{
-	"App",
-	"AtAll",
-	"At",
-	"Voice",
-	"Dice",
-	"Face",
-	"File",
-	"FlashImage",
-	"Forward",
-	"Image",
-	"Json",
-	"MarketFace",
-	"MiraiCode",
-	"MusicShare",
-	"Plain",
-	"Poke",
-	"Quote",
-	"Source",
-	"Xml",
+constexpr std::array<std::string_view, static_cast<std::size_t>(MessageTypes::ENUM_END)> names = {
+	"App",  "AtAll",      "At",        "Voice",      "Dice",  "Face", "File",  "FlashImage", "Forward", "Image",
+	"Json", "MarketFace", "MiraiCode", "MusicShare", "Plain", "Poke", "Quote", "Source",     "Xml",
 };
 
 constexpr std::string_view enum_to_str(const MessageTypes& m)
@@ -69,4 +51,4 @@ std::string to_string(MessageTypes type)
 	return std::string{enum_to_str(type)};
 }
 
-}
+} // namespace Mirai

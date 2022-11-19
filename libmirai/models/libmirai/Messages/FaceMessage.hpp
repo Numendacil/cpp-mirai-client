@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -42,19 +41,17 @@ protected:
 
 	void Serialize(void*) const override;
 	void Deserialize(const void*) override;
+
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
-	
+
 	FaceMessage() : MessageBase(_TYPE_) {}
 	FaceMessage(int64_t id) : _id(id), MessageBase(_TYPE_) {}
 	FaceMessage(std::string name) : _name(std::move(name)), MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FaceMessage>(*this); }
 
-	bool isValid() const override
-	{
-		return this->_id != -1 || !this->_name.empty();
-	}
+	bool isValid() const override { return this->_id != -1 || !this->_name.empty(); }
 
 	bool operator==(const FaceMessage& rhs) { return (_id >= 0) ? this->_id == rhs._id : this->_name == rhs._name; }
 
@@ -82,8 +79,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<FaceMessage::_TYPE_>
+template<> struct GetType<FaceMessage::_TYPE_>
 {
 	using type = FaceMessage;
 };

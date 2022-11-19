@@ -68,15 +68,15 @@ protected:
 		static constexpr bool value = sizeof(test<T>(0)) == sizeof(yes_type);
 	};
 
-	template<typename Message> 
-	constexpr static void _type_check_()
+	template<typename Message> constexpr static void _type_check_()
 	{
 		static_assert(std::is_base_of<MessageBase, Message>::value,
 		              "Message must be a derived class of MessageBase"); // NOLINT(*-array-to-pointer-decay)
 		static_assert(_has_type_<Message>::value,
 		              "Message must contain a static atrribute _TYPE_"); // NOLINT(*-array-to-pointer-decay)
-		static_assert(std::is_same_v<GetType_t<Message::_TYPE_>, Message>,
-		              "The resulting type from GetType does not match the original type"); // NOLINT(*-array-to-pointer-decay)
+		static_assert(
+			std::is_same_v<GetType_t<Message::_TYPE_>, Message>,
+			"The resulting type from GetType does not match the original type"); // NOLINT(*-array-to-pointer-decay)
 	};
 
 public:
@@ -93,7 +93,7 @@ public:
 	 * 
 	 */
 	///@{
-	
+
 	using value_type = MessageContainer::value_type;
 	using allocator_type = MessageContainer::allocator_type;
 	using size_type = MessageContainer::size_type;
@@ -131,7 +131,7 @@ public:
 	reverse_iterator rend() noexcept { return this->_message.rend(); }
 	const_reverse_iterator crend() const noexcept { return this->_message.crend(); }
 
-	
+
 	const MessageBase& operator[](size_type n) const noexcept { return *this->_message[n]; }
 	MessageBase& operator[](size_type n) noexcept { return *this->_message[n]; }
 
@@ -148,8 +148,7 @@ public:
 	 * @param m 要添加的消息
 	 * @return reference to *this
 	 */
-	template<typename MessageType> 
-	MessageChain& Append(MessageType&& m)
+	template<typename MessageType> MessageChain& Append(MessageType&& m)
 	{
 		_type_check_<MessageType>();
 
@@ -275,10 +274,7 @@ public:
 	 * @param i 下标
 	 * @return 该消息元素的引用
 	 */
-	template<MessageTypes Type> GetType_t<Type>& GetAt(size_type i) const
-	{
-		return this->GetAt<GetType_t<Type>>(i);
-	}
+	template<MessageTypes Type> GetType_t<Type>& GetAt(size_type i) const { return this->GetAt<GetType_t<Type>>(i); }
 
 	/**
 	 * @brief 获取指定下标出的消息
@@ -457,7 +453,8 @@ public:
 	}
 
 
-	struct Serializable;;
+	struct Serializable;
+	;
 };
 
 } // namespace Mirai

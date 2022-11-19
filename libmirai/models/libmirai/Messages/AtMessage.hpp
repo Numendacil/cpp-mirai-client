@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
@@ -51,10 +50,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return this->_target != QQ_t();
-	}
+	bool isValid() const final { return this->_target != QQ_t(); }
 
 
 	bool operator==(const AtMessage& rhs) { return this->_target == rhs._target; }
@@ -75,8 +71,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<AtMessage::_TYPE_>
+template<> struct GetType<AtMessage::_TYPE_>
 {
 	using type = AtMessage;
 };

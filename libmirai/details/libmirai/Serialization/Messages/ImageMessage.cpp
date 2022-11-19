@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Messages/ImageMessage.hpp>
-
 #include <nlohmann/json.hpp>
+
+#include <libmirai/Messages/ImageMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 
@@ -40,7 +40,6 @@ void ImageMessage::Serialize(void* data) const
 
 	j["type"] = this->GetType();
 	j.update(this->_image);
-
 }
 
 } // namespace Mirai

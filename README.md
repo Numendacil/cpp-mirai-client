@@ -46,13 +46,13 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 
 其中 [google/googletest](https://github.com/google/googletest) 仅用于测试，实际使用时可以不用安装。
 这些项目都已经以submodule的形式被包含在了 `external/` 目录下，可以通过 `git clone --recursive` 来拉取对应的模块并本地编译链接。
-你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 `find_package` 来找到对应的文件。
+你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 `find_package` 来找到对应的文件。所有依赖均为私有依赖，仅用于编译，使用cpp-mirai-client
+时不需要链接这些第三方库。
 
 本项目的文档生成使用了 [Doxygen](https://doxygen.org/index.html) 与 [jothepro/doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)。
 
 ## TODO
 - Docs and example usages
-- Remove nlohmann/json from public interface
 - Project templates for creating a simple QQBot
 - Benchmark and performance tests
 

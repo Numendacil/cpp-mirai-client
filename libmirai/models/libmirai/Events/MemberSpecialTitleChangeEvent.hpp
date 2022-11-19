@@ -41,7 +41,8 @@ protected:
 	std::string _origin;
 	std::string _current;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberSpecialTitleChangeEvent";

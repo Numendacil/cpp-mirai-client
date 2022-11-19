@@ -41,7 +41,8 @@ protected:
 	Group _group;
 	GroupMember _operator;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotLeaveEventKick";

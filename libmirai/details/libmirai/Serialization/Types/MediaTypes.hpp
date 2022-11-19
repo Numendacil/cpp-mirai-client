@@ -22,9 +22,8 @@
 #include <string>
 #include <utility>
 
-#include <libmirai/Types/MediaTypes.hpp>
-
 #include <libmirai/Serialization/Types/Serializable.hpp>
+#include <libmirai/Types/MediaTypes.hpp>
 
 
 namespace Mirai

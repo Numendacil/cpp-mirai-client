@@ -13,10 +13,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Events/GroupMuteAllEvent.hpp>
-
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Events/GroupMuteAllEvent.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
 
@@ -29,7 +28,7 @@ void GroupMuteAllEvent::Deserialize(const void* data)
 {
 	const auto& j = *static_cast<const json*>(data);
 	assert(j.at("type").get<std::string>() == this->_TYPE_); // NOLINT(*-array-to-pointer-decay)
-	
+
 	j.at("origin").get_to(this->_origin);
 	j.at("current").get_to(this->_current);
 	j.at("group").get_to(this->_group);

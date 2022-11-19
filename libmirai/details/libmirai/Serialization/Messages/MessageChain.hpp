@@ -16,8 +16,8 @@
 #ifndef _MIRAI_SERIALIZATION_MESSAGECHAIN_HPP_
 #define _MIRAI_SERIALIZATION_MESSAGECHAIN_HPP_
 
-#include <libmirai/Serialization/Types/Serializable.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
+#include <libmirai/Serialization/Types/Serializable.hpp>
 
 namespace Mirai
 {

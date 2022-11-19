@@ -39,18 +39,16 @@ protected:
 
 	void Serialize(void*) const final;
 	void Deserialize(const void*) final;
+
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::APP;
 
 	AppMessage() : MessageBase(_TYPE_) {}
-	AppMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_) {};
+	AppMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_){};
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AppMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return !this->_content.empty();
-	}
+	bool isValid() const final { return !this->_content.empty(); }
 
 	bool operator==(const AppMessage& rhs) { return this->_content == rhs._content; }
 
@@ -67,8 +65,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<AppMessage::_TYPE_>
+template<> struct GetType<AppMessage::_TYPE_>
 {
 	using type = AppMessage;
 };

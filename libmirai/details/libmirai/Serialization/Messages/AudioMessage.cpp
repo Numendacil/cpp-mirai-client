@@ -13,9 +13,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Messages/AudioMessage.hpp>
-
 #include <nlohmann/json.hpp>
+
+#include <libmirai/Messages/AudioMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
@@ -39,7 +39,6 @@ void AudioMessage::Serialize(void* data) const
 
 	j["type"] = this->GetType();
 	j.update(this->_audio);
-
 }
 
 } // namespace Mirai

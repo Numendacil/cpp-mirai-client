@@ -17,10 +17,9 @@
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
-
-#include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Serialization/Messages/MessageChain.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -44,8 +43,7 @@ void ForwardMessage::Node::Serializable::to_json(nlohmann::json& j, const Forwar
 {
 	// assert(p.isValid());	// NOLINT(*-array-to-pointer-decay)
 
-	if (p._MessageId.has_value()) 
-		j["messageId"] = p._MessageId.value();
+	if (p._MessageId.has_value()) j["messageId"] = p._MessageId.value();
 	else
 	{
 		j["senderId"] = p._SenderId;
@@ -55,4 +53,4 @@ void ForwardMessage::Node::Serializable::to_json(nlohmann::json& j, const Forwar
 	}
 }
 
-}
+} // namespace Mirai

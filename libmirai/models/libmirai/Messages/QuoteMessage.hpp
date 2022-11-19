@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
@@ -55,15 +54,12 @@ protected:
 
 public:
 	static constexpr MessageTypes _TYPE_ = MessageTypes::QUOTE;
-	
+
 	QuoteMessage() : MessageBase(_TYPE_) {}
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<QuoteMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return true;
-	}
+	bool isValid() const final { return true; }
 
 	/// 获取被引用消息id
 	MessageId_t GetQuoteId() const { return this->_QuoteId; }
@@ -82,8 +78,7 @@ public:
 	MessageChain GetOriginMessage() const { return this->_origin; }
 };
 
-template <>
-struct GetType<QuoteMessage::_TYPE_>
+template<> struct GetType<QuoteMessage::_TYPE_>
 {
 	using type = QuoteMessage;
 };

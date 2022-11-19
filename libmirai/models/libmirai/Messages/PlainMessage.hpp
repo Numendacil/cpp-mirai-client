@@ -19,7 +19,6 @@
 #include <string>
 #include <utility>
 
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -48,10 +47,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<PlainMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return !this->_text.empty();
-	}
+	bool isValid() const final { return !this->_text.empty(); }
 
 
 	bool operator==(const PlainMessage& rhs) { return this->_text == rhs._text; }
@@ -69,8 +65,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<PlainMessage::_TYPE_>
+template<> struct GetType<PlainMessage::_TYPE_>
 {
 	using type = PlainMessage;
 };

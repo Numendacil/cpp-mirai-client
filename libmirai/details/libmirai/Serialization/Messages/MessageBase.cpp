@@ -1,6 +1,5 @@
 #include "MessageBase.hpp"
 
-
 #include <nlohmann/json.hpp>
 
 namespace Mirai
@@ -21,4 +20,4 @@ void MessageBase::Serializable::to_json(json& j, const MessageBase& p)
 	p.Serialize(&j);
 }
 
-}
+} // namespace Mirai

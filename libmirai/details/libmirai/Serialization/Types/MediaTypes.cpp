@@ -19,6 +19,7 @@
 #include <optional>
 
 #include <nlohmann/json.hpp>
+
 #include <libmirai/Serialization/Types/BasicTypes.hpp>
 #include <libmirai/Utils/Common.hpp>
 
@@ -100,7 +101,6 @@ void to_json(json& j, const MiraiImage& p)
 		j["path"] = p.path;
 	else if (!p.base64.empty())
 		j["base64"] = p.base64;
-
 }
 void from_json(const json& j, MiraiAudio& p)
 {

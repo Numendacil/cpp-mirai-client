@@ -13,10 +13,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Events/OtherClientOfflineEvent.hpp>
-
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Events/OtherClientOfflineEvent.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
@@ -28,7 +27,7 @@ void OtherClientOfflineEvent::Deserialize(const void* data)
 {
 	const auto& j = *static_cast<const json*>(data);
 	assert(j.at("type").get<std::string>() == this->_TYPE_); // NOLINT(*-array-to-pointer-decay)
-	
+
 	j.at("client").get_to(this->_client);
 }
 

@@ -60,7 +60,8 @@ public:
 	/// 获取接收该事件的 `MiraiClient` 的引用
 	MiraiClient& GetMiraiClient() const { return *_client; }
 
-	struct Serializable;;
+	struct Serializable;
+	;
 };
 
 } // namespace Mirai

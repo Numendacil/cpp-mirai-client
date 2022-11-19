@@ -31,7 +31,7 @@ using json = nlohmann::json;
 void UID_t::Serializable::from_json(const json& j, UID_t& p)
 {
 	MIRAI_PARSE_GUARD_BEGIN;
-	
+
 	p = UID_t(j.get<int64_t>());
 
 	MIRAI_PARSE_GUARD_END;
@@ -43,36 +43,36 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 }
 
 
-
 // *********************************************
 // ************ ENUM DEFINITIONS ***************
 // *********************************************
 
-#define ENUM_TO_STR_FUNCNAME(_enum_) _##_enum_##_TO_STR_ 
+#define ENUM_TO_STR_FUNCNAME(_enum_) _##_enum_##_TO_STR_
 #define STR_TO_ENUM_FUNCNAME(_enum_) _STR_TO_##_enum_##_
 #define ENUM_STR_ARRAY(_enum_) _enum_##Str
 
-#define DECLARE_ENUM_STR(_enum_, ...)	\
-namespace	\
-{	\
-constexpr std::array<std::string_view, static_cast<size_t>(_enum_::ENUM_END)> ENUM_STR_ARRAY(_enum_) = {__VA_ARGS__};	\
-constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)	\
-{	\
-	auto i = static_cast<std::size_t>(m);	\
-	if (i < ENUM_STR_ARRAY(_enum_).size()) return ENUM_STR_ARRAY(_enum_).at(i);	\
-	else return "";	\
-}	\
-constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)	\
-{	\
-	for (std::size_t i = 0; i < ENUM_STR_ARRAY(_enum_).size(); i++)	\
-		if (ENUM_STR_ARRAY(_enum_).at(i) == s) return static_cast<_enum_>(i);	\
-	return _enum_::ENUM_END;	\
-}	\
-}
+#define DECLARE_ENUM_STR(_enum_, ...)                                                                                  \
+	namespace                                                                                                          \
+	{                                                                                                                  \
+	constexpr std::array<std::string_view, static_cast<size_t>(_enum_::ENUM_END)> ENUM_STR_ARRAY(_enum_) = {           \
+		__VA_ARGS__};                                                                                                  \
+	constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)                                           \
+	{                                                                                                                  \
+		auto i = static_cast<std::size_t>(m);                                                                          \
+		if (i < ENUM_STR_ARRAY(_enum_).size()) return ENUM_STR_ARRAY(_enum_).at(i);                                    \
+		else                                                                                                           \
+			return "";                                                                                                 \
+	}                                                                                                                  \
+	constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)                                                  \
+	{                                                                                                                  \
+		for (std::size_t i = 0; i < ENUM_STR_ARRAY(_enum_).size(); i++)                                                \
+			if (ENUM_STR_ARRAY(_enum_).at(i) == s) return static_cast<_enum_>(i);                                      \
+		return _enum_::ENUM_END;                                                                                       \
+	}                                                                                                                  \
+	}
 
 #define ENUM_TO_STR(_enum_, _input_) ENUM_TO_STR_FUNCNAME(_enum_)(_input_)
 #define STR_TO_ENUM(_enum_, _input_) STR_TO_ENUM_FUNCNAME(_enum_)(_input_)
-
 
 
 DECLARE_ENUM_STR(SEX, "MALE", "FEMALE", "UNKNOWN")
@@ -123,16 +123,8 @@ void to_json(json& j, const MusicShareType& p)
 }
 
 
-DECLARE_ENUM_STR(PokeType,
-	"ChuoYiChuo", "BiXin",
-	"DianZan",  "XinSui", 
-	"LiuLiuLiu", "FangDaZhao", 
-	"GouYin",  "BaoBeiQiu",
-	"Rose", "ZhaoHuanShu", 
-	"RangNiPi", "JieYin", 
-	"ShouLei", "ZhuaYiXia", 
-	"SuiPing", "QiaoMen"
-);
+DECLARE_ENUM_STR(PokeType, "ChuoYiChuo", "BiXin", "DianZan", "XinSui", "LiuLiuLiu", "FangDaZhao", "GouYin", "BaoBeiQiu",
+                 "Rose", "ZhaoHuanShu", "RangNiPi", "JieYin", "ShouLei", "ZhuaYiXia", "SuiPing", "QiaoMen");
 
 void from_json(const json& j, PokeType& p)
 {
@@ -207,10 +199,10 @@ void GroupMember::Serializable::from_json(const json& j, GroupMember& p)
 	j.at("id").get_to(p.id);
 	j.at("memberName").get_to(p.MemberName);
 	j.at("permission").get_to(p.permission);
-	p.SpecialTitle = Utils::GetValue(j, "specialTitle", "");	// Can be empty
-	p.JoinTimestamp = Utils::GetValue(j, "joinTimestamp", (std::time_t)0);	// Can be empty
-	p.LastSpeakTimestamp = Utils::GetValue(j, "lastSpeakTimestamp", (std::time_t)0);	// Can be empty
-	p.MuteTimeRemaining = std::chrono::seconds(Utils::GetValue(j, "muteTimeRemaining", (int64_t)0));	// Can be empty
+	p.SpecialTitle = Utils::GetValue(j, "specialTitle", "");                                         // Can be empty
+	p.JoinTimestamp = Utils::GetValue(j, "joinTimestamp", (std::time_t)0);                           // Can be empty
+	p.LastSpeakTimestamp = Utils::GetValue(j, "lastSpeakTimestamp", (std::time_t)0);                 // Can be empty
+	p.MuteTimeRemaining = std::chrono::seconds(Utils::GetValue(j, "muteTimeRemaining", (int64_t)0)); // Can be empty
 	j.at("group").get_to(p.group);
 
 	MIRAI_PARSE_GUARD_END;

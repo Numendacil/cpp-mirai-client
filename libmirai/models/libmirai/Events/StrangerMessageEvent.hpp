@@ -41,7 +41,8 @@ protected:
 	User _sender;
 	MessageChain _message;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "StrangerMessage";

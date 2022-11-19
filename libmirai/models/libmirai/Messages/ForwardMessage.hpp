@@ -21,7 +21,6 @@
 #include <utility>
 #include <vector>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
@@ -64,7 +63,7 @@ public:
 	 * 
 	 */
 	///@{
-	
+
 	using value_type = NodeList::value_type;
 	using allocator_type = NodeList::allocator_type;
 	using size_type = NodeList::size_type;
@@ -129,8 +128,7 @@ public:
 	///@}
 };
 
-template <>
-struct GetType<ForwardMessage::_TYPE_>
+template<> struct GetType<ForwardMessage::_TYPE_>
 {
 	using type = ForwardMessage;
 };

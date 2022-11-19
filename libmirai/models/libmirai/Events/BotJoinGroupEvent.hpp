@@ -40,7 +40,8 @@ protected:
 	Group _group;
 	std::optional<GroupMember> _inviter = std::nullopt;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 

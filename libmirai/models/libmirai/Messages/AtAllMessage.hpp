@@ -40,14 +40,10 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtAllMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return true;
-	}
+	bool isValid() const final { return true; }
 };
 
-template <>
-struct GetType<AtAllMessage::_TYPE_>
+template<> struct GetType<AtAllMessage::_TYPE_>
 {
 	using type = AtAllMessage;
 };

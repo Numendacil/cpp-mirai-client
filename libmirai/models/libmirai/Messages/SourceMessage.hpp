@@ -19,7 +19,6 @@
 #include <ctime>
 #include <string>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
@@ -53,10 +52,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<SourceMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return true;
-	}
+	bool isValid() const final { return true; }
 
 	/// 获取消息id
 	MessageId_t GetMessageId() const { return this->_id; }
@@ -64,8 +60,7 @@ public:
 	std::time_t GetTimestamp() const { return this->_timestamp; }
 };
 
-template <>
-struct GetType<SourceMessage::_TYPE_>
+template<> struct GetType<SourceMessage::_TYPE_>
 {
 	using type = SourceMessage;
 };

@@ -16,9 +16,8 @@
 #ifndef _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
 #define _MIRAI_SERIALIZATION_TYPES_BASIC_TYPES_HPP_
 
-#include <libmirai/Types/BasicTypes.hpp>
-
 #include <libmirai/Serialization/Types/Serializable.hpp>
+#include <libmirai/Types/BasicTypes.hpp>
 
 namespace Mirai
 {

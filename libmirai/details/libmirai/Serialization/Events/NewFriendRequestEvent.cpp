@@ -13,12 +13,11 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Events/NewFriendRequestEvent.hpp>
-
 #include <cstdint>
 
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Events/NewFriendRequestEvent.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
@@ -30,7 +29,7 @@ void NewFriendRequestEvent::Deserialize(const void* data)
 {
 	const auto& j = *static_cast<const json*>(data);
 	assert(j.at("type").get<std::string>() == this->_TYPE_); // NOLINT(*-array-to-pointer-decay)
-	
+
 	j.at("eventId").get_to(this->_EventId);
 	j.at("fromId").get_to(this->_FromId);
 	j.at("groupId").get_to(this->_GroupId);

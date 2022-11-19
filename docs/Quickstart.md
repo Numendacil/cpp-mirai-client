@@ -32,10 +32,6 @@ verifyKey, http 监听地址以及 websocket 监听地址。
 #include <libmirai/Messages/PlainMessage.hpp>	// include declaration for PlainMessage class only
 #include <libmirai/models.hpp>		// include everything but the client
 ```
-如果你需要在程序中使用json对象，你还应该包括
-```cpp
-#include <nlohmann/json.hpp>	// include nlohmann's json library
-```
 
 ### 连接mirai-api-http
 为了与mirai-api-http通信，你需要一个 `Mirai::MiraiClient` 对象
@@ -59,7 +55,7 @@ config.ReadTimeout = 10s;
 config.HeartbeatInterval = 1min;
 
 // Or you can read them from file
-config.FromFile("/path/to/config.json");
+config.FromJsonFile("/path/to/config.json");
 
 // Now set the client with the configs
 client.SetSessionConfig(config);
@@ -97,8 +93,7 @@ client.On<FriendMessageEvent>(
 			.SendFriendMessage(
 				event.GetSender().id, 
 				event.GetMessage(),
-				std::nullopt,
-				true
+				std::nullopt
 			);
 		}
 		catch(std::exception& e)
@@ -117,8 +112,7 @@ event.GetMiraiClient()
 .SendFriendMessage(
 	event.GetSender().id, 
 	event.GetMessage(),
-	std::nullopt,
-	true
+	std::nullopt
 );
 ```
 它可以拆分为两个部分。首先，`Mirai::EventBase::GetMiraiClient()` 负责返回一个 `Mirai::MiraiClient` 对象的引用，大部分事件（除了与网络连接相关的事件外）都拥有这个方法。我们需要这个对象来进行消息的回复以及其他可能的操作。

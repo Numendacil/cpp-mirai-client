@@ -19,9 +19,9 @@
 #include <array>
 #include <string>
 
+#include <libmirai/Types/BasicTypes.hpp>
 
 #include "MessageBase.hpp"
-#include <libmirai/Types/BasicTypes.hpp>
 
 namespace Mirai
 {
@@ -51,10 +51,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<PokeMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return this->_kind != PokeType::ENUM_END;
-	}
+	bool isValid() const final { return this->_kind != PokeType::ENUM_END; }
 
 	bool operator==(const PokeMessage& rhs) { return this->_kind == rhs._kind; }
 
@@ -71,8 +68,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<PokeMessage::_TYPE_>
+template<> struct GetType<PokeMessage::_TYPE_>
 {
 	using type = PokeMessage;
 };

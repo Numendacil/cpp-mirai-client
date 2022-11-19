@@ -50,7 +50,8 @@ protected:
 	std::string _nickname;
 	std::string _message;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberJoinRequestEvent";

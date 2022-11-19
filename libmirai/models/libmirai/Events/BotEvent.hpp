@@ -42,7 +42,8 @@ protected:
 
 	virtual std::string GetEventType() const = 0;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 

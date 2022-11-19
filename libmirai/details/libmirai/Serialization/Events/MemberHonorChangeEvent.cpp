@@ -13,10 +13,9 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <libmirai/Events/MemberHonorChangeEvent.hpp>
-
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Events/MemberHonorChangeEvent.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
@@ -28,7 +27,7 @@ void MemberHonorChangeEvent::Deserialize(const void* data)
 {
 	const auto& j = *static_cast<const json*>(data);
 	assert(j.at("type").get<std::string>() == this->_TYPE_); // NOLINT(*-array-to-pointer-decay)
-	
+
 	j.at("action").get_to(this->_action);
 	j.at("honor").get_to(this->_honor);
 	j.at("member").get_to(this->_member);

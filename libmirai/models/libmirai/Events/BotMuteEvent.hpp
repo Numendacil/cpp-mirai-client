@@ -41,7 +41,8 @@ protected:
 	GroupMember _operator;
 	std::time_t _duration = 0;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "BotMuteEvent";

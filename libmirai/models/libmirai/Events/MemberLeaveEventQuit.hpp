@@ -41,7 +41,8 @@ class MemberLeaveEventQuit : public EventBase
 protected:
 	GroupMember _member;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberLeaveEventQuit";

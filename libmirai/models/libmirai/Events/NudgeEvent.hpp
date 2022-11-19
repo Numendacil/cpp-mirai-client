@@ -44,7 +44,8 @@ protected:
 	std::string _action;
 	std::string _suffix;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "NudgeEvent";

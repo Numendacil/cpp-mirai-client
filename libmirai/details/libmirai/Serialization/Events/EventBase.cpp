@@ -21,4 +21,4 @@ void EventBase::Serializable::from_json(const json& j, EventBase& p)
 // 	p.Serialize(&j);
 // }
 
-}
+} // namespace Mirai

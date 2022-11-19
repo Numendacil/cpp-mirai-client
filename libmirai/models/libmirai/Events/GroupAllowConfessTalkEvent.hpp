@@ -45,7 +45,8 @@ protected:
 	bool _current = false;
 	bool _ByBot = false; // 无法获得操作员
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "GroupAllowConfessTalkEvent";

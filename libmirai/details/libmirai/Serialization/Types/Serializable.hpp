@@ -19,7 +19,9 @@
 #include <exception>
 #include <type_traits>
 #include <utility>
+
 #include <nlohmann/json_fwd.hpp>
+
 #include <libmirai/Exceptions/Exceptions.hpp>
 
 namespace Mirai
@@ -33,77 +35,63 @@ namespace Mirai
 namespace traits
 {
 
-template <typename T>
-class _has_from_json
+template<typename T> class _has_from_json
 {
 	template<typename U>
-	static auto test(U*)
-	-> typename std::is_same<
-		decltype(U::Serializable::from_json(std::declval<const nlohmann::json&>(), std::declval<U&>())),
-		void
-	>::type;
+	static auto test(U*) -> typename std::is_same<
+		decltype(U::Serializable::from_json(std::declval<const nlohmann::json&>(), std::declval<U&>())), void >::type;
 
-	template<typename>
-	static std::false_type test(...);
+	template<typename> static std::false_type test(...);
 
 public:
 	static constexpr bool value = decltype(test<T>(0))::value;
 };
 
-template <typename T>
-class _has_to_json
+template<typename T> class _has_to_json
 {
 	template<typename U>
-	static auto test(U*)
-	-> typename std::is_same<
-		decltype(U::Serializable::to_json(std::declval<nlohmann::json&>(), std::declval<const U&>())),
-		void
-	>::type;
+	static auto test(U*) -> typename std::is_same<
+		decltype(U::Serializable::to_json(std::declval<nlohmann::json&>(), std::declval<const U&>())), void >::type;
 
-	template<typename>
-	static std::false_type test(...);
+	template<typename> static std::false_type test(...);
 
 public:
 	static constexpr bool value = decltype(test<T>(0))::value;
 };
 
-}
+} // namespace traits
 
-template <typename T>
-auto from_json(const nlohmann::json& j, T& p)
--> std::enable_if_t<traits::_has_from_json<T>::value>
+template<typename T> auto from_json(const nlohmann::json& j, T& p) -> std::enable_if_t<traits::_has_from_json<T>::value>
 {
 	T::Serializable::from_json(j, p);
 }
 
-template <typename T>
-auto to_json(nlohmann::json& j, const T& p)
--> std::enable_if_t<traits::_has_to_json<T>::value>
+template<typename T> auto to_json(nlohmann::json& j, const T& p) -> std::enable_if_t<traits::_has_to_json<T>::value>
 {
 	T::Serializable::to_json(j, p);
 }
 
-#define MIRAI_DECLARE_SERIALIZABLE_JSON(_type_)	\
-struct _type_::Serializable	\
-{	\
-	static void from_json(const nlohmann::json&, _type_&);	\
-	static void to_json(nlohmann::json&, const _type_&);	\
-}
+#define MIRAI_DECLARE_SERIALIZABLE_JSON(_type_)                                                                        \
+	struct _type_::Serializable                                                                                        \
+	{                                                                                                                  \
+		static void from_json(const nlohmann::json&, _type_&);                                                         \
+		static void to_json(nlohmann::json&, const _type_&);                                                           \
+	}
 
-#define MIRAI_DECLARE_FROM_TO_JSON(_type_)	\
-void from_json(const nlohmann::json&, _type_&);	\
-void to_json(nlohmann::json&, const _type_&)
+#define MIRAI_DECLARE_FROM_TO_JSON(_type_)                                                                             \
+	void from_json(const nlohmann::json&, _type_&);                                                                    \
+	void to_json(nlohmann::json&, const _type_&)
 
-#define MIRAI_PARSE_GUARD_BEGIN \
-try	\
-{
+#define MIRAI_PARSE_GUARD_BEGIN                                                                                        \
+	try                                                                                                                \
+	{
 
-#define MIRAI_PARSE_GUARD_END	\
-}	\
-catch(const std::exception& e)	\
-{	\
-	throw ParseError(e.what(), j.dump());	\
-}
+#define MIRAI_PARSE_GUARD_END                                                                                          \
+	}                                                                                                                  \
+	catch (const std::exception& e)                                                                                    \
+	{                                                                                                                  \
+		throw ParseError(e.what(), j.dump());                                                                          \
+	}
 
 } // namespace Mirai
 

@@ -44,7 +44,8 @@ protected:
 	std::time_t _time = 0;
 	QQ_t _operator;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "FriendRecallEvent";

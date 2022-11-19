@@ -19,7 +19,6 @@
 #include <string>
 #include <utility>
 
-
 #include <libmirai/Types/MediaTypes.hpp>
 
 #include "MessageBase.hpp"
@@ -50,15 +49,13 @@ public:
 	AudioMessage() : MessageBase(_TYPE_) {}
 	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)), MessageBase(_TYPE_) {}
 	AudioMessage(std::string AudioId, std::string url, std::string path, std::string base64)
-		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)},
-		MessageBase(_TYPE_) {}
+		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}, MessageBase(_TYPE_)
+	{
+	}
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AudioMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return this->_audio.isValid();
-	}
+	bool isValid() const final { return this->_audio.isValid(); }
 
 	/**
 	 * @brief 获取消息中的音频内容
@@ -127,8 +124,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<AudioMessage::_TYPE_>
+template<> struct GetType<AudioMessage::_TYPE_>
 {
 	using type = AudioMessage;
 };

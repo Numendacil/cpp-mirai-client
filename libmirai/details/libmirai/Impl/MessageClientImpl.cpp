@@ -21,7 +21,7 @@
 namespace Mirai::Details
 {
 
-bool MessageClientImpl::_init = false;	// NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+bool MessageClientImpl::_init = false; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
 MessageClientImpl::MessageClientImpl(std::chrono::seconds HeartbeatInterval, std::chrono::seconds HandshakeTimeout,
                                      bool EnablePong, bool EnableDeflate, bool AutoReconnect,

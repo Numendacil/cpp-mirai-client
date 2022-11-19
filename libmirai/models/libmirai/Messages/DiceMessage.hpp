@@ -18,7 +18,6 @@
 
 #include <string>
 
-
 #include "MessageBase.hpp"
 
 namespace Mirai
@@ -52,10 +51,7 @@ public:
 
 	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<DiceMessage>(*this); }
 
-	bool isValid() const final
-	{
-		return this->_value > 0 && this->_value <= 6;
-	}
+	bool isValid() const final { return this->_value > 0 && this->_value <= 6; }
 
 
 	bool operator==(const DiceMessage& rhs) { return this->_value == rhs._value; }
@@ -73,8 +69,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<DiceMessage::_TYPE_>
+template<> struct GetType<DiceMessage::_TYPE_>
 {
 	using type = DiceMessage;
 };

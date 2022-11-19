@@ -19,7 +19,6 @@
 #include <string>
 #include <utility>
 
-
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
 
@@ -51,14 +50,13 @@ public:
 	ImageMessage() : MessageBase(_TYPE_) {}
 	ImageMessage(MiraiImage image) : _image(std::move(image)), MessageBase(_TYPE_) {}
 	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64)
-		: _image(ImageId, url, path, base64), MessageBase(_TYPE_) {}
+		: _image(ImageId, url, path, base64), MessageBase(_TYPE_)
+	{
+	}
 
 	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ImageMessage>(*this); }
 
-	bool isValid() const override
-	{
-		return this->_image.isValid();
-	}
+	bool isValid() const override { return this->_image.isValid(); }
 
 	/**
 	 * @brief 获取消息中的图片
@@ -128,8 +126,7 @@ public:
 	}
 };
 
-template <>
-struct GetType<ImageMessage::_TYPE_>
+template<> struct GetType<ImageMessage::_TYPE_>
 {
 	using type = ImageMessage;
 };

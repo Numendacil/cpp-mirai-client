@@ -20,9 +20,8 @@
 #include <httplib.h>
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Utils/Common.hpp>
-
 #include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai::Details
 {
@@ -333,75 +332,69 @@ json HttpClientImpl::FileRename(const string& SessionKey, const string& id, cons
 json HttpClientImpl::FileUpload(const string& SessionKey, const string& path, UID_t target, const string& type,
                                 const string& name, string content)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""},
-		{"path", path, "", ""},
-		{"target", target.to_string(), "", ""},
-		{"type", type, "", ""}
-	};
+	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""},
+	                                         {"path", path, "", ""},
+	                                         {"target", target.to_string(), "", ""},
+	                                         {"type", type, "", ""}};
 	items.emplace_back(httplib::MultipartFormData{"file", std::move(content), name, "application/octet-stream"});
 
 	this->_client.set_compress(true);
 	auto result = this->_client.Post("/file/upload", items);
-	
+
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
 }
 
-json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& path, UID_t target, const string& type,
-                                const string& name, std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+json HttpClientImpl::FileUploadChunked(
+	const string& SessionKey, const string& path, UID_t target, const string& type, const string& name,
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""},
-		{"path", path, "", ""},
-		{"target", target.to_string(), "", ""},
-		{"type", type, "", ""}
-	};
+	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""},
+	                                         {"path", path, "", ""},
+	                                         {"target", target.to_string(), "", ""},
+	                                         {"type", type, "", ""}};
 
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	
-	auto result = this->_client.Post("/file/upload", 
-	[&](size_t offset, httplib::DataSink& sink) -> bool
-	{
-		if (offset == 0)
+
+	auto result = this->_client.Post(
+		"/file/upload",
+		[&](size_t offset, httplib::DataSink& sink) -> bool
 		{
-			for (const auto &item : items) 
+			if (offset == 0)
 			{
+				for (const auto& item : items)
+				{
+					sink.os << "--" + boundary + "\r\n";
+					sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+					if (!item.filename.empty()) sink.os << "; filename=\"" + item.filename + "\"";
+					sink.os << "\r\n";
+					if (!item.content_type.empty()) sink.os << "Content-Type: " + item.content_type + "\r\n";
+					sink.os << "\r\n";
+					sink.os << item.content + "\r\n";
+				}
+
 				sink.os << "--" + boundary + "\r\n";
-				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
-				if (!item.filename.empty())
-					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "Content-Disposition: form-data; name=\"file\"";
+				sink.os << "; filename=\"" + name + "\"";
 				sink.os << "\r\n";
-				if (!item.content_type.empty())
-					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "Content-Type: application/octet-stream\r\n";
 				sink.os << "\r\n";
-				sink.os << item.content + "\r\n";
 			}
 
-			sink.os << "--" + boundary + "\r\n";
-			sink.os << "Content-Disposition: form-data; name=\"file\"";
-			sink.os << "; filename=\"" + name + "\"";
-			sink.os << "\r\n";
-			sink.os << "Content-Type: application/octet-stream\r\n";
-			sink.os << "\r\n";
-		}
+			bool finish = false;
+			if (!ContentProvider(offset, sink.os, finish)) return false;
 
-		bool finish = false;
-		if (!ContentProvider(offset, sink.os, finish))
-			return false;
-		
-		if (finish)
-		{
-			sink.os << "\r\n--" + boundary + "--\r\n";
-			sink.done();
-		}
-		return true;
-	},
-	"multipart/form-data;boundary=\"" + boundary + "\""
-	);
-	
+			if (finish)
+			{
+				sink.os << "\r\n--" + boundary + "--\r\n";
+				sink.done();
+			}
+			return true;
+		},
+		"multipart/form-data;boundary=\"" + boundary + "\"");
+
 
 	json resp = Utils::ParseResponse(result);
 	return resp.at("data");
@@ -410,71 +403,61 @@ json HttpClientImpl::FileUploadChunked(const string& SessionKey, const string& p
 
 json HttpClientImpl::UploadImage(const string& SessionKey, const string& type, string image)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, 
-		{"type", type, "", ""}
-	};
+	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
 	items.emplace_back(httplib::MultipartFormData{"img", std::move(image), "Image", "application/octet-stream"});
-	
+
 	auto result = this->_client.Post("/uploadImage", items);
-	
+
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
 
 json HttpClientImpl::UploadImageChunked(
-	const string& SessionKey, const string& type, 
-	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider
-)
+	const string& SessionKey, const string& type,
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, 
-		{"type", type, "", ""}
-	};
+	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	
-	auto result = this->_client.Post("/uploadImage", 
-	[&](size_t offset, httplib::DataSink& sink) -> bool
-	{
-		if (offset == 0)
+
+	auto result = this->_client.Post(
+		"/uploadImage",
+		[&](size_t offset, httplib::DataSink& sink) -> bool
 		{
-			for (const auto &item : items) 
+			if (offset == 0)
 			{
+				for (const auto& item : items)
+				{
+					sink.os << "--" + boundary + "\r\n";
+					sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+					if (!item.filename.empty()) sink.os << "; filename=\"" + item.filename + "\"";
+					sink.os << "\r\n";
+					if (!item.content_type.empty()) sink.os << "Content-Type: " + item.content_type + "\r\n";
+					sink.os << "\r\n";
+					sink.os << item.content + "\r\n";
+				}
+
 				sink.os << "--" + boundary + "\r\n";
-				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
-				if (!item.filename.empty())
-					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "Content-Disposition: form-data; name=\"img\"";
+				sink.os << "; filename=\"Image\"";
 				sink.os << "\r\n";
-				if (!item.content_type.empty())
-					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "Content-Type: application/octet-stream\r\n";
 				sink.os << "\r\n";
-				sink.os << item.content + "\r\n";
 			}
 
-			sink.os << "--" + boundary + "\r\n";
-			sink.os << "Content-Disposition: form-data; name=\"img\"";
-			sink.os << "; filename=\"Image\"";
-			sink.os << "\r\n";
-			sink.os << "Content-Type: application/octet-stream\r\n";
-			sink.os << "\r\n";
-		}
+			bool finish = false;
+			if (!ContentProvider(offset, sink.os, finish)) return false;
 
-		bool finish = false;
-		if (!ContentProvider(offset, sink.os, finish))
-			return false;
-		
-		if (finish)
-		{
-			sink.os << "\r\n--" + boundary + "--\r\n";
-			sink.done();
-		}
-		return true;
-	},
-	"multipart/form-data;boundary=\"" + boundary + "\""
-	);
-	
+			if (finish)
+			{
+				sink.os << "\r\n--" + boundary + "--\r\n";
+				sink.done();
+			}
+			return true;
+		},
+		"multipart/form-data;boundary=\"" + boundary + "\"");
+
 
 	json resp = Utils::ParseResponse(result);
 	return resp;
@@ -483,70 +466,63 @@ json HttpClientImpl::UploadImageChunked(
 json HttpClientImpl::UploadAudio(const string& SessionKey, const string& type, string Audio)
 {
 	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, 
+		{"sessionKey", SessionKey, "", ""},
 		{"type", type, "", ""},
 	};
 	items.emplace_back(httplib::MultipartFormData{"voice", std::move(Audio), "Audio", "application/octet-stream"});
-	
+
 	auto result = this->_client.Post("/uploadVoice", items);
-	
+
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
 
 json HttpClientImpl::UploadAudioChunked(
-	const string& SessionKey, const string& type, 
-	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider
-)
+	const string& SessionKey, const string& type,
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""}, 
-		{"type", type, "", ""}
-	};
+	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
-	
-	auto result = this->_client.Post("/uploadVoice", 
-	[&](size_t offset, httplib::DataSink& sink) -> bool
-	{
-		if (offset == 0)
+
+	auto result = this->_client.Post(
+		"/uploadVoice",
+		[&](size_t offset, httplib::DataSink& sink) -> bool
 		{
-			for (const auto &item : items) 
+			if (offset == 0)
 			{
+				for (const auto& item : items)
+				{
+					sink.os << "--" + boundary + "\r\n";
+					sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
+					if (!item.filename.empty()) sink.os << "; filename=\"" + item.filename + "\"";
+					sink.os << "\r\n";
+					if (!item.content_type.empty()) sink.os << "Content-Type: " + item.content_type + "\r\n";
+					sink.os << "\r\n";
+					sink.os << item.content + "\r\n";
+				}
+
 				sink.os << "--" + boundary + "\r\n";
-				sink.os << "Content-Disposition: form-data; name=\"" + item.name + "\"";
-				if (!item.filename.empty())
-					sink.os << "; filename=\"" + item.filename + "\"";
+				sink.os << "Content-Disposition: form-data; name=\"voice\"";
+				sink.os << "; filename=\"Audio\"";
 				sink.os << "\r\n";
-				if (!item.content_type.empty())
-					sink.os << "Content-Type: " + item.content_type + "\r\n";
+				sink.os << "Content-Type: application/octet-stream\r\n";
 				sink.os << "\r\n";
-				sink.os << item.content + "\r\n";
 			}
 
-			sink.os << "--" + boundary + "\r\n";
-			sink.os << "Content-Disposition: form-data; name=\"voice\"";
-			sink.os << "; filename=\"Audio\"";
-			sink.os << "\r\n";
-			sink.os << "Content-Type: application/octet-stream\r\n";
-			sink.os << "\r\n";
-		}
+			bool finish = false;
+			if (!ContentProvider(offset, sink.os, finish)) return false;
 
-		bool finish = false;
-		if (!ContentProvider(offset, sink.os, finish))
-			return false;
-		
-		if (finish)
-		{
-			sink.os << "\r\n--" + boundary + "--\r\n";
-			sink.done();
-		}
-		return true;
-	},
-	"multipart/form-data;boundary=\"" + boundary + "\""
-	);
-	
+			if (finish)
+			{
+				sink.os << "\r\n--" + boundary + "--\r\n";
+				sink.done();
+			}
+			return true;
+		},
+		"multipart/form-data;boundary=\"" + boundary + "\"");
+
 	json resp = Utils::ParseResponse(result);
 	return resp;
 }
@@ -762,8 +738,7 @@ string HttpClientImpl::PostRaw(const string& path, const string& content, const 
 
 	if (!result || result.error() != httplib::Error::Success)
 		throw NetworkException(-1, httplib::to_string(result.error()));
-	if (result->status < 200 || result->status > 299) 
-		throw NetworkException(result->status, result->body);
+	if (result->status < 200 || result->status > 299) throw NetworkException(result->status, result->body);
 
 	return result->body;
 }
@@ -774,9 +749,8 @@ string HttpClientImpl::GetRaw(const string& path, const std::multimap<string, st
 
 	if (!result || result.error() != httplib::Error::Success)
 		throw NetworkException(-1, httplib::to_string(result.error()));
-	if (result->status < 200 || result->status > 299) 
-		throw NetworkException(result->status, result->body);
-		
+	if (result->status < 200 || result->status > 299) throw NetworkException(result->status, result->body);
+
 	return result->body;
 }
 

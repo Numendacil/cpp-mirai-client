@@ -42,6 +42,7 @@ protected:
 
 	virtual void Serialize(void*) const = 0;
 	virtual void Deserialize(const void*) = 0;
+
 public:
 	// static constexpr MessageTypes _TYPE_ = MessageTypes::"MessageBase";
 
@@ -76,7 +77,8 @@ public:
 	virtual ~MessageBase() = default;
 
 
-	struct Serializable;;
+	struct Serializable;
+	;
 };
 
 } // namespace Mirai

@@ -9,7 +9,7 @@ int main()
 	SessionConfigs config;
 
 	/*	Set your other configs here
-	config.FromFile("config.json");
+	config.FromJsonFile("config.json");
 	*/
 	config.AutoReconnect = false;
 
@@ -23,8 +23,7 @@ int main()
 				event.GetMiraiClient().SendFriendMessage(
 					event.GetSender().id, 
 					event.GetMessage(),
-					std::nullopt,
-					true
+					std::nullopt
 				);
 			}
 			catch(std::exception& e)

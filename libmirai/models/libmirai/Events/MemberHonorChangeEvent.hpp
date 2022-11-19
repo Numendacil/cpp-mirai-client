@@ -44,7 +44,8 @@ protected:
 	HonorChangeType _action = HonorChangeType::ENUM_END; // {achieve, lose}
 	std::string _honor;
 
-	void Deserialize(const void *) final;
+	void Deserialize(const void*) final;
+
 public:
 	using EventBase::EventBase;
 	static constexpr std::string_view _TYPE_ = "MemberHonorChangeEvent";
