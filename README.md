@@ -63,7 +63,7 @@ Read Next: [快速入门](docs/Quickstart.md)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[unittest-shield]: https://img.shields.io/github/workflow/status/numendacil/cpp-mirai-client/UnitTest?style=flat&logo=github
+[unittest-shield]: https://img.shields.io/github/actions/workflow/status/numendacil/cpp-mirai-client/UnitTest.yml?branch=master&style=flat&logo=github
 [unittest-url]: https://github.com/numendacil/cpp-mirai-client
 [license-shield]: https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat
 [license-url]: https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE
