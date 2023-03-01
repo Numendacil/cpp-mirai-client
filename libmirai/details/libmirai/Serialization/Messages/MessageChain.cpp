@@ -23,9 +23,28 @@
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Messages/Messages.hpp>
-#include <libmirai/Serialization/Messages/MessageBase.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Types/MessageTypes.hpp>
+
+#include "AppMessage.hpp"
+#include "AtAllMessage.hpp"
+#include "AtMessage.hpp"
+#include "AudioMessage.hpp"
+#include "DiceMessage.hpp"
+#include "FaceMessage.hpp"
+#include "FileMessage.hpp"
+#include "ForwardMessage.hpp"
+#include "ForwardMessageNode.hpp"
+#include "ImageMessage.hpp"
+#include "JsonMessage.hpp"
+#include "MessageChain.hpp"
+#include "MiraiCodeMessage.hpp"
+#include "MusicShareMessage.hpp"
+#include "PlainMessage.hpp"
+#include "PokeMessage.hpp"
+#include "QuoteMessage.hpp"
+#include "SourceMessage.hpp"
+#include "XmlMessage.hpp"
 
 namespace Mirai
 {
@@ -44,14 +63,14 @@ template<auto Start, auto End, auto Inc, class F> constexpr void constexpr_for(F
 	}
 }
 
-constexpr std::array<std::unique_ptr<MessageBase> (*)(), MessageTypesList.size()> Factory = []()
+constexpr std::array<MessageElement(*)(), MessageTypesList.size()> Factory = []()
 {
-	std::array<std::unique_ptr<MessageBase> (*)(), MessageTypesList.size()> arr{};
+	std::array<MessageElement(*)(), MessageTypesList.size()> arr{};
 	constexpr_for<0, arr.size(), 1>(
 		[&arr](auto i)
 		{
-			using type = GetType_t<MessageTypesList[i]>;
-			arr.at(i) = []() -> std::unique_ptr<MessageBase> { return std::make_unique<type>(); };
+			using Type = GetType_t<MessageTypesList[i]>;
+			arr.at(i) = []() -> MessageElement { Type m; return MessageElement(m); };
 		});
 	return arr;
 }();
@@ -59,21 +78,28 @@ constexpr std::array<std::unique_ptr<MessageBase> (*)(), MessageTypesList.size()
 
 } // namespace
 
-void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
+void MessageElement::Serializable::from_json(const json& j, MessageElement& p)
 {
-	j = json::array();
-	for (const auto& msg : p._message)
+	p.visit([&j](auto&& m)
 	{
-		// if (!msg->isValid())
-		// 	continue;
-		if (!msg->isSendSupported()) continue;
-		j += *msg;
-	}
+		Mirai::from_json(j, m);
+	});
 }
+
+void MessageElement::Serializable::to_json(json& j, const MessageElement& p)
+{
+	p.visit([&j](auto&& m)
+	{
+		using Type = std::decay_t<decltype(m)>;
+		if constexpr (Type::isSendSupported())
+			Mirai::to_json(j, m);
+	});
+}
+
 
 void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	if (!j.is_array()) return;
 	p._message.clear();
@@ -82,11 +108,22 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 	{
 		if (!msg.is_object() || !msg.contains("type") || !msg.at("type").is_string()) continue;
 		MessageTypes type = msg.at("type").get<MessageTypes>();
-		msg.get_to(*(p._message.emplace_back(Factory.at(static_cast<size_t>(type))())));
+		auto& m = p._message.emplace_back(Factory.at(static_cast<size_t>(type))());
+		msg.get_to(m);
 	}
 	p._message.shrink_to_fit();
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
+}
+
+void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
+{
+	j = json::array();
+	for (const auto& msg : p._message)
+	{
+		if (msg.allowSend())
+			j += p;
+	}
 }
 
 } // namespace Mirai

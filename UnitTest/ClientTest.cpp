@@ -17,9 +17,7 @@
 #include <libmirai/mirai.hpp>
 #include <libmirai/Client.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
-#include <libmirai/Serialization/Messages/MessageBase.hpp>
-#include <libmirai/Serialization/Messages/MessageChain.hpp>
-#include <libmirai/Serialization/Messages/ForwardMessageNode.hpp>
+#include <libmirai/Serialization/Messages/Messages.hpp>
 
 #include "JsonData.hpp"
 

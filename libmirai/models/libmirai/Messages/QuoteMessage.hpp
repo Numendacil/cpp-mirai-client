@@ -16,15 +16,17 @@
 #ifndef _MIRAI_QUOTE_MESSAGE_HPP_
 #define _MIRAI_QUOTE_MESSAGE_HPP_
 
+#include <memory>
 #include <string>
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
-#include "MessageChain.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
+
+class MessageChain;
 
 /**
  * @brief 引用回复消息
@@ -39,27 +41,28 @@ namespace Mirai
  * `QuoteMessage::_TargetId` | `0`
  * `QuoteMessage::_origin` | `MessageChain{}`
  */
-class QuoteMessage : public MessageBase
+class QuoteMessage final : public IMessageImpl<QuoteMessage>
 {
+	friend IMessageImpl<QuoteMessage>;
 
 protected:
 	MessageId_t _QuoteId = -1;
 	GID_t _GroupId{};
 	QQ_t _SenderId{};
 	int64_t _TargetId = 0;
-	MessageChain _origin{};
+	std::unique_ptr<MessageChain> _origin{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::QUOTE;
+	static constexpr bool _SUPPORT_SEND_ = false;
+
+	bool _isValid() const final { return true; }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::QUOTE;
-
-	QuoteMessage() : MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<QuoteMessage>(*this); }
-
-	bool isValid() const final { return true; }
+	QuoteMessage();
+	QuoteMessage(const QuoteMessage&);
+	QuoteMessage& operator=(const QuoteMessage&);
+	QuoteMessage(QuoteMessage&&);
+	QuoteMessage& operator=(QuoteMessage&&);
 
 	/// 获取被引用消息id
 	MessageId_t GetQuoteId() const { return this->_QuoteId; }
@@ -75,10 +78,12 @@ public:
 			return QQ_t(0);
 	}
 	/// 获取被引用消息
-	MessageChain GetOriginMessage() const { return this->_origin; }
+	MessageChain GetOriginMessage() const;
+
+	struct Serializable;
 };
 
-template<> struct GetType<QuoteMessage::_TYPE_>
+template<> struct GetType<QuoteMessage::GetType()>
 {
 	using type = QuoteMessage;
 };

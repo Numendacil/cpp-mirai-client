@@ -30,7 +30,7 @@ using json = nlohmann::json;
 
 void from_json(const json& j, FileInfo& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("md5").get_to(p.md5);
 	j.at("sha1").get_to(p.sha1);
@@ -38,12 +38,12 @@ void from_json(const json& j, FileInfo& p)
 	j.at("uploadTime").get_to(p.UploadTime);
 	j.at("lastModifyTime").get_to(p.LastModifyTime);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void from_json(const json& j, GroupFileInfo& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("name").get_to(p.name);
 	j.at("id").get_to(p.id);
@@ -70,12 +70,12 @@ void from_json(const json& j, GroupFileInfo& p)
 	else
 		p.DownloadUrl = std::nullopt;
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void from_json(const json& j, MiraiImage& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	p.id = Utils::GetValue(j, "imageId", "");
 	p.url = Utils::GetValue(j, "url", "");
@@ -87,12 +87,12 @@ void from_json(const json& j, MiraiImage& p)
 	p.ImageType = Utils::GetValue(j, "imageType", "");
 	p.isEmoji = Utils::GetValue(j, "isEmoji", false);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void to_json(json& j, const MiraiImage& p)
 {
-	// assert(p.isValid());	// NOLINT(*-array-to-pointer-decay)
+	// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 	if (!p.id.empty()) j["imageId"] = p.id;
 	else if (!p.url.empty())
@@ -104,7 +104,7 @@ void to_json(json& j, const MiraiImage& p)
 }
 void from_json(const json& j, MiraiAudio& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	p.id = Utils::GetValue(j, "voiceId", "");
 	p.url = Utils::GetValue(j, "url", "");
@@ -112,12 +112,12 @@ void from_json(const json& j, MiraiAudio& p)
 	p.base64 = Utils::GetValue(j, "base64", "");
 	p.length = Utils::GetValue(j, "length", (int64_t)0);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void to_json(json& j, const MiraiAudio& p)
 {
-	// assert(p.isValid());	// NOLINT(*-array-to-pointer-decay)
+	// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 	if (!p.id.empty()) j["voiceId"] = p.id;
 	else if (!p.url.empty())

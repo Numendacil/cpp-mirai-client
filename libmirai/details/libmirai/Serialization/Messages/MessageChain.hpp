@@ -22,6 +22,7 @@
 namespace Mirai
 {
 
+MIRAI_DECLARE_SERIALIZABLE_JSON(MessageElement);
 MIRAI_DECLARE_SERIALIZABLE_JSON(MessageChain);
 
 } // namespace Mirai

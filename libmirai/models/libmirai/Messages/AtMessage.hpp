@@ -20,7 +20,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -33,25 +33,22 @@ namespace Mirai
  * `AtMessage::_target`	 | `0_qq`
  * `AtMessage::_display` | `""`
  */
-class AtMessage : public MessageBase
+class AtMessage final : public IMessageImpl<AtMessage>
 {
-protected:
+	friend class IMessageImpl<AtMessage>;
+
+private:
 	QQ_t _target{};
 	std::string _display{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final { return this->_target != QQ_t(); }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AT;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AT;
-
-	AtMessage() : MessageBase(_TYPE_) {}
-	AtMessage(QQ_t target) : _target(target), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtMessage>(*this); }
-
-	bool isValid() const final { return this->_target != QQ_t(); }
-
+	AtMessage() = default;
+	AtMessage(QQ_t target) : _target(target) {}
 
 	bool operator==(const AtMessage& rhs) { return this->_target == rhs._target; }
 
@@ -69,9 +66,11 @@ public:
 		this->_target = target;
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<AtMessage::_TYPE_>
+template<> struct GetType<AtMessage::GetType()>
 {
 	using type = AtMessage;
 };

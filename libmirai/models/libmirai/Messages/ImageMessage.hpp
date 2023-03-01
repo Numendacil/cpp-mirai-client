@@ -22,41 +22,35 @@
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
 
 /**
- * @brief 图片消息
+ * @brief 图片类消息
  *
- * Member Variable | Default Value
- * --------------- | -------------
- * `ImageMessage::_image` | `MiraiImage{}`
+ * Middleware for image related messages
  */
-class ImageMessage : public MessageBase
+template <class MessageImpl>
+class ImageMessageImpl : public IMessageImpl<MessageImpl>
 {
+	friend IMessageImpl<MessageImpl>;
+
 protected:
 	MiraiImage _image{};
 
 	void _clear() noexcept { this->_image = {}; }
 
-	void Serialize(void*) const override;
-	void Deserialize(const void*) override;
+	bool _isValid() const override { return this->_image.valid(); }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::IMAGE;
-
-	ImageMessage() : MessageBase(_TYPE_) {}
-	ImageMessage(MiraiImage image) : _image(std::move(image)), MessageBase(_TYPE_) {}
-	ImageMessage(std::string ImageId, std::string url, std::string path, std::string base64)
-		: _image(ImageId, url, path, base64), MessageBase(_TYPE_)
+	ImageMessageImpl() = default;
+	ImageMessageImpl(MiraiImage image) : _image(std::move(image)) {}
+	ImageMessageImpl(std::string ImageId, std::string url, std::string path, std::string base64)
+		: _image(ImageId, url, path, base64)
 	{
 	}
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<ImageMessage>(*this); }
-
-	bool isValid() const override { return this->_image.isValid(); }
 
 	/**
 	 * @brief 获取消息中的图片
@@ -71,11 +65,11 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param ImageId 图片id
 	 */
-	ImageMessage& SetImageId(std::string ImageId)
+	MessageImpl& SetImageId(std::string ImageId)
 	{
 		this->_clear();
 		this->_image.id = std::move(ImageId);
-		return *this;
+		return *static_cast<MessageImpl*>(this);
 	}
 
 	/**
@@ -84,11 +78,11 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param url 图片链接
 	 */
-	ImageMessage& SetUrl(std::string url)
+	MessageImpl& SetUrl(std::string url)
 	{
 		this->_clear();
 		this->_image.url = std::move(url);
-		return *this;
+		return *static_cast<MessageImpl*>(this);
 	}
 
 	/**
@@ -97,11 +91,11 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param path 图片路径
 	 */
-	ImageMessage& SetPath(std::string path)
+	MessageImpl& SetPath(std::string path)
 	{
 		this->_clear();
 		this->_image.path = std::move(path);
-		return *this;
+		return *static_cast<MessageImpl*>(this);
 	}
 
 	/**
@@ -110,25 +104,74 @@ public:
 	 * 发送图片只需要id、链接、路径、base64编码中的一个，因此该方法会清空其它的属性
 	 * @param base64 图片base64编码
 	 */
-	ImageMessage& SetBase64(std::string base64)
+	MessageImpl& SetBase64(std::string base64)
 	{
 		this->_clear();
 		this->_image.base64 = std::move(base64);
-		return *this;
+		return *static_cast<MessageImpl*>(this);
 	}
 
 	/// 由 `MiraiImage` 设置图片内容
-	ImageMessage& SetImage(MiraiImage image)
+	MessageImpl& SetImage(MiraiImage image)
 	{
 		this->_clear();
 		this->_image = std::move(image);
-		return *this;
+		return *static_cast<MessageImpl*>(this);
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<ImageMessage::_TYPE_>
+
+
+/**
+ * @brief 图片消息
+ *
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `ImageMessage::_image` | `MiraiImage{}`
+ */
+class ImageMessage final : public ImageMessageImpl<ImageMessage>
+{
+	friend IMessageImpl<ImageMessage>;
+
+protected:
+	static constexpr MessageTypes _TYPE_ = MessageTypes::IMAGE;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+public:
+	using ImageMessageImpl<ImageMessage>::ImageMessageImpl;
+};
+
+template<> struct GetType<ImageMessage::GetType()>
 {
 	using type = ImageMessage;
+};
+
+
+
+/**
+ * @brief 闪照消息
+ *
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `FlashImageMessage::_image` | `MiraiImage{}`
+ */
+class FlashImageMessage final : public ImageMessageImpl<FlashImageMessage>
+{
+	friend IMessageImpl<FlashImageMessage>;
+
+protected:
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FLASH_IMAGE;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+public:
+	using ImageMessageImpl<FlashImageMessage>::ImageMessageImpl;
+};
+
+template<> struct GetType<FlashImageMessage::GetType()>
+{
+	using type = FlashImageMessage;
 };
 
 } // namespace Mirai

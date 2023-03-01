@@ -23,7 +23,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -37,8 +37,10 @@ namespace Mirai
  * --------------- | -------------
  * `ForwardMessage::_NodeList` | `{}`
  */
-class ForwardMessage : public MessageBase
+class ForwardMessage final: public IMessageImpl<ForwardMessage>
 {
+	friend IMessageImpl<ForwardMessage>;
+
 public:
 	class Node;
 
@@ -46,23 +48,26 @@ protected:
 	using NodeList = std::vector<Node>;
 	NodeList _NodeList;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FORWARD;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FORWARD;
-
 	ForwardMessage();
-
-	std::unique_ptr<MessageBase> CloneUnique() const final;
-
-	bool isValid() const final;
+	ForwardMessage(const ForwardMessage&);
+	ForwardMessage& operator= (const ForwardMessage&);
+	ForwardMessage(ForwardMessage&&);
+	ForwardMessage& operator= (ForwardMessage&&);
+	~ForwardMessage() final;
 
 	/**
 	 * @brief STL-like interface
 	 * 
 	 */
 	///@{
+
+	// I hate this
 
 	using value_type = NodeList::value_type;
 	using allocator_type = NodeList::allocator_type;
@@ -88,6 +93,10 @@ public:
 	reference at(size_type n);
 	const_reference operator[](size_type n) const noexcept;
 	reference operator[](size_type n) noexcept;
+	const_reference back() const;
+	reference back();
+	const_reference front() const;
+	reference front();
 
 	void clear() noexcept;
 	iterator insert(const_iterator pos, const_reference value);
@@ -100,7 +109,7 @@ public:
 	iterator insert(const_iterator pos, std::initializer_list<value_type> ilist);
 	template<class... Args > iterator emplace(const_iterator pos, Args&&... args)
 	{
-		return this->emplace(pos, std::forward<Args>(args)...);
+		return this->_NodeList.emplace(pos, std::forward<Args>(args)...);
 	}
 	iterator erase(const_iterator pos);
 	iterator erase(const_iterator first, const_iterator last);
@@ -126,9 +135,13 @@ public:
 	const_reverse_iterator crend() const noexcept;
 
 	///@}
+
+	struct Serializable;
 };
 
-template<> struct GetType<ForwardMessage::_TYPE_>
+using ForwardNode = ForwardMessage::Node;
+
+template<> struct GetType<ForwardMessage::GetType()>
 {
 	using type = ForwardMessage;
 };

@@ -20,17 +20,17 @@
 namespace Mirai
 {
 
-ForwardMessage::ForwardMessage() : MessageBase(_TYPE_) {}
+ForwardMessage::ForwardMessage() = default;
+ForwardMessage::ForwardMessage(const ForwardMessage&) = default;
+ForwardMessage& ForwardMessage::operator= (const ForwardMessage&) = default;
+ForwardMessage::ForwardMessage(ForwardMessage&&) = default;
+ForwardMessage& ForwardMessage::operator= (ForwardMessage&&) = default;
+ForwardMessage::~ForwardMessage() = default;
 
-std::unique_ptr<MessageBase> ForwardMessage::CloneUnique() const
-{
-	return std::make_unique<ForwardMessage>(*this);
-}
-
-bool ForwardMessage::isValid() const
+bool ForwardMessage::_isValid() const
 {
 	for (const auto& n : this->_NodeList)
-		if (!n.isValid()) return false;
+		if (!n.valid()) return false;
 	return true;
 }
 
@@ -74,6 +74,22 @@ ForwardMessage::const_reference ForwardMessage::operator[](size_type n) const no
 ForwardMessage::reference ForwardMessage::operator[](size_type n) noexcept
 {
 	return this->_NodeList[n];
+}
+ForwardMessage::const_reference ForwardMessage::back() const
+{
+	return this->_NodeList.back();
+}
+ForwardMessage::reference ForwardMessage::back()
+{
+	return this->_NodeList.back();
+}
+ForwardMessage::const_reference ForwardMessage::front() const
+{
+	return this->_NodeList.front();
+}
+ForwardMessage::reference ForwardMessage::front()
+{
+	return this->_NodeList.front();
 }
 
 void ForwardMessage::clear() noexcept

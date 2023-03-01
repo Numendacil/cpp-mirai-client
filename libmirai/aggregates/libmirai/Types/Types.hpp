@@ -13,32 +13,12 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <nlohmann/json.hpp>
+#ifndef _MIRAI_TYPES_HPP_
+#define _MIRAI_TYPES_HPP_
 
-#include <libmirai/Messages/XmlMessage.hpp>
-#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Types/BasicTypes.hpp>
+#include <libmirai/Types/GroupSettings.hpp>
+#include <libmirai/Types/MediaTypes.hpp>
+#include <libmirai/Types/NudgeTarget.hpp>
 
-
-namespace Mirai
-{
-
-using json = nlohmann::json;
-
-void XmlMessage::Deserialize(const void* data)
-{
-	const auto& j = *static_cast<const json*>(data);
-
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	j.at("xml").get_to(this->_content);
-}
-
-void XmlMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
-
-	j["type"] = this->GetType();
-	j["xml"] = this->_content;
-}
-
-} // namespace Mirai
+#endif

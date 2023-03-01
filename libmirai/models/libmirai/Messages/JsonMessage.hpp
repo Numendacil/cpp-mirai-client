@@ -18,7 +18,7 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -30,25 +30,21 @@ namespace Mirai
  * --------------- | -------------
  * `JsonMessage::_content` | `""`
  */
-class JsonMessage : public MessageBase
+class JsonMessage final : public IMessageImpl<JsonMessage>
 {
+	friend IMessageImpl<JsonMessage>;
 
 protected:
 	std::string _content{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::JSON;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final { return !this->_content.empty(); }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::JSON;
-
-	JsonMessage() : MessageBase(_TYPE_) {}
-	JsonMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<JsonMessage>(*this); }
-
-	bool isValid() const final { return !this->_content.empty(); }
-
+	JsonMessage() = default;
+	JsonMessage(std::string content) : _content(std::move(content)) {}
 
 	bool operator==(const JsonMessage& rhs) { return this->_content == rhs._content; }
 
@@ -63,9 +59,11 @@ public:
 		this->_content = std::move(content);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<JsonMessage::_TYPE_>
+template<> struct GetType<JsonMessage::GetType()>
 {
 	using type = JsonMessage;
 };

@@ -13,29 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/AtAllMessage.hpp>
+#include <libmirai/Messages/DiceMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void AtAllMessage::Deserialize(const void* data)
+struct DiceMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-}
+	static void from_json(const nlohmann::json& j, DiceMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-void AtAllMessage::Serialize(void* data) const
-{
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
-	auto& j = *static_cast<json*>(data);
+		assert(j.at("type").get<MessageTypes>() == DiceMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-	j["type"] = this->GetType();
-}
+		j.at("value").get_to(p._value);
+
+		MIRAI_PARSE_GUARD_END(j)(j);
+	}
+
+	static void to_json(nlohmann::json& j, const DiceMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = DiceMessage::GetType();
+		j["value"] = p._value;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

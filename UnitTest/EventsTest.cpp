@@ -584,7 +584,7 @@ TEST(EventsTest, CommandExecutedEvent)
 	EXPECT_EQ(event.GetFriendSender()->remark, "remark");
 	EXPECT_FALSE(event.GetMemberSender());
 	EXPECT_EQ(event.GetCommandArgs().size(), 1);
-	EXPECT_EQ(event.GetCommandArgs()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetCommandArgs().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetCommandArgs().GetAt<PlainMessage>(0).GetText(), "myself");
 }
 
@@ -598,7 +598,7 @@ TEST(EventsTest, FriendMessageEvent)
 	EXPECT_EQ(event.GetSender().nickname, "xxx");
 	EXPECT_EQ(event.GetSender().remark, "who");
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -619,7 +619,7 @@ TEST(EventsTest, GroupMessageEvent)
 	EXPECT_EQ(event.GetSender().group.name, "bbb");
 	EXPECT_EQ(event.GetSender().group.permission, PERMISSION::ADMINISTRATOR);
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -640,7 +640,7 @@ TEST(EventsTest, TempMessageEvent)
 	EXPECT_EQ(event.GetSender().group.name, "bbb");
 	EXPECT_EQ(event.GetSender().group.permission, PERMISSION::ADMINISTRATOR);
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -654,7 +654,7 @@ TEST(EventsTest, StrangerMessageEvent)
 	EXPECT_EQ(event.GetSender().nickname, "xxx");
 	EXPECT_EQ(event.GetSender().remark, "who");
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -667,7 +667,7 @@ TEST(EventsTest, OtherClientMessageEvent)
 	EXPECT_EQ(event.GetSender().id, 123);
 	EXPECT_EQ(event.GetSender().platform, "MOBILE");
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -681,7 +681,7 @@ TEST(EventsTest, FriendSyncMessageEvent)
 	EXPECT_EQ(event.GetFriend().nickname, "xxx");
 	EXPECT_EQ(event.GetFriend().remark, "who");
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -695,7 +695,7 @@ TEST(EventsTest, GroupSyncMessageEvent)
 	EXPECT_EQ(event.GetGroup().name, "bbb");
 	EXPECT_EQ(event.GetGroup().permission, PERMISSION::MEMBER);
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -716,7 +716,7 @@ TEST(EventsTest, TempSyncMessageEvent)
 	EXPECT_EQ(event.GetGroupMember().group.name, "bbb");
 	EXPECT_EQ(event.GetGroupMember().group.permission, PERMISSION::ADMINISTRATOR);
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
 
@@ -730,6 +730,6 @@ TEST(EventsTest, StrangerSyncMessageEvent)
 	EXPECT_EQ(event.GetStranger().nickname, "xxx");
 	EXPECT_EQ(event.GetStranger().remark, "who");
 	EXPECT_EQ(event.GetMessage().size(), 1);
-	EXPECT_EQ(event.GetMessage()[0].GetType(), MessageTypes::PLAIN);
+	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }

@@ -13,38 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <cassert>
+#ifndef _MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/AtMessage.hpp>
+#include <libmirai/Messages/PokeMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void AtMessage::Deserialize(const void* data)
+struct PokeMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	static void from_json(const nlohmann::json& j, PokeMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-	j.at("target").get_to(this->_target);
-	j.at("display").get_to(this->_display);
-}
+		assert(j.at("type").get<MessageTypes>() == PokeMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-void AtMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		j.at("name").get_to(p._kind);
 
-	j["type"] = this->GetType();
-	j["target"] = this->_target;
+		MIRAI_PARSE_GUARD_END(j);
+	}
 
-	// Not used for sending
-	// j["display"] = this->display;
-}
+	static void to_json(nlohmann::json& j, const PokeMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = PokeMessage::GetType();
+		j["name"] = p._kind;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

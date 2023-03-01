@@ -146,6 +146,13 @@ if(MIRAI_INSTALL)
 		PATTERN "*.hpp"
 	)
 
+	install(
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/aggregates/"
+		DESTINATION "include/cppmirai/aggregates"
+		FILES_MATCHING
+		PATTERN "*.hpp"
+	)
+
 	configure_file("${MIRAI_LIB_TARGET_NAME}-config.cmake.in" "${MIRAI_LIB_TARGET_NAME}-config.cmake" @ONLY)
 	install(
 		FILES "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}-config.cmake"

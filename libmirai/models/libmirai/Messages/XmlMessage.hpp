@@ -20,7 +20,7 @@
 #include <string>
 #include <utility>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -32,25 +32,21 @@ namespace Mirai
  * --------------- | -------------
  * `XmlMessage::_content` | `""`
  */
-class XmlMessage : public MessageBase
+class XmlMessage final : public IMessageImpl<XmlMessage>
 {
+	friend IMessageImpl<XmlMessage>;
 
 protected:
 	std::string _content;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::XML;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final { return !this->_content.empty(); }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::XML;
-
-	XmlMessage() : MessageBase(_TYPE_) {}
-	XmlMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<XmlMessage>(*this); }
-
-	bool isValid() const final { return !this->_content.empty(); }
-
+	XmlMessage() = default;
+	XmlMessage(std::string content) : _content(std::move(content)) {}
 
 	bool operator==(const XmlMessage& rhs) { return this->_content == rhs._content; }
 
@@ -65,9 +61,11 @@ public:
 		this->_content = std::move(content);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<XmlMessage::_TYPE_>
+template<> struct GetType<XmlMessage::GetType()>
 {
 	using type = XmlMessage;
 };

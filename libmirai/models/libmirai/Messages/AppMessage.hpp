@@ -19,7 +19,7 @@
 #include <string>
 #include <utility>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -31,24 +31,21 @@ namespace Mirai
  * --------------- | -------------
  * `AppMessage::_content` | `""`
  */
-class AppMessage : public MessageBase
+class AppMessage final : public IMessageImpl<AppMessage>
 {
+	friend IMessageImpl<AppMessage>;
 
-protected:
+private:
 	std::string _content{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final { return !this->_content.empty(); }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::APP;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::APP;
-
-	AppMessage() : MessageBase(_TYPE_) {}
-	AppMessage(std::string content) : _content(std::move(content)), MessageBase(_TYPE_){};
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AppMessage>(*this); }
-
-	bool isValid() const final { return !this->_content.empty(); }
+	AppMessage() = default;
+	AppMessage(std::string content) : _content(std::move(content)) {};
 
 	bool operator==(const AppMessage& rhs) { return this->_content == rhs._content; }
 
@@ -63,9 +60,11 @@ public:
 		this->_content = std::move(content);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<AppMessage::_TYPE_>
+template<> struct GetType<AppMessage::GetType()>
 {
 	using type = AppMessage;
 };

@@ -13,35 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_JSON_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_JSON_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/FaceMessage.hpp>
+#include <libmirai/Messages/JsonMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
-#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void FaceMessage::Deserialize(const void* data)
+struct JsonMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_id = Utils::GetValue(j, "faceId", (int64_t)-1);
-	this->_name = Utils::GetValue(j, "name", "");
-}
+	static void from_json(const nlohmann::json& j, JsonMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j)(j);
 
-void FaceMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		assert(j.at("type").get<MessageTypes>() == JsonMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-	j["type"] = this->GetType();
-	if (this->_id != -1) j["faceId"] = this->_id;
-	else
-		j["name"] = this->_name;
-}
+		j.at("json").get_to(p._content);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	static void to_json(nlohmann::json& j, const JsonMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = JsonMessage::GetType();
+		j["json"] = p._content;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

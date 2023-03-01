@@ -1,31 +1,26 @@
 target_sources(
 	${MIRAI_LIB_TARGET_NAME} PRIVATE
 
-	MessageBase.hpp
-	MessageBase.cpp
-
 	MessageChain.hpp
 	MessageChain.cpp
 
-	AppMessage.cpp
-	AtAllMessage.cpp
-	AtMessage.cpp
-	AudioMessage.cpp
-	DiceMessage.cpp
-	FaceMessage.cpp
-	FileMessage.cpp
-	ForwardMessage.cpp
-	ImageMessage.cpp
-	JsonMessage.cpp
-	MarketFaceMessage.cpp
-	MiraiCodeMessage.cpp
-	MusicShareMessage.cpp
-	PlainMessage.cpp
-	PokeMessage.cpp
-	QuoteMessage.cpp
-	SourceMessage.cpp
-	XmlMessage.cpp
+	AppMessage.hpp
+	AtAllMessage.hpp
+	AtMessage.hpp
+	AudioMessage.hpp
+	DiceMessage.hpp
+	FaceMessage.hpp
+	FileMessage.hpp
+	ForwardMessage.hpp
+	ImageMessage.hpp
+	JsonMessage.hpp
+	MiraiCodeMessage.hpp
+	MusicShareMessage.hpp
+	PlainMessage.hpp
+	PokeMessage.hpp
+	QuoteMessage.hpp
+	SourceMessage.hpp
+	XmlMessage.hpp
 
 	ForwardMessageNode.hpp
-	ForwardMessageNode.cpp
 )

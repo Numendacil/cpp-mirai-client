@@ -13,37 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_PLAIN_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_PLAIN_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/SourceMessage.hpp>
+#include <libmirai/Messages/PlainMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
-
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void SourceMessage::Deserialize(const void* data)
+struct PlainMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	static void from_json(const nlohmann::json& j, PlainMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-	j.at("id").get_to(this->_id);
-	j.at("time").get_to(this->_timestamp);
-}
+		assert(j.at("type").get<MessageTypes>() == PlainMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-void SourceMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		j.at("text").get_to(p._text);
 
-	// json data = json::object();
-	// j["type"] = this->GetType();
-	// j["id"] = this->id;
-	// j["time"] = this->timestamp;
-	// return data;
-}
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	static void to_json(nlohmann::json& j, const PlainMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = PlainMessage::GetType();
+		j["text"] = p._text;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

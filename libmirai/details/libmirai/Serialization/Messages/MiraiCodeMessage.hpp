@@ -13,38 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <optional>
-#include <vector>
+#ifndef _MIRAI_SERIALIZATION_MIRAICODE_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_MIRAICODE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/ForwardMessage.hpp>
-#include <libmirai/Serialization/Messages/ForwardMessageNode.hpp>
+#include <libmirai/Messages/MiraiCodeMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void ForwardMessage::Deserialize(const void* data)
+struct MiraiCodeMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	static void from_json(const nlohmann::json& j, MiraiCodeMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-	assert(j.at("nodeList").is_array()); // NOLINT(*-array-to-pointer-decay)
+		assert(j.at("type").get<MessageTypes>() == MiraiCodeMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-	this->_NodeList = j.at("nodeList").get<std::vector<Node>>();
-}
+		j.at("code").get_to(p._code);
 
-void ForwardMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		MIRAI_PARSE_GUARD_END(j);
+	}
 
-	j["type"] = this->GetType();
-	j["nodeList"] = this->_NodeList;
-}
+	static void to_json(nlohmann::json& j, const MiraiCodeMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = MiraiCodeMessage::GetType();
+		j["code"] = p._code;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

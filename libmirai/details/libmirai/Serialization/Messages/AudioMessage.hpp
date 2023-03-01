@@ -13,39 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_AUDIO_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_AUDIO_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/MarketFaceMessage.hpp>
+#include <libmirai/Messages/AudioMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
-#include <libmirai/Utils/Common.hpp>
-
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void MarketFaceMessage::Deserialize(const void* data)
+struct AudioMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	this->_id = Utils::GetValue(j, "id", (int64_t)-1);
-	this->_name = Utils::GetValue(j, "name", "");
-}
+	static void from_json(const nlohmann::json& j, AudioMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-void MarketFaceMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		assert(j.at("type").get<MessageTypes>() == AudioMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-	// json data = json::object();
-	// j["type"] = this->GetType();
-	// j["id"] = this->id;
-	// j["name"] = this->name;
-	// return data;
+		j.get_to(p._audio);
+		
+		MIRAI_PARSE_GUARD_END(j);
+	}
 
-	// Sending MarketFace Message is currently not supported
-}
+	static void to_json(nlohmann::json& j, const AudioMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = AudioMessage::GetType();
+		j.update(p._audio);
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

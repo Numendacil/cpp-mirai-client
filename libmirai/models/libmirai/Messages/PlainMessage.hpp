@@ -19,7 +19,7 @@
 #include <string>
 #include <utility>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -31,24 +31,21 @@ namespace Mirai
  * --------------- | -------------
  * `PlainMessage::_text` | `""`
  */
-class PlainMessage : public MessageBase
+class PlainMessage final : public IMessageImpl<PlainMessage>
 {
+	friend IMessageImpl<PlainMessage>;
+
 protected:
 	std::string _text{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::PLAIN;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final { return !this->_text.empty(); }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::PLAIN;
-
-	PlainMessage() : MessageBase(_TYPE_) {}
-	PlainMessage(std::string text) : _text(std::move(text)), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<PlainMessage>(*this); }
-
-	bool isValid() const final { return !this->_text.empty(); }
-
+	PlainMessage() = default;
+	PlainMessage(std::string text) : _text(std::move(text)) {}
 
 	bool operator==(const PlainMessage& rhs) { return this->_text == rhs._text; }
 
@@ -63,9 +60,11 @@ public:
 		this->_text = std::move(text);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<PlainMessage::_TYPE_>
+template<> struct GetType<PlainMessage::GetType()>
 {
 	using type = PlainMessage;
 };

@@ -35,11 +35,11 @@ constexpr MessageTypes str_to_enum(std::string_view s)
 
 void from_json(const json& j, MessageTypes& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	p = str_to_enum(j.get<std::string>());
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 void to_json(json& j, const MessageTypes& p)
 {

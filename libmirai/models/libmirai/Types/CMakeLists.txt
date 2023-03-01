@@ -5,6 +5,4 @@ target_sources(
 	MediaTypes.hpp
 	MessageTypes.hpp
 	NudgeTarget.hpp
-
-	Types.hpp
 )

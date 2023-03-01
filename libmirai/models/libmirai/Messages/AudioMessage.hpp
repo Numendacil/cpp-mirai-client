@@ -21,7 +21,7 @@
 
 #include <libmirai/Types/MediaTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -33,29 +33,26 @@ namespace Mirai
  * --------------- | -------------
  * `AudioMessage::_audio` | `MiraiAudio{}`
  */
-class AudioMessage : public MessageBase
+class AudioMessage final : public IMessageImpl<AudioMessage>
 {
-protected:
+	friend IMessageImpl<AudioMessage>;
+
+private:
 	MiraiAudio _audio{};
 
 	void _clear() noexcept { this->_audio = {}; }
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final { return this->_audio.valid(); }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AUDIO;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AUDIO;
-
-	AudioMessage() : MessageBase(_TYPE_) {}
-	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)), MessageBase(_TYPE_) {}
+	AudioMessage() = default;
+	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)) {}
 	AudioMessage(std::string AudioId, std::string url, std::string path, std::string base64)
-		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}, MessageBase(_TYPE_)
-	{
-	}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AudioMessage>(*this); }
-
-	bool isValid() const final { return this->_audio.isValid(); }
+		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}
+	{}
 
 	/**
 	 * @brief 获取消息中的音频内容
@@ -122,9 +119,11 @@ public:
 		this->_audio = std::move(audio);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<AudioMessage::_TYPE_>
+template<> struct GetType<AudioMessage::GetType()>
 {
 	using type = AudioMessage;
 };

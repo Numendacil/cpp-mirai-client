@@ -48,10 +48,11 @@ protected:
 
 public:
 	Node() = default;
+	~Node() = default;
 
-	bool isValid() const
+	bool valid() const
 	{
-		return this->_MessageId.has_value() || (!this->_SenderName.empty() && this->_message.isValid());
+		return this->_MessageId.has_value() || (!this->_SenderName.empty() && this->_message.valid());
 	}
 
 	/// 获取发送者QQ
@@ -107,7 +108,6 @@ public:
 	}
 
 	struct Serializable;
-	;
 };
 
 } // namespace Mirai

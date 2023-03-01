@@ -18,7 +18,7 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -30,29 +30,26 @@ namespace Mirai
  * --------------- | -------------
  * `DiceMessage::_value` | `-1`
  */
-class DiceMessage : public MessageBase
+class DiceMessage final : public IMessageImpl<DiceMessage>
 {
+	friend IMessageImpl<DiceMessage>;
+
 protected:
 	int _value = -1;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final { return this->_value > 0 && this->_value <= 6; }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::DICE;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::DICE;
-
-	DiceMessage() : MessageBase(_TYPE_) {}
-	DiceMessage(int value) : MessageBase(_TYPE_)
+	DiceMessage() = default;
+	DiceMessage(int value)
 	{
 		if (value > 0 && value <= 6) this->_value = value;
 		else
 			this->_value = -1;
 	}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<DiceMessage>(*this); }
-
-	bool isValid() const final { return this->_value > 0 && this->_value <= 6; }
-
 
 	bool operator==(const DiceMessage& rhs) { return this->_value == rhs._value; }
 
@@ -67,9 +64,11 @@ public:
 		if (value > 0 && value <= 6) this->_value = value;
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<DiceMessage::_TYPE_>
+template<> struct GetType<DiceMessage::GetType()>
 {
 	using type = DiceMessage;
 };

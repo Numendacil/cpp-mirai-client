@@ -18,7 +18,7 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -27,23 +27,21 @@ namespace Mirai
  * @brief At全体成员消息
  * 
  */
-class AtAllMessage : public MessageBase
+class AtAllMessage final : public IMessageImpl<AtAllMessage>
 {
-protected:
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	friend class IMessageImpl<AtAllMessage>;
+
+private:
+	bool _isValid() const final { return true; }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::AT_ALL;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AT_ALL;
-
-	AtAllMessage() : MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<AtAllMessage>(*this); }
-
-	bool isValid() const final { return true; }
+	struct Serializable;
 };
 
-template<> struct GetType<AtAllMessage::_TYPE_>
+template<> struct GetType<AtAllMessage::GetType()>
 {
 	using type = AtAllMessage;
 };

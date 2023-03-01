@@ -30,11 +30,11 @@ using json = nlohmann::json;
 
 void UID_t::Serializable::from_json(const json& j, UID_t& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	p = UID_t(j.get<int64_t>());
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void UID_t::Serializable::to_json(json& j, const UID_t& p)
@@ -155,14 +155,14 @@ void to_json(json& j, const HonorChangeType& p)
 
 void User::Serializable::from_json(const json& j, User& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("id").get_to(p.id);
 	j.at("id").get_to(p.id);
 	j.at("nickname").get_to(p.nickname);
 	j.at("remark").get_to(p.remark);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void User::Serializable::to_json(json& j, const User& p)
@@ -175,13 +175,13 @@ void User::Serializable::to_json(json& j, const User& p)
 
 void Group::Serializable::from_json(const json& j, Group& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("id").get_to(p.id);
 	j.at("name").get_to(p.name);
 	j.at("permission").get_to(p.permission);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void Group::Serializable::to_json(json& j, const Group& p)
@@ -194,7 +194,7 @@ void Group::Serializable::to_json(json& j, const Group& p)
 
 void GroupMember::Serializable::from_json(const json& j, GroupMember& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("id").get_to(p.id);
 	j.at("memberName").get_to(p.MemberName);
@@ -205,7 +205,7 @@ void GroupMember::Serializable::from_json(const json& j, GroupMember& p)
 	p.MuteTimeRemaining = std::chrono::seconds(Utils::GetValue(j, "muteTimeRemaining", (int64_t)0)); // Can be empty
 	j.at("group").get_to(p.group);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void GroupMember::Serializable::to_json(json& j, const GroupMember& p)
@@ -244,12 +244,12 @@ void UserProfile::Serializable::to_json(json& j, const UserProfile& p)
 
 void ClientDevice::Serializable::from_json(const json& j, ClientDevice& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	j.at("id").get_to(p.id);
 	j.at("platform").get_to(p.platform);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 void ClientDevice::Serializable::to_json(json& j, const ClientDevice& p)

@@ -53,6 +53,4 @@ target_sources(
 	TempSyncMessageEvent.hpp
 
 	MiraiClientEvents.hpp
-
-	Events.hpp
 )

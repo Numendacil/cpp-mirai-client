@@ -1,17 +1,16 @@
-#include <gtest/gtest.h>
 #include <random>
 #include <stdexcept>
 #include <string>
 
-#include <libmirai/Messages/Messages.hpp>
-#include <libmirai/Serialization/Types/Types.hpp>
-#include <libmirai/Serialization/Messages/MessageBase.hpp>
-#include <libmirai/Serialization/Messages/MessageChain.hpp>
-#include <libmirai/Serialization/Messages/ForwardMessageNode.hpp>
+#include <gtest/gtest.h>
 #include <nlohmann/json.hpp>
 
+#include <libmirai/Exceptions/Exceptions.hpp>
+#include <libmirai/Messages/Messages.hpp>
+#include <libmirai/Serialization/Messages/Messages.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+
 #include "JsonData.hpp"
-#include "libmirai/Messages/AtAllMessage.hpp"
 
 using json = nlohmann::json;
 using namespace Mirai;
@@ -20,87 +19,84 @@ TEST(MessagesTest, AppMessage)
 {
 	AppMessage app = Data::MessageData["AppMessage"].get<AppMessage>();
 
-	EXPECT_TRUE(app.isValid());
+	EXPECT_TRUE(app.valid());
+	EXPECT_TRUE(app.isSendSupported());
 
-	json j = app;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "App");
+	json j;
+	EXPECT_NO_THROW(j = app);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), app.GetType());
 
 	EXPECT_EQ(app.GetContent(), "<>");
 	app.SetContent("abc");
 	j = app;
 	EXPECT_EQ(j.value("content", ""), "abc");
 
-	auto app1 = app.CloneUnique();
-	std::shared_ptr<MessageBase> app2 = app.CloneUnique();
-	json j1 = *app1;
-	json j2 = *app2;
+	auto app1 = app;
+	auto app2 = std::move(app);
+	json j1 = app1;
+	json j2 = app2;
 	EXPECT_EQ(j1, j2);
-
 }
 
 TEST(MessagesTest, AtAllMessage)
 {
 	AtAllMessage atall = Data::MessageData["AtAllMessage"].get<AtAllMessage>();
 
-	EXPECT_TRUE(atall.isValid());
-	
-	json j = atall;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "AtAll");
+	EXPECT_TRUE(atall.valid());
+	EXPECT_TRUE(atall.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = atall);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), atall.GetType());
+
 	EXPECT_FALSE(j.empty());
 	json j_ = AtAllMessage{};
 	EXPECT_EQ(j, j_);
 
-	auto atall1 = atall.CloneUnique();
-	std::shared_ptr<MessageBase> atall2 = atall.CloneUnique();
-	json j1 = *atall1;
-	json j2 = *atall2;
+	auto atall1 = atall;
+	auto atall2 = std::move(atall);
+	json j1 = atall1;
+	json j2 = atall2;
 	EXPECT_EQ(j1, j2);
-
 }
 
 TEST(MessagesTest, AtMessage)
 {
 	AtMessage at = Data::MessageData["AtMessage"].get<AtMessage>();
 
-	EXPECT_TRUE(at.isValid());
-	
-	json j = at;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "At");
-	
-	auto at1 = at.CloneUnique();
-	std::shared_ptr<MessageBase> at2= at.CloneUnique();
-	json j1 = *at1;
-	json j2 = *at2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(at.valid());
+	EXPECT_TRUE(at.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = at);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), at.GetType());
 
 	EXPECT_EQ(at.GetTarget(), 123456_qq);
 	EXPECT_EQ(at.GetDisplayName(), "@Mirai");
 	AtMessage msg;
 	msg.SetTarget(987654_qq);
 	EXPECT_EQ(msg.GetTarget(), 987654_qq);
-	EXPECT_TRUE(msg.isValid());
+	EXPECT_TRUE(msg.valid());
 	j = msg;
 	EXPECT_FALSE(j.contains("display"));
+
+	auto at1 = at;
+	auto at2 = std::move(at);
+	json j1 = at1;
+	json j2 = at2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, AudioMessage)
 {
 	AudioMessage audio = Data::MessageData["AudioMessage"].get<AudioMessage>();
 
-	EXPECT_TRUE(audio.isValid());
-	
-	json j = audio;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Voice");
-	
-	auto audio1 = audio.CloneUnique();
-	std::shared_ptr<MessageBase> audio2= audio.CloneUnique();
-	json j1 = *audio1;
-	json j2 = *audio2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(audio.valid());
+	EXPECT_TRUE(audio.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = audio);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), audio.GetType());
 
 	EXPECT_EQ(audio.GetAudio().id, "23C477720A37FEB6A9EE4BCCF654014F.amr");
 	EXPECT_EQ(audio.GetAudio().url, "https://example.com");
@@ -111,23 +107,24 @@ TEST(MessagesTest, AudioMessage)
 	audio.SetAudioId("abcd.amr");
 	j = audio;
 	EXPECT_EQ(j.value("voiceId", ""), "abcd.amr");
+
+	auto audio1 = audio;
+	auto audio2 = std::move(audio);
+	json j1 = audio1;
+	json j2 = audio2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, DiceMessage)
 {
 	DiceMessage dice = Data::MessageData["DiceMessage"].get<DiceMessage>();
 
-	EXPECT_TRUE(dice.isValid());
-	
-	json j = dice;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Dice");
-	
-	auto dice1 = dice.CloneUnique();
-	std::shared_ptr<MessageBase> dice2= dice.CloneUnique();
-	json j1 = *dice1;
-	json j2 = *dice2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(dice.valid());
+	EXPECT_TRUE(dice.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = dice);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), dice.GetType());
 
 	EXPECT_EQ(dice.GetValue(), 1);
 	dice.SetValue(7);
@@ -135,24 +132,25 @@ TEST(MessagesTest, DiceMessage)
 	EXPECT_EQ(j.value("value", 0), 1);
 	dice = DiceMessage(8);
 	j = dice;
-	EXPECT_FALSE(dice.isValid());
+	EXPECT_FALSE(dice.valid());
+
+	auto dice1 = dice;
+	auto dice2 = std::move(dice);
+	json j1 = dice1;
+	json j2 = dice2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, FaceMessage)
 {
 	FaceMessage face = Data::MessageData["FaceMessage"].get<FaceMessage>();
 
-	EXPECT_TRUE(face.isValid());
-	
-	json j = face;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Face");
-	
-	auto face1 = face.CloneUnique();
-	std::shared_ptr<MessageBase> face2= face.CloneUnique();
-	json j1 = *face1;
-	json j2 = *face2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(face.valid());
+	EXPECT_TRUE(face.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = face);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), face.GetType());
 
 	EXPECT_EQ(face.GetId(), 123);
 	EXPECT_EQ(face.GetName(), "bu");
@@ -160,44 +158,42 @@ TEST(MessagesTest, FaceMessage)
 	face.SetId(456);
 	j = face;
 	EXPECT_EQ(j.value("faceId", 123), 456);
+
+	auto face1 = face;
+	auto face2 = std::move(face);
+	json j1 = face1;
+	json j2 = face2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, FileMessage)
 {
 	FileMessage file = Data::MessageData["FileMessage"].get<FileMessage>();
 
-	EXPECT_TRUE(file.isValid());
-	
-	json j = file;
-	EXPECT_NO_THROW(j);
-	
-	auto file1 = file.CloneUnique();
-	std::shared_ptr<MessageBase> file2= file.CloneUnique();
-	json j1 = *file1;
-	json j2 = *file2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(file.valid());
+	EXPECT_FALSE(file.isSendSupported());
 
 	EXPECT_EQ(file.GetId(), "id");
 	EXPECT_EQ(file.GetName(), "xxx");
 	EXPECT_EQ(file.GetSize(), 128);
-	EXPECT_TRUE(j.empty());
+
+	auto file1 = file;
+	auto file2 = std::move(file);
+	EXPECT_EQ(file1.GetId(), file2.GetId());
+	EXPECT_EQ(file1.GetName(), file2.GetName());
+	EXPECT_EQ(file1.GetSize(), file2.GetSize());
 }
 
 TEST(MessagesTest, FlashImageMessage)
 {
 	FlashImageMessage flashimage = Data::MessageData["FlashImageMessage"].get<FlashImageMessage>();
 
-	EXPECT_TRUE(flashimage.isValid());
-	
-	json j = flashimage;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "FlashImage");
-	
-	auto flashimage1 = flashimage.CloneUnique();
-	std::shared_ptr<MessageBase> flashimage2= flashimage.CloneUnique();
-	json j1 = *flashimage1;
-	json j2 = *flashimage2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(flashimage.valid());
+	EXPECT_TRUE(flashimage.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = flashimage);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), flashimage.GetType());
 
 	EXPECT_EQ(flashimage.GetImage().id, "23C477720A37FEB6A9EE4BCCF654014F.png");
 	EXPECT_EQ(flashimage.GetImage().url, "https://example.com");
@@ -211,23 +207,24 @@ TEST(MessagesTest, FlashImageMessage)
 	flashimage.SetImageId("abcd.png");
 	j = flashimage;
 	EXPECT_EQ(j.value("imageId", ""), "abcd.png");
+
+	auto flashimage1 = flashimage;
+	auto flashimage2 = std::move(flashimage);
+	json j1 = flashimage1;
+	json j2 = flashimage2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, ForwardMessage)
 {
 	ForwardMessage forward = Data::MessageData["ForwardMessage"].get<ForwardMessage>();
 
-	EXPECT_TRUE(forward.isValid());
-	
-	json j = forward;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Forward");
-	
-	auto forward1 = forward.CloneUnique();
-	std::shared_ptr<MessageBase> forward2= forward.CloneUnique();
-	json j1 = *forward1;
-	json j2 = *forward2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(forward.valid());
+	EXPECT_TRUE(forward.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = forward);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), forward.GetType());
 
 	EXPECT_EQ(forward.size(), 2);
 	auto node = forward[0];
@@ -235,28 +232,29 @@ TEST(MessagesTest, ForwardMessage)
 	EXPECT_EQ(node.GetMessageChain().size(), 1);
 	auto message = forward[1].GetMessageChain();
 	EXPECT_EQ(message.size(), 1);
-	EXPECT_EQ(message[0].GetType(), MessageTypes::FORWARD);
+	EXPECT_EQ(message.GetType(0), MessageTypes::FORWARD);
 	auto msg = message.GetAt<ForwardMessage>(0);
 	EXPECT_EQ(msg.size(), 1);
 	EXPECT_FALSE(msg[0].hasMessageId());
-	EXPECT_TRUE(msg[0].isValid());
+	EXPECT_TRUE(msg[0].valid());
+
+	auto forward1 = forward;
+	auto forward2 = std::move(forward);
+	json j1 = forward1;
+	json j2 = forward2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, ImageMessage)
 {
 	ImageMessage image = Data::MessageData["ImageMessage"].get<ImageMessage>();
 
-	EXPECT_TRUE(image.isValid());
-	
-	json j = image;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Image");
-	
-	auto image1 = image.CloneUnique();
-	std::shared_ptr<MessageBase> image2= image.CloneUnique();
-	json j1 = *image1;
-	json j2 = *image2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(image.valid());
+	EXPECT_TRUE(image.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = image);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), image.GetType());
 
 	EXPECT_EQ(image.GetImage().id, "23C477720A37FEB6A9EE4BCCF654014F.png");
 	EXPECT_EQ(image.GetImage().url, "https://example.com");
@@ -270,89 +268,85 @@ TEST(MessagesTest, ImageMessage)
 	image.SetImageId("abcd.png");
 	j = image;
 	EXPECT_EQ(j.value("imageId", ""), "abcd.png");
+
+	auto image1 = image;
+	auto image2 = std::move(image);
+	json j1 = image1;
+	json j2 = image2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, JsonMessage)
 {
 	JsonMessage js = Data::MessageData["JsonMessage"].get<JsonMessage>();
-	EXPECT_TRUE(js.isValid());
-	
-	json j = js;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Json");
-	
-	auto js1 = js.CloneUnique();
-	std::shared_ptr<MessageBase> js2= js.CloneUnique();
-	json j1 = *js1;
-	json j2 = *js2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(js.valid());
+	EXPECT_TRUE(js.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = js);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), js.GetType());
 
 	EXPECT_EQ(js.GetContent(), "{\"text\": \"hello\"}");
 	js.SetContent("abc");
 	j = js;
 	EXPECT_EQ(j.value("json", ""), "abc");
+
+	auto js1 = js;
+	auto js2 = std::move(js);
+	json j1 = js1;
+	json j2 = js2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, MarketFaceMessage)
 {
 	MarketFaceMessage marketface = Data::MessageData["MarketFaceMessage"].get<MarketFaceMessage>();
 
-	EXPECT_TRUE(marketface.isValid());
-	
-	json j = marketface;
-	EXPECT_NO_THROW(j);
-	
-	auto marketface1 = marketface.CloneUnique();
-	std::shared_ptr<MessageBase> marketface2= marketface.CloneUnique();
-	json j1 = *marketface1;
-	json j2 = *marketface2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(marketface.valid());
+	EXPECT_FALSE(marketface.isSendSupported());
 
 	EXPECT_EQ(marketface.GetId(), 123);
 	EXPECT_EQ(marketface.GetName(), "商城表情");
-	marketface.SetName("waht");
-	marketface.SetId(456);
-	j = marketface;
-	EXPECT_TRUE(j.empty());
+
+	auto marketface1 = marketface;
+	auto marketface2 = std::move(marketface);
+	EXPECT_EQ(marketface1.GetId(), marketface2.GetId());
+	EXPECT_EQ(marketface1.GetName(), marketface2.GetName());
 }
 
 TEST(MessagesTest, MiraiCodeMessage)
 {
 	MiraiCodeMessage miraicode = Data::MessageData["MiraiCodeMessage"].get<MiraiCodeMessage>();
 
-	EXPECT_TRUE(miraicode.isValid());
-	
-	json j = miraicode;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "MiraiCode");
-	
-	auto miraicode1 = miraicode.CloneUnique();
-	std::shared_ptr<MessageBase> miraicode2= miraicode.CloneUnique();
-	json j1 = *miraicode1;
-	json j2 = *miraicode2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(miraicode.valid());
+	EXPECT_TRUE(miraicode.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = miraicode);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), miraicode.GetType());
 
 	EXPECT_EQ(miraicode.GetCode(), "hello[mirai:at:1234567]");
 	miraicode.SetCode("[mirai:image:{ABCDEFG}.png]");
 	j = miraicode;
 	EXPECT_EQ(j.value("code", ""), "[mirai:image:{ABCDEFG}.png]");
+
+	auto miraicode1 = miraicode;
+	auto miraicode2 = std::move(miraicode);
+	json j1 = miraicode1;
+	json j2 = miraicode2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, MusicShareMessage)
 {
 	MusicShareMessage musicshare = Data::MessageData["MusicShareMessage"].get<MusicShareMessage>();
 
-	EXPECT_TRUE(musicshare.isValid());
-	
-	json j = musicshare;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "MusicShare");
-	
-	auto musicshare1 = musicshare.CloneUnique();
-	std::shared_ptr<MessageBase> musicshare2= musicshare.CloneUnique();
-	json j1 = *musicshare1;
-	json j2 = *musicshare2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(musicshare.valid());
+	EXPECT_TRUE(musicshare.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = musicshare);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), musicshare.GetType());
 
 	EXPECT_EQ(musicshare.GetKind(), MusicShareType::NETEASECLOUDMUSIC);
 	EXPECT_EQ(j, json::parse(R"(
@@ -370,133 +364,169 @@ TEST(MessagesTest, MusicShareMessage)
 	musicshare.SetKind(MusicShareType::KUGOUMUSIC);
 	j = musicshare;
 	EXPECT_EQ(j.value("kind", ""), "KugouMusic");
+
+	auto musicshare1 = musicshare;
+	auto musicshare2 = std::move(musicshare);
+	json j1 = musicshare1;
+	json j2 = musicshare2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, PlainMessage)
 {
 	PlainMessage plain = Data::MessageData["PlainMessage"].get<PlainMessage>();
 
-	EXPECT_TRUE(plain.isValid());
-	
-	json j = plain;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Plain");
-	
-	auto plain1 = plain.CloneUnique();
-	std::shared_ptr<MessageBase> plain2= plain.CloneUnique();
-	json j1 = *plain1;
-	json j2 = *plain2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(plain.valid());
+	EXPECT_TRUE(plain.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = plain);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), plain.GetType());
 
 	EXPECT_EQ(plain.GetText(), "hello");
 	plain = PlainMessage("abc");
 	j = plain;
 	EXPECT_EQ(j.value("text", ""), "abc");
+
+	auto plain1 = plain;
+	auto plain2 = std::move(plain);
+	json j1 = plain1;
+	json j2 = plain2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, PokeMessage)
 {
 	PokeMessage poke = Data::MessageData["PokeMessage"].get<PokeMessage>();
 
-	EXPECT_TRUE(poke.isValid());
-	
-	json j = poke;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Poke");
-	
-	auto poke1 = poke.CloneUnique();
-	std::shared_ptr<MessageBase> poke2= poke.CloneUnique();
-	json j1 = *poke1;
-	json j2 = *poke2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(poke.valid());
+	EXPECT_TRUE(poke.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = poke);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), poke.GetType());
 
 	EXPECT_EQ(poke.GetPokeKind(), PokeType::DIANZAN);
 	poke.SetPokeKind(PokeType::ROSE);
 	j = poke;
 	EXPECT_EQ(j.value("name", ""), "Rose");
+
+	auto poke1 = poke;
+	auto poke2 = std::move(poke);
+	json j1 = poke1;
+	json j2 = poke2;
+	EXPECT_EQ(j1, j2);
 }
 
 TEST(MessagesTest, QuoteMessage)
 {
 	QuoteMessage quote = Data::MessageData["QuoteMessage"].get<QuoteMessage>();
 
-	EXPECT_TRUE(quote.isValid());
-	
-	json j = quote;
-	EXPECT_NO_THROW(j);
-	
-	auto quote1 = quote.CloneUnique();
-	std::shared_ptr<MessageBase> quote2= quote.CloneUnique();
-	json j1 = *quote1;
-	json j2 = *quote2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(quote.valid());
+	EXPECT_FALSE(quote.isSendSupported());
 
 	EXPECT_NE(quote.GetTargetId(), 123456789_qq);
 	EXPECT_EQ(quote.GetSenderId(), 987654321_qq);
-	json j_ = quote.GetOriginMessage()[0];
-	EXPECT_EQ(j_, json::parse(R"({ "type": "Plain", "text": "text" })"));
-	EXPECT_TRUE(j.empty());
+	json j = quote.GetOriginMessage()[0];
+	EXPECT_EQ(j, json::parse(R"({ "type": "Plain", "text": "text" })"));
+
+	auto quote1 = quote;
+	auto quote2 = std::move(quote);
+	EXPECT_EQ(quote1.GetTargetId(), quote2.GetTargetId());
+	EXPECT_EQ(quote1.GetSenderId(), quote2.GetSenderId());
 }
 
 TEST(MessagesTest, SourceMessage)
 {
 	SourceMessage source = Data::MessageData["SourceMessage"].get<SourceMessage>();
 
-	EXPECT_TRUE(source.isValid());
-	
-	json j = source;
-	EXPECT_NO_THROW(j);
-	
-	auto source1 = source.CloneUnique();
-	std::shared_ptr<MessageBase> source2= source.CloneUnique();
-	json j1 = *source1;
-	json j2 = *source2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(source.valid());
+	EXPECT_FALSE(source.isSendSupported());
 
 	EXPECT_EQ(source.GetTimestamp(), 123456);
 	EXPECT_EQ(source.GetMessageId(), 654321);
-	EXPECT_TRUE(j.empty());
+
+	auto source1 = source;
+	auto source2 = std::move(source);
+	EXPECT_EQ(source1.GetTimestamp(), source2.GetTimestamp());
+	EXPECT_EQ(source1.GetMessageId(), source2.GetMessageId());
 }
 
 TEST(MessagesTest, XmlMessage)
 {
 	XmlMessage xml = Data::MessageData["XmlMessage"].get<XmlMessage>();
 
-	EXPECT_TRUE(xml.isValid());
-	
-	json j = xml;
-	EXPECT_NO_THROW(j);
-	EXPECT_EQ(j.value("type", ""), "Xml");
-	
-	auto xml1 = xml.CloneUnique();
-	std::shared_ptr<MessageBase> xml2= xml.CloneUnique();
-	json j1 = *xml1;
-	json j2 = *xml2;
-	EXPECT_EQ(j1, j2);
+	EXPECT_TRUE(xml.valid());
+	EXPECT_TRUE(xml.isSendSupported());
+
+	json j;
+	EXPECT_NO_THROW(j = xml);
+	EXPECT_EQ(j["type"].get<MessageTypes>(), xml.GetType());
 
 	EXPECT_EQ(xml.GetContent(), "<XML>");
 	xml.SetContent("abc");
 	j = xml;
 	EXPECT_EQ(j.value("xml", ""), "abc");
+
+	auto xml1 = xml;
+	auto xml2 = std::move(xml);
+	json j1 = xml1;
+	json j2 = xml2;
+	EXPECT_EQ(j1, j2);
+}
+
+TEST(MessagesTest, MessageElementTest)
+{
+	MessageElement m;
+	EXPECT_EQ(m.type(), MessageTypes::ENUM_END);
+	EXPECT_FALSE(m);
+	EXPECT_THROW(m.allowSend(), std::runtime_error);
+
+	m = std::make_unique<PlainMessage>("text");
+	EXPECT_EQ(m.type(), MessageTypes::PLAIN);
+	EXPECT_TRUE(m);
+	EXPECT_NO_THROW(m.as<PlainMessage>());
+	EXPECT_THROW(m.as<AppMessage>(), TypeDismatch);
+
+	MessageElement m1(m);
+	const MessageElement m2(std::make_unique<AppMessage>());
+	EXPECT_TRUE(m1.valid());
+	EXPECT_FALSE(m2.valid());
+
+	EXPECT_TRUE(m1.visit(
+		[](auto&& m)
+		{
+			using Type = std::decay_t<decltype(m)>;
+			return std::is_same_v<Type, PlainMessage>;
+		}
+	));
+
+	EXPECT_FALSE(m2.visit(
+		[](const auto& m)
+		{
+			using Type = std::decay_t<decltype(m)>;
+			return std::is_same_v<Type, PlainMessage>;
+		}
+	));
 }
 
 TEST(MessagesTest, TemplateTest)
 {
 	MessageChain m;
-	m.Append(PlainMessage{"aaa"});
-	m.Append<ImageMessage>("1", "2", "3", "4");
-	m.Append(SourceMessage{});
-	m.Append(PlainMessage{"bbb"});
-	m.Append<PokeMessage>(PokeMessage{PokeType::ENUM_END});
-	m.Append<MessageTypes::MUSIC_SHARE>(MusicShareType::NETEASECLOUDMUSIC, "a", "a", "a", "a", "a", "a");
+	m.push_back(PlainMessage{"aaa"});
+	m.emplace_back<ImageMessage>("1", "2", "3", "4");
+	m.push_back(SourceMessage{});
+	m.push_back(PlainMessage{"bbb"});
+	m.emplace_back<PokeMessage>(PokeMessage{PokeType::ENUM_END});
+	m.emplace_back<MessageTypes::MUSIC_SHARE>(MusicShareType::NETEASECLOUDMUSIC, "a", "a", "a", "a", "a", "a");
 
-	EXPECT_EQ(m.GetAt<PokeMessage>(4).isValid(), false);
+	EXPECT_EQ(m.GetAt<PokeMessage>(4).valid(), false);
 	const MessageChain m_const = m;
 	json j = m_const.GetAt<MusicShareMessage>(5);
 	EXPECT_EQ(j["kind"].get<std::string>(), "NeteaseCloudMusic");
 	EXPECT_THROW(auto msg = m.GetAt<PlainMessage>(1), TypeDismatch);
 
-	m.Insert<PlainMessage>(m.begin() + 2, "ccc");
+	m.emplace<PlainMessage>(m.begin() + 2, "ccc");
 	auto plain = m.GetAll<PlainMessage>();
 	EXPECT_EQ(plain.size(), 3);
 	EXPECT_EQ(plain[1].GetText(), "ccc");
@@ -505,11 +535,11 @@ TEST(MessagesTest, TemplateTest)
 TEST(MessagesTest, ConstructorTest)
 {
 	MessageChain m;
-	m.Append(AppMessage{});
-	m.Append(AtAllMessage{});
-	m.Append(AudioMessage{});
-	m.Append(DiceMessage{});
-	m.Append(MarketFaceMessage{});
+	m.push_back(AppMessage{});
+	m.push_back(AtAllMessage{});
+	m.push_back(AudioMessage{});
+	m.push_back(DiceMessage{});
+	m.push_back(MarketFaceMessage{});
 
 	MessageChain m2 = std::move(m);
 	MessageChain m3;
@@ -538,8 +568,6 @@ TEST(MessagesTest, OperatorTest)
 	auto m3 = m + PlainMessage("waht");
 	auto m4 = m3 + m;
 	EXPECT_EQ(m4.size(), 5);
-	EXPECT_EQ(j, j);
-	EXPECT_EQ(j, j);
 }
 
 TEST(MessagesTest, SerializationTest)
@@ -556,7 +584,7 @@ TEST(MessagesTest, SerializationTest)
 	}
 	std::uniform_int_distribution<unsigned long> randidx(0, data.size() - 1);
 	json msg;
-	for (std::size_t i = 0; i < 10000; i++)
+	for (std::size_t i = 0; i < 100000; i++)
 	{
 		auto idx = randidx(rng);
 		msg += data[idx];
@@ -565,6 +593,6 @@ TEST(MessagesTest, SerializationTest)
 	EXPECT_EQ(m.size(), msg.size());
 	for (std::size_t i = 0; i < msg.size(); i++)
 	{
-		EXPECT_EQ(m[i].GetType(), msg[i]["type"].get<MessageTypes>());
+		EXPECT_EQ(m.GetType(i), msg[i]["type"].get<MessageTypes>());
 	}
 }

@@ -18,7 +18,7 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 /**
  * @brief  Mirai码消息
@@ -30,23 +30,21 @@
 namespace Mirai
 {
 
-class MiraiCodeMessage : public MessageBase
+class MiraiCodeMessage final : public IMessageImpl<MiraiCodeMessage>
 {
+	friend IMessageImpl<MiraiCodeMessage>;
+
 protected:
 	std::string _code{};
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MIRAI_CODE;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final { return !this->_code.empty(); }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::MIRAI_CODE;
-
-	MiraiCodeMessage() : MessageBase(_TYPE_) {}
-	MiraiCodeMessage(std::string code) : _code(std::move(code)), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MiraiCodeMessage>(*this); }
-
-	bool isValid() const final { return !this->_code.empty(); }
+	MiraiCodeMessage() = default;
+	MiraiCodeMessage(std::string code) : _code(std::move(code)) {}
 
 
 	bool operator==(const MiraiCodeMessage& rhs) { return this->_code == rhs._code; }
@@ -62,9 +60,11 @@ public:
 		this->_code = std::move(code);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<MiraiCodeMessage::_TYPE_>
+template<> struct GetType<MiraiCodeMessage::GetType()>
 {
 	using type = MiraiCodeMessage;
 };

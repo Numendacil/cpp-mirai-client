@@ -22,7 +22,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -40,8 +40,10 @@ namespace Mirai
  * `MusicShareMessage::_MusicUrl` | `""`
  * `MusicShareMessage::_brief` | `""`
  */
-class MusicShareMessage : public MessageBase
+class MusicShareMessage final : public IMessageImpl<MusicShareMessage>
 {
+	friend IMessageImpl<MusicShareMessage>;
+
 protected:
 	MusicShareType _kind = MusicShareType::ENUM_END;
 	std::string _title{};
@@ -51,12 +53,18 @@ protected:
 	std::string _MusicUrl{};
 	std::string _brief{};
 
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MUSIC_SHARE;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final
+	{
+		return !(this->_kind == MusicShareType::ENUM_END || this->_title.empty() || this->_summary.empty()
+		         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
+		         || this->_brief.empty());
+	}
 
 public:
-	MusicShareMessage() : MessageBase(_TYPE_) {}
+	MusicShareMessage() = default;
 
 	MusicShareMessage(MusicShareType kind, std::string title, std::string summary, std::string JumpUrl,
 	                  std::string PictureUrl, std::string MusicUrl, std::string brief)
@@ -67,19 +75,7 @@ public:
 		, _PictureUrl(std::move(PictureUrl))
 		, _MusicUrl(std::move(MusicUrl))
 		, _brief(std::move(brief))
-		, MessageBase(_TYPE_)
 	{
-	}
-
-	static constexpr MessageTypes _TYPE_ = MessageTypes::MUSIC_SHARE;
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<MusicShareMessage>(*this); }
-
-	bool isValid() const final
-	{
-		return !(this->_kind == MusicShareType::ENUM_END || this->_title.empty() || this->_summary.empty()
-		         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
-		         || this->_brief.empty());
 	}
 
 	/// 获取分享种类
@@ -143,9 +139,11 @@ public:
 		this->_brief = std::move(brief);
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<MusicShareMessage::_TYPE_>
+template<> struct GetType<MusicShareMessage::GetType()>
 {
 	using type = MusicShareMessage;
 };

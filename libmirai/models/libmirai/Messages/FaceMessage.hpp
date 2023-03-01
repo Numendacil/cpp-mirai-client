@@ -18,10 +18,61 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
+
+/**
+ * @brief QQ表情类消息
+ * 
+ * Middleware for face related messages
+ */
+template <class Message>
+class FaceMessageImpl : public IMessageImpl<Message>
+{
+	friend IMessageImpl<Message>;
+
+protected:
+	int64_t _id = -1;
+	std::string _name{};
+
+	bool _isValid() const override { return this->_id != -1 || !this->_name.empty(); }
+
+public:
+	FaceMessageImpl() = default;
+	FaceMessageImpl(int64_t id) : _id(id) {}
+	FaceMessageImpl(std::string name) : _name(std::move(name)) {}
+
+	bool operator==(const FaceMessageImpl& rhs) { return (_id >= 0) ? this->_id == rhs._id : this->_name == rhs._name; }
+
+	bool operator!=(const FaceMessageImpl& rhs) { return !(*this == rhs); }
+
+	/// 获取表情id
+	int64_t GetId() const { return this->_id; }
+
+	/// 获取表情名称
+	std::string GetName() const { return this->_name; }
+
+	/// 设置表情id
+	Message& SetId(int64_t id)
+	{
+		this->_id = id;
+		return *static_cast<Message*>(this);
+	}
+
+	/// 设置表情名称。这一操作会清除已设置的id。
+	Message& SetName(std::string name)
+	{
+		this->_id = -1;
+		this->_name = std::move(name);
+		return *static_cast<Message*>(this);
+	}
+
+	struct Serializable;
+};
+
+
 
 /**
  * @brief QQ表情消息
@@ -33,55 +84,52 @@ namespace Mirai
  * `FaceMessage::_id` | `-1`
  * `FaceMessage::_name` | `""`
  */
-class FaceMessage : public MessageBase
+class FaceMessage final : public FaceMessageImpl<FaceMessage>
 {
-protected:
-	int64_t _id = -1;
-	std::string _name{};
+	friend IMessageImpl<FaceMessage>;
 
-	void Serialize(void*) const override;
-	void Deserialize(const void*) override;
+protected:
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
+	static constexpr bool _SUPPORT_SEND_ = true;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
-
-	FaceMessage() : MessageBase(_TYPE_) {}
-	FaceMessage(int64_t id) : _id(id), MessageBase(_TYPE_) {}
-	FaceMessage(std::string name) : _name(std::move(name)), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const override { return std::make_unique<FaceMessage>(*this); }
-
-	bool isValid() const override { return this->_id != -1 || !this->_name.empty(); }
-
-	bool operator==(const FaceMessage& rhs) { return (_id >= 0) ? this->_id == rhs._id : this->_name == rhs._name; }
-
-	bool operator!=(const FaceMessage& rhs) { return !(*this == rhs); }
-
-	/// 获取表情id
-	int64_t GetId() const { return this->_id; }
-
-	/// 获取表情名称
-	std::string GetName() const { return this->_name; }
-
-	/// 设置表情id
-	FaceMessage& SetId(int64_t id)
-	{
-		this->_id = id;
-		return *this;
-	}
-
-	/// 设置表情名称。这一操作会清除已设置的id。
-	FaceMessage& SetName(std::string name)
-	{
-		this->_id = -1;
-		this->_name = std::move(name);
-		return *this;
-	}
+	using FaceMessageImpl<FaceMessage>::FaceMessageImpl;
 };
 
-template<> struct GetType<FaceMessage::_TYPE_>
+template<> struct GetType<FaceMessage::GetType()>
 {
 	using type = FaceMessage;
+};
+
+
+
+/**
+ * @brief QQ商店表情消息
+ * 
+ * 仅用于接收，发送时将会被无视
+ *
+ * Member Variable | Default Value
+ * --------------- | -------------
+ * `MarketFaceMessage::_id` | `-1`
+ * `MarketFaceMessage::_name` | `""`
+ */
+class MarketFaceMessage final : public FaceMessageImpl<MarketFaceMessage>
+{
+	friend IMessageImpl<MarketFaceMessage>;
+
+protected:
+	bool _isValid() const final { return true; }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::MARKET_FACE;
+	static constexpr bool _SUPPORT_SEND_ = false;
+
+public:
+	using FaceMessageImpl<MarketFaceMessage>::FaceMessageImpl;
+};
+
+template<> struct GetType<MarketFaceMessage::GetType()>
+{
+	using type = MarketFaceMessage;
 };
 
 } // namespace Mirai

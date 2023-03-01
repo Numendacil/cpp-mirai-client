@@ -13,44 +13,44 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_QUOTE_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_QUOTE_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Messages/QuoteMessage.hpp>
 #include <libmirai/Serialization/Messages/MessageChain.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
-
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void QuoteMessage::Deserialize(const void* data)
+struct QuoteMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
+	static void from_json(const nlohmann::json& j, QuoteMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-	j.at("id").get_to(this->_QuoteId);
-	j.at("groupId").get_to(this->_GroupId);
-	j.at("senderId").get_to(this->_SenderId);
-	j.at("targetId").get_to(this->_TargetId);
-	j.at("origin").get_to(this->_origin);
-}
+		assert(j.at("type").get<MessageTypes>() == QuoteMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-void QuoteMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		j.at("id").get_to(p._QuoteId);
+		j.at("groupId").get_to(p._GroupId);
+		j.at("senderId").get_to(p._SenderId);
+		j.at("targetId").get_to(p._TargetId);
 
-	// json data = json::object();
-	// j["type"] = this->GetType();
-	// j["id"] = this->id;
-	// j["name"] = this->name;
-	// j["size"] = this->size;
-	// return data;
+		if (!p._origin)
+			p._origin = std::make_unique<MessageChain>(j.at("origin").get<MessageChain>());
+		else
+			j.at("origin").get_to(*p._origin);
 
-	// Not allowed for sending
-}
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	// static void to_json(nlohmann::json& j, const QuoteMessage& p) {}
+
+};
 
 } // namespace Mirai
+
+#endif

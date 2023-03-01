@@ -230,7 +230,7 @@ struct MiraiImage
 	 * 
 	 * @return `bool`
 	 */
-	bool isValid() const
+	bool valid() const
 	{
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}
@@ -277,7 +277,7 @@ struct MiraiAudio
 	 * 
 	 * @return `bool`
 	 */
-	bool isValid() const
+	bool valid() const
 	{
 		return !(this->id.empty() && this->url.empty() && this->path.empty() && this->base64.empty());
 	}

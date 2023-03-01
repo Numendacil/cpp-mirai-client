@@ -13,32 +13,22 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#include <nlohmann/json.hpp>
-
-#include <libmirai/Messages/MiraiCodeMessage.hpp>
-#include <libmirai/Serialization/Types/Types.hpp>
-
-
-namespace Mirai
-{
-
-using json = nlohmann::json;
-
-void MiraiCodeMessage::Deserialize(const void* data)
-{
-	const auto& j = *static_cast<const json*>(data);
-
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	j.at("code").get_to(this->_code);
-}
-
-void MiraiCodeMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
-
-	j["type"] = this->GetType();
-	j["code"] = this->_code;
-}
-
-} // namespace Mirai
+#include "AppMessage.hpp"
+#include "AtAllMessage.hpp"
+#include "AtMessage.hpp"
+#include "AudioMessage.hpp"
+#include "DiceMessage.hpp"
+#include "FaceMessage.hpp"
+#include "FileMessage.hpp"
+#include "ForwardMessage.hpp"
+#include "ForwardMessageNode.hpp"
+#include "ImageMessage.hpp"
+#include "JsonMessage.hpp"
+#include "MessageChain.hpp"
+#include "MiraiCodeMessage.hpp"
+#include "MusicShareMessage.hpp"
+#include "PlainMessage.hpp"
+#include "PokeMessage.hpp"
+#include "QuoteMessage.hpp"
+#include "SourceMessage.hpp"
+#include "XmlMessage.hpp"

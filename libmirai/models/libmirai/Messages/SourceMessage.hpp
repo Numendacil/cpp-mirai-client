@@ -21,7 +21,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -36,31 +36,31 @@ namespace Mirai
  * `SourceMessage::_id` | `-1`
  * `SourceMessage::_timestamp` | `0`
  */
-class SourceMessage : public MessageBase
+class SourceMessage final : public IMessageImpl<SourceMessage>
 {
+	friend IMessageImpl<SourceMessage>;
+
 protected:
 	MessageId_t _id = -1;
 	std::time_t _timestamp = 0;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::SOURCE;
+	static constexpr bool _SUPPORT_SEND_ = false;
+
+	bool _isValid() const final { return true; }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::SOURCE;
-
-	SourceMessage() : MessageBase(_TYPE_, false) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<SourceMessage>(*this); }
-
-	bool isValid() const final { return true; }
+	SourceMessage() = default;
 
 	/// 获取消息id
 	MessageId_t GetMessageId() const { return this->_id; }
 	/// 获取消息时间戳
 	std::time_t GetTimestamp() const { return this->_timestamp; }
+
+	struct Serializable;
 };
 
-template<> struct GetType<SourceMessage::_TYPE_>
+template<> struct GetType<SourceMessage::GetType()>
 {
 	using type = SourceMessage;
 };

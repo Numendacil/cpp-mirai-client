@@ -8,11 +8,11 @@ namespace Mirai
 using json = nlohmann::json;
 void EventBase::Serializable::from_json(const json& j, EventBase& p)
 {
-	MIRAI_PARSE_GUARD_BEGIN;
+	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	p.Deserialize(&j);
 
-	MIRAI_PARSE_GUARD_END;
+	MIRAI_PARSE_GUARD_END(j);
 }
 
 // Not defined

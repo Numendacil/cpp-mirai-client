@@ -13,31 +13,41 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+#ifndef _MIRAI_SERIALIZATION_XML_MESSAGE_HPP_
+#define _MIRAI_SERIALIZATION_XML_MESSAGE_HPP_
+
 #include <nlohmann/json.hpp>
 
-#include <libmirai/Messages/DiceMessage.hpp>
+#include <libmirai/Messages/XmlMessage.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 namespace Mirai
 {
 
-using json = nlohmann::json;
-
-void DiceMessage::Deserialize(const void* data)
+struct XmlMessage::Serializable
 {
-	const auto& j = *static_cast<const json*>(data);
 
-	assert(j.at("type").get<MessageTypes>() == this->GetType()); // NOLINT(*-array-to-pointer-decay)
-	j.at("value").get_to(this->_value);
-}
+	static void from_json(const nlohmann::json& j, XmlMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
-void DiceMessage::Serialize(void* data) const
-{
-	auto& j = *static_cast<json*>(data);
-	// assert(this->isValid());	// NOLINT(*-array-to-pointer-decay)
+		assert(j.at("type").get<MessageTypes>() == XmlMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-	j["type"] = this->GetType();
-	j["value"] = this->_value;
-}
+		j.at("xml").get_to(p._content);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	static void to_json(nlohmann::json& j, const XmlMessage& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = XmlMessage::GetType();
+		j["xml"] = p._content;
+	}
+
+};
 
 } // namespace Mirai
+
+#endif

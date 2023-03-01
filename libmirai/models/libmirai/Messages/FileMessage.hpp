@@ -18,7 +18,7 @@
 
 #include <string>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -34,24 +34,22 @@ namespace Mirai
  * `FileMessage::_name` | `""`
  * `FileMessage::_size` | `0`
  */
-class FileMessage : public MessageBase
+class FileMessage final : public IMessageImpl<FileMessage>
 {
+	friend IMessageImpl<FileMessage>;
+
 protected:
 	std::string _id{};
 	std::string _name{};
 	int64_t _size = 0;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	bool _isValid() const final { return true; }
+
+	static constexpr MessageTypes _TYPE_ = MessageTypes::FILE;
+	static constexpr bool _SUPPORT_SEND_ = false;
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FILE;
-
-	FileMessage() : MessageBase(_TYPE_, false) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<FileMessage>(*this); }
-
-	bool isValid() const final { return true; }
+	FileMessage() = default;
 
 	bool operator==(const FileMessage& rhs) { return this->_id == rhs._id; }
 
@@ -63,9 +61,11 @@ public:
 	std::string GetName() const { return this->_name; }
 	/// 获取文件大小
 	int64_t GetSize() const { return this->_size; }
+
+	struct Serializable;
 };
 
-template<> struct GetType<FileMessage::_TYPE_>
+template<> struct GetType<FileMessage::GetType()>
 {
 	using type = FileMessage;
 };

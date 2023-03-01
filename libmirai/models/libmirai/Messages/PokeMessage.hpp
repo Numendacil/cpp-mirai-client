@@ -21,7 +21,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "MessageBase.hpp"
+#include "IMessage.hpp"
 
 namespace Mirai
 {
@@ -35,23 +35,21 @@ namespace Mirai
  * --------------- | -------------
  * `PokeMessage::_kind` | `PokeType::ENUM_END`
  */
-class PokeMessage : public MessageBase
+class PokeMessage final : public IMessageImpl<PokeMessage>
 {
+	friend IMessageImpl<PokeMessage>;
+
 protected:
 	PokeType _kind = PokeType::ENUM_END;
 
-	void Serialize(void*) const final;
-	void Deserialize(const void*) final;
+	static constexpr MessageTypes _TYPE_ = MessageTypes::POKE;
+	static constexpr bool _SUPPORT_SEND_ = true;
+
+	bool _isValid() const final { return this->_kind != PokeType::ENUM_END; }
 
 public:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::POKE;
-
-	PokeMessage() : MessageBase(_TYPE_) {}
-	PokeMessage(PokeType kind) : _kind(kind), MessageBase(_TYPE_) {}
-
-	std::unique_ptr<MessageBase> CloneUnique() const final { return std::make_unique<PokeMessage>(*this); }
-
-	bool isValid() const final { return this->_kind != PokeType::ENUM_END; }
+	PokeMessage() = default;
+	PokeMessage(PokeType kind) : _kind(kind) {}
 
 	bool operator==(const PokeMessage& rhs) { return this->_kind == rhs._kind; }
 
@@ -66,9 +64,11 @@ public:
 		this->_kind = kind;
 		return *this;
 	}
+
+	struct Serializable;
 };
 
-template<> struct GetType<PokeMessage::_TYPE_>
+template<> struct GetType<PokeMessage::GetType()>
 {
 	using type = PokeMessage;
 };
