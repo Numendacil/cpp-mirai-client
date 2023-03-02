@@ -69,22 +69,20 @@ private:
 
 		template<typename T, typename TypeList> struct _is_message_type;
 
-		template<typename T, typename... Types>
-		struct _is_message_type<T, _type_list<Types...>> : public std::disjunction<std::is_same<T, Types>...>
+		template<typename T, size_t... I>
+		struct _is_message_type<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetType_t<MessageTypesList[I]>>...>
 		{
 		};
-	};
 
-	using MessageLists = traits::_type_list<AppMessage, AtAllMessage, AtMessage, AudioMessage, DiceMessage, FaceMessage,
-	                                        MarketFaceMessage, FileMessage, ForwardMessage, ImageMessage,
-	                                        FlashImageMessage, JsonMessage, MiraiCodeMessage, MusicShareMessage,
-	                                        PlainMessage, PokeMessage, QuoteMessage, SourceMessage, XmlMessage>;
+		template<typename T>
+		using is_message_type = _is_message_type<T, std::make_index_sequence<MessageTypesList.size()>>;
+	};
 
 	template<typename MessageType> constexpr static void _type_check_()
 	{
 		static_assert(std::is_base_of_v<IMessage, MessageType>,
 		              "MessageType is not derived from IMessage"); // NOLINT(*-array-to-pointer-decay)
-		static_assert(traits::_is_message_type<MessageType, MessageLists>::value,
+		static_assert(traits::is_message_type<MessageType>::value,
 		              "Unsupported messsage type"); // NOLINT(*-array-to-pointer-decay)
 	};
 
@@ -183,21 +181,21 @@ public:
 		explicit operator bool() const { return (bool)this->_msg; }
 
 		template<typename MessageType, typename... Args, typename Type = std::decay_t<MessageType>,
-		         typename std::enable_if_t<traits::_is_message_type<Type, MessageLists>::value, int> = 0>
+		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		explicit MessageElement(std::in_place_type_t<MessageType>, Args&&... args)
 			: _msg(std::make_unique<Type>(std::forward<Args>(args)...)), _type(Type::GetType())
 		{
 		}
 
 		template<typename MessageType, typename Type = std::decay_t<MessageType>,
-		         typename std::enable_if_t<traits::_is_message_type<Type, MessageLists>::value, int> = 0>
+		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		explicit MessageElement(MessageType&& m)
 			: _msg(std::make_unique<Type>(std::forward<MessageType>(m))), _type(Type::GetType())
 		{
 		}
 
 		template<typename MessageType, typename Type = std::decay_t<MessageType>,
-		         typename std::enable_if_t<traits::_is_message_type<Type, MessageLists>::value, int> = 0>
+		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		MessageElement& operator=(MessageType&& m)
 		{
 			if (this->_msg && this->_type == Type::GetType())
@@ -491,7 +489,7 @@ public:
 
 	template<typename MessageType>
 	auto operator+=(MessageType&& m)
-		-> std::enable_if_t<traits::_is_message_type<std::decay_t<MessageType>, MessageLists>::value, MessageChain&>
+		-> std::enable_if_t<traits::is_message_type<std::decay_t<MessageType>>::value, MessageChain&>
 	{
 		return *this += MessageElement(std::forward<MessageType>(m));
 	}
@@ -507,14 +505,14 @@ public:
 
 	template<typename MessageType>
 	friend auto operator+(const MessageChain& lhs, MessageType&& m)
-		-> std::enable_if_t<traits::_is_message_type<std::decay_t<MessageType>, MessageLists>::value, MessageChain>
+		-> std::enable_if_t<traits::is_message_type<std::decay_t<MessageType>>::value, MessageChain>
 	{
 		return lhs + MessageElement(std::forward<MessageType>(m));
 	}
 
 	template<typename MessageType>
 	friend auto operator+(MessageType&& m, const MessageChain& rhs)
-		-> std::enable_if_t<traits::_is_message_type<std::decay_t<MessageType>, MessageLists>::value, MessageChain>
+		-> std::enable_if_t<traits::is_message_type<std::decay_t<MessageType>>::value, MessageChain>
 	{
 		return rhs + MessageElement(std::forward<MessageType>(m));
 	}

@@ -10,10 +10,42 @@ using json = nlohmann::json;
 namespace
 {
 
-constexpr std::array<std::string_view, static_cast<std::size_t>(MessageTypes::ENUM_END)> names = {
-	"App",  "AtAll",      "At",        "Voice",      "Dice",  "Face", "File",  "FlashImage", "Forward", "Image",
-	"Json", "MarketFace", "MiraiCode", "MusicShare", "Plain", "Poke", "Quote", "Source",     "Xml",
-};
+template <typename T>
+using TypesList = std::array<T, static_cast<std::size_t>(MessageTypes::ENUM_END)>;
+
+constexpr void DeclareName(TypesList<std::string_view>& list, MessageTypes type, std::string_view name)
+{
+	list.at(static_cast<std::size_t>(type)) = name;
+}
+
+constexpr TypesList<std::string_view> GetNames()
+{
+	TypesList<std::string_view> names;
+
+	DeclareName(names, MessageTypes::APP, "App");
+	DeclareName(names, MessageTypes::AT_ALL, "AtAll");
+	DeclareName(names, MessageTypes::AT, "At");
+	DeclareName(names, MessageTypes::AUDIO, "Voice");
+	DeclareName(names, MessageTypes::DICE, "Dice");
+	DeclareName(names, MessageTypes::FACE, "Face");
+	DeclareName(names, MessageTypes::FILE, "File");
+	DeclareName(names, MessageTypes::FLASH_IMAGE, "FlashImage");
+	DeclareName(names, MessageTypes::FORWARD, "Forward");
+	DeclareName(names, MessageTypes::IMAGE, "Image");
+	DeclareName(names, MessageTypes::JSON, "Json");
+	DeclareName(names, MessageTypes::MARKET_FACE, "MarketFace");
+	DeclareName(names, MessageTypes::MIRAI_CODE, "MiraiCode");
+	DeclareName(names, MessageTypes::MUSIC_SHARE, "MusicShare");
+	DeclareName(names, MessageTypes::PLAIN, "Plain");
+	DeclareName(names, MessageTypes::POKE, "Poke");
+	DeclareName(names, MessageTypes::QUOTE, "Quote");
+	DeclareName(names, MessageTypes::SOURCE, "Source");
+	DeclareName(names, MessageTypes::XML, "Xml");
+
+	return names;
+}
+
+constexpr auto names = GetNames();
 
 constexpr std::string_view enum_to_str(const MessageTypes& m)
 {

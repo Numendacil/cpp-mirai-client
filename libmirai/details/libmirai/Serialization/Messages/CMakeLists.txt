@@ -1,6 +1,8 @@
 target_sources(
 	${MIRAI_LIB_TARGET_NAME} PRIVATE
 
+	Messages.hpp
+
 	MessageChain.hpp
 	MessageChain.cpp
 

@@ -35,8 +35,6 @@ namespace Mirai
 template <class MessageImpl>
 class ImageMessageImpl : public IMessageImpl<MessageImpl>
 {
-	friend IMessageImpl<MessageImpl>;
-
 protected:
 	MiraiImage _image{};
 

@@ -31,8 +31,6 @@ namespace Mirai
 template <class Message>
 class FaceMessageImpl : public IMessageImpl<Message>
 {
-	friend IMessageImpl<Message>;
-
 protected:
 	int64_t _id = -1;
 	std::string _name{};

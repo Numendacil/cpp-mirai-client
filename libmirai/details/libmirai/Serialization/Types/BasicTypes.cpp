@@ -49,33 +49,57 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 
 #define ENUM_TO_STR_FUNCNAME(_enum_) _##_enum_##_TO_STR_
 #define STR_TO_ENUM_FUNCNAME(_enum_) _STR_TO_##_enum_##_
-#define ENUM_STR_ARRAY(_enum_) _enum_##Str
+#define ENUM_STR_NAMESPACE(_enum_) _enum_##Namespace
 
-#define DECLARE_ENUM_STR(_enum_, ...)                                                                                  \
+#define BEGIN_DECLARE_ENUM_STR(_enum_)                                                                                 \
+	namespace ENUM_STR_NAMESPACE(_enum_)                                                                               \
+	{                                                                                                                  \
+	template<typename T> using TypesList = std::array<T, static_cast<std::size_t>(_enum_::ENUM_END)>;                  \
 	namespace                                                                                                          \
 	{                                                                                                                  \
-	constexpr std::array<std::string_view, static_cast<size_t>(_enum_::ENUM_END)> ENUM_STR_ARRAY(_enum_) = {           \
-		__VA_ARGS__};                                                                                                  \
+	constexpr void DeclareName(TypesList<std::string_view>& list, _enum_ type, std::string_view name)                  \
+	{                                                                                                                  \
+		list.at(static_cast<std::size_t>(type)) = name;                                                                \
+	}                                                                                                                  \
+                                                                                                                       \
+	constexpr TypesList<std::string_view> GetNames()                                                                   \
+	{                                                                                                                  \
+		TypesList<std::string_view> names;                                                                             
+
+#define END_DECLARE_ENUM_STR(_enum_)                                                                                                                         \
+		return names;                                                                                                  \
+	}                                                                                                                  \
+                                                                                                                       \
+	constexpr auto names = GetNames();                                                                                 \
+	}                                                                                                                  \
 	constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)                                           \
 	{                                                                                                                  \
 		auto i = static_cast<std::size_t>(m);                                                                          \
-		if (i < ENUM_STR_ARRAY(_enum_).size()) return ENUM_STR_ARRAY(_enum_).at(i);                                    \
+		if (i < names.size()) return names.at(i);                                    \
 		else                                                                                                           \
 			return "";                                                                                                 \
 	}                                                                                                                  \
 	constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)                                                  \
 	{                                                                                                                  \
-		for (std::size_t i = 0; i < ENUM_STR_ARRAY(_enum_).size(); i++)                                                \
-			if (ENUM_STR_ARRAY(_enum_).at(i) == s) return static_cast<_enum_>(i);                                      \
+		for (std::size_t i = 0; i < names.size(); i++)                                                \
+			if (names.at(i) == s) return static_cast<_enum_>(i);                                      \
 		return _enum_::ENUM_END;                                                                                       \
 	}                                                                                                                  \
 	}
 
-#define ENUM_TO_STR(_enum_, _input_) ENUM_TO_STR_FUNCNAME(_enum_)(_input_)
-#define STR_TO_ENUM(_enum_, _input_) STR_TO_ENUM_FUNCNAME(_enum_)(_input_)
+#define DECLARE_ENUM_STR(_value_, _name_) DeclareName(names, _value_, _name_);
+
+#define ENUM_TO_STR(_enum_, _input_) ENUM_STR_NAMESPACE(_enum_)::ENUM_TO_STR_FUNCNAME(_enum_)(_input_)
+#define STR_TO_ENUM(_enum_, _input_) ENUM_STR_NAMESPACE(_enum_)::STR_TO_ENUM_FUNCNAME(_enum_)(_input_)
 
 
-DECLARE_ENUM_STR(SEX, "MALE", "FEMALE", "UNKNOWN")
+BEGIN_DECLARE_ENUM_STR(SEX)
+
+DECLARE_ENUM_STR(SEX::MALE, "MALE");
+DECLARE_ENUM_STR(SEX::FEMALE, "FEMALE");
+DECLARE_ENUM_STR(SEX::UNKNOWN, "UNKNOWN");
+
+END_DECLARE_ENUM_STR(SEX)
 
 void from_json(const json& j, SEX& p)
 {
@@ -87,7 +111,13 @@ void to_json(json& j, const SEX& p)
 }
 
 
-DECLARE_ENUM_STR(PERMISSION, "OWNER", "ADMINISTRATOR", "MEMBER")
+BEGIN_DECLARE_ENUM_STR(PERMISSION)
+
+DECLARE_ENUM_STR(PERMISSION::OWNER, "OWNER");
+DECLARE_ENUM_STR(PERMISSION::ADMINISTRATOR, "ADMINISTRATOR");
+DECLARE_ENUM_STR(PERMISSION::MEMBER, "MEMBER");
+
+END_DECLARE_ENUM_STR(PERMISSION)
 
 void from_json(const json& j, PERMISSION& p)
 {
@@ -99,7 +129,13 @@ void to_json(json& j, const PERMISSION& p)
 }
 
 
-DECLARE_ENUM_STR(NudgeType, "Friend", "Group", "Stranger")
+BEGIN_DECLARE_ENUM_STR(NudgeType)
+
+DECLARE_ENUM_STR(NudgeType::FRIEND, "Friend");
+DECLARE_ENUM_STR(NudgeType::GROUP, "Group");
+DECLARE_ENUM_STR(NudgeType::STRANGER, "Stranger");
+
+END_DECLARE_ENUM_STR(NudgeType)
 
 void from_json(const json& j, NudgeType& p)
 {
@@ -111,7 +147,15 @@ void to_json(json& j, const NudgeType& p)
 }
 
 
-DECLARE_ENUM_STR(MusicShareType, "NeteaseCloudMusic", "QQMusic", "MiguMusic", "KugouMusic", "KuwoMusic");
+BEGIN_DECLARE_ENUM_STR(MusicShareType)
+
+DECLARE_ENUM_STR(MusicShareType::NETEASECLOUDMUSIC, "NeteaseCloudMusic");
+DECLARE_ENUM_STR(MusicShareType::QQMUSIC, "QQMusic");
+DECLARE_ENUM_STR(MusicShareType::MIGUMUSIC, "MiguMusic");
+DECLARE_ENUM_STR(MusicShareType::KUGOUMUSIC, "KugouMusic");
+DECLARE_ENUM_STR(MusicShareType::KUWOMUSIC, "KuwoMusic");
+
+END_DECLARE_ENUM_STR(MusicShareType)
 
 void from_json(const json& j, MusicShareType& p)
 {
@@ -123,8 +167,26 @@ void to_json(json& j, const MusicShareType& p)
 }
 
 
-DECLARE_ENUM_STR(PokeType, "ChuoYiChuo", "BiXin", "DianZan", "XinSui", "LiuLiuLiu", "FangDaZhao", "GouYin", "BaoBeiQiu",
-                 "Rose", "ZhaoHuanShu", "RangNiPi", "JieYin", "ShouLei", "ZhuaYiXia", "SuiPing", "QiaoMen");
+BEGIN_DECLARE_ENUM_STR(PokeType)
+
+DECLARE_ENUM_STR(PokeType::CHUOYICHUO, "ChuoYiChuo");
+DECLARE_ENUM_STR(PokeType::BIXIN, "BiXin");
+DECLARE_ENUM_STR(PokeType::DIANZAN, "DianZan");
+DECLARE_ENUM_STR(PokeType::XINSUI, "XinSui");
+DECLARE_ENUM_STR(PokeType::LIULIULIU, "LiuLiuLiu");
+DECLARE_ENUM_STR(PokeType::FANGDAZHAO, "FangDaZhao");
+DECLARE_ENUM_STR(PokeType::GOUYIN, "GouYin");
+DECLARE_ENUM_STR(PokeType::BAOBEIQIU, "BaoBeiQiu");
+DECLARE_ENUM_STR(PokeType::ROSE, "Rose");
+DECLARE_ENUM_STR(PokeType::ZHAOHUANSHU, "ZhaoHuanShu");
+DECLARE_ENUM_STR(PokeType::RANGNIPI, "RangNiPi");
+DECLARE_ENUM_STR(PokeType::JIEYIN, "JieYin");
+DECLARE_ENUM_STR(PokeType::SHOULEI, "ShouLei");
+DECLARE_ENUM_STR(PokeType::ZHUAYIXIA, "ZhuaYiXia");
+DECLARE_ENUM_STR(PokeType::SUIPING, "SuiPing");
+DECLARE_ENUM_STR(PokeType::QIAOMEN, "QiaoMen");
+
+END_DECLARE_ENUM_STR(PokeType)
 
 void from_json(const json& j, PokeType& p)
 {
@@ -136,7 +198,12 @@ void to_json(json& j, const PokeType& p)
 }
 
 
-DECLARE_ENUM_STR(HonorChangeType, "achieve", "lose");
+BEGIN_DECLARE_ENUM_STR(HonorChangeType)
+
+DECLARE_ENUM_STR(HonorChangeType::ACHIEVE, "achieve");
+DECLARE_ENUM_STR(HonorChangeType::LOSE, "lose");
+
+END_DECLARE_ENUM_STR(HonorChangeType)
 
 void from_json(const json& j, HonorChangeType& p)
 {
@@ -146,6 +213,16 @@ void to_json(json& j, const HonorChangeType& p)
 {
 	j = ENUM_TO_STR(HonorChangeType, p);
 }
+
+
+#undef ENUM_TO_STR_FUNCNAME
+#undef STR_TO_ENUM_FUNCNAME
+#undef ENUM_STR_NAMESPACE
+#undef BEGIN_DECLARE_ENUM_STR
+#undef END_DECLARE_ENUM_STR
+#undef DECLARE_ENUM_STR
+#undef ENUM_TO_STR
+#undef STR_TO_ENUM
 
 
 // *********************************************
