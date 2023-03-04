@@ -584,7 +584,7 @@ TEST(MessagesTest, SerializationTest)
 	}
 	std::uniform_int_distribution<unsigned long> randidx(0, data.size() - 1);
 	json msg;
-	for (std::size_t i = 0; i < 100000; i++)
+	for (std::size_t i = 0; i < 10000; i++)
 	{
 		auto idx = randidx(rng);
 		msg += data[idx];

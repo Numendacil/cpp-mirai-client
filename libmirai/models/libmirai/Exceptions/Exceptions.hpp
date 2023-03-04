@@ -29,13 +29,13 @@ class MiraiApiHttpException : public std::runtime_error
 {
 public:
 	/// 错误码
-	const int _code;
+	int code;
 	/// 错误信息
-	const std::string _message;
-	MiraiApiHttpException(int code, const std::string& message)
+	std::string message;
+	MiraiApiHttpException(int code, std::string message)
 		: std::runtime_error("mirai-api-http error: " + message + " <" + std::to_string(code) + ">")
-		, _code(code)
-		, _message(message)
+		, code(code)
+		, message(std::move(message))
 	{
 	}
 };
@@ -44,7 +44,7 @@ public:
 	class _name_ : public MiraiApiHttpException                                                                        \
 	{                                                                                                                  \
 	public:                                                                                                            \
-		_name_(const std::string& message) : MiraiApiHttpException(_code_, message) {}                                 \
+		_name_(std::string& message) : MiraiApiHttpException(_code_, message) {}                                 \
 	};
 
 /// MAH异常: 验证密钥错误
@@ -80,13 +80,13 @@ class NetworkException : public std::runtime_error
 {
 public:
 	/// 错误码
-	const int _code;
+	int code;
 	/// 错误信息
-	const std::string _message;
-	NetworkException(int code, const std::string& message)
+	std::string message;
+	NetworkException(int code, std::string message)
 		: std::runtime_error("Network error: " + message + " <" + std::to_string(code) + ">")
-		, _code(code)
-		, _message(message)
+		, code(code)
+		, message(std::move(message))
 	{
 	}
 };
@@ -99,11 +99,11 @@ class ParseError : public std::runtime_error
 {
 public:
 	/// 原被解析消息
-	const std::string _message;
+	std::string message;
 	/// 错误消息
-	const std::string _error;
-	ParseError(const std::string& error, const std::string& message)
-		: std::runtime_error("Unable to parse \"" + message + "\": " + error), _message(message), _error(error)
+	std::string error;
+	ParseError(std::string error, std::string message)
+		: std::runtime_error("Unable to parse \"" + message + "\": " + error), message(std::move(message)), error(std::move(error))
 	{
 	}
 };
@@ -116,14 +116,14 @@ class TypeDismatch : public std::runtime_error
 {
 public:
 	/// 目标类型
-	const std::string _expected_type;
+	std::string expected_type;
 	/// 实际类型
-	const std::string _received_type;
+	std::string received_type;
 
-	TypeDismatch(const std::string& expected, const std::string& received)
+	TypeDismatch(std::string expected, std::string received)
 		: std::runtime_error("Expecting type " + expected + ", but get " + received + " instead")
-		, _expected_type(expected)
-		, _received_type(received)
+		, expected_type(std::move(expected))
+		, received_type(std::move(received))
 	{
 	}
 };

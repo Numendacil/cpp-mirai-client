@@ -63,10 +63,6 @@ private:
 	// type traits
 	struct traits
 	{
-		template<typename... Types> struct _type_list
-		{
-		};
-
 		template<typename T, typename TypeList> struct _is_message_type;
 
 		template<typename T, size_t... I>

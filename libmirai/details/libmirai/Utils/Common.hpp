@@ -57,6 +57,17 @@ std::optional<ValueType> GetOptional(const nlohmann::json& j, KeyType&& key)
 	return j.at(key).template get<ValueType>();
 }
 
+template<typename ValueType, typename KeyType>
+void GetOptional(const nlohmann::json& j, KeyType&& key, std::optional<ValueType>& p)
+{
+	if (!j.is_object() || !j.contains(key) || j.at(key).is_null())
+	{
+		p = std::nullopt;
+	}
+	else
+		p = j.at(key).template get<ValueType>();
+}
+
 template<typename KeyType> bool HasValue(const nlohmann::json& j, KeyType&& key)
 {
 	return !(!j.is_object() || !j.contains(key) || j.at(key).is_null());

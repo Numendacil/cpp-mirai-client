@@ -64,10 +64,10 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
                                                                                                                        \
 	constexpr TypesList<std::string_view> GetNames()                                                                   \
 	{                                                                                                                  \
-		TypesList<std::string_view> names;                                                                             
+		TypesList<std::string_view> names;
 
-#define END_DECLARE_ENUM_STR(_enum_)                                                                                                                         \
-		return names;                                                                                                  \
+#define END_DECLARE_ENUM_STR(_enum_)                                                                                   \
+	return names;                                                                                                      \
 	}                                                                                                                  \
                                                                                                                        \
 	constexpr auto names = GetNames();                                                                                 \
@@ -75,14 +75,14 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 	constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)                                           \
 	{                                                                                                                  \
 		auto i = static_cast<std::size_t>(m);                                                                          \
-		if (i < names.size()) return names.at(i);                                    \
+		if (i < names.size()) return names.at(i);                                                                      \
 		else                                                                                                           \
 			return "";                                                                                                 \
 	}                                                                                                                  \
 	constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)                                                  \
 	{                                                                                                                  \
-		for (std::size_t i = 0; i < names.size(); i++)                                                \
-			if (names.at(i) == s) return static_cast<_enum_>(i);                                      \
+		for (std::size_t i = 0; i < names.size(); i++)                                                                 \
+			if (names.at(i) == s) return static_cast<_enum_>(i);                                                       \
 		return _enum_::ENUM_END;                                                                                       \
 	}                                                                                                                  \
 	}
