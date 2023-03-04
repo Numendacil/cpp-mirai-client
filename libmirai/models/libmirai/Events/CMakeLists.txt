@@ -1,56 +1,16 @@
 target_sources(
 	${MIRAI_LIB_TARGET_NAME} PRIVATE
-	EventBase.hpp
+	IEvent.hpp
 
-	BotEvent.hpp
-	BotOfflineEventActive.hpp
-	BotOfflineEventDropped.hpp
-	BotOfflineEventForce.hpp
-	BotOnlineEvent.hpp
-	BotReloginEvent.hpp
-	
-	BotGroupPermissionChangeEvent.hpp
-	BotInvitedJoinGroupRequestEvent.hpp
-	BotJoinGroupEvent.hpp
-	BotLeaveEventActive.hpp
-	BotLeaveEventDisband.hpp
-	BotLeaveEventKick.hpp
-	BotMuteEvent.hpp
-	BotUnmuteEvent.hpp
+	BotEvents.hpp
 	CommandExecutedEvent.hpp
-	FriendInputStatusChangedEvent.hpp
-	FriendMessageEvent.hpp
-	FriendNickChangedEvent.hpp
-	FriendRecallEvent.hpp
-	FriendSyncMessageEvent.hpp
-	GroupAllowAnonymousChatEvent.hpp
-	GroupAllowConfessTalkEvent.hpp
-	GroupAllowMemberInviteEvent.hpp
-	GroupEntranceAnnouncementChangeEvent.hpp
-	GroupMessageEvent.hpp
-	GroupMuteAllEvent.hpp
-	GroupNameChangeEvent.hpp
-	GroupRecallEvent.hpp
-	GroupSyncMessageEvent.hpp
-	MemberCardChangeEvent.hpp
-	MemberHonorChangeEvent.hpp
-	MemberJoinEvent.hpp
-	MemberJoinRequestEvent.hpp
-	MemberLeaveEventKick.hpp
-	MemberLeaveEventQuit.hpp
-	MemberMuteEvent.hpp
-	MemberPermissionChangeEvent.hpp
-	MemberSpecialTitleChangeEvent.hpp
-	MemberUnmuteEvent.hpp
+	FriendEvents.hpp
+	GroupEvents.hpp
+	MemberEvents.hpp
+	MiraiClientEvents.hpp
 	NewFriendRequestEvent.hpp
 	NudgeEvent.hpp
-	OtherClientMessageEvent.hpp
-	OtherClientOfflineEvent.hpp
-	OtherClientOnlineEvent.hpp
-	StrangerMessageEvent.hpp
-	StrangerSyncMessageEvent.hpp
-	TempMessageEvent.hpp
-	TempSyncMessageEvent.hpp
-
-	MiraiClientEvents.hpp
+	OtherClientEvents.hpp
+	StrangerMessageEvents.hpp
+	TempMessageEvents.hpp
 )

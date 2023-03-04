@@ -19,6 +19,8 @@
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/GroupSettings.hpp>
 #include <libmirai/Types/MediaTypes.hpp>
+#include <libmirai/Types/EventTypes.hpp>
+#include <libmirai/Types/MessageTypes.hpp>
 #include <libmirai/Types/NudgeTarget.hpp>
 
 #endif

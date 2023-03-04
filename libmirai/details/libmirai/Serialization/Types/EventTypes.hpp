@@ -13,13 +13,17 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MODELS_HPP_
-#define _MIRAI_MODELS_HPP_
+#ifndef _MIRAI_SERIALIZATION_EVENT_TYPES_HPP_
+#define _MIRAI_SERIALIZATION_EVENT_TYPES_HPP_
 
-#include <libmirai/Events/Events.hpp>
-#include <libmirai/Exceptions/Exceptions.hpp>
-#include <libmirai/Messages/Messages.hpp>
-#include <libmirai/Types/Types.hpp>
-#include <libmirai/Utils/SessionConfig.hpp>
+#include <libmirai/Serialization/Types/Serializable.hpp>
+#include <libmirai/Types/EventTypes.hpp>
+
+namespace Mirai
+{
+
+MIRAI_DECLARE_FROM_TO_JSON(EventTypes);
+
+}
 
 #endif

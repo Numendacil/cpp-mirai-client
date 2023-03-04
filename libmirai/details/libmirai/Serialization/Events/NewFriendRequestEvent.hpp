@@ -13,20 +13,39 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_EVENTS_HPP_
-#define _MIRAI_EVENTS_HPP_
+#ifndef _MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
+#define _MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
 
-#include <libmirai/Events/BotEvents.hpp>
-#include <libmirai/Events/CommandExecutedEvent.hpp>
-#include <libmirai/Events/IEvent.hpp>
-#include <libmirai/Events/FriendEvents.hpp>
-#include <libmirai/Events/GroupEvents.hpp>
-#include <libmirai/Events/MemberEvents.hpp>
-#include <libmirai/Events/MiraiClientEvents.hpp>
+#include <cstdint>
+
+#include <nlohmann/json.hpp>
+
 #include <libmirai/Events/NewFriendRequestEvent.hpp>
-#include <libmirai/Events/NudgeEvent.hpp>
-#include <libmirai/Events/OtherClientEvents.hpp>
-#include <libmirai/Events/StrangerMessageEvents.hpp>
-#include <libmirai/Events/TempMessageEvents.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+
+namespace Mirai
+{
+
+struct NewFriendRequestEvent::Serializable
+{
+
+	static void from_json(const nlohmann::json& j, NewFriendRequestEvent& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<EventTypes>() == NewFriendRequestEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("eventId").get_to(p._EventId);
+		j.at("fromId").get_to(p._FromId);
+		j.at("groupId").get_to(p._GroupId);
+		j.at("nick").get_to(p._nickname);
+		j.at("message").get_to(p._message);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+};
+
+} // namespace Mirai
 
 #endif

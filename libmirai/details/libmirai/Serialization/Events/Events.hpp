@@ -13,13 +13,18 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MODELS_HPP_
-#define _MIRAI_MODELS_HPP_
+#ifndef _MIRAI_SERIALIZATION_EVENTS_HPP_
+#define _MIRAI_SERIALIZATION_EVENTS_HPP_
 
-#include <libmirai/Events/Events.hpp>
-#include <libmirai/Exceptions/Exceptions.hpp>
-#include <libmirai/Messages/Messages.hpp>
-#include <libmirai/Types/Types.hpp>
-#include <libmirai/Utils/SessionConfig.hpp>
+#include "BotEvents.hpp"
+#include "CommandExecutedEvent.hpp"
+#include "FriendEvents.hpp"
+#include "GroupEvents.hpp"
+#include "MemberEvents.hpp"
+#include "NewFriendRequestEvent.hpp"
+#include "NudgeEvent.hpp"
+#include "OtherClientEvents.hpp"
+#include "StrangerMessageEvents.hpp"
+#include "TempMessageEvents.hpp"
 
 #endif

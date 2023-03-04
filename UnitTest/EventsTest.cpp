@@ -5,7 +5,7 @@
 #include <libmirai/Events/Events.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include <libmirai/Serialization/Events/EventBase.hpp>
+#include <libmirai/Serialization/Events/Events.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 
 #include "JsonData.hpp"
@@ -17,7 +17,7 @@ TEST(EventsTest, BotOnlineEvent)
 {
 	BotOnlineEvent event{};
 	Data::EventData["BotOnlineEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotOnlineEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotOnline);
 
 	EXPECT_EQ(event.GetQQ(), 123456_qq);
 }
@@ -26,7 +26,7 @@ TEST(EventsTest, BotOfflineEventActive)
 {
 	BotOfflineEventActive event{};
 	Data::EventData["BotOfflineEventActive"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotOfflineEventActive");
+	EXPECT_EQ(event.GetType(), EventTypes::BotOfflineActive);
 
 	EXPECT_EQ(event.GetQQ(), 123456_qq);
 }
@@ -35,7 +35,7 @@ TEST(EventsTest, BotOfflineEventDropped)
 {
 	BotOfflineEventDropped event{};
 	Data::EventData["BotOfflineEventDropped"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotOfflineEventDropped");
+	EXPECT_EQ(event.GetType(), EventTypes::BotOfflineDropped);
 
 	EXPECT_EQ(event.GetQQ(), 123456_qq);
 }
@@ -44,7 +44,7 @@ TEST(EventsTest, FriendInputStatusChangedEvent)
 {
 	FriendInputStatusChangedEvent event{};
 	Data::EventData["FriendInputStatusChangedEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "FriendInputStatusChangedEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::FriendInputStatusChanged);
 
 	EXPECT_TRUE(event.isInputting());
 	EXPECT_EQ(event.GetFriend().id, 123123_qq);
@@ -56,7 +56,7 @@ TEST(EventsTest, FriendNickChangedEvent)
 {
 	FriendNickChangedEvent event{};
 	Data::EventData["FriendNickChangedEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "FriendNickChangedEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::FriendNickChanged);
 
 	EXPECT_EQ(event.GetFriend().id, 123123_qq);
 	EXPECT_EQ(event.GetFriend().nickname, "new nickname");
@@ -69,7 +69,7 @@ TEST(EventsTest, BotGroupPermissionChangeEvent)
 {
 	BotGroupPermissionChangeEvent event{};
 	Data::EventData["BotGroupPermissionChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotGroupPermissionChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotGroupPermissionChange);
 
 	EXPECT_EQ(event.GetOriginal(), PERMISSION::MEMBER);
 	EXPECT_EQ(event.GetCurrent(), PERMISSION::ADMINISTRATOR);
@@ -82,7 +82,7 @@ TEST(EventsTest, BotMuteEvent)
 {
 	BotMuteEvent event{};
 	Data::EventData["BotMuteEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotMuteEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotMute);
 
 	EXPECT_EQ(event.GetMuteTime(), std::chrono::seconds(600));
 	EXPECT_EQ(event.GetOperator().id, 123456789_qq);
@@ -101,7 +101,7 @@ TEST(EventsTest, BotUnmuteEvent)
 {
 	BotUnmuteEvent event{};
 	Data::EventData["BotUnmuteEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotUnmuteEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotUnmute);
 
 	EXPECT_EQ(event.GetOperator().id, 123456789_qq);
 	EXPECT_EQ(event.GetOperator().MemberName, "aaa");
@@ -119,7 +119,7 @@ TEST(EventsTest, BotJoinGroupEvent)
 {
 	BotJoinGroupEvent event{};
 	Data::EventData["BotJoinGroupEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotJoinGroupEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotJoinGroup);
 
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
@@ -131,7 +131,7 @@ TEST(EventsTest, BotLeaveEventActive)
 {
 	BotLeaveEventActive event{};
 	Data::EventData["BotLeaveEventActive"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotLeaveEventActive");
+	EXPECT_EQ(event.GetType(), EventTypes::BotLeaveActive);
 
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
@@ -142,26 +142,27 @@ TEST(EventsTest, BotLeaveEventKick)
 {
 	BotLeaveEventKick event{};
 	Data::EventData["BotLeaveEventKick"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotLeaveEventKick");
+	EXPECT_EQ(event.GetType(), EventTypes::BotLeaveKick);
 
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
 	EXPECT_EQ(event.GetGroup().permission, PERMISSION::MEMBER);
-	EXPECT_EQ(event.GetOperator().id, 1111_qq);
-	EXPECT_EQ(event.GetOperator().MemberName, "Marisa");
-	EXPECT_EQ(event.GetOperator().permission, PERMISSION::OWNER);
-	EXPECT_EQ(event.GetOperator().SpecialTitle, "xxx");
-	EXPECT_EQ(event.GetOperator().JoinTimestamp, 12345678);
-	EXPECT_EQ(event.GetOperator().LastSpeakTimestamp, 8765432);
-	EXPECT_EQ(event.GetOperator().MuteTimeRemaining.count(), 0);
-	EXPECT_EQ(event.GetOperator().group, event.GetGroup());
+	EXPECT_TRUE(event.GetOperator());
+	EXPECT_EQ(event.GetOperator()->id, 1111_qq);
+	EXPECT_EQ(event.GetOperator()->MemberName, "Marisa");
+	EXPECT_EQ(event.GetOperator()->permission, PERMISSION::OWNER);
+	EXPECT_EQ(event.GetOperator()->SpecialTitle, "xxx");
+	EXPECT_EQ(event.GetOperator()->JoinTimestamp, 12345678);
+	EXPECT_EQ(event.GetOperator()->LastSpeakTimestamp, 8765432);
+	EXPECT_EQ(event.GetOperator()->MuteTimeRemaining.count(), 0);
+	EXPECT_EQ(event.GetOperator()->group, event.GetGroup());
 }
 
 TEST(EventsTest, BotLeaveEventDisband)
 {
 	BotLeaveEventDisband event{};
 	Data::EventData["BotLeaveEventDisband"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotLeaveEventDisband");
+	EXPECT_EQ(event.GetType(), EventTypes::BotLeaveDisband);
 
 	EXPECT_EQ(event.GetGroup().id, 123456789_gid);
 	EXPECT_EQ(event.GetGroup().name, "Mirai Technology");
@@ -180,7 +181,7 @@ TEST(EventsTest, GroupRecallEvent)
 {
 	GroupRecallEvent event{};
 	Data::EventData["GroupRecallEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupRecallEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupRecall);
 
 	EXPECT_EQ(event.GetSender(), 123456_qq);
 	EXPECT_EQ(event.GetMessageId(), 123456789);
@@ -195,7 +196,7 @@ TEST(EventsTest, FriendRecallEvent)
 {
 	FriendRecallEvent event{};
 	Data::EventData["FriendRecallEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "FriendRecallEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::FriendRecall);
 
 	EXPECT_EQ(event.GetSender(), 123456_qq);
 	EXPECT_EQ(event.GetMessageId(), 123456789);
@@ -207,7 +208,7 @@ TEST(NudgeEvent, NudgeEvent)
 {
 	NudgeEvent event{};
 	Data::EventData["NudgeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "NudgeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::Nudge);
 
 	EXPECT_EQ(event.GetSender(), 123456_qq);
 	EXPECT_EQ(event.GetTarget().GetNudgeType(), NudgeType::GROUP);
@@ -221,7 +222,7 @@ TEST(EventsTest, GroupNameChangeEvent)
 {
 	GroupNameChangeEvent event{};
 	Data::EventData["GroupNameChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupNameChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupNameChange);
 
 	EXPECT_EQ(event.GetOriginal(), "mirai technology");
 	EXPECT_EQ(event.GetCurrent(), "MIRAI TECHNOLOGY");
@@ -243,7 +244,7 @@ TEST(EventsTest, GroupEntranceAnnouncementChangeEvent)
 {
 	GroupEntranceAnnouncementChangeEvent event{};
 	Data::EventData["GroupEntranceAnnouncementChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupEntranceAnnouncementChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupEntranceAnnouncementChange);
 
 	EXPECT_EQ(event.GetOriginal(), "abc");
 	EXPECT_EQ(event.GetCurrent(), "cba");
@@ -257,7 +258,7 @@ TEST(EventsTest, GroupMuteAllEvent)
 {
 	GroupMuteAllEvent event{};
 	Data::EventData["GroupMuteAllEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupMuteAllEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupMuteAll);
 
 	EXPECT_EQ(event.GetOriginal(), false);
 	EXPECT_EQ(event.GetCurrent(), true);
@@ -271,7 +272,7 @@ TEST(EventsTest, GroupAllowAnonymousChatEvent)
 {
 	GroupAllowAnonymousChatEvent event{};
 	Data::EventData["GroupAllowAnonymousChatEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupAllowAnonymousChatEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupAllowAnonymousChat);
 
 	EXPECT_EQ(event.GetOriginal(), false);
 	EXPECT_EQ(event.GetCurrent(), true);
@@ -293,7 +294,7 @@ TEST(EventsTest, GroupAllowConfessTalkEvent)
 {
 	GroupAllowConfessTalkEvent event{};
 	Data::EventData["GroupAllowConfessTalkEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupAllowConfessTalkEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupAllowConfessTalk);
 
 	EXPECT_EQ(event.GetOriginal(), false);
 	EXPECT_EQ(event.GetCurrent(), true);
@@ -307,7 +308,7 @@ TEST(EventsTest, GroupAllowMemberInviteEvent)
 {
 	GroupAllowMemberInviteEvent event{};
 	Data::EventData["GroupAllowMemberInviteEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupAllowMemberInviteEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupAllowMemberInvite);
 
 	EXPECT_EQ(event.GetOriginal(), false);
 	EXPECT_EQ(event.GetCurrent(), true);
@@ -321,7 +322,7 @@ TEST(EventsTest, MemberJoinEvent)
 {
 	MemberJoinEvent event{};
 	Data::EventData["MemberJoinEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberJoinEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberJoin);
 
 	EXPECT_EQ(event.GetMember().id, 1234567890_qq);
 	EXPECT_EQ(event.GetMember().MemberName, "aaa");
@@ -340,7 +341,7 @@ TEST(EventsTest, MemberLeaveEventKick)
 {
 	MemberLeaveEventKick event{};
 	Data::EventData["MemberLeaveEventKick"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberLeaveEventKick");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberLeaveKick);
 
 	EXPECT_EQ(event.GetMember().id, 1234567890_qq);
 	EXPECT_EQ(event.GetMember().MemberName, "aaa");
@@ -367,7 +368,7 @@ TEST(EventsTest, MemberLeaveEventQuit)
 {
 	MemberLeaveEventQuit event{};
 	Data::EventData["MemberLeaveEventQuit"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberLeaveEventQuit");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberLeaveQuit);
 
 	EXPECT_EQ(event.GetMember().id, 1234_qq);
 	EXPECT_EQ(event.GetMember().MemberName, "run");
@@ -385,7 +386,7 @@ TEST(EventsTest, MemberCardChangeEvent)
 {
 	MemberCardChangeEvent event{};
 	Data::EventData["MemberCardChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberCardChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberCardChange);
 
 	EXPECT_EQ(event.GetOriginal(), "old");
 	EXPECT_EQ(event.GetCurrent(), "new");
@@ -405,7 +406,7 @@ TEST(EventsTest, MemberSpecialTitleChangeEvent)
 {
 	MemberSpecialTitleChangeEvent event{};
 	Data::EventData["MemberSpecialTitleChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberSpecialTitleChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberSpecialTitleChange);
 
 	EXPECT_EQ(event.GetOriginal(), "origin");
 	EXPECT_EQ(event.GetCurrent(), "new");
@@ -425,7 +426,7 @@ TEST(EventsTest, MemberPermissionChangeEvent)
 {
 	MemberPermissionChangeEvent event{};
 	Data::EventData["MemberPermissionChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberPermissionChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberPermissionChange);
 
 	EXPECT_EQ(event.GetOriginal(), PERMISSION::MEMBER);
 	EXPECT_EQ(event.GetCurrent(), PERMISSION::ADMINISTRATOR);
@@ -445,7 +446,7 @@ TEST(EventsTest, MemberMuteEvent)
 {
 	MemberMuteEvent event{};
 	Data::EventData["MemberMuteEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberMuteEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberMute);
 
 	EXPECT_EQ(event.GetDuration(), std::chrono::milliseconds(1000 * 600));
 	EXPECT_EQ(event.GetMember().id, 1234_qq);
@@ -473,7 +474,7 @@ TEST(EventsTest, MemberUnmuteEvent)
 {
 	MemberUnmuteEvent event{};
 	Data::EventData["MemberUnmuteEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberUnmuteEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberUnmute);
 
 	EXPECT_EQ(event.GetMember().id, 1234_qq);
 	EXPECT_EQ(event.GetMember().MemberName, "aaa");
@@ -492,7 +493,7 @@ TEST(EventsTest, MemberHonorChangeEvent)
 {
 	MemberHonorChangeEvent event{};
 	Data::EventData["MemberHonorChangeEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberHonorChangeEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberHonorChange);
 
 	EXPECT_EQ(event.GetMember().id, 1234_qq);
 	EXPECT_EQ(event.GetMember().MemberName, "aaa");
@@ -512,7 +513,7 @@ TEST(EventsTest, NewFriendRequestEvent)
 {
 	NewFriendRequestEvent event{};
 	Data::EventData["NewFriendRequestEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "NewFriendRequestEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::NewFriendRequest);
 
 	EXPECT_EQ(event.GetEventId(), 12345678);
 	EXPECT_EQ(event.GetUserId(), 123456_qq);
@@ -526,7 +527,7 @@ TEST(EventsTest, MemberJoinRequestEvent)
 {
 	MemberJoinRequestEvent event{};
 	Data::EventData["MemberJoinRequestEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "MemberJoinRequestEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::MemberJoinRequest);
 
 	EXPECT_EQ(event.GetEventId(), 12345678);
 	EXPECT_EQ(event.GetUserId(), 123456_qq);
@@ -540,7 +541,7 @@ TEST(EventsTest, BotInvitedJoinGroupRequestEvent)
 {
 	BotInvitedJoinGroupRequestEvent event{};
 	Data::EventData["BotInvitedJoinGroupRequestEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "BotInvitedJoinGroupRequestEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::BotInvitedJoinGroupRequest);
 
 	EXPECT_EQ(event.GetEventId(), 12345678);
 	EXPECT_EQ(event.GetUserId(), 123456_qq);
@@ -554,7 +555,7 @@ TEST(EventsTest, OtherClientOnlineEvent)
 {
 	OtherClientOnlineEvent event{};
 	Data::EventData["OtherClientOnlineEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "OtherClientOnlineEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::OtherClientOnline);
 
 	EXPECT_EQ(event.GetClient().id, 1);
 	EXPECT_EQ(event.GetClient().platform, "WINDOWS");
@@ -565,7 +566,7 @@ TEST(EventsTest, OtherClientOfflineEvent)
 {
 	OtherClientOfflineEvent event{};
 	Data::EventData["OtherClientOfflineEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "OtherClientOfflineEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::OtherClientOffline);
 
 	EXPECT_EQ(event.GetClient().id, 1);
 	EXPECT_EQ(event.GetClient().platform, "WINDOWS");
@@ -575,7 +576,7 @@ TEST(EventsTest, CommandExecutedEvent)
 {
 	CommandExecutedEvent event{};
 	Data::EventData["CommandExecutedEvent"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "CommandExecutedEvent");
+	EXPECT_EQ(event.GetType(), EventTypes::CommandExecuted);
 
 	EXPECT_EQ(event.GetName(), "shutdown");
 	EXPECT_TRUE(event.GetFriendSender());
@@ -592,7 +593,7 @@ TEST(EventsTest, FriendMessageEvent)
 {
 	FriendMessageEvent event{};
 	Data::EventData["FriendMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "FriendMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::FriendMessage);
 
 	EXPECT_EQ(event.GetSender().id, 123_qq);
 	EXPECT_EQ(event.GetSender().nickname, "xxx");
@@ -606,7 +607,7 @@ TEST(EventsTest, GroupMessageEvent)
 {
 	GroupMessageEvent event{};
 	Data::EventData["GroupMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupMessage);
 
 	EXPECT_EQ(event.GetSender().id, 123_qq);
 	EXPECT_EQ(event.GetSender().MemberName, "aaa");
@@ -627,7 +628,7 @@ TEST(EventsTest, TempMessageEvent)
 {
 	TempMessageEvent event{};
 	Data::EventData["TempMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "TempMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::TempMessage);
 
 	EXPECT_EQ(event.GetSender().id, 123_qq);
 	EXPECT_EQ(event.GetSender().MemberName, "aaa");
@@ -648,7 +649,7 @@ TEST(EventsTest, StrangerMessageEvent)
 {
 	StrangerMessageEvent event{};
 	Data::EventData["StrangerMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "StrangerMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::StrangerMessage);
 
 	EXPECT_EQ(event.GetSender().id, 123_qq);
 	EXPECT_EQ(event.GetSender().nickname, "xxx");
@@ -662,7 +663,7 @@ TEST(EventsTest, OtherClientMessageEvent)
 {
 	OtherClientMessageEvent event{};
 	Data::EventData["OtherClientMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "OtherClientMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::OtherClientMessage);
 
 	EXPECT_EQ(event.GetSender().id, 123);
 	EXPECT_EQ(event.GetSender().platform, "MOBILE");
@@ -675,7 +676,7 @@ TEST(EventsTest, FriendSyncMessageEvent)
 {
 	FriendSyncMessageEvent event{};
 	Data::EventData["FriendSyncMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "FriendSyncMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::FriendSyncMessage);
 
 	EXPECT_EQ(event.GetFriend().id, 123_qq);
 	EXPECT_EQ(event.GetFriend().nickname, "xxx");
@@ -689,7 +690,7 @@ TEST(EventsTest, GroupSyncMessageEvent)
 {
 	GroupSyncMessageEvent event{};
 	Data::EventData["GroupSyncMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "GroupSyncMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::GroupSyncMessage);
 
 	EXPECT_EQ(event.GetGroup().id, 1234567890_gid);
 	EXPECT_EQ(event.GetGroup().name, "bbb");
@@ -703,7 +704,7 @@ TEST(EventsTest, TempSyncMessageEvent)
 {
 	TempSyncMessageEvent event{};
 	Data::EventData["TempSyncMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "TempSyncMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::TempSyncMessage);
 
 	EXPECT_EQ(event.GetGroupMember().id, 123_qq);
 	EXPECT_EQ(event.GetGroupMember().MemberName, "aaa");
@@ -724,7 +725,7 @@ TEST(EventsTest, StrangerSyncMessageEvent)
 {
 	StrangerSyncMessageEvent event{};
 	Data::EventData["StrangerSyncMessage"].get_to(event);
-	EXPECT_EQ(event._TYPE_, "StrangerSyncMessage");
+	EXPECT_EQ(event.GetType(), EventTypes::StrangerSyncMessage);
 
 	EXPECT_EQ(event.GetStranger().id, 123_qq);
 	EXPECT_EQ(event.GetStranger().nickname, "xxx");

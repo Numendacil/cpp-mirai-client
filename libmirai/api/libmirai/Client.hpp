@@ -27,20 +27,14 @@
 #include <thread>
 #include <type_traits>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
-#include <libmirai/Events/BotInvitedJoinGroupRequestEvent.hpp>
-#include <libmirai/Events/FriendMessageEvent.hpp>
-#include <libmirai/Events/GroupMessageEvent.hpp>
-#include <libmirai/Events/MemberJoinRequestEvent.hpp>
-#include <libmirai/Events/MiraiClientEvents.hpp>
-#include <libmirai/Events/NewFriendRequestEvent.hpp>
-#include <libmirai/Events/StrangerMessageEvent.hpp>
-#include <libmirai/Events/TempMessageEvent.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/Logger.hpp>
 #include <libmirai/Utils/SessionConfig.hpp>
+#include <libmirai/Events/Events.hpp>
 
 /// 所有mirai相关的对象的命名空间
 namespace Mirai
@@ -64,8 +58,8 @@ class ThreadPool;
 /**
  * @brief 提供与mirai-api-http网络交互的封装
  * 
- * 所有与mirai的交互都需要通过该类来实现。使用时可以通过调用http
- * api以及注册事件回调函数来完成消息的处理与发送。
+ * 所有与mirai的交互都需要通过该类来实现。使用时可以通过调用网络api
+ * 以及注册事件回调函数来完成消息的处理与发送。
  *
  * 连接设置保存在 `SessionConfigs` 类中，更改设置后需要重新连接mirai来使新配置生效。
  *
@@ -73,11 +67,52 @@ class ThreadPool;
  */
 class MiraiClient
 {
+private:
+	// type traits
+	struct traits
+	{
+		template<typename T, typename TypeList> struct _is_event_type;
+
+		template<typename T, size_t... I>
+		struct _is_event_type<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetEventType_t<EventTypesList[I]>>...>
+		{
+		};
+
+		template<typename T>
+		using is_event_type = _is_event_type<T, std::make_index_sequence<EventTypesList.size()>>;
+
+		template<typename T>
+		struct _event_callback_variant {};
+
+		template<size_t... I>
+		struct _event_callback_variant<std::index_sequence<I...>> { using type = std::variant<std::function<void(GetEventType_t<EventTypesList[I]>)>...>; };
+
+		using EventCallbackVariant = _event_callback_variant<std::make_index_sequence<EventTypesList.size()>>::type;
+
+		template<typename T> 
+		struct function_traits;
+
+		template<typename EventType> 
+		struct function_traits<std::function<void(EventType)>>
+		{
+			using type = EventType;
+		};
+	};
+
+	template<typename EventType> constexpr static void _type_check_()
+	{
+		static_assert(std::is_base_of_v<IEvent<EventType>, EventType>,
+		              "EventType is not derived from IEvent<EventType>"); // NOLINT(*-array-to-pointer-decay)
+		static_assert(traits::is_event_type<EventType>::value,
+		              "Unsupported event type"); // NOLINT(*-array-to-pointer-decay)
+	};
+
 public:
-	template<typename Event> using EventCallback = std::function<void(Event)>;
+	template<typename Event> 
+	using EventCallback = std::function<void(Event)>;
 
 protected:
-	using EventHandler = std::function<void(const void*)>;
+	using EventHandler = traits::EventCallbackVariant;
 
 	mutable std::shared_mutex _mtx;
 
@@ -103,7 +138,7 @@ protected:
 	EventCallback<ClientConnectionErrorEvent> _ConnectionErrorCallback;
 	EventCallback<ClientParseErrorEvent> _ParseErrorCallback;
 
-	std::unordered_map<std::string, EventHandler> _EventHandlers{};
+	std::unordered_map<EventTypes, EventHandler> _EventHandlers{};
 
 	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
 	{
@@ -140,18 +175,6 @@ protected:
 		std::shared_lock<std::shared_mutex> lk(this->_mtx);
 		return this->_SessionKey;
 	}
-
-	void _DeserializeWrapper(EventBase&, const void*) const;
-
-	template<typename T> class _has_type_
-	{
-		template<typename U> static std::true_type test(decltype(U::_TYPE_)*);
-
-		template<typename> static std::false_type test(...);
-
-	public:
-		static constexpr bool value = decltype(test<T>(0))::value;
-	};
 
 public:
 	MiraiClient();
@@ -210,23 +233,23 @@ public:
 	/**
 	 * @brief 注册事件回调函数
 	 * 
-	 * 模版参数 `EventType` 必须为 `EventBase` 的派生类，且定义了 `EventType::_TYPE_` 属性
 	 * @tparam EventType 事件类型
 	 * @param callback 回调函数
 	 */
+	///@{
 	template<typename EventType> void On(EventCallback<EventType> callback)
 	{
-		static_assert(std::is_base_of_v<EventBase, EventType>, "EventType must be a derived class of EventBase");
-		static_assert(_has_type_<EventType>::value, "EventType must define EventType::_TYPE_");
+		_type_check_<EventType>();
 
 		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_EventHandlers[std::string(EventType::_TYPE_)] = [callback, this](const void* data)
-		{
-			EventType event{this};
-			this->_DeserializeWrapper(event, data);
-			callback(std::move(event));
-		};
+		this->_EventHandlers[EventType::GetType()] = std::move(callback);
 	}
+
+	template <EventTypes Type> void On(EventCallback<GetEventType_t<Type>> callback)
+	{
+		this->On(std::move(callback));
+	}
+	///@}
 
 
 	/**

@@ -22,13 +22,14 @@
 #include <mutex>
 #include <string>
 #include <thread>
+#include <type_traits>
 #include <utility>
 
 #include <nlohmann/json.hpp>
 
 #include <libmirai/Impl/HttpClientImpl.hpp>
 #include <libmirai/Impl/MessageClientImpl.hpp>
-#include <libmirai/Serialization/Events/EventBase.hpp>
+#include <libmirai/Serialization/Events/Events.hpp>
 #include <libmirai/Serialization/Messages/MessageChain.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
@@ -125,7 +126,7 @@ void MiraiClient::Connect()
 					return header;
 				}());
 
-			this->_HandshakeInfo = {info.uri, {info.headers.begin(), info.headers.end()}, info.protocol};
+			this->_HandshakeInfo = ClientConnectionEstablishedEvent{{}, info.uri, {info.headers.begin(), info.headers.end()}, info.protocol, {}, {}};
 		});
 
 	this->_MessageClient->OnError(
@@ -146,9 +147,9 @@ void MiraiClient::Connect()
 			auto callback = this->_GetErrorCallback();
 			if (callback)
 			{
-				ClientConnectionErrorEvent event{info.retries, info.wait_time, info.http_status, info.reason,
+				ClientConnectionErrorEvent event{{}, info.retries, info.wait_time, info.http_status, info.reason,
 			                                     info.decompressionError};
-				callback(event);
+				callback(std::move(event));
 			}
 		});
 
@@ -175,8 +176,8 @@ void MiraiClient::Connect()
 			auto callback = this->_GetClosedCallback();
 			if (callback)
 			{
-				ClientConnectionClosedEvent event{info.code, info.reason, info.remote};
-				callback(event);
+				ClientConnectionClosedEvent event{{}, info.code, info.reason, info.remote};
+				callback(std::move(event));
 			}
 		});
 
@@ -227,12 +228,12 @@ void MiraiClient::Connect()
 							this->_connected = true;
 							this->_HandshakeInfo.SessionKey = session;
 							resp.at("qq").get_to(this->_HandshakeInfo.BotProfile);
-							event = this->_HandshakeInfo;
+							event = std::move(this->_HandshakeInfo);
 						}
 					}
 
 					auto callback = this->_GetEstablishedCallback();
-					if (callback) callback(event);
+					if (callback) callback(std::move(event));
 
 					cond.notify_one();
 					return;
@@ -240,7 +241,7 @@ void MiraiClient::Connect()
 
 				if (!(data.contains("type") && data.at("type").is_string())) return;
 
-				std::string type = data.at("type").get<std::string>();
+				auto type = data.at("type").get<EventTypes>();
 
 				LOG_TRACE(this->_GetLogger(), "Dispatching message, type: " + type);
 
@@ -249,28 +250,49 @@ void MiraiClient::Connect()
 					std::shared_lock<std::shared_mutex> lk(this->_mtx);
 					if (this->_EventHandlers.count(type)) handler = this->_EventHandlers.at(type);
 				}
-				if (handler)
+				std::visit([&data, this](auto&& handler)
 				{
+					using FuncType = std::decay_t<decltype(handler)>;
+					using EventType = typename traits::function_traits<FuncType>::type;
+
+					if (!handler)
+					{
+						LOG_TRACE(this->_GetLogger(), "No matching handler found");
+						return;
+					}
+					
 					LOG_TRACE(this->_GetLogger(), "Found handler");
-					(void)this->_ThreadPool->enqueue([data, handler]() { handler(&data); });
-					return;
-				}
-				LOG_TRACE(this->_GetLogger(), "No matching handler found");
+
+					if constexpr (
+						!std::disjunction_v<
+							std::is_same<EventType, ClientConnectionEstablishedEvent>,
+							std::is_same<EventType, ClientConnectionErrorEvent>,
+							std::is_same<EventType, ClientConnectionClosedEvent>,
+							std::is_same<EventType, ClientParseErrorEvent>
+						>)
+					{
+						EventType event;
+						event._SetClient(this);
+						from_json(data, event);
+						(void)this->_ThreadPool->enqueue(handler, std::move(event));
+					}
+					
+				}, handler);
 			}
 			catch (const ParseError& e)
 			{
 				auto callback = this->_GetParseErrorCallback();
-				if (callback) callback({e, message});
+				if (callback) callback({{}, e, message});
 			}
 			catch (const std::exception& e)
 			{
 				auto callback = this->_GetParseErrorCallback();
-				if (callback) callback({ParseError{e.what(), message}, message});
+				if (callback) callback({{}, ParseError{e.what(), message}, message});
 			}
 			catch (...)
 			{
 				auto callback = this->_GetParseErrorCallback();
-				if (callback) callback({ParseError{"Unknown error", message}, message});
+				if (callback) callback({{}, ParseError{"Unknown error", message}, message});
 			}
 		});
 
@@ -316,21 +338,6 @@ void MiraiClient::Disconnect()
 	this->_MessageClient = nullptr;
 
 	LOG_DEBUG(*(this->_logger), "Clients shutdown complete");
-}
-
-void MiraiClient::_DeserializeWrapper(EventBase& event, const void* data) const
-{
-	const auto& j = *static_cast<const json*>(data);
-
-	try
-	{
-		j.get_to(event);
-	}
-	catch (const ParseError& e)
-	{
-		auto callback = this->_GetParseErrorCallback();
-		if (callback) callback({e, j.dump()});
-	}
 }
 
 template<>
@@ -386,9 +393,9 @@ FriendMessageEvent MiraiClient::GetFriendMessage(MessageId_t id, QQ_t qq)
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
-	FriendMessageEvent event(nullptr);
-	if (event._TYPE_ != Utils::GetValue(resp, "type", ""))
-		throw TypeDismatch(string(event._TYPE_), Utils::GetValue(resp, "type", ""));
+	FriendMessageEvent event;
+	if (FriendMessageEvent::GetType() != resp.at("type").get<EventTypes>())
+		throw TypeDismatch(to_string(FriendMessageEvent::GetType()), Utils::GetValue(resp, "type", ""));
 	resp.get_to(event);
 	return event;
 }
@@ -399,9 +406,9 @@ GroupMessageEvent MiraiClient::GetGroupMessage(MessageId_t id, GID_t GroupId)
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
-	GroupMessageEvent event(nullptr);
-	if (event._TYPE_ != Utils::GetValue(resp, "type", ""))
-		throw TypeDismatch(string(event._TYPE_), Utils::GetValue(resp, "type", ""));
+	GroupMessageEvent event;
+	if (GroupMessageEvent::GetType() != resp.at("type").get<EventTypes>())
+		throw TypeDismatch(to_string(GroupMessageEvent::GetType()), Utils::GetValue(resp, "type", ""));
 	resp.get_to(event);
 	return event;
 }
@@ -412,9 +419,9 @@ TempMessageEvent MiraiClient::GetTempMessage(MessageId_t id, GID_t GroupId)
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
-	TempMessageEvent event(nullptr);
-	if (event._TYPE_ != Utils::GetValue(resp, "type", ""))
-		throw TypeDismatch(string(event._TYPE_), Utils::GetValue(resp, "type", ""));
+	TempMessageEvent event;
+	if (TempMessageEvent::GetType() != resp.at("type").get<EventTypes>())
+		throw TypeDismatch(to_string(TempMessageEvent::GetType()), Utils::GetValue(resp, "type", ""));
 	resp.get_to(event);
 	return event;
 }
@@ -425,9 +432,9 @@ StrangerMessageEvent MiraiClient::GetStrangerMessage(MessageId_t id, QQ_t qq)
 
 	LOG_TRACE(this->_GetLogger(), "Calling MessageFromId received " + resp.dump());
 
-	StrangerMessageEvent event(nullptr);
-	if (event._TYPE_ != Utils::GetValue(resp, "type", ""))
-		throw TypeDismatch(string(event._TYPE_), Utils::GetValue(resp, "type", ""));
+	StrangerMessageEvent event;
+	if (StrangerMessageEvent::GetType() != resp.at("type").get<EventTypes>())
+		throw TypeDismatch(to_string(StrangerMessageEvent::GetType()), Utils::GetValue(resp, "type", ""));
 	resp.get_to(event);
 	return event;
 }

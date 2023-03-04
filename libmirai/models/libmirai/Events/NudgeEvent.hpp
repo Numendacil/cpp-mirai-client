@@ -21,7 +21,7 @@
 #include <libmirai/Types/BasicTypes.hpp>
 #include <libmirai/Types/NudgeTarget.hpp>
 
-#include "EventBase.hpp"
+#include "IEvent.hpp"
 
 namespace Mirai
 {
@@ -36,20 +36,18 @@ namespace Mirai
  * `NudgeEvent::_action` | `""`
  * `NudgeEvent::_suffix` | `""`
  */
-class NudgeEvent : public EventBase
+class NudgeEvent final : public IEvent<NudgeEvent>
 {
-protected:
+	friend IEvent<NudgeEvent>;
+private:
 	QQ_t _FromId;
 	NudgeTarget _target;
 	std::string _action;
 	std::string _suffix;
 
-	void Deserialize(const void*) final;
+	static constexpr EventTypes _TYPE_ = EventTypes::Nudge;
 
 public:
-	using EventBase::EventBase;
-	static constexpr std::string_view _TYPE_ = "NudgeEvent";
-
 	/// 获取发送者QQ
 	QQ_t GetSender() const { return this->_FromId; }
 	/// 获取戳一戳消息的接收对象
@@ -58,6 +56,14 @@ public:
 	std::string GetAction() const { return this->_action; }
 	/// 获取自定义戳一戳的内容
 	std::string GetSuffix() const { return this->_suffix; }
+
+	struct Serializable;
+};
+
+template<>
+struct GetEventType<NudgeEvent::GetType()>
+{
+	using type = NudgeEvent;
 };
 
 } // namespace Mirai

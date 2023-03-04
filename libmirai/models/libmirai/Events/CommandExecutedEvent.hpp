@@ -22,7 +22,7 @@
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "EventBase.hpp"
+#include "IEvent.hpp"
 
 namespace Mirai
 {
@@ -37,20 +37,18 @@ namespace Mirai
  * `CommandExecutedEvent::_member` | `std::nullopt`
  * `CommandExecutedEvent::_args` | `MessageChain{}`
  */
-class CommandExecutedEvent : public EventBase
+class CommandExecutedEvent final : public IEvent<CommandExecutedEvent>
 {
-protected:
+	friend IEvent<CommandExecutedEvent>;
+private:
 	std::string _name;
 	std::optional<User> _friend = std::nullopt;
 	std::optional<GroupMember> _member = std::nullopt;
 	MessageChain _args;
 
-	void Deserialize(const void*) final;
+	static constexpr EventTypes _TYPE_ = EventTypes::CommandExecuted;
 
 public:
-	using EventBase::EventBase;
-	static constexpr std::string_view _TYPE_ = "CommandExecutedEvent";
-
 	/// 获取命令名称（不含前缀 `/` ）
 	std::string GetName() const { return this->_name; }
 	/// 获取发送者类型
@@ -64,6 +62,14 @@ public:
 	std::optional<GroupMember> GetMemberSender() const { return this->_member; }
 	/// 获取命令参数内容
 	MessageChain GetCommandArgs() const { return this->_args; }
+
+	struct Serializable;
+};
+
+template<>
+struct GetEventType<CommandExecutedEvent::GetType()>
+{
+	using type = CommandExecutedEvent;
 };
 
 } // namespace Mirai

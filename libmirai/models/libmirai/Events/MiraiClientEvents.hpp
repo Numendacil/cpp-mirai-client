@@ -22,6 +22,7 @@
 
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Types/BasicTypes.hpp>
+#include <libmirai/Events/IEvent.hpp>
 
 namespace Mirai
 {
@@ -32,7 +33,7 @@ namespace Mirai
  * 会在连接成功建立后， `MiraiClient::Connect()` 返回之前广播。
  * `MiraiClient` 的mirai相关api应在此事件之后才能被正常使用。
  */
-struct ClientConnectionEstablishedEvent
+struct ClientConnectionEstablishedEvent final : IEvent<ClientConnectionEstablishedEvent>
 {
 	/// 连接地址
 	std::string uri;
@@ -44,6 +45,10 @@ struct ClientConnectionEstablishedEvent
 	std::string SessionKey;
 	/// 获取到的的Bot资料
 	User BotProfile;
+
+private:
+	friend IEvent<ClientConnectionEstablishedEvent>;
+	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionEstablished;
 };
 
 /**
@@ -52,7 +57,7 @@ struct ClientConnectionEstablishedEvent
  * 通常出现于网络问题导致的无法连接目标服务器。
  * 连接建立后出现的错误将导致 `ClientConnectionClosedEvent`
  */
-struct ClientConnectionErrorEvent
+struct ClientConnectionErrorEvent final: public IEvent<ClientConnectionErrorEvent>
 {
 	/// 当前重试次数
 	uint32_t RetryCount = 0;
@@ -64,6 +69,10 @@ struct ClientConnectionErrorEvent
 	std::string reason;
 	/// 是否为解压缩编码错误
 	bool DecompressionError = false;
+
+private:
+	friend IEvent<ClientConnectionErrorEvent>;
+	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionError;
 };
 
 /**
@@ -74,7 +83,7 @@ struct ClientConnectionErrorEvent
  * 连接关闭后不再应该进行任何mirai api的使用，直到下次连接建立接收到 `ClientConnectionEstablishedEvent` 为止。
  * 若开启了自动重连选项，`MiraiClient` 会在非客户端主动关闭导致的连接丢失后尝试自动重连。重连过程中的错误将会触发 `ClientConnectionErrorEvent`
  */
-struct ClientConnectionClosedEvent
+struct ClientConnectionClosedEvent final: public IEvent<ClientConnectionClosedEvent>
 {
 	/// 信息码
 	uint16_t code;
@@ -82,6 +91,10 @@ struct ClientConnectionClosedEvent
 	std::string reason;
 	/// 是否由远程服务器关闭的连接
 	bool remote;
+
+private:
+	friend IEvent<ClientConnectionClosedEvent>;
+	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionClosed;
 };
 
 /**
@@ -89,14 +102,32 @@ struct ClientConnectionClosedEvent
  * 
  * 从mirai-api-http接收到了格式错误的信息，可能是版本不同或bug导致
  */
-struct ClientParseErrorEvent
+struct ClientParseErrorEvent final: public IEvent<ClientParseErrorEvent>
 {
 	/// 错误消息
 	ParseError error;
 	/// 接收到的原消息
 	std::string message;
+
+private:
+	friend IEvent<ClientParseErrorEvent>;
+	static constexpr EventTypes _TYPE_ = EventTypes::ClientParseError;
 };
 
+
+
+#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
+	template<> struct GetEventType<_type_::GetType()>                                                                  \
+	{                                                                                                                  \
+		using type = _type_;                                                                                           \
+	}
+
+DECLARE_TYPE_ENUM(ClientConnectionEstablishedEvent);
+DECLARE_TYPE_ENUM(ClientConnectionErrorEvent);
+DECLARE_TYPE_ENUM(ClientConnectionClosedEvent);
+DECLARE_TYPE_ENUM(ClientParseErrorEvent);
+
+#undef DECLARE_TYPE_ENUM
 
 } // namespace Mirai
 

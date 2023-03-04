@@ -6,6 +6,8 @@ target_sources(
 	GroupSettings.cpp
 	MediaTypes.hpp
 	MediaTypes.cpp
+	EventTypes.hpp
+	EventTypes.cpp
 	MessageTypes.hpp
 	MessageTypes.cpp
 

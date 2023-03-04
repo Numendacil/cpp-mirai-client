@@ -20,7 +20,7 @@
 
 #include <libmirai/Types/BasicTypes.hpp>
 
-#include "EventBase.hpp"
+#include "IEvent.hpp"
 
 namespace Mirai
 {
@@ -36,21 +36,19 @@ namespace Mirai
  * `NewFriendRequestEvent::_nickname` | `""`
  * `NewFriendRequestEvent::_message` | `""`
  */
-class NewFriendRequestEvent : public EventBase
+class NewFriendRequestEvent final : public IEvent<NewFriendRequestEvent>
 {
-protected:
+	friend IEvent<NewFriendRequestEvent>;
+private:
 	int64_t _EventId = 0;
 	QQ_t _FromId;
 	GID_t _GroupId;
 	std::string _nickname;
 	std::string _message;
 
-	void Deserialize(const void*) final;
+	static constexpr EventTypes _TYPE_ = EventTypes::NewFriendRequest;
 
 public:
-	using EventBase::EventBase;
-	static constexpr std::string_view _TYPE_ = "NewFriendRequestEvent";
-
 	/// 获取事件id，唯一标识符
 	int64_t GetEventId() const { return this->_EventId; }
 	/// 获取申请人QQ
@@ -65,6 +63,14 @@ public:
 	std::string GetMessage() const { return this->_message; }
 
 	// TODO: add helper methods for quick response
+
+	struct Serializable;
+};
+
+template<>
+struct GetEventType<NewFriendRequestEvent::GetType()>
+{
+	using type = NewFriendRequestEvent;
 };
 
 } // namespace Mirai
