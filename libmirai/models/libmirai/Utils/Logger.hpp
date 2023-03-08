@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_LOGGER_HPP_
-#define _MIRAI_LOGGER_HPP_
+#ifndef MIRAI_LOGGER_HPP_
+#define MIRAI_LOGGER_HPP_
 
 #include <atomic>
 #include <mutex>
@@ -65,18 +65,18 @@ enum class LoggingLevels : uint8_t
 class ILogger
 {
 protected:
-	std::atomic<LoggingLevels> _level = LoggingLevels::INFO;
+	std::atomic<LoggingLevels> level_ = LoggingLevels::INFO;
 
 public:
 	ILogger() = default;
-	ILogger(LoggingLevels level) : _level(level) {}
+	ILogger(LoggingLevels level) : level_(level) {}
 	ILogger(const ILogger&) = delete;
 	ILogger& operator=(const ILogger&) = delete;
 	ILogger(ILogger&&) = delete;
 	ILogger& operator=(ILogger&&) = delete;
 
 	/// 设置日志等级
-	void SetLoggingLevel(LoggingLevels level) { this->_level = level; }
+	void SetLoggingLevel(LoggingLevels level) { this->level_ = level; }
 
 	/**
 	 * @brief 检查该等级的日志是否会被输出
@@ -84,7 +84,7 @@ public:
 	 * @param level 日志等级
 	 * @return `bool`
 	 */
-	bool CheckLoggingLevel(LoggingLevels level) { return !(this->_level > level); }
+	bool CheckLoggingLevel(LoggingLevels level) { return !(this->level_ > level); }
 
 	/**
 	 * @brief 输出日志
@@ -124,69 +124,69 @@ public:
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_TRACE
-#define LOG_TRACE(_logger_, _msg_)                                                                                     \
+#define LOG_TRACE(logger, msg)                                                                                     \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::TRACE))                                                 \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::TRACE);                                                      \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::TRACE))                                                 \
+			(logger).log((msg), Mirai::LoggingLevels::TRACE);                                                      \
 	} while (0)
 #else
-#define LOG_TRACE(_logger_, _msg_) (void)0
+#define LOG_TRACE(logger, msg) (void)0
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_DEBUG
-#define LOG_DEBUG(_logger_, _msg_)                                                                                     \
+#define LOG_DEBUG(logger, msg)                                                                                     \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::DEBUG))                                                 \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::DEBUG);                                                      \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::DEBUG))                                                 \
+			(logger).log((msg), Mirai::LoggingLevels::DEBUG);                                                      \
 	} while (0)
 #else
-#define LOG_DEBUG(_logger_, _msg_) (void)0
+#define LOG_DEBUG(logger, msg) (void)0
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_INFO
-#define LOG_INFO(_logger_, _msg_)                                                                                      \
+#define LOG_INFO(logger, msg)                                                                                      \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::INFO))                                                  \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::INFO);                                                       \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::INFO))                                                  \
+			(logger).log((msg), Mirai::LoggingLevels::INFO);                                                       \
 	} while (0)
 #else
-#define LOG_INFO(_logger_, _msg_) (void)0
+#define LOG_INFO(logger, msg) (void)0
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_WARN
-#define LOG_WARN(_logger_, _msg_)                                                                                      \
+#define LOG_WARN(logger, msg)                                                                                      \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::WARN))                                                  \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::WARN);                                                       \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::WARN))                                                  \
+			(logger).log((msg), Mirai::LoggingLevels::WARN);                                                       \
 	} while (0)
 #else
-#define LOG_WARN(_logger_, _msg_) (void)0
+#define LOG_WARN(logger, msg) (void)0
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_ERROR
-#define LOG_ERROR(_logger_, _msg_)                                                                                     \
+#define LOG_ERROR(logger, msg)                                                                                     \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::ERROR))                                                 \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::ERROR);                                                      \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::ERROR))                                                 \
+			(logger).log((msg), Mirai::LoggingLevels::ERROR);                                                      \
 	} while (0)
 #else
-#define LOG_ERROR(_logger_, _msg_) (void)0
+#define LOG_ERROR(logger, msg) (void)0
 #endif
 
 #if MIRAI_LOGGING_LEVEL <= MIRAI_LOGGING_LEVELS_FATAL
-#define LOG_FATAL(_logger_, _msg_)                                                                                     \
+#define LOG_FATAL(logger, msg)                                                                                     \
 	do                                                                                                                 \
 	{                                                                                                                  \
-		if ((_logger_).CheckLoggingLevel(Mirai::LoggingLevels::FATAL))                                                 \
-			(_logger_).log((_msg_), Mirai::LoggingLevels::FATAL);                                                      \
+		if ((logger).CheckLoggingLevel(Mirai::LoggingLevels::FATAL))                                                 \
+			(logger).log((msg), Mirai::LoggingLevels::FATAL);                                                      \
 	} while (0)
 #else
-#define LOG_FATAL(_logger_, _msg_) (void)0
+#define LOG_FATAL(logger, msg) (void)0
 #endif
 
 #endif

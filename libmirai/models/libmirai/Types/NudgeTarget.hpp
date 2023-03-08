@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_TYPES_NUDGE_TARGET_HPP_
-#define _MIRAI_TYPES_NUDGE_TARGET_HPP_
+#ifndef MIRAI_TYPES_NUDGE_TARGET_HPP_
+#define MIRAI_TYPES_NUDGE_TARGET_HPP_
 
 #include <array>
 #include <string>
@@ -29,16 +29,16 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `NudgeTarget::_kind` | `NudgeType::ENUM_END`
- * `NudgeTarget::_target` | `0_qq`
- * `NudgeTarget::_subject` | `0`
+ * `NudgeTarget::kind_` | `NudgeType::ENUM_END`
+ * `NudgeTarget::target_` | `0_qq`
+ * `NudgeTarget::subject_` | `0`
  */
 class NudgeTarget
 {
 protected:
-	NudgeType _kind = NudgeType::ENUM_END;
-	QQ_t _target{};
-	int64_t _subject = 0;
+	NudgeType kind_ = NudgeType::ENUM_END;
+	QQ_t target_{};
+	int64_t subject_ = 0;
 
 public:
 	/**
@@ -54,7 +54,7 @@ public:
 	 * @param target 戳一戳的对象
 	 * @param subject 戳一戳的发送主体，群聊消息时为群号，私聊时为对方QQ号码
 	 */
-	NudgeTarget(NudgeType kind, QQ_t target, UID_t subject) : _kind(kind), _target(target), _subject((int64_t)subject)
+	NudgeTarget(NudgeType kind, QQ_t target, UID_t subject) : kind_(kind), target_(target), subject_((int64_t)subject)
 	{
 	}
 
@@ -63,14 +63,14 @@ public:
 	 * 
 	 * @return 戳一戳类型 `enum`
 	 */
-	NudgeType GetNudgeType() const { return this->_kind; }
+	NudgeType GetNudgeType() const { return this->kind_; }
 
 	/**
 	 * @brief 返回戳一戳的对象
 	 * 
 	 * @return 戳一戳对象的QQ号
 	 */
-	QQ_t GetTarget() const { return this->_target; }
+	QQ_t GetTarget() const { return this->target_; }
 
 	/**
 	 * @brief 返回戳一戳所在的群聊
@@ -78,7 +78,7 @@ public:
 	 * 仅在类型为 `NudgeType::GROUP` 时有效，否则返回 `0`
 	 * @return 戳一戳的群号
 	 */
-	GID_t GetGroup() const { return (this->_kind == NudgeType::GROUP) ? (GID_t)this->_subject : (GID_t)0; }
+	GID_t GetGroup() const { return (this->kind_ == NudgeType::GROUP) ? (GID_t)this->subject_ : (GID_t)0; }
 
 	/**
 	 * @brief 设置戳一戳类型
@@ -88,7 +88,7 @@ public:
 	 */
 	NudgeTarget& SetNudgeType(NudgeType kind)
 	{
-		this->_kind = kind;
+		this->kind_ = kind;
 		return *this;
 	}
 
@@ -100,7 +100,7 @@ public:
 	 */
 	NudgeTarget& SetTarget(QQ_t target)
 	{
-		this->_target = target;
+		this->target_ = target;
 		return *this;
 	}
 
@@ -113,7 +113,7 @@ public:
 	 */
 	NudgeTarget& SetSubject(int64_t subject)
 	{
-		this->_subject = subject;
+		this->subject_ = subject;
 		return *this;
 	}
 
@@ -126,8 +126,8 @@ public:
 	 */
 	NudgeTarget& NudgeFriend(QQ_t target)
 	{
-		this->_kind = NudgeType::FRIEND;
-		this->_target = target;
+		this->kind_ = NudgeType::FRIEND;
+		this->target_ = target;
 		return *this;
 	}
 
@@ -140,9 +140,9 @@ public:
 	 */
 	NudgeTarget& NudgeGroupMember(QQ_t target, GID_t group)
 	{
-		this->_kind = NudgeType::GROUP;
-		this->_target = target;
-		this->_subject = (int64_t)group;
+		this->kind_ = NudgeType::GROUP;
+		this->target_ = target;
+		this->subject_ = (int64_t)group;
 		return *this;
 	}
 
@@ -154,8 +154,8 @@ public:
 	 */
 	NudgeTarget& NudgeStranger(QQ_t target)
 	{
-		this->_kind = NudgeType::STRANGER;
-		this->_target = target;
+		this->kind_ = NudgeType::STRANGER;
+		this->target_ = target;
 		return *this;
 	}
 };

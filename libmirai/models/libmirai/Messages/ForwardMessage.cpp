@@ -27,159 +27,159 @@ ForwardMessage::ForwardMessage(ForwardMessage&&) = default;
 ForwardMessage& ForwardMessage::operator= (ForwardMessage&&) = default;
 ForwardMessage::~ForwardMessage() = default;
 
-bool ForwardMessage::_isValid() const
+bool ForwardMessage::isValid_() const
 {
-	for (const auto& n : this->_NodeList)
+	for (const auto& n : this->NodeList_)
 		if (!n.valid()) return false;
 	return true;
 }
 
 bool ForwardMessage::empty() const noexcept
 {
-	return this->_NodeList.empty();
+	return this->NodeList_.empty();
 }
 ForwardMessage::size_type ForwardMessage::size() const noexcept
 {
-	return this->_NodeList.size();
+	return this->NodeList_.size();
 }
 void ForwardMessage::reserve(size_type new_cap)
 {
-	return this->_NodeList.reserve(new_cap);
+	return this->NodeList_.reserve(new_cap);
 }
 void ForwardMessage::shrink_to_fit() noexcept
 {
-	return this->_NodeList.shrink_to_fit();
+	return this->NodeList_.shrink_to_fit();
 }
 ForwardMessage::size_type ForwardMessage::max_size() const noexcept
 {
-	return this->_NodeList.max_size();
+	return this->NodeList_.max_size();
 }
 ForwardMessage::size_type ForwardMessage::capacity() const noexcept
 {
-	return this->_NodeList.capacity();
+	return this->NodeList_.capacity();
 }
 
 ForwardMessage::const_reference ForwardMessage::at(size_type n) const
 {
-	return this->_NodeList.at(n);
+	return this->NodeList_.at(n);
 }
 ForwardMessage::reference ForwardMessage::at(size_type n)
 {
-	return this->_NodeList.at(n);
+	return this->NodeList_.at(n);
 }
 ForwardMessage::const_reference ForwardMessage::operator[](size_type n) const noexcept
 {
-	return this->_NodeList[n];
+	return this->NodeList_[n];
 }
 ForwardMessage::reference ForwardMessage::operator[](size_type n) noexcept
 {
-	return this->_NodeList[n];
+	return this->NodeList_[n];
 }
 ForwardMessage::const_reference ForwardMessage::back() const
 {
-	return this->_NodeList.back();
+	return this->NodeList_.back();
 }
 ForwardMessage::reference ForwardMessage::back()
 {
-	return this->_NodeList.back();
+	return this->NodeList_.back();
 }
 ForwardMessage::const_reference ForwardMessage::front() const
 {
-	return this->_NodeList.front();
+	return this->NodeList_.front();
 }
 ForwardMessage::reference ForwardMessage::front()
 {
-	return this->_NodeList.front();
+	return this->NodeList_.front();
 }
 
 void ForwardMessage::clear() noexcept
 {
-	return this->_NodeList.clear();
+	return this->NodeList_.clear();
 }
 ForwardMessage::iterator ForwardMessage::insert(const_iterator pos, const_reference value)
 {
-	return this->_NodeList.insert(pos, value);
+	return this->NodeList_.insert(pos, value);
 }
 ForwardMessage::iterator ForwardMessage::insert(const_iterator pos, value_type&& value)
 {
-	return this->_NodeList.insert(pos, std::move(value));
+	return this->NodeList_.insert(pos, std::move(value));
 }
 ForwardMessage::iterator ForwardMessage::insert(const_iterator pos, size_type count, const_reference value)
 {
-	return this->_NodeList.insert(pos, count, value);
+	return this->NodeList_.insert(pos, count, value);
 }
 ForwardMessage::iterator ForwardMessage::insert(const_iterator pos, std::initializer_list<value_type> ilist)
 {
-	return this->_NodeList.insert(pos, ilist);
+	return this->NodeList_.insert(pos, ilist);
 }
 ForwardMessage::iterator ForwardMessage::erase(const_iterator pos)
 {
-	return this->_NodeList.erase(pos);
+	return this->NodeList_.erase(pos);
 }
 ForwardMessage::iterator ForwardMessage::erase(const_iterator first, const_iterator last)
 {
-	return this->_NodeList.erase(first, last);
+	return this->NodeList_.erase(first, last);
 }
 void ForwardMessage::push_back(const_reference node)
 {
-	return this->_NodeList.push_back(node);
+	return this->NodeList_.push_back(node);
 }
 void ForwardMessage::push_back(value_type&& node)
 {
-	return this->_NodeList.push_back(std::move(node));
+	return this->NodeList_.push_back(std::move(node));
 }
 void ForwardMessage::pop_back()
 {
-	return this->_NodeList.pop_back();
+	return this->NodeList_.pop_back();
 }
 void ForwardMessage::resize(size_type count)
 {
-	return this->_NodeList.resize(count);
+	return this->NodeList_.resize(count);
 }
 void ForwardMessage::resize(size_type count, const value_type& value)
 {
-	return this->_NodeList.resize(count, value);
+	return this->NodeList_.resize(count, value);
 }
 
 ForwardMessage::iterator ForwardMessage::begin() noexcept
 {
-	return this->_NodeList.begin();
+	return this->NodeList_.begin();
 }
 ForwardMessage::const_iterator ForwardMessage::begin() const noexcept
 {
-	return this->_NodeList.begin();
+	return this->NodeList_.begin();
 }
 ForwardMessage::const_iterator ForwardMessage::cbegin() const noexcept
 {
-	return this->_NodeList.cbegin();
+	return this->NodeList_.cbegin();
 }
 ForwardMessage::iterator ForwardMessage::end() noexcept
 {
-	return this->_NodeList.end();
+	return this->NodeList_.end();
 }
 ForwardMessage::const_iterator ForwardMessage::end() const noexcept
 {
-	return this->_NodeList.end();
+	return this->NodeList_.end();
 }
 ForwardMessage::const_iterator ForwardMessage::cend() const noexcept
 {
-	return this->_NodeList.cend();
+	return this->NodeList_.cend();
 }
 ForwardMessage::reverse_iterator ForwardMessage::rbegin() noexcept
 {
-	return this->_NodeList.rbegin();
+	return this->NodeList_.rbegin();
 }
 ForwardMessage::const_reverse_iterator ForwardMessage::crbegin() const noexcept
 {
-	return this->_NodeList.crbegin();
+	return this->NodeList_.crbegin();
 }
 ForwardMessage::reverse_iterator ForwardMessage::rend() noexcept
 {
-	return this->_NodeList.rend();
+	return this->NodeList_.rend();
 }
 ForwardMessage::const_reverse_iterator ForwardMessage::crend() const noexcept
 {
-	return this->_NodeList.crend();
+	return this->NodeList_.crend();
 }
 
 } // namespace Mirai

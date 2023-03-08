@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_FORWARD_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_FORWARD_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_FORWARD_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_FORWARD_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,7 +35,7 @@ struct ForwardMessage::Serializable
 		assert(j.at("type").get<MessageTypes>() == ForwardMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 		assert(j.at("nodeList").is_array()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("nodeList").get_to(p._NodeList);
+		j.at("nodeList").get_to(p.NodeList_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -45,7 +45,7 @@ struct ForwardMessage::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = ForwardMessage::GetType();
-		j["nodeList"] = p._NodeList;
+		j["nodeList"] = p.NodeList_;
 	}
 
 };

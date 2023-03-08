@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_XML_MESSAGE_HPP_
-#define _MIRAI_XML_MESSAGE_HPP_
+#ifndef MIRAI_XML_MESSAGE_HPP_
+#define MIRAI_XML_MESSAGE_HPP_
 
 
 #include <string>
@@ -30,35 +30,35 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `XmlMessage::_content` | `""`
+ * `XmlMessage::content_` | `""`
  */
 class XmlMessage final : public IMessageImpl<XmlMessage>
 {
 	friend IMessageImpl<XmlMessage>;
 
 protected:
-	std::string _content;
+	std::string content_;
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::XML;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::XML;
+	static constexpr bool SUPPORT_SEND_ = true;
 
-	bool _isValid() const final { return !this->_content.empty(); }
+	bool isValid_() const final { return !this->content_.empty(); }
 
 public:
 	XmlMessage() = default;
-	XmlMessage(std::string content) : _content(std::move(content)) {}
+	XmlMessage(std::string content) : content_(std::move(content)) {}
 
-	bool operator==(const XmlMessage& rhs) { return this->_content == rhs._content; }
+	bool operator==(const XmlMessage& rhs) { return this->content_ == rhs.content_; }
 
 	bool operator!=(const XmlMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取消息内容
-	std::string GetContent() const { return this->_content; }
+	std::string GetContent() const { return this->content_; }
 
 	/// 设置消息内容
 	XmlMessage& SetContent(std::string content)
 	{
-		this->_content = std::move(content);
+		this->content_ = std::move(content);
 		return *this;
 	}
 

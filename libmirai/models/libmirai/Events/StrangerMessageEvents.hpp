@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_STRANGER_MESSAGE_EVENTS_HPP_
-#define _MIRAI_STRANGER_MESSAGE_EVENTS_HPP_
+#ifndef MIRAI_STRANGER_MESSAGE_EVENTS_HPP_
+#define MIRAI_STRANGER_MESSAGE_EVENTS_HPP_
 
 #include <string>
 
@@ -31,24 +31,24 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `StrangerMessageEvent::_sender` | `User{}`
- * `StrangerMessageEvent::_message` | `MessageChain{}`
+ * `StrangerMessageEvent::sender_` | `User{}`
+ * `StrangerMessageEvent::message_` | `MessageChain{}`
  */
 class StrangerMessageEvent final : public IEvent<StrangerMessageEvent>
 {
 	friend IEvent<StrangerMessageEvent>;
 
 private:
-	User _sender;
-	MessageChain _message;
+	User sender_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::StrangerMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::StrangerMessage;
 
 public:
 	/// 获取发送者资料
-	User GetSender() const { return this->_sender; }
+	User GetSender() const { return this->sender_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	// TODO: add helper methods for quick reply
 
@@ -62,24 +62,24 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `StrangerSyncMessageEvent::_subject` | `User{}`
- * `StrangerSyncMessageEvent::_message` | `MessageChain{}`
+ * `StrangerSyncMessageEvent::subject_` | `User{}`
+ * `StrangerSyncMessageEvent::message_` | `MessageChain{}`
  */
 class StrangerSyncMessageEvent final : public IEvent<StrangerSyncMessageEvent>
 {
 	friend IEvent<StrangerSyncMessageEvent>;
 
 private:
-	User _subject;
-	MessageChain _message;
+	User subject_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::StrangerSyncMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::StrangerSyncMessage;
 
 public:
 	/// 获取目标会话对象信息
-	User GetStranger() const { return this->_subject; }
+	User GetStranger() const { return this->subject_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	struct Serializable;
 };

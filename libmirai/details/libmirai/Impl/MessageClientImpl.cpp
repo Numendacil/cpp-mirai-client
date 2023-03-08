@@ -21,93 +21,93 @@
 namespace Mirai::Details
 {
 
-bool MessageClientImpl::_init = false; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
+bool MessageClientImpl::init_ = false; // NOLINT(cppcoreguidelines-avoid-non-const-global-variables)
 
 MessageClientImpl::MessageClientImpl(std::chrono::seconds HeartbeatInterval, std::chrono::seconds HandshakeTimeout,
                                      bool EnablePong, bool EnableDeflate, bool AutoReconnect,
                                      std::chrono::milliseconds MinRetryInterval,
                                      std::chrono::milliseconds MaxRetryInterval)
 {
-	if (!MessageClientImpl::_init)
+	if (!MessageClientImpl::init_)
 	{
 		ix::initNetSystem();
-		MessageClientImpl::_init = true;
+		MessageClientImpl::init_ = true;
 	}
-	this->_client.setPingInterval(static_cast<int>(HeartbeatInterval.count()));
-	this->_client.setHandshakeTimeout(static_cast<int>(HandshakeTimeout.count()));
-	if (!EnablePong) this->_client.disablePong();
-	if (EnableDeflate) this->_client.enablePerMessageDeflate();
+	this->client_.setPingInterval(static_cast<int>(HeartbeatInterval.count()));
+	this->client_.setHandshakeTimeout(static_cast<int>(HandshakeTimeout.count()));
+	if (!EnablePong) this->client_.disablePong();
+	if (EnableDeflate) this->client_.enablePerMessageDeflate();
 	if (AutoReconnect)
 	{
-		this->_client.enableAutomaticReconnection();
-		this->_client.setMinWaitBetweenReconnectionRetries(MinRetryInterval.count());
-		this->_client.setMaxWaitBetweenReconnectionRetries(MaxRetryInterval.count());
+		this->client_.enableAutomaticReconnection();
+		this->client_.setMinWaitBetweenReconnectionRetries(MinRetryInterval.count());
+		this->client_.setMaxWaitBetweenReconnectionRetries(MaxRetryInterval.count());
 	}
 	else
-		this->_client.disableAutomaticReconnection();
+		this->client_.disableAutomaticReconnection();
 }
 
 MessageClientImpl::~MessageClientImpl()
 {
-	if (this->isConnected()) this->_client.stop();
-	if (MessageClientImpl::_init)
+	if (this->isConnected()) this->client_.stop();
+	if (MessageClientImpl::init_)
 	{
 		ix::uninitNetSystem();
-		MessageClientImpl::_init = false;
+		MessageClientImpl::init_ = false;
 	}
 }
 
 void MessageClientImpl::Connect(const std::string& url)
 {
 	if (this->isConnected()) return;
-	this->_client.setUrl(url);
-	this->_client.setOnMessageCallback(
+	this->client_.setUrl(url);
+	this->client_.setOnMessageCallback(
 		[this](const ix::WebSocketMessagePtr& msg)
 		{
 			switch (msg->type)
 			{
 			case ix::WebSocketMessageType::Open:
-				if (this->_OpenCallback) this->_OpenCallback(msg->openInfo);
+				if (this->OpenCallback_) this->OpenCallback_(msg->openInfo);
 				break;
 			case ix::WebSocketMessageType::Message:
 				if (msg->binary)
 				{
-					if (this->_BinaryCallback)
+					if (this->BinaryCallback_)
 					{
-						this->_BinaryCallback(msg->str);
+						this->BinaryCallback_(msg->str);
 					}
 				}
 				else
 				{
-					if (this->_TextCallback)
+					if (this->TextCallback_)
 					{
-						this->_TextCallback(msg->str);
+						this->TextCallback_(msg->str);
 					}
 				}
 				break;
 			case ix::WebSocketMessageType::Ping:
-				if (this->_PingCallback) this->_PingCallback(msg->str);
+				if (this->PingCallback_) this->PingCallback_(msg->str);
 				break;
 			case ix::WebSocketMessageType::Pong:
-				if (this->_PongCallback) this->_PongCallback(msg->str);
+				if (this->PongCallback_) this->PongCallback_(msg->str);
 				break;
 			case ix::WebSocketMessageType::Error:
-				if (this->_ErrorCallback) this->_ErrorCallback(msg->errorInfo);
+				if (this->ErrorCallback_) this->ErrorCallback_(msg->errorInfo);
 				break;
 			case ix::WebSocketMessageType::Fragment:
 				// do nothing
 				break;
 			case ix::WebSocketMessageType::Close:
-				if (this->_CloseCallback) this->_CloseCallback(msg->closeInfo);
+				if (this->CloseCallback_) this->CloseCallback_(msg->closeInfo);
 				break;
 			}
 		});
-	this->_client.start();
+	this->client_.start();
 }
 
 void MessageClientImpl::Disconnect()
 {
-	this->_client.stop();
+	this->client_.stop();
 }
 
 } // namespace Mirai::Details

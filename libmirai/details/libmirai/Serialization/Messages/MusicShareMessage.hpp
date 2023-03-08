@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_MUSICSHARE_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_MUSICSHARE_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_MUSICSHARE_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_MUSICSHARE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,13 +33,13 @@ struct MusicShareMessage::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == MusicShareMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("kind").get_to(p._kind);
-		j.at("title").get_to(p._title);
-		j.at("summary").get_to(p._summary);
-		j.at("jumpUrl").get_to(p._JumpUrl);
-		j.at("pictureUrl").get_to(p._PictureUrl);
-		j.at("musicUrl").get_to(p._MusicUrl);
-		j.at("brief").get_to(p._brief);
+		j.at("kind").get_to(p.kind_);
+		j.at("title").get_to(p.title_);
+		j.at("summary").get_to(p.summary_);
+		j.at("jumpUrl").get_to(p.JumpUrl_);
+		j.at("pictureUrl").get_to(p.PictureUrl_);
+		j.at("musicUrl").get_to(p.MusicUrl_);
+		j.at("brief").get_to(p.brief_);
 
 		MIRAI_PARSE_GUARD_END(j)(j);
 	}
@@ -49,13 +49,13 @@ struct MusicShareMessage::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = MusicShareMessage::GetType();
-		j["kind"] = p._kind;
-		j["title"] = p._title;
-		j["summary"] = p._summary;
-		j["jumpUrl"] = p._JumpUrl;
-		j["pictureUrl"] = p._PictureUrl;
-		j["musicUrl"] = p._MusicUrl;
-		j["brief"] = p._brief;
+		j["kind"] = p.kind_;
+		j["title"] = p.title_;
+		j["summary"] = p.summary_;
+		j["jumpUrl"] = p.JumpUrl_;
+		j["pictureUrl"] = p.PictureUrl_;
+		j["musicUrl"] = p.MusicUrl_;
+		j["brief"] = p.brief_;
 	}
 
 };

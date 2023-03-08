@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_QUOTE_MESSAGE_HPP_
-#define _MIRAI_QUOTE_MESSAGE_HPP_
+#ifndef MIRAI_QUOTE_MESSAGE_HPP_
+#define MIRAI_QUOTE_MESSAGE_HPP_
 
 #include <memory>
 #include <string>
@@ -35,27 +35,27 @@ class MessageChain;
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `QuoteMessage::_QuoteId` | `-1`
- * `QuoteMessage::_GroupId` | `0_gid`
- * `QuoteMessage::_SenderId` | `0_qq`
- * `QuoteMessage::_TargetId` | `0`
- * `QuoteMessage::_origin` | `MessageChain{}`
+ * `QuoteMessage::QuoteId_` | `-1`
+ * `QuoteMessage::GroupId_` | `0_gid`
+ * `QuoteMessage::SenderId_` | `0_qq`
+ * `QuoteMessage::TargetId_` | `0`
+ * `QuoteMessage::origin_` | `MessageChain{}`
  */
 class QuoteMessage final : public IMessageImpl<QuoteMessage>
 {
 	friend IMessageImpl<QuoteMessage>;
 
 protected:
-	MessageId_t _QuoteId = -1;
-	GID_t _GroupId{};
-	QQ_t _SenderId{};
-	int64_t _TargetId = 0;
-	std::unique_ptr<MessageChain> _origin{};
+	MessageId_t QuoteId_ = -1;
+	GID_t GroupId_{};
+	QQ_t SenderId_{};
+	int64_t TargetId_ = 0;
+	std::unique_ptr<MessageChain> origin_{};
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::QUOTE;
-	static constexpr bool _SUPPORT_SEND_ = false;
+	static constexpr MessageTypes TYPE_ = MessageTypes::QUOTE;
+	static constexpr bool SUPPORT_SEND_ = false;
 
-	bool _isValid() const final { return true; }
+	bool isValid_() const final { return true; }
 
 public:
 	QuoteMessage();
@@ -65,15 +65,15 @@ public:
 	QuoteMessage& operator=(QuoteMessage&&);
 
 	/// 获取被引用消息id
-	MessageId_t GetQuoteId() const { return this->_QuoteId; }
+	MessageId_t GetQuoteId() const { return this->QuoteId_; }
 	/// 获取被引用消息所在群聊id，若为好友消息则为 `0`
-	GID_t GetGroupId() const { return this->_GroupId; }
+	GID_t GetGroupId() const { return this->GroupId_; }
 	/// 获取引用消息的发送者QQ
-	QQ_t GetSenderId() const { return this->_SenderId; }
+	QQ_t GetSenderId() const { return this->SenderId_; }
 	/// 获取引用消息的接收者QQ，仅当好友消息时有效
 	QQ_t GetTargetId() const
 	{
-		if (this->_GroupId == (GID_t)0) return QQ_t(this->_TargetId);
+		if (this->GroupId_ == (GID_t)0) return QQ_t(this->TargetId_);
 		else
 			return QQ_t(0);
 	}

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_APP_MESSAGE_HPP_
-#define _MIRAI_APP_MESSAGE_HPP_
+#ifndef MIRAI_APP_MESSAGE_HPP_
+#define MIRAI_APP_MESSAGE_HPP_
 
 #include <string>
 #include <utility>
@@ -29,35 +29,35 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `AppMessage::_content` | `""`
+ * `AppMessage::content_` | `""`
  */
 class AppMessage final : public IMessageImpl<AppMessage>
 {
 	friend IMessageImpl<AppMessage>;
 
 private:
-	std::string _content{};
+	std::string content_{};
 
-	bool _isValid() const final { return !this->_content.empty(); }
+	bool isValid_() const final { return !this->content_.empty(); }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::APP;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::APP;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	AppMessage() = default;
-	AppMessage(std::string content) : _content(std::move(content)) {};
+	AppMessage(std::string content) : content_(std::move(content)) {};
 
-	bool operator==(const AppMessage& rhs) { return this->_content == rhs._content; }
+	bool operator==(const AppMessage& rhs) { return this->content_ == rhs.content_; }
 
 	bool operator!=(const AppMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取App消息内容
-	std::string GetContent() const { return this->_content; }
+	std::string GetContent() const { return this->content_; }
 
 	/// 设置App消息内容
 	AppMessage& SetContent(std::string content)
 	{
-		this->_content = std::move(content);
+		this->content_ = std::move(content);
 		return *this;
 	}
 

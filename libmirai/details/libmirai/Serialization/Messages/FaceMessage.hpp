@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_FACE_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_FACE_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_FACE_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_FACE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,8 +35,8 @@ struct FaceMessageImpl<MessageImpl>::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == MessageImpl::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		p._id = Utils::GetValue(j, "faceId", (int64_t)-1);
-		p._name = Utils::GetValue(j, "name", "");
+		p.id_ = Utils::GetValue(j, "faceId", (int64_t)-1);
+		p.name_ = Utils::GetValue(j, "name", "");
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -49,10 +49,10 @@ struct FaceMessageImpl<MessageImpl>::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = MessageImpl::GetType();
-		if (p._id != -1) 
-			j["faceId"] = p._id;
+		if (p.id_ != -1) 
+			j["faceId"] = p.id_;
 		else
-			j["name"] = p._name;
+			j["name"] = p.name_;
 	}
 
 };
@@ -66,8 +66,8 @@ struct FaceMessageImpl<MarketFaceMessage>::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == MarketFaceMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		p._id = Utils::GetValue(j, "id", (int64_t)-1);
-		p._name = Utils::GetValue(j, "name", "");
+		p.id_ = Utils::GetValue(j, "id", (int64_t)-1);
+		p.name_ = Utils::GetValue(j, "name", "");
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

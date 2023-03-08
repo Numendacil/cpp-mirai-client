@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MESSAGES_HPP_
-#define _MIRAI_MESSAGES_HPP_
+#ifndef MIRAI_MESSAGES_HPP_
+#define MIRAI_MESSAGES_HPP_
 
 #include <libmirai/Messages/AppMessage.hpp>
 #include <libmirai/Messages/AtAllMessage.hpp>

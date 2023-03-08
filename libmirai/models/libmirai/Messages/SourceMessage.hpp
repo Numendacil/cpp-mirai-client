@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SOURCE_MESSAGE_HPP_
-#define _MIRAI_SOURCE_MESSAGE_HPP_
+#ifndef MIRAI_SOURCE_MESSAGE_HPP_
+#define MIRAI_SOURCE_MESSAGE_HPP_
 
 #include <ctime>
 #include <string>
@@ -33,29 +33,29 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `SourceMessage::_id` | `-1`
- * `SourceMessage::_timestamp` | `0`
+ * `SourceMessage::id_` | `-1`
+ * `SourceMessage::timestamp_` | `0`
  */
 class SourceMessage final : public IMessageImpl<SourceMessage>
 {
 	friend IMessageImpl<SourceMessage>;
 
 protected:
-	MessageId_t _id = -1;
-	std::time_t _timestamp = 0;
+	MessageId_t id_ = -1;
+	std::time_t timestamp_ = 0;
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::SOURCE;
-	static constexpr bool _SUPPORT_SEND_ = false;
+	static constexpr MessageTypes TYPE_ = MessageTypes::SOURCE;
+	static constexpr bool SUPPORT_SEND_ = false;
 
-	bool _isValid() const final { return true; }
+	bool isValid_() const final { return true; }
 
 public:
 	SourceMessage() = default;
 
 	/// 获取消息id
-	MessageId_t GetMessageId() const { return this->_id; }
+	MessageId_t GetMessageId() const { return this->id_; }
 	/// 获取消息时间戳
-	std::time_t GetTimestamp() const { return this->_timestamp; }
+	std::time_t GetTimestamp() const { return this->timestamp_; }
 
 	struct Serializable;
 };

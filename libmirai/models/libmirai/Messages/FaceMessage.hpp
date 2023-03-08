@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_FACE_MESSAGE_HPP_
-#define _MIRAI_FACE_MESSAGE_HPP_
+#ifndef MIRAI_FACE_MESSAGE_HPP_
+#define MIRAI_FACE_MESSAGE_HPP_
 
 #include <string>
 
@@ -32,38 +32,38 @@ template <class Message>
 class FaceMessageImpl : public IMessageImpl<Message>
 {
 protected:
-	int64_t _id = -1;
-	std::string _name{};
+	int64_t id_ = -1;
+	std::string name_{};
 
-	bool _isValid() const override { return this->_id != -1 || !this->_name.empty(); }
+	bool isValid_() const override { return this->id_ != -1 || !this->name_.empty(); }
 
 public:
 	FaceMessageImpl() = default;
-	FaceMessageImpl(int64_t id) : _id(id) {}
-	FaceMessageImpl(std::string name) : _name(std::move(name)) {}
+	FaceMessageImpl(int64_t id) : id_(id) {}
+	FaceMessageImpl(std::string name) : name_(std::move(name)) {}
 
-	bool operator==(const FaceMessageImpl& rhs) { return (_id >= 0) ? this->_id == rhs._id : this->_name == rhs._name; }
+	bool operator==(const FaceMessageImpl& rhs) { return (id_ >= 0) ? this->id_ == rhs.id_ : this->name_ == rhs.name_; }
 
 	bool operator!=(const FaceMessageImpl& rhs) { return !(*this == rhs); }
 
 	/// 获取表情id
-	int64_t GetId() const { return this->_id; }
+	int64_t GetId() const { return this->id_; }
 
 	/// 获取表情名称
-	std::string GetName() const { return this->_name; }
+	std::string GetName() const { return this->name_; }
 
 	/// 设置表情id
 	Message& SetId(int64_t id)
 	{
-		this->_id = id;
+		this->id_ = id;
 		return *static_cast<Message*>(this);
 	}
 
 	/// 设置表情名称。这一操作会清除已设置的id。
 	Message& SetName(std::string name)
 	{
-		this->_id = -1;
-		this->_name = std::move(name);
+		this->id_ = -1;
+		this->name_ = std::move(name);
 		return *static_cast<Message*>(this);
 	}
 
@@ -79,16 +79,16 @@ public:
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `FaceMessage::_id` | `-1`
- * `FaceMessage::_name` | `""`
+ * `FaceMessage::id_` | `-1`
+ * `FaceMessage::name_` | `""`
  */
 class FaceMessage final : public FaceMessageImpl<FaceMessage>
 {
 	friend IMessageImpl<FaceMessage>;
 
 protected:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FACE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::FACE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	using FaceMessageImpl<FaceMessage>::FaceMessageImpl;
@@ -108,18 +108,18 @@ template<> struct GetType<FaceMessage::GetType()>
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `MarketFaceMessage::_id` | `-1`
- * `MarketFaceMessage::_name` | `""`
+ * `MarketFaceMessage::id_` | `-1`
+ * `MarketFaceMessage::name_` | `""`
  */
 class MarketFaceMessage final : public FaceMessageImpl<MarketFaceMessage>
 {
 	friend IMessageImpl<MarketFaceMessage>;
 
 protected:
-	bool _isValid() const final { return true; }
+	bool isValid_() const final { return true; }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::MARKET_FACE;
-	static constexpr bool _SUPPORT_SEND_ = false;
+	static constexpr MessageTypes TYPE_ = MessageTypes::MARKET_FACE;
+	static constexpr bool SUPPORT_SEND_ = false;
 
 public:
 	using FaceMessageImpl<MarketFaceMessage>::FaceMessageImpl;

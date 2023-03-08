@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MEMBER_EVENTS_HPP_
-#define _MIRAI_MEMBER_EVENTS_HPP_
+#ifndef MIRAI_MEMBER_EVENTS_HPP_
+#define MIRAI_MEMBER_EVENTS_HPP_
 
 #include <optional>
 #include <string>
@@ -31,9 +31,9 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberCardChangeEvent::_member` | `GroupMember{}`
- * `MemberCardChangeEvent::_origin` | `""`
- * `MemberCardChangeEvent::_current` | `""`
+ * `MemberCardChangeEvent::member_` | `GroupMember{}`
+ * `MemberCardChangeEvent::origin_` | `""`
+ * `MemberCardChangeEvent::current_` | `""`
  *
  * 由于服务器并不会告知名片变动, 此事件只能由 mirai 在发现变动时才广播
  */
@@ -41,19 +41,19 @@ class MemberCardChangeEvent final : public IEvent<MemberCardChangeEvent>
 {
 	friend IEvent<MemberCardChangeEvent>;
 private:
-	GroupMember _member;
-	std::string _origin;
-	std::string _current;
+	GroupMember member_;
+	std::string origin_;
+	std::string current_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberCardChange;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberCardChange;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取更改前的群名片
-	std::string GetOriginal() const { return this->_origin; }
+	std::string GetOriginal() const { return this->origin_; }
 	/// 获取当前的群名片
-	std::string GetCurrent() const { return this->_current; }
+	std::string GetCurrent() const { return this->current_; }
 
 	struct Serializable;
 };
@@ -65,9 +65,9 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberHonorChangeEvent::_member` | `GroupMember{}`
- * `MemberHonorChangeEvent::_action` | `HonorChangeType::ENUM_END`
- * `MemberHonorChangeEvent::_honor` | `""`
+ * `MemberHonorChangeEvent::member_` | `GroupMember{}`
+ * `MemberHonorChangeEvent::action_` | `HonorChangeType::ENUM_END`
+ * `MemberHonorChangeEvent::honor_` | `""`
  *
  * 目前只支持龙王
  */
@@ -75,19 +75,19 @@ class MemberHonorChangeEvent final : public IEvent<MemberHonorChangeEvent>
 {
 	friend IEvent<MemberHonorChangeEvent>;
 private:
-	GroupMember _member;
-	HonorChangeType _action = HonorChangeType::ENUM_END; // {achieve, lose}
-	std::string _honor;
+	GroupMember member_;
+	HonorChangeType action_ = HonorChangeType::ENUM_END; // {achieve, lose}
+	std::string honor_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberHonorChange;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberHonorChange;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取群荣誉变化行为
-	HonorChangeType GetAction() const { return this->_action; }
+	HonorChangeType GetAction() const { return this->action_; }
 	/// 获取群荣耀名称
-	std::string GetHonor() const { return this->_honor; }
+	std::string GetHonor() const { return this->honor_; }
 
 	struct Serializable;
 };
@@ -99,9 +99,9 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberPermissionChangeEvent::_member` | `GroupMember{}`
- * `MemberPermissionChangeEvent::_origin` | `PERMISSION::ENUM_END`
- * `MemberPermissionChangeEvent::_current` | `PERMISSION::ENUM_END`
+ * `MemberPermissionChangeEvent::member_` | `GroupMember{}`
+ * `MemberPermissionChangeEvent::origin_` | `PERMISSION::ENUM_END`
+ * `MemberPermissionChangeEvent::current_` | `PERMISSION::ENUM_END`
  *
  * 该成员不是Bot自己
  */
@@ -109,19 +109,19 @@ class MemberPermissionChangeEvent final : public IEvent<MemberPermissionChangeEv
 {
 	friend IEvent<MemberPermissionChangeEvent>;
 private:
-	GroupMember _member;
-	PERMISSION _origin = PERMISSION::ENUM_END;
-	PERMISSION _current = PERMISSION::ENUM_END;
+	GroupMember member_;
+	PERMISSION origin_ = PERMISSION::ENUM_END;
+	PERMISSION current_ = PERMISSION::ENUM_END;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberPermissionChange;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberPermissionChange;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取更改前的权限
-	PERMISSION GetOriginal() const { return this->_origin; }
+	PERMISSION GetOriginal() const { return this->origin_; }
 	/// 获取当前权限
-	PERMISSION GetCurrent() const { return this->_current; }
+	PERMISSION GetCurrent() const { return this->current_; }
 
 	struct Serializable;
 };
@@ -133,27 +133,27 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberSpecialTitleChangeEvent::_member` | `GroupMember{}`
- * `MemberSpecialTitleChangeEvent::_origin` | `""`
- * `MemberSpecialTitleChangeEvent::_current` | `""`
+ * `MemberSpecialTitleChangeEvent::member_` | `GroupMember{}`
+ * `MemberSpecialTitleChangeEvent::origin_` | `""`
+ * `MemberSpecialTitleChangeEvent::current_` | `""`
  */
 class MemberSpecialTitleChangeEvent final : public IEvent<MemberSpecialTitleChangeEvent>
 {
 	friend IEvent<MemberSpecialTitleChangeEvent>;
 private:
-	GroupMember _member;
-	std::string _origin;
-	std::string _current;
+	GroupMember member_;
+	std::string origin_;
+	std::string current_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberSpecialTitleChange;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberSpecialTitleChange;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取更改前的群头衔
-	std::string GetOriginal() const { return this->_origin; }
+	std::string GetOriginal() const { return this->origin_; }
 	/// 获取当前群头衔
-	std::string GetCurrent() const { return this->_current; }
+	std::string GetCurrent() const { return this->current_; }
 
 	struct Serializable;
 };
@@ -165,23 +165,23 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberJoinEvent::_member` | `GroupMember{}`
- * `MemberJoinEvent::_inviter` | `std::nullopt`
+ * `MemberJoinEvent::member_` | `GroupMember{}`
+ * `MemberJoinEvent::inviter_` | `std::nullopt`
  */
 class MemberJoinEvent final : public IEvent<MemberJoinEvent>
 {
 	friend IEvent<MemberJoinEvent>;
 private:
-	GroupMember _member;
-	std::optional<GroupMember> _inviter = std::nullopt;
+	GroupMember member_;
+	std::optional<GroupMember> inviter_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberJoin;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberJoin;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取邀请人信息，若无则返回 `std::nullopt`
-	std::optional<GroupMember> GetInviter() const { return this->_inviter; }
+	std::optional<GroupMember> GetInviter() const { return this->inviter_; }
 
 	struct Serializable;
 };
@@ -193,12 +193,12 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberJoinRequestEvent::_EventId` | `0`
- * `MemberJoinRequestEvent::_FromId` | `0_qq`
- * `MemberJoinRequestEvent::_GroupId` | `0_gid`
- * `MemberJoinRequestEvent::_GroupName` | `""`
- * `MemberJoinRequestEvent::_nickname` | `""`
- * `MemberJoinRequestEvent::_message` | `""`
+ * `MemberJoinRequestEvent::EventId_` | `0`
+ * `MemberJoinRequestEvent::FromId_` | `0_qq`
+ * `MemberJoinRequestEvent::GroupId_` | `0_gid`
+ * `MemberJoinRequestEvent::GroupName_` | `""`
+ * `MemberJoinRequestEvent::nickname_` | `""`
+ * `MemberJoinRequestEvent::message_` | `""`
  *
  * 需要Bot为管理员或群主
  */
@@ -207,28 +207,28 @@ class MemberJoinRequestEvent final : public IEvent<MemberJoinRequestEvent>
 	friend IEvent<MemberJoinRequestEvent>;
 
 private:
-	int64_t _EventId = 0;
-	QQ_t _FromId;
-	GID_t _GroupId;
-	std::string _GroupName;
-	std::string _nickname;
-	std::string _message;
+	int64_t EventId_ = 0;
+	QQ_t FromId_;
+	GID_t GroupId_;
+	std::string GroupName_;
+	std::string nickname_;
+	std::string message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberJoinRequest;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberJoinRequest;
 
 public:
 	/// 获取事件id，唯一标识符
-	int64_t GetEventId() const { return this->_EventId; }
+	int64_t GetEventId() const { return this->EventId_; }
 	/// 获取申请人QQ
-	QQ_t GetUserId() const { return this->_FromId; }
+	QQ_t GetUserId() const { return this->FromId_; }
 	/// 获取申请人昵称
-	std::string GetNickname() const { return this->_nickname; }
+	std::string GetNickname() const { return this->nickname_; }
 	/// 获取群聊id
-	GID_t GetGroupId() const { return this->_GroupId; }
+	GID_t GetGroupId() const { return this->GroupId_; }
 	/// 获取群聊名称
-	std::string GetGroupName() const { return this->_GroupName; }
+	std::string GetGroupName() const { return this->GroupName_; }
 	/// 获取申请信息
-	std::string GetMessage() const { return this->_message; }
+	std::string GetMessage() const { return this->message_; }
 
 	// TODO: add helper methods for quick response
 
@@ -243,17 +243,17 @@ public:
  * Middleware for all leave group related events
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberLeaveEvent::_member` | `GroupMember{}`
+ * `MemberLeaveEvent::member_` | `GroupMember{}`
  */
 template <class Event>
 class MemberLeaveEvent : public IEvent<Event>
 {
 private:
-	GroupMember _member;
+	GroupMember member_;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 
 	struct Serializable;
 };
@@ -263,8 +263,8 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberLeaveEventKick::_member` | `GroupMember{}`
- * `MemberLeaveEventKick::_operator` | `std::nullopt`
+ * `MemberLeaveEventKick::member_` | `GroupMember{}`
+ * `MemberLeaveEventKick::operator_` | `std::nullopt`
  *
  * 该成员不是Bot自己
  */
@@ -272,13 +272,13 @@ class MemberLeaveEventKick : public MemberLeaveEvent<MemberLeaveEventKick>
 {
 	friend IEvent<MemberLeaveEventKick>;
 private:
-	std::optional<GroupMember> _operator = std::nullopt;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberLeaveKick;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberLeaveKick;
 
 public:
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -288,7 +288,7 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberLeaveEventQuit::_member` | `GroupMember{}`
+ * `MemberLeaveEventQuit::member_` | `GroupMember{}`
  *
  * 该成员不是Bot自己
  */
@@ -296,7 +296,7 @@ class MemberLeaveEventQuit : public MemberLeaveEvent<MemberLeaveEventQuit>
 {
 	friend IEvent<MemberLeaveEventQuit>;
 private:
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberLeaveQuit;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberLeaveQuit;
 };
 
 
@@ -306,9 +306,9 @@ private:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberMuteEvent::_member` | `GroupMember{}`
- * `MemberMuteEvent::_duration` | `0`
- * `MemberMuteEvent::_operator` | `std::nullopt`
+ * `MemberMuteEvent::member_` | `GroupMember{}`
+ * `MemberMuteEvent::duration_` | `0`
+ * `MemberMuteEvent::operator_` | `std::nullopt`
  *
  * 该成员不是Bot自己
  */
@@ -316,19 +316,19 @@ class MemberMuteEvent final : public IEvent<MemberMuteEvent>
 {
 	friend IEvent<MemberMuteEvent>;
 private:
-	GroupMember _member;
-	std::time_t _duration = 0;
-	std::optional<GroupMember> _operator = std::nullopt;
+	GroupMember member_;
+	std::time_t duration_ = 0;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberMute;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberMute;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取禁言时长
-	std::chrono::seconds GetDuration() const { return std::chrono::seconds(this->_duration); }
+	std::chrono::seconds GetDuration() const { return std::chrono::seconds(this->duration_); }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -340,8 +340,8 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `MemberUnmuteEvent::_member` | `GroupMember{}`
- * `MemberUnmuteEvent::_operator` | `std::nullopt`
+ * `MemberUnmuteEvent::member_` | `GroupMember{}`
+ * `MemberUnmuteEvent::operator_` | `std::nullopt`
  *
  * 该成员不是Bot自己
  */
@@ -349,26 +349,26 @@ class MemberUnmuteEvent final : public IEvent<MemberUnmuteEvent>
 {
 	friend IEvent<MemberUnmuteEvent>;
 private:
-	GroupMember _member;
-	std::optional<GroupMember> _operator = std::nullopt;
+	GroupMember member_;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::MemberUnmute;
+	static constexpr EventTypes TYPE_ = EventTypes::MemberUnmute;
 
 public:
 	/// 获取群成员资料
-	GroupMember GetMember() const { return this->_member; }
+	GroupMember GetMember() const { return this->member_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
 
 
 
-#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
-	template<> struct GetEventType<_type_::GetType()>                                                                  \
+#define DECLARE_TYPE_ENUM(event_type)                                                                                      \
+	template<> struct GetEventType<event_type::GetType()>                                                                  \
 	{                                                                                                                  \
-		using type = _type_;                                                                                           \
+		using type = event_type;                                                                                           \
 	}
 
 DECLARE_TYPE_ENUM(MemberCardChangeEvent);

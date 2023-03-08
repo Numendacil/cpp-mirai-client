@@ -47,17 +47,17 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 // ************ ENUM DEFINITIONS ***************
 // *********************************************
 
-#define ENUM_TO_STR_FUNCNAME(_enum_) _##_enum_##_TO_STR_
-#define STR_TO_ENUM_FUNCNAME(_enum_) _STR_TO_##_enum_##_
-#define ENUM_STR_NAMESPACE(_enum_) _enum_##Namespace
+#define ENUM_TO_STR_FUNCNAME(enum_type) enum_type ## _ ## TO_STR_
+#define STR_TO_ENUM_FUNCNAME(enum_type) STR_TO_ ## enum_type ## _
+#define ENUM_STR_NAMESPACE(enum_type) enum_type ## Namespace
 
-#define BEGIN_DECLARE_ENUM_STR(_enum_)                                                                                 \
-	namespace ENUM_STR_NAMESPACE(_enum_)                                                                               \
+#define BEGIN_DECLARE_ENUM_STR(enum_type)                                                                                 \
+	namespace ENUM_STR_NAMESPACE(enum_type)                                                                               \
 	{                                                                                                                  \
-	template<typename T> using TypesList = std::array<T, static_cast<std::size_t>(_enum_::ENUM_END)>;                  \
+	template<typename T> using TypesList = std::array<T, static_cast<std::size_t>(enum_type::ENUM_END)>;                  \
 	namespace                                                                                                          \
 	{                                                                                                                  \
-	constexpr void DeclareName(TypesList<std::string_view>& list, _enum_ type, std::string_view name)                  \
+	constexpr void DeclareName(TypesList<std::string_view>& list, enum_type type, std::string_view name)                  \
 	{                                                                                                                  \
 		list.at(static_cast<std::size_t>(type)) = name;                                                                \
 	}                                                                                                                  \
@@ -66,31 +66,31 @@ void UID_t::Serializable::to_json(json& j, const UID_t& p)
 	{                                                                                                                  \
 		TypesList<std::string_view> names;
 
-#define END_DECLARE_ENUM_STR(_enum_)                                                                                   \
+#define END_DECLARE_ENUM_STR(enum_type)                                                                                   \
 	return names;                                                                                                      \
 	}                                                                                                                  \
                                                                                                                        \
 	constexpr auto names = GetNames();                                                                                 \
 	}                                                                                                                  \
-	constexpr std::string_view ENUM_TO_STR_FUNCNAME(_enum_)(const _enum_& m)                                           \
+	constexpr std::string_view ENUM_TO_STR_FUNCNAME(enum_type)(const enum_type& m)                                           \
 	{                                                                                                                  \
 		auto i = static_cast<std::size_t>(m);                                                                          \
 		if (i < names.size()) return names.at(i);                                                                      \
 		else                                                                                                           \
 			return "";                                                                                                 \
 	}                                                                                                                  \
-	constexpr _enum_ STR_TO_ENUM_FUNCNAME(_enum_)(std::string_view s)                                                  \
+	constexpr enum_type STR_TO_ENUM_FUNCNAME(enum_type)(std::string_view s)                                                  \
 	{                                                                                                                  \
 		for (std::size_t i = 0; i < names.size(); i++)                                                                 \
-			if (names.at(i) == s) return static_cast<_enum_>(i);                                                       \
-		return _enum_::ENUM_END;                                                                                       \
+			if (names.at(i) == s) return static_cast<enum_type>(i);                                                       \
+		return enum_type::ENUM_END;                                                                                       \
 	}                                                                                                                  \
 	}
 
-#define DECLARE_ENUM_STR(_value_, _name_) DeclareName(names, _value_, _name_);
+#define DECLARE_ENUM_STR(value_, name_) DeclareName(names, value_, name_);
 
-#define ENUM_TO_STR(_enum_, _input_) ENUM_STR_NAMESPACE(_enum_)::ENUM_TO_STR_FUNCNAME(_enum_)(_input_)
-#define STR_TO_ENUM(_enum_, _input_) ENUM_STR_NAMESPACE(_enum_)::STR_TO_ENUM_FUNCNAME(_enum_)(_input_)
+#define ENUM_TO_STR(enum_type, input_) ENUM_STR_NAMESPACE(enum_type)::ENUM_TO_STR_FUNCNAME(enum_type)(input_)
+#define STR_TO_ENUM(enum_type, input_) ENUM_STR_NAMESPACE(enum_type)::STR_TO_ENUM_FUNCNAME(enum_type)(input_)
 
 
 BEGIN_DECLARE_ENUM_STR(SEX)

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MESSAGE_TYPES_HPP_
-#define _MIRAI_MESSAGE_TYPES_HPP_
+#ifndef MIRAI_MESSAGE_TYPES_HPP_
+#define MIRAI_MESSAGE_TYPES_HPP_
 
 #include <array>
 #include <string>

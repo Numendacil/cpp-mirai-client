@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MESSAGECHAIN_HPP_
-#define _MIRAI_MESSAGECHAIN_HPP_
+#ifndef MIRAI_MESSAGECHAIN_HPP_
+#define MIRAI_MESSAGECHAIN_HPP_
 
 #include <cassert>
 #include <cstddef>
@@ -63,18 +63,18 @@ private:
 	// type traits
 	struct traits
 	{
-		template<typename T, typename TypeList> struct _is_message_type;
+		template<typename T, typename TypeList> struct is_message_type_;
 
 		template<typename T, size_t... I>
-		struct _is_message_type<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetType_t<MessageTypesList[I]>>...>
+		struct is_message_type_<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetType_t<MessageTypesList[I]>>...>
 		{
 		};
 
 		template<typename T>
-		using is_message_type = _is_message_type<T, std::make_index_sequence<MessageTypesList.size()>>;
+		using is_message_type = is_message_type_<T, std::make_index_sequence<MessageTypesList.size()>>;
 	};
 
-	template<typename MessageType> constexpr static void _type_check_()
+	template<typename MessageType> constexpr static void type_check_()
 	{
 		static_assert(std::is_base_of_v<IMessage, MessageType>,
 		              "MessageType is not derived from IMessage"); // NOLINT(*-array-to-pointer-decay)
@@ -91,45 +91,45 @@ public:
 	class MessageElement
 	{
 	private:
-		std::unique_ptr<IMessage> _msg;
-		MessageTypes _type = MessageTypes::ENUM_END; // For quick reference
+		std::unique_ptr<IMessage> msg_;
+		MessageTypes type_ = MessageTypes::ENUM_END; // For quick reference
 
 		template<
 			std::size_t... I, typename F,
 			typename Ret = std::enable_if_t<(sizeof...(I) > 0), std::result_of_t<F(GetType_t<MessageTypesList[0]>&)>> >
-		auto _visit(std::index_sequence<I...>, F&& f) -> std::enable_if_t<
+		auto visit_(std::index_sequence<I...>, F&& f) -> std::enable_if_t<
 			std::conjunction_v<std::is_same<Ret, std::result_of_t<F(GetType_t<MessageTypesList[I]>&)>>...>, Ret >
 		{
 			using FP = Ret (*)(F&&, MessageElement*);
 			static constexpr std::array<FP, sizeof...(I)> func = {
-				[](F&& f, MessageElement* p) { return f(static_cast<GetType_t<MessageTypesList[I]>&>(*p->_msg)); }...};
+				[](F&& f, MessageElement* p) { return f(static_cast<GetType_t<MessageTypesList[I]>&>(*p->msg_)); }...};
 
-			if (this->_type == MessageTypes::ENUM_END)
+			if (this->type_ == MessageTypes::ENUM_END)
 				throw std::runtime_error("Cannot call visit() on an empty MessageElement");
-			return func[static_cast<size_t>(this->_type)](std::forward<F>(f), this);
+			return func[static_cast<size_t>(this->type_)](std::forward<F>(f), this);
 		}
 
 		template< std::size_t... I, typename F,
 		          typename Ret =
 		              std::enable_if_t<(sizeof...(I) > 0), std::result_of_t<F(const GetType_t<MessageTypesList[0]>&)>> >
-		auto _cvisit(std::index_sequence<I...>, F&& f) const -> std::enable_if_t<
+		auto cvisit_(std::index_sequence<I...>, F&& f) const -> std::enable_if_t<
 			std::conjunction_v<std::is_same<Ret, std::result_of_t<F(const GetType_t<MessageTypesList[I]>&)>>...>, Ret >
 		{
 			using FP = Ret (*)(F&&, const MessageElement*);
 			static constexpr std::array<FP, sizeof...(I)> func = {[](F&& f, const MessageElement* p) {
-				return f(static_cast<const GetType_t<MessageTypesList[I]>&>(*p->_msg));
+				return f(static_cast<const GetType_t<MessageTypesList[I]>&>(*p->msg_));
 			}...};
 
-			if (this->_type == MessageTypes::ENUM_END)
+			if (this->type_ == MessageTypes::ENUM_END)
 				throw std::runtime_error("Cannot call visit() on an empty MessageElement");
-			return func[static_cast<size_t>(this->_type)](std::forward<F>(f), this);
+			return func[static_cast<size_t>(this->type_)](std::forward<F>(f), this);
 		}
 
 		// WARNING: Use this only if you know what you are doing
-		explicit MessageElement(std::unique_ptr<IMessage>&& msg, MessageTypes type) : _msg(std::move(msg)), _type(type)
+		explicit MessageElement(std::unique_ptr<IMessage>&& msg, MessageTypes type) : msg_(std::move(msg)), type_(type)
 		{
 			// NOLINTNEXTLINE(*-array-to-pointer-decay)
-			assert(this->_type == ((this->_msg) ? this->_msg->type() : MessageTypes::ENUM_END));
+			assert(this->type_ == ((this->msg_) ? this->msg_->type() : MessageTypes::ENUM_END));
 		}
 
 	public:
@@ -141,30 +141,30 @@ public:
 
 		MessageElement() = default;
 
-		explicit MessageElement(std::unique_ptr<IMessage>&& msg) : _msg(std::move(msg))
+		explicit MessageElement(std::unique_ptr<IMessage>&& msg) : msg_(std::move(msg))
 		{
-			if (_msg) this->_type = this->_msg->type();
+			if (msg_) this->type_ = this->msg_->type();
 		}
 
 		MessageElement& operator=(std::unique_ptr<IMessage>&& msg)
 		{
-			this->_msg = std::move(msg);
-			if (_msg) 
-				this->_type = this->_msg->type();
+			this->msg_ = std::move(msg);
+			if (msg_) 
+				this->type_ = this->msg_->type();
 			return *this;
 		}
 
-		MessageElement(const MessageElement& rhs) : _msg(), _type(rhs._type)
+		MessageElement(const MessageElement& rhs) : msg_(), type_(rhs.type_)
 		{
-			if (rhs._msg) this->_msg = rhs._msg->clone();
+			if (rhs.msg_) this->msg_ = rhs.msg_->clone();
 		}
 
 		MessageElement& operator=(const MessageElement& rhs)
 		{
 			if (&rhs != this)
 			{
-				this->_type = rhs._type;
-				if (rhs._msg) this->_msg = rhs._msg->clone();
+				this->type_ = rhs.type_;
+				if (rhs.msg_) this->msg_ = rhs.msg_->clone();
 			}
 			return *this;
 		}
@@ -174,19 +174,19 @@ public:
 
 		~MessageElement() = default;
 
-		explicit operator bool() const { return (bool)this->_msg; }
+		explicit operator bool() const { return (bool)this->msg_; }
 
 		template<typename MessageType, typename... Args, typename Type = std::decay_t<MessageType>,
 		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		explicit MessageElement(std::in_place_type_t<MessageType>, Args&&... args)
-			: _msg(std::make_unique<Type>(std::forward<Args>(args)...)), _type(Type::GetType())
+			: msg_(std::make_unique<Type>(std::forward<Args>(args)...)), type_(Type::GetType())
 		{
 		}
 
 		template<typename MessageType, typename Type = std::decay_t<MessageType>,
 		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		explicit MessageElement(MessageType&& m)
-			: _msg(std::make_unique<Type>(std::forward<MessageType>(m))), _type(Type::GetType())
+			: msg_(std::make_unique<Type>(std::forward<MessageType>(m))), type_(Type::GetType())
 		{
 		}
 
@@ -194,20 +194,20 @@ public:
 		         typename std::enable_if_t<traits::is_message_type<Type>::value, int> = 0>
 		MessageElement& operator=(MessageType&& m)
 		{
-			if (this->_msg && this->_type == Type::GetType())
+			if (this->msg_ && this->type_ == Type::GetType())
 			{
-				static_cast<Type&>(*this->_msg) = std::forward<MessageType>(m);
+				static_cast<Type&>(*this->msg_) = std::forward<MessageType>(m);
 			}
 			else
 			{
-				this->_msg = std::make_unique<Type>(std::forward<MessageType>(m));
-				this->_type = Type::GetType();
+				this->msg_ = std::make_unique<Type>(std::forward<MessageType>(m));
+				this->type_ = Type::GetType();
 			}
 			return *this;
 		}
 
 		// This function does not change the ownership of the input pointer
-		explicit MessageElement(IMessage* m) : _msg(m->clone()), _type(m->type()) {}
+		explicit MessageElement(IMessage* m) : msg_(m->clone()), type_(m->type()) {}
 
 		///@}
 
@@ -216,7 +216,7 @@ public:
 		 * 
 		 * @return `MessageTypes` 
 		 */
-		MessageTypes type() const { return this->_type; }
+		MessageTypes type() const { return this->type_; }
 
 		/**
 		 * @brief 检查消息是否可以用于发送
@@ -226,8 +226,8 @@ public:
 		 */
 		bool allowSend() const
 		{
-			if (!this->_msg) throw std::runtime_error("MessageElement is empty");
-			return this->_msg->allowSend();
+			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
+			return this->msg_->allowSend();
 		}
 
 		/**
@@ -239,8 +239,8 @@ public:
 		 */
 		bool valid() const
 		{
-			if (!this->_msg) throw std::runtime_error("MessageElement is empty");
-			return this->_msg->valid();
+			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
+			return this->msg_->valid();
 		}
 
 		/**
@@ -252,22 +252,22 @@ public:
 		///@{
 		template<typename MessageType> MessageType& as()
 		{
-			_type_check_<MessageType>();
+			type_check_<MessageType>();
 
-			if (!this->_msg) throw std::runtime_error("MessageElement is empty");
-			if (this->_type != MessageType::GetType())
-				throw TypeDismatch(to_string(this->_type), to_string(MessageType::GetType()));
-			return static_cast<MessageType&>(*this->_msg);
+			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
+			if (this->type_ != MessageType::GetType())
+				throw TypeDismatch(to_string(this->type_), to_string(MessageType::GetType()));
+			return static_cast<MessageType&>(*this->msg_);
 		}
 
 		template<typename MessageType> const MessageType& as() const
 		{
-			_type_check_<std::decay_t<MessageType>>();
+			type_check_<std::decay_t<MessageType>>();
 
-			if (!this->_msg) throw std::runtime_error("MessageElement is empty");
-			if (this->_type != MessageType::GetType())
-				throw TypeDismatch(to_string(this->_type), to_string(MessageType::GetType()));
-			return static_cast<const MessageType&>(*this->_msg);
+			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
+			if (this->type_ != MessageType::GetType())
+				throw TypeDismatch(to_string(this->type_), to_string(MessageType::GetType()));
+			return static_cast<const MessageType&>(*this->msg_);
 		}
 		///@}
 
@@ -281,12 +281,12 @@ public:
 		///@{
 		template<typename Callable> auto visit(Callable&& f)
 		{
-			return this->_visit(std::make_index_sequence<MessageTypesList.size()>{}, std::forward<Callable>(f));
+			return this->visit_(std::make_index_sequence<MessageTypesList.size()>{}, std::forward<Callable>(f));
 		}
 
 		template<typename Callable> auto visit(Callable&& f) const
 		{
-			return this->_cvisit(std::make_index_sequence<MessageTypesList.size()>{}, std::forward<Callable>(f));
+			return this->cvisit_(std::make_index_sequence<MessageTypesList.size()>{}, std::forward<Callable>(f));
 		}
 		///@}
 
@@ -309,7 +309,7 @@ public:
 
 protected:
 	using MessageContainer = std::vector<MessageElement>;
-	MessageContainer _message;
+	MessageContainer message_;
 
 public:
 	MessageChain() = default;
@@ -341,38 +341,38 @@ public:
 	using iterator = MessageContainer::iterator;
 	using const_iterator = MessageContainer::const_iterator;
 
-	bool empty() const noexcept { return this->_message.empty(); }
-	size_type size() const noexcept { return this->_message.size(); }
-	void reserve(size_type new_cap) { return this->_message.reserve(new_cap); }
-	void shrink_to_fit() noexcept { return this->_message.shrink_to_fit(); }
-	size_type max_size() const noexcept { return this->_message.max_size(); }
-	size_type capacity() const noexcept { return this->_message.capacity(); }
+	bool empty() const noexcept { return this->message_.empty(); }
+	size_type size() const noexcept { return this->message_.size(); }
+	void reserve(size_type new_cap) { return this->message_.reserve(new_cap); }
+	void shrink_to_fit() noexcept { return this->message_.shrink_to_fit(); }
+	size_type max_size() const noexcept { return this->message_.max_size(); }
+	size_type capacity() const noexcept { return this->message_.capacity(); }
 
-	void clear() noexcept { return this->_message.clear(); }
-	iterator erase(const_iterator pos) { return this->_message.erase(pos); }
-	iterator erase(const_iterator first, const_iterator last) { return this->_message.erase(first, last); }
-	void pop_back() { return this->_message.pop_back(); }
-	void resize(size_type count) { return this->_message.resize(count); }
+	void clear() noexcept { return this->message_.clear(); }
+	iterator erase(const_iterator pos) { return this->message_.erase(pos); }
+	iterator erase(const_iterator first, const_iterator last) { return this->message_.erase(first, last); }
+	void pop_back() { return this->message_.pop_back(); }
+	void resize(size_type count) { return this->message_.resize(count); }
 
-	iterator begin() noexcept { return this->_message.begin(); }
-	const_iterator begin() const noexcept { return this->_message.begin(); }
-	const_iterator cbegin() const noexcept { return this->_message.cbegin(); }
-	iterator end() noexcept { return this->_message.end(); }
-	const_iterator end() const noexcept { return this->_message.end(); }
-	const_iterator cend() const noexcept { return this->_message.cend(); }
-	reverse_iterator rbegin() noexcept { return this->_message.rbegin(); }
-	const_reverse_iterator crbegin() const noexcept { return this->_message.crbegin(); }
-	reverse_iterator rend() noexcept { return this->_message.rend(); }
-	const_reverse_iterator crend() const noexcept { return this->_message.crend(); }
+	iterator begin() noexcept { return this->message_.begin(); }
+	const_iterator begin() const noexcept { return this->message_.begin(); }
+	const_iterator cbegin() const noexcept { return this->message_.cbegin(); }
+	iterator end() noexcept { return this->message_.end(); }
+	const_iterator end() const noexcept { return this->message_.end(); }
+	const_iterator cend() const noexcept { return this->message_.cend(); }
+	reverse_iterator rbegin() noexcept { return this->message_.rbegin(); }
+	const_reverse_iterator crbegin() const noexcept { return this->message_.crbegin(); }
+	reverse_iterator rend() noexcept { return this->message_.rend(); }
+	const_reverse_iterator crend() const noexcept { return this->message_.crend(); }
 
-	const_reference operator[](size_type n) const noexcept { return this->_message[n]; }
-	reference operator[](size_type n) noexcept { return this->_message[n]; }
-	const_reference at(size_type n) const { return this->_message.at(n); }
-	reference at(size_type n) { return this->_message.at(n); }
-	const_reference back() const { return this->_message.back(); }
-	reference back() { return this->_message.back(); }
-	const_reference front() const { return this->_message.front(); }
-	reference front() { return this->_message.front(); }
+	const_reference operator[](size_type n) const noexcept { return this->message_[n]; }
+	reference operator[](size_type n) noexcept { return this->message_[n]; }
+	const_reference at(size_type n) const { return this->message_.at(n); }
+	reference at(size_type n) { return this->message_.at(n); }
+	const_reference back() const { return this->message_.back(); }
+	reference back() { return this->message_.back(); }
+	const_reference front() const { return this->message_.front(); }
+	reference front() { return this->message_.front(); }
 
 	///@}
 
@@ -389,9 +389,9 @@ public:
 
 	template<typename MessageType> MessageChain& push_back(MessageType&& m)
 	{
-		_type_check_<std::decay_t<MessageType>>();
+		type_check_<std::decay_t<MessageType>>();
 
-		this->_message.push_back(MessageElement(std::forward<MessageType>(m)));
+		this->message_.push_back(MessageElement(std::forward<MessageType>(m)));
 		return *this;
 	}
 
@@ -406,9 +406,9 @@ public:
 	 */
 	template<typename MessageType, typename... Args> MessageChain& emplace_back(Args&&... args)
 	{
-		_type_check_<MessageType>();
+		type_check_<MessageType>();
 
-		this->_message.emplace_back(std::in_place_type_t<MessageType>{}, std::forward<Args>(args)...);
+		this->message_.emplace_back(std::in_place_type_t<MessageType>{}, std::forward<Args>(args)...);
 		return *this;
 	}
 
@@ -437,9 +437,9 @@ public:
 	 */
 	template<typename MessageType> iterator insert(const_iterator pos, MessageType&& m)
 	{
-		_type_check_<std::decay_t<MessageType>>();
+		type_check_<std::decay_t<MessageType>>();
 
-		return this->_message.insert(pos, MessageElement(std::forward<MessageType>(m)));
+		return this->message_.insert(pos, MessageElement(std::forward<MessageType>(m)));
 	}
 
 	/**
@@ -454,8 +454,8 @@ public:
 	 */
 	template<typename MessageType, typename... Args> iterator emplace(const_iterator pos, Args&&... args)
 	{
-		_type_check_<MessageType>();
-		return this->_message.emplace(pos, std::in_place_type_t<MessageType>{}, std::forward<Args>(args)...);
+		type_check_<MessageType>();
+		return this->message_.emplace(pos, std::in_place_type_t<MessageType>{}, std::forward<Args>(args)...);
 	}
 
 	/**
@@ -526,11 +526,11 @@ public:
 	 */
 	///@{
 
-	template<typename MessageType> MessageType& GetAt(size_type i) { return this->_message.at(i).as<MessageType>(); }
+	template<typename MessageType> MessageType& GetAt(size_type i) { return this->message_.at(i).as<MessageType>(); }
 
 	template<typename MessageType> const MessageType& GetAt(size_type i) const
 	{
-		return this->_message.at(i).as<MessageType>();
+		return this->message_.at(i).as<MessageType>();
 	}
 
 	///@}
@@ -560,7 +560,7 @@ public:
 	 * @param i 下标
 	 * @return Type `MessageTypes`
 	 */
-	MessageTypes GetType(size_type i) const { return this->_message.at(i).type(); }
+	MessageTypes GetType(size_type i) const { return this->message_.at(i).type(); }
 
 	/**
 	 * @brief 获取所有指定类型的消息元素
@@ -571,10 +571,10 @@ public:
 	 */
 	template<typename MessageType> std::vector<MessageType> GetAll() const
 	{
-		_type_check_<MessageType>();
+		type_check_<MessageType>();
 
 		std::vector<MessageType> v;
-		for (const auto& p : this->_message)
+		for (const auto& p : this->message_)
 		{
 			if (p.type() == MessageType::GetType()) v.push_back(p.as<MessageType>());
 		}
@@ -600,10 +600,10 @@ public:
 
 	template<typename MessageType> std::vector<std::reference_wrapper<MessageType>> GetAllRef()
 	{
-		_type_check_<MessageType>();
+		type_check_<MessageType>();
 
 		std::vector<std::reference_wrapper<MessageType>> v;
-		for (auto& p : this->_message)
+		for (auto& p : this->message_)
 		{
 			if (p.type() == MessageType::GetType()) v.push_back(std::ref(p.as<MessageType>()));
 		}
@@ -612,10 +612,10 @@ public:
 
 	template<typename MessageType> std::vector<std::reference_wrapper<const MessageType>> GetAllRef() const
 	{
-		_type_check_<MessageType>();
+		type_check_<MessageType>();
 
 		std::vector<std::reference_wrapper<const MessageType>> v;
-		for (const auto& p : this->_message)
+		for (const auto& p : this->message_)
 		{
 			if (p.type() == MessageType::GetType()) v.push_back(std::cref(p.as<MessageType>()));
 		}

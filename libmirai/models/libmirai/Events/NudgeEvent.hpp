@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_NUDGE_EVENT_HPP_
-#define _MIRAI_NUDGE_EVENT_HPP_
+#ifndef MIRAI_NUDGE_EVENT_HPP_
+#define MIRAI_NUDGE_EVENT_HPP_
 
 #include <string>
 
@@ -31,31 +31,31 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `NudgeEvent::_FromId` | `0_qq`
- * `NudgeEvent::_target` | `NudgeTarget{}`
- * `NudgeEvent::_action` | `""`
- * `NudgeEvent::_suffix` | `""`
+ * `NudgeEvent::FromId_` | `0_qq`
+ * `NudgeEvent::target_` | `NudgeTarget{}`
+ * `NudgeEvent::action_` | `""`
+ * `NudgeEvent::suffix_` | `""`
  */
 class NudgeEvent final : public IEvent<NudgeEvent>
 {
 	friend IEvent<NudgeEvent>;
 private:
-	QQ_t _FromId;
-	NudgeTarget _target;
-	std::string _action;
-	std::string _suffix;
+	QQ_t FromId_;
+	NudgeTarget target_;
+	std::string action_;
+	std::string suffix_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::Nudge;
+	static constexpr EventTypes TYPE_ = EventTypes::Nudge;
 
 public:
 	/// 获取发送者QQ
-	QQ_t GetSender() const { return this->_FromId; }
+	QQ_t GetSender() const { return this->FromId_; }
 	/// 获取戳一戳消息的接收对象
-	NudgeTarget GetTarget() const { return this->_target; }
+	NudgeTarget GetTarget() const { return this->target_; }
 	/// 获取自定义戳一戳的动作消息
-	std::string GetAction() const { return this->_action; }
+	std::string GetAction() const { return this->action_; }
 	/// 获取自定义戳一戳的内容
-	std::string GetSuffix() const { return this->_suffix; }
+	std::string GetSuffix() const { return this->suffix_; }
 
 	struct Serializable;
 };

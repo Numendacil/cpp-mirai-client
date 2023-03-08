@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_GROUP_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_GROUP_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_GROUP_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_GROUP_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,10 +35,10 @@ struct GroupAllowAnonymousChatEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupAllowAnonymousChatEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -56,10 +56,10 @@ struct GroupAllowConfessTalkEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupAllowConfessTalkEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("isByBot").get_to(p._ByBot);
-		j.at("group").get_to(p._group);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("isByBot").get_to(p.ByBot_);
+		j.at("group").get_to(p.group_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -77,10 +77,10 @@ struct GroupAllowMemberInviteEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupAllowMemberInviteEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -98,10 +98,10 @@ struct GroupEntranceAnnouncementChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupEntranceAnnouncementChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -119,10 +119,10 @@ struct GroupNameChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupNameChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -140,8 +140,8 @@ struct GroupMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("sender").get_to(p._sender);
-		j.at("messageChain").get_to(p._message);
+		j.at("sender").get_to(p.sender_);
+		j.at("messageChain").get_to(p.message_);
 		
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -159,10 +159,10 @@ struct GroupMuteAllEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupMuteAllEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -180,11 +180,11 @@ struct GroupRecallEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupRecallEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("authorId").get_to(p._AuthorId);
-		j.at("messageId").get_to(p._MessageId);
-		j.at("time").get_to(p._time);
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("authorId").get_to(p.AuthorId_);
+		j.at("messageId").get_to(p.MessageId_);
+		j.at("time").get_to(p.time_);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -202,8 +202,8 @@ struct GroupSyncMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == GroupSyncMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("subject").get_to(p._subject);
-		j.at("messageChain").get_to(p._message);
+		j.at("subject").get_to(p.subject_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

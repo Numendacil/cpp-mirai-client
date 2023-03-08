@@ -102,16 +102,16 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 	MIRAI_PARSE_GUARD_BEGIN(j);
 
 	if (!j.is_array()) return;
-	p._message.clear();
-	p._message.reserve(j.size());
+	p.message_.clear();
+	p.message_.reserve(j.size());
 	for (const auto& msg : j)
 	{
 		if (!msg.is_object() || !msg.contains("type") || !msg.at("type").is_string()) continue;
 		MessageTypes type = msg.at("type").get<MessageTypes>();
-		auto& m = p._message.emplace_back(Factory.at(static_cast<size_t>(type))());
+		auto& m = p.message_.emplace_back(Factory.at(static_cast<size_t>(type))());
 		msg.get_to(m);
 	}
-	p._message.shrink_to_fit();
+	p.message_.shrink_to_fit();
 
 	MIRAI_PARSE_GUARD_END(j);
 }
@@ -119,7 +119,7 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
 {
 	j = json::array();
-	for (const auto& msg : p._message)
+	for (const auto& msg : p.message_)
 	{
 		if (msg.allowSend())
 			j += p;

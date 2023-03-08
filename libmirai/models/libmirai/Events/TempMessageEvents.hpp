@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_TEMP_MESSAGE_EVENTS_HPP_
-#define _MIRAI_TEMP_MESSAGE_EVENTS_HPP_
+#ifndef MIRAI_TEMP_MESSAGE_EVENTS_HPP_
+#define MIRAI_TEMP_MESSAGE_EVENTS_HPP_
 
 #include <string>
 
@@ -31,24 +31,24 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `TempMessageEvent::_sender` | `GroupMember{}`
- * `TempMessageEvent::_message` | `MessageChain{}`
+ * `TempMessageEvent::sender_` | `GroupMember{}`
+ * `TempMessageEvent::message_` | `MessageChain{}`
  */
 class TempMessageEvent final : public IEvent<TempMessageEvent>
 {
 	friend IEvent<TempMessageEvent>;
 
 private:
-	GroupMember _sender;
-	MessageChain _message;
+	GroupMember sender_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::TempMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::TempMessage;
 
 public:
 	/// 获取发送者资料
-	GroupMember GetSender() const { return this->_sender; }
+	GroupMember GetSender() const { return this->sender_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	// TODO: add helper methods for quick reply
 
@@ -62,24 +62,24 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `TempSyncMessageEvent::_subject` | `GroupMember{}`
- * `TempSyncMessageEvent::_message` | `MessageChain{}`
+ * `TempSyncMessageEvent::subject_` | `GroupMember{}`
+ * `TempSyncMessageEvent::message_` | `MessageChain{}`
  */
 class TempSyncMessageEvent final : public IEvent<TempSyncMessageEvent>
 {
 	friend IEvent<TempSyncMessageEvent>;
 
 private:
-	GroupMember _subject;
-	MessageChain _message;
+	GroupMember subject_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::TempSyncMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::TempSyncMessage;
 
 public:
 	/// 获取会话目标对象信息
-	GroupMember GetGroupMember() const { return this->_subject; }
+	GroupMember GetGroupMember() const { return this->subject_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	struct Serializable;
 };

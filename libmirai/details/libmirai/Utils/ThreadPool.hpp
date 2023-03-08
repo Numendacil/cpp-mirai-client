@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI__UTILS_THREADPOOL_HPP_
-#define _MIRAI__UTILS_THREADPOOL_HPP_
+#ifndef MIRAI_UTILS_THREADPOOL_HPP_
+#define MIRAI_UTILS_THREADPOOL_HPP_
 
 #include <condition_variable>
 #include <functional>
@@ -32,25 +32,25 @@ namespace Mirai::Utils
 class ThreadPool
 {
 protected:
-	mutable std::mutex _mtx;
-	std::condition_variable _cv;
+	mutable std::mutex mtx_;
+	std::condition_variable cv_;
 
-	std::vector<std::thread> _workers;
-	std::queue<std::function<void()>> _jobs;
+	std::vector<std::thread> workers_;
+	std::queue<std::function<void()>> jobs_;
 
-	bool _stop = false;
+	bool stop_ = false;
 
-	void _loop()
+	void loop_()
 	{
 		while (true)
 		{
 			std::function<void()> job;
 			{
-				std::unique_lock<std::mutex> lk(this->_mtx);
-				this->_cv.wait(lk, [this] { return this->_stop || !this->_jobs.empty(); });
-				if (this->_stop && this->_jobs.empty()) return;
-				job = std::move(this->_jobs.front());
-				this->_jobs.pop();
+				std::unique_lock<std::mutex> lk(this->mtx_);
+				this->cv_.wait(lk, [this] { return this->stop_ || !this->jobs_.empty(); });
+				if (this->stop_ && this->jobs_.empty()) return;
+				job = std::move(this->jobs_.front());
+				this->jobs_.pop();
 			}
 
 			job();
@@ -60,10 +60,10 @@ protected:
 public:
 	ThreadPool(std::size_t n)
 	{
-		_workers.reserve(n);
+		workers_.reserve(n);
 		for (std::size_t i = 0; i < n; i++)
 		{
-			_workers.emplace_back([this]() { this->_loop(); });
+			workers_.emplace_back([this]() { this->loop_(); });
 		}
 	}
 	ThreadPool(const ThreadPool&) = delete;
@@ -74,11 +74,11 @@ public:
 	~ThreadPool()
 	{
 		{
-			std::unique_lock<std::mutex> lk(this->_mtx);
-			this->_stop = true;
+			std::unique_lock<std::mutex> lk(this->mtx_);
+			this->stop_ = true;
 		}
-		this->_cv.notify_all();
-		for (std::thread& th : this->_workers)
+		this->cv_.notify_all();
+		for (std::thread& th : this->workers_)
 		{
 			if (th.joinable()) th.join();
 		}
@@ -94,11 +94,11 @@ public:
 
 		std::future<return_type> result = task->get_future();
 		{
-			std::unique_lock<std::mutex> lk(this->_mtx);
-			if (this->_stop) return std::future<return_type>();
-			this->_jobs.emplace([task]() { (*task)(); });
+			std::unique_lock<std::mutex> lk(this->mtx_);
+			if (this->stop_) return std::future<return_type>();
+			this->jobs_.emplace([task]() { (*task)(); });
 		}
-		this->_cv.notify_one();
+		this->cv_.notify_one();
 		return result;
 	}
 };

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_AT_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_AT_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_AT_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_AT_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,8 +33,8 @@ struct AtMessage::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == AtMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("target").get_to(p._target);
-		j.at("display").get_to(p._display);
+		j.at("target").get_to(p.target_);
+		j.at("display").get_to(p.display_);
 	
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -44,7 +44,7 @@ struct AtMessage::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = AtMessage::GetType();
-		j["target"] = p._target;
+		j["target"] = p.target_;
 
 		// Not used for sending
 		// j["display"] = p.display;

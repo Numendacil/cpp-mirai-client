@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_PLAIN_MESSAGE_HPP_
-#define _MIRAI_PLAIN_MESSAGE_HPP_
+#ifndef MIRAI_PLAIN_MESSAGE_HPP_
+#define MIRAI_PLAIN_MESSAGE_HPP_
 
 #include <string>
 #include <utility>
@@ -29,35 +29,35 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `PlainMessage::_text` | `""`
+ * `PlainMessage::text_` | `""`
  */
 class PlainMessage final : public IMessageImpl<PlainMessage>
 {
 	friend IMessageImpl<PlainMessage>;
 
 protected:
-	std::string _text{};
+	std::string text_{};
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::PLAIN;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::PLAIN;
+	static constexpr bool SUPPORT_SEND_ = true;
 
-	bool _isValid() const final { return !this->_text.empty(); }
+	bool isValid_() const final { return !this->text_.empty(); }
 
 public:
 	PlainMessage() = default;
-	PlainMessage(std::string text) : _text(std::move(text)) {}
+	PlainMessage(std::string text) : text_(std::move(text)) {}
 
-	bool operator==(const PlainMessage& rhs) { return this->_text == rhs._text; }
+	bool operator==(const PlainMessage& rhs) { return this->text_ == rhs.text_; }
 
 	bool operator!=(const PlainMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取文字消息
-	std::string GetText() const { return this->_text; }
+	std::string GetText() const { return this->text_; }
 
 	/// 设置文字消息
 	PlainMessage& SetText(std::string text)
 	{
-		this->_text = std::move(text);
+		this->text_ = std::move(text);
 		return *this;
 	}
 

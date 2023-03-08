@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MIRAI_CLIENT_EVENTS_HPP_
-#define _MIRAI_MIRAI_CLIENT_EVENTS_HPP_
+#ifndef MIRAI_MIRAI_CLIENT_EVENTS_HPP_
+#define MIRAI_MIRAI_CLIENT_EVENTS_HPP_
 
 #include <exception>
 #include <map>
@@ -48,7 +48,7 @@ struct ClientConnectionEstablishedEvent final : IEvent<ClientConnectionEstablish
 
 private:
 	friend IEvent<ClientConnectionEstablishedEvent>;
-	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionEstablished;
+	static constexpr EventTypes TYPE_ = EventTypes::ClientConnectionEstablished;
 };
 
 /**
@@ -72,7 +72,7 @@ struct ClientConnectionErrorEvent final: public IEvent<ClientConnectionErrorEven
 
 private:
 	friend IEvent<ClientConnectionErrorEvent>;
-	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionError;
+	static constexpr EventTypes TYPE_ = EventTypes::ClientConnectionError;
 };
 
 /**
@@ -94,7 +94,7 @@ struct ClientConnectionClosedEvent final: public IEvent<ClientConnectionClosedEv
 
 private:
 	friend IEvent<ClientConnectionClosedEvent>;
-	static constexpr EventTypes _TYPE_ = EventTypes::ClientConnectionClosed;
+	static constexpr EventTypes TYPE_ = EventTypes::ClientConnectionClosed;
 };
 
 /**
@@ -111,15 +111,15 @@ struct ClientParseErrorEvent final: public IEvent<ClientParseErrorEvent>
 
 private:
 	friend IEvent<ClientParseErrorEvent>;
-	static constexpr EventTypes _TYPE_ = EventTypes::ClientParseError;
+	static constexpr EventTypes TYPE_ = EventTypes::ClientParseError;
 };
 
 
 
-#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
-	template<> struct GetEventType<_type_::GetType()>                                                                  \
+#define DECLARE_TYPE_ENUM(event_type)                                                                                      \
+	template<> struct GetEventType<event_type::GetType()>                                                                  \
 	{                                                                                                                  \
-		using type = _type_;                                                                                           \
+		using type = event_type;                                                                                           \
 	}
 
 DECLARE_TYPE_ENUM(ClientConnectionEstablishedEvent);

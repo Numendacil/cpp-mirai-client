@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_SOURCE_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_SOURCE_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_SOURCE_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_SOURCE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,8 +33,8 @@ struct SourceMessage::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == SourceMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("id").get_to(p._id);
-		j.at("time").get_to(p._timestamp);
+		j.at("id").get_to(p.id_);
+		j.at("time").get_to(p.timestamp_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_BOT_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_BOT_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_BOT_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_BOT_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,7 +35,7 @@ struct BotAccountEvent<Event>::Serializable
 
 		assert(j.at("type").get<EventTypes>() == Event::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("qq").get_to(p._qq);
+		j.at("qq").get_to(p.qq_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -53,9 +53,9 @@ struct BotGroupPermissionChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == BotGroupPermissionChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("group").get_to(p._group);
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
+		j.at("group").get_to(p.group_);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -73,12 +73,12 @@ struct BotInvitedJoinGroupRequestEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == BotInvitedJoinGroupRequestEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("eventId").get_to(p._EventId);
-		j.at("fromId").get_to(p._FromId);
-		j.at("groupId").get_to(p._GroupId);
-		j.at("groupName").get_to(p._GroupName);
-		j.at("nick").get_to(p._nickname);
-		j.at("message").get_to(p._message);
+		j.at("eventId").get_to(p.EventId_);
+		j.at("fromId").get_to(p.FromId_);
+		j.at("groupId").get_to(p.GroupId_);
+		j.at("groupName").get_to(p.GroupName_);
+		j.at("nick").get_to(p.nickname_);
+		j.at("message").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -96,8 +96,8 @@ struct BotJoinGroupEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == BotJoinGroupEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("group").get_to(p._group);
-		Utils::GetOptional(j, "invitor", p._inviter);
+		j.at("group").get_to(p.group_);
+		Utils::GetOptional(j, "invitor", p.inviter_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -116,7 +116,7 @@ struct BotLeaveEvent<Event>::Serializable
 
 		assert(j.at("type").get<EventTypes>() == Event::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("group").get_to(p._group);
+		j.at("group").get_to(p.group_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -131,7 +131,7 @@ struct BotLeaveEventDisband::Serializable
 
 		MIRAI_PARSE_GUARD_BEGIN(j);
 
-		j.at("operator").get_to(p._operator);
+		j.at("operator").get_to(p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -145,7 +145,7 @@ struct BotLeaveEventKick::Serializable
 
 		MIRAI_PARSE_GUARD_BEGIN(j);
 
-		Utils::GetOptional(j, "operator", p._operator);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -162,8 +162,8 @@ struct BotMuteEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == BotMuteEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("operator").get_to(p._operator);
-		j.at("durationSeconds").get_to(p._duration);
+		j.at("operator").get_to(p.operator_);
+		j.at("durationSeconds").get_to(p.duration_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -181,7 +181,7 @@ struct BotUnmuteEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == BotUnmuteEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("operator").get_to(p._operator);
+		j.at("operator").get_to(p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

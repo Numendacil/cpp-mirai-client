@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MESSAGE_INTERFACE_HPP_
-#define _MIRAI_MESSAGE_INTERFACE_HPP_
+#ifndef MIRAI_MESSAGE_INTERFACE_HPP_
+#define MIRAI_MESSAGE_INTERFACE_HPP_
 
 
 #include <memory>
@@ -35,9 +35,9 @@ class IMessage
 protected:
 	IMessage() = default;
 
-	virtual MessageTypes _GetType() const = 0;
-	virtual bool _isSendSupported() const = 0;
-	virtual bool _isValid() const = 0;
+	virtual MessageTypes GetType_() const = 0;
+	virtual bool isSendSupported_() const = 0;
+	virtual bool isValid_() const = 0;
 
 public:
 	virtual ~IMessage() = default;
@@ -49,7 +49,7 @@ public:
 	 * 
 	 * @return `MessageTypes`
 	 */
-	MessageTypes type() const { return this->_GetType(); }
+	MessageTypes type() const { return this->GetType_(); }
 
 	/**
 	 * @brief 检查消息是否可以用于发送
@@ -57,7 +57,7 @@ public:
 	 * 部分消息仅支持接收
 	 * @return `bool`
 	 */
-	bool allowSend() const { return this->_isSendSupported(); }
+	bool allowSend() const { return this->isSendSupported_(); }
 
 	/**
 	 * @brief 检查消息是否有效
@@ -66,7 +66,7 @@ public:
 	 * 检测的内容靠测试经验和mirai-api-http源码确定， `valid() = true` 不保证一定能发送成功。
 	 * @return `bool`
 	 */
-	bool valid() const { return this->_isValid(); }  
+	bool valid() const { return this->isValid_(); }  
 };
 
 /**
@@ -78,27 +78,27 @@ class IMessageImpl : public IMessage
 {
 protected:
 	// Better not to set default value to avoid errors
-	// static constexpr bool _SUPPORT_SEND_ = true;
-	// static constexpr MessageTypes _TYPE_ = MessageTypes::ENUM_END;
+	// static constexpr bool SUPPORT_SEND_ = true;
+	// static constexpr MessageTypes TYPE_ = MessageTypes::ENUM_END;
 
 	IMessageImpl() = default;
 
-	MessageTypes _GetType() const override { return Message::_TYPE_; }
+	MessageTypes GetType_() const override { return Message::TYPE_; }
 	
-	bool _isSendSupported() const override { return Message::_SUPPORT_SEND_; }
+	bool isSendSupported_() const override { return Message::SUPPORT_SEND_; }
 
 private:
-	Message& _top() { return *static_cast<Message*>(this); }
-	const Message& _top() const { return *static_cast<const Message*>(this); }
+	Message& top_() { return *static_cast<Message*>(this); }
+	const Message& top_() const { return *static_cast<const Message*>(this); }
 
 public:
-	static constexpr MessageTypes GetType() { return Message::_TYPE_; }
+	static constexpr MessageTypes GetType() { return Message::TYPE_; }
 
-	static constexpr bool isSendSupported() { return Message::_SUPPORT_SEND_; }
+	static constexpr bool isSendSupported() { return Message::SUPPORT_SEND_; }
 
 	std::unique_ptr<IMessage> clone() const override
 	{
-		return std::make_unique<Message>(_top());
+		return std::make_unique<Message>(top_());
 	}
 };
 

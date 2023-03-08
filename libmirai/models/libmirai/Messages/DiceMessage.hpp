@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_DICE_MESSAGE_HPP_
-#define _MIRAI_DICE_MESSAGE_HPP_
+#ifndef MIRAI_DICE_MESSAGE_HPP_
+#define MIRAI_DICE_MESSAGE_HPP_
 
 #include <string>
 
@@ -28,40 +28,40 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `DiceMessage::_value` | `-1`
+ * `DiceMessage::value_` | `-1`
  */
 class DiceMessage final : public IMessageImpl<DiceMessage>
 {
 	friend IMessageImpl<DiceMessage>;
 
 protected:
-	int _value = -1;
+	int value_ = -1;
 
-	bool _isValid() const final { return this->_value > 0 && this->_value <= 6; }
+	bool isValid_() const final { return this->value_ > 0 && this->value_ <= 6; }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::DICE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::DICE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	DiceMessage() = default;
 	DiceMessage(int value)
 	{
-		if (value > 0 && value <= 6) this->_value = value;
+		if (value > 0 && value <= 6) this->value_ = value;
 		else
-			this->_value = -1;
+			this->value_ = -1;
 	}
 
-	bool operator==(const DiceMessage& rhs) { return this->_value == rhs._value; }
+	bool operator==(const DiceMessage& rhs) { return this->value_ == rhs.value_; }
 
 	bool operator!=(const DiceMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取骰子点数
-	int GetValue() const { return this->_value; }
+	int GetValue() const { return this->value_; }
 
 	/// 设置骰子点数，不在1~6之间的值将不会被设置
 	DiceMessage& SetValue(int value)
 	{
-		if (value > 0 && value <= 6) this->_value = value;
+		if (value > 0 && value <= 6) this->value_ = value;
 		return *this;
 	}
 

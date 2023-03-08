@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_FRIEND_EVENTS_HPP_
-#define _MIRAI_FRIEND_EVENTS_HPP_
+#ifndef MIRAI_FRIEND_EVENTS_HPP_
+#define MIRAI_FRIEND_EVENTS_HPP_
 
 #include <string>
 
@@ -31,24 +31,24 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `FriendInputStatusChangedEvent::_friend` | `User{}`
- * `FriendInputStatusChangedEvent::_inputting` | `false`
+ * `FriendInputStatusChangedEvent::friend_` | `User{}`
+ * `FriendInputStatusChangedEvent::inputting_` | `false`
  */
 class FriendInputStatusChangedEvent final : public IEvent<FriendInputStatusChangedEvent>
 {
 	friend IEvent<FriendInputStatusChangedEvent>;
 
 private:
-	User _friend;
-	bool _inputting = false;
+	User friend_;
+	bool inputting_ = false;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::FriendInputStatusChanged;
+	static constexpr EventTypes TYPE_ = EventTypes::FriendInputStatusChanged;
 
 public:
 	/// 获取好友信息
-	User GetFriend() const { return this->_friend; }
+	User GetFriend() const { return this->friend_; }
 	/// 是否正在输入
-	bool isInputting() const { return this->_inputting; }
+	bool isInputting() const { return this->inputting_; }
 
 	struct Serializable;
 };
@@ -60,24 +60,24 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `FriendMessageEvent::_sender` | `User{}`
- * `FriendMessageEvent::_message` | `MessageChain{}`
+ * `FriendMessageEvent::sender_` | `User{}`
+ * `FriendMessageEvent::message_` | `MessageChain{}`
  */
 class FriendMessageEvent final : public IEvent<FriendMessageEvent>
 {
 	friend IEvent<FriendMessageEvent>;
 
 private:
-	User _sender;
-	MessageChain _message;
+	User sender_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::FriendMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::FriendMessage;
 
 public:
 	/// 获取发送者资料
-	User GetSender() const { return this->_sender; }
+	User GetSender() const { return this->sender_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	// TODO: add helper methods for quick reply
 
@@ -91,27 +91,27 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `FriendNickChangedEvent::_friend` | `User{}`
- * `FriendNickChangedEvent::_from` | `""`
- * `FriendNickChangedEvent::_to` | `""`
+ * `FriendNickChangedEvent::friend_` | `User{}`
+ * `FriendNickChangedEvent::from_` | `""`
+ * `FriendNickChangedEvent::to_` | `""`
  */
 class FriendNickChangedEvent final : public IEvent<FriendNickChangedEvent>
 {
 	friend IEvent<FriendNickChangedEvent>;
 private:
-	User _friend;
-	std::string _from;
-	std::string _to;
+	User friend_;
+	std::string from_;
+	std::string to_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::FriendNickChanged;
+	static constexpr EventTypes TYPE_ = EventTypes::FriendNickChanged;
 
 public:
 	/// 获取好友信息
-	User GetFriend() const { return this->_friend; }
+	User GetFriend() const { return this->friend_; }
 	/// 获取更改前的昵称
-	std::string GetOriginalNickname() const { return this->_from; }
+	std::string GetOriginalNickname() const { return this->from_; }
 	/// 获取当前昵称
-	std::string GetNewNickname() const { return this->_to; }
+	std::string GetNewNickname() const { return this->to_; }
 
 	struct Serializable;
 };
@@ -123,31 +123,31 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `FriendRecallEvent::_AuthorId` | `0_qq`
- * `FriendRecallEvent::_MessageId` | `0`
- * `FriendRecallEvent::_time` | `0`
- * `FriendRecallEvent::_operator` | `0_qq`
+ * `FriendRecallEvent::AuthorId_` | `0_qq`
+ * `FriendRecallEvent::MessageId_` | `0`
+ * `FriendRecallEvent::time_` | `0`
+ * `FriendRecallEvent::operator_` | `0_qq`
  */
 class FriendRecallEvent final : public IEvent<FriendRecallEvent>
 {
 	friend IEvent<FriendRecallEvent>;
 private:
-	QQ_t _AuthorId;
-	MessageId_t _MessageId = 0;
-	std::time_t _time = 0;
-	QQ_t _operator;
+	QQ_t AuthorId_;
+	MessageId_t MessageId_ = 0;
+	std::time_t time_ = 0;
+	QQ_t operator_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::FriendRecall;
+	static constexpr EventTypes TYPE_ = EventTypes::FriendRecall;
 
 public:
 	/// 获取被撤回消息的发送者QQ
-	QQ_t GetSender() const { return this->_AuthorId; }
+	QQ_t GetSender() const { return this->AuthorId_; }
 	/// 获取被撤回消息的消息id
-	MessageId_t GetMessageId() const { return this->_MessageId; }
+	MessageId_t GetMessageId() const { return this->MessageId_; }
 	/// 获取被撤回消息的发送时间
-	std::time_t GetSendTime() const { return this->_time; }
+	std::time_t GetSendTime() const { return this->time_; }
 	/// 获取操作员QQ
-	QQ_t GetOperator() const { return this->_operator; }
+	QQ_t GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -159,33 +159,33 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `FriendSyncMessageEvent::_subject` | `User{}`
- * `FriendSyncMessageEvent::_message` | `MessageChain{}`
+ * `FriendSyncMessageEvent::subject_` | `User{}`
+ * `FriendSyncMessageEvent::message_` | `MessageChain{}`
  */
 class FriendSyncMessageEvent final : public IEvent<FriendSyncMessageEvent>
 {
 	friend IEvent<FriendSyncMessageEvent>;
 private:
-	User _subject;
-	MessageChain _message;
+	User subject_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::FriendSyncMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::FriendSyncMessage;
 
 public:
 	/// 获取目标好友信息
-	User GetFriend() const { return this->_subject; }
+	User GetFriend() const { return this->subject_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	struct Serializable;
 };
 
 
 
-#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
-	template<> struct GetEventType<_type_::GetType()>                                                                  \
+#define DECLARE_TYPE_ENUM(event_type)                                                                                      \
+	template<> struct GetEventType<event_type::GetType()>                                                                  \
 	{                                                                                                                  \
-		using type = _type_;                                                                                           \
+		using type = event_type;                                                                                           \
 	}
 
 DECLARE_TYPE_ENUM(FriendInputStatusChangedEvent);

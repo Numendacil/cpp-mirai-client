@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_ATALL_MESSAGE_HPP_
-#define _MIRAI_ATALL_MESSAGE_HPP_
+#ifndef MIRAI_ATALL_MESSAGE_HPP_
+#define MIRAI_ATALL_MESSAGE_HPP_
 
 #include <string>
 
@@ -32,10 +32,10 @@ class AtAllMessage final : public IMessageImpl<AtAllMessage>
 	friend class IMessageImpl<AtAllMessage>;
 
 private:
-	bool _isValid() const final { return true; }
+	bool isValid_() const final { return true; }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AT_ALL;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::AT_ALL;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	struct Serializable;

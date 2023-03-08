@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_OTHER_CLIENT_EVENTS_HPP_
-#define _MIRAI_OTHER_CLIENT_EVENTS_HPP_
+#ifndef MIRAI_OTHER_CLIENT_EVENTS_HPP_
+#define MIRAI_OTHER_CLIENT_EVENTS_HPP_
 
 #include <string>
 
@@ -31,23 +31,23 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `OtherClientMessageEvent::_sender` | `ClientDevice{}`
- * `OtherClientMessageEvent::_message` | `MessageChain{}`
+ * `OtherClientMessageEvent::sender_` | `ClientDevice{}`
+ * `OtherClientMessageEvent::message_` | `MessageChain{}`
  */
 class OtherClientMessageEvent final : public IEvent<OtherClientMessageEvent>
 {
 	friend IEvent<OtherClientMessageEvent>;
 private:
-	ClientDevice _sender;
-	MessageChain _message;
+	ClientDevice sender_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::OtherClientMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::OtherClientMessage;
 
 public:
 	/// 获取发送客户端信息
-	ClientDevice GetSender() const { return this->_sender; }
+	ClientDevice GetSender() const { return this->sender_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	struct Serializable;
 };
@@ -59,20 +59,20 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `OtherClientOfflineEvent::_client` | `ClientDevice{}`
+ * `OtherClientOfflineEvent::client_` | `ClientDevice{}`
  */
 class OtherClientOfflineEvent final : public IEvent<OtherClientOfflineEvent>
 {
 	friend IEvent<OtherClientOfflineEvent>;
 
 private:
-	ClientDevice _client;
+	ClientDevice client_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::OtherClientOffline;
+	static constexpr EventTypes TYPE_ = EventTypes::OtherClientOffline;
 
 public:
 	/// 获取设备信息
-	ClientDevice GetClient() const { return this->_client; }
+	ClientDevice GetClient() const { return this->client_; }
 
 	struct Serializable;
 };
@@ -84,24 +84,24 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `OtherClientOnlineEvent::_client` | `ClientDevice{}`
- * `OtherClientOnlineEvent::_kind` | `std::nullopt`
+ * `OtherClientOnlineEvent::client_` | `ClientDevice{}`
+ * `OtherClientOnlineEvent::kind_` | `std::nullopt`
  */
 class OtherClientOnlineEvent final : public IEvent<OtherClientOnlineEvent>
 {
 	friend IEvent<OtherClientOnlineEvent>;
 
 private:
-	ClientDevice _client;
-	std::optional<int64_t> _kind = std::nullopt;
+	ClientDevice client_;
+	std::optional<int64_t> kind_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::OtherClientOnline;
+	static constexpr EventTypes TYPE_ = EventTypes::OtherClientOnline;
 
 public:
 	/// 获取设备信息
-	ClientDevice GetClient() const { return this->_client; }
+	ClientDevice GetClient() const { return this->client_; }
 	/// 获取详细设备类型，无则返回 `std::nullopt`
-	std::optional<int64_t> GetKind() const { return this->_kind; }
+	std::optional<int64_t> GetKind() const { return this->kind_; }
 
 	// TODO: replace kind with enum, see https://github.com/mamoe/mirai/blob/dev/mirai-core-api/src/commonMain/kotlin/contact/OtherClient.kt#L113
 
@@ -110,10 +110,10 @@ public:
 
 
 
-#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
-	template<> struct GetEventType<_type_::GetType()>                                                                  \
+#define DECLARE_TYPE_ENUM(event_type)                                                                                      \
+	template<> struct GetEventType<event_type::GetType()>                                                                  \
 	{                                                                                                                  \
-		using type = _type_;                                                                                           \
+		using type = event_type;                                                                                           \
 	}
 
 DECLARE_TYPE_ENUM(OtherClientMessageEvent);

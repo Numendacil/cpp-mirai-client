@@ -25,29 +25,29 @@ namespace Mirai
 QuoteMessage::QuoteMessage() = default;
 
 QuoteMessage::QuoteMessage(const QuoteMessage& rhs) 
-: _QuoteId(rhs._QuoteId), _GroupId(rhs._GroupId), _SenderId(rhs._SenderId), _TargetId(rhs._TargetId)
+: QuoteId_(rhs.QuoteId_), GroupId_(rhs.GroupId_), SenderId_(rhs.SenderId_), TargetId_(rhs.TargetId_)
 {
-	if (rhs._origin)
-		this->_origin = std::make_unique<MessageChain>(*rhs._origin);
+	if (rhs.origin_)
+		this->origin_ = std::make_unique<MessageChain>(*rhs.origin_);
 }
 
 QuoteMessage& QuoteMessage::operator=(const QuoteMessage& rhs)
 {
 	if (&rhs != this)
 	{
-		this->_QuoteId = rhs._QuoteId;
-		this->_GroupId = rhs._GroupId;
-		this->_SenderId = rhs._SenderId;
-		this->_TargetId = rhs._TargetId;
-		if (rhs._origin)
+		this->QuoteId_ = rhs.QuoteId_;
+		this->GroupId_ = rhs.GroupId_;
+		this->SenderId_ = rhs.SenderId_;
+		this->TargetId_ = rhs.TargetId_;
+		if (rhs.origin_)
 		{
-			if (!this->_origin)
-				this->_origin = std::make_unique<MessageChain>(*rhs._origin);
+			if (!this->origin_)
+				this->origin_ = std::make_unique<MessageChain>(*rhs.origin_);
 			else
-				*this->_origin = *rhs._origin;
+				*this->origin_ = *rhs.origin_;
 		}
 		else
-			this->_origin = nullptr;
+			this->origin_ = nullptr;
 	}
 	return *this;
 }
@@ -57,9 +57,9 @@ QuoteMessage& QuoteMessage::operator=(QuoteMessage&&) = default;
 
 MessageChain QuoteMessage::GetOriginMessage() const
 {
-	if (!this->_origin)
+	if (!this->origin_)
 		return {};
-	return *this->_origin;
+	return *this->origin_;
 }
 
 } // namespace Mirai

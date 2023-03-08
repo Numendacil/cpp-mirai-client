@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_FRIEND_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_FRIEND_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_FRIEND_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_FRIEND_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -34,8 +34,8 @@ struct FriendInputStatusChangedEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == FriendInputStatusChangedEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("friend").get_to(p._friend);
-		j.at("inputting").get_to(p._inputting);
+		j.at("friend").get_to(p.friend_);
+		j.at("inputting").get_to(p.inputting_);
 		
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -53,8 +53,8 @@ struct FriendMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == FriendMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("sender").get_to(p._sender);
-		j.at("messageChain").get_to(p._message);
+		j.at("sender").get_to(p.sender_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -72,9 +72,9 @@ struct FriendNickChangedEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == FriendNickChangedEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("friend").get_to(p._friend);
-		j.at("from").get_to(p._from);
-		j.at("to").get_to(p._to);
+		j.at("friend").get_to(p.friend_);
+		j.at("from").get_to(p.from_);
+		j.at("to").get_to(p.to_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -92,10 +92,10 @@ struct FriendRecallEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == FriendRecallEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("authorId").get_to(p._AuthorId);
-		j.at("messageId").get_to(p._MessageId);
-		j.at("time").get_to(p._time);
-		j.at("operator").get_to(p._operator);
+		j.at("authorId").get_to(p.AuthorId_);
+		j.at("messageId").get_to(p.MessageId_);
+		j.at("time").get_to(p.time_);
+		j.at("operator").get_to(p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -113,8 +113,8 @@ struct FriendSyncMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == FriendSyncMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("subject").get_to(p._subject);
-		j.at("messageChain").get_to(p._message);
+		j.at("subject").get_to(p.subject_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

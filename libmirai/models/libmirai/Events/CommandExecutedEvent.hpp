@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_COMMAND_EXECUTED_EVENT_HPP_
-#define _MIRAI_COMMAND_EXECUTED_EVENT_HPP_
+#ifndef MIRAI_COMMAND_EXECUTED_EVENT_HPP_
+#define MIRAI_COMMAND_EXECUTED_EVENT_HPP_
 
 #include <optional>
 #include <string>
@@ -32,36 +32,36 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `CommandExecutedEvent::_sender` | `""`
- * `CommandExecutedEvent::_friend` | `std::nullopt`
- * `CommandExecutedEvent::_member` | `std::nullopt`
- * `CommandExecutedEvent::_args` | `MessageChain{}`
+ * `CommandExecutedEvent::sender_` | `""`
+ * `CommandExecutedEvent::friend_` | `std::nullopt`
+ * `CommandExecutedEvent::member_` | `std::nullopt`
+ * `CommandExecutedEvent::args_` | `MessageChain{}`
  */
 class CommandExecutedEvent final : public IEvent<CommandExecutedEvent>
 {
 	friend IEvent<CommandExecutedEvent>;
 private:
-	std::string _name;
-	std::optional<User> _friend = std::nullopt;
-	std::optional<GroupMember> _member = std::nullopt;
-	MessageChain _args;
+	std::string name_;
+	std::optional<User> friend_ = std::nullopt;
+	std::optional<GroupMember> member_ = std::nullopt;
+	MessageChain args_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::CommandExecuted;
+	static constexpr EventTypes TYPE_ = EventTypes::CommandExecuted;
 
 public:
 	/// 获取命令名称（不含前缀 `/` ）
-	std::string GetName() const { return this->_name; }
+	std::string GetName() const { return this->name_; }
 	/// 获取发送者类型
 	CommandSender GetSenderType() const
 	{
-		return this->_friend ? CommandSender::FRIEND : (this->_member ? CommandSender::MEMBER : CommandSender::CONSOLE);
+		return this->friend_ ? CommandSender::FRIEND : (this->member_ ? CommandSender::MEMBER : CommandSender::CONSOLE);
 	}
 	/// 获取好友发送者QQ，非好友发送时返回 `std::nullopt`
-	std::optional<User> GetFriendSender() const { return this->_friend; }
+	std::optional<User> GetFriendSender() const { return this->friend_; }
 	/// 获取群成员发送者资料，非群聊发送时返回 `std::nullopt`
-	std::optional<GroupMember> GetMemberSender() const { return this->_member; }
+	std::optional<GroupMember> GetMemberSender() const { return this->member_; }
 	/// 获取命令参数内容
-	MessageChain GetCommandArgs() const { return this->_args; }
+	MessageChain GetCommandArgs() const { return this->args_; }
 
 	struct Serializable;
 };

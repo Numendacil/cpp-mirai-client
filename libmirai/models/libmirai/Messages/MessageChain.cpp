@@ -28,49 +28,49 @@ MessageChain& MessageChain::operator=(const MessageChain& rhs)
 {
 	if (this != &rhs)
 	{
-		this->_message = rhs._message;
+		this->message_ = rhs.message_;
 	}
 	return *this;
 }
 
-MessageChain::MessageChain(MessageChain&& rhs) noexcept : _message(std::move(rhs._message)) {}
+MessageChain::MessageChain(MessageChain&& rhs) noexcept : message_(std::move(rhs.message_)) {}
 
 MessageChain& MessageChain::operator=(MessageChain&& rhs) noexcept
 {
-	if (this != &rhs) this->_message = std::move(rhs._message);
+	if (this != &rhs) this->message_ = std::move(rhs.message_);
 	return *this;
 }
 
 
 MessageChain& MessageChain::operator+=(const MessageChain& rhs)
 {
-	this->_message.reserve(this->_message.size() + rhs._message.size());
-	this->_message.insert(this->_message.end(), rhs._message.begin(),  rhs._message.end());
+	this->message_.reserve(this->message_.size() + rhs.message_.size());
+	this->message_.insert(this->message_.end(), rhs.message_.begin(),  rhs.message_.end());
 	return *this;
 }
 
 MessageChain& MessageChain::operator+=(MessageChain&& rhs)
 {
-	this->_message.reserve(this->_message.size() + rhs._message.size());
-	this->_message.insert(
-		this->_message.end(), 
-		std::make_move_iterator(rhs._message.begin()),  
-		std::make_move_iterator(rhs._message.end())
+	this->message_.reserve(this->message_.size() + rhs.message_.size());
+	this->message_.insert(
+		this->message_.end(), 
+		std::make_move_iterator(rhs.message_.begin()),  
+		std::make_move_iterator(rhs.message_.end())
 	);
-	rhs._message.clear();
+	rhs.message_.clear();
 	return *this;
 }
 
 
 MessageChain& MessageChain::operator+=(const MessageElement& m)
 {
-	this->_message.push_back(m);
+	this->message_.push_back(m);
 	return *this;
 }
 
 MessageChain& MessageChain::operator+=(MessageElement&& m)
 {
-	this->_message.push_back(std::move(m));
+	this->message_.push_back(std::move(m));
 	return *this;
 }
 
@@ -92,7 +92,7 @@ MessageChain operator+(const MessageChain& lhs, const MessageChain::MessageEleme
 
 std::optional<MessageChain::SourceInfo> MessageChain::GetSourceInfo() const
 {
-	for (const auto& p : this->_message)
+	for (const auto& p : this->message_)
 	{
 		if (p.type() == SourceMessage::GetType())
 		{
@@ -106,16 +106,16 @@ std::optional<MessageChain::SourceInfo> MessageChain::GetSourceInfo() const
 
 void MessageChain::RemoveInvalid()
 {
-	this->_message.erase(std::remove_if(this->_message.begin(), this->_message.end(),
+	this->message_.erase(std::remove_if(this->message_.begin(), this->message_.end(),
 	                                    [](const MessageElement& p)
 	                                    { return !p.valid(); }),
-	                     this->_message.end());
+	                     this->message_.end());
 }
 
 bool MessageChain::valid() const
 {
 	bool empty = true;
-	for (const auto& p : this->_message)
+	for (const auto& p : this->message_)
 	{
 		if (!p.valid()) return false;
 		if (p.allowSend()) empty = false;

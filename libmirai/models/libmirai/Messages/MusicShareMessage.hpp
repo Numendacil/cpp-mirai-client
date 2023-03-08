@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MUSIC_SHARE_MESSAGE_HPP_
-#define _MIRAI_MUSIC_SHARE_MESSAGE_HPP_
+#ifndef MIRAI_MUSIC_SHARE_MESSAGE_HPP_
+#define MIRAI_MUSIC_SHARE_MESSAGE_HPP_
 
 #include <array>
 #include <string>
@@ -32,35 +32,35 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `MusicShareMessage::_kind` | `MusicShareType::ENUM_END`
- * `MusicShareMessage::_title` | `""`
- * `MusicShareMessage::_summary` | `""`
- * `MusicShareMessage::_JumpUrl` | `""`
- * `MusicShareMessage::_PictureUrl` | `""`
- * `MusicShareMessage::_MusicUrl` | `""`
- * `MusicShareMessage::_brief` | `""`
+ * `MusicShareMessage::kind_` | `MusicShareType::ENUM_END`
+ * `MusicShareMessage::title_` | `""`
+ * `MusicShareMessage::summary_` | `""`
+ * `MusicShareMessage::JumpUrl_` | `""`
+ * `MusicShareMessage::PictureUrl_` | `""`
+ * `MusicShareMessage::MusicUrl_` | `""`
+ * `MusicShareMessage::brief_` | `""`
  */
 class MusicShareMessage final : public IMessageImpl<MusicShareMessage>
 {
 	friend IMessageImpl<MusicShareMessage>;
 
 protected:
-	MusicShareType _kind = MusicShareType::ENUM_END;
-	std::string _title{};
-	std::string _summary{};
-	std::string _JumpUrl{};
-	std::string _PictureUrl{};
-	std::string _MusicUrl{};
-	std::string _brief{};
+	MusicShareType kind_ = MusicShareType::ENUM_END;
+	std::string title_{};
+	std::string summary_{};
+	std::string JumpUrl_{};
+	std::string PictureUrl_{};
+	std::string MusicUrl_{};
+	std::string brief_{};
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::MUSIC_SHARE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::MUSIC_SHARE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
-	bool _isValid() const final
+	bool isValid_() const final
 	{
-		return !(this->_kind == MusicShareType::ENUM_END || this->_title.empty() || this->_summary.empty()
-		         || this->_JumpUrl.empty() || this->_PictureUrl.empty() || this->_MusicUrl.empty()
-		         || this->_brief.empty());
+		return !(this->kind_ == MusicShareType::ENUM_END || this->title_.empty() || this->summary_.empty()
+		         || this->JumpUrl_.empty() || this->PictureUrl_.empty() || this->MusicUrl_.empty()
+		         || this->brief_.empty());
 	}
 
 public:
@@ -68,75 +68,75 @@ public:
 
 	MusicShareMessage(MusicShareType kind, std::string title, std::string summary, std::string JumpUrl,
 	                  std::string PictureUrl, std::string MusicUrl, std::string brief)
-		: _kind(kind)
-		, _title(std::move(title))
-		, _summary(std::move(summary))
-		, _JumpUrl(std::move(JumpUrl))
-		, _PictureUrl(std::move(PictureUrl))
-		, _MusicUrl(std::move(MusicUrl))
-		, _brief(std::move(brief))
+		: kind_(kind)
+		, title_(std::move(title))
+		, summary_(std::move(summary))
+		, JumpUrl_(std::move(JumpUrl))
+		, PictureUrl_(std::move(PictureUrl))
+		, MusicUrl_(std::move(MusicUrl))
+		, brief_(std::move(brief))
 	{
 	}
 
 	/// 获取分享种类
-	MusicShareType GetKind() const { return this->_kind; }
+	MusicShareType GetKind() const { return this->kind_; }
 	/// 获取标题
-	std::string GetTitle() const { return this->_title; }
+	std::string GetTitle() const { return this->title_; }
 	/// 获取介绍
-	std::string GetSummary() const { return this->_summary; }
+	std::string GetSummary() const { return this->summary_; }
 	/// 获取转跳链接
-	std::string GetJumpUrl() const { return this->_JumpUrl; }
+	std::string GetJumpUrl() const { return this->JumpUrl_; }
 	/// 获取封面图片连接
-	std::string GetPictureUrl() const { return this->_PictureUrl; }
+	std::string GetPictureUrl() const { return this->PictureUrl_; }
 	/// 获取音乐链接
-	std::string GetMusicUrl() const { return this->_MusicUrl; }
+	std::string GetMusicUrl() const { return this->MusicUrl_; }
 	/**
 	 * @brief 获取简介
 	 * 
 	 * 简介为未打开会话窗口时显示的简要文字消息
 	 */
-	std::string GetBrief() const { return this->_brief; }
+	std::string GetBrief() const { return this->brief_; }
 
 	/// 设置分享种类
 	MusicShareMessage& SetKind(MusicShareType kind)
 	{
-		this->_kind = kind;
+		this->kind_ = kind;
 		return *this;
 	}
 	/// 设置标题
 	MusicShareMessage& SetTitle(std::string title)
 	{
-		this->_title = std::move(title);
+		this->title_ = std::move(title);
 		return *this;
 	}
 	/// 设置介绍
 	MusicShareMessage& SetSummary(std::string summary)
 	{
-		this->_summary = std::move(summary);
+		this->summary_ = std::move(summary);
 		return *this;
 	}
 	/// 设置转跳链接
 	MusicShareMessage& SetJumpUrl(std::string JumpUrl)
 	{
-		this->_JumpUrl = std::move(JumpUrl);
+		this->JumpUrl_ = std::move(JumpUrl);
 		return *this;
 	}
 	/// 设置封面图片连接
 	MusicShareMessage& SetPictureUrl(std::string PictureUrl)
 	{
-		this->_PictureUrl = std::move(PictureUrl);
+		this->PictureUrl_ = std::move(PictureUrl);
 		return *this;
 	}
 	/// 设置音乐链接
 	MusicShareMessage& SetMusicUrl(std::string MusicUrl)
 	{
-		this->_MusicUrl = std::move(MusicUrl);
+		this->MusicUrl_ = std::move(MusicUrl);
 		return *this;
 	}
 	/// 设置简介
 	MusicShareMessage& SetBrief(std::string brief)
 	{
-		this->_brief = std::move(brief);
+		this->brief_ = std::move(brief);
 		return *this;
 	}
 

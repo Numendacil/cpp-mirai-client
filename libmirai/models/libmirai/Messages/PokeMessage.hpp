@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_POKE_MESSAGE_HPP_
-#define _MIRAI_POKE_MESSAGE_HPP_
+#ifndef MIRAI_POKE_MESSAGE_HPP_
+#define MIRAI_POKE_MESSAGE_HPP_
 
 #include <array>
 #include <string>
@@ -33,35 +33,35 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `PokeMessage::_kind` | `PokeType::ENUM_END`
+ * `PokeMessage::kind_` | `PokeType::ENUM_END`
  */
 class PokeMessage final : public IMessageImpl<PokeMessage>
 {
 	friend IMessageImpl<PokeMessage>;
 
 protected:
-	PokeType _kind = PokeType::ENUM_END;
+	PokeType kind_ = PokeType::ENUM_END;
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::POKE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::POKE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
-	bool _isValid() const final { return this->_kind != PokeType::ENUM_END; }
+	bool isValid_() const final { return this->kind_ != PokeType::ENUM_END; }
 
 public:
 	PokeMessage() = default;
-	PokeMessage(PokeType kind) : _kind(kind) {}
+	PokeMessage(PokeType kind) : kind_(kind) {}
 
-	bool operator==(const PokeMessage& rhs) { return this->_kind == rhs._kind; }
+	bool operator==(const PokeMessage& rhs) { return this->kind_ == rhs.kind_; }
 
 	bool operator!=(const PokeMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取戳一戳类型
-	PokeType GetPokeKind() const { return this->_kind; }
+	PokeType GetPokeKind() const { return this->kind_; }
 
 	/// 设置戳一戳类型
 	PokeMessage& SetPokeKind(PokeType kind)
 	{
-		this->_kind = kind;
+		this->kind_ = kind;
 		return *this;
 	}
 

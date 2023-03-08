@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_CLIENT_HPP_
-#define _MIRAI_CLIENT_HPP_
+#ifndef MIRAI_CLIENT_HPP_
+#define MIRAI_CLIENT_HPP_
 
 #include <filesystem>
 #include <fstream>
@@ -71,23 +71,23 @@ private:
 	// type traits
 	struct traits
 	{
-		template<typename T, typename TypeList> struct _is_event_type;
+		template<typename T, typename TypeList> struct is_event_type_;
 
 		template<typename T, size_t... I>
-		struct _is_event_type<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetEventType_t<EventTypesList[I]>>...>
+		struct is_event_type_<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetEventType_t<EventTypesList[I]>>...>
 		{
 		};
 
 		template<typename T>
-		using is_event_type = _is_event_type<T, std::make_index_sequence<EventTypesList.size()>>;
+		using is_event_type = is_event_type_<T, std::make_index_sequence<EventTypesList.size()>>;
 
 		template<typename T>
-		struct _event_callback_variant {};
+		struct event_callback_variant_ {};
 
 		template<size_t... I>
-		struct _event_callback_variant<std::index_sequence<I...>> { using type = std::variant<std::function<void(GetEventType_t<EventTypesList[I]>)>...>; };
+		struct event_callback_variant_<std::index_sequence<I...>> { using type = std::variant<std::function<void(GetEventType_t<EventTypesList[I]>)>...>; };
 
-		using EventCallbackVariant = _event_callback_variant<std::make_index_sequence<EventTypesList.size()>>::type;
+		using EventCallbackVariant = event_callback_variant_<std::make_index_sequence<EventTypesList.size()>>::type;
 
 		template<typename T> 
 		struct function_traits;
@@ -99,7 +99,7 @@ private:
 		};
 	};
 
-	template<typename EventType> constexpr static void _type_check_()
+	template<typename EventType> constexpr static void type_check_()
 	{
 		static_assert(std::is_base_of_v<IEvent<EventType>, EventType>,
 		              "EventType is not derived from IEvent<EventType>"); // NOLINT(*-array-to-pointer-decay)
@@ -114,66 +114,66 @@ public:
 protected:
 	using EventHandler = traits::EventCallbackVariant;
 
-	mutable std::shared_mutex _mtx;
+	mutable std::shared_mutex mtx_;
 
-	SessionConfigs _config{};
+	SessionConfigs config_{};
 
-	std::shared_ptr<ILogger> _logger;
+	std::shared_ptr<ILogger> logger_;
 
-	std::string _SessionKey{};
-	std::atomic<bool> _SessionKeySet = false;
-	bool _connected = false;
+	std::string SessionKey_{};
+	std::atomic<bool> SessionKeySet_ = false;
+	bool connected_ = false;
 
-	std::map<std::thread::id, std::unique_ptr<Details::HttpClientImpl>> _HttpClients;
-	std::unique_ptr<Details::MessageClientImpl> _MessageClient;
+	std::map<std::thread::id, std::unique_ptr<Details::HttpClientImpl>> HttpClients_;
+	std::unique_ptr<Details::MessageClientImpl> MessageClient_;
 
-	Details::HttpClientImpl* _GetClient();
+	Details::HttpClientImpl* GetClient_();
 
-	std::unique_ptr<Utils::ThreadPool> _ThreadPool;
+	std::unique_ptr<Utils::ThreadPool> ThreadPool_;
 
-	ClientConnectionEstablishedEvent _HandshakeInfo{};
+	ClientConnectionEstablishedEvent HandshakeInfo_{};
 
-	EventCallback<ClientConnectionEstablishedEvent> _ConnectionEstablishedCallback;
-	EventCallback<ClientConnectionClosedEvent> _ConnectionClosedCallback;
-	EventCallback<ClientConnectionErrorEvent> _ConnectionErrorCallback;
-	EventCallback<ClientParseErrorEvent> _ParseErrorCallback;
+	EventCallback<ClientConnectionEstablishedEvent> ConnectionEstablishedCallback_;
+	EventCallback<ClientConnectionClosedEvent> ConnectionClosedCallback_;
+	EventCallback<ClientConnectionErrorEvent> ConnectionErrorCallback_;
+	EventCallback<ClientParseErrorEvent> ParseErrorCallback_;
 
-	std::unordered_map<EventTypes, EventHandler> _EventHandlers{};
+	std::unordered_map<EventTypes, EventHandler> EventHandlers_{};
 
-	EventCallback<ClientConnectionEstablishedEvent> _GetEstablishedCallback() const
+	EventCallback<ClientConnectionEstablishedEvent> GetEstablishedCallback_() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_ConnectionEstablishedCallback;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->ConnectionEstablishedCallback_;
 	}
 
-	EventCallback<ClientConnectionClosedEvent> _GetClosedCallback() const
+	EventCallback<ClientConnectionClosedEvent> GetClosedCallback_() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_ConnectionClosedCallback;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->ConnectionClosedCallback_;
 	}
 
-	EventCallback<ClientConnectionErrorEvent> _GetErrorCallback() const
+	EventCallback<ClientConnectionErrorEvent> GetErrorCallback_() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_ConnectionErrorCallback;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->ConnectionErrorCallback_;
 	}
 
-	EventCallback<ClientParseErrorEvent> _GetParseErrorCallback() const
+	EventCallback<ClientParseErrorEvent> GetParseErrorCallback_() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_ParseErrorCallback;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->ParseErrorCallback_;
 	}
 
-	ILogger& _GetLogger() const
+	ILogger& GetLogger_() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return *(this->_logger);
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return *(this->logger_);
 	}
 
-	std::string _GetSessionKeyCopy()
+	std::string GetSessionKeyCopy_()
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_SessionKey;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->SessionKey_;
 	}
 
 public:
@@ -188,43 +188,43 @@ public:
 	/// 获取连接mirai-api-http的session key，若尚未建立链接则返回 `std::nullopt`
 	std::optional<std::string> GetSessionKey() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return (this->_connected) ? std::optional<std::string>(this->_SessionKey) : std::nullopt;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return (this->connected_) ? std::optional<std::string>(this->SessionKey_) : std::nullopt;
 	}
 
 	/// 获取连接配置
 	SessionConfigs GetSessionConfig() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_config;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->config_;
 	}
 
 	/// 设置日志记录类
 	void SetLogger(std::shared_ptr<ILogger> logger)
 	{
-		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_logger = logger;
+		std::unique_lock<std::shared_mutex> lk(this->mtx_);
+		this->logger_ = logger;
 	}
 
 	/// 获取日志记录类
 	std::shared_ptr<ILogger> GetLogger() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_logger;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->logger_;
 	}
 
 	/// 获取BotQQ账号
 	QQ_t GetBotQQ() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_config.BotQQ;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->config_.BotQQ;
 	}
 
 	/// 返回是否已成功连接mirai-api-http
 	bool isConnected() const
 	{
-		std::shared_lock<std::shared_mutex> lk(this->_mtx);
-		return this->_connected;
+		std::shared_lock<std::shared_mutex> lk(this->mtx_);
+		return this->connected_;
 	}
 
 	/// 返回兼容的mirai-api-http的版本号
@@ -239,10 +239,10 @@ public:
 	///@{
 	template<typename EventType> void On(EventCallback<EventType> callback)
 	{
-		_type_check_<EventType>();
+		type_check_<EventType>();
 
-		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_EventHandlers[EventType::GetType()] = std::move(callback);
+		std::unique_lock<std::shared_mutex> lk(this->mtx_);
+		this->EventHandlers_[EventType::GetType()] = std::move(callback);
 	}
 
 	template <EventTypes Type> void On(EventCallback<GetEventType_t<Type>> callback)
@@ -259,8 +259,8 @@ public:
 	 */
 	void SetSessionConfig(const SessionConfigs& config)
 	{
-		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_config = config;
+		std::unique_lock<std::shared_mutex> lk(this->mtx_);
+		this->config_ = config;
 	}
 
 	/**
@@ -270,8 +270,8 @@ public:
 	 */
 	void SetSessionConfig(const std::string& path)
 	{
-		std::unique_lock<std::shared_mutex> lk(this->_mtx);
-		this->_config.FromJsonFile(path);
+		std::unique_lock<std::shared_mutex> lk(this->mtx_);
+		this->config_.FromJsonFile(path);
 	}
 
 

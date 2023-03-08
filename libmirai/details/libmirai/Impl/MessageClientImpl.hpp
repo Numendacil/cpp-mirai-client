@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_MESSAGE_SERVER_IMPL_HPP_
-#define _MIRAI_MESSAGE_SERVER_IMPL_HPP_
+#ifndef MIRAI_MESSAGE_SERVER_IMPL_HPP_
+#define MIRAI_MESSAGE_SERVER_IMPL_HPP_
 
 #include <functional>
 #include <string>
@@ -30,9 +30,9 @@ class MessageClientImpl
 protected:
 	friend class MiraiClient;
 
-	ix::WebSocket _client;
+	ix::WebSocket client_;
 	// NOLINTNEXTLINE(cppcoreguidelines-avoid-non-const-global-variables)
-	static bool _init; // For calling WSAstartup once per program
+	static bool init_; // For calling WSAstartup once per program
 
 public:
 	template<typename... Args> using Callback = std::function<void(Args...)>;
@@ -58,48 +58,48 @@ public:
 	void Connect(const std::string& url);
 	bool isConnected() const
 	{
-		return this->_client.getReadyState() == ix::ReadyState::Open;
+		return this->client_.getReadyState() == ix::ReadyState::Open;
 	};
 	void Disconnect();
 
 	void OnText(Callback<const std::string&> TextCallback)
 	{
-		this->_TextCallback = TextCallback;
+		this->TextCallback_ = TextCallback;
 	}
 	void OnBinary(Callback<const std::string&> BinaryCallback)
 	{
-		this->_BinaryCallback = BinaryCallback;
+		this->BinaryCallback_ = BinaryCallback;
 	}
 	void OnOpen(Callback<const ix::WebSocketOpenInfo&> OpenCallback)
 	{
-		this->_OpenCallback = OpenCallback;
+		this->OpenCallback_ = OpenCallback;
 	}
 	void OnError(Callback<const ix::WebSocketErrorInfo&> ErrorCallback)
 	{
-		this->_ErrorCallback = ErrorCallback;
+		this->ErrorCallback_ = ErrorCallback;
 	}
 	void OnClose(Callback<const ix::WebSocketCloseInfo&> CloseCallback)
 	{
-		this->_CloseCallback = CloseCallback;
+		this->CloseCallback_ = CloseCallback;
 	}
 	void OnPing(Callback<const std::string&> PingCallback)
 	{
-		this->_PingCallback = PingCallback;
+		this->PingCallback_ = PingCallback;
 	}
 	void OnPong(Callback<const std::string&> PongCallback)
 	{
-		this->_PongCallback = PongCallback;
+		this->PongCallback_ = PongCallback;
 	}
 
 
 protected:
-	Callback<const std::string&> _TextCallback;
-	Callback<const std::string&> _BinaryCallback;
-	Callback<const ix::WebSocketOpenInfo&> _OpenCallback;
-	Callback<const ix::WebSocketErrorInfo&> _ErrorCallback;
-	Callback<const ix::WebSocketCloseInfo&> _CloseCallback;
-	Callback<const std::string&> _PingCallback;
-	Callback<const std::string&> _PongCallback;
+	Callback<const std::string&> TextCallback_;
+	Callback<const std::string&> BinaryCallback_;
+	Callback<const ix::WebSocketOpenInfo&> OpenCallback_;
+	Callback<const ix::WebSocketErrorInfo&> ErrorCallback_;
+	Callback<const ix::WebSocketCloseInfo&> CloseCallback_;
+	Callback<const std::string&> PingCallback_;
+	Callback<const std::string&> PongCallback_;
 };
 } // namespace Mirai::Details
 

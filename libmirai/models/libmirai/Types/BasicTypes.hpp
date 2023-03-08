@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_TYPES_BASIC_TYPES_HPP_
-#define _MIRAI_TYPES_BASIC_TYPES_HPP_
+#ifndef MIRAI_TYPES_BASIC_TYPES_HPP_
+#define MIRAI_TYPES_BASIC_TYPES_HPP_
 
 #include <chrono>
 #include <ctime>
@@ -42,17 +42,17 @@ using MessageId_t = int64_t;
 class UID_t
 {
 protected:
-	int64_t _number = 0;
+	int64_t number_ = 0;
 
 	UID_t() = default;
-	explicit UID_t(int64_t num) : _number{num} {}
+	explicit UID_t(int64_t num) : number_{num} {}
 
 public:
-	explicit operator int64_t() const { return this->_number; }
-	std::string to_string() const { return std::to_string(this->_number); }
+	explicit operator int64_t() const { return this->number_; }
+	std::string to_string() const { return std::to_string(this->number_); }
 
-	bool operator<(const UID_t& uid) const { return this->_number < uid._number; }
-	bool operator==(const UID_t& uid) const { return this->_number == uid._number; }
+	bool operator<(const UID_t& uid) const { return this->number_ < uid.number_; }
+	bool operator==(const UID_t& uid) const { return this->number_ == uid.number_; }
 
 	bool operator!=(const UID_t& uid) const { return !(*this == uid); }
 	bool operator>(const UID_t& uid) const { return uid < *this; }

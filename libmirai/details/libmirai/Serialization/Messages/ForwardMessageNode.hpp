@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_FORWARD_MESSAGE_NODE_HPP_
-#define _MIRAI_SERIALIZATION_FORWARD_MESSAGE_NODE_HPP_
+#ifndef MIRAI_SERIALIZATION_FORWARD_MESSAGE_NODE_HPP_
+#define MIRAI_SERIALIZATION_FORWARD_MESSAGE_NODE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -34,11 +34,11 @@ struct ForwardNode::Serializable
 	{
 		MIRAI_PARSE_GUARD_BEGIN(j);
 
-		j.at("senderId").get_to(p._SenderId);
-		j.at("time").get_to(p._time);
-		j.at("senderName").get_to(p._SenderName);
-		j.at("messageChain").get_to(p._message);
-		p._MessageId = Utils::GetOptional<MessageId_t>(j, "messageId");
+		j.at("senderId").get_to(p.SenderId_);
+		j.at("time").get_to(p.time_);
+		j.at("senderName").get_to(p.SenderName_);
+		j.at("messageChain").get_to(p.message_);
+		p.MessageId_ = Utils::GetOptional<MessageId_t>(j, "messageId");
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -47,13 +47,13 @@ struct ForwardNode::Serializable
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
-		if (p._MessageId.has_value()) j["messageId"] = p._MessageId.value();
+		if (p.MessageId_.has_value()) j["messageId"] = p.MessageId_.value();
 		else
 		{
-			j["senderId"] = p._SenderId;
-			j["time"] = p._time;
-			j["senderName"] = p._SenderName;
-			j["messageChain"] = p._message;
+			j["senderId"] = p.SenderId_;
+			j["time"] = p.time_;
+			j["senderName"] = p.SenderName_;
+			j["messageChain"] = p.message_;
 		}
 	}
 

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_AT_MESSAGE_HPP_
-#define _MIRAI_AT_MESSAGE_HPP_
+#ifndef MIRAI_AT_MESSAGE_HPP_
+#define MIRAI_AT_MESSAGE_HPP_
 
 #include <string>
 
@@ -30,40 +30,40 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `AtMessage::_target`	 | `0_qq`
- * `AtMessage::_display` | `""`
+ * `AtMessage::target_`	 | `0_qq`
+ * `AtMessage::display_` | `""`
  */
 class AtMessage final : public IMessageImpl<AtMessage>
 {
 	friend class IMessageImpl<AtMessage>;
 
 private:
-	QQ_t _target{};
-	std::string _display{};
+	QQ_t target_{};
+	std::string display_{};
 
-	bool _isValid() const final { return this->_target != QQ_t(); }
+	bool isValid_() const final { return this->target_ != QQ_t(); }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AT;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::AT;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	AtMessage() = default;
-	AtMessage(QQ_t target) : _target(target) {}
+	AtMessage(QQ_t target) : target_(target) {}
 
-	bool operator==(const AtMessage& rhs) { return this->_target == rhs._target; }
+	bool operator==(const AtMessage& rhs) { return this->target_ == rhs.target_; }
 
 	bool operator!=(const AtMessage& rhs) { return !(*this == rhs); }
 
 	/// 获取At对象QQ
-	QQ_t GetTarget() const { return this->_target; }
+	QQ_t GetTarget() const { return this->target_; }
 
 	/// 获取At时显示的文字，发送时无法设置
-	std::string GetDisplayName() { return this->_display; }
+	std::string GetDisplayName() { return this->display_; }
 
 	/// 设置At对象QQ
 	AtMessage& SetTarget(QQ_t target)
 	{
-		this->_target = target;
+		this->target_ = target;
 		return *this;
 	}
 

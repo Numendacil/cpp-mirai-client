@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_EXCEPTIONS_HPP_
-#define _MIRAI_EXCEPTIONS_HPP_
+#ifndef MIRAI_EXCEPTIONS_HPP_
+#define MIRAI_EXCEPTIONS_HPP_
 
 #include <stdexcept>
 #include <string>
@@ -40,11 +40,11 @@ public:
 	}
 };
 
-#define REGISTER_STATUS_CODE(_name_, _code_)                                                                           \
-	class _name_ : public MiraiApiHttpException                                                                        \
+#define REGISTER_STATUS_CODE(name, code)                                                                           \
+	class name : public MiraiApiHttpException                                                                        \
 	{                                                                                                                  \
 	public:                                                                                                            \
-		_name_(std::string& message) : MiraiApiHttpException(_code_, message) {}                                 \
+		name(std::string& message) : MiraiApiHttpException(code, message) {}                                 \
 	};
 
 /// MAH异常: 验证密钥错误

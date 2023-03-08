@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_AUDIO_MESSAGE_HPP_
-#define _MIRAI_AUDIO_MESSAGE_HPP_
+#ifndef MIRAI_AUDIO_MESSAGE_HPP_
+#define MIRAI_AUDIO_MESSAGE_HPP_
 
 #include <string>
 #include <utility>
@@ -31,27 +31,27 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `AudioMessage::_audio` | `MiraiAudio{}`
+ * `AudioMessage::audio_` | `MiraiAudio{}`
  */
 class AudioMessage final : public IMessageImpl<AudioMessage>
 {
 	friend IMessageImpl<AudioMessage>;
 
 private:
-	MiraiAudio _audio{};
+	MiraiAudio audio_{};
 
-	void _clear() noexcept { this->_audio = {}; }
+	void clear_() noexcept { this->audio_ = {}; }
 
-	bool _isValid() const final { return this->_audio.valid(); }
+	bool isValid_() const final { return this->audio_.valid(); }
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::AUDIO;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::AUDIO;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	AudioMessage() = default;
-	AudioMessage(MiraiAudio audio) : _audio(std::move(audio)) {}
+	AudioMessage(MiraiAudio audio) : audio_(std::move(audio)) {}
 	AudioMessage(std::string AudioId, std::string url, std::string path, std::string base64)
-		: _audio{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}
+		: audio_{std::move(AudioId), std::move(url), std::move(path), std::move(base64)}
 	{}
 
 	/**
@@ -59,7 +59,7 @@ public:
 	 * 
 	 * @return MiraiAudio 
 	 */
-	MiraiAudio GetAudio() const { return this->_audio; }
+	MiraiAudio GetAudio() const { return this->audio_; }
 
 	/**
 	 * @brief 设置音频id
@@ -69,8 +69,8 @@ public:
 	 */
 	AudioMessage& SetAudioId(std::string AudioId)
 	{
-		this->_clear();
-		this->_audio.id = std::move(AudioId);
+		this->clear_();
+		this->audio_.id = std::move(AudioId);
 		return *this;
 	}
 
@@ -82,8 +82,8 @@ public:
 	 */
 	AudioMessage& SetUrl(std::string url)
 	{
-		this->_clear();
-		this->_audio.url = std::move(url);
+		this->clear_();
+		this->audio_.url = std::move(url);
 		return *this;
 	}
 
@@ -95,8 +95,8 @@ public:
 	 */
 	AudioMessage& SetPath(std::string path)
 	{
-		this->_clear();
-		this->_audio.path = std::move(path);
+		this->clear_();
+		this->audio_.path = std::move(path);
 		return *this;
 	}
 
@@ -108,15 +108,15 @@ public:
 	 */
 	AudioMessage& SetBase64(std::string base64)
 	{
-		this->_clear();
-		this->_audio.base64 = std::move(base64);
+		this->clear_();
+		this->audio_.base64 = std::move(base64);
 		return *this;
 	}
 
 	/// 由 `MiraiAudio` 设置音频内容
 	AudioMessage& SetAudio(MiraiAudio audio)
 	{
-		this->_audio = std::move(audio);
+		this->audio_ = std::move(audio);
 		return *this;
 	}
 

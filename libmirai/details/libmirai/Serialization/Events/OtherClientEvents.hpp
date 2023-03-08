@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_OTHER_CLIENT_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_OTHER_CLIENT_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_OTHER_CLIENT_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_OTHER_CLIENT_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,8 +35,8 @@ struct OtherClientMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == OtherClientMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("sender").get_to(p._sender);
-		j.at("messageChain").get_to(p._message);
+		j.at("sender").get_to(p.sender_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -54,7 +54,7 @@ struct OtherClientOfflineEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == OtherClientOfflineEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("client").get_to(p._client);
+		j.at("client").get_to(p.client_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -72,8 +72,8 @@ struct OtherClientOnlineEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == OtherClientOnlineEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("client").get_to(p._client);
-		Utils::GetOptional(j, "kind", p._kind);
+		j.at("client").get_to(p.client_);
+		Utils::GetOptional(j, "kind", p.kind_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

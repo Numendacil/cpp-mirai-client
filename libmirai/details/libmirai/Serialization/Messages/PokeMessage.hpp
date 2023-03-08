@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_POKE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,7 +33,7 @@ struct PokeMessage::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == PokeMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("name").get_to(p._kind);
+		j.at("name").get_to(p.kind_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -43,7 +43,7 @@ struct PokeMessage::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = PokeMessage::GetType();
-		j["name"] = p._kind;
+		j["name"] = p.kind_;
 	}
 
 };

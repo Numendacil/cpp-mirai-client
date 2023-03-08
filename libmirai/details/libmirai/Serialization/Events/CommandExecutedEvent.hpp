@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_COMMAND_EXECUTED_EVENT_HPP_
-#define _MIRAI_SERIALIZATION_COMMAND_EXECUTED_EVENT_HPP_
+#ifndef MIRAI_SERIALIZATION_COMMAND_EXECUTED_EVENT_HPP_
+#define MIRAI_SERIALIZATION_COMMAND_EXECUTED_EVENT_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -35,10 +35,10 @@ struct CommandExecutedEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == CommandExecutedEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("name").get_to(p._name);
-		Utils::GetOptional(j, "friend", p._friend);
-		Utils::GetOptional(j, "member", p._member);
-		j.at("args").get_to(p._args);
+		j.at("name").get_to(p.name_);
+		Utils::GetOptional(j, "friend", p.friend_);
+		Utils::GetOptional(j, "member", p.member_);
+		j.at("args").get_to(p.args_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

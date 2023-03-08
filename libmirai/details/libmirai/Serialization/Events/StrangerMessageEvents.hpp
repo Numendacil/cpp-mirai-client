@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_STRANGER_MESSAGE_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_STRANGER_MESSAGE_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_STRANGER_MESSAGE_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_STRANGER_MESSAGE_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -34,8 +34,8 @@ struct StrangerMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == StrangerMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("sender").get_to(p._sender);
-		j.at("messageChain").get_to(p._message);
+		j.at("sender").get_to(p.sender_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -53,8 +53,8 @@ struct StrangerSyncMessageEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == StrangerSyncMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("subject").get_to(p._subject);
-		j.at("messageChain").get_to(p._message);
+		j.at("subject").get_to(p.subject_);
+		j.at("messageChain").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

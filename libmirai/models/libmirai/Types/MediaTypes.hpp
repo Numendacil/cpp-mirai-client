@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_TYPES_MEDIA_TYPES_HPP_
-#define _MIRAI_TYPES_MEDIA_TYPES_HPP_
+#ifndef MIRAI_TYPES_MEDIA_TYPES_HPP_
+#define MIRAI_TYPES_MEDIA_TYPES_HPP_
 
 #include <ctime>
 #include <memory>
@@ -101,14 +101,14 @@ struct GroupFileInfo
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `FilePath::_dir` | `""`
- * `FilePath::_isPath` | `false`
+ * `FilePath::dir_` | `""`
+ * `FilePath::isPath_` | `false`
  */
 class FilePath
 {
 protected:
-	std::string _dir;
-	bool _isPath = false;
+	std::string dir_;
+	bool isPath_ = false;
 
 public:
 	/**
@@ -123,20 +123,20 @@ public:
 	 * @param dir 文件路径，可能为id或文件名路径
 	 * @param isPath 是否为文件名路径
 	 */
-	FilePath(std::string dir, bool isPath = false) : _dir(std::move(dir)), _isPath(isPath) {}
+	FilePath(std::string dir, bool isPath = false) : dir_(std::move(dir)), isPath_(isPath) {}
 
 	/**
 	 * @brief 构造函数
 	 * @param file `GroupFileInfo` 对象
 	 */
-	FilePath(const GroupFileInfo& file) : _dir(file.id) {}
+	FilePath(const GroupFileInfo& file) : dir_(file.id) {}
 
 	/**
 	 * @brief 判定是否为文件名路径
 	 * 
 	 * @return `bool` 
 	 */
-	bool isPath() const { return this->_isPath; }
+	bool isPath() const { return this->isPath_; }
 
 	/**
 	 * @brief 获取文件名路径
@@ -144,7 +144,7 @@ public:
 	 * 仅当 `isPath()` 为 `true` 时有效，否则返回空字符串
 	 * @return 文件名路径
 	 */
-	std::string GetPath() const { return this->_isPath ? this->_dir : ""; }
+	std::string GetPath() const { return this->isPath_ ? this->dir_ : ""; }
 
 	/**
 	 * @brief 获取文件id
@@ -152,7 +152,7 @@ public:
 	 * 仅当 `isPath()` 为 `false` 时有效，否则返回空字符串
 	 * @return 文件id
 	 */
-	std::string GetId() const { return this->_isPath ? "" : this->_dir; }
+	std::string GetId() const { return this->isPath_ ? "" : this->dir_; }
 
 	/**
 	 * @brief 设置文件名路径
@@ -162,8 +162,8 @@ public:
 	 */
 	FilePath& SetPath(const std::string& path)
 	{
-		this->_isPath = true;
-		this->_dir = path;
+		this->isPath_ = true;
+		this->dir_ = path;
 		return *this;
 	}
 
@@ -175,8 +175,8 @@ public:
 	 */
 	FilePath& SetId(const std::string& id)
 	{
-		this->_isPath = false;
-		this->_dir = id;
+		this->isPath_ = false;
+		this->dir_ = id;
 		return *this;
 	}
 };

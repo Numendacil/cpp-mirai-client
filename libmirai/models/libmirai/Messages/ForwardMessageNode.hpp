@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_FORWARD_MESSAGE_NODE_HPP_
-#define _MIRAI_FORWARD_MESSAGE_NODE_HPP_
+#ifndef MIRAI_FORWARD_MESSAGE_NODE_HPP_
+#define MIRAI_FORWARD_MESSAGE_NODE_HPP_
 
 #include "ForwardMessage.hpp"
 #include "MessageChain.hpp"
@@ -31,20 +31,20 @@ namespace Mirai
 *
 * Member Variable | Default Value
 * --------------- | -------------
-* `Node::_SenderId` | `0_qq`
-* `Node::_time` | `0`
-* `Node::_SenderName` | `""`
-* `Node::_message` | `MessageChain{}`
-* `Node::_MessageId` | `std::nullopt`
+* `Node::SenderId_` | `0_qq`
+* `Node::time_` | `0`
+* `Node::SenderName_` | `""`
+* `Node::message_` | `MessageChain{}`
+* `Node::MessageId_` | `std::nullopt`
 */
 class ForwardMessage::Node
 {
 protected:
-	QQ_t _SenderId{};
-	std::time_t _time = 0;
-	std::string _SenderName{};
-	MessageChain _message{};
-	std::optional<MessageId_t> _MessageId = std::nullopt;
+	QQ_t SenderId_{};
+	std::time_t time_ = 0;
+	std::string SenderName_{};
+	MessageChain message_{};
+	std::optional<MessageId_t> MessageId_ = std::nullopt;
 
 public:
 	Node() = default;
@@ -52,58 +52,58 @@ public:
 
 	bool valid() const
 	{
-		return this->_MessageId.has_value() || (!this->_SenderName.empty() && this->_message.valid());
+		return this->MessageId_.has_value() || (!this->SenderName_.empty() && this->message_.valid());
 	}
 
 	/// 获取发送者QQ
-	QQ_t GetSenderId() const { return this->_SenderId; }
+	QQ_t GetSenderId() const { return this->SenderId_; }
 	/// 获取发送时间
-	std::time_t GetTimestamp() const { return this->_time; }
+	std::time_t GetTimestamp() const { return this->time_; }
 	/// 获取发送者名称
-	std::string GetSenderName() const { return this->_SenderName; }
+	std::string GetSenderName() const { return this->SenderName_; }
 	/// 获取消息链
-	MessageChain GetMessageChain() const { return this->_message; }
+	MessageChain GetMessageChain() const { return this->message_; }
 	/// 是否含有消息id
-	bool hasMessageId() const { return this->_MessageId.has_value(); }
+	bool hasMessageId() const { return this->MessageId_.has_value(); }
 	/// 获取消息id，不存在时返回 `0`
-	MessageId_t GetMessageId() const { return this->_MessageId.value_or(0); }
+	MessageId_t GetMessageId() const { return this->MessageId_.value_or(0); }
 
 	/// 设置发送者
 	Node& SetSenderId(QQ_t SenderId)
 	{
-		this->_SenderId = SenderId;
+		this->SenderId_ = SenderId;
 		return *this;
 	}
 	/// 设置发送时间戳
 	Node& SetTimestamp(std::time_t time)
 	{
-		this->_time = time;
+		this->time_ = time;
 		return *this;
 	}
 	/// 设置发送者名称
 	Node& SetSenderName(const std::string& SenderName)
 	{
-		this->_SenderName = SenderName;
+		this->SenderName_ = SenderName;
 		return *this;
 	}
 	/// 设置消息内容
 	Node& SetMessageChain(const MessageChain& message)
 	{
-		this->_MessageId = std::nullopt;
-		this->_message = message;
+		this->MessageId_ = std::nullopt;
+		this->message_ = message;
 		return *this;
 	}
 	/// 设置消息内容
 	Node& SetMessageChain(MessageChain&& message)
 	{
-		this->_MessageId = std::nullopt;
-		this->_message = std::move(message);
+		this->MessageId_ = std::nullopt;
+		this->message_ = std::move(message);
 		return *this;
 	}
 	/// 设置消息id
 	Node& SetMessageId(std::optional<MessageId_t> MessageId)
 	{
-		this->_MessageId = MessageId;
+		this->MessageId_ = MessageId;
 		return *this;
 	}
 

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_MEMBER_EVENTS_HPP_
-#define _MIRAI_SERIALIZATION_MEMBER_EVENTS_HPP_
+#ifndef MIRAI_SERIALIZATION_MEMBER_EVENTS_HPP_
+#define MIRAI_SERIALIZATION_MEMBER_EVENTS_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -34,9 +34,9 @@ struct MemberCardChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberCardChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("member").get_to(p._member);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("member").get_to(p.member_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -54,9 +54,9 @@ struct MemberHonorChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberHonorChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("action").get_to(p._action);
-		j.at("honor").get_to(p._honor);
-		j.at("member").get_to(p._member);
+		j.at("action").get_to(p.action_);
+		j.at("honor").get_to(p.honor_);
+		j.at("member").get_to(p.member_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -74,9 +74,9 @@ struct MemberPermissionChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberPermissionChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("member").get_to(p._member);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("member").get_to(p.member_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -94,9 +94,9 @@ struct MemberSpecialTitleChangeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberSpecialTitleChangeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("origin").get_to(p._origin);
-		j.at("current").get_to(p._current);
-		j.at("member").get_to(p._member);
+		j.at("origin").get_to(p.origin_);
+		j.at("current").get_to(p.current_);
+		j.at("member").get_to(p.member_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -114,8 +114,8 @@ struct MemberJoinEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberJoinEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("member").get_to(p._member);
-		Utils::GetOptional(j, "invitor", p._inviter);
+		j.at("member").get_to(p.member_);
+		Utils::GetOptional(j, "invitor", p.inviter_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -133,12 +133,12 @@ struct MemberJoinRequestEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberJoinRequestEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("eventId").get_to(p._EventId);
-		j.at("fromId").get_to(p._FromId);
-		j.at("groupId").get_to(p._GroupId);
-		j.at("groupName").get_to(p._GroupName);
-		j.at("nick").get_to(p._nickname);
-		j.at("message").get_to(p._message);
+		j.at("eventId").get_to(p.EventId_);
+		j.at("fromId").get_to(p.FromId_);
+		j.at("groupId").get_to(p.GroupId_);
+		j.at("groupName").get_to(p.GroupName_);
+		j.at("nick").get_to(p.nickname_);
+		j.at("message").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -158,7 +158,7 @@ struct MemberLeaveEvent<Event>::Serializable
 
 		assert(j.at("type").get<EventTypes>() == Event::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("member").get_to(p._member);
+		j.at("member").get_to(p.member_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -174,7 +174,7 @@ struct MemberLeaveEventKick::Serializable
 
 		MIRAI_PARSE_GUARD_BEGIN(j);
 
-		Utils::GetOptional(j, "operator", p._operator);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -192,9 +192,9 @@ struct MemberMuteEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberMuteEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("durationSeconds").get_to(p._duration);
-		j.at("member").get_to(p._member);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("durationSeconds").get_to(p.duration_);
+		j.at("member").get_to(p.member_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -212,8 +212,8 @@ struct MemberUnmuteEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == MemberUnmuteEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("member").get_to(p._member);
-		Utils::GetOptional(j, "operator", p._operator);
+		j.at("member").get_to(p.member_);
+		Utils::GetOptional(j, "operator", p.operator_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

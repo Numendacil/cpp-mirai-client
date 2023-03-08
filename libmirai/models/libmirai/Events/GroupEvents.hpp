@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_GROUP_EVENTS_HPP_
-#define _MIRAI_GROUP_EVENTS_HPP_
+#ifndef MIRAI_GROUP_EVENTS_HPP_
+#define MIRAI_GROUP_EVENTS_HPP_
 
 #include <optional>
 #include <string>
@@ -34,31 +34,31 @@ namespace Mirai
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupAllowAnonymousChatEvent::_group` | `Group{}`
- * `GroupAllowAnonymousChatEvent::_origin` | `false`
- * `GroupAllowAnonymousChatEvent::_current` | `false`
- * `GroupAllowAnonymousChatEvent::_operator` | `std::nullopt`
+ * `GroupAllowAnonymousChatEvent::group_` | `Group{}`
+ * `GroupAllowAnonymousChatEvent::origin_` | `false`
+ * `GroupAllowAnonymousChatEvent::current_` | `false`
+ * `GroupAllowAnonymousChatEvent::operator_` | `std::nullopt`
  */
 class GroupAllowAnonymousChatEvent final : public IEvent<GroupAllowAnonymousChatEvent>
 {
 	friend IEvent<GroupAllowAnonymousChatEvent>;
 private:
-	Group _group;
-	bool _origin = false;
-	bool _current = false;
-	std::optional<GroupMember> _operator = std::nullopt;
+	Group group_;
+	bool origin_ = false;
+	bool current_ = false;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupAllowAnonymousChat;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupAllowAnonymousChat;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 原本匿名聊天是否开启
-	bool GetOriginal() const { return this->_origin; }
+	bool GetOriginal() const { return this->origin_; }
 	/// 现在匿名聊天是否开启
-	bool GetCurrent() const { return this->_current; }
+	bool GetCurrent() const { return this->current_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -68,31 +68,31 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupAllowConfessTalkEvent::_group` | `Group{}`
- * `GroupAllowConfessTalkEvent::_origin` | `false`
- * `GroupAllowConfessTalkEvent::_current` | `false`
- * `GroupAllowConfessTalkEvent::_ByBot` | `false`
+ * `GroupAllowConfessTalkEvent::group_` | `Group{}`
+ * `GroupAllowConfessTalkEvent::origin_` | `false`
+ * `GroupAllowConfessTalkEvent::current_` | `false`
+ * `GroupAllowConfessTalkEvent::ByBot_` | `false`
  */
 class GroupAllowConfessTalkEvent final : public IEvent<GroupAllowConfessTalkEvent>
 {
 	friend IEvent<GroupAllowConfessTalkEvent>;
 private:
-	Group _group;
-	bool _origin = false;
-	bool _current = false;
-	bool _ByBot = false; // 无法获得操作员
+	Group group_;
+	bool origin_ = false;
+	bool current_ = false;
+	bool ByBot_ = false; // 无法获得操作员
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupAllowConfessTalk;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupAllowConfessTalk;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 原本坦白说是否开启
-	bool GetOriginal() const { return this->_origin; }
+	bool GetOriginal() const { return this->origin_; }
 	/// 现在坦白说是否开启
-	bool GetCurrent() const { return this->_current; }
+	bool GetCurrent() const { return this->current_; }
 	/// 操作员是否为Bot自己（无法获得具体操作员信息）
-	bool isByBot() const { return this->_ByBot; }
+	bool isByBot() const { return this->ByBot_; }
 
 	struct Serializable;
 };
@@ -102,31 +102,31 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupAllowMemberInviteEvent::_group` | `Group{}`
- * `GroupAllowMemberInviteEvent::_origin` | `false`
- * `GroupAllowMemberInviteEvent::_current` | `false`
- * `GroupAllowMemberInviteEvent::_operator` | `std::nullopt`
+ * `GroupAllowMemberInviteEvent::group_` | `Group{}`
+ * `GroupAllowMemberInviteEvent::origin_` | `false`
+ * `GroupAllowMemberInviteEvent::current_` | `false`
+ * `GroupAllowMemberInviteEvent::operator_` | `std::nullopt`
  */
 class GroupAllowMemberInviteEvent final : public IEvent<GroupAllowMemberInviteEvent>
 {
 	friend IEvent<GroupAllowMemberInviteEvent>;
 private:
-	Group _group;
-	bool _origin = false;
-	bool _current = false;
-	std::optional<GroupMember> _operator = std::nullopt;
+	Group group_;
+	bool origin_ = false;
+	bool current_ = false;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupAllowMemberInvite;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupAllowMemberInvite;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 原本是否允许群成员邀请好友加群
-	bool GetOriginal() const { return this->_origin; }
+	bool GetOriginal() const { return this->origin_; }
 	/// 现在是否允许群成员邀请好友加群
-	bool GetCurrent() const { return this->_current; }
+	bool GetCurrent() const { return this->current_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -136,10 +136,10 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupEntranceAnnouncementChangeEvent::_group` | `Group{}`
- * `GroupEntranceAnnouncementChangeEvent::_origin` | `""`
- * `GroupEntranceAnnouncementChangeEvent::_current` | `""`
- * `GroupEntranceAnnouncementChangeEvent::_operator` | `std::nullopt`
+ * `GroupEntranceAnnouncementChangeEvent::group_` | `Group{}`
+ * `GroupEntranceAnnouncementChangeEvent::origin_` | `""`
+ * `GroupEntranceAnnouncementChangeEvent::current_` | `""`
+ * `GroupEntranceAnnouncementChangeEvent::operator_` | `std::nullopt`
  *
  * @attention DEPRECATED, mirai 2.12 后该事件将不会被触发 (https://github.com/mamoe/mirai/issues/1873)
  */
@@ -147,22 +147,22 @@ class GroupEntranceAnnouncementChangeEvent final : public IEvent<GroupEntranceAn
 {
 	friend IEvent<GroupEntranceAnnouncementChangeEvent>;
 private:
-	Group _group;
-	std::string _origin;
-	std::string _current;
-	std::optional<GroupMember> _operator = std::nullopt;
+	Group group_;
+	std::string origin_;
+	std::string current_;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupEntranceAnnouncementChange;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupEntranceAnnouncementChange;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 获取更改前的入群公告
-	std::string GetOriginal() const { return this->_origin; }
+	std::string GetOriginal() const { return this->origin_; }
 	/// 获取当前入群公告
-	std::string GetCurrent() const { return this->_current; }
+	std::string GetCurrent() const { return this->current_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -172,31 +172,31 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupNameChangeEvent::_group` | `Group{}`
- * `GroupNameChangeEvent::_origin` | `""`
- * `GroupNameChangeEvent::_current` | `""`
- * `GroupNameChangeEvent::_operator` | `std::nullopt`
+ * `GroupNameChangeEvent::group_` | `Group{}`
+ * `GroupNameChangeEvent::origin_` | `""`
+ * `GroupNameChangeEvent::current_` | `""`
+ * `GroupNameChangeEvent::operator_` | `std::nullopt`
  */
 class GroupNameChangeEvent final : public IEvent<GroupNameChangeEvent>
 {
 	friend IEvent<GroupNameChangeEvent>;
 private:
-	Group _group;
-	std::string _origin;
-	std::string _current;
-	std::optional<GroupMember> _operator = std::nullopt;
+	Group group_;
+	std::string origin_;
+	std::string current_;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupNameChange;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupNameChange;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 获取更改前的群聊名称
-	std::string GetOriginal() const { return this->_origin; }
+	std::string GetOriginal() const { return this->origin_; }
 	/// 获取当前的群聊名称
-	std::string GetCurrent() const { return this->_current; }
+	std::string GetCurrent() const { return this->current_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -208,24 +208,24 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupMessageEvent::_sender` | `GroupMember{}`
- * `GroupMessageEvent::_message` | `MessageChain{}`
+ * `GroupMessageEvent::sender_` | `GroupMember{}`
+ * `GroupMessageEvent::message_` | `MessageChain{}`
  */
 class GroupMessageEvent final : public IEvent<GroupMessageEvent>
 {
 	friend IEvent<GroupMessageEvent>;
 
 private:
-	GroupMember _sender;
-	MessageChain _message;
+	GroupMember sender_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupMessage;
 
 public:
 	/// 获取发送者资料
-	GroupMember GetSender() const { return this->_sender; }
+	GroupMember GetSender() const { return this->sender_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	// TODO: add helper methods for quick reply
 
@@ -239,31 +239,31 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `BotGroupPermissionChangeEvent::_group` | `Group{}`
- * `BotGroupPermissionChangeEvent::_origin` | `false`
- * `BotGroupPermissionChangeEvent::_current` | `false`
- * `BotGroupPermissionChangeEvent::_operator` | `std::nullopt`
+ * `BotGroupPermissionChangeEvent::group_` | `Group{}`
+ * `BotGroupPermissionChangeEvent::origin_` | `false`
+ * `BotGroupPermissionChangeEvent::current_` | `false`
+ * `BotGroupPermissionChangeEvent::operator_` | `std::nullopt`
  */
 class GroupMuteAllEvent final : public IEvent<GroupMuteAllEvent>
 {
 	friend IEvent<GroupMuteAllEvent>;
 private:
-	Group _group;
-	bool _origin = false;
-	bool _current = false;
-	std::optional<GroupMember> _operator = std::nullopt;
+	Group group_;
+	bool origin_ = false;
+	bool current_ = false;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupMuteAll;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupMuteAll;
 
 public:
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 原本是否处于全员禁言状态
-	bool GetOriginal() const { return this->_origin; }
+	bool GetOriginal() const { return this->origin_; }
 	/// 现在是否处于全员禁言
-	bool GetCurrent() const { return this->_current; }
+	bool GetCurrent() const { return this->current_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -275,35 +275,35 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupRecallEvent::_AuthorId` | `0_qq`
- * `GroupRecallEvent::_MessageId` | `0`
- * `GroupRecallEvent::_time` | `0`
- * `GroupRecallEvent::_group` | `Group{}`
- * `GroupRecallEvent::_operator` | `std::nullopt`
+ * `GroupRecallEvent::AuthorId_` | `0_qq`
+ * `GroupRecallEvent::MessageId_` | `0`
+ * `GroupRecallEvent::time_` | `0`
+ * `GroupRecallEvent::group_` | `Group{}`
+ * `GroupRecallEvent::operator_` | `std::nullopt`
  */
 class GroupRecallEvent final : public IEvent<GroupRecallEvent>
 {
 	friend IEvent<GroupRecallEvent>;
 private:
-	QQ_t _AuthorId;
-	MessageId_t _MessageId = 0;
-	std::time_t _time = 0;
-	Group _group;
-	std::optional<GroupMember> _operator = std::nullopt;
+	QQ_t AuthorId_;
+	MessageId_t MessageId_ = 0;
+	std::time_t time_ = 0;
+	Group group_;
+	std::optional<GroupMember> operator_ = std::nullopt;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupRecall;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupRecall;
 
 public:
 	/// 获取被撤回消息的发送者QQ
-	QQ_t GetSender() const { return this->_AuthorId; }
+	QQ_t GetSender() const { return this->AuthorId_; }
 	/// 获取被撤回消息的消息id
-	MessageId_t GetMessageId() const { return this->_MessageId; }
+	MessageId_t GetMessageId() const { return this->MessageId_; }
 	/// 获取被撤回消息的发送时间
-	std::time_t GetSendTime() const { return this->_time; }
+	std::time_t GetSendTime() const { return this->time_; }
 	/// 获取群聊信息
-	Group GetGroup() const { return this->_group; }
+	Group GetGroup() const { return this->group_; }
 	/// 获取操作员信息，为Bot时返回 `std::nullopt`
-	std::optional<GroupMember> GetOperator() const { return this->_operator; }
+	std::optional<GroupMember> GetOperator() const { return this->operator_; }
 
 	struct Serializable;
 };
@@ -315,34 +315,34 @@ public:
  * 
  * Member Variable | Default Value
  * --------------- | -------------
- * `GroupSyncMessageEvent::_subject` | `Group{}`
- * `GroupSyncMessageEvent::_message` | `MessageChain{}`
+ * `GroupSyncMessageEvent::subject_` | `Group{}`
+ * `GroupSyncMessageEvent::message_` | `MessageChain{}`
  */
 class GroupSyncMessageEvent final : public IEvent<GroupSyncMessageEvent>
 {
 	friend IEvent<GroupSyncMessageEvent>;
 
 private:
-	Group _subject;
-	MessageChain _message;
+	Group subject_;
+	MessageChain message_;
 
-	static constexpr EventTypes _TYPE_ = EventTypes::GroupSyncMessage;
+	static constexpr EventTypes TYPE_ = EventTypes::GroupSyncMessage;
 
 public:
 	/// 获取目标群聊信息
-	Group GetGroup() const { return this->_subject; }
+	Group GetGroup() const { return this->subject_; }
 	/// 获取消息内容
-	MessageChain GetMessage() const { return this->_message; }
+	MessageChain GetMessage() const { return this->message_; }
 
 	struct Serializable;
 };
 
 
 
-#define DECLARE_TYPE_ENUM(_type_)                                                                                      \
-	template<> struct GetEventType<_type_::GetType()>                                                                  \
+#define DECLARE_TYPE_ENUM(event_type)                                                                                      \
+	template<> struct GetEventType<event_type::GetType()>                                                                  \
 	{                                                                                                                  \
-		using type = _type_;                                                                                           \
+		using type = event_type;                                                                                           \
 	}
 
 DECLARE_TYPE_ENUM(GroupAllowAnonymousChatEvent);

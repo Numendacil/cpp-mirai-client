@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
-#define _MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
+#ifndef MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
+#define MIRAI_SERIALIZATION_DICE_MESSAGE_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,7 +33,7 @@ struct DiceMessage::Serializable
 
 		assert(j.at("type").get<MessageTypes>() == DiceMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("value").get_to(p._value);
+		j.at("value").get_to(p.value_);
 
 		MIRAI_PARSE_GUARD_END(j)(j);
 	}
@@ -43,7 +43,7 @@ struct DiceMessage::Serializable
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = DiceMessage::GetType();
-		j["value"] = p._value;
+		j["value"] = p.value_;
 	}
 
 };

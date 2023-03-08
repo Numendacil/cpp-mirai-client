@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_NUDGE_EVENT_HPP_
-#define _MIRAI_SERIALIZATION_NUDGE_EVENT_HPP_
+#ifndef MIRAI_SERIALIZATION_NUDGE_EVENT_HPP_
+#define MIRAI_SERIALIZATION_NUDGE_EVENT_HPP_
 
 #include <nlohmann/json.hpp>
 
@@ -33,16 +33,16 @@ struct NudgeEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == NudgeEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("fromId").get_to(p._FromId);
-		j.at("action").get_to(p._action);
-		j.at("suffix").get_to(p._suffix);
+		j.at("fromId").get_to(p.FromId_);
+		j.at("action").get_to(p.action_);
+		j.at("suffix").get_to(p.suffix_);
 
-		p._target = NudgeTarget{};
-		p._target.SetTarget(j.at("target").get<QQ_t>());
+		p.target_ = NudgeTarget{};
+		p.target_.SetTarget(j.at("target").get<QQ_t>());
 
 		const auto& subject = j.at("subject");
-		p._target.SetSubject(subject.at("id").get<int64_t>());
-		p._target.SetNudgeType(subject.at("kind").get<NudgeType>());
+		p.target_.SetSubject(subject.at("id").get<int64_t>());
+		p.target_.SetNudgeType(subject.at("kind").get<NudgeType>());
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

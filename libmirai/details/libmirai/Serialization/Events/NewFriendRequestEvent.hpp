@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
-#define _MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
+#ifndef MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
+#define MIRAI_SERIALIZATION_NEW_FRIEND_REQUEST_EVENT_HPP_
 
 #include <cstdint>
 
@@ -35,11 +35,11 @@ struct NewFriendRequestEvent::Serializable
 
 		assert(j.at("type").get<EventTypes>() == NewFriendRequestEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
 
-		j.at("eventId").get_to(p._EventId);
-		j.at("fromId").get_to(p._FromId);
-		j.at("groupId").get_to(p._GroupId);
-		j.at("nick").get_to(p._nickname);
-		j.at("message").get_to(p._message);
+		j.at("eventId").get_to(p.EventId_);
+		j.at("fromId").get_to(p.FromId_);
+		j.at("groupId").get_to(p.GroupId_);
+		j.at("nick").get_to(p.nickname_);
+		j.at("message").get_to(p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

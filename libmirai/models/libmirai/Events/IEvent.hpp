@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_EVENT_INTERFACE_HPP_
-#define _MIRAI_EVENT_INTERFACE_HPP_
+#ifndef MIRAI_EVENT_INTERFACE_HPP_
+#define MIRAI_EVENT_INTERFACE_HPP_
 
 #include <memory>
 #include <string>
@@ -40,13 +40,13 @@ private:
 	 * 
 	 * 对应于接收该事件的 `MiraiClient` ，方便对事件作出响应
 	 */
-	MiraiClient* _client = nullptr;
+	MiraiClient* client_ = nullptr;
 
 	/// Sets the `MiraiClient` pointer
-	void _SetClient(MiraiClient* client) { this->_client = client; }
+	void SetClient_(MiraiClient* client) { this->client_ = client; }
 
-	Event& _top() { return *static_cast<Event*>(this); }
-	const Event& _top() const { return *static_cast<const Event*>(this); }
+	Event& top_() { return *static_cast<Event*>(this); }
+	const Event& top_() const { return *static_cast<const Event*>(this); }
 
 protected:
 	IEvent() = default;
@@ -59,10 +59,10 @@ public:
 	IEvent& operator=(IEvent&&) = default;
 
 	/// 获取事件类型
-	static constexpr EventTypes GetType() { return Event::_TYPE_; }
+	static constexpr EventTypes GetType() { return Event::TYPE_; }
 
 	/// 获取接收该事件的 `MiraiClient` 的引用
-	MiraiClient& GetMiraiClient() const { return *_client; } 
+	MiraiClient& GetMiraiClient() const { return *client_; } 
 };
 
 } // namespace Mirai

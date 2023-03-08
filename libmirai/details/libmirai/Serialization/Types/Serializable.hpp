@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
-#define _MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
+#ifndef MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
+#define MIRAI_SERIALIZATION_TYPES_SERIALIZABLE_HPP_
 
 #include <exception>
 #include <type_traits>
@@ -35,9 +35,9 @@ namespace Mirai
 namespace traits
 {
 
-template<typename...> class _has_from_json;
+template<typename...> class has_from_json_;
 
-template<typename T, typename F> class _has_from_json<T, F>
+template<typename T, typename F> class has_from_json_<T, F>
 {
 	template<typename U, typename N>
 	static auto test(U*) -> std::enable_if_t<
@@ -50,7 +50,7 @@ public:
 	static constexpr bool value = decltype(test<T, F>(0))::value;
 };
 
-template<typename T> class _has_from_json<T>
+template<typename T> class has_from_json_<T>
 {
 	template<typename U>
 	static auto test(U*) -> std::enable_if_t<
@@ -64,9 +64,9 @@ public:
 };
 
 
-template<typename...> class _has_to_json;
+template<typename...> class has_to_json_;
 
-template<typename T, typename F> class _has_to_json<T, F>
+template<typename T, typename F> class has_to_json_<T, F>
 {
 	template<typename U, typename N>
 	static auto test(U*) -> std::enable_if_t<
@@ -79,7 +79,7 @@ public:
 	static constexpr bool value = decltype(test<T, F>(0))::value;
 };
 
-template<typename T> class _has_to_json<T>
+template<typename T> class has_to_json_<T>
 {
 	template<typename U>
 	static auto test(U*) -> std::enable_if_t<
@@ -96,46 +96,46 @@ public:
 
 template<typename T>
 auto from_json(const nlohmann::json& j, T& p)
-	-> std::enable_if_t<traits::_has_from_json<T, typename T::Serializable>::value>
+	-> std::enable_if_t<traits::has_from_json_<T, typename T::Serializable>::value>
 {
 	T::Serializable::from_json(j, p);
 }
 
 template<typename T>
 auto to_json(nlohmann::json& j, const T& p)
-	-> std::enable_if_t<traits::_has_to_json<T, typename T::Serializable>::value>
+	-> std::enable_if_t<traits::has_to_json_<T, typename T::Serializable>::value>
 {
 	T::Serializable::to_json(j, p);
 }
 
-#define MIRAI_DECLARE_SERIALIZABLE_JSON(_type_)                                                                        \
-	struct _type_::Serializable                                                                                        \
+#define MIRAI_DECLARE_SERIALIZABLE_JSON(type)                                                                        \
+	struct type::Serializable                                                                                        \
 	{                                                                                                                  \
-		static void from_json(const nlohmann::json&, _type_&);                                                         \
-		static void to_json(nlohmann::json&, const _type_&);                                                           \
+		static void from_json(const nlohmann::json&, type&);                                                         \
+		static void to_json(nlohmann::json&, const type&);                                                           \
 	}
 
-#define MIRAI_DECLARE_FROM_TO_JSON(_type_)                                                                             \
-	void from_json(const nlohmann::json&, _type_&);                                                                    \
-	void to_json(nlohmann::json&, const _type_&)
+#define MIRAI_DECLARE_FROM_TO_JSON(type)                                                                             \
+	void from_json(const nlohmann::json&, type&);                                                                    \
+	void to_json(nlohmann::json&, const type&)
 
-#define MIRAI_DEFINE_FROM_JSON(_type_, _namespace_)	\
-	void from_json(const nlohmann::json& j, _type_& p) { _namespace_::from_json(j, p); }
-#define MIRAI_DEFINE_TO_JSON(_type_, _namespace_)	\
-	void to_json(nlohmann::json& j, const _type_& p) { _namespace_::to_json(j, p); }
-#define MIRAI_DEFINE_FROM_TO_JSON(_type_, _namespace_)	\
-	MIRAI_DEFINE_FROM_JSON(_type_, _namespace_);	\
-	MIRAI_DEFINE_TO_JSON(_type_, _namespace_)
+#define MIRAI_DEFINE_FROM_JSON(type, namespace_)	\
+	void from_json(const nlohmann::json& j, type& p) { namespace_::from_json(j, p); }
+#define MIRAI_DEFINE_TO_JSON(type, namespace_)	\
+	void to_json(nlohmann::json& j, const type& p) { namespace_::to_json(j, p); }
+#define MIRAI_DEFINE_FROM_TO_JSON(type, namespace_)	\
+	MIRAI_DEFINE_FROM_JSON(type, namespace_);	\
+	MIRAI_DEFINE_TO_JSON(type, namespace_)
 
-#define MIRAI_PARSE_GUARD_BEGIN(_json_)                                                                                \
+#define MIRAI_PARSE_GUARD_BEGIN(json_var)                                                                                \
 	try                                                                                                                \
 	{
 
-#define MIRAI_PARSE_GUARD_END(_json_)                                                                                  \
+#define MIRAI_PARSE_GUARD_END(json_var)                                                                                  \
 	}                                                                                                                  \
 	catch (const std::exception& e)                                                                                    \
 	{                                                                                                                  \
-		throw ParseError(e.what(), _json_.dump());                                                                     \
+		throw ParseError(e.what(), json_var.dump());                                                                     \
 	}
 
 } // namespace Mirai

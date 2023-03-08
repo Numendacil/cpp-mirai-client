@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_IMAGE_MESSAGE_HPP_
-#define _MIRAI_IMAGE_MESSAGE_HPP_
+#ifndef MIRAI_IMAGE_MESSAGE_HPP_
+#define MIRAI_IMAGE_MESSAGE_HPP_
 
 #include <string>
 #include <utility>
@@ -36,17 +36,17 @@ template <class MessageImpl>
 class ImageMessageImpl : public IMessageImpl<MessageImpl>
 {
 protected:
-	MiraiImage _image{};
+	MiraiImage image_{};
 
-	void _clear() noexcept { this->_image = {}; }
+	void clear_() noexcept { this->image_ = {}; }
 
-	bool _isValid() const override { return this->_image.valid(); }
+	bool isValid_() const override { return this->image_.valid(); }
 
 public:
 	ImageMessageImpl() = default;
-	ImageMessageImpl(MiraiImage image) : _image(std::move(image)) {}
+	ImageMessageImpl(MiraiImage image) : image_(std::move(image)) {}
 	ImageMessageImpl(std::string ImageId, std::string url, std::string path, std::string base64)
-		: _image(ImageId, url, path, base64)
+		: image_(ImageId, url, path, base64)
 	{
 	}
 
@@ -55,7 +55,7 @@ public:
 	 * 
 	 * @return `MiraiImage` 
 	 */
-	MiraiImage GetImage() const { return this->_image; }
+	MiraiImage GetImage() const { return this->image_; }
 
 	/**
 	 * @brief 设置图片id
@@ -65,8 +65,8 @@ public:
 	 */
 	MessageImpl& SetImageId(std::string ImageId)
 	{
-		this->_clear();
-		this->_image.id = std::move(ImageId);
+		this->clear_();
+		this->image_.id = std::move(ImageId);
 		return *static_cast<MessageImpl*>(this);
 	}
 
@@ -78,8 +78,8 @@ public:
 	 */
 	MessageImpl& SetUrl(std::string url)
 	{
-		this->_clear();
-		this->_image.url = std::move(url);
+		this->clear_();
+		this->image_.url = std::move(url);
 		return *static_cast<MessageImpl*>(this);
 	}
 
@@ -91,8 +91,8 @@ public:
 	 */
 	MessageImpl& SetPath(std::string path)
 	{
-		this->_clear();
-		this->_image.path = std::move(path);
+		this->clear_();
+		this->image_.path = std::move(path);
 		return *static_cast<MessageImpl*>(this);
 	}
 
@@ -104,16 +104,16 @@ public:
 	 */
 	MessageImpl& SetBase64(std::string base64)
 	{
-		this->_clear();
-		this->_image.base64 = std::move(base64);
+		this->clear_();
+		this->image_.base64 = std::move(base64);
 		return *static_cast<MessageImpl*>(this);
 	}
 
 	/// 由 `MiraiImage` 设置图片内容
 	MessageImpl& SetImage(MiraiImage image)
 	{
-		this->_clear();
-		this->_image = std::move(image);
+		this->clear_();
+		this->image_ = std::move(image);
 		return *static_cast<MessageImpl*>(this);
 	}
 
@@ -127,15 +127,15 @@ public:
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `ImageMessage::_image` | `MiraiImage{}`
+ * `ImageMessage::image_` | `MiraiImage{}`
  */
 class ImageMessage final : public ImageMessageImpl<ImageMessage>
 {
 	friend IMessageImpl<ImageMessage>;
 
 protected:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::IMAGE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::IMAGE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	using ImageMessageImpl<ImageMessage>::ImageMessageImpl;
@@ -153,15 +153,15 @@ template<> struct GetType<ImageMessage::GetType()>
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `FlashImageMessage::_image` | `MiraiImage{}`
+ * `FlashImageMessage::image_` | `MiraiImage{}`
  */
 class FlashImageMessage final : public ImageMessageImpl<FlashImageMessage>
 {
 	friend IMessageImpl<FlashImageMessage>;
 
 protected:
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FLASH_IMAGE;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::FLASH_IMAGE;
+	static constexpr bool SUPPORT_SEND_ = true;
 
 public:
 	using ImageMessageImpl<FlashImageMessage>::ImageMessageImpl;

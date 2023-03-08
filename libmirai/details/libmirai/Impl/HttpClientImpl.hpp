@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_CLIENT_IMPL_HPP_
-#define _MIRAI_CLIENT_IMPL_HPP_
+#ifndef MIRAI_CLIENT_IMPL_HPP_
+#define MIRAI_CLIENT_IMPL_HPP_
 
 #include <map>
 #include <optional>
@@ -35,7 +35,7 @@ class HttpClientImpl
 protected:
 	friend class MiraiClient;
 
-	httplib::Client _client;
+	httplib::Client client_;
 
 public:
 	HttpClientImpl(const std::string& scheme_host_port,
@@ -43,21 +43,21 @@ public:
 	               std::chrono::milliseconds read_timeout = std::chrono::seconds(5),
 	               std::chrono::milliseconds write_timeout = std::chrono::seconds(5), bool keep_alive = true,
 	               bool redirect = true)
-		: _client(scheme_host_port)
+		: client_(scheme_host_port)
 	{
-		this->_client.set_connection_timeout(connection_timeout.count() / 1000,
+		this->client_.set_connection_timeout(connection_timeout.count() / 1000,
 		                                     (connection_timeout.count() % 1000) * 1000);
-		this->_client.set_read_timeout(read_timeout.count() / 1000, (read_timeout.count() % 1000) * 1000);
-		this->_client.set_write_timeout(write_timeout.count() / 1000, (write_timeout.count() % 1000) * 1000);
+		this->client_.set_read_timeout(read_timeout.count() / 1000, (read_timeout.count() % 1000) * 1000);
+		this->client_.set_write_timeout(write_timeout.count() / 1000, (write_timeout.count() % 1000) * 1000);
 
-		this->_client.set_keep_alive(keep_alive);
-		this->_client.set_follow_location(redirect);
+		this->client_.set_keep_alive(keep_alive);
+		this->client_.set_follow_location(redirect);
 	}
 	HttpClientImpl(const HttpClientImpl&) = delete;
 	HttpClientImpl(HttpClientImpl&&) noexcept = delete;
 	HttpClientImpl& operator=(const HttpClientImpl&) = delete;
 	HttpClientImpl& operator=(HttpClientImpl&&) noexcept = delete;
-	~HttpClientImpl() { this->_client.stop(); }
+	~HttpClientImpl() { this->client_.stop(); }
 
 	using json = nlohmann::json;
 

@@ -13,8 +13,8 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef _MIRAI_FORWARD_MESSAGE_HPP_
-#define _MIRAI_FORWARD_MESSAGE_HPP_
+#ifndef MIRAI_FORWARD_MESSAGE_HPP_
+#define MIRAI_FORWARD_MESSAGE_HPP_
 
 #include <ctime>
 #include <optional>
@@ -35,7 +35,7 @@ namespace Mirai
  *
  * Member Variable | Default Value
  * --------------- | -------------
- * `ForwardMessage::_NodeList` | `{}`
+ * `ForwardMessage::NodeList_` | `{}`
  */
 class ForwardMessage final: public IMessageImpl<ForwardMessage>
 {
@@ -46,12 +46,12 @@ public:
 
 protected:
 	using NodeList = std::vector<Node>;
-	NodeList _NodeList;
+	NodeList NodeList_;
 
-	static constexpr MessageTypes _TYPE_ = MessageTypes::FORWARD;
-	static constexpr bool _SUPPORT_SEND_ = true;
+	static constexpr MessageTypes TYPE_ = MessageTypes::FORWARD;
+	static constexpr bool SUPPORT_SEND_ = true;
 
-	bool _isValid() const final;
+	bool isValid_() const final;
 
 public:
 	ForwardMessage();
@@ -104,12 +104,12 @@ public:
 	iterator insert(const_iterator pos, size_type count, const_reference value);
 	template<class InputIt> iterator insert(const_iterator pos, InputIt first, InputIt last)
 	{
-		return this->_NodeList.insert(pos, std::forward<InputIt>(first), std::forward<InputIt>(last));
+		return this->NodeList_.insert(pos, std::forward<InputIt>(first), std::forward<InputIt>(last));
 	}
 	iterator insert(const_iterator pos, std::initializer_list<value_type> ilist);
 	template<class... Args > iterator emplace(const_iterator pos, Args&&... args)
 	{
-		return this->_NodeList.emplace(pos, std::forward<Args>(args)...);
+		return this->NodeList_.emplace(pos, std::forward<Args>(args)...);
 	}
 	iterator erase(const_iterator pos);
 	iterator erase(const_iterator first, const_iterator last);
@@ -117,7 +117,7 @@ public:
 	void push_back(value_type&& node);
 	template< class... Args > reference emplace_back(Args&&... args)
 	{
-		return this->_NodeList.emplace_back(std::forward<Args>(args)...);
+		return this->NodeList_.emplace_back(std::forward<Args>(args)...);
 	}
 	void pop_back();
 	void resize(size_type count);
