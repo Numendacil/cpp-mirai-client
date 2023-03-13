@@ -54,6 +54,8 @@ find_package(nlohmann_json QUIET)
 if(NOT TARGET nlohmann_json::nlohmann_json)
 	message("nlohmann_json not found. Building from local subdirectories")
 	set(JSON_Install ON CACHE BOOL "Install CMake targets during install step." FORCE)
+	set(JSON_ImplicitConversions OFF CACHE BOOL "Enable implicit conversions." FORCE)
+	set(JSON_DisableEnumSerialization OFF CACHE BOOL "Disable default integer enum serialization." FORCE)
 	add_subdirectory(external/json)
 endif()
 
@@ -94,7 +96,6 @@ endif()
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE Threads::Threads)
 
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
-target_compile_definitions(${MIRAI_LIB_TARGET_NAME} PRIVATE JSON_DISABLE_ENUM_SERIALIZATION=1)
 
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE httplib::httplib)
 
@@ -113,6 +114,8 @@ if(MIRAI_BUILD_UNIT_TESTS)
 	message("UnitTests enabled")
 	add_subdirectory(external/googletest)
 	add_subdirectory(UnitTest)
+
+	target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE GTest::gmock)
 endif(MIRAI_BUILD_UNIT_TESTS)
 
 # Examples

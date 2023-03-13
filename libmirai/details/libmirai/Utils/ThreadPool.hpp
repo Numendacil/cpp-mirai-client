@@ -57,6 +57,29 @@ protected:
 		}
 	}
 
+	struct _task_container_base 
+	{
+	public:
+		virtual ~_task_container_base() = default;
+		virtual void operator()() = 0;
+	};
+
+	template <typename F>
+	class _task_container : public _task_container_base {
+	public:
+		//here, std::forward is needed because we need the construction of _f *not* to
+		//  bind an lvalue reference - it is not a guarantee that an object of type F is
+		//  CopyConstructible, only that it is MoveConstructible.
+		_task_container(F &&func) : _f(std::forward<F>(func)) {}
+		
+		void operator()() override {
+		_f();
+		}
+
+	private:
+		std::decay_t<F> _f;
+	};
+
 public:
 	ThreadPool(std::size_t n)
 	{
@@ -84,7 +107,7 @@ public:
 		}
 	}
 
-	template<class F, class... Args>
+	template<class F, class... Args, std::enable_if_t<std::is_invocable_v<F&&, Args&&...>, int> = 0>
 	auto enqueue(F&& f, Args&&... args) -> std::future<std::invoke_result_t<F&&, Args&&...>>
 	{
 		using return_type = std::invoke_result_t<F&&, Args&&...>;

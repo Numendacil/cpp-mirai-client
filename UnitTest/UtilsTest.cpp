@@ -8,11 +8,13 @@
 #include <nlohmann/json.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
-#include <libmirai/Utils/SessionConfig.hpp>
 #include <libmirai/Utils/Logger.hpp>
 #include <thread>
 
 using json = nlohmann::json;
+
+// NOLINTBEGIN(*)
+
 TEST(UtilsTest, ThreadPool)
 {
 	using namespace Mirai::Utils;
@@ -30,12 +32,12 @@ TEST(UtilsTest, ThreadPool)
 		}
 	} counter;
 	std::future<int> result[300];
-	for (int i = 0; i < 300; i++)
-		result[i] = pool.enqueue(&Counter::GetFinal, &counter);
+	for (auto & i : result)
+		i = pool.enqueue(&Counter::GetFinal, &counter);
 	int max = 0;
-	for (int i = 0; i < 300; i++)
+	for (auto & i : result)
 	{
-		int res = result[i].get();
+		int res = i.get();
 		if (max < res)
 			max = res;
 	}
@@ -75,3 +77,5 @@ TEST(UtilsTest, Logger)
 	EXPECT_EQ(xstr(LOG_TRACE(*logger, [&](){i++; return ""; }())), xstr((void)0));
 	EXPECT_EQ(i, 1);
 }
+
+// NOLINTEND(*)

@@ -108,34 +108,41 @@ auto to_json(nlohmann::json& j, const T& p)
 	T::Serializable::to_json(j, p);
 }
 
-#define MIRAI_DECLARE_SERIALIZABLE_JSON(type)                                                                        \
-	struct type::Serializable                                                                                        \
+#define MIRAI_DECLARE_SERIALIZABLE_JSON(type)                                                                          \
+	struct type::Serializable                                                                                          \
 	{                                                                                                                  \
-		static void from_json(const nlohmann::json&, type&);                                                         \
-		static void to_json(nlohmann::json&, const type&);                                                           \
+		static void from_json(const nlohmann::json&, type&);                                                           \
+		static void to_json(nlohmann::json&, const type&);                                                             \
 	}
 
-#define MIRAI_DECLARE_FROM_TO_JSON(type)                                                                             \
-	void from_json(const nlohmann::json&, type&);                                                                    \
+#define MIRAI_DECLARE_FROM_TO_JSON(type)                                                                               \
+	void from_json(const nlohmann::json&, type&);                                                                      \
 	void to_json(nlohmann::json&, const type&)
 
-#define MIRAI_DEFINE_FROM_JSON(type, namespace_)	\
-	void from_json(const nlohmann::json& j, type& p) { namespace_::from_json(j, p); }
-#define MIRAI_DEFINE_TO_JSON(type, namespace_)	\
-	void to_json(nlohmann::json& j, const type& p) { namespace_::to_json(j, p); }
-#define MIRAI_DEFINE_FROM_TO_JSON(type, namespace_)	\
-	MIRAI_DEFINE_FROM_JSON(type, namespace_);	\
+#define MIRAI_DEFINE_FROM_JSON(type, namespace_)                                                                       \
+	void from_json(const nlohmann::json& j, type& p)                                                                   \
+	{                                                                                                                  \
+		namespace_::from_json(j, p);                                                                                   \
+	}
+#define MIRAI_DEFINE_TO_JSON(type, namespace_)                                                                         \
+	void to_json(nlohmann::json& j, const type& p)                                                                     \
+	{                                                                                                                  \
+		namespace_::to_json(j, p);                                                                                     \
+	}
+#define MIRAI_DEFINE_FROM_TO_JSON(type, namespace_)                                                                    \
+	MIRAI_DEFINE_FROM_JSON(type, namespace_);                                                                          \
 	MIRAI_DEFINE_TO_JSON(type, namespace_)
 
-#define MIRAI_PARSE_GUARD_BEGIN(json_var)                                                                                \
+#define MIRAI_PARSE_GUARD_BEGIN(json_var)                                                                              \
 	try                                                                                                                \
-	{
-
-#define MIRAI_PARSE_GUARD_END(json_var)                                                                                  \
-	}                                                                                                                  \
-	catch (const std::exception& e)                                                                                    \
 	{                                                                                                                  \
-		throw ParseError(e.what(), json_var.dump());                                                                     \
+		(void)(json_var)
+
+#define MIRAI_PARSE_GUARD_END(json_var)                                                                                \
+	}                                                                                                                  \
+	catch (const nlohmann::json::exception& e)                                                                                    \
+	{                                                                                                                  \
+		throw ParseError(e.what(), json_var.dump());                                                                   \
 	}
 
 } // namespace Mirai

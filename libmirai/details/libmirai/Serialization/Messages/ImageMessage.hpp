@@ -30,7 +30,7 @@ struct ImageMessageImpl<MessageImpl>::Serializable
 
 	static void from_json(const nlohmann::json& j, ImageMessageImpl<MessageImpl>& p)
 	{
-		MIRAI_PARSE_GUARD_BEGIN(j)(j);
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
 		assert(j.at("type").get<MessageTypes>() == MessageImpl::GetType()); // NOLINT(*-array-to-pointer-decay)
 

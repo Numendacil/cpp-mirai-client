@@ -13,23 +13,18 @@
 // You should have received a copy of the GNU Affero General Public License
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-#ifndef MIRAI_SESSION_CONFIG_HPP_
-#define MIRAI_SESSION_CONFIG_HPP_
+#ifndef MIRAI_HTTP_WEBSOCKET_ADAPTOR_HPP_
+#define MIRAI_HTTP_WEBSOCKET_ADAPTOR_HPP_
 
-#include <chrono>
-#include <ctime>
-#include <string>
+#include <memory>
 
-#include <libmirai/Types/BasicTypes.hpp>
+#include "IAdaptor.hpp"
 
+/// 所有mirai相关的对象的命名空间
 namespace Mirai
 {
 
-/**
- * @brief 连接mirai-api-http的配置
- * 
- */
-struct SessionConfigs
+struct HttpWsAdaptorConfig
 {
 	/// Http adapter地址
 	std::string HttpUrl = "http://localhost:8080";
@@ -68,12 +63,11 @@ struct SessionConfigs
 	/// 验证密钥
 	std::string VerifyKey = "";
 
-	/// 线程池大小
-	std::size_t ThreadPoolSize = 12;
-
 	/// 从JSON文件中读取配置
 	void FromJsonFile(const std::string& path);
 };
+
+std::unique_ptr<IAdaptor> MakeHttpWsAdaptor(HttpWsAdaptorConfig config);
 
 } // namespace Mirai
 

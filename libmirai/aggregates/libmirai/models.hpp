@@ -20,6 +20,6 @@
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Messages/Messages.hpp>
 #include <libmirai/Types/Types.hpp>
-#include <libmirai/Utils/SessionConfig.hpp>
+#include <libmirai/Utils/Logger.hpp>
 
 #endif

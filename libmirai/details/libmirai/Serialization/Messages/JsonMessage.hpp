@@ -29,7 +29,7 @@ struct JsonMessage::Serializable
 
 	static void from_json(const nlohmann::json& j, JsonMessage& p)
 	{
-		MIRAI_PARSE_GUARD_BEGIN(j)(j);
+		MIRAI_PARSE_GUARD_BEGIN(j);
 
 		assert(j.at("type").get<MessageTypes>() == JsonMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
 

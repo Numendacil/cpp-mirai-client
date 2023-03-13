@@ -16,7 +16,11 @@
 #ifndef MIRAI_MIRAI_HPP_
 #define MIRAI_MIRAI_HPP_
 
-#include <libmirai/Client.hpp>
+#include <libmirai/Client/Client.hpp>
+
+#include <libmirai/Adaptors/GMockAdaptor.hpp>
+#include <libmirai/Adaptors/HttpWsAdaptor.hpp>
+
 #include <libmirai/models.hpp>
 
 #endif

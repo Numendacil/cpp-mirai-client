@@ -15,6 +15,8 @@
 using json = nlohmann::json;
 using namespace Mirai;
 
+// NOLINTBEGIN(*)
+
 TEST(MessagesTest, AppMessage)
 {
 	AppMessage app = Data::MessageData["AppMessage"].get<AppMessage>();
@@ -486,7 +488,7 @@ TEST(MessagesTest, MessageElementTest)
 	EXPECT_EQ(m.type(), MessageTypes::PLAIN);
 	EXPECT_TRUE(m);
 	EXPECT_NO_THROW(m.as<PlainMessage>());
-	EXPECT_THROW(m.as<AppMessage>(), TypeDismatch);
+	EXPECT_THROW(m.as<AppMessage>(), TypeDismatchError);
 
 	MessageElement m1(m);
 	const MessageElement m2(std::make_unique<AppMessage>());
@@ -524,7 +526,7 @@ TEST(MessagesTest, TemplateTest)
 	const MessageChain m_const = m;
 	json j = m_const.GetAt<MusicShareMessage>(5);
 	EXPECT_EQ(j["kind"].get<std::string>(), "NeteaseCloudMusic");
-	EXPECT_THROW(auto msg = m.GetAt<PlainMessage>(1), TypeDismatch);
+	EXPECT_THROW(auto msg = m.GetAt<PlainMessage>(1), TypeDismatchError);
 
 	m.emplace<PlainMessage>(m.begin() + 2, "ccc");
 	auto plain = m.GetAll<PlainMessage>();
@@ -572,7 +574,7 @@ TEST(MessagesTest, OperatorTest)
 
 TEST(MessagesTest, SerializationTest)
 {
-	MessageChain m = json::parse("[]");
+	MessageChain m = json::parse("[]").get<MessageChain>();
 	EXPECT_EQ(m.size(), 0);
 
 	std::random_device dev;
@@ -596,3 +598,5 @@ TEST(MessagesTest, SerializationTest)
 		EXPECT_EQ(m.GetType(i), msg[i]["type"].get<MessageTypes>());
 	}
 }
+
+// NOLINTEND(*)

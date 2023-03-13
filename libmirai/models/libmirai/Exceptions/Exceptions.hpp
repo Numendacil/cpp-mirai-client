@@ -16,6 +16,7 @@
 #ifndef MIRAI_EXCEPTIONS_HPP_
 #define MIRAI_EXCEPTIONS_HPP_
 
+#include <exception>
 #include <stdexcept>
 #include <string>
 namespace Mirai
@@ -112,7 +113,7 @@ public:
  * @brief 类型匹配错误
  * 
  */
-class TypeDismatch : public std::runtime_error
+class TypeDismatchError : public std::runtime_error
 {
 public:
 	/// 目标类型
@@ -120,12 +121,22 @@ public:
 	/// 实际类型
 	std::string received_type;
 
-	TypeDismatch(std::string expected, std::string received)
+	TypeDismatchError(std::string expected, std::string received)
 		: std::runtime_error("Expecting type " + expected + ", but get " + received + " instead")
 		, expected_type(std::move(expected))
 		, received_type(std::move(received))
 	{
 	}
+};
+
+/**
+ * @brief 未实现方法
+ * 
+ */
+class NotImplementedError : public std::runtime_error
+{
+public:
+	using std::runtime_error::runtime_error;
 };
 
 } // namespace Mirai

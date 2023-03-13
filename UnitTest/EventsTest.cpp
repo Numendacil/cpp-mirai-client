@@ -13,6 +13,8 @@
 using namespace Mirai;
 using json = nlohmann::json;
 
+// NOLINTBEGIN(*)
+
 TEST(EventsTest, BotOnlineEvent)
 {
 	BotOnlineEvent event{};
@@ -734,3 +736,5 @@ TEST(EventsTest, StrangerSyncMessageEvent)
 	EXPECT_EQ(event.GetMessage().GetType(0), MessageTypes::PLAIN);
 	EXPECT_EQ(event.GetMessage().GetAt<PlainMessage>(0).GetText(), "hello");
 }
+
+// NOLINTEND(*)

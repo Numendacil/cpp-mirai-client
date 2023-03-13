@@ -256,7 +256,7 @@ public:
 
 			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
 			if (this->type_ != MessageType::GetType())
-				throw TypeDismatch(to_string(this->type_), to_string(MessageType::GetType()));
+				throw TypeDismatchError(to_string(this->type_), to_string(MessageType::GetType()));
 			return static_cast<MessageType&>(*this->msg_);
 		}
 
@@ -266,7 +266,7 @@ public:
 
 			if (!this->msg_) throw std::runtime_error("MessageElement is empty");
 			if (this->type_ != MessageType::GetType())
-				throw TypeDismatch(to_string(this->type_), to_string(MessageType::GetType()));
+				throw TypeDismatchError(to_string(this->type_), to_string(MessageType::GetType()));
 			return static_cast<const MessageType&>(*this->msg_);
 		}
 		///@}
@@ -519,7 +519,7 @@ public:
 	/**
 	 * @brief 获取指定下标处的消息
 	 * 
-	 * 若消息类型与实际类型不匹配会抛出 `TypeDismatch` 异常
+	 * 若消息类型与实际类型不匹配会抛出 `TypeDismatchError` 异常
 	 * @tparam MessageType 消息类型
 	 * @param i 下标
 	 * @return 该消息元素的引用
@@ -538,7 +538,7 @@ public:
 	/**
 	 * @brief 获取指定下标处的消息
 	 * 
-	 * 若消息类型与实际类型不匹配会抛出 `TypeDismatch` 异常
+	 * 若消息类型与实际类型不匹配会抛出 `TypeDismatchError` 异常
 	 * @tparam Type `MessageTypes`
 	 * @param i 下标
 	 * @return 该消息元素的引用

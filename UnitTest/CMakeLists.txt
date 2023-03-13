@@ -12,13 +12,11 @@ add_executable(unit_test
 	MessagesTest.cpp
 	EventsTest.cpp
 	UtilsTest.cpp
-	HttpClientTest.cpp
-	MessageClientTest.cpp
 	ClientTest.cpp
 )
 
 target_link_libraries(unit_test PRIVATE ${MIRAI_LIB_TARGET_NAME})
-target_link_libraries(unit_test PRIVATE GTest::gtest_main GTest::gtest)
+target_link_libraries(unit_test PRIVATE GTest::gtest_main GTest::gtest GTest::gmock)
 target_link_libraries(unit_test PRIVATE httplib::httplib)
 target_link_libraries(unit_test PRIVATE ixwebsocket::ixwebsocket)
 target_link_libraries(unit_test PRIVATE nlohmann_json::nlohmann_json)
