@@ -35,7 +35,7 @@ struct DiceMessage::Serializable
 
 		j.at("value").get_to(p.value_);
 
-		MIRAI_PARSE_GUARD_END(j)(j);
+		MIRAI_PARSE_GUARD_END(j);
 	}
 
 	static void to_json(nlohmann::json& j, const DiceMessage& p)

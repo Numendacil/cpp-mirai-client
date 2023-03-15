@@ -38,12 +38,31 @@ struct JsonMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, JsonMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == JsonMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		::Mirai::from_json(std::move(j.at("json")), p.content_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const JsonMessage& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = JsonMessage::GetType();
 		j["json"] = p.content_;
+	}
+
+	static void to_json(nlohmann::json& j, JsonMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = JsonMessage::GetType();
+		j["json"] = std::move(p.content_);
 	}
 
 };

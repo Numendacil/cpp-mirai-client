@@ -52,12 +52,31 @@ struct AppMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, AppMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == AppMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		::Mirai::from_json(std::move(j.at("content")), p.content_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const AppMessage& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = AppMessage::GetType();
 		j["content"] = p.content_;
+	}
+
+	static void to_json(nlohmann::json& j, AppMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = AppMessage::GetType();
+		j["content"] = std::move(p.content_);
 	}
 
 };

@@ -22,8 +22,21 @@
 namespace Mirai
 {
 
-MIRAI_DECLARE_SERIALIZABLE_JSON(MessageElement);
-MIRAI_DECLARE_SERIALIZABLE_JSON(MessageChain);
+struct MessageElement::Serializable
+{
+	static void from_json(const nlohmann::json& j, MessageElement& p);
+	static void from_json(nlohmann::json&& j, MessageElement& p);
+	static void to_json(nlohmann::json& j, const MessageElement& p);
+	static void to_json(nlohmann::json& j, MessageElement&& p);
+};
+
+struct MessageChain::Serializable
+{
+	static void from_json(const nlohmann::json& j, MessageChain& p);
+	static void from_json(nlohmann::json&& j, MessageChain& p);
+	static void to_json(nlohmann::json& j, const MessageChain& p);
+	static void to_json(nlohmann::json& j, MessageChain&& p);
+};
 
 } // namespace Mirai
 

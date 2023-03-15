@@ -20,7 +20,7 @@
 #include <type_traits>
 #include <utility>
 
-#include <nlohmann/json_fwd.hpp>
+#include <nlohmann/json.hpp>
 
 #include <libmirai/Exceptions/Exceptions.hpp>
 
@@ -35,89 +35,131 @@ namespace Mirai
 namespace traits
 {
 
-template<typename...> class has_from_json_;
+template<typename... Args> 
+class has_from_json_;
 
-template<typename T, typename F> class has_from_json_<T, F>
+template<typename Field, typename Ret, typename... Args> 
+class has_from_json_<Field, Ret(Args...)>
 {
-	template<typename U, typename N>
-	static auto test(U*) -> std::enable_if_t<
-		std::is_same_v< decltype(N::from_json(std::declval<const nlohmann::json&>(), std::declval<U&>())), void >,
-		std::true_type >;
+	template<typename F, typename R, typename... A>
+	static auto test(void*) -> std::enable_if_t<
+		std::is_same_v< decltype(F::from_json(std::declval<A>()...)), Ret >,
+		std::true_type 
+	>;
 
 	template<typename, typename> static std::false_type test(...);
 
 public:
-	static constexpr bool value = decltype(test<T, F>(0))::value;
+	static constexpr bool value = decltype(test<Field, Ret, Args...>(0))::value;
 };
 
-template<typename T> class has_from_json_<T>
+template<typename Ret, typename... Args> 
+class has_from_json_<Ret(Args...)>
 {
-	template<typename U>
-	static auto test(U*) -> std::enable_if_t<
-		std::is_same_v< decltype(from_json(std::declval<const nlohmann::json&>(), std::declval<U&>())), void >,
-		std::true_type >;
-
-	template<typename> static std::false_type test(...);
-
-public:
-	static constexpr bool value = decltype(test<T>(0))::value;
-};
-
-
-template<typename...> class has_to_json_;
-
-template<typename T, typename F> class has_to_json_<T, F>
-{
-	template<typename U, typename N>
-	static auto test(U*) -> std::enable_if_t<
-		std::is_same_v< decltype(N::to_json(std::declval<nlohmann::json&>(), std::declval<const U&>())), void >,
-		std::true_type >;
+	template<typename R, typename... A>
+	static auto test(void*) -> std::enable_if_t<
+		std::is_same_v< decltype(from_json(std::declval<A>()...)), Ret >,
+		std::true_type 
+	>;
 
 	template<typename, typename> static std::false_type test(...);
 
 public:
-	static constexpr bool value = decltype(test<T, F>(0))::value;
+	static constexpr bool value = decltype(test<Ret, Args...>(0))::value;
 };
 
-template<typename T> class has_to_json_<T>
-{
-	template<typename U>
-	static auto test(U*) -> std::enable_if_t<
-		std::is_same_v< decltype(to_json(std::declval<nlohmann::json&>(), std::declval<const U&>())), void >,
-		std::true_type >;
 
-	template<typename> static std::false_type test(...);
+template<typename... Args> 
+class has_to_json_;
+
+template<typename Field, typename Ret, typename... Args> 
+class has_to_json_<Field, Ret(Args...)>
+{
+	template<typename F, typename R, typename... A>
+	static auto test(void*) -> std::enable_if_t<
+		std::is_same_v< decltype(F::to_json(std::declval<A>()...)), Ret >,
+		std::true_type 
+	>;
+
+	template<typename, typename> static std::false_type test(...);
 
 public:
-	static constexpr bool value = decltype(test<T>(0))::value;
+	static constexpr bool value = decltype(test<Field, Ret, Args...>(0))::value;
+};
+
+template<typename Ret, typename... Args> 
+class has_to_json_<Ret(Args...)>
+{
+	template<typename R, typename... A>
+	static auto test(void*) -> std::enable_if_t<
+		std::is_same_v< decltype(to_json(std::declval<A>()...)), Ret >,
+		std::true_type 
+	>;
+
+	template<typename, typename> static std::false_type test(...);
+
+public:
+	static constexpr bool value = decltype(test<Ret, Args...>(0))::value;
 };
 
 } // namespace traits
 
+
+template<typename T>
+auto from_json(nlohmann::json&& j, T& p)
+	-> std::enable_if_t<
+		traits::has_from_json_<typename std::decay_t<T>::Serializable, void(nlohmann::json&&, T&)>::value,
+		void
+	>
+{
+	std::decay_t<T>::Serializable::from_json(std::move(j), p);
+}
+
+inline void from_json(nlohmann::json&& j, std::string& p)
+{
+	p = std::move(j.get_ref<std::string&>());
+}
+
 template<typename T>
 auto from_json(const nlohmann::json& j, T& p)
-	-> std::enable_if_t<traits::has_from_json_<T, typename T::Serializable>::value>
+	-> std::enable_if_t<
+		traits::has_from_json_<typename std::decay_t<T>::Serializable, void(const nlohmann::json&, T&)>::value,
+		void
+	>
 {
-	T::Serializable::from_json(j, p);
+	std::decay_t<T>::Serializable::from_json(j, p);
+}
+
+template<typename T>
+auto to_json(nlohmann::json& j, T&& p)
+	-> std::enable_if_t<
+		!std::is_reference_v<T>
+		&& traits::has_to_json_<typename std::decay_t<T>::Serializable, void(nlohmann::json&, T&&)>::value,
+		void
+	>
+{
+	std::decay_t<T>::Serializable::to_json(j, std::forward<T>(p));
 }
 
 template<typename T>
 auto to_json(nlohmann::json& j, const T& p)
-	-> std::enable_if_t<traits::has_to_json_<T, typename T::Serializable>::value>
+	-> std::enable_if_t<
+		traits::has_to_json_<typename std::decay_t<T>::Serializable, void(nlohmann::json&, const T&)>::value,
+		void
+	>
 {
-	T::Serializable::to_json(j, p);
+	std::decay_t<T>::Serializable::to_json(j, p);
 }
 
-#define MIRAI_DECLARE_SERIALIZABLE_JSON(type)                                                                          \
-	struct type::Serializable                                                                                          \
-	{                                                                                                                  \
-		static void from_json(const nlohmann::json&, type&);                                                           \
-		static void to_json(nlohmann::json&, const type&);                                                             \
-	}
+#define MIRAI_DECLARE_FROM_JSON(type)                                                                               \
+	void from_json(const nlohmann::json&, type&)
+
+#define MIRAI_DECLARE_TO_JSON(type)                                                                               \
+	void to_json(nlohmann::json&, const type&)
 
 #define MIRAI_DECLARE_FROM_TO_JSON(type)                                                                               \
-	void from_json(const nlohmann::json&, type&);                                                                      \
-	void to_json(nlohmann::json&, const type&)
+	MIRAI_DECLARE_FROM_JSON(type);                                                                      \
+	MIRAI_DECLARE_TO_JSON(type)
 
 #define MIRAI_DEFINE_FROM_JSON(type, namespace_)                                                                       \
 	void from_json(const nlohmann::json& j, type& p)                                                                   \

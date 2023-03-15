@@ -47,6 +47,25 @@ struct QuoteMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, QuoteMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == QuoteMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("id").get_to(p.QuoteId_);
+		j.at("groupId").get_to(p.GroupId_);
+		j.at("senderId").get_to(p.SenderId_);
+		j.at("targetId").get_to(p.TargetId_);
+
+		if (!p.origin_)
+			p.origin_ = std::make_unique<MessageChain>(j.at("origin").get<MessageChain>());
+
+		::Mirai::from_json(std::move(j.at("origin")), *p.origin_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	// static void to_json(nlohmann::json& j, const QuoteMessage& p) {}
 
 };

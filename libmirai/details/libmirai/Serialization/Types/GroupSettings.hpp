@@ -18,6 +18,9 @@
 #include <ctime>
 #include <string>
 
+#include <nlohmann/json.hpp>
+
+#include <libmirai/Serialization/Types/BasicTypes.hpp>
 #include <libmirai/Serialization/Types/Serializable.hpp>
 #include <libmirai/Types/GroupSettings.hpp>
 
@@ -25,8 +28,33 @@
 namespace Mirai
 {
 
-MIRAI_DECLARE_FROM_TO_JSON(GroupConfig);
-MIRAI_DECLARE_FROM_TO_JSON(GroupAnnouncement);
+inline void from_json(const nlohmann::json& j, GroupConfig& p)
+{
+	MIRAI_PARSE_GUARD_BEGIN(j);
+
+	j.at("name").get_to(p.name);
+	j.at("confessTalk").get_to(p.AllowConfessTalk);
+	j.at("allowMemberInvite").get_to(p.AllowMemberInvite);
+	j.at("autoApprove").get_to(p.AutoApprove);
+	j.at("anonymousChat").get_to(p.AllowAnonymousChat);
+
+	MIRAI_PARSE_GUARD_END(j);
+}
+
+inline void from_json(const nlohmann::json& j, GroupAnnouncement& p)
+{
+	MIRAI_PARSE_GUARD_BEGIN(j);
+
+	j.at("group").get_to(p.group);
+	j.at("content").get_to(p.content);
+	j.at("senderId").get_to(p.SenderId);
+	j.at("fid").get_to(p.fid);
+	j.at("allConfirmed").get_to(p.AllConfirmed);
+	j.at("confirmedMembersCount").get_to(p.ConfirmedCount);
+	j.at("publicationTime").get_to(p.PublicationTime);
+
+	MIRAI_PARSE_GUARD_END(j);
+}
 
 } // namespace Mirai
 

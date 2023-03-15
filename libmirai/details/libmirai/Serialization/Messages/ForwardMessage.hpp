@@ -40,12 +40,37 @@ struct ForwardMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, ForwardMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == ForwardMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+		assert(j.at("nodeList").is_array()); // NOLINT(*-array-to-pointer-decay)
+
+		p.NodeList_.resize(j.at("nodeList").size());
+		auto it1 = p.NodeList_.begin();
+		for (auto it2 = j.at("nodeList").begin(); it2 != j.at("nodeList").end(); it1++, it2++)
+		{
+			::Mirai::from_json(std::move(*it2), *it1);
+		}
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const ForwardMessage& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = ForwardMessage::GetType();
 		j["nodeList"] = p.NodeList_;
+	}
+
+	static void to_json(nlohmann::json& j, ForwardMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = ForwardMessage::GetType();
+		j["nodeList"] = std::move(p.NodeList_);
 	}
 
 };

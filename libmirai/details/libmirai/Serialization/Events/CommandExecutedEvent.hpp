@@ -43,6 +43,20 @@ struct CommandExecutedEvent::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, CommandExecutedEvent& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<EventTypes>() == CommandExecutedEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		::Mirai::from_json(std::move(j.at("name")), p.name_);
+		Utils::GetOptional(std::move(j), "friend", p.friend_);
+		Utils::GetOptional(std::move(j), "member", p.member_);
+		::Mirai::from_json(std::move(j.at("args")), p.args_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 };
 
 } // namespace Mirai

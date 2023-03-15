@@ -86,6 +86,14 @@ void MessageElement::Serializable::from_json(const json& j, MessageElement& p)
 	});
 }
 
+void MessageElement::Serializable::from_json(json&& j, MessageElement& p)
+{
+	p.visit([&j](auto&& m)
+	{
+		Mirai::from_json(std::move(j), m);
+	});
+}
+
 void MessageElement::Serializable::to_json(json& j, const MessageElement& p)
 {
 	p.visit([&j](auto&& m)
@@ -93,6 +101,16 @@ void MessageElement::Serializable::to_json(json& j, const MessageElement& p)
 		using Type = std::decay_t<decltype(m)>;
 		if constexpr (Type::isSendSupported())
 			Mirai::to_json(j, m);
+	});
+}
+
+void MessageElement::Serializable::to_json(json& j, MessageElement&& p)
+{
+	p.visit([&j](auto&& m)
+	{
+		using Type = std::decay_t<decltype(m)>;
+		if constexpr (Type::isSendSupported())
+			Mirai::to_json(j, std::move(m));
 	});
 }
 
@@ -116,13 +134,42 @@ void MessageChain::Serializable::from_json(const json& j, MessageChain& p)
 	MIRAI_PARSE_GUARD_END(j);
 }
 
+void MessageChain::Serializable::from_json(json&& j, MessageChain& p)
+{
+	MIRAI_PARSE_GUARD_BEGIN(j);
+
+	if (!j.is_array()) return;
+	p.message_.clear();
+	p.message_.reserve(j.size());
+	for (auto& msg : j)
+	{
+		if (!msg.is_object() || !msg.contains("type") || !msg.at("type").is_string()) continue;
+		MessageTypes type = msg.at("type").get<MessageTypes>();
+		auto& m = p.message_.emplace_back(Factory.at(static_cast<size_t>(type))());
+		::Mirai::from_json(std::move(msg), m);
+	}
+	p.message_.shrink_to_fit();
+
+	MIRAI_PARSE_GUARD_END(j);
+}
+
 void MessageChain::Serializable::to_json(json& j, const MessageChain& p)
 {
 	j = json::array();
 	for (const auto& msg : p.message_)
 	{
 		if (msg.allowSend())
-			j += p;
+			j += msg;
+	}
+}
+
+void MessageChain::Serializable::to_json(json& j, MessageChain&& p)
+{
+	j = json::array();
+	for (auto& msg : p.message_)
+	{
+		if (msg.allowSend())
+			j += std::move(msg);
 	}
 }
 

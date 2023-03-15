@@ -40,6 +40,18 @@ struct StrangerMessageEvent::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, StrangerMessageEvent& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<EventTypes>() == StrangerMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("sender").get_to(p.sender_);
+		::Mirai::from_json(std::move(j.at("messageChain")), p.message_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 };
 
 
@@ -55,6 +67,18 @@ struct StrangerSyncMessageEvent::Serializable
 
 		j.at("subject").get_to(p.subject_);
 		j.at("messageChain").get_to(p.message_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	static void from_json(nlohmann::json&& j, StrangerSyncMessageEvent& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<EventTypes>() == StrangerSyncMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("subject").get_to(p.subject_);
+		::Mirai::from_json(std::move(j.at("messageChain")), p.message_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

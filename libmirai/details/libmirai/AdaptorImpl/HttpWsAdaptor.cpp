@@ -14,6 +14,7 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "HttpWsAdaptor.hpp"
+
 #include <exception>
 #include <mutex>
 #include <optional>
@@ -23,10 +24,11 @@
 #include <ixwebsocket/IXNetSystem.h>
 #include <ixwebsocket/IXWebSocketMessageType.h>
 #include <nlohmann/json.hpp>
-#include <libmirai/Utils/Common.hpp>
-#include <libmirai/Serialization/Types/Types.hpp>
-#include <libmirai/Serialization/Events/Events.hpp>
+
 #include <libmirai/Exceptions/Exceptions.hpp>
+#include <libmirai/Serialization/Events/Events.hpp>
+#include <libmirai/Serialization/Types/Types.hpp>
+#include <libmirai/Utils/Common.hpp>
 
 namespace Mirai
 {
@@ -120,11 +122,11 @@ httplib::Client HttpWsAdaptor::CreateClient_() const
 {
 	httplib::Client client(this->config_.HttpUrl);
 	client.set_connection_timeout(this->config_.ConnectionTimeout.count() / 1000,
-						(this->config_.ConnectionTimeout.count() % 1000) * 1000);
-	client.set_read_timeout(this->config_.ReadTimeout.count() / 1000, 
-				(this->config_.ReadTimeout.count() % 1000) * 1000);
-	client.set_write_timeout(this->config_.WriteTimeout.count() / 1000, 
-				(this->config_.WriteTimeout.count() % 1000) * 1000);
+	                              (this->config_.ConnectionTimeout.count() % 1000) * 1000);
+	client.set_read_timeout(this->config_.ReadTimeout.count() / 1000,
+	                        (this->config_.ReadTimeout.count() % 1000) * 1000);
+	client.set_write_timeout(this->config_.WriteTimeout.count() / 1000,
+	                         (this->config_.WriteTimeout.count() % 1000) * 1000);
 
 	client.set_keep_alive(true);
 	client.set_follow_location(true);
@@ -142,8 +144,7 @@ httplib::Client& HttpWsAdaptor::GetClient_()
 
 string HttpWsAdaptor::Connect()
 {
-	if (this->wsclient_.getReadyState() == ix::ReadyState::Open)
-		this->wsclient_.stop();
+	if (this->wsclient_.getReadyState() == ix::ReadyState::Open) this->wsclient_.stop();
 	this->httpclients_.clear();
 	this->info_ = std::nullopt;
 	this->bind_ = false;
@@ -163,7 +164,7 @@ string HttpWsAdaptor::Connect()
 	this->bind_ = true;
 
 	this->wsclient_.setUrl(this->config_.WebsocketUrl + "/all?verifyKey=" + this->config_.VerifyKey
-	                              + "&sessionKey=" + key);
+	                       + "&sessionKey=" + key);
 
 	this->wsclient_.setOnMessageCallback(
 		[this](const ix::WebSocketMessagePtr& msg)
@@ -171,17 +172,14 @@ string HttpWsAdaptor::Connect()
 			switch (msg->type)
 			{
 			case ix::WebSocketMessageType::Open:
-				if (this->ConnectionEstablishedCallback_) 
+				if (this->ConnectionEstablishedCallback_)
 				{
 					{
 						std::lock_guard<std::mutex> lk(this->connectmtx_);
 						this->info_ = ClientConnectionEstablishedEvent();
 						this->info_->uri = msg->openInfo.uri;
-						this->info_->headers = 
-							{
-								std::make_move_iterator(msg->openInfo.headers.begin()), 
-								std::make_move_iterator(msg->openInfo.headers.end())
-							};
+						this->info_->headers = {std::make_move_iterator(msg->openInfo.headers.begin()),
+					                            std::make_move_iterator(msg->openInfo.headers.end())};
 						this->info_->protocol = msg->openInfo.protocol;
 					}
 					this->connectcv_.notify_all();
@@ -230,7 +228,7 @@ string HttpWsAdaptor::Connect()
 		});
 	this->wsclient_.start();
 
-	if (this->ConnectionEstablishedCallback_) 
+	if (this->ConnectionEstablishedCallback_)
 	{
 		ClientConnectionEstablishedEvent event;
 		{
@@ -261,14 +259,15 @@ string HttpWsAdaptor::Connect()
 	return key;
 }
 
-void HttpWsAdaptor::Disconnect(const string& SessionKey)
+void HttpWsAdaptor::Disconnect(string SessionKey)
 {
-	if (this->wsclient_.getReadyState() == ix::ReadyState::Open)
-		this->wsclient_.stop();
+	if (this->wsclient_.getReadyState() == ix::ReadyState::Open) this->wsclient_.stop();
 
 	if (this->bind_)
 	{
-		json body = {{"sessionKey", SessionKey}, {"qq", int64_t(this->config_.BotQQ)}};
+		json body = {{"qq", int64_t(this->config_.BotQQ)}};
+		body["sessionKey"] = std::move(SessionKey);
+
 		auto result = this->GetClient_().Post("/release", body.dump(), JSON_CONTENT_TYPE);
 		(void)Utils::ParseResponse(result);
 		this->bind_ = false;
@@ -307,288 +306,373 @@ std::vector<QQ_t> HttpWsAdaptor::BotList()
 }
 
 
-std::variant<FriendMessageEvent, GroupMessageEvent, TempMessageEvent, StrangerMessageEvent> 
-HttpWsAdaptor::MessageFromId(const string& SessionKey, MessageId_t id, UID_t target)
+std::variant<FriendMessageEvent, GroupMessageEvent, TempMessageEvent, StrangerMessageEvent>
+HttpWsAdaptor::MessageFromId(string SessionKey, MessageId_t id, UID_t target)
 {
-	httplib::Params params = {
-		{"sessionKey", SessionKey}, {"messageId", std::to_string(id)}, {"target", target.to_string()}};
+	httplib::Params params = {{"messageId", std::to_string(id)}, {"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/messageFromId", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	EventTypes type = resp.at("data").at("type").get<EventTypes>();
 	std::variant<FriendMessageEvent, GroupMessageEvent, TempMessageEvent, StrangerMessageEvent> m;
-	std::visit([&type, &resp](auto&& p)
+	std::visit(
+		[&type, &resp](auto&& p)
 		{
 			using Type = std::decay_t<decltype(p)>;
 			if (type == Type::GetType())
 			{
 				resp.at("data").get_to(p);
 			}
-		}, m);
+		},
+		m);
 	return m;
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-std::vector<User> HttpWsAdaptor::FriendList(const string& SessionKey)
+std::vector<User> HttpWsAdaptor::FriendList(string SessionKey)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}};
+	httplib::Params params;
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/friendList", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<User>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-std::vector<Group> HttpWsAdaptor::GroupList(const string& SessionKey)
+std::vector<Group> HttpWsAdaptor::GroupList(string SessionKey)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}};
+	httplib::Params params;
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/groupList", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<Group>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-std::vector<GroupMember> HttpWsAdaptor::MemberList(const string& SessionKey, GID_t target)
+std::vector<GroupMember> HttpWsAdaptor::MemberList(string SessionKey, GID_t target)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"target", target.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/memberList", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<GroupMember>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-UserProfile HttpWsAdaptor::GetBotProfile(const string& SessionKey)
+UserProfile HttpWsAdaptor::GetBotProfile(string SessionKey)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}};
+	httplib::Params params;
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/botProfile", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<UserProfile>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-UserProfile HttpWsAdaptor::GetFriendProfile(const string& SessionKey, QQ_t target)
+UserProfile HttpWsAdaptor::GetFriendProfile(string SessionKey, QQ_t target)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"target", target.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/friendProfile", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<UserProfile>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-UserProfile HttpWsAdaptor::GetMemberProfile(const string& SessionKey, GID_t target, QQ_t MemberId)
+UserProfile HttpWsAdaptor::GetMemberProfile(string SessionKey, GID_t target, QQ_t MemberId)
 {
-	httplib::Params params = {
-		{"sessionKey", SessionKey}, {"target", target.to_string()}, {"memberId", MemberId.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}, {"memberId", MemberId.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/memberProfile", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<UserProfile>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-UserProfile HttpWsAdaptor::GetUserProfile(const string& SessionKey, QQ_t target)
+UserProfile HttpWsAdaptor::GetUserProfile(string SessionKey, QQ_t target)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"target", target.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/userProfile", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<UserProfile>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-MessageId_t HttpWsAdaptor::SendFriendMessage(const string& SessionKey, QQ_t qq, const MessageChain& message,
-                                       std::optional<MessageId_t> QuoteId)
+MessageId_t HttpWsAdaptor::SendFriendMessage(string SessionKey, QQ_t qq, const MessageChain& message,
+                                             std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"qq", qq}, {"messageChain", message}};
+	json body = {{"qq", qq}, {"messageChain", message}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
 	auto result = this->GetClient_().Post("/sendFriendMessage", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("messageId").get<MessageId_t>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-MessageId_t HttpWsAdaptor::SendGroupMessage(const string& SessionKey, GID_t group, const MessageChain& message,
-                                      std::optional<MessageId_t> QuoteId)
+MessageId_t HttpWsAdaptor::SendFriendMessage(string SessionKey, QQ_t qq, MessageChain&& message,
+                                             std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"group", group}, {"messageChain", message}};
+	json body = {{"qq", qq}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["messageChain"] = std::move(message);
+
+	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
+	auto result = this->GetClient_().Post("/sendFriendMessage", body.dump(), JSON_CONTENT_TYPE);
+	json resp = Utils::ParseResponse(result);
+
+	MIRAI_PARSE_GUARD_BEGIN(resp);
+	return resp.at("messageId").get<MessageId_t>();
+	MIRAI_PARSE_GUARD_END(resp);
+}
+
+MessageId_t HttpWsAdaptor::SendGroupMessage(string SessionKey, GID_t group, const MessageChain& message,
+                                            std::optional<MessageId_t> QuoteId)
+{
+	json body = {{"group", group}, {"messageChain", message}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
 	auto result = this->GetClient_().Post("/sendGroupMessage", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("messageId").get<MessageId_t>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-MessageId_t HttpWsAdaptor::SendTempMessage(const string& SessionKey, QQ_t qq, GID_t group, const MessageChain& message,
-                                     std::optional<MessageId_t> QuoteId)
+MessageId_t HttpWsAdaptor::SendGroupMessage(string SessionKey, GID_t group, MessageChain&& message,
+                                            std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"qq", qq}, {"group", group}, {"messageChain", message}};
+	json body = {{"group", group}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["messageChain"] = std::move(message);
+
+	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
+	auto result = this->GetClient_().Post("/sendGroupMessage", body.dump(), JSON_CONTENT_TYPE);
+	json resp = Utils::ParseResponse(result);
+
+	MIRAI_PARSE_GUARD_BEGIN(resp);
+	return resp.at("messageId").get<MessageId_t>();
+	MIRAI_PARSE_GUARD_END(resp);
+}
+
+MessageId_t HttpWsAdaptor::SendTempMessage(string SessionKey, QQ_t qq, GID_t group, const MessageChain& message,
+                                           std::optional<MessageId_t> QuoteId)
+{
+	json body = {{"qq", qq}, {"group", group}, {"messageChain", message}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
 	auto result = this->GetClient_().Post("/sendTempMessage", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("messageId").get<MessageId_t>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-void HttpWsAdaptor::SendNudge(const string& SessionKey, QQ_t target, UID_t subject, NudgeType kind)
+MessageId_t HttpWsAdaptor::SendTempMessage(string SessionKey, QQ_t qq, GID_t group, MessageChain&& message,
+                                           std::optional<MessageId_t> QuoteId)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"subject", subject}, {"kind", kind}};
+	json body = {{"qq", qq}, {"group", group}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["messageChain"] = std::move(message);
+
+	if (QuoteId.has_value()) body["quote"] = QuoteId.value();
+	auto result = this->GetClient_().Post("/sendTempMessage", body.dump(), JSON_CONTENT_TYPE);
+	json resp = Utils::ParseResponse(result);
+
+	MIRAI_PARSE_GUARD_BEGIN(resp);
+	return resp.at("messageId").get<MessageId_t>();
+	MIRAI_PARSE_GUARD_END(resp);
+}
+
+void HttpWsAdaptor::SendNudge(string SessionKey, QQ_t target, UID_t subject, NudgeType kind)
+{
+	json body = {{"target", target}, {"subject", subject}, {"kind", kind}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/sendNudge", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::Recall(const string& SessionKey, MessageId_t id, UID_t target)
+void HttpWsAdaptor::Recall(string SessionKey, MessageId_t id, UID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"messageId", id}, {"target", target}};
+	json body = {{"messageId", id}, {"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/recall", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-std::vector<MessageChain> HttpWsAdaptor::RoamingMessages(const string& SessionKey, std::time_t TimeStart, std::time_t TimeEnd, UID_t target)
+std::vector<MessageChain> HttpWsAdaptor::RoamingMessages(string SessionKey, std::time_t TimeStart, std::time_t TimeEnd,
+                                                         UID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"timeStart", TimeStart}, {"timeEnd", TimeEnd}, {"target", target}};
+	json body = {{"timeStart", TimeStart}, {"timeEnd", TimeEnd}, {"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/roamingMessages", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<MessageChain>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-std::vector<GroupFileInfo> HttpWsAdaptor::FileList(const string& SessionKey, const string& id, const string& path, UID_t target,
-                              int64_t offset, int64_t size, bool withDownloadInfo)
+std::vector<GroupFileInfo> HttpWsAdaptor::FileList(string SessionKey, string id, string path, UID_t target,
+                                                   int64_t offset, int64_t size, bool withDownloadInfo)
 {
-	httplib::Params params = {{"sessionKey", SessionKey},
-	                          {"target", target.to_string()},
+	httplib::Params params = {{"target", target.to_string()},
 	                          {"withDownloadInfo", withDownloadInfo ? "true" : "false"}};
-	if (!path.empty()) params.emplace("path", path);
+	params.emplace("sessionKey", std::move(SessionKey));
+
+	if (!path.empty()) params.emplace("path", std::move(path));
 	else
-		params.emplace("id", id);
+		params.emplace("id", std::move(id));
 	if (offset > 0) params.emplace("offset", std::to_string(offset));
 	if (size > 0) params.emplace("size", std::to_string(size));
 	auto result = this->GetClient_().Get("/file/list", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<GroupFileInfo>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-GroupFileInfo HttpWsAdaptor::FileInfo(const string& SessionKey, const string& id, const string& path, UID_t target,
-                              bool withDownloadInfo)
+GroupFileInfo HttpWsAdaptor::FileInfo(string SessionKey, string id, string path, UID_t target, bool withDownloadInfo)
 {
-	httplib::Params params = {{"sessionKey", SessionKey},
-	                          {"target", target.to_string()},
+	httplib::Params params = {{"target", target.to_string()},
 	                          {"withDownloadInfo", withDownloadInfo ? "true" : "false"}};
-	if (!path.empty()) params.emplace("path", path);
+	params.emplace("sessionKey", std::move(SessionKey));
+
+	if (!path.empty()) params.emplace("path", std::move(path));
 	else
-		params.emplace("id", id);
+		params.emplace("id", std::move(id));
 	auto result = this->GetClient_().Get("/file/info", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<GroupFileInfo>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-GroupFileInfo HttpWsAdaptor::FileMkdir(const string& SessionKey, const string& id, const string& path, UID_t target,
-                               const string& directory)
+GroupFileInfo HttpWsAdaptor::FileMkdir(string SessionKey, string id, string path, UID_t target, string directory)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"directoryName", directory}};
-	if (!path.empty()) body["path"] = path;
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["directoryName"] = std::move(directory);
+
+	if (!path.empty()) body["path"] = std::move(path);
 	else
-		body["id"] = id;
+		body["id"] = std::move(id);
 	auto result = this->GetClient_().Post("/file/mkdir", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<GroupFileInfo>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-void HttpWsAdaptor::FileDelete(const string& SessionKey, const string& id, const string& path, UID_t target)
+void HttpWsAdaptor::FileDelete(string SessionKey, string id, string path, UID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
-	if (!path.empty()) body["path"] = path;
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
+	if (!path.empty()) body["path"] = std::move(path);
 	else
-		body["id"] = id;
+		body["id"] = std::move(id);
 	auto result = this->GetClient_().Post("/file/delete", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::FileMove(const string& SessionKey, const string& id, const string& path, UID_t target,
-                              const string& TargetDirId, const string& TargetDirPath)
+void HttpWsAdaptor::FileMove(string SessionKey, string id, string path, UID_t target, string TargetDirId,
+                             string TargetDirPath)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
-	if (!path.empty()) body["path"] = path;
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
+	if (!path.empty()) body["path"] = std::move(path);
 	else
-		body["id"] = id;
-	if (!TargetDirPath.empty()) body["moveToPath"] = TargetDirPath;
+		body["id"] = std::move(id);
+	if (!TargetDirPath.empty()) body["moveToPath"] = std::move(TargetDirPath);
 	else
-		body["moveTo"] = TargetDirId;
+		body["moveTo"] = std::move(TargetDirId);
 	auto result = this->GetClient_().Post("/file/move", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::FileRename(const string& SessionKey, const string& id, const string& path, UID_t target,
-                                const string& name)
+void HttpWsAdaptor::FileRename(string SessionKey, string id, string path, UID_t target, string name)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"renameTo", name}};
-	if (!path.empty()) body["path"] = path;
+	json body = {{"target", target}, {"renameTo", name}};
+	body["sessionKey"] = std::move(SessionKey);
+
+	if (!path.empty()) body["path"] = std::move(path);
 	else
-		body["id"] = id;
+		body["id"] = std::move(id);
 	auto result = this->GetClient_().Post("/file/rename", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-GroupFileInfo HttpWsAdaptor::FileUpload(const string& SessionKey, const string& path, UID_t target, const string& type,
-                                const string& name, string content)
+GroupFileInfo HttpWsAdaptor::FileUpload(string SessionKey, string path, UID_t target, string type, string name,
+                                        string content)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""},
-	                                         {"path", path, "", ""},
-	                                         {"target", target.to_string(), "", ""},
-	                                         {"type", type, "", ""}};
+	httplib::MultipartFormDataItems items = {{"target", target.to_string(), "", ""}};
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"path", std::move(path), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
 	items.emplace_back(httplib::MultipartFormData{"file", std::move(content), name, "application/octet-stream"});
 
 	this->GetClient_().set_compress(true);
 	auto result = this->GetClient_().Post("/file/upload", items);
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<GroupFileInfo>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-GroupFileInfo HttpWsAdaptor::FileUploadChunked(
-	const string& SessionKey, const string& path, UID_t target, const string& type, const string& name,
-	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+GroupFileInfo
+HttpWsAdaptor::FileUploadChunked(string SessionKey, string path, UID_t target, string type, string name,
+                                 std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""},
-	                                         {"path", path, "", ""},
-	                                         {"target", target.to_string(), "", ""},
-	                                         {"type", type, "", ""}};
+	httplib::MultipartFormDataItems items = {{"target", target.to_string(), "", ""}};
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"path", std::move(path), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
 
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
@@ -633,32 +717,37 @@ GroupFileInfo HttpWsAdaptor::FileUploadChunked(
 
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<GroupFileInfo>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-MiraiImage HttpWsAdaptor::UploadImage(const string& SessionKey, const string& type, string image)
+MiraiImage HttpWsAdaptor::UploadImage(string SessionKey, string type, string image)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
+	httplib::MultipartFormDataItems items;
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
 	items.emplace_back(httplib::MultipartFormData{"img", std::move(image), "Image", "application/octet-stream"});
 
 	auto result = this->GetClient_().Post("/uploadImage", items);
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<MiraiImage>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-MiraiImage HttpWsAdaptor::UploadImageChunked(
-	const string& SessionKey, const string& type,
-	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+MiraiImage
+HttpWsAdaptor::UploadImageChunked(string SessionKey, string type,
+                                  std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
+	httplib::MultipartFormDataItems items;
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
+	
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
@@ -702,34 +791,35 @@ MiraiImage HttpWsAdaptor::UploadImageChunked(
 
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<MiraiImage>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-MiraiAudio HttpWsAdaptor::UploadAudio(const string& SessionKey, const string& type, string Audio)
+MiraiAudio HttpWsAdaptor::UploadAudio(string SessionKey, string type, string Audio)
 {
-	httplib::MultipartFormDataItems items = {
-		{"sessionKey", SessionKey, "", ""},
-		{"type", type, "", ""},
-	};
+	httplib::MultipartFormDataItems items;
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
 	items.emplace_back(httplib::MultipartFormData{"voice", std::move(Audio), "Audio", "application/octet-stream"});
 
 	auto result = this->GetClient_().Post("/uploadVoice", items);
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<MiraiAudio>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-MiraiAudio HttpWsAdaptor::UploadAudioChunked(
-	const string& SessionKey, const string& type,
-	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
+MiraiAudio
+HttpWsAdaptor::UploadAudioChunked(string SessionKey, string type,
+                                  std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider)
 {
-	httplib::MultipartFormDataItems items = {{"sessionKey", SessionKey, "", ""}, {"type", type, "", ""}};
+	httplib::MultipartFormDataItems items;
+	items.emplace_back(httplib::MultipartFormData{"sessionKey", std::move(SessionKey), "", ""});
+	items.emplace_back(httplib::MultipartFormData{"type", std::move(type), "", ""});
 	// TODO: Remove httplib::detail dependency
 	string boundary = httplib::detail::make_multipart_data_boundary();
 
@@ -772,87 +862,108 @@ MiraiAudio HttpWsAdaptor::UploadAudioChunked(
 		"multipart/form-data;boundary=\"" + boundary + "\"");
 
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<MiraiAudio>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
 
-void HttpWsAdaptor::DeleteFriend(const string& SessionKey, QQ_t target)
+void HttpWsAdaptor::DeleteFriend(string SessionKey, QQ_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/deleteFriend", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
 
-void HttpWsAdaptor::Mute(const string& SessionKey, GID_t target, QQ_t member, std::chrono::seconds time)
+void HttpWsAdaptor::Mute(string SessionKey, GID_t target, QQ_t member, std::chrono::seconds time)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"memberId", member}, {"time", time.count()}};
+	json body = {{"target", target}, {"memberId", member}, {"time", time.count()}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/mute", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::Unmute(const string& SessionKey, GID_t target, QQ_t member)
+void HttpWsAdaptor::Unmute(string SessionKey, GID_t target, QQ_t member)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"memberId", member}};
+	json body = {{"target", target}, {"memberId", member}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/unmute", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::Kick(const string& SessionKey, GID_t target, QQ_t member, const string& message)
+void HttpWsAdaptor::Kick(string SessionKey, GID_t target, QQ_t member, string message)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"memberId", member}, {"msg", message}};
+	json body = {{"target", target}, {"memberId", member}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["msg"] = std::move(message);
+
 	auto result = this->GetClient_().Post("/kick", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::Quit(const string& SessionKey, GID_t target)
+void HttpWsAdaptor::Quit(string SessionKey, GID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/quit", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::MuteAll(const string& SessionKey, GID_t target)
+void HttpWsAdaptor::MuteAll(string SessionKey, GID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/muteAll", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::UnmuteAll(const string& SessionKey, GID_t target)
+void HttpWsAdaptor::UnmuteAll(string SessionKey, GID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}};
+	json body = {{"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/unmuteAll", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::SetEssence(const string& SessionKey, MessageId_t id, GID_t target)
+void HttpWsAdaptor::SetEssence(string SessionKey, MessageId_t id, GID_t target)
 {
-	json body = {{"sessionKey", SessionKey}, {"messageId", id}, {"target", target}};
+	json body = {{"messageId", id}, {"target", target}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/setEssence", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-GroupConfig HttpWsAdaptor::GetGroupConfig(const string& SessionKey, GID_t target)
+GroupConfig HttpWsAdaptor::GetGroupConfig(string SessionKey, GID_t target)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"target", target.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/groupConfig", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<GroupConfig>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-void HttpWsAdaptor::SetGroupConfig(const string& SessionKey, GID_t target, const string& name,
-                                     std::optional<bool> AllowConfessTalk, std::optional<bool> AllowMemberInvite,
-                                     std::optional<bool> AutoApprove, std::optional<bool> AllowAnonymousChat)
+void HttpWsAdaptor::SetGroupConfig(string SessionKey, GID_t target, string name, std::optional<bool> AllowConfessTalk,
+                                   std::optional<bool> AllowMemberInvite, std::optional<bool> AutoApprove,
+                                   std::optional<bool> AllowAnonymousChat)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"config", json::object()}};
-	if (!name.empty()) body.at("config")["name"] = name;
+	json body = {{"target", target}, {"config", json::object()}};
+	body["sessionKey"] = std::move(SessionKey);
+
+	if (!name.empty()) body.at("config")["name"] = std::move(name);
 	if (AllowConfessTalk.has_value()) body.at("config")["confessTalk"] = AllowConfessTalk.value();
 	if (AllowMemberInvite.has_value()) body.at("config")["AllowMemberInvite"] = AllowMemberInvite.value();
 	if (AutoApprove.has_value()) body.at("config")["autoApprove"] = AutoApprove.value();
@@ -861,118 +972,163 @@ void HttpWsAdaptor::SetGroupConfig(const string& SessionKey, GID_t target, const
 	(void)Utils::ParseResponse(result);
 }
 
-GroupMember HttpWsAdaptor::GetMemberInfo(const string& SessionKey, GID_t target, QQ_t member)
+GroupMember HttpWsAdaptor::GetMemberInfo(string SessionKey, GID_t target, QQ_t member)
 {
-	httplib::Params params = {
-		{"sessionKey", SessionKey}, {"target", target.to_string()}, {"memberId", member.to_string()}};
+	httplib::Params params = {{"target", target.to_string()}, {"memberId", member.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	auto result = this->GetClient_().Get("/memberInfo", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.get<GroupMember>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-void HttpWsAdaptor::SetMemberInfo(const string& SessionKey, GID_t target, QQ_t member, const string& name,
-                                    const string& title)
+void HttpWsAdaptor::SetMemberInfo(string SessionKey, GID_t target, QQ_t member, string name, string title)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"info", json::object()}};
-	if (!name.empty()) body["info"]["name"] = name;
-	if (!title.empty()) body["info"]["specialTitle"] = title;
+	json body = {{"target", target}, {"info", json::object()}};
+	body["sessionKey"] = std::move(SessionKey);
+
+	if (!name.empty()) body["info"]["name"] = std::move(name);
+	if (!title.empty()) body["info"]["specialTitle"] = std::move(title);
 	auto result = this->GetClient_().Post("/memberInfo", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::MemberAdmin(const string& SessionKey, GID_t target, QQ_t member, bool assign)
+void HttpWsAdaptor::MemberAdmin(string SessionKey, GID_t target, QQ_t member, bool assign)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target}, {"memberId", member}, {"assign", assign}};
+	json body = {{"target", target}, {"memberId", member}, {"assign", assign}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/memberAdmin", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
 
-std::vector<GroupAnnouncement> HttpWsAdaptor::AnnoList(const string& SessionKey, GID_t target, int64_t offset, int64_t size)
+std::vector<GroupAnnouncement> HttpWsAdaptor::AnnoList(string SessionKey, GID_t target, int64_t offset, int64_t size)
 {
-	httplib::Params params = {{"sessionKey", SessionKey}, {"id", target.to_string()}};
+	httplib::Params params = {{"id", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
 	if (offset > 0) params.emplace("offset", std::to_string(offset));
 	if (size > 0) params.emplace("size", std::to_string(size));
 	auto result = this->GetClient_().Get("/anno/list", params, httplib::Headers{});
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<std::vector<GroupAnnouncement>>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-GroupAnnouncement HttpWsAdaptor::AnnoPublish(const string& SessionKey, GID_t target, const string& content, const string& url,
-                                 const string& path, const string& base64, bool ToNewMember, bool pinned,
-                                 bool ShowEditCard, bool ShowPopup, bool RequireConfirm)
+GroupAnnouncement HttpWsAdaptor::AnnoPublish(string SessionKey, GID_t target, string content, string url, string path,
+                                             string base64, bool ToNewMember, bool pinned, bool ShowEditCard,
+                                             bool ShowPopup, bool RequireConfirm)
 {
-	json body = {{"sessionKey", SessionKey}, {"target", target},
-	             {"content", content},       {"sendToNewMember", ToNewMember},
-	             {"pinned", pinned},         {"showEditCard", ShowEditCard},
-	             {"showPopup", ShowPopup},   {"requireConfirm", RequireConfirm}};
-	if (!url.empty()) body["imageUrl"] = url;
+	json body = {{"target", target},
+	             {"sendToNewMember", ToNewMember},
+	             {"pinned", pinned},
+	             {"showEditCard", ShowEditCard},
+	             {"showPopup", ShowPopup},
+	             {"requireConfirm", RequireConfirm}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["content"] = std::move(content);
+
+	if (!url.empty()) body["imageUrl"] = std::move(url);
 	else if (!path.empty())
-		body["imagePath"] = path;
+		body["imagePath"] = std::move(path);
 	else if (!base64.empty())
-		body["imageBase64"] = base64;
+		body["imageBase64"] = std::move(base64);
 	auto result = this->GetClient_().Post("/anno/publish", body.dump(), JSON_CONTENT_TYPE);
 	json resp = Utils::ParseResponse(result);
-	
+
 	MIRAI_PARSE_GUARD_BEGIN(resp);
 	return resp.at("data").get<GroupAnnouncement>();
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-void HttpWsAdaptor::AnnoDelete(const string& SessionKey, GID_t target, const string& fid)
+void HttpWsAdaptor::AnnoDelete(string SessionKey, GID_t target, string fid)
 {
-	json body = {{"sessionKey", SessionKey}, {"id", target}, {"fid", fid}};
+	json body = {{"id", target}};
+	body["fid"] = std::move(fid);
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/anno/delete", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
 
-void HttpWsAdaptor::RespNewFriendRequestEvent(const string& SessionKey, int64_t EventId, QQ_t FromId, GID_t GroupId,
-                                               int operate, const string& message)
+void HttpWsAdaptor::RespNewFriendRequestEvent(string SessionKey, int64_t EventId, QQ_t FromId, GID_t GroupId,
+                                              int operate, string message)
 {
-	json body = {{"sessionKey", SessionKey}, {"eventId", EventId}, {"fromId", FromId},
-	             {"groupId", GroupId},       {"operate", operate}, {"message", message}};
+	json body = {
+		{"eventId", EventId}, {"fromId", FromId}, {"groupId", GroupId}, {"operate", operate}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["message"] = std::move(message);
+
 	auto result = this->GetClient_().Post("/resp/newFriendRequestEvent", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::RespMemberJoinRequestEvent(const string& SessionKey, int64_t EventId, QQ_t FromId, GID_t GroupId,
-                                                int operate, const string& message)
+void HttpWsAdaptor::RespMemberJoinRequestEvent(string SessionKey, int64_t EventId, QQ_t FromId, GID_t GroupId,
+                                               int operate, string message)
 {
-	json body = {{"sessionKey", SessionKey}, {"eventId", EventId}, {"fromId", FromId},
-	             {"groupId", GroupId},       {"operate", operate}, {"message", message}};
+	json body = {
+		{"eventId", EventId}, {"fromId", FromId}, {"groupId", GroupId}, {"operate", operate}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["message"] = std::move(message);
+
 	auto result = this->GetClient_().Post("/resp/memberJoinRequestEvent", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::RespBotInvitedJoinGroupRequestEvent(const string& SessionKey, int64_t EventId, QQ_t FromId,
-                                                         GID_t GroupId, int operate, const string& message)
+void HttpWsAdaptor::RespBotInvitedJoinGroupRequestEvent(string SessionKey, int64_t EventId, QQ_t FromId, GID_t GroupId,
+                                                        int operate, string message)
 {
-	json body = {{"sessionKey", SessionKey}, {"eventId", EventId}, {"fromId", FromId},
-	             {"groupId", GroupId},       {"operate", operate}, {"message", message}};
+	json body = {
+		{"eventId", EventId}, {"fromId", FromId}, {"groupId", GroupId}, {"operate", operate}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["message"] = std::move(message);
+
 	auto result = this->GetClient_().Post("/resp/botInvitedJoinGroupRequestEvent", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
 
-void HttpWsAdaptor::CmdExecute(const string& SessionKey, const MessageChain& command)
+void HttpWsAdaptor::CmdExecute(string SessionKey, const MessageChain& command)
 {
-	json body = {{"sessionKey", SessionKey}, {"command", command}};
+	json body = {{"command", command}};
+	body["sessionKey"] = std::move(SessionKey);
+
 	auto result = this->GetClient_().Post("/cmd/execute", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::CmdRegister(const string& SessionKey, const string& name, const std::vector<string>& alias,
-                                 const string& usage, const string& description)
+void HttpWsAdaptor::CmdExecute(string SessionKey, MessageChain&& command)
 {
-	json body = {{"sessionKey", SessionKey}, {"name", name}, {"usage", usage}, {"description", description}};
-	if (!alias.empty()) body["alias"] = alias;
+	json body;
+	body["sessionKey"] = std::move(SessionKey);
+	body["command"] = std::move(command);
+	
+
+	auto result = this->GetClient_().Post("/cmd/execute", body.dump(), JSON_CONTENT_TYPE);
+	(void)Utils::ParseResponse(result);
+}
+
+void HttpWsAdaptor::CmdRegister(string SessionKey, string name, std::vector<string> alias, string usage,
+                                string description)
+{
+	json body = {{"name", name}, {"usage", usage}, {"description", description}};
+	body["sessionKey"] = std::move(SessionKey);
+	body["name"] = std::move(name);
+	body["usage"] = std::move(usage);
+	body["description"] = std::move(description);
+
+	if (!alias.empty()) 
+	{
+		for (auto&& p : alias)
+			body["alias"] += std::move(p);
+	}
 	auto result = this->GetClient_().Post("/cmd/register", body.dump(), JSON_CONTENT_TYPE);
 	(void)Utils::ParseResponse(result);
 }
@@ -984,24 +1140,22 @@ string HttpWsAdaptor::CallAPI(const string& path, const string& method, const st
 		auto result = this->GetClient_().Get(path);
 		if (!result || result.error() != httplib::Error::Success)
 			throw NetworkException(-1, httplib::to_string(result.error()));
-		if (result->status < 200 || result->status > 299) 
-			throw NetworkException(result->status, result->body);
+		if (result->status < 200 || result->status > 299) throw NetworkException(result->status, result->body);
 		return result->body;
 	}
-	else if(method == "POST")
+	else if (method == "POST")
 	{
 		auto result = this->GetClient_().Post(path, data, JSON_CONTENT_TYPE);
 		if (!result || result.error() != httplib::Error::Success)
 			throw NetworkException(-1, httplib::to_string(result.error()));
-		if (result->status < 200 || result->status > 299) 
-			throw NetworkException(result->status, result->body);
+		if (result->status < 200 || result->status > 299) throw NetworkException(result->status, result->body);
 		return result->body;
 	}
 	else
 		throw NotImplementedError(("Method not implemented in HttpWsAdaptor::CallAPI: " + method).c_str());
 }
 
-}
+} // namespace Details
 
 
-}
+} // namespace Mirai

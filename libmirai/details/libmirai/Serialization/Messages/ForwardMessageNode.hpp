@@ -43,6 +43,19 @@ struct ForwardNode::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, ForwardNode& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		j.at("senderId").get_to(p.SenderId_);
+		j.at("time").get_to(p.time_);
+		::Mirai::from_json(std::move(j.at("senderName")), p.SenderName_);
+		::Mirai::from_json(std::move(j.at("messageChain")), p.message_);
+		p.MessageId_ = Utils::GetOptional<MessageId_t>(j, "messageId");
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const ForwardNode& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
@@ -54,6 +67,21 @@ struct ForwardNode::Serializable
 			j["time"] = p.time_;
 			j["senderName"] = p.SenderName_;
 			j["messageChain"] = p.message_;
+		}
+	}
+
+	static void to_json(nlohmann::json& j, ForwardNode&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		if (p.MessageId_.has_value()) 
+			j["messageId"] = p.MessageId_.value();
+		else
+		{
+			j["senderId"] = p.SenderId_;
+			j["time"] = p.time_;
+			j["senderName"] = std::move(p.SenderName_);
+			j["messageChain"] = std::move(p.message_);
 		}
 	}
 

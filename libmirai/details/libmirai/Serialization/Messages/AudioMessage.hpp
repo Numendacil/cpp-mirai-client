@@ -46,6 +46,14 @@ struct AudioMessage::Serializable
 		j.update(p.audio_);
 	}
 
+	static void to_json(nlohmann::json& j, AudioMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = AudioMessage::GetType();
+		::Mirai::to_json(j, std::move(p.audio_));
+	}
+
 };
 
 } // namespace Mirai

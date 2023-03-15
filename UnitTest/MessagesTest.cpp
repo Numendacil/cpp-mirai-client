@@ -510,6 +510,12 @@ TEST(MessagesTest, MessageElementTest)
 			return std::is_same_v<Type, PlainMessage>;
 		}
 	));
+
+	json j1 = std::move(m1);
+	json j2 = m2;
+
+	EXPECT_EQ(j1.at("type").get<MessageTypes>(), PlainMessage::GetType());
+	EXPECT_EQ(j2.at("type").get<MessageTypes>(), AppMessage::GetType());
 }
 
 TEST(MessagesTest, TemplateTest)
@@ -591,11 +597,28 @@ TEST(MessagesTest, SerializationTest)
 		auto idx = randidx(rng);
 		msg += data[idx];
 	}
-	m = msg.get<MessageChain>();
-	EXPECT_EQ(m.size(), msg.size());
+
+	MessageChain m1 = msg.get<MessageChain>();
+	EXPECT_EQ(m1.size(), msg.size());
 	for (std::size_t i = 0; i < msg.size(); i++)
 	{
-		EXPECT_EQ(m.GetType(i), msg[i]["type"].get<MessageTypes>());
+		EXPECT_EQ(m1.GetType(i), msg[i]["type"].get<MessageTypes>());
+	}
+
+	MessageChain m2;
+	from_json(std::move(msg), m2);
+	EXPECT_EQ(m1.size(), m2.size());
+	for (std::size_t i = 0; i < m1.size(); i++)
+	{
+		EXPECT_EQ(m1.GetType(i), m2.GetType(i));
+	}
+
+	json msg2 = std::move(m1);
+	json msg3 = m2;
+	EXPECT_EQ(msg3.size(), msg2.size());
+	for (std::size_t i = 0; i < msg2.size(); i++)
+	{
+		EXPECT_EQ(msg3[i]["type"].get<MessageTypes>(), msg2[i]["type"].get<MessageTypes>());
 	}
 }
 

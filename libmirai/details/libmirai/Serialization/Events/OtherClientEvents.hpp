@@ -41,6 +41,18 @@ struct OtherClientMessageEvent::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, OtherClientMessageEvent& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<EventTypes>() == OtherClientMessageEvent::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("sender").get_to(p.sender_);
+		::Mirai::from_json(std::move(j.at("messageChain")), p.message_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 };
 
 

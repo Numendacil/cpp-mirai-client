@@ -26,15 +26,15 @@
 #include <utility>
 #include <variant>
 
-#include <nlohmann/json.hpp>
 #include <httplib.h>
+#include <nlohmann/json.hpp>
 
+#include <libmirai/Events/MiraiClientEvents.hpp>
 #include <libmirai/Serialization/Events/Events.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
 #include <libmirai/Utils/Common.hpp>
 #include <libmirai/Utils/Logger.hpp>
 #include <libmirai/Utils/ThreadPool.hpp>
-#include <libmirai/Events/MiraiClientEvents.hpp>
 
 namespace Mirai
 {
@@ -43,14 +43,17 @@ using json = nlohmann::json;
 
 MiraiClient::MiraiClient() = default;
 MiraiClient::MiraiClient(std::unique_ptr<IAdaptor> adaptor) : adaptor_(std::move(adaptor)) {}
-MiraiClient::MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor) : PoolSize_(PoolSize), adaptor_(std::move(adaptor)) {}
+MiraiClient::MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor)
+	: PoolSize_(PoolSize), adaptor_(std::move(adaptor))
+{
+}
 
 MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
 {
 	std::unique_lock<std::shared_mutex> lk(rhs.mtx_);
 
-	#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
-	#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
+#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
+#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
 
 	// NOLINTBEGIN(*-prefer-member-initializer)
 	MIRAI_MOVE_ASSIGN(SessionKey_);
@@ -69,8 +72,8 @@ MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
 	MIRAI_COPY_ASSIGN(PoolSize_);
 	// NOLINTEND(*-prefer-member-initializer)
 
-	#undef MIRAI_MOVE_ASSIGN
-	#undef MIRAI_COPY_ASSIGN
+#undef MIRAI_MOVE_ASSIGN
+#undef MIRAI_COPY_ASSIGN
 }
 
 MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
@@ -82,8 +85,8 @@ MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
 
 		std::scoped_lock lk(lk_rhs, lk_this);
 
-		#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
-		#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
+#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
+#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
 
 		MIRAI_MOVE_ASSIGN(SessionKey_);
 		MIRAI_MOVE_ASSIGN(logger_);
@@ -100,22 +103,23 @@ MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
 		MIRAI_COPY_ASSIGN(connected_);
 		MIRAI_COPY_ASSIGN(PoolSize_);
 
-		#undef MIRAI_MOVE_ASSIGN
-		#undef MIRAI_COPY_ASSIGN
+#undef MIRAI_MOVE_ASSIGN
+#undef MIRAI_COPY_ASSIGN
 	}
 	return *this;
 }
 
-MiraiClient::~MiraiClient() { this->Disconnect(); }
+MiraiClient::~MiraiClient()
+{
+	this->Disconnect();
+}
 
 
 void MiraiClient::Connect()
 {
-	if (!this->adaptor_)
-		throw std::runtime_error("Null pointer: No adaptor is set");
+	if (!this->adaptor_) throw std::runtime_error("Null pointer: No adaptor is set");
 
-	if (this->connected_) 
-		return;
+	if (this->connected_) return;
 
 	LOG_DEBUG(*(this->logger_), "Connecting to Mirai-Api-Http, initializing threadpool");
 
@@ -134,17 +138,14 @@ void MiraiClient::Connect()
 					for (const auto& p : event.headers)
 						header += "\n" + p.first + ": " + p.second;
 					return header;
-				}()
-			);
+				}());
 			{
 				std::unique_lock<std::shared_mutex> lk(this->mtx_);
 				this->connected_ = true;
 				this->SessionKey_ = event.SessionKey;
 			}
-			if (this->ConnectionEstablishedCallback_)
-				this->ConnectionEstablishedCallback_(std::move(event));
-		}
-	);
+			if (this->ConnectionEstablishedCallback_) this->ConnectionEstablishedCallback_(std::move(event));
+		});
 
 	this->adaptor_->OnConnectionClosed(
 		[this](ClientConnectionClosedEvent event)
@@ -159,16 +160,13 @@ void MiraiClient::Connect()
 					msg += "\nClosedByRemote: ";
 					msg += event.remote ? "True" : "False";
 					return msg;
-				}()
-			);
+				}());
 			{
 				std::unique_lock<std::shared_mutex> lk(this->mtx_);
 				this->connected_ = false;
 			}
-			if (this->ConnectionClosedCallback_)
-				this->ConnectionClosedCallback_(std::move(event));
-		}
-	);
+			if (this->ConnectionClosedCallback_) this->ConnectionClosedCallback_(std::move(event));
+		});
 
 	this->adaptor_->OnConnectionError(
 		[this](ClientConnectionErrorEvent event)
@@ -183,12 +181,9 @@ void MiraiClient::Connect()
 					msg += "\nDecompressionError: ";
 					msg += event.DecompressionError ? "True" : "False";
 					return msg;
-				}()
-			);
-			if (this->ConnectionErrorCallback_)
-				this->ConnectionErrorCallback_(std::move(event));
-		}
-	);
+				}());
+			if (this->ConnectionErrorCallback_) this->ConnectionErrorCallback_(std::move(event));
+		});
 
 	this->adaptor_->OnRecv(
 		[this](const std::string& message)
@@ -198,15 +193,13 @@ void MiraiClient::Connect()
 			try
 			{
 				json msg = json::parse(message);
-				if (!msg.contains("data")) 
-					return;
+				if (!msg.contains("data")) return;
 
 				/*std::string id = msg.value("syncId", "");*/
 				json data = msg.at("data");
 				if (!data.is_object()) return;
 				data = Utils::ParseResponse(data);
-				if (!(data.contains("type") && data.at("type").is_string())) 
-					return;
+				if (!(data.contains("type") && data.at("type").is_string())) return;
 
 				auto type = data.at("type").get<EventTypes>();
 				LOG_TRACE(*(this->logger_), "Dispatching message, type: " + to_string(type));
@@ -215,48 +208,44 @@ void MiraiClient::Connect()
 				{
 					if (this->EventHandlers_.count(type)) handler = this->EventHandlers_.at(type);
 				}
-				std::visit([&data, this](auto&& handler)
-				{
-					using FuncType = std::decay_t<decltype(handler)>;
-					using EventType = typename traits::function_traits<FuncType>::type;
-
-					if (!handler)
+				std::visit(
+					[&data, this](auto&& handler)
 					{
-						LOG_TRACE(*(this->logger_), "No matching handler found");
-						return;
-					}
-					
-					LOG_TRACE(*(this->logger_), "Found handler");
+						using FuncType = std::decay_t<decltype(handler)>;
+						using EventType = typename traits::function_traits<FuncType>::type;
 
-					if constexpr (
-						!std::disjunction_v<
-							std::is_same<EventType, ClientConnectionEstablishedEvent>,
-							std::is_same<EventType, ClientConnectionErrorEvent>,
-							std::is_same<EventType, ClientConnectionClosedEvent>,
-							std::is_same<EventType, ClientParseErrorEvent>
-						>)
-					{
-						EventType event;
-						event.SetClient_(this);
-						from_json(data, event);
-						(void)this->pool_->enqueue(handler, std::move(event));
-					}
-					
-				}, handler);
+						if (!handler)
+						{
+							LOG_TRACE(*(this->logger_), "No matching handler found");
+							return;
+						}
+
+						LOG_TRACE(*(this->logger_), "Found handler");
+
+						if constexpr (!std::disjunction_v< std::is_same<EventType, ClientConnectionEstablishedEvent>,
+				                                           std::is_same<EventType, ClientConnectionErrorEvent>,
+				                                           std::is_same<EventType, ClientConnectionClosedEvent>,
+				                                           std::is_same<EventType, ClientParseErrorEvent> >)
+						{
+							EventType event;
+							event.SetClient_(this);
+							from_json(std::move(data), event);
+							(void)this->pool_->enqueue(handler, std::move(event));
+						}
+					},
+					handler);
 			}
 			catch (const ParseError& e)
 			{
-				if (this->ParseErrorCallback_) 
-					this->ParseErrorCallback_({{}, e, message});
+				if (this->ParseErrorCallback_) this->ParseErrorCallback_({{}, e, message});
 			}
 			catch (const std::exception& e)
 			{
-				if (this->ParseErrorCallback_) 
-					this->ParseErrorCallback_({{}, ParseError{e.what(), message}, message});
+				if (this->ParseErrorCallback_) this->ParseErrorCallback_({{}, ParseError{e.what(), message}, message});
 			}
 			catch (...)
 			{
-				if (this->ParseErrorCallback_) 
+				if (this->ParseErrorCallback_)
 					this->ParseErrorCallback_({{}, ParseError{"Unknown error", message}, message});
 			}
 		});
@@ -301,7 +290,8 @@ FriendMessageEvent MiraiClient::GetFriendMessage(MessageId_t id, QQ_t qq) const
 	auto msg = this->adaptor_->MessageFromId(this->GetSessionKey_(), id, qq);
 
 	if (!std::holds_alternative<FriendMessageEvent>(msg))
-		throw TypeDismatchError(to_string(FriendMessageEvent::GetType()), to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
+		throw TypeDismatchError(to_string(FriendMessageEvent::GetType()),
+		                        to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
 
 	return std::get<FriendMessageEvent>(msg);
 }
@@ -311,7 +301,8 @@ GroupMessageEvent MiraiClient::GetGroupMessage(MessageId_t id, GID_t GroupId) co
 	auto msg = this->adaptor_->MessageFromId(this->GetSessionKey_(), id, GroupId);
 
 	if (!std::holds_alternative<GroupMessageEvent>(msg))
-		throw TypeDismatchError(to_string(GroupMessageEvent::GetType()), to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
+		throw TypeDismatchError(to_string(GroupMessageEvent::GetType()),
+		                        to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
 
 	return std::get<GroupMessageEvent>(msg);
 }
@@ -321,7 +312,8 @@ TempMessageEvent MiraiClient::GetTempMessage(MessageId_t id, GID_t GroupId) cons
 	auto msg = this->adaptor_->MessageFromId(this->GetSessionKey_(), id, GroupId);
 
 	if (!std::holds_alternative<TempMessageEvent>(msg))
-		throw TypeDismatchError(to_string(TempMessageEvent::GetType()), to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
+		throw TypeDismatchError(to_string(TempMessageEvent::GetType()),
+		                        to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
 
 	return std::get<TempMessageEvent>(msg);
 }
@@ -331,7 +323,8 @@ StrangerMessageEvent MiraiClient::GetStrangerMessage(MessageId_t id, QQ_t qq) co
 	auto msg = this->adaptor_->MessageFromId(this->GetSessionKey_(), id, qq);
 
 	if (!std::holds_alternative<StrangerMessageEvent>(msg))
-		throw TypeDismatchError(to_string(StrangerMessageEvent::GetType()), to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
+		throw TypeDismatchError(to_string(StrangerMessageEvent::GetType()),
+		                        to_string(std::visit([](auto&& m) -> EventTypes { return m.GetType(); }, msg)));
 
 	return std::get<StrangerMessageEvent>(msg);
 }
@@ -373,9 +366,16 @@ UserProfile MiraiClient::GetUserProfile(QQ_t qq) const
 	return this->adaptor_->GetUserProfile(this->GetSessionKey_(), qq);
 }
 
-MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message, std::optional<MessageId_t> QuoteId) const
+MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, const MessageChain& message,
+                                           std::optional<MessageId_t> QuoteId) const
 {
 	return this->adaptor_->SendFriendMessage(this->GetSessionKey_(), qq, message, QuoteId);
+}
+
+MessageId_t MiraiClient::SendFriendMessage(QQ_t qq, MessageChain&& message,
+                                           std::optional<MessageId_t> QuoteId) const
+{
+	return this->adaptor_->SendFriendMessage(this->GetSessionKey_(), qq, std::move(message), QuoteId);
 }
 
 MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& message,
@@ -384,20 +384,31 @@ MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, const MessageChain& mes
 	return this->adaptor_->SendGroupMessage(this->GetSessionKey_(), GroupId, message, QuoteId);
 }
 
+MessageId_t MiraiClient::SendGroupMessage(GID_t GroupId, MessageChain&& message,
+                                          std::optional<MessageId_t> QuoteId) const
+{
+	return this->adaptor_->SendGroupMessage(this->GetSessionKey_(), GroupId, std::move(message), QuoteId);
+}
+
 MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
                                          std::optional<MessageId_t> QuoteId) const
 {
 	return this->adaptor_->SendTempMessage(this->GetSessionKey_(), MemberId, GroupId, message, QuoteId);
 }
 
+MessageId_t MiraiClient::SendTempMessage(QQ_t MemberId, GID_t GroupId, MessageChain&& message,
+                                         std::optional<MessageId_t> QuoteId) const
+{
+	return this->adaptor_->SendTempMessage(this->GetSessionKey_(), MemberId, GroupId, std::move(message), QuoteId);
+}
+
 void MiraiClient::SendNudge(const NudgeTarget& target) const
 {
 	if (target.GetNudgeType() == NudgeType::GROUP)
-		this->adaptor_->SendNudge(this->GetSessionKey_(), target.GetTarget(), target.GetGroup(),
-		                                     target.GetNudgeType());
+		this->adaptor_->SendNudge(this->GetSessionKey_(), target.GetTarget(), target.GetGroup(), target.GetNudgeType());
 	else
 		this->adaptor_->SendNudge(this->GetSessionKey_(), target.GetTarget(), target.GetTarget(),
-		                                     target.GetNudgeType());
+		                          target.GetNudgeType());
 }
 
 void MiraiClient::NudgeFriend(QQ_t qq) const
@@ -425,7 +436,8 @@ void MiraiClient::RecallGroupMessage(MessageId_t id, GID_t GroupId) const
 	this->adaptor_->Recall(this->GetSessionKey_(), id, GroupId);
 }
 
-std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart, std::time_t TimeEnd) const
+std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart,
+                                                               std::time_t TimeEnd) const
 {
 	return this->adaptor_->RoamingMessages(this->GetSessionKey_(), TimeStart, TimeEnd, qq);
 }
@@ -434,8 +446,8 @@ std::vector<MessageChain> MiraiClient::GetRoamingFriendMessage(QQ_t qq, std::tim
 std::vector<GroupFileInfo> MiraiClient::GetGroupFileList(GID_t GroupId, const FilePath& dir, int64_t offset,
                                                          int64_t size, bool withDownloadInfo) const
 {
-	return this->adaptor_->FileList(this->GetSessionKey_(), dir.GetId(), dir.GetPath(), GroupId, offset,
-	                                         size, withDownloadInfo);
+	return this->adaptor_->FileList(this->GetSessionKey_(), dir.GetId(), dir.GetPath(), GroupId, offset, size,
+	                                withDownloadInfo);
 }
 
 GroupFileInfo MiraiClient::GetGroupFileInfo(GID_t GroupId, const FilePath& dir, bool withDownloadInfo) const
@@ -448,9 +460,9 @@ void MiraiClient::GetGroupFileInfo(GID_t GroupId, GroupFileInfo& file, bool with
 	this->adaptor_->FileInfo(this->GetSessionKey_(), file.id, "", GroupId, withDownloadInfo);
 }
 
-GroupFileInfo MiraiClient::CreateGroupFileDirectory(GID_t GroupId, const string& directory) const
+GroupFileInfo MiraiClient::CreateGroupFileDirectory(GID_t GroupId, string directory) const
 {
-	return this->adaptor_->FileMkdir(this->GetSessionKey_(), "", "", GroupId, directory);
+	return this->adaptor_->FileMkdir(this->GetSessionKey_(), "", "", GroupId, std::move(directory));
 }
 
 void MiraiClient::RemoveGroupFile(GID_t GroupId, const FilePath& dir) const
@@ -460,24 +472,23 @@ void MiraiClient::RemoveGroupFile(GID_t GroupId, const FilePath& dir) const
 
 void MiraiClient::MoveGroupFile(GID_t GroupId, const FilePath& FileDir, const FilePath& MoveToDir) const
 {
-	this->adaptor_->FileMove(this->GetSessionKey_(), FileDir.GetId(), FileDir.GetPath(), GroupId,
-	                                         MoveToDir.GetId(), MoveToDir.GetPath());
+	this->adaptor_->FileMove(this->GetSessionKey_(), FileDir.GetId(), FileDir.GetPath(), GroupId, MoveToDir.GetId(),
+	                         MoveToDir.GetPath());
 }
 
-void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const string& NewName) const
+void MiraiClient::RenameGroupFile(GID_t GroupId, const FilePath& FileDir, string NewName) const
 {
-	this->adaptor_->FileRename(this->GetSessionKey_(), FileDir.GetId(), FileDir.GetPath(), GroupId,
-	                                           NewName);
+	this->adaptor_->FileRename(this->GetSessionKey_(), FileDir.GetId(), FileDir.GetPath(), GroupId, std::move(NewName));
 }
 
 
-GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name, string content) const
+GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, string UploadPath, string name,
+                                           string content) const
 {
-	return this->adaptor_->FileUpload(this->GetSessionKey_(), UploadPath, GroupId, "group", name,
-	                                           std::move(content));
+	return this->adaptor_->FileUpload(this->GetSessionKey_(), std::move(UploadPath), GroupId, "group", std::move(name), std::move(content));
 }
 
-GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
+GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, string UploadPath, string name,
                                            std::istream& file) const
 {
 	string s;
@@ -485,15 +496,15 @@ GroupFileInfo MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPa
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadGroupFile(GroupId, UploadPath, name, std::move(s));
+	return this->UploadGroupFile(GroupId, std::move(UploadPath), std::move(name), std::move(s));
 }
 
 GroupFileInfo
-MiraiClient::UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
+MiraiClient::UploadGroupFile(GID_t GroupId, string UploadPath, string name,
                              std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
 {
-	return this->adaptor_->FileUploadChunked(this->GetSessionKey_(), UploadPath, GroupId, "group", name,
-	                                                  std::move(ContentProvider));
+	return this->adaptor_->FileUploadChunked(this->GetSessionKey_(), std::move(UploadPath), GroupId, "group", std::move(name),
+	                                         std::move(ContentProvider));
 }
 
 
@@ -512,8 +523,8 @@ FriendImage MiraiClient::UploadFriendImage(std::istream& file) const
 	return this->UploadFriendImage(std::move(s));
 }
 
-FriendImage
-MiraiClient::UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
+FriendImage MiraiClient::UploadFriendImage(
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
 {
 	return this->adaptor_->UploadImageChunked(this->GetSessionKey_(), "friend", std::move(ContentProvider));
 }
@@ -534,16 +545,16 @@ GroupImage MiraiClient::UploadGroupImage(std::istream& file) const
 	return this->UploadGroupImage(std::move(s));
 }
 
-GroupImage
-MiraiClient::UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
+GroupImage MiraiClient::UploadGroupImage(
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
 {
 	return this->adaptor_->UploadImageChunked(this->GetSessionKey_(), "group", std::move(ContentProvider));
 }
 
 
-TempImage MiraiClient::UploadTempImage(const string& content) const
+TempImage MiraiClient::UploadTempImage(string content) const
 {
-	return this->adaptor_->UploadImage(this->GetSessionKey_(), "temp", content);
+	return this->adaptor_->UploadImage(this->GetSessionKey_(), "temp", std::move(content));
 }
 
 TempImage MiraiClient::UploadTempImage(std::istream& file) const
@@ -553,7 +564,7 @@ TempImage MiraiClient::UploadTempImage(std::istream& file) const
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadTempImage(s);
+	return this->UploadTempImage(std::move(s));
 }
 
 TempImage
@@ -563,7 +574,7 @@ MiraiClient::UploadTempImage(std::function<bool(size_t offset, std::ostream& sin
 }
 
 
-GroupAudio MiraiClient::UploadGroupAudio(const string& content) const
+GroupAudio MiraiClient::UploadGroupAudio(string content) const
 {
 	return this->adaptor_->UploadAudio(this->GetSessionKey_(), "group", content);
 }
@@ -575,11 +586,11 @@ GroupAudio MiraiClient::UploadGroupAudio(std::istream& file) const
 	while (file.read(buffer, sizeof(buffer))) // NOLINT(*-array-to-pointer-decay)
 		s.append(buffer, sizeof(buffer));     // NOLINT(*-array-to-pointer-decay)
 	s.append(buffer, file.gcount());          // NOLINT(*-array-to-pointer-decay)
-	return this->UploadGroupAudio(s);
+	return this->UploadGroupAudio(std::move(s));
 }
 
-GroupAudio
-MiraiClient::UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
+GroupAudio MiraiClient::UploadGroupAudio(
+	std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const
 {
 	return this->adaptor_->UploadAudioChunked(this->GetSessionKey_(), "group", std::move(ContentProvider));
 }
@@ -610,14 +621,14 @@ void MiraiClient::Unmute(const GroupMember& member) const
 	return this->adaptor_->Unmute(this->GetSessionKey_(), member.group.id, member.id);
 }
 
-void MiraiClient::Kick(GID_t GroupId, QQ_t member, const string& message) const
+void MiraiClient::Kick(GID_t GroupId, QQ_t member, string message) const
 {
-	return this->adaptor_->Kick(this->GetSessionKey_(), GroupId, member, message);
+	return this->adaptor_->Kick(this->GetSessionKey_(), GroupId, member, std::move(message));
 }
 
-void MiraiClient::Kick(const GroupMember& member, const string& message) const
+void MiraiClient::Kick(const GroupMember& member, string message) const
 {
-	return this->adaptor_->Kick(this->GetSessionKey_(), member.group.id, member.id, message);
+	return this->adaptor_->Kick(this->GetSessionKey_(), member.group.id, member.id, std::move(message));
 }
 
 void MiraiClient::LeaveGroup(GID_t GroupId) const
@@ -646,9 +657,9 @@ GroupConfig MiraiClient::GetGroupConfig(GID_t GroupId) const
 	return this->adaptor_->GetGroupConfig(this->GetSessionKey_(), GroupId);
 }
 
-void MiraiClient::SetGroupConfig(GID_t GroupId, const string& name, std::optional<bool> AllowMemberInvite) const
+void MiraiClient::SetGroupConfig(GID_t GroupId, string name, std::optional<bool> AllowMemberInvite) const
 {
-	return this->adaptor_->SetGroupConfig(this->GetSessionKey_(), GroupId, name, std::nullopt, AllowMemberInvite);
+	return this->adaptor_->SetGroupConfig(this->GetSessionKey_(), GroupId, std::move(name), std::nullopt, AllowMemberInvite);
 }
 
 GroupMember MiraiClient::GetMemberInfo(GID_t GroupId, QQ_t member) const
@@ -656,9 +667,9 @@ GroupMember MiraiClient::GetMemberInfo(GID_t GroupId, QQ_t member) const
 	return this->adaptor_->GetMemberInfo(this->GetSessionKey_(), GroupId, member);
 }
 
-void MiraiClient::SetMemberInfo(GID_t GroupId, QQ_t member, const string& name, const string& title) const
+void MiraiClient::SetMemberInfo(GID_t GroupId, QQ_t member, string name, string title) const
 {
-	return this->adaptor_->SetMemberInfo(this->GetSessionKey_(), GroupId, member, name, title);
+	return this->adaptor_->SetMemberInfo(this->GetSessionKey_(), GroupId, member, std::move(name), std::move(title));
 }
 
 void MiraiClient::SetGroupAdmin(GID_t GroupId, QQ_t member, bool assign) const
@@ -672,17 +683,17 @@ std::vector<GroupAnnouncement> MiraiClient::GetAnnouncementList(GID_t GroupId, i
 	return this->adaptor_->AnnoList(this->GetSessionKey_(), GroupId, offset, size);
 }
 
-GroupAnnouncement MiraiClient::PublishAnnouncement(GID_t GroupId, const string& content, const MiraiImage& cover,
+GroupAnnouncement MiraiClient::PublishAnnouncement(GID_t GroupId, string content, MiraiImage cover,
                                                    bool ToNewMember, bool pinned, bool ShowEditCard, bool ShowPopup,
                                                    bool RequireConfirm) const
 {
-	return this->adaptor_->AnnoPublish(this->GetSessionKey_(), GroupId, content, cover.url, cover.path,
-	                                    cover.base64, ToNewMember, pinned, ShowEditCard, ShowPopup, RequireConfirm);
+	return this->adaptor_->AnnoPublish(this->GetSessionKey_(), GroupId, std::move(content), std::move(cover.url), std::move(cover.path), std::move(cover.base64),
+	                                   ToNewMember, pinned, ShowEditCard, ShowPopup, RequireConfirm);
 }
 
-void MiraiClient::DeleteAnnouncement(GID_t GroupId, const string& fid) const
+void MiraiClient::DeleteAnnouncement(GID_t GroupId, string fid) const
 {
-	return this->adaptor_->AnnoDelete(this->GetSessionKey_(), GroupId, fid);
+	return this->adaptor_->AnnoDelete(this->GetSessionKey_(), GroupId, std::move(fid));
 }
 
 void MiraiClient::DeleteAnnouncement(const GroupAnnouncement& announcement) const
@@ -692,56 +703,63 @@ void MiraiClient::DeleteAnnouncement(const GroupAnnouncement& announcement) cons
 
 
 void MiraiClient::RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, NewFriendRequestOp operation,
-                                            const string& message) const
+                                            string message) const
 {
-	return this->adaptor_->RespNewFriendRequestEvent(this->GetSessionKey_(), EventId, FromId, GroupId,
-	                                                          (int)operation, message);
+	return this->adaptor_->RespNewFriendRequestEvent(this->GetSessionKey_(), EventId, FromId, GroupId, (int)operation,
+	                                                 std::move(message));
 }
 
 void MiraiClient::RespNewFriendRequestEvent(const NewFriendRequestEvent& event, NewFriendRequestOp operation,
-                                            const string& message) const
+                                            string message) const
 {
-	return this->adaptor_->RespNewFriendRequestEvent(
-		this->GetSessionKey_(), event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, message);
+	return this->adaptor_->RespNewFriendRequestEvent(this->GetSessionKey_(), event.GetEventId(), event.GetUserId(),
+	                                                 event.GetGroupId(), (int)operation, std::move(message));
 }
 
 void MiraiClient::RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, MemberJoinRequestOp operation,
-                                             const string& message) const
+                                             string message) const
 {
-	return this->adaptor_->RespMemberJoinRequestEvent(this->GetSessionKey_(), EventId, FromId, GroupId,
-	                                                           (int)operation, message);
+	return this->adaptor_->RespMemberJoinRequestEvent(this->GetSessionKey_(), EventId, FromId, GroupId, (int)operation,
+	                                                  std::move(message));
 }
 
 void MiraiClient::RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event, MemberJoinRequestOp operation,
-                                             const string& message) const
+                                             string message) const
 {
-	return this->adaptor_->RespMemberJoinRequestEvent(
-		this->GetSessionKey_(), event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, message);
+	return this->adaptor_->RespMemberJoinRequestEvent(this->GetSessionKey_(), event.GetEventId(), event.GetUserId(),
+	                                                  event.GetGroupId(), (int)operation, std::move(message));
 }
 
 void MiraiClient::RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId,
-                                                      BotInvitedJoinGroupRequestOp operation, const string& message) const
+                                                      BotInvitedJoinGroupRequestOp operation,
+                                                      string message) const
 {
-	return this->adaptor_->RespBotInvitedJoinGroupRequestEvent(this->GetSessionKey_(), EventId, FromId,
-	                                                                    GroupId, (int)operation, message);
+	return this->adaptor_->RespBotInvitedJoinGroupRequestEvent(this->GetSessionKey_(), EventId, FromId, GroupId,
+	                                                           (int)operation, std::move(message));
 }
 
 void MiraiClient::RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupRequestEvent& event,
-                                                      BotInvitedJoinGroupRequestOp operation, const string& message) const
+                                                      BotInvitedJoinGroupRequestOp operation,
+                                                      string message) const
 {
 	return this->adaptor_->RespBotInvitedJoinGroupRequestEvent(
-		this->GetSessionKey_(), event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, message);
+		this->GetSessionKey_(), event.GetEventId(), event.GetUserId(), event.GetGroupId(), (int)operation, std::move(message));
 }
 
 
-void MiraiClient::RegisterCommand(const string& name, const std::vector<string>& alias, const string& usage,
-                                  const string& description) const
+void MiraiClient::RegisterCommand(string name, std::vector<string> alias, string usage,
+                                  string description) const
 {
-	return this->adaptor_->CmdRegister(this->GetSessionKey_(), name, alias, usage, description);
+	return this->adaptor_->CmdRegister(this->GetSessionKey_(), std::move(name), std::move(alias), std::move(usage), std::move(description));
 }
+
 void MiraiClient::ExecuteCommand(const MessageChain& command) const
 {
 	return this->adaptor_->CmdExecute(this->GetSessionKey_(), command);
+}
+void MiraiClient::ExecuteCommand(MessageChain&& command) const
+{
+	return this->adaptor_->CmdExecute(this->GetSessionKey_(), std::move(command));
 }
 
 

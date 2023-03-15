@@ -50,6 +50,16 @@ struct ImageMessageImpl<MessageImpl>::Serializable
 		j.update(p.image_);
 	}
 
+	template <typename T = MessageImpl>
+	static auto to_json(nlohmann::json& j, ImageMessageImpl<MessageImpl>&& p)
+	-> std::enable_if_t<T::isSendSupported()>
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = MessageImpl::GetType();
+		::Mirai::to_json(j, std::move(p.image_));
+	}
+
 };
 
 } // namespace Mirai

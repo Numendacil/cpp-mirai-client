@@ -38,12 +38,31 @@ struct XmlMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, XmlMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == XmlMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		::Mirai::from_json(std::move(j.at("xml")), p.content_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const XmlMessage& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = XmlMessage::GetType();
 		j["xml"] = p.content_;
+	}
+
+	static void to_json(nlohmann::json& j, XmlMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = XmlMessage::GetType();
+		j["xml"] = std::move(p.content_);
 	}
 
 };

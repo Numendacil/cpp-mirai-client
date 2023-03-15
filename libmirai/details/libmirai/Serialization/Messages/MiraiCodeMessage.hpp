@@ -38,12 +38,31 @@ struct MiraiCodeMessage::Serializable
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
+	static void from_json(nlohmann::json&& j, MiraiCodeMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == MiraiCodeMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		::Mirai::from_json(std::move(j.at("code")), p.code_);
+
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
 	static void to_json(nlohmann::json& j, const MiraiCodeMessage& p)
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
 		j["type"] = MiraiCodeMessage::GetType();
 		j["code"] = p.code_;
+	}
+
+	static void to_json(nlohmann::json& j, MiraiCodeMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = MiraiCodeMessage::GetType();
+		j["code"] = std::move(p.code_);
 	}
 
 };

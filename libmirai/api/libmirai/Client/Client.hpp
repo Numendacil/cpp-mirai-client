@@ -30,12 +30,11 @@
 #include <variant>
 #include <vector>
 
+#include <libmirai/Adaptors/IAdaptor.hpp>
+#include <libmirai/Events/Events.hpp>
 #include <libmirai/Messages/MessageChain.hpp>
 #include <libmirai/Types/Types.hpp>
 #include <libmirai/Utils/Logger.hpp>
-#include <libmirai/Events/Events.hpp>
-
-#include <libmirai/Adaptors/IAdaptor.hpp>
 
 /// 所有mirai相关的对象的命名空间
 namespace Mirai
@@ -67,26 +66,27 @@ private:
 		template<typename T, typename TypeList> struct is_event_type_;
 
 		template<typename T, size_t... I>
-		struct is_event_type_<T, std::index_sequence<I...>> : public std::disjunction<std::is_same<T, GetEventType_t<EventTypesList[I]>>...>
+		struct is_event_type_<T, std::index_sequence<I...>>
+			: public std::disjunction<std::is_same<T, GetEventType_t<EventTypesList[I]>>...>
 		{
 		};
 
-		template<typename T>
-		using is_event_type = is_event_type_<T, std::make_index_sequence<EventTypesList.size()>>;
+		template<typename T> using is_event_type = is_event_type_<T, std::make_index_sequence<EventTypesList.size()>>;
 
-		template<typename T>
-		struct event_callback_variant_ {};
+		template<typename T> struct event_callback_variant_
+		{
+		};
 
-		template<size_t... I>
-		struct event_callback_variant_<std::index_sequence<I...>> { using type = std::variant<std::function<void(GetEventType_t<EventTypesList[I]>)>...>; };
+		template<size_t... I> struct event_callback_variant_<std::index_sequence<I...>>
+		{
+			using type = std::variant<std::function<void(GetEventType_t<EventTypesList[I]>)>...>;
+		};
 
 		using EventCallbackVariant = event_callback_variant_<std::make_index_sequence<EventTypesList.size()>>::type;
 
-		template<typename T> 
-		struct function_traits;
+		template<typename T> struct function_traits;
 
-		template<typename EventType> 
-		struct function_traits<std::function<void(EventType)>>
+		template<typename EventType> struct function_traits<std::function<void(EventType)>>
 		{
 			using type = EventType;
 		};
@@ -101,8 +101,7 @@ private:
 	};
 
 public:
-	template<typename Event> 
-	using EventCallback = std::function<void(Event)>;
+	template<typename Event> using EventCallback = std::function<void(Event)>;
 
 protected:
 	// For locking session key
@@ -135,10 +134,12 @@ public:
 	MiraiClient(std::unique_ptr<IAdaptor> adaptor);
 	MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor);
 
-	template <typename Adaptor, typename... Args, typename std::enable_if_t<std::is_base_of_v<IAdaptor, Adaptor>, int> = 0>
-	MiraiClient(size_t PoolSize, Args&&... args) 
-	: MiraiClient(PoolSize, std::make_unique<Adaptor>(std::forward<Args>(args)...))
-	{} 
+	template<typename Adaptor, typename... Args,
+	         typename std::enable_if_t<std::is_base_of_v<IAdaptor, Adaptor>, int> = 0>
+	MiraiClient(size_t PoolSize, Args&&... args)
+		: MiraiClient(PoolSize, std::make_unique<Adaptor>(std::forward<Args>(args)...))
+	{
+	}
 
 	MiraiClient(const MiraiClient&) = delete;
 	MiraiClient& operator=(const MiraiClient&) = delete;
@@ -161,7 +162,7 @@ public:
 	 * @return 原先的适配器，`std::unique_ptr<IAdaptor>`
 	 */
 	///@{
-	
+
 	std::unique_ptr<IAdaptor> SetAdaptor(std::unique_ptr<IAdaptor> adaptor)
 	{
 		std::unique_ptr<IAdaptor> ret = std::move(this->adaptor_);
@@ -169,7 +170,8 @@ public:
 		return ret;
 	}
 
-	template <typename Adaptor, typename... Args, typename std::enable_if_t<std::is_base_of_v<IAdaptor, Adaptor>, int> = 0>
+	template<typename Adaptor, typename... Args,
+	         typename std::enable_if_t<std::is_base_of_v<IAdaptor, Adaptor>, int> = 0>
 	std::unique_ptr<IAdaptor> SetAdaptor(Args&&... args)
 	{
 		return this->SetAdaptor(std::make_unique<Adaptor>(std::forward<Args>(args)...));
@@ -179,16 +181,10 @@ public:
 
 
 	/// 设置日志记录类
-	void SetLogger(std::shared_ptr<ILogger> logger)
-	{
-		this->logger_ = logger;
-	}
+	void SetLogger(std::shared_ptr<ILogger> logger) { this->logger_ = logger; }
 
 	/// 获取日志记录类
-	std::shared_ptr<ILogger> GetLogger() const
-	{
-		return this->logger_;
-	}
+	std::shared_ptr<ILogger> GetLogger() const { return this->logger_; }
 
 
 	/**
@@ -205,10 +201,7 @@ public:
 		this->EventHandlers_[EventType::GetType()] = std::move(callback);
 	}
 
-	template <EventTypes Type> void On(EventCallback<GetEventType_t<Type>> callback)
-	{
-		this->On(std::move(callback));
-	}
+	template<EventTypes Type> void On(EventCallback<GetEventType_t<Type>> callback) { this->On(std::move(callback)); }
 	///@}
 
 
@@ -365,8 +358,12 @@ public:
 	 * @param QuoteId 引用回复内容的消息id
 	 * @return 发送的消息id
 	 */
+	///@{
 	MessageId_t SendFriendMessage(QQ_t qq, const MessageChain& message,
 	                              std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	MessageId_t SendFriendMessage(QQ_t qq, MessageChain&& message,
+	                              std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	///@}
 
 	/**
 	 * @brief 发送群聊消息
@@ -376,8 +373,12 @@ public:
 	 * @param QuoteId 引用回复内容的消息id
 	 * @return 发送的消息id
 	 */
+	///@{
 	MessageId_t SendGroupMessage(GID_t GroupId, const MessageChain& message,
 	                             std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	MessageId_t SendGroupMessage(GID_t GroupId, MessageChain&& message,
+	                             std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	///@}
 
 	/**
 	 * @brief 发送临时会话消息
@@ -388,8 +389,12 @@ public:
 	 * @param QuoteId 引用回复内容的消息id
 	 * @return 发送的消息id
 	 */
+	///@{
 	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, const MessageChain& message,
 	                            std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	MessageId_t SendTempMessage(QQ_t MemberId, GID_t GroupId, MessageChain&& message,
+	                            std::optional<MessageId_t> QuoteId = std::nullopt) const;
+	///@}
 
 	/**
 	 * @brief 发送头像戳一戳消息
@@ -444,8 +449,9 @@ public:
 	 * @param TimeEnd 消息结束时间
 	 * @return `std::vector<MessageChain>` 
 	 */
-	std::vector<MessageChain> GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart = 0,
-	                                                  std::time_t TimeEnd = std::numeric_limits<std::time_t>::max()) const;
+	std::vector<MessageChain>
+	GetRoamingFriendMessage(QQ_t qq, std::time_t TimeStart = 0,
+	                        std::time_t TimeEnd = std::numeric_limits<std::time_t>::max()) const;
 
 	/**
 	 * @brief 获取群文件列表
@@ -487,7 +493,7 @@ public:
 	 * @param directory 文件夹命名
 	 * @return 新建的文件夹信息
 	 */
-	GroupFileInfo CreateGroupFileDirectory(GID_t GroupId, const string& directory) const;
+	GroupFileInfo CreateGroupFileDirectory(GID_t GroupId, string directory) const;
 
 	/**
 	 * @brief 删除群文件
@@ -513,7 +519,7 @@ public:
 	 * @param FileDir 群文件路径
 	 * @param NewName 新文件名
 	 */
-	void RenameGroupFile(GID_t GroupId, const FilePath& FileDir, const string& NewName) const;
+	void RenameGroupFile(GID_t GroupId, const FilePath& FileDir, string NewName) const;
 
 	/**
 	 * @brief 上传群文件
@@ -524,7 +530,7 @@ public:
 	 * @param content 文件内容
 	 * @return 上传的群文件信息 
 	 */
-	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name, string content) const;
+	GroupFileInfo UploadGroupFile(GID_t GroupId, string UploadPath, string name, string content) const;
 
 	/**
 	 * @brief 上传群文件
@@ -535,7 +541,8 @@ public:
 	 * @param file 文件流
 	 * @return 上传的群文件信息 
 	 */
-	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name, std::istream& file) const;
+	GroupFileInfo UploadGroupFile(GID_t GroupId, string UploadPath, string name,
+	                              std::istream& file) const;
 
 	/**
 	 * @brief 上传群文件
@@ -548,8 +555,9 @@ public:
 	 * @param ContentProvider 文件内容，返回false表示取消请求
 	 * @return 上传的群文件信息 
 	 */
-	GroupFileInfo UploadGroupFile(GID_t GroupId, const string& UploadPath, const string& name,
-	                              std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
+	GroupFileInfo
+	UploadGroupFile(GID_t GroupId, string UploadPath, string name,
+	                std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
 
 	/**
 	 * @brief 上传好友图片
@@ -573,7 +581,8 @@ public:
 	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `FriendImage` 
 	 */
-	FriendImage UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
+	FriendImage
+	UploadFriendImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
 
 	/**
 	 * @brief 上传群聊图片
@@ -597,7 +606,8 @@ public:
 	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `GroupImage` 
 	 */
-	GroupImage UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
+	GroupImage
+	UploadGroupImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
 
 	/**
 	 * @brief 上传临时会话图片
@@ -605,7 +615,7 @@ public:
 	 * @param content 图片文件内容（原始二进制，不是base64编码）
 	 * @return `TempImage` 
 	 */
-	TempImage UploadTempImage(const string& content) const;
+	TempImage UploadTempImage(string content) const;
 	/**
 	 * @brief 上传临时会话图片
 	 * 
@@ -621,7 +631,8 @@ public:
 	 * @param ContentProvider 图片内容，返回false表示取消请求
 	 * @return `TempImage` 
 	 */
-	TempImage UploadTempImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
+	TempImage
+	UploadTempImage(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
 
 	/**
 	 * @brief 上传群聊语音
@@ -629,7 +640,7 @@ public:
 	 * @param content 语音文件内容（原始二进制，不是base64编码）
 	 * @return `GroupAudio` 
 	 */
-	GroupAudio UploadGroupAudio(const string& content) const;
+	GroupAudio UploadGroupAudio(string content) const;
 	/**
 	 * @brief 上传群聊语音
 	 * 
@@ -645,7 +656,8 @@ public:
 	 * @param ContentProvider 语音内容，返回false表示取消请求
 	 * @return `GroupAudio` 
 	 */
-	GroupAudio UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
+	GroupAudio
+	UploadGroupAudio(std::function<bool(size_t offset, std::ostream& sink, bool& finish)> ContentProvider) const;
 
 	/**
 	 * @brief 删除好友
@@ -691,14 +703,14 @@ public:
 	 * @param member 成员QQ
 	 * @param message 附带信息
 	 */
-	void Kick(GID_t GroupId, QQ_t member, const string& message) const;
+	void Kick(GID_t GroupId, QQ_t member, string message) const;
 	/**
 	 * @brief 移除群成员
 	 * 
 	 * @param member 群成员
 	 * @param message 附带信息
 	 */
-	void Kick(const GroupMember& member, const string& message) const;
+	void Kick(const GroupMember& member, string message) const;
 
 	/**
 	 * @brief 退出群聊
@@ -745,7 +757,8 @@ public:
 	 * @param name 群聊名称，默认保持原设置
 	 * @param AllowMemberInvite 是否允许邀请入群，默认保持原设置
 	 */
-	void SetGroupConfig(GID_t GroupId, const string& name = "", std::optional<bool> AllowMemberInvite = std::nullopt) const;
+	void SetGroupConfig(GID_t GroupId, string name = "",
+	                    std::optional<bool> AllowMemberInvite = std::nullopt) const;
 
 	/**
 	 * @brief 获取群成员资料
@@ -764,7 +777,7 @@ public:
 	 * @param name 群名片
 	 * @param title 群头衔
 	 */
-	void SetMemberInfo(GID_t GroupId, QQ_t member, const string& name = "", const string& title = "") const;
+	void SetMemberInfo(GID_t GroupId, QQ_t member, string name = "", string title = "") const;
 
 	/**
 	 * @brief 设置群管理员
@@ -798,7 +811,7 @@ public:
 	 * @param RequireConfirm 是否需要群员确认
 	 * @return 发布的群公告 
 	 */
-	GroupAnnouncement PublishAnnouncement(GID_t GroupId, const string& content, const MiraiImage& cover = {},
+	GroupAnnouncement PublishAnnouncement(GID_t GroupId, string content, MiraiImage cover = {},
 	                                      bool ToNewMember = false, bool pinned = false, bool ShowEditCard = false,
 	                                      bool ShowPopup = false, bool RequireConfirm = false) const;
 
@@ -808,7 +821,7 @@ public:
 	 * @param GroupId 群聊id
 	 * @param fid 群公告id
 	 */
-	void DeleteAnnouncement(GID_t GroupId, const string& fid) const;
+	void DeleteAnnouncement(GID_t GroupId, string fid) const;
 	/**
 	 * @brief 删除群公告
 	 * 
@@ -826,7 +839,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespNewFriendRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, NewFriendRequestOp operation,
-	                               const string& message) const;
+	                               string message) const;
 	/**
 	 * @brief 处理添加好友申请事件 `NewFriendRequestEvent`
 	 * 
@@ -835,7 +848,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespNewFriendRequestEvent(const NewFriendRequestEvent& event, NewFriendRequestOp operation,
-	                               const string& message) const;
+	                               string message) const;
 
 	/**
 	 * @brief 处理用户申请入群事件 `MemberJoinRequestEvent`
@@ -847,7 +860,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespMemberJoinRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId, MemberJoinRequestOp operation,
-	                                const string& message) const;
+	                                string message) const;
 	/**
 	 * @brief 处理用户申请入群事件 `MemberJoinRequestEvent`
 	 * 
@@ -856,7 +869,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespMemberJoinRequestEvent(const MemberJoinRequestEvent& event, MemberJoinRequestOp operation,
-	                                const string& message) const;
+	                                string message) const;
 
 	/**
 	 * @brief 处理Bot被邀请入群事件 `BotInvitedJoinGroupRequestEvent`
@@ -868,7 +881,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespBotInvitedJoinGroupRequestEvent(int64_t EventId, QQ_t FromId, GID_t GroupId,
-	                                         BotInvitedJoinGroupRequestOp operation, const string& message) const;
+	                                         BotInvitedJoinGroupRequestOp operation, string message) const;
 	/**
 	 * @brief 处理Bot被邀请入群事件 `BotInvitedJoinGroupRequestEvent`
 	 * 
@@ -877,7 +890,7 @@ public:
 	 * @param message 回复消息
 	 */
 	void RespBotInvitedJoinGroupRequestEvent(const BotInvitedJoinGroupRequestEvent& event,
-	                                         BotInvitedJoinGroupRequestOp operation, const string& message) const;
+	                                         BotInvitedJoinGroupRequestOp operation, string message) const;
 
 	/**
 	 * @brief 注册指令
@@ -887,15 +900,18 @@ public:
 	 * @param usage 使用说明
 	 * @param description 指令描述
 	 */
-	void RegisterCommand(const string& name, const std::vector<string>& alias, const string& usage,
-	                     const string& description) const;
+	void RegisterCommand(string name, std::vector<string> alias, string usage,
+	                     string description) const;
 
 	/**
 	 * @brief 执行指令
 	 * 
 	 * @param command 指令内容
 	 */
+	///@{
 	void ExecuteCommand(const MessageChain& command) const;
+	void ExecuteCommand(MessageChain&& command) const;
+	///@}
 
 	/**
 	 * @brief 直接向mirai-api-http发送请求
@@ -907,7 +923,6 @@ public:
 	 * @return `std::string`  
 	 */
 	string CallAPI(const string& path, const string& method, const string& data) const;
-
 };
 
 template<>
@@ -916,20 +931,17 @@ inline void MiraiClient::On<ClientConnectionEstablishedEvent>(EventCallback<Clie
 	this->ConnectionEstablishedCallback_ = callback;
 }
 
-template<> 
-inline void MiraiClient::On<ClientConnectionErrorEvent>(EventCallback<ClientConnectionErrorEvent> callback)
+template<> inline void MiraiClient::On<ClientConnectionErrorEvent>(EventCallback<ClientConnectionErrorEvent> callback)
 {
 	this->ConnectionErrorCallback_ = callback;
 }
 
-template<> 
-inline void MiraiClient::On<ClientConnectionClosedEvent>(EventCallback<ClientConnectionClosedEvent> callback)
+template<> inline void MiraiClient::On<ClientConnectionClosedEvent>(EventCallback<ClientConnectionClosedEvent> callback)
 {
 	this->ConnectionClosedCallback_ = callback;
 }
 
-template<> 
-inline void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParseErrorEvent> callback)
+template<> inline void MiraiClient::On<ClientParseErrorEvent>(EventCallback<ClientParseErrorEvent> callback)
 {
 	this->ParseErrorCallback_ = callback;
 }

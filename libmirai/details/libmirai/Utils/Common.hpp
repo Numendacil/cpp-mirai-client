@@ -42,35 +42,60 @@ auto GetValue(const nlohmann::json& j, KeyType&& key, ValueType&& default_value)
 {
 	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
 	                                                                          std::forward<ValueType>(default_value)));
-	if (!j.is_object() || !j.contains(key) || j.at(key).is_null())
+	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
 		return (ReturnType)std::forward<ValueType>(default_value);
-	return j.at(key).template get<ReturnType>();
+	return j.at(std::forward<KeyType>(key)).template get<ReturnType>();
+}
+
+template<typename ValueType, typename KeyType>
+auto GetValue(nlohmann::json&& j, KeyType&& key, ValueType&& default_value)
+{
+	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
+	                                                                          std::forward<ValueType>(default_value)));
+	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
+		return (ReturnType)std::forward<ValueType>(default_value);
+	ReturnType ret;
+	from_json(std::move(j.at(std::forward<KeyType>(key))), ret);
+	return ret;
 }
 
 template<typename ValueType, typename KeyType>
 std::optional<ValueType> GetOptional(const nlohmann::json& j, KeyType&& key)
 {
-	if (!j.is_object() || !j.contains(key) || j.at(key).is_null())
+	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
 	{
 		return std::nullopt;
 	}
-	return j.at(key).template get<ValueType>();
+	return j.at(std::forward<KeyType>(key)).template get<ValueType>();
+}
+
+template<typename ValueType, typename KeyType>
+std::optional<ValueType> GetOptional(nlohmann::json&& j, KeyType&& key)
+{
+	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
+	{
+		return std::nullopt;
+	}
+	ValueType ret;
+	from_json(std::move(j.at(std::forward<KeyType>(key))), ret);
+	return ret;
 }
 
 template<typename ValueType, typename KeyType>
 void GetOptional(const nlohmann::json& j, KeyType&& key, std::optional<ValueType>& p)
 {
-	if (!j.is_object() || !j.contains(key) || j.at(key).is_null())
-	{
-		p = std::nullopt;
-	}
-	else
-		p = j.at(key).template get<ValueType>();
+	p = GetOptional<ValueType>(j, std::forward<KeyType>(key));
+}
+
+template<typename ValueType, typename KeyType>
+void GetOptional(nlohmann::json&& j, KeyType&& key, std::optional<ValueType>& p)
+{
+	p = GetOptional<ValueType>(std::move(j), std::forward<KeyType>(key));
 }
 
 template<typename KeyType> bool HasValue(const nlohmann::json& j, KeyType&& key)
 {
-	return !(!j.is_object() || !j.contains(key) || j.at(key).is_null());
+	return !(!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null());
 }
 
 } // namespace Mirai::Utils

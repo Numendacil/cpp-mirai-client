@@ -41,7 +41,24 @@ struct MusicShareMessage::Serializable
 		j.at("musicUrl").get_to(p.MusicUrl_);
 		j.at("brief").get_to(p.brief_);
 
-		MIRAI_PARSE_GUARD_END(j)(j);
+		MIRAI_PARSE_GUARD_END(j);
+	}
+
+	static void from_json(nlohmann::json&& j, MusicShareMessage& p)
+	{
+		MIRAI_PARSE_GUARD_BEGIN(j);
+
+		assert(j.at("type").get<MessageTypes>() == MusicShareMessage::GetType()); // NOLINT(*-array-to-pointer-decay)
+
+		j.at("kind").get_to(p.kind_);
+		::Mirai::from_json(std::move(j.at("title")), p.title_);
+		::Mirai::from_json(std::move(j.at("summary")), p.summary_);
+		::Mirai::from_json(std::move(j.at("jumpUrl")), p.JumpUrl_);
+		::Mirai::from_json(std::move(j.at("pictureUrl")), p.PictureUrl_);
+		::Mirai::from_json(std::move(j.at("musicUrl")), p.MusicUrl_);
+		::Mirai::from_json(std::move(j.at("brief")), p.brief_);
+
+		MIRAI_PARSE_GUARD_END(j);
 	}
 
 	static void to_json(nlohmann::json& j, const MusicShareMessage& p)
@@ -56,6 +73,20 @@ struct MusicShareMessage::Serializable
 		j["pictureUrl"] = p.PictureUrl_;
 		j["musicUrl"] = p.MusicUrl_;
 		j["brief"] = p.brief_;
+	}
+
+	static void to_json(nlohmann::json& j, MusicShareMessage&& p)
+	{
+		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
+
+		j["type"] = MusicShareMessage::GetType();
+		j["kind"] = p.kind_;
+		j["title"] = std::move(p.title_);
+		j["summary"] = std::move(p.summary_);
+		j["jumpUrl"] = std::move(p.JumpUrl_);
+		j["pictureUrl"] = std::move(p.PictureUrl_);
+		j["musicUrl"] = std::move(p.MusicUrl_);
+		j["brief"] = std::move(p.brief_);
 	}
 
 };
