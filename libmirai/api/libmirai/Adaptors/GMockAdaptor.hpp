@@ -87,9 +87,8 @@ public:
 	 * @brief Called for opening a session to mirai-api-http
 	 * 
 	 * Connect should not return before ConnectionEstablished callback is called
-	 * @return Session key
 	 */
-	string Connect() override
+	void Connect() override
 	{
 
 		if (this->ConnectionEstablishedCallback)
@@ -106,7 +105,6 @@ public:
 
 			this->ConnectionEstablishedCallback(std::move(event));
 		}
-		return string(SESSION_KEY);
 	}
 
 	/**

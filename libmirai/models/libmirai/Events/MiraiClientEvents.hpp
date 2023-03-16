@@ -60,8 +60,8 @@ private:
 struct ClientConnectionErrorEvent final: public IEvent<ClientConnectionErrorEvent>
 {
 	/// 当前重试次数
-	uint32_t RetryCount = 0;
-	/// 下一次重试前的等待时间
+	size_t RetryCount = 0;
+	/// 下一次重试前的等待时间(ms)
 	double WaitTime = 0;
 	/// Http连接状态
 	int HttpStatus = 0;

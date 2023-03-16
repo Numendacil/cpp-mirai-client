@@ -20,6 +20,13 @@ endif()
 
 # Options with regard to building shared library, you may need to manually set the fPIC option
 option(MIRAI_BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
+# UnitTests
+option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
+# Examples
+option(MIRAI_BUILD_EXAMPLES "Build Examples" ${MIRAI_LIB_MAIN_PROJECT})
+# Install
+option(MIRAI_INSTALL "Install library" ${MIRAI_LIB_MAIN_PROJECT})
+
 
 if(MIRAI_BUILD_SHARED_LIBS)
 	if(MSVC)
@@ -94,11 +101,8 @@ if(NOT TARGET ixwebsocket::ixwebsocket)
 endif()
 
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE Threads::Threads)
-
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
-
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE httplib::httplib)
-
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 
 
@@ -109,7 +113,6 @@ add_subdirectory(libmirai)
 
 
 # UnitTests
-option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_BUILD_UNIT_TESTS)
 	message("UnitTests enabled")
 	add_subdirectory(external/googletest)
@@ -119,7 +122,6 @@ if(MIRAI_BUILD_UNIT_TESTS)
 endif(MIRAI_BUILD_UNIT_TESTS)
 
 # Examples
-option(MIRAI_BUILD_EXAMPLES "Build Examples" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_BUILD_EXAMPLES)
 	message("examples enabled")
 	add_subdirectory(examples)
@@ -127,7 +129,6 @@ endif(MIRAI_BUILD_EXAMPLES)
 
 
 # Install
-option(MIRAI_INSTALL "Install library" ${MIRAI_LIB_MAIN_PROJECT})
 if(MIRAI_INSTALL)
 	install(
 		TARGETS ${MIRAI_LIB_TARGET_NAME}
@@ -156,7 +157,7 @@ if(MIRAI_INSTALL)
 		PATTERN "*.hpp"
 	)
 
-	configure_file("${MIRAI_LIB_TARGET_NAME}-config.cmake.in" "${MIRAI_LIB_TARGET_NAME}-config.cmake" @ONLY)
+	configure_file("${MIRAI_LIB_TARGET_NAME}-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}-config.cmake" @ONLY)
 	install(
 		FILES "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}-config.cmake"
 		DESTINATION "lib/cmake/${MIRAI_LIB_TARGET_NAME}"

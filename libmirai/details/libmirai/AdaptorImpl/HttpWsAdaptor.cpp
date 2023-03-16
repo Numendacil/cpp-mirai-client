@@ -35,6 +35,7 @@ namespace Mirai
 
 using std::string;
 using json = nlohmann::json;
+using namespace std::literals;
 
 namespace
 {
@@ -142,57 +143,155 @@ httplib::Client& HttpWsAdaptor::GetClient_()
 	return it->second;
 }
 
-string HttpWsAdaptor::Connect()
+void HttpWsAdaptor::Connect()
 {
 	if (this->wsclient_.getReadyState() == ix::ReadyState::Open) this->wsclient_.stop();
 	this->httpclients_.clear();
-	this->info_ = std::nullopt;
 	this->bind_ = false;
 
 	string key;
+
+	size_t retry = 0;
+	while (true)
 	{
-		json body = {{"verifyKey", this->config_.VerifyKey}};
-		auto result = this->GetClient_().Post("/verify", body.dump(), JSON_CONTENT_TYPE);
-		json resp = Utils::ParseResponse(result);
-		resp.at("session").get_to(key);
+		try
+		{
+			{
+				json body = {{"verifyKey", this->config_.VerifyKey}};
+				auto result = this->GetClient_().Post("/verify", body.dump(), JSON_CONTENT_TYPE);
+				json resp = Utils::ParseResponse(result);
+				resp.at("session").get_to(key);
+			}
+
+			{
+				json body = {{"sessionKey", key}, {"qq", int64_t(this->config_.BotQQ)}};
+				auto result = this->GetClient_().Post("/bind", body.dump(), JSON_CONTENT_TYPE);
+				(void)Utils::ParseResponse(result);
+				this->bind_ = true;
+			}
+			break;
+		}
+		catch(const std::exception& e)
+		{
+			// In milliseconds
+			std::chrono::milliseconds interval = [&retry, &config = this->config_](){
+				constexpr size_t overflow = 26;
+
+				if (retry >= overflow)
+					return config.MaxRetryInterval;
+
+				return std::clamp((int64_t)(std::pow(2, retry)) * 100ms,  config.MinRetryInterval, config.MaxRetryInterval);
+			}();
+
+			retry++;
+
+			if (this->ConnectionErrorCallback_)
+			{
+				ClientConnectionErrorEvent event;
+				event.RetryCount = retry;
+				event.WaitTime = (double)interval.count();
+				event.HttpStatus = 0;
+				event.reason = string("Error occured when receiving first packet: ") + e.what();
+				event.DecompressionError = false;
+				this->ConnectionErrorCallback_(std::move(event));
+			}
+
+			if (this->config_.AutoReconnect)
+			{
+				std::this_thread::sleep_for(interval);
+				continue;
+			}
+			else
+				return;
+		}
 	}
-	{
-		json body = {{"sessionKey", key}, {"qq", int64_t(this->config_.BotQQ)}};
-		auto result = this->GetClient_().Post("/bind", body.dump(), JSON_CONTENT_TYPE);
-		(void)Utils::ParseResponse(result);
-	}
-	this->bind_ = true;
 
 	this->wsclient_.setUrl(this->config_.WebsocketUrl + "/all?verifyKey=" + this->config_.VerifyKey
 	                       + "&sessionKey=" + key);
 
 	this->wsclient_.setOnMessageCallback(
-		[this](const ix::WebSocketMessagePtr& msg)
+		[this, key](const ix::WebSocketMessagePtr& msg)
 		{
+			static bool isFirst = false;
+
 			switch (msg->type)
 			{
 			case ix::WebSocketMessageType::Open:
 				if (this->ConnectionEstablishedCallback_)
 				{
-					{
-						std::lock_guard<std::mutex> lk(this->connectmtx_);
-						this->info_ = ClientConnectionEstablishedEvent();
-						this->info_->uri = msg->openInfo.uri;
-						this->info_->headers = {std::make_move_iterator(msg->openInfo.headers.begin()),
-					                            std::make_move_iterator(msg->openInfo.headers.end())};
-						this->info_->protocol = msg->openInfo.protocol;
-					}
-					this->connectcv_.notify_all();
-					{
-						// Avoid calling other callbacks before OnConnectionEstablished
-						std::unique_lock<std::mutex> lk(this->connectmtx_);
-						this->connectcv_.wait(lk, [this]() { return !this->info_; });
-					}
+					ClientConnectionEstablishedEvent event;
+					event.uri = msg->openInfo.uri;
+					event.headers = {std::make_move_iterator(msg->openInfo.headers.begin()),
+											std::make_move_iterator(msg->openInfo.headers.end())};
+					event.protocol = msg->openInfo.protocol;
+					event.SessionKey = key;
+
+					httplib::Params params = {{"sessionKey", key}};
+					auto result = this->GetClient_().Get("/sessionInfo", params, httplib::Headers{});
+					json resp = Utils::ParseResponse(result);
+
+					MIRAI_PARSE_GUARD_BEGIN(resp);
+					resp.at("data").at("qq").get_to(event.BotProfile);
+					MIRAI_PARSE_GUARD_END(resp);
+
+					this->ConnectionEstablishedCallback_(std::move(event));
 				}
+				{
+					std::lock_guard<std::mutex> lk(this->connectmtx_);
+					this->connected_ = true;
+					this->connectcv_.notify_all();
+				}
+				isFirst = true;
 				break;
 			case ix::WebSocketMessageType::Message:
 				if (!msg->binary)
 				{
+					if (isFirst)
+					{
+						try
+						{
+							json m = json::parse(msg->str);
+							if (!m.contains("data")) 
+								throw std::runtime_error("Unexpected message: " + msg->str);
+
+							json data = m.at("data");
+							if (!data.is_object()) 
+								throw std::runtime_error("Unexpected message: " + msg->str);
+							data = Utils::ParseResponse(data);
+
+							if (data.at("session").get<string>() != key)
+								throw std::runtime_error("Dismatched session-key: " + key + " <-> " + data.at("session").get<string>());
+						}
+						catch(const std::exception& e)
+						{
+							if (this->ConnectionErrorCallback_)
+							{
+								ClientConnectionErrorEvent event;
+								event.RetryCount = 0;
+								event.WaitTime = 0;
+								event.HttpStatus = 0;
+								event.reason = string("Error occured when receiving first packet: ") + e.what();
+								event.DecompressionError = false;
+								this->ConnectionErrorCallback_(std::move(event));
+							}
+
+							if (this->config_.AutoReconnect)
+							{
+								// Reconnect attempt
+								std::thread([this, key](){
+									this->Disconnect(std::move(key));
+									this->Connect();
+								}).detach();
+							}
+							else
+							{
+								std::thread([this, key](){
+									this->Disconnect(std::move(key));
+								}).detach();
+							}
+						}
+						isFirst = false;
+					}
 					if (this->TextCallback_)
 					{
 						this->TextCallback_(msg->str);
@@ -220,6 +319,10 @@ string HttpWsAdaptor::Connect()
 					event.remote = msg->closeInfo.remote;
 					this->ConnectionClosedCallback_(std::move(event));
 				}
+				{
+					std::lock_guard<std::mutex> lk(this->connectmtx_);
+					this->connected_ = false;
+				}
 				break;
 			default:
 				// do nothing
@@ -227,36 +330,9 @@ string HttpWsAdaptor::Connect()
 			}
 		});
 	this->wsclient_.start();
-
-	if (this->ConnectionEstablishedCallback_)
-	{
-		ClientConnectionEstablishedEvent event;
-		{
-			std::unique_lock<std::mutex> lk(this->connectmtx_);
-			this->connectcv_.wait(lk, [this]() { return this->info_; });
-
-			this->info_->SessionKey = key;
-
-			httplib::Params params = {{"sessionKey", key}};
-			auto result = this->GetClient_().Get("/sessionInfo", params, httplib::Headers{});
-			json resp = Utils::ParseResponse(result);
-
-			MIRAI_PARSE_GUARD_BEGIN(resp);
-			resp.at("data").at("qq").get_to(this->info_->BotProfile);
-			MIRAI_PARSE_GUARD_END(resp);
-
-			event = std::move(this->info_.value());
-		}
-
-		this->ConnectionEstablishedCallback_(std::move(event));
-
-		{
-			std::lock_guard<std::mutex> lk(this->connectmtx_);
-			this->info_ = std::nullopt;
-		}
-		this->connectcv_.notify_all();
-	}
-	return key;
+	
+	std::unique_lock<std::mutex> lk(this->connectmtx_);
+	this->connectcv_.wait(lk, [this]() { return this->connected_; });
 }
 
 void HttpWsAdaptor::Disconnect(string SessionKey)

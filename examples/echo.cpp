@@ -6,14 +6,14 @@ int main()
 {
 	using namespace Mirai;
 	MiraiClient client;
-	SessionConfigs config;
+	HttpWsAdaptorConfig config;
 
-	/*	Set your other configs here
+	/* Set your other configs here
 	config.FromJsonFile("config.json");
 	*/
 	config.AutoReconnect = false;
 
-	client.SetSessionConfig(config);
+	client.SetAdaptor(MakeHttpWsAdaptor(std::move(config)));
 
 	client.On<FriendMessageEvent>(
 		[](FriendMessageEvent event)

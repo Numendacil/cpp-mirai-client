@@ -43,7 +43,7 @@ private:
 	static size_t init_; // For calling WSAstartup once per program
 	std::map<std::thread::id, httplib::Client> httpclients_;
 
-	std::optional<ClientConnectionEstablishedEvent> info_;
+	bool connected_ = false;
 	mutable std::mutex connectmtx_;	// Guarding connection info
 	mutable std::condition_variable connectcv_;
 
@@ -117,9 +117,8 @@ public:
 	 * @brief Called for opening a session to mirai-api-http
 	 * 
 	 * Connect should not return before ConnectionEstablished callback is called
-	 * @return Session key
 	 */
-	string Connect() override;
+	void Connect() override;
 
 	/**
 	 * @brief Called for closing a session

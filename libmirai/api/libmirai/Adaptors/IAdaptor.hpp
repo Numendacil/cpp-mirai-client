@@ -70,10 +70,10 @@ public:
 	/**
 	 * @brief Called for opening a session to mirai-api-http
 	 * 
-	 * Connect should not return before ConnectionEstablished callback is called
-	 * @return Session key
+	 * Connect should not return before ConnectionEstablished callback is called.
+	 * SessionKey is obtained through ConnectionEstablished callback.
 	 */
-	virtual string Connect() = 0;
+	virtual void Connect() = 0;
 
 	/**
 	 * @brief Called for closing a session
