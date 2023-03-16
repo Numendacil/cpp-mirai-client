@@ -96,9 +96,10 @@ public:
 
 		template<
 			std::size_t... I, typename F,
-			typename Ret = std::enable_if_t<(sizeof...(I) > 0), std::result_of_t<F(GetType_t<MessageTypesList[0]>&)>> >
+		          typename Ret =
+		              std::enable_if_t<(sizeof...(I) > 0), std::invoke_result_t<F, GetType_t<MessageTypesList[0]>&>> >
 		auto visit_(std::index_sequence<I...>, F&& f) -> std::enable_if_t<
-			std::conjunction_v<std::is_same<Ret, std::result_of_t<F(GetType_t<MessageTypesList[I]>&)>>...>, Ret >
+			std::conjunction_v<std::is_same<Ret, std::invoke_result_t<F, GetType_t<MessageTypesList[I]>&>>...>, Ret >
 		{
 			using FP = Ret (*)(F&&, MessageElement*);
 			static constexpr std::array<FP, sizeof...(I)> func = {
@@ -110,10 +111,11 @@ public:
 		}
 
 		template< std::size_t... I, typename F,
-		          typename Ret =
-		              std::enable_if_t<(sizeof...(I) > 0), std::result_of_t<F(const GetType_t<MessageTypesList[0]>&)>> >
+		          typename Ret = std::enable_if_t<(sizeof...(I) > 0),
+		                                          std::invoke_result_t<F, const GetType_t<MessageTypesList[0]>&>> >
 		auto cvisit_(std::index_sequence<I...>, F&& f) const -> std::enable_if_t<
-			std::conjunction_v<std::is_same<Ret, std::result_of_t<F(const GetType_t<MessageTypesList[I]>&)>>...>, Ret >
+			std::conjunction_v<std::is_same<Ret, std::invoke_result_t<F, const GetType_t<MessageTypesList[I]>&>>...>,
+			Ret >
 		{
 			using FP = Ret (*)(F&&, const MessageElement*);
 			static constexpr std::array<FP, sizeof...(I)> func = {[](F&& f, const MessageElement* p) {
