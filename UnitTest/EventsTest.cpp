@@ -537,6 +537,7 @@ TEST(EventsTest, MemberJoinRequestEvent)
 	EXPECT_EQ(event.GetGroupName(), "Group");
 	EXPECT_EQ(event.GetNickname(), "xxx");
 	EXPECT_EQ(event.GetMessage(), "hehe");
+	EXPECT_EQ(event.GetInviter(), 88888888_qq);
 }
 
 TEST(EventsTest, BotInvitedJoinGroupRequestEvent)

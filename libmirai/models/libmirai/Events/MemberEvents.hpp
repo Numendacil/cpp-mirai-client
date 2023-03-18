@@ -199,6 +199,7 @@ public:
  * `MemberJoinRequestEvent::GroupName_` | `""`
  * `MemberJoinRequestEvent::nickname_` | `""`
  * `MemberJoinRequestEvent::message_` | `""`
+ * `MemberJoinRequestEvent::inviter_` | `std::nullopt`
  *
  * 需要Bot为管理员或群主
  */
@@ -213,6 +214,7 @@ private:
 	std::string GroupName_;
 	std::string nickname_;
 	std::string message_;
+	std::optional<QQ_t> InviterId_ = std::nullopt;
 
 	static constexpr EventTypes TYPE_ = EventTypes::MemberJoinRequest;
 
@@ -229,6 +231,9 @@ public:
 	std::string GetGroupName() const { return this->GroupName_; }
 	/// 获取申请信息
 	std::string GetMessage() const { return this->message_; }
+	
+	/// 获取邀请人信息，若无则返回 `std::nullopt`
+	std::optional<QQ_t> GetInviter() const { return this->InviterId_; }
 
 	// TODO: add helper methods for quick response
 

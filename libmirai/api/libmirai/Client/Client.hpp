@@ -237,7 +237,7 @@ public:
 	 * 
 	 * @return  兼容的mirai-api-http插件的版本号 “x.x.x”
 	 */
-	constexpr std::string_view GetCompatibleVersion() const { return "2.6.2"; }
+	constexpr std::string_view GetCompatibleVersion() const { return "2.7.0"; }
 
 	/**
 	 * @brief 获取mirai-api-http插件的版本号

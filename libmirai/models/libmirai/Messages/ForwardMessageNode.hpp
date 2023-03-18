@@ -16,6 +16,7 @@
 #ifndef MIRAI_FORWARD_MESSAGE_NODE_HPP_
 #define MIRAI_FORWARD_MESSAGE_NODE_HPP_
 
+#include <optional>
 #include "ForwardMessage.hpp"
 #include "MessageChain.hpp"
 
@@ -36,6 +37,7 @@ namespace Mirai
 * `Node::SenderName_` | `""`
 * `Node::message_` | `MessageChain{}`
 * `Node::MessageId_` | `std::nullopt`
+* `Node::ref_` | `std::nullopt`
 */
 class ForwardMessage::Node
 {
@@ -45,6 +47,13 @@ protected:
 	std::string SenderName_{};
 	MessageChain message_{};
 	std::optional<MessageId_t> MessageId_ = std::nullopt;
+
+	struct MessageRef
+	{
+		MessageId_t MessageId;
+		int64_t target;
+	};
+	std::optional<MessageRef> ref_ = std::nullopt;
 
 public:
 	Node() = default;
@@ -64,9 +73,13 @@ public:
 	/// 获取消息链
 	MessageChain GetMessageChain() const { return this->message_; }
 	/// 是否含有消息id
-	bool hasMessageId() const { return this->MessageId_.has_value(); }
-	/// 获取消息id，不存在时返回 `0`
-	MessageId_t GetMessageId() const { return this->MessageId_.value_or(0); }
+	bool hasMessageId() const { return this->MessageId_.has_value() || this->ref_.has_value(); }
+
+	/// 获取消息id
+	std::optional<MessageId_t> GetMessageId() const 
+	{ 
+		return this->ref_ ? this->ref_->MessageId : this->MessageId_;
+	}
 
 	/// 设置发送者
 	Node& SetSenderId(QQ_t SenderId)
@@ -100,10 +113,16 @@ public:
 		this->message_ = std::move(message);
 		return *this;
 	}
-	/// 设置消息id
-	Node& SetMessageId(std::optional<MessageId_t> MessageId)
+	/// 设置消息id，限定为当前会话内的消息
+	Node& SetMessageId(MessageId_t MessageId)
 	{
 		this->MessageId_ = MessageId;
+		return *this;
+	}
+	/// 设置消息来源，需要指定消息上下文
+	Node& SetMessageRef(MessageId_t MessageId, UID_t target)
+	{
+		this->ref_ = MessageRef{MessageId, (int64_t)target};
 		return *this;
 	}
 

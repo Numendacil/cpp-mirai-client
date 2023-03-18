@@ -40,6 +40,14 @@ struct ForwardNode::Serializable
 		j.at("messageChain").get_to(p.message_);
 		p.MessageId_ = Utils::GetOptional<MessageId_t>(j, "messageId");
 
+		auto it = j.find("messageRef");
+		if (it == j.end() || it.value().is_null())
+			p.ref_ = std::nullopt;
+		else
+		{
+			p.ref_ = {it.value().at("messageId").get<MessageId_t>(), it.value().at("target").get<int64_t>()};
+		}
+
 		MIRAI_PARSE_GUARD_END(j);
 	}
 
@@ -52,6 +60,14 @@ struct ForwardNode::Serializable
 		::Mirai::from_json(std::move(j.at("senderName")), p.SenderName_);
 		::Mirai::from_json(std::move(j.at("messageChain")), p.message_);
 		p.MessageId_ = Utils::GetOptional<MessageId_t>(j, "messageId");
+		
+		auto it = j.find("messageRef");
+		if (it == j.end() || it.value().is_null())
+			p.ref_ = std::nullopt;
+		else
+		{
+			p.ref_ = {it.value().at("messageId").get<MessageId_t>(), it.value().at("target").get<int64_t>()};
+		}
 
 		MIRAI_PARSE_GUARD_END(j);
 	}
@@ -60,7 +76,13 @@ struct ForwardNode::Serializable
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
-		if (p.MessageId_.has_value()) j["messageId"] = p.MessageId_.value();
+		if (p.MessageId_) 
+			j["messageId"] = p.MessageId_.value();
+		else if (p.ref_)
+		{
+			j["messageRef"]["messageId"] = p.ref_->MessageId;
+			j["messageRef"]["target"] = p.ref_->target;
+		}
 		else
 		{
 			j["senderId"] = p.SenderId_;
@@ -74,8 +96,13 @@ struct ForwardNode::Serializable
 	{
 		// assert(p.valid());	// NOLINT(*-array-to-pointer-decay)
 
-		if (p.MessageId_.has_value()) 
+		if (p.MessageId_) 
 			j["messageId"] = p.MessageId_.value();
+		else if (p.ref_)
+		{
+			j["messageRef"]["messageId"] = p.ref_->MessageId;
+			j["messageRef"]["target"] = p.ref_->target;
+		}
 		else
 		{
 			j["senderId"] = p.SenderId_;

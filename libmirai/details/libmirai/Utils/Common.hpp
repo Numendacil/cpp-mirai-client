@@ -42,9 +42,12 @@ auto GetValue(const nlohmann::json& j, KeyType&& key, ValueType&& default_value)
 {
 	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
 	                                                                          std::forward<ValueType>(default_value)));
-	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
+	if (!j.is_object())
 		return (ReturnType)std::forward<ValueType>(default_value);
-	return j.at(std::forward<KeyType>(key)).template get<ReturnType>();
+	auto it = j.find(std::forward<KeyType>(key));
+	if (it == j.end() || it.value().is_null())
+		return (ReturnType)std::forward<ValueType>(default_value);
+	return it.value().template get<ReturnType>();
 }
 
 template<typename ValueType, typename KeyType>
@@ -52,32 +55,39 @@ auto GetValue(nlohmann::json&& j, KeyType&& key, ValueType&& default_value)
 {
 	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
 	                                                                          std::forward<ValueType>(default_value)));
-	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
+	if (!j.is_object())
 		return (ReturnType)std::forward<ValueType>(default_value);
+	auto it = j.find(std::forward<KeyType>(key));
+	if (it == j.end() || it.value().is_null())
+		return (ReturnType)std::forward<ValueType>(default_value);
+
 	ReturnType ret;
-	from_json(std::move(j.at(std::forward<KeyType>(key))), ret);
+	from_json(std::move(it.value()), ret);
 	return ret;
 }
 
 template<typename ValueType, typename KeyType>
 std::optional<ValueType> GetOptional(const nlohmann::json& j, KeyType&& key)
 {
-	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
-	{
+	if (!j.is_object())
 		return std::nullopt;
-	}
-	return j.at(std::forward<KeyType>(key)).template get<ValueType>();
+	auto it = j.find(std::forward<KeyType>(key));
+	if (it == j.end() || it.value().is_null())
+		return std::nullopt;
+	return it.value().template get<ValueType>();
 }
 
 template<typename ValueType, typename KeyType>
 std::optional<ValueType> GetOptional(nlohmann::json&& j, KeyType&& key)
 {
-	if (!j.is_object() || !j.contains(std::forward<KeyType>(key)) || j.at(std::forward<KeyType>(key)).is_null())
-	{
+	
+	if (!j.is_object())
 		return std::nullopt;
-	}
+	auto it = j.find(std::forward<KeyType>(key));
+	if (it == j.end() || it.value().is_null())
+		return std::nullopt;
 	ValueType ret;
-	from_json(std::move(j.at(std::forward<KeyType>(key))), ret);
+	from_json(std::move(it.value()), ret);
 	return ret;
 }
 

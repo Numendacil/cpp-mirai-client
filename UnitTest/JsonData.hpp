@@ -94,13 +94,18 @@ static const json MessageData =
 					"senderId": 123,
 					"time": 0,
 					"senderName": "aaa",
-					"messageChain": [
-					{
-						"type": "Plain",
-						"text": "Hello"
-					}
+					"messageChain": 
+					[
+						{
+							"type": "Plain",
+							"text": "txt"
+						}
 					],
-					"messageId": 321
+					"messageId": 123,
+					"messageRef": {
+						"messageId": 123,
+						"target": 321
+					}
 				},
 				{
 					"senderId": 456,
@@ -123,12 +128,14 @@ static const json MessageData =
 								"base64": null
 							}
 							],
-							"messageId": null
+							"messageId": null,
+							"messageRef": null
 						}
 						]
 					}
 					],
-					"messageId": 654
+					"messageId": null,
+					"messageRef": null
 				}
 				] 
 			}
@@ -868,7 +875,8 @@ static const json EventData =
 				"groupId": 654321,
 				"groupName": "Group",
 				"nick": "xxx",
-				"message": "hehe"
+				"message": "hehe",
+				"invitorId": 88888888
 			}
 		)")
 	},

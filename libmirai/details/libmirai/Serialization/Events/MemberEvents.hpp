@@ -139,6 +139,7 @@ struct MemberJoinRequestEvent::Serializable
 		j.at("groupName").get_to(p.GroupName_);
 		j.at("nick").get_to(p.nickname_);
 		j.at("message").get_to(p.message_);
+		Utils::GetOptional(j, "invitorId", p.InviterId_);
 
 		MIRAI_PARSE_GUARD_END(j);
 	}

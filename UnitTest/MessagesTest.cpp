@@ -238,6 +238,8 @@ TEST(MessagesTest, ForwardMessage)
 	auto msg = message.GetAt<ForwardMessage>(0);
 	EXPECT_EQ(msg.size(), 1);
 	EXPECT_FALSE(msg[0].hasMessageId());
+	auto id = msg[0].GetMessageId();
+	EXPECT_FALSE(id);
 	EXPECT_TRUE(msg[0].valid());
 
 	auto forward1 = forward;

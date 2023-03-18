@@ -44,20 +44,20 @@ class UID_t
 protected:
 	int64_t number_ = 0;
 
-	UID_t() = default;
-	explicit UID_t(int64_t num) : number_{num} {}
+	constexpr UID_t() = default;
+	constexpr explicit UID_t(int64_t num) : number_{num} {}
 
 public:
-	explicit operator int64_t() const { return this->number_; }
+	constexpr explicit operator int64_t() const { return this->number_; }
 	std::string to_string() const { return std::to_string(this->number_); }
 
-	bool operator<(const UID_t& uid) const { return this->number_ < uid.number_; }
-	bool operator==(const UID_t& uid) const { return this->number_ == uid.number_; }
+	constexpr bool operator<(const UID_t& uid) const { return this->number_ < uid.number_; }
+	constexpr bool operator==(const UID_t& uid) const { return this->number_ == uid.number_; }
 
-	bool operator!=(const UID_t& uid) const { return !(*this == uid); }
-	bool operator>(const UID_t& uid) const { return uid < *this; }
-	bool operator>=(const UID_t& uid) const { return !(*this < uid); }
-	bool operator<=(const UID_t& uid) const { return !(uid < *this); }
+	constexpr bool operator!=(const UID_t& uid) const { return !(*this == uid); }
+	constexpr bool operator>(const UID_t& uid) const { return uid < *this; }
+	constexpr bool operator>=(const UID_t& uid) const { return !(*this < uid); }
+	constexpr bool operator<=(const UID_t& uid) const { return !(uid < *this); }
 
 	struct Serializable;
 };
@@ -70,11 +70,11 @@ public:
 class QQ_t : public UID_t
 {
 public:
-	QQ_t() : UID_t() {}
-	explicit QQ_t(int64_t num) : UID_t(num) {}
+	constexpr QQ_t() : UID_t() {}
+	constexpr explicit QQ_t(int64_t num) : UID_t(num) {}
 };
 
-inline QQ_t operator""_qq(unsigned long long num)
+constexpr inline QQ_t operator""_qq(unsigned long long num)
 {
 	return QQ_t(static_cast<int64_t>(num));
 }
@@ -87,11 +87,11 @@ inline QQ_t operator""_qq(unsigned long long num)
 class GID_t : public UID_t
 {
 public:
-	GID_t() : UID_t() {}
-	explicit GID_t(int64_t num) : UID_t(num) {}
+	constexpr GID_t() : UID_t() {}
+	constexpr explicit GID_t(int64_t num) : UID_t(num) {}
 };
 
-inline GID_t operator""_gid(unsigned long long num)
+inline constexpr GID_t operator""_gid(unsigned long long num)
 {
 	return GID_t(static_cast<int64_t>(num));
 }
