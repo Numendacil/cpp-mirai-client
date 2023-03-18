@@ -670,85 +670,85 @@ public:
 	/// 在消息链结尾构造 `AppMessage`，返回自身的引用
 	template<typename... Args> MessageChain& App(Args&&... args)
 	{
-		return this->emplace<AppMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<AppMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `AtAllMessage`，返回自身的引用
 	template<typename... Args> MessageChain& AtAll(Args&&... args)
 	{
-		return this->emplace<AtAllMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<AtAllMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `AtMessage`，返回自身的引用
 	template<typename... Args> MessageChain& At(Args&&... args)
 	{
-		return this->emplace<AtMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<AtMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `AudioMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Audio(Args&&... args)
 	{
-		return this->emplace<AudioMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<AudioMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `DiceMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Dice(Args&&... args)
 	{
-		return this->emplace<DiceMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<DiceMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `FaceMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Face(Args&&... args)
 	{
-		return this->emplace<FaceMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<FaceMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `FlashImageMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Flash(Args&&... args)
 	{
-		return this->emplace<FlashImageMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<FlashImageMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `ImageMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Image(Args&&... args)
 	{
-		return this->emplace<ImageMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<ImageMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `JsonMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Json(Args&&... args)
 	{
-		return this->emplace<JsonMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<JsonMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `MiraiCodeMessage`，返回自身的引用
 	template<typename... Args> MessageChain& MiraiCode(Args&&... args)
 	{
-		return this->emplace<MiraiCodeMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<MiraiCodeMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `PlainMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Plain(Args&&... args)
 	{
-		return this->emplace<PlainMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<PlainMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `PokeMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Poke(Args&&... args)
 	{
-		return this->emplace<PokeMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<PokeMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾构造 `XmlMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Xml(Args&&... args)
 	{
-		return this->emplace<XmlMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<XmlMessage>(std::forward<Args>(args)...);
 	}
 
 	/// 在消息链结尾插入 `ForwardMessage`，返回自身的引用
 	template<typename... Args> MessageChain& Forward(Args&&... args)
 	{
-		return this->emplace<ForwardMessage>(std::forward<Args>(args)...);
+		return this->emplace_back<ForwardMessage>(std::forward<Args>(args)...);
 	}
 
 	struct Serializable;
