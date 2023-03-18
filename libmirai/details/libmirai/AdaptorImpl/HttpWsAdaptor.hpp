@@ -44,6 +44,7 @@ private:
 	std::map<std::thread::id, httplib::Client> httpclients_;
 
 	bool connected_ = false;
+	ClientConnectionEstablishedEvent info_;
 	mutable std::mutex connectmtx_;	// Guarding connection info
 	mutable std::condition_variable connectcv_;
 
@@ -57,7 +58,7 @@ private:
 
 	mutable std::mutex httpmtx_;	// Guarding httpclients map
 
-	bool bind_ = false;
+	// std::atomic<bool> shutdown_ = false;
 
 public:
 	template<typename... Args> using Callback = std::function<void(Args...)>;
