@@ -143,8 +143,8 @@ public:
 
 	MiraiClient(const MiraiClient&) = delete;
 	MiraiClient& operator=(const MiraiClient&) = delete;
-	MiraiClient(MiraiClient&& rhs) noexcept;
-	MiraiClient& operator=(MiraiClient&& rhs) noexcept;
+	MiraiClient(MiraiClient&& rhs) noexcept = delete;
+	MiraiClient& operator=(MiraiClient&& rhs) noexcept = delete;
 	~MiraiClient();
 
 	/// 获取连接mirai-api-http的session key，若尚未建立链接则返回 `std::nullopt`

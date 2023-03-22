@@ -93,7 +93,7 @@ struct ForwardMessage::Serializable
 					p.preview_ = std::nullopt;
 				else
 				{
-					p.preview_ = decltype(p.preview_){};
+					p.preview_ = std::vector<std::string>{};
 					p.preview_->resize(display.at("preview").size());
 					auto it1 = p.preview_->begin();
 					for (auto it2 = display.at("preview").begin(); it2 != display.at("preview").end(); it1++, it2++)

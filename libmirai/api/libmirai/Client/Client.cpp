@@ -48,66 +48,66 @@ MiraiClient::MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor)
 {
 }
 
-MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
-{
-	std::unique_lock<std::shared_mutex> lk(rhs.mtx_);
+// MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
+// {
+// 	std::unique_lock<std::shared_mutex> lk(rhs.mtx_);
 
-#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
-#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
+// #define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
+// #define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
 
-	// NOLINTBEGIN(*-prefer-member-initializer)
-	MIRAI_MOVE_ASSIGN(SessionKey_);
-	MIRAI_MOVE_ASSIGN(logger_);
-	MIRAI_MOVE_ASSIGN(adaptor_);
-	MIRAI_MOVE_ASSIGN(pool_);
+// 	// NOLINTBEGIN(*-prefer-member-initializer)
+// 	MIRAI_MOVE_ASSIGN(SessionKey_);
+// 	MIRAI_MOVE_ASSIGN(logger_);
+// 	MIRAI_MOVE_ASSIGN(adaptor_);
+// 	MIRAI_MOVE_ASSIGN(pool_);
 
-	MIRAI_MOVE_ASSIGN(ConnectionEstablishedCallback_);
-	MIRAI_MOVE_ASSIGN(ConnectionClosedCallback_);
-	MIRAI_MOVE_ASSIGN(ConnectionErrorCallback_);
-	MIRAI_MOVE_ASSIGN(ParseErrorCallback_);
+// 	MIRAI_MOVE_ASSIGN(ConnectionEstablishedCallback_);
+// 	MIRAI_MOVE_ASSIGN(ConnectionClosedCallback_);
+// 	MIRAI_MOVE_ASSIGN(ConnectionErrorCallback_);
+// 	MIRAI_MOVE_ASSIGN(ParseErrorCallback_);
 
-	MIRAI_MOVE_ASSIGN(EventHandlers_);
+// 	MIRAI_MOVE_ASSIGN(EventHandlers_);
 
-	MIRAI_COPY_ASSIGN(connected_);
-	MIRAI_COPY_ASSIGN(PoolSize_);
-	// NOLINTEND(*-prefer-member-initializer)
+// 	MIRAI_COPY_ASSIGN(connected_);
+// 	MIRAI_COPY_ASSIGN(PoolSize_);
+// 	// NOLINTEND(*-prefer-member-initializer)
 
-#undef MIRAI_MOVE_ASSIGN
-#undef MIRAI_COPY_ASSIGN
-}
+// #undef MIRAI_MOVE_ASSIGN
+// #undef MIRAI_COPY_ASSIGN
+// }
 
-MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
-{
-	if (this != &rhs)
-	{
-		std::unique_lock<std::shared_mutex> lk_this(this->mtx_, std::defer_lock);
-		std::unique_lock<std::shared_mutex> lk_rhs(rhs.mtx_, std::defer_lock);
+// MiraiClient& MiraiClient::operator=(MiraiClient&& rhs) noexcept
+// {
+// 	if (this != &rhs)
+// 	{
+// 		std::unique_lock<std::shared_mutex> lk_this(this->mtx_, std::defer_lock);
+// 		std::unique_lock<std::shared_mutex> lk_rhs(rhs.mtx_, std::defer_lock);
 
-		std::scoped_lock lk(lk_rhs, lk_this);
+// 		std::scoped_lock lk(lk_rhs, lk_this);
 
-#define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
-#define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
+// #define MIRAI_MOVE_ASSIGN(m_var) this->m_var = std::move(rhs.m_var)
+// #define MIRAI_COPY_ASSIGN(m_var) this->m_var = rhs.m_var
 
-		MIRAI_MOVE_ASSIGN(SessionKey_);
-		MIRAI_MOVE_ASSIGN(logger_);
-		MIRAI_MOVE_ASSIGN(adaptor_);
-		MIRAI_MOVE_ASSIGN(pool_);
+// 		MIRAI_MOVE_ASSIGN(SessionKey_);
+// 		MIRAI_MOVE_ASSIGN(logger_);
+// 		MIRAI_MOVE_ASSIGN(adaptor_);
+// 		MIRAI_MOVE_ASSIGN(pool_);
 
-		MIRAI_MOVE_ASSIGN(ConnectionEstablishedCallback_);
-		MIRAI_MOVE_ASSIGN(ConnectionClosedCallback_);
-		MIRAI_MOVE_ASSIGN(ConnectionErrorCallback_);
-		MIRAI_MOVE_ASSIGN(ParseErrorCallback_);
+// 		MIRAI_MOVE_ASSIGN(ConnectionEstablishedCallback_);
+// 		MIRAI_MOVE_ASSIGN(ConnectionClosedCallback_);
+// 		MIRAI_MOVE_ASSIGN(ConnectionErrorCallback_);
+// 		MIRAI_MOVE_ASSIGN(ParseErrorCallback_);
 
-		MIRAI_MOVE_ASSIGN(EventHandlers_);
+// 		MIRAI_MOVE_ASSIGN(EventHandlers_);
 
-		MIRAI_COPY_ASSIGN(connected_);
-		MIRAI_COPY_ASSIGN(PoolSize_);
+// 		MIRAI_COPY_ASSIGN(connected_);
+// 		MIRAI_COPY_ASSIGN(PoolSize_);
 
-#undef MIRAI_MOVE_ASSIGN
-#undef MIRAI_COPY_ASSIGN
-	}
-	return *this;
-}
+// #undef MIRAI_MOVE_ASSIGN
+// #undef MIRAI_COPY_ASSIGN
+// 	}
+// 	return *this;
+// }
 
 MiraiClient::~MiraiClient()
 {

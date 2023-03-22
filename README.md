@@ -58,7 +58,7 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 
 <span class="next_section_button">
 
-Read Next: [快速入门](docs/Quickstart.md)
+Read Next: [快速入门](docs/usage/_0_quickstart.md)
 </span>
 
 <!-- MARKDOWN LINKS & IMAGES -->
