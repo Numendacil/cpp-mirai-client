@@ -42,8 +42,10 @@ auto GetValue(const nlohmann::json& j, KeyType&& key, ValueType&& default_value)
 {
 	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
 	                                                                          std::forward<ValueType>(default_value)));
-	if (!j.is_object())
-		return (ReturnType)std::forward<ValueType>(default_value);
+	// if (!j.is_object())
+	// 	return (ReturnType)std::forward<ValueType>(default_value);
+	assert(j.is_object());
+	
 	auto it = j.find(std::forward<KeyType>(key));
 	if (it == j.end() || it.value().is_null())
 		return (ReturnType)std::forward<ValueType>(default_value);
@@ -55,8 +57,10 @@ auto GetValue(nlohmann::json&& j, KeyType&& key, ValueType&& default_value)
 {
 	using ReturnType = decltype(std::declval<typename nlohmann::json>().value(std::forward<KeyType>(key),
 	                                                                          std::forward<ValueType>(default_value)));
-	if (!j.is_object())
-		return (ReturnType)std::forward<ValueType>(default_value);
+	// if (!j.is_object())
+	// 	return (ReturnType)std::forward<ValueType>(default_value);
+	assert(j.is_object());
+
 	auto it = j.find(std::forward<KeyType>(key));
 	if (it == j.end() || it.value().is_null())
 		return (ReturnType)std::forward<ValueType>(default_value);
@@ -69,8 +73,10 @@ auto GetValue(nlohmann::json&& j, KeyType&& key, ValueType&& default_value)
 template<typename ValueType, typename KeyType>
 std::optional<ValueType> GetOptional(const nlohmann::json& j, KeyType&& key)
 {
-	if (!j.is_object())
-		return std::nullopt;
+	// if (!j.is_object())
+	// 	return std::nullopt;
+	assert(j.is_object());
+
 	auto it = j.find(std::forward<KeyType>(key));
 	if (it == j.end() || it.value().is_null())
 		return std::nullopt;
@@ -81,8 +87,10 @@ template<typename ValueType, typename KeyType>
 std::optional<ValueType> GetOptional(nlohmann::json&& j, KeyType&& key)
 {
 	
-	if (!j.is_object())
-		return std::nullopt;
+	// if (!j.is_object())
+	// 	return std::nullopt;
+	assert(j.is_object());
+
 	auto it = j.find(std::forward<KeyType>(key));
 	if (it == j.end() || it.value().is_null())
 		return std::nullopt;

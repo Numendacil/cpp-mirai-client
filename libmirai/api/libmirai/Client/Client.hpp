@@ -237,7 +237,7 @@ public:
 	 * 
 	 * @return  兼容的mirai-api-http插件的版本号 “x.x.x”
 	 */
-	constexpr std::string_view GetCompatibleVersion() const { return "2.7.0"; }
+	constexpr std::string_view GetCompatibleVersion() const { return "2.9.1"; }
 
 	/**
 	 * @brief 获取mirai-api-http插件的版本号
@@ -317,6 +317,15 @@ public:
 	 * @return `std::vector<GroupMember>` 
 	 */
 	std::vector<GroupMember> GetMemberList(GID_t GroupId) const;
+
+	/**
+	 * @brief 获取最新群成员列表
+	 * 
+	 * 会强制刷新所有群成员的资料
+	 * @param GroupId 群聊id
+	 * @return `std::vector<GroupMember>` 
+	 */
+	std::vector<GroupMember> GetLatestMemberList(GID_t GroupId) const;
 
 	/**
 	 * @brief 获取Bot用户资料
@@ -702,15 +711,17 @@ public:
 	 * @param GroupId 群聊id
 	 * @param member 成员QQ
 	 * @param message 附带信息
+	 * @param block 是否移除后拉黑
 	 */
-	void Kick(GID_t GroupId, QQ_t member, string message) const;
+	void Kick(GID_t GroupId, QQ_t member, string message, bool block = false) const;
 	/**
 	 * @brief 移除群成员
 	 * 
 	 * @param member 群成员
 	 * @param message 附带信息
+	 * @param block 是否移除后拉黑
 	 */
-	void Kick(const GroupMember& member, string message) const;
+	void Kick(const GroupMember& member, string message, bool block = false) const;
 
 	/**
 	 * @brief 退出群聊

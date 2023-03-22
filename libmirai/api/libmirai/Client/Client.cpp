@@ -345,6 +345,11 @@ std::vector<GroupMember> MiraiClient::GetMemberList(GID_t GroupId) const
 	return this->adaptor_->MemberList(this->GetSessionKey_(), GroupId);
 }
 
+std::vector<GroupMember> MiraiClient::GetLatestMemberList(GID_t GroupId) const
+{
+	return this->adaptor_->LatestMemberList(this->GetSessionKey_(), GroupId);
+}
+
 
 UserProfile MiraiClient::GetBotProfile() const
 {
@@ -621,14 +626,14 @@ void MiraiClient::Unmute(const GroupMember& member) const
 	return this->adaptor_->Unmute(this->GetSessionKey_(), member.group.id, member.id);
 }
 
-void MiraiClient::Kick(GID_t GroupId, QQ_t member, string message) const
+void MiraiClient::Kick(GID_t GroupId, QQ_t member, string message, bool block) const
 {
-	return this->adaptor_->Kick(this->GetSessionKey_(), GroupId, member, std::move(message));
+	return this->adaptor_->Kick(this->GetSessionKey_(), GroupId, member, std::move(message), block);
 }
 
-void MiraiClient::Kick(const GroupMember& member, string message) const
+void MiraiClient::Kick(const GroupMember& member, string message, bool block) const
 {
-	return this->adaptor_->Kick(this->GetSessionKey_(), member.group.id, member.id, std::move(message));
+	return this->adaptor_->Kick(this->GetSessionKey_(), member.group.id, member.id, std::move(message), block);
 }
 
 void MiraiClient::LeaveGroup(GID_t GroupId) const

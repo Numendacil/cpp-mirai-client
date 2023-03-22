@@ -156,7 +156,8 @@ public:
 	/// 获取群成员列表
 	std::vector<GroupMember> MemberList(string SessionKey, GID_t target) override;
 
-	//TODO: 获取最新群成员列表
+	/// 获取群成员列表
+	std::vector<GroupMember> LatestMemberList(string SessionKey, GID_t target) override;
 
 
 	/// 获取Bot资料
@@ -278,7 +279,7 @@ public:
 	void Unmute(string SessionKey, GID_t target, QQ_t member) override;
 
 	/// 移除群成员
-	void Kick(string SessionKey, GID_t target, QQ_t member, string message) override;
+	void Kick(string SessionKey, GID_t target, QQ_t member, string message, bool block) override;
 
 	/// 退出群聊
 	void Quit(string SessionKey, GID_t target) override;

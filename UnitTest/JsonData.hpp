@@ -89,6 +89,14 @@ static const json MessageData =
 		"ForwardMessage", json::parse(R"(
 			{
 				"type": "Forward",
+				"display": 
+				{
+					"title": "群聊的聊天记录",
+					"brief": "[聊天记录]",
+					"source": "聊天记录",
+					"preview": ["msg1", "msg2", "msg3", "msg4"],
+					"summary": "查看x条转发消息"
+				},
 				"nodeList": [
 				{
 					"senderId": 123,

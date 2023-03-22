@@ -47,6 +47,8 @@ struct GroupConfig
 	bool AutoApprove = false;
 	/// 是否允许匿名聊天
 	bool AllowAnonymousChat = false;
+	/// 是否开启全员禁言
+	bool MuteAll = false;
 };
 
 /**

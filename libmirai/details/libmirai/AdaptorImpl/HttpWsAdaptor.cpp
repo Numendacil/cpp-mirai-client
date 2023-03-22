@@ -439,6 +439,19 @@ std::vector<GroupMember> HttpWsAdaptor::MemberList(string SessionKey, GID_t targ
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
+std::vector<GroupMember> HttpWsAdaptor::LatestMemberList(string SessionKey, GID_t target)
+{
+	httplib::Params params = {{"target", target.to_string()}};
+	params.emplace("sessionKey", std::move(SessionKey));
+
+	auto result = this->GetClient_().Get("/latestMemberList", params, httplib::Headers{});
+	json resp = Utils::ParseResponse(result);
+
+	MIRAI_PARSE_GUARD_BEGIN(resp);
+	return resp.at("data").get<std::vector<GroupMember>>();
+	MIRAI_PARSE_GUARD_END(resp);
+}
+
 
 UserProfile HttpWsAdaptor::GetBotProfile(string SessionKey)
 {
@@ -964,9 +977,9 @@ void HttpWsAdaptor::Unmute(string SessionKey, GID_t target, QQ_t member)
 	(void)Utils::ParseResponse(result);
 }
 
-void HttpWsAdaptor::Kick(string SessionKey, GID_t target, QQ_t member, string message)
+void HttpWsAdaptor::Kick(string SessionKey, GID_t target, QQ_t member, string message, bool block)
 {
-	json body = {{"target", target}, {"memberId", member}};
+	json body = {{"target", target}, {"memberId", member}, {"block", block}};
 	body["sessionKey"] = std::move(SessionKey);
 	body["msg"] = std::move(message);
 

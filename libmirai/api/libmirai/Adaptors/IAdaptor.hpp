@@ -110,7 +110,8 @@ public:
 	/// 获取群成员列表
 	virtual std::vector<GroupMember> MemberList(string SessionKey, GID_t target) = 0;
 
-	//TODO: 获取最新群成员列表
+	/// 获取最新群成员列表
+	virtual std::vector<GroupMember> LatestMemberList(string SessionKey, GID_t target) = 0;
 
 
 	/// 获取Bot资料
@@ -232,7 +233,7 @@ public:
 	virtual void Unmute(string SessionKey, GID_t target, QQ_t member) = 0;
 
 	/// 移除群成员
-	virtual void Kick(string SessionKey, GID_t target, QQ_t member, string message) = 0;
+	virtual void Kick(string SessionKey, GID_t target, QQ_t member, string message, bool block) = 0;
 
 	/// 退出群聊
 	virtual void Quit(string SessionKey, GID_t target) = 0;

@@ -37,6 +37,7 @@ inline void from_json(const nlohmann::json& j, GroupConfig& p)
 	j.at("allowMemberInvite").get_to(p.AllowMemberInvite);
 	j.at("autoApprove").get_to(p.AutoApprove);
 	j.at("anonymousChat").get_to(p.AllowAnonymousChat);
+	j.at("muteAll").get_to(p.MuteAll);
 
 	MIRAI_PARSE_GUARD_END(j);
 }

@@ -36,6 +36,11 @@ namespace Mirai
  * Member Variable | Default Value
  * --------------- | -------------
  * `ForwardMessage::NodeList_` | `{}`
+ * `ForwardMessage::title_` | `std::nullopt`
+ * `ForwardMessage::brief_` | `std::nullopt`
+ * `ForwardMessage::source_` | `std::nullopt`
+ * `ForwardMessage::preview_` | `std::nullopt`
+ * `ForwardMessage::summary_` | `std::nullopt`
  */
 class ForwardMessage final: public IMessageImpl<ForwardMessage>
 {
@@ -47,6 +52,12 @@ public:
 protected:
 	using NodeList = std::vector<Node>;
 	NodeList NodeList_;
+
+	std::optional<std::string> title_;
+	std::optional<std::string> brief_;
+	std::optional<std::string> source_;
+	std::optional<std::vector<std::string>> preview_;
+	std::optional<std::string> summary_;
 
 	static constexpr MessageTypes TYPE_ = MessageTypes::FORWARD;
 	static constexpr bool SUPPORT_SEND_ = true;
@@ -60,6 +71,68 @@ public:
 	ForwardMessage(ForwardMessage&&);
 	ForwardMessage& operator= (ForwardMessage&&);
 	~ForwardMessage() final;
+
+	/// 获取合并转发消息的标题（"xxx的聊天记录"），为空代表默认值
+	std::optional<std::string> GetDisplayTitle() const
+	{
+		return this->title_;
+	}
+
+	/// 获取合并转发消息的简略信息（"[聊天记录]"），为空代表默认值
+	std::optional<std::string> GetDisplayBrief() const
+	{
+		return this->brief_;
+	}
+
+	/// 获取合并转发消息的来源显示（"聊天记录"），为空代表默认值
+	std::optional<std::string> GetDisplaySource() const
+	{
+		return this->source_;
+	}
+
+	/// 获取合并转发消息的内容预览，为空代表默认值
+	std::optional<std::vector<std::string>> GetDisplayPreview() const
+	{
+		return this->preview_;
+	}
+
+	/// 获取合并转发消息的内容总结（"查看x条转发消息"），为空代表默认值
+	std::optional<std::string> GetDisplaySummary() const
+	{
+		return this->summary_;
+	}
+
+
+	/// 设置合并转发消息的标题（"xxx的聊天记录"）
+	void SetDisplayTitle(std::string title)
+	{
+		this->title_ = std::move(title);
+	}
+
+	/// 设置合并转发消息的简略信息（"[聊天记录]"）
+	void SetDisplayBrief(std::string brief)
+	{
+		this->brief_ = std::move(brief);
+	}
+
+	/// 设置合并转发消息的来源显示（"聊天记录"）
+	void SetDisplaySource(std::string source)
+	{
+		this->source_ = std::move(source);
+	}
+
+	/// 设置合并转发消息的内容预览
+	void SetDisplayPreview(std::vector<std::string> preview)
+	{
+		this->preview_ = std::move(preview);
+	}
+
+	/// 设置合并转发消息的内容总结（"查看x条转发消息"）
+	void SetDisplaySummary(std::string summary)
+	{
+		this->summary_ = std::move(summary);
+	}
+
 
 	/**
 	 * @brief STL-like interface

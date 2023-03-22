@@ -228,6 +228,12 @@ TEST(MessagesTest, ForwardMessage)
 	EXPECT_NO_THROW(j = forward);
 	EXPECT_EQ(j["type"].get<MessageTypes>(), forward.GetType());
 
+	EXPECT_TRUE(forward.GetDisplayTitle());
+	EXPECT_TRUE(forward.GetDisplayBrief());
+	EXPECT_EQ(forward.GetDisplaySource().value(), "聊天记录");
+	EXPECT_EQ(forward.GetDisplayPreview()->size(), 4);
+	EXPECT_TRUE(forward.GetDisplaySummary());
+
 	EXPECT_EQ(forward.size(), 2);
 	auto node = forward[0];
 	EXPECT_EQ(node.GetSenderName(), "aaa");
