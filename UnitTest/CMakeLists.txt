@@ -15,6 +15,9 @@ add_executable(unit_test
 	ClientTest.cpp
 )
 
+target_compile_options(unit_test PRIVATE "$<$<C_COMPILER_ID:MSVC>:/bigobj>")
+target_compile_options(unit_test PRIVATE "$<$<CXX_COMPILER_ID:MSVC>:/bigobj>")
+
 target_link_libraries(unit_test PRIVATE ${MIRAI_LIB_TARGET_NAME})
 target_link_libraries(unit_test PRIVATE GTest::gtest_main GTest::gtest GTest::gmock)
 target_link_libraries(unit_test PRIVATE httplib::httplib)
