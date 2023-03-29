@@ -8,11 +8,11 @@ on:
 
 jobs:
   build:
-    name: ${{ matrix.config.name }}
+    name: ${{ matrix.config.name }} - ${{ matrix.build-type }}
     runs-on: ${{ matrix.config.os }}
     env:
       TARGET: unit_test
-      BUILD_TYPE: Debug
+      BUILD_TYPE: ${{ matrix.build-type }}
       CC: ${{ matrix.config.cc }}
       CXX: ${{ matrix.config.cxx }}
     strategy:
@@ -36,6 +36,7 @@ jobs:
             cxx: clang++
             exe: |
               ./unit_test
+        build-type: [ Debug, Release ]
 
     steps:
     - name: Git Checkout

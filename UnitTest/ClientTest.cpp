@@ -30,7 +30,7 @@ TEST(ClientTest, GMockAdaptorTest)
 
 	auto* ptr = static_cast<GMockAdaptor*>(adaptor.get());
 
-	MiraiClient client(std::move(adaptor));
+	MiraiClient client(1, std::move(adaptor));
 
 	size_t count = 0;
 
@@ -110,9 +110,9 @@ TEST(ClientTest, GMockAdaptorTest)
 		EXPECT_NO_THROW(ptr->TextCallback(event.dump()));
 	}
 
-	EXPECT_EQ(count, 1000);
-
 	EXPECT_NO_THROW(client.Disconnect());
+
+	EXPECT_EQ(count, 1000);
 
 }
 
