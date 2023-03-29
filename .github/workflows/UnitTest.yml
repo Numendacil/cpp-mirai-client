@@ -22,20 +22,14 @@ jobs:
             os: windows-latest
             cc: cl
             cxx: cl
-            exe: |
-              ./Debug/unit_test.exe
           - name: Ubuntu Latest GCC
             os: ubuntu-latest
             cc: gcc
             cxx: g++
-            exe: |
-              ./unit_test
           - name: macOS Latest Clang
             os: macos-latest
             cc: clang
             cxx: clang++
-            exe: |
-              ./unit_test
         build-type: [ Debug, Release ]
 
     steps:
@@ -59,5 +53,12 @@ jobs:
 
     - name: Test
       working-directory: ${{github.workspace}}/build/UnitTest
+      if: matrix.config.name != 'Windows Latest MSVC'
       # Execute tests defined by the CMake configuration.  
-      run: ${{ matrix.config.exe }}
+      run: ./unit_test
+
+    - name: Test - MSVC
+      working-directory: ${{github.workspace}}/build/UnitTest
+      if: matrix.config.name == 'Windows Latest MSVC'
+      # Execute tests defined by the CMake configuration.  
+      run: ./${{ matrix.build-type }}/unit_test.exe
