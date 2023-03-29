@@ -14,7 +14,6 @@
 [![C++ Version][cppversion-shield]][cppversion-url]
 
 ## 关于本项目
-Currently working in progress.
 
 cpp-mirai-client 是一个基于 [*mirai*](https://github.com/mamoe/mirai) 与
  [*mirai-api-http*](https://github.com/project-mirai/mirai-api-http) 的跨平台C++机器人框架。
@@ -37,6 +36,7 @@ target_link_libraries(your_target_name PRIVATE cpp-mirai-client::cppmirai)
 也可以通过 cppmirai-template 直接生成一个基础的程序框架（TBD）
 
 ## 项目依赖
+
 cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹内找到
 
 1. [**machinezone/IXWebSocket**](https://github.com/machinezone/IXWebSocket) websocket and http client and server library, with TLS support and very few dependencies 
@@ -52,6 +52,7 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 本项目的文档生成使用了 [Doxygen](https://doxygen.org/index.html) 与 [jothepro/doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)。
 
 ## TODO
+
 - Docs and example usages
 - Project templates for creating a simple QQBot
 - Benchmark and performance tests
@@ -67,7 +68,7 @@ Read Next: [快速入门](docs/usage/_0_quickstart.md)
 [unittest-url]: https://github.com/numendacil/cpp-mirai-client
 [license-shield]: https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat
 [license-url]: https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE
-[projversion-shield]: https://img.shields.io/badge/version-2.6.2-blue.svg?style=flat
+[projversion-shield]: https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat
 [projversion-url]: https://github.com/numendacil/cpp-mirai-client
 [cppversion-shield]: https://img.shields.io/badge/c++-17-yellow.svg?style=flat
 [cppversion-url]: https://github.com/numendacil/cpp-mirai-client
