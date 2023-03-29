@@ -591,8 +591,7 @@ TEST(MessagesTest, SerializationTest)
 	MessageChain m = json::parse("[]").get<MessageChain>();
 	EXPECT_EQ(m.size(), 0);
 
-	std::random_device dev;
-	std::mt19937 rng(dev());
+	std::mt19937 rng(1234);
 	json data;
 	for (const auto& p : Data::MessageData.items())
 	{

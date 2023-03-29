@@ -241,6 +241,9 @@ void HttpWsAdaptor::Connect()
 								throw std::runtime_error("Unexpected message: " + msg->str);
 							data = Utils::ParseResponse(data);
 
+							if (!data.contains("session"))
+								return;
+							
 							data.at("session").get_to(key);
 
 							httplib::Params params = {{"sessionKey", key}};

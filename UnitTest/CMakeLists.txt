@@ -8,9 +8,11 @@ enable_testing()
 
 add_executable(unit_test 
 	JsonData.hpp
+	CustomAdaptor.hpp
 	
 	MessagesTest.cpp
 	EventsTest.cpp
+	TypesTest.cpp
 	UtilsTest.cpp
 	ClientTest.cpp
 )
