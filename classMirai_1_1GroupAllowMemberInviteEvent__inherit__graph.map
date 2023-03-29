@@ -1,0 +1,4 @@
+<map id="Mirai::GroupAllowMemberInviteEvent" name="Mirai::GroupAllowMemberInviteEvent">
+<area shape="rect" id="node1" title="群聊开启/关闭允许群成员邀请好友加群事件" alt="" coords="5,97,228,141"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="22,5,211,49"/>
+</map>

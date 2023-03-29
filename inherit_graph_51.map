@@ -1,0 +1,5 @@
+<map id="类继承关系图" name="类继承关系图">
+<area shape="rect" id="node1" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,5,189,49"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotAccountEvent.html" title=" " alt="" coords="237,5,408,49"/>
+<area shape="rect" id="node3" href="$classMirai_1_1BotReloginEvent.html" title="Bot重新登录事件" alt="" coords="456,13,623,41"/>
+</map>

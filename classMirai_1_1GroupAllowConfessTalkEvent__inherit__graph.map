@@ -1,0 +1,4 @@
+<map id="Mirai::GroupAllowConfessTalkEvent" name="Mirai::GroupAllowConfessTalkEvent">
+<area shape="rect" id="node1" title="群聊开启/关闭坦白说事件" alt="" coords="6,97,194,141"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,5,195,49"/>
+</map>

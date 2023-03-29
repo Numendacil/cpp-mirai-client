@@ -1,0 +1,5 @@
+<map id="Mirai::MusicShareMessage" name="Mirai::MusicShareMessage">
+<area shape="rect" id="node1" title="音乐分享卡片消息" alt="" coords="5,173,200,201"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="11,81,194,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessage.html" title="Common interface for all message types" alt="" coords="41,5,164,33"/>
+</map>

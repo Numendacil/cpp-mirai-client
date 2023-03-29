@@ -1,0 +1,8 @@
+<map id="Mirai::GroupAnnouncement" name="Mirai::GroupAnnouncement">
+<area shape="rect" id="node1" title="群公告" alt="" coords="75,283,273,311"/>
+<area shape="rect" id="node2" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="123,189,225,217"/>
+<area shape="rect" id="node3" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="91,83,190,111"/>
+<area shape="rect" id="node4" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="21,5,119,33"/>
+<area shape="rect" id="node6" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="5,135,100,163"/>
+<area shape="rect" id="node5" title=" " alt="" coords="223,83,307,111"/>
+</map>

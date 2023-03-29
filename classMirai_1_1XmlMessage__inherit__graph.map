@@ -1,0 +1,5 @@
+<map id="Mirai::XmlMessage" name="Mirai::XmlMessage">
+<area shape="rect" id="node1" title="XML消息" alt="" coords="9,173,153,201"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="5,81,156,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessage.html" title="Common interface for all message types" alt="" coords="19,5,142,33"/>
+</map>

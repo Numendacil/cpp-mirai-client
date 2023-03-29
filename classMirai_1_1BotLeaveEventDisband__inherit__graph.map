@@ -1,0 +1,5 @@
+<map id="Mirai::BotLeaveEventDisband" name="Mirai::BotLeaveEventDisband">
+<area shape="rect" id="node1" title="群聊解散导致Bot退群事件" alt="" coords="5,189,216,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotLeaveEvent.html" title=" " alt="" coords="12,97,209,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,5,216,49"/>
+</map>

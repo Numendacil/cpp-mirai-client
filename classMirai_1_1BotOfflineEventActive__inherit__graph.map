@@ -1,0 +1,5 @@
+<map id="Mirai::BotOfflineEventActive" name="Mirai::BotOfflineEventActive">
+<area shape="rect" id="node1" title="Bot主动下线事件" alt="" coords="5,189,203,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotAccountEvent.html" title=" " alt="" coords="12,97,196,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="17,5,191,49"/>
+</map>

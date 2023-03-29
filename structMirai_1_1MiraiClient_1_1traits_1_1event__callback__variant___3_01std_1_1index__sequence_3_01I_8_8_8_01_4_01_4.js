@@ -1,0 +1,4 @@
+var structMirai_1_1MiraiClient_1_1traits_1_1event__callback__variant___3_01std_1_1index__sequence_3_01I_8_8_8_01_4_01_4 =
+[
+    [ "type", "structMirai_1_1MiraiClient_1_1traits_1_1event__callback__variant___3_01std_1_1index__sequence_3_01I_8_8_8_01_4_01_4.html#aba5f899ecf5563499050f167f0ad8a36", null ]
+];

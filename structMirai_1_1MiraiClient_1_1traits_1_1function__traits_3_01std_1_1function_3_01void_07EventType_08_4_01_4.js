@@ -1,0 +1,4 @@
+var structMirai_1_1MiraiClient_1_1traits_1_1function__traits_3_01std_1_1function_3_01void_07EventType_08_4_01_4 =
+[
+    [ "type", "structMirai_1_1MiraiClient_1_1traits_1_1function__traits_3_01std_1_1function_3_01void_07EventType_08_4_01_4.html#a77aec4f657173237fbbc6931df011272", null ]
+];

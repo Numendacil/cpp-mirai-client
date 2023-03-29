@@ -1,0 +1,9 @@
+<map id="Mirai::ForwardMessage::Node" name="Mirai::ForwardMessage::Node">
+<area shape="rect" id="node1" title="转发消息节点，代表一条转发消息" alt="" coords="109,205,283,249"/>
+<area shape="rect" id="node2" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="22,113,117,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="5,13,104,41"/>
+<area shape="rect" id="node4" title=" " alt="" coords="154,113,238,141"/>
+<area shape="rect" id="node5" title=" " alt="" coords="129,5,263,49"/>
+<area shape="rect" id="node6" href="$classMirai_1_1MessageChain.html" title="消息链对象，由一系列消息元素组成" alt="" coords="303,113,459,141"/>
+<area shape="rect" id="node7" title=" " alt="" coords="288,13,512,41"/>
+</map>

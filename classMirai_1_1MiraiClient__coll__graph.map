@@ -1,0 +1,12 @@
+<map id="Mirai::MiraiClient" name="Mirai::MiraiClient">
+<area shape="rect" id="node1" title="提供与mirai&#45;api&#45;http网络交互的封装" alt="" coords="583,157,711,185"/>
+<area shape="rect" id="node2" title=" " alt="" coords="249,5,389,33"/>
+<area shape="rect" id="node3" title=" " alt="" coords="277,57,361,85"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,49,140,93"/>
+<area shape="rect" id="node5" title=" " alt="" coords="237,109,400,153"/>
+<area shape="rect" id="node6" href="$classMirai_1_1ILogger.html" title="日志接口类" alt="" coords="17,117,128,145"/>
+<area shape="rect" id="node7" title=" " alt="" coords="238,177,399,221"/>
+<area shape="rect" id="node8" href="$classMirai_1_1IAdaptor.html" title=" " alt="" coords="15,185,131,213"/>
+<area shape="rect" id="node9" title=" " alt="" coords="239,245,398,289"/>
+<area shape="rect" id="node10" title=" " alt="" coords="209,313,428,357"/>
+</map>

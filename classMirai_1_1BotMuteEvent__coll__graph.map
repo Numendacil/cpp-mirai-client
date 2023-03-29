@@ -1,0 +1,8 @@
+<map id="Mirai::BotMuteEvent" name="Mirai::BotMuteEvent">
+<area shape="rect" id="node1" title="Bot被禁言事件" alt="" coords="60,285,211,313"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,193,223,221"/>
+<area shape="rect" id="node3" href="$structMirai_1_1GroupMember.html" title="群员资料" alt="" coords="247,193,402,221"/>
+<area shape="rect" id="node4" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="181,99,276,127"/>
+<area shape="rect" id="node5" title=" " alt="" coords="304,5,388,33"/>
+<area shape="rect" id="node6" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="446,99,547,127"/>
+</map>

@@ -1,0 +1,2502 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="generator" content="Doxygen 1.9.4" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>cpp-mirai-client: Mirai::ForwardMessage类 参考</title>
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+	<link href="doxygen.css" rel="stylesheet" type="text/css" />
+	<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+	<script type="text/javascript">
+		DoxygenAwesomeDarkModeToggle.init()
+		DoxygenAwesomeFragmentCopyButton.init()
+		DoxygenAwesomeParagraphLink.init()
+	</script>
+</head>
+<body>
+	<!-- https://tholman.com/github-corners/ -->
+	<a href="https://github.com/numendacil/cpp-mirai-client" class="github-corner" title="View source on GitHub"
+		target="_blank">
+		<svg viewBox="0 0 250 250" width="40" height="40"
+			style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<style>
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+		@keyframes octocat-wave {
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+		}
+	</style>
+		<div id="top">
+			<!-- do not remove this div, it is closed by doxygen! -->
+			<div id="titlearea">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr style="height: 56px;">
+							<td id="projectalign" style="padding-left: 0.5em;">
+								<div id="projectname">cpp-mirai-client
+									&#160;<span id="projectnumber">v2.6.1</span>
+								</div>
+								<div id="projectbrief">cpp client for mirai-api-http</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classMirai_1_1ForwardMessage.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">类</a> &#124;
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="#pro-types">Protected 类型</a> &#124;
+<a href="#pro-methods">Protected 成员函数</a> &#124;
+<a href="#pro-attribs">Protected 属性</a> &#124;
+<a href="#pro-static-attribs">静态 Protected 属性</a> &#124;
+<a href="classMirai_1_1ForwardMessage-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Mirai::ForwardMessage类 参考<span class="mlabels"><span class="mlabel">final</span></span></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>合并转发消息  
+ <a href="classMirai_1_1ForwardMessage.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a>&gt;</code></p>
+<div class="dynheader">
+类 Mirai::ForwardMessage 继承关系图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1ForwardMessage__inherit__graph.svg" width="184" height="207"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<div class="dynheader">
+Mirai::ForwardMessage 的协作图:</div>
+<div class="dyncontent">
+<div class="center"><iframe scrolling="no" frameborder="0" src="classMirai_1_1ForwardMessage__coll__graph.svg" width="356" height="255"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
+<center><span class="legend">[<a target="top" href="graph_legend.html">图例</a>]</span></center></div>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+类</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">转发消息节点，代表一条转发消息  <a href="classMirai_1_1ForwardMessage_1_1Node.html#details">更多...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a4a1ed841e1f306b8388a9ba2e4d90e23"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23">ForwardMessage</a> ()</td></tr>
+<tr class="separator:a4a1ed841e1f306b8388a9ba2e4d90e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4436dc01f2abc1e4ea96d2c4e97b08c0"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a4436dc01f2abc1e4ea96d2c4e97b08c0">ForwardMessage</a> (const <a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;)</td></tr>
+<tr class="separator:a4436dc01f2abc1e4ea96d2c4e97b08c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1bf6e0886e7c14624b87c09cf8334d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab1bf6e0886e7c14624b87c09cf8334d1">operator=</a> (const <a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;)</td></tr>
+<tr class="separator:ab1bf6e0886e7c14624b87c09cf8334d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc55fec30037ad7dc7b95bc692b8f58a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#acc55fec30037ad7dc7b95bc692b8f58a">ForwardMessage</a> (<a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&amp;)</td></tr>
+<tr class="separator:acc55fec30037ad7dc7b95bc692b8f58a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33cfc6dbdc9532434c181bada315f923"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a33cfc6dbdc9532434c181bada315f923">operator=</a> (<a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&amp;)</td></tr>
+<tr class="separator:a33cfc6dbdc9532434c181bada315f923"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9daa51eb9d40a3ba112549242faddc06"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a9daa51eb9d40a3ba112549242faddc06">~ForwardMessage</a> () final</td></tr>
+<tr class="separator:a9daa51eb9d40a3ba112549242faddc06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a08096c21f1639353c2a98460bdb708b2"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a08096c21f1639353c2a98460bdb708b2">GetDisplayTitle</a> () const</td></tr>
+<tr class="memdesc:a08096c21f1639353c2a98460bdb708b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取合并转发消息的标题（"xxx的聊天记录"），为空代表默认值  <a href="classMirai_1_1ForwardMessage.html#a08096c21f1639353c2a98460bdb708b2">更多...</a><br /></td></tr>
+<tr class="separator:a08096c21f1639353c2a98460bdb708b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acf7b497d4cc4fd85edda5f2cb2a20acf"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#acf7b497d4cc4fd85edda5f2cb2a20acf">GetDisplayBrief</a> () const</td></tr>
+<tr class="memdesc:acf7b497d4cc4fd85edda5f2cb2a20acf"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取合并转发消息的简略信息（"[聊天记录]"），为空代表默认值  <a href="classMirai_1_1ForwardMessage.html#acf7b497d4cc4fd85edda5f2cb2a20acf">更多...</a><br /></td></tr>
+<tr class="separator:acf7b497d4cc4fd85edda5f2cb2a20acf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a6172173babf534409e1655af5d6da9"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a8a6172173babf534409e1655af5d6da9">GetDisplaySource</a> () const</td></tr>
+<tr class="memdesc:a8a6172173babf534409e1655af5d6da9"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取合并转发消息的来源显示（"聊天记录"），为空代表默认值  <a href="classMirai_1_1ForwardMessage.html#a8a6172173babf534409e1655af5d6da9">更多...</a><br /></td></tr>
+<tr class="separator:a8a6172173babf534409e1655af5d6da9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abafdafb6a43cefd5805efb5f6570099a"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#abafdafb6a43cefd5805efb5f6570099a">GetDisplayPreview</a> () const</td></tr>
+<tr class="memdesc:abafdafb6a43cefd5805efb5f6570099a"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取合并转发消息的内容预览，为空代表默认值  <a href="classMirai_1_1ForwardMessage.html#abafdafb6a43cefd5805efb5f6570099a">更多...</a><br /></td></tr>
+<tr class="separator:abafdafb6a43cefd5805efb5f6570099a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5b08960f1da45886b0209a2c2135b05"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af5b08960f1da45886b0209a2c2135b05">GetDisplaySummary</a> () const</td></tr>
+<tr class="memdesc:af5b08960f1da45886b0209a2c2135b05"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取合并转发消息的内容总结（"查看x条转发消息"），为空代表默认值  <a href="classMirai_1_1ForwardMessage.html#af5b08960f1da45886b0209a2c2135b05">更多...</a><br /></td></tr>
+<tr class="separator:af5b08960f1da45886b0209a2c2135b05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f6737829cc3a358c2d4e6b36c08853a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a7f6737829cc3a358c2d4e6b36c08853a">SetDisplayTitle</a> (std::string title)</td></tr>
+<tr class="memdesc:a7f6737829cc3a358c2d4e6b36c08853a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置合并转发消息的标题（"xxx的聊天记录"）  <a href="classMirai_1_1ForwardMessage.html#a7f6737829cc3a358c2d4e6b36c08853a">更多...</a><br /></td></tr>
+<tr class="separator:a7f6737829cc3a358c2d4e6b36c08853a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7fb45165298cf65839b6470e560a621"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab7fb45165298cf65839b6470e560a621">SetDisplayBrief</a> (std::string brief)</td></tr>
+<tr class="memdesc:ab7fb45165298cf65839b6470e560a621"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置合并转发消息的简略信息（"[聊天记录]"）  <a href="classMirai_1_1ForwardMessage.html#ab7fb45165298cf65839b6470e560a621">更多...</a><br /></td></tr>
+<tr class="separator:ab7fb45165298cf65839b6470e560a621"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29123afcba49fcdfe1ca9e8a52b70c1a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a29123afcba49fcdfe1ca9e8a52b70c1a">SetDisplaySource</a> (std::string source)</td></tr>
+<tr class="memdesc:a29123afcba49fcdfe1ca9e8a52b70c1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置合并转发消息的来源显示（"聊天记录"）  <a href="classMirai_1_1ForwardMessage.html#a29123afcba49fcdfe1ca9e8a52b70c1a">更多...</a><br /></td></tr>
+<tr class="separator:a29123afcba49fcdfe1ca9e8a52b70c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad56e972013b213d50d0e05d8b852c92d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ad56e972013b213d50d0e05d8b852c92d">SetDisplayPreview</a> (std::vector&lt; std::string &gt; preview)</td></tr>
+<tr class="memdesc:ad56e972013b213d50d0e05d8b852c92d"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置合并转发消息的内容预览  <a href="classMirai_1_1ForwardMessage.html#ad56e972013b213d50d0e05d8b852c92d">更多...</a><br /></td></tr>
+<tr class="separator:ad56e972013b213d50d0e05d8b852c92d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a44c2afec0e3db191d824bc52f1d9e4d5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a44c2afec0e3db191d824bc52f1d9e4d5">SetDisplaySummary</a> (std::string summary)</td></tr>
+<tr class="memdesc:a44c2afec0e3db191d824bc52f1d9e4d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">设置合并转发消息的内容总结（"查看x条转发消息"）  <a href="classMirai_1_1ForwardMessage.html#a44c2afec0e3db191d824bc52f1d9e4d5">更多...</a><br /></td></tr>
+<tr class="separator:a44c2afec0e3db191d824bc52f1d9e4d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMirai_1_1IMessageImpl"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMirai_1_1IMessageImpl')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classMirai_1_1IMessageImpl.html">Mirai::IMessageImpl&lt; ForwardMessage &gt;</a></td></tr>
+<tr class="memitem:a061055ddf506e52291f65f7c9cd04288 inherit pub_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#a061055ddf506e52291f65f7c9cd04288">clone</a> () const override</td></tr>
+<tr class="separator:a061055ddf506e52291f65f7c9cd04288 inherit pub_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pub_methods_classMirai_1_1IMessage"><td colspan="2" onclick="javascript:toggleInherit('pub_methods_classMirai_1_1IMessage')"><img src="closed.png" alt="-"/>&#160;Public 成员函数 继承自 <a class="el" href="classMirai_1_1IMessage.html">Mirai::IMessage</a></td></tr>
+<tr class="memitem:a1369f7cae6bf4429d56a493b0bee85cf inherit pub_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#a1369f7cae6bf4429d56a493b0bee85cf">~IMessage</a> ()=default</td></tr>
+<tr class="separator:a1369f7cae6bf4429d56a493b0bee85cf inherit pub_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5a1b5191c80c3127fbb6d7645fb4911 inherit pub_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">virtual std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#aa5a1b5191c80c3127fbb6d7645fb4911">clone</a> () const =0</td></tr>
+<tr class="separator:aa5a1b5191c80c3127fbb6d7645fb4911 inherit pub_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab92fa02a5c9b28866dd0f19a4133604c inherit pub_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#ab92fa02a5c9b28866dd0f19a4133604c">type</a> () const</td></tr>
+<tr class="memdesc:ab92fa02a5c9b28866dd0f19a4133604c inherit pub_methods_classMirai_1_1IMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return the type of the class  <a href="classMirai_1_1IMessage.html#ab92fa02a5c9b28866dd0f19a4133604c">更多...</a><br /></td></tr>
+<tr class="separator:ab92fa02a5c9b28866dd0f19a4133604c inherit pub_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa5cb99243f3828419f3e912bd9aeaf3e inherit pub_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#aa5cb99243f3828419f3e912bd9aeaf3e">allowSend</a> () const</td></tr>
+<tr class="memdesc:aa5cb99243f3828419f3e912bd9aeaf3e inherit pub_methods_classMirai_1_1IMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查消息是否可以用于发送  <a href="classMirai_1_1IMessage.html#aa5cb99243f3828419f3e912bd9aeaf3e">更多...</a><br /></td></tr>
+<tr class="separator:aa5cb99243f3828419f3e912bd9aeaf3e inherit pub_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acce7006307ecdad025da91d32eb3b334 inherit pub_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#acce7006307ecdad025da91d32eb3b334">valid</a> () const</td></tr>
+<tr class="memdesc:acce7006307ecdad025da91d32eb3b334 inherit pub_methods_classMirai_1_1IMessage"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查消息是否有效  <a href="classMirai_1_1IMessage.html#acce7006307ecdad025da91d32eb3b334">更多...</a><br /></td></tr>
+<tr class="separator:acce7006307ecdad025da91d32eb3b334 inherit pub_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-types" name="pro-types"></a>
+Protected 类型</h2></td></tr>
+<tr class="memitem:ae101b03a3b0a677f83b8dfbccec4dae0"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0">NodeList</a> = std::vector&lt; <a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a> &gt;</td></tr>
+<tr class="separator:ae101b03a3b0a677f83b8dfbccec4dae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected 成员函数</h2></td></tr>
+<tr class="memitem:ab621c459ed107b494a9d299151d68a13"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab621c459ed107b494a9d299151d68a13">isValid_</a> () const final</td></tr>
+<tr class="separator:ab621c459ed107b494a9d299151d68a13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMirai_1_1IMessageImpl"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMirai_1_1IMessageImpl')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classMirai_1_1IMessageImpl.html">Mirai::IMessageImpl&lt; ForwardMessage &gt;</a></td></tr>
+<tr class="memitem:a87b4dfe7b6072bf67a3e0e7f6013f5ed inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#a87b4dfe7b6072bf67a3e0e7f6013f5ed">IMessageImpl</a> ()=default</td></tr>
+<tr class="separator:a87b4dfe7b6072bf67a3e0e7f6013f5ed inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa65a086728713e5dbb1c7529879db710 inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#aa65a086728713e5dbb1c7529879db710">GetType_</a> () const override</td></tr>
+<tr class="separator:aa65a086728713e5dbb1c7529879db710 inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa29c017838adec55bebd8393bbeb2cab inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#aa29c017838adec55bebd8393bbeb2cab">isSendSupported_</a> () const override</td></tr>
+<tr class="separator:aa29c017838adec55bebd8393bbeb2cab inherit pro_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="inherit_header pro_methods_classMirai_1_1IMessage"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_classMirai_1_1IMessage')"><img src="closed.png" alt="-"/>&#160;Protected 成员函数 继承自 <a class="el" href="classMirai_1_1IMessage.html">Mirai::IMessage</a></td></tr>
+<tr class="memitem:a336ad689c4989233524fc26aa8b22720 inherit pro_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#a336ad689c4989233524fc26aa8b22720">IMessage</a> ()=default</td></tr>
+<tr class="separator:a336ad689c4989233524fc26aa8b22720 inherit pro_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae02c9ef55bb21feaa5359f7b266ba095 inherit pro_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">virtual <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#ae02c9ef55bb21feaa5359f7b266ba095">GetType_</a> () const =0</td></tr>
+<tr class="separator:ae02c9ef55bb21feaa5359f7b266ba095 inherit pro_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a1b7301353c00edbabce2172e76a74e inherit pro_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#a4a1b7301353c00edbabce2172e76a74e">isSendSupported_</a> () const =0</td></tr>
+<tr class="separator:a4a1b7301353c00edbabce2172e76a74e inherit pro_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f83d23f2f176fdb7053dedabc90f4e3 inherit pro_methods_classMirai_1_1IMessage"><td class="memItemLeft" align="right" valign="top">virtual bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessage.html#a8f83d23f2f176fdb7053dedabc90f4e3">isValid_</a> () const =0</td></tr>
+<tr class="separator:a8f83d23f2f176fdb7053dedabc90f4e3 inherit pro_methods_classMirai_1_1IMessage"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected 属性</h2></td></tr>
+<tr class="memitem:a59c8955648d9363d0b38daef64809d18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0">NodeList</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a></td></tr>
+<tr class="separator:a59c8955648d9363d0b38daef64809d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab89710071cefc53fcdb60dee8576f2dd"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab89710071cefc53fcdb60dee8576f2dd">title_</a></td></tr>
+<tr class="separator:ab89710071cefc53fcdb60dee8576f2dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab475d2eba1bf236704f913e8794b6f53"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab475d2eba1bf236704f913e8794b6f53">brief_</a></td></tr>
+<tr class="separator:ab475d2eba1bf236704f913e8794b6f53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49e810f496837ec4ac45dd495b3f52db"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a49e810f496837ec4ac45dd495b3f52db">source_</a></td></tr>
+<tr class="separator:a49e810f496837ec4ac45dd495b3f52db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab08f1e82535f9b68e8a3b9381514bc55"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::vector&lt; std::string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab08f1e82535f9b68e8a3b9381514bc55">preview_</a></td></tr>
+<tr class="separator:ab08f1e82535f9b68e8a3b9381514bc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1a820a1512ac75a27528a451a477083"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aa1a820a1512ac75a27528a451a477083">summary_</a></td></tr>
+<tr class="separator:aa1a820a1512ac75a27528a451a477083"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-static-attribs" name="pro-static-attribs"></a>
+静态 Protected 属性</h2></td></tr>
+<tr class="memitem:a6ae2703dbc481554625c292242b1af50"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a6ae2703dbc481554625c292242b1af50">TYPE_</a> = <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fccabfec72bb37910c61f36b6c29a1f7ec31">MessageTypes::FORWARD</a></td></tr>
+<tr class="separator:a6ae2703dbc481554625c292242b1af50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa212a58e819bd7a85a98cc96e620a3bc"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aa212a58e819bd7a85a98cc96e620a3bc">SUPPORT_SEND_</a> = true</td></tr>
+<tr class="separator:aa212a58e819bd7a85a98cc96e620a3bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac7b7c2e88a08d808acf747754023332e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> = NodeList::value_type</td></tr>
+<tr class="memdesc:ac7b7c2e88a08d808acf747754023332e"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">更多...</a><br /></td></tr>
+<tr class="separator:ac7b7c2e88a08d808acf747754023332e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5988c3cf069b157c16ba548f96338391"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a5988c3cf069b157c16ba548f96338391">allocator_type</a> = NodeList::allocator_type</td></tr>
+<tr class="memdesc:a5988c3cf069b157c16ba548f96338391"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a5988c3cf069b157c16ba548f96338391">更多...</a><br /></td></tr>
+<tr class="separator:a5988c3cf069b157c16ba548f96338391"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8a72ea77f4571c6cd03b0f2f60679df"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> = NodeList::size_type</td></tr>
+<tr class="memdesc:ac8a72ea77f4571c6cd03b0f2f60679df"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">更多...</a><br /></td></tr>
+<tr class="separator:ac8a72ea77f4571c6cd03b0f2f60679df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace56a65c46be3776c4d713b34242b6b4"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ace56a65c46be3776c4d713b34242b6b4">difference_type</a> = NodeList::difference_type</td></tr>
+<tr class="memdesc:ace56a65c46be3776c4d713b34242b6b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ace56a65c46be3776c4d713b34242b6b4">更多...</a><br /></td></tr>
+<tr class="separator:ace56a65c46be3776c4d713b34242b6b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af725e15c3314cec5437a7417503fa5a3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a> = NodeList::reference</td></tr>
+<tr class="memdesc:af725e15c3314cec5437a7417503fa5a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">更多...</a><br /></td></tr>
+<tr class="separator:af725e15c3314cec5437a7417503fa5a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14b7da05808c731e000416b53839e59c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> = NodeList::const_reference</td></tr>
+<tr class="memdesc:a14b7da05808c731e000416b53839e59c"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">更多...</a><br /></td></tr>
+<tr class="separator:a14b7da05808c731e000416b53839e59c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41270bcc84f09ca01a71c6c044b86a74"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a41270bcc84f09ca01a71c6c044b86a74">pointer</a> = NodeList::pointer</td></tr>
+<tr class="memdesc:a41270bcc84f09ca01a71c6c044b86a74"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a41270bcc84f09ca01a71c6c044b86a74">更多...</a><br /></td></tr>
+<tr class="separator:a41270bcc84f09ca01a71c6c044b86a74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5cf2e26b4f051c15b4057e91489fbd6a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a5cf2e26b4f051c15b4057e91489fbd6a">const_pointer</a> = NodeList::const_pointer</td></tr>
+<tr class="memdesc:a5cf2e26b4f051c15b4057e91489fbd6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a5cf2e26b4f051c15b4057e91489fbd6a">更多...</a><br /></td></tr>
+<tr class="separator:a5cf2e26b4f051c15b4057e91489fbd6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfba719275355fd33d03fa82c6fd4a25"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">reverse_iterator</a> = NodeList::reverse_iterator</td></tr>
+<tr class="memdesc:acfba719275355fd33d03fa82c6fd4a25"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">更多...</a><br /></td></tr>
+<tr class="separator:acfba719275355fd33d03fa82c6fd4a25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8bbbdde842a319ebc99ef99e0c72c8b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">const_reverse_iterator</a> = NodeList::const_reverse_iterator</td></tr>
+<tr class="memdesc:af8bbbdde842a319ebc99ef99e0c72c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">更多...</a><br /></td></tr>
+<tr class="separator:af8bbbdde842a319ebc99ef99e0c72c8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a48ea5a9d6740d3d8be68f37456cc6046"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a> = NodeList::iterator</td></tr>
+<tr class="memdesc:a48ea5a9d6740d3d8be68f37456cc6046"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">更多...</a><br /></td></tr>
+<tr class="separator:a48ea5a9d6740d3d8be68f37456cc6046"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aba08f4ebe18886972b9b702676292c51"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> = NodeList::const_iterator</td></tr>
+<tr class="memdesc:aba08f4ebe18886972b9b702676292c51"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">更多...</a><br /></td></tr>
+<tr class="separator:aba08f4ebe18886972b9b702676292c51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58cdeaa65f3b0337ac4bde28e4fc5583"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a58cdeaa65f3b0337ac4bde28e4fc5583">empty</a> () const noexcept</td></tr>
+<tr class="memdesc:a58cdeaa65f3b0337ac4bde28e4fc5583"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a58cdeaa65f3b0337ac4bde28e4fc5583">更多...</a><br /></td></tr>
+<tr class="separator:a58cdeaa65f3b0337ac4bde28e4fc5583"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ff771f2010221e2da69ccb470956d77"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a0ff771f2010221e2da69ccb470956d77">size</a> () const noexcept</td></tr>
+<tr class="memdesc:a0ff771f2010221e2da69ccb470956d77"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a0ff771f2010221e2da69ccb470956d77">更多...</a><br /></td></tr>
+<tr class="separator:a0ff771f2010221e2da69ccb470956d77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf40baf22432dd991f08609e2354b750"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#abf40baf22432dd991f08609e2354b750">reserve</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> new_cap)</td></tr>
+<tr class="memdesc:abf40baf22432dd991f08609e2354b750"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#abf40baf22432dd991f08609e2354b750">更多...</a><br /></td></tr>
+<tr class="separator:abf40baf22432dd991f08609e2354b750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a437aa795abd097c91eb5fb0e81ade68a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a437aa795abd097c91eb5fb0e81ade68a">shrink_to_fit</a> () noexcept</td></tr>
+<tr class="memdesc:a437aa795abd097c91eb5fb0e81ade68a"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a437aa795abd097c91eb5fb0e81ade68a">更多...</a><br /></td></tr>
+<tr class="separator:a437aa795abd097c91eb5fb0e81ade68a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9190ae5f13a6a44d664c5079e89b9b13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a9190ae5f13a6a44d664c5079e89b9b13">max_size</a> () const noexcept</td></tr>
+<tr class="memdesc:a9190ae5f13a6a44d664c5079e89b9b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a9190ae5f13a6a44d664c5079e89b9b13">更多...</a><br /></td></tr>
+<tr class="separator:a9190ae5f13a6a44d664c5079e89b9b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1862d69601606dab55cfea64897b17e3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a1862d69601606dab55cfea64897b17e3">capacity</a> () const noexcept</td></tr>
+<tr class="memdesc:a1862d69601606dab55cfea64897b17e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a1862d69601606dab55cfea64897b17e3">更多...</a><br /></td></tr>
+<tr class="separator:a1862d69601606dab55cfea64897b17e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88aa93efc673273284946e65620acdf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">at</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n) const</td></tr>
+<tr class="memdesc:a88aa93efc673273284946e65620acdf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">更多...</a><br /></td></tr>
+<tr class="separator:a88aa93efc673273284946e65620acdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab90dfd5ab4a03d8d8834c468854ad145"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ab90dfd5ab4a03d8d8834c468854ad145">at</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n)</td></tr>
+<tr class="memdesc:ab90dfd5ab4a03d8d8834c468854ad145"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ab90dfd5ab4a03d8d8834c468854ad145">更多...</a><br /></td></tr>
+<tr class="separator:ab90dfd5ab4a03d8d8834c468854ad145"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aabf544f0eb415fa0e1b85467aaae2099"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">operator[]</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n) const noexcept</td></tr>
+<tr class="memdesc:aabf544f0eb415fa0e1b85467aaae2099"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">更多...</a><br /></td></tr>
+<tr class="separator:aabf544f0eb415fa0e1b85467aaae2099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84bad4cabdcd4848af782f1f5d2e4ccf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a84bad4cabdcd4848af782f1f5d2e4ccf">operator[]</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n) noexcept</td></tr>
+<tr class="memdesc:a84bad4cabdcd4848af782f1f5d2e4ccf"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a84bad4cabdcd4848af782f1f5d2e4ccf">更多...</a><br /></td></tr>
+<tr class="separator:a84bad4cabdcd4848af782f1f5d2e4ccf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada7bba185288e6536ee9fc5e7e784ce9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">back</a> () const</td></tr>
+<tr class="memdesc:ada7bba185288e6536ee9fc5e7e784ce9"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">更多...</a><br /></td></tr>
+<tr class="separator:ada7bba185288e6536ee9fc5e7e784ce9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3736a3ea94814ad0bf167eba7b3ee81f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a3736a3ea94814ad0bf167eba7b3ee81f">back</a> ()</td></tr>
+<tr class="memdesc:a3736a3ea94814ad0bf167eba7b3ee81f"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a3736a3ea94814ad0bf167eba7b3ee81f">更多...</a><br /></td></tr>
+<tr class="separator:a3736a3ea94814ad0bf167eba7b3ee81f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a832d05e5a70b2ec714d0421321eea2c6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">front</a> () const</td></tr>
+<tr class="memdesc:a832d05e5a70b2ec714d0421321eea2c6"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">更多...</a><br /></td></tr>
+<tr class="separator:a832d05e5a70b2ec714d0421321eea2c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8578fad5dfe1f46e5f31e09a4e6ee5a9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a8578fad5dfe1f46e5f31e09a4e6ee5a9">front</a> ()</td></tr>
+<tr class="memdesc:a8578fad5dfe1f46e5f31e09a4e6ee5a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a8578fad5dfe1f46e5f31e09a4e6ee5a9">更多...</a><br /></td></tr>
+<tr class="separator:a8578fad5dfe1f46e5f31e09a4e6ee5a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3113113d0db1a0a487167ec88860b48"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ae3113113d0db1a0a487167ec88860b48">clear</a> () noexcept</td></tr>
+<tr class="memdesc:ae3113113d0db1a0a487167ec88860b48"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ae3113113d0db1a0a487167ec88860b48">更多...</a><br /></td></tr>
+<tr class="separator:ae3113113d0db1a0a487167ec88860b48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a6dec1f99c7929eac5b1e89047317bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">insert</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> value)</td></tr>
+<tr class="memdesc:a1a6dec1f99c7929eac5b1e89047317bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">更多...</a><br /></td></tr>
+<tr class="separator:a1a6dec1f99c7929eac5b1e89047317bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8faf998a494c984cecd93958dde27404"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a8faf998a494c984cecd93958dde27404">insert</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;&amp;value)</td></tr>
+<tr class="memdesc:a8faf998a494c984cecd93958dde27404"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a8faf998a494c984cecd93958dde27404">更多...</a><br /></td></tr>
+<tr class="separator:a8faf998a494c984cecd93958dde27404"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6490eea6a7dbc84fa4dff101f1de8d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ac6490eea6a7dbc84fa4dff101f1de8d1">insert</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count, <a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> value)</td></tr>
+<tr class="memdesc:ac6490eea6a7dbc84fa4dff101f1de8d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ac6490eea6a7dbc84fa4dff101f1de8d1">更多...</a><br /></td></tr>
+<tr class="separator:ac6490eea6a7dbc84fa4dff101f1de8d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6c663e7a1b8dbabee994801275c931fe"><td class="memTemplParams" colspan="2">template&lt;class InputIt &gt; </td></tr>
+<tr class="memitem:a6c663e7a1b8dbabee994801275c931fe"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a6c663e7a1b8dbabee994801275c931fe">insert</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, InputIt first, InputIt last)</td></tr>
+<tr class="memdesc:a6c663e7a1b8dbabee994801275c931fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a6c663e7a1b8dbabee994801275c931fe">更多...</a><br /></td></tr>
+<tr class="separator:a6c663e7a1b8dbabee994801275c931fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae9923a726afce280b2a0599c558de47d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ae9923a726afce280b2a0599c558de47d">insert</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, std::initializer_list&lt; <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &gt; ilist)</td></tr>
+<tr class="memdesc:ae9923a726afce280b2a0599c558de47d"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ae9923a726afce280b2a0599c558de47d">更多...</a><br /></td></tr>
+<tr class="separator:ae9923a726afce280b2a0599c558de47d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1d0519061de6f937e669cf6649916a9"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:ad1d0519061de6f937e669cf6649916a9"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ad1d0519061de6f937e669cf6649916a9">emplace</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:ad1d0519061de6f937e669cf6649916a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ad1d0519061de6f937e669cf6649916a9">更多...</a><br /></td></tr>
+<tr class="separator:ad1d0519061de6f937e669cf6649916a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e85ad32fe694c28835aec746a9577a6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">erase</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos)</td></tr>
+<tr class="memdesc:a9e85ad32fe694c28835aec746a9577a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">更多...</a><br /></td></tr>
+<tr class="separator:a9e85ad32fe694c28835aec746a9577a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac938993d6e300e6d8f3d64084d40086b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ac938993d6e300e6d8f3d64084d40086b">erase</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> first, <a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> last)</td></tr>
+<tr class="memdesc:ac938993d6e300e6d8f3d64084d40086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ac938993d6e300e6d8f3d64084d40086b">更多...</a><br /></td></tr>
+<tr class="separator:ac938993d6e300e6d8f3d64084d40086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b93b47d058b0212ef9b5731d4fac063"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">push_back</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> node)</td></tr>
+<tr class="memdesc:a3b93b47d058b0212ef9b5731d4fac063"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">更多...</a><br /></td></tr>
+<tr class="separator:a3b93b47d058b0212ef9b5731d4fac063"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84508ee82ac9481bb992e249c2d89888"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a84508ee82ac9481bb992e249c2d89888">push_back</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;&amp;node)</td></tr>
+<tr class="memdesc:a84508ee82ac9481bb992e249c2d89888"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a84508ee82ac9481bb992e249c2d89888">更多...</a><br /></td></tr>
+<tr class="separator:a84508ee82ac9481bb992e249c2d89888"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af44c9f9c43409f4f45ae6f8e7d32e36e"><td class="memTemplParams" colspan="2">template&lt;class... Args&gt; </td></tr>
+<tr class="memitem:af44c9f9c43409f4f45ae6f8e7d32e36e"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af44c9f9c43409f4f45ae6f8e7d32e36e">emplace_back</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:af44c9f9c43409f4f45ae6f8e7d32e36e"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#af44c9f9c43409f4f45ae6f8e7d32e36e">更多...</a><br /></td></tr>
+<tr class="separator:af44c9f9c43409f4f45ae6f8e7d32e36e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2db2581618458ff6ae496f1c7e2c731f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a2db2581618458ff6ae496f1c7e2c731f">pop_back</a> ()</td></tr>
+<tr class="memdesc:a2db2581618458ff6ae496f1c7e2c731f"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a2db2581618458ff6ae496f1c7e2c731f">更多...</a><br /></td></tr>
+<tr class="separator:a2db2581618458ff6ae496f1c7e2c731f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5eb57c77fd778e461596ca9544cf8d6d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">resize</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count)</td></tr>
+<tr class="memdesc:a5eb57c77fd778e461596ca9544cf8d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">更多...</a><br /></td></tr>
+<tr class="separator:a5eb57c77fd778e461596ca9544cf8d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dc469b3826ad56f43a9a4f144f4f490"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a1dc469b3826ad56f43a9a4f144f4f490">resize</a> (<a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count, const <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;value)</td></tr>
+<tr class="memdesc:a1dc469b3826ad56f43a9a4f144f4f490"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a1dc469b3826ad56f43a9a4f144f4f490">更多...</a><br /></td></tr>
+<tr class="separator:a1dc469b3826ad56f43a9a4f144f4f490"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28d646a0bdebfa757daecb84fac47238"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">begin</a> () noexcept</td></tr>
+<tr class="memdesc:a28d646a0bdebfa757daecb84fac47238"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">更多...</a><br /></td></tr>
+<tr class="separator:a28d646a0bdebfa757daecb84fac47238"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2fda124242bcf7651ab71a63737774b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a2fda124242bcf7651ab71a63737774b0">begin</a> () const noexcept</td></tr>
+<tr class="memdesc:a2fda124242bcf7651ab71a63737774b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a2fda124242bcf7651ab71a63737774b0">更多...</a><br /></td></tr>
+<tr class="separator:a2fda124242bcf7651ab71a63737774b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7e38150e83cf7ff0050348b59cf6e52"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aa7e38150e83cf7ff0050348b59cf6e52">cbegin</a> () const noexcept</td></tr>
+<tr class="memdesc:aa7e38150e83cf7ff0050348b59cf6e52"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#aa7e38150e83cf7ff0050348b59cf6e52">更多...</a><br /></td></tr>
+<tr class="separator:aa7e38150e83cf7ff0050348b59cf6e52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af660020e814a4fc62193f4679dbee2ff"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">end</a> () noexcept</td></tr>
+<tr class="memdesc:af660020e814a4fc62193f4679dbee2ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">更多...</a><br /></td></tr>
+<tr class="separator:af660020e814a4fc62193f4679dbee2ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff26cd70aaa4d701dd5cc3dde20f0155"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#aff26cd70aaa4d701dd5cc3dde20f0155">end</a> () const noexcept</td></tr>
+<tr class="memdesc:aff26cd70aaa4d701dd5cc3dde20f0155"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#aff26cd70aaa4d701dd5cc3dde20f0155">更多...</a><br /></td></tr>
+<tr class="separator:aff26cd70aaa4d701dd5cc3dde20f0155"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39d973f1c5eef5389b8568359666d3b0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a39d973f1c5eef5389b8568359666d3b0">cend</a> () const noexcept</td></tr>
+<tr class="memdesc:a39d973f1c5eef5389b8568359666d3b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a39d973f1c5eef5389b8568359666d3b0">更多...</a><br /></td></tr>
+<tr class="separator:a39d973f1c5eef5389b8568359666d3b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8377e95b516b827c907fe6b301fbaaa"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#ad8377e95b516b827c907fe6b301fbaaa">rbegin</a> () noexcept</td></tr>
+<tr class="memdesc:ad8377e95b516b827c907fe6b301fbaaa"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#ad8377e95b516b827c907fe6b301fbaaa">更多...</a><br /></td></tr>
+<tr class="separator:ad8377e95b516b827c907fe6b301fbaaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c9028369f00492b2a07abac0ab07509"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a5c9028369f00492b2a07abac0ab07509">crbegin</a> () const noexcept</td></tr>
+<tr class="memdesc:a5c9028369f00492b2a07abac0ab07509"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a5c9028369f00492b2a07abac0ab07509">更多...</a><br /></td></tr>
+<tr class="separator:a5c9028369f00492b2a07abac0ab07509"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41601847b6e630f5a3e6033ff7cdb519"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#a41601847b6e630f5a3e6033ff7cdb519">rend</a> () noexcept</td></tr>
+<tr class="memdesc:a41601847b6e630f5a3e6033ff7cdb519"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#a41601847b6e630f5a3e6033ff7cdb519">更多...</a><br /></td></tr>
+<tr class="separator:a41601847b6e630f5a3e6033ff7cdb519"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af6140e25ecc84a6e52148060387254b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">const_reverse_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1ForwardMessage.html#af6140e25ecc84a6e52148060387254b3">crend</a> () const noexcept</td></tr>
+<tr class="memdesc:af6140e25ecc84a6e52148060387254b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">STL-like interface  <a href="classMirai_1_1ForwardMessage.html#af6140e25ecc84a6e52148060387254b3">更多...</a><br /></td></tr>
+<tr class="separator:af6140e25ecc84a6e52148060387254b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
+额外继承的成员函数</h2></td></tr>
+<tr class="inherit_header pub_static_methods_classMirai_1_1IMessageImpl"><td colspan="2" onclick="javascript:toggleInherit('pub_static_methods_classMirai_1_1IMessageImpl')"><img src="closed.png" alt="-"/>&#160;静态 Public 成员函数 继承自 <a class="el" href="classMirai_1_1IMessageImpl.html">Mirai::IMessageImpl&lt; ForwardMessage &gt;</a></td></tr>
+<tr class="memitem:a1730d55fc042df90eef78b640ecee6c0 inherit pub_static_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top">static constexpr <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#a1730d55fc042df90eef78b640ecee6c0">GetType</a> ()</td></tr>
+<tr class="separator:a1730d55fc042df90eef78b640ecee6c0 inherit pub_static_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ca17c2155c9a3f0a977f2eb9eaba156 inherit pub_static_methods_classMirai_1_1IMessageImpl"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1IMessageImpl.html#a8ca17c2155c9a3f0a977f2eb9eaba156">isSendSupported</a> ()</td></tr>
+<tr class="separator:a8ca17c2155c9a3f0a977f2eb9eaba156 inherit pub_static_methods_classMirai_1_1IMessageImpl"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >合并转发消息 </p>
+<p >可以使用类似于STL容器的方式访问各元素</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member Variable   </th><th class="markdownTableHeadNone">Default Value    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">ForwardMessage::NodeList_</a></code>   </td><td class="markdownTableBodyNone"><code>{}</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#ab89710071cefc53fcdb60dee8576f2dd">ForwardMessage::title_</a></code>   </td><td class="markdownTableBodyNone"><code>std::nullopt</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#ab475d2eba1bf236704f913e8794b6f53">ForwardMessage::brief_</a></code>   </td><td class="markdownTableBodyNone"><code>std::nullopt</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#a49e810f496837ec4ac45dd495b3f52db">ForwardMessage::source_</a></code>   </td><td class="markdownTableBodyNone"><code>std::nullopt</code>    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#ab08f1e82535f9b68e8a3b9381514bc55">ForwardMessage::preview_</a></code>   </td><td class="markdownTableBodyNone"><code>std::nullopt</code>    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code><a class="el" href="classMirai_1_1ForwardMessage.html#aa1a820a1512ac75a27528a451a477083">ForwardMessage::summary_</a></code>   </td><td class="markdownTableBodyNone"><code>std::nullopt</code>   </td></tr>
+</table>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00045">45</a> 行定义.</p>
+</div><h2 class="groupheader">成员类型定义说明</h2>
+<a id="ae101b03a3b0a677f83b8dfbccec4dae0" name="ae101b03a3b0a677f83b8dfbccec4dae0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae101b03a3b0a677f83b8dfbccec4dae0">&#9670;&nbsp;</a></span>NodeList</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0">Mirai::ForwardMessage::NodeList</a> =  std::vector&lt;<a class="el" href="classMirai_1_1ForwardMessage_1_1Node.html">Node</a>&gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac7b7c2e88a08d808acf747754023332e" name="ac7b7c2e88a08d808acf747754023332e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7b7c2e88a08d808acf747754023332e">&#9670;&nbsp;</a></span>value_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">Mirai::ForwardMessage::value_type</a> =  NodeList::value_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00145">145</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5988c3cf069b157c16ba548f96338391" name="a5988c3cf069b157c16ba548f96338391"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5988c3cf069b157c16ba548f96338391">&#9670;&nbsp;</a></span>allocator_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#a5988c3cf069b157c16ba548f96338391">Mirai::ForwardMessage::allocator_type</a> =  NodeList::allocator_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac8a72ea77f4571c6cd03b0f2f60679df" name="ac8a72ea77f4571c6cd03b0f2f60679df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8a72ea77f4571c6cd03b0f2f60679df">&#9670;&nbsp;</a></span>size_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">Mirai::ForwardMessage::size_type</a> =  NodeList::size_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00147">147</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ace56a65c46be3776c4d713b34242b6b4" name="ace56a65c46be3776c4d713b34242b6b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace56a65c46be3776c4d713b34242b6b4">&#9670;&nbsp;</a></span>difference_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#ace56a65c46be3776c4d713b34242b6b4">Mirai::ForwardMessage::difference_type</a> =  NodeList::difference_type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00148">148</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af725e15c3314cec5437a7417503fa5a3" name="af725e15c3314cec5437a7417503fa5a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af725e15c3314cec5437a7417503fa5a3">&#9670;&nbsp;</a></span>reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">Mirai::ForwardMessage::reference</a> =  NodeList::reference</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00149">149</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a14b7da05808c731e000416b53839e59c" name="a14b7da05808c731e000416b53839e59c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14b7da05808c731e000416b53839e59c">&#9670;&nbsp;</a></span>const_reference</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">Mirai::ForwardMessage::const_reference</a> =  NodeList::const_reference</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00150">150</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41270bcc84f09ca01a71c6c044b86a74" name="a41270bcc84f09ca01a71c6c044b86a74"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41270bcc84f09ca01a71c6c044b86a74">&#9670;&nbsp;</a></span>pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#a41270bcc84f09ca01a71c6c044b86a74">Mirai::ForwardMessage::pointer</a> =  NodeList::pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5cf2e26b4f051c15b4057e91489fbd6a" name="a5cf2e26b4f051c15b4057e91489fbd6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cf2e26b4f051c15b4057e91489fbd6a">&#9670;&nbsp;</a></span>const_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#a5cf2e26b4f051c15b4057e91489fbd6a">Mirai::ForwardMessage::const_pointer</a> =  NodeList::const_pointer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acfba719275355fd33d03fa82c6fd4a25" name="acfba719275355fd33d03fa82c6fd4a25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfba719275355fd33d03fa82c6fd4a25">&#9670;&nbsp;</a></span>reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">Mirai::ForwardMessage::reverse_iterator</a> =  NodeList::reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00153">153</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af8bbbdde842a319ebc99ef99e0c72c8b" name="af8bbbdde842a319ebc99ef99e0c72c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8bbbdde842a319ebc99ef99e0c72c8b">&#9670;&nbsp;</a></span>const_reverse_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">Mirai::ForwardMessage::const_reverse_iterator</a> =  NodeList::const_reverse_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00154">154</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a48ea5a9d6740d3d8be68f37456cc6046" name="a48ea5a9d6740d3d8be68f37456cc6046"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a48ea5a9d6740d3d8be68f37456cc6046">&#9670;&nbsp;</a></span>iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">Mirai::ForwardMessage::iterator</a> =  NodeList::iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00155">155</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aba08f4ebe18886972b9b702676292c51" name="aba08f4ebe18886972b9b702676292c51"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aba08f4ebe18886972b9b702676292c51">&#9670;&nbsp;</a></span>const_iterator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">Mirai::ForwardMessage::const_iterator</a> =  NodeList::const_iterator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00156">156</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a4a1ed841e1f306b8388a9ba2e4d90e23" name="a4a1ed841e1f306b8388a9ba2e4d90e23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a1ed841e1f306b8388a9ba2e4d90e23">&#9670;&nbsp;</a></span>ForwardMessage() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::ForwardMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a4436dc01f2abc1e4ea96d2c4e97b08c0" name="a4436dc01f2abc1e4ea96d2c4e97b08c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4436dc01f2abc1e4ea96d2c4e97b08c0">&#9670;&nbsp;</a></span>ForwardMessage() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::ForwardMessage </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acc55fec30037ad7dc7b95bc692b8f58a" name="acc55fec30037ad7dc7b95bc692b8f58a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc55fec30037ad7dc7b95bc692b8f58a">&#9670;&nbsp;</a></span>ForwardMessage() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::ForwardMessage </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9daa51eb9d40a3ba112549242faddc06" name="a9daa51eb9d40a3ba112549242faddc06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9daa51eb9d40a3ba112549242faddc06">&#9670;&nbsp;</a></span>~ForwardMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::ForwardMessage::~ForwardMessage </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="ab621c459ed107b494a9d299151d68a13" name="ab621c459ed107b494a9d299151d68a13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab621c459ed107b494a9d299151d68a13">&#9670;&nbsp;</a></span>isValid_()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::ForwardMessage::isValid_ </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">final</span><span class="mlabel">protected</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>实现了 <a class="el" href="classMirai_1_1IMessage.html#a8f83d23f2f176fdb7053dedabc90f4e3">Mirai::IMessage</a>.</p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00030">30</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab1bf6e0886e7c14624b87c09cf8334d1" name="ab1bf6e0886e7c14624b87c09cf8334d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1bf6e0886e7c14624b87c09cf8334d1">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp; Mirai::ForwardMessage::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a33cfc6dbdc9532434c181bada315f923" name="a33cfc6dbdc9532434c181bada315f923"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33cfc6dbdc9532434c181bada315f923">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp; Mirai::ForwardMessage::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a08096c21f1639353c2a98460bdb708b2" name="a08096c21f1639353c2a98460bdb708b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08096c21f1639353c2a98460bdb708b2">&#9670;&nbsp;</a></span>GetDisplayTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; Mirai::ForwardMessage::GetDisplayTitle </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取合并转发消息的标题（"xxx的聊天记录"），为空代表默认值 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00076">76</a> 行定义.</p>
+
+</div>
+</div>
+<a id="acf7b497d4cc4fd85edda5f2cb2a20acf" name="acf7b497d4cc4fd85edda5f2cb2a20acf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acf7b497d4cc4fd85edda5f2cb2a20acf">&#9670;&nbsp;</a></span>GetDisplayBrief()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; Mirai::ForwardMessage::GetDisplayBrief </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取合并转发消息的简略信息（"[聊天记录]"），为空代表默认值 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8a6172173babf534409e1655af5d6da9" name="a8a6172173babf534409e1655af5d6da9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8a6172173babf534409e1655af5d6da9">&#9670;&nbsp;</a></span>GetDisplaySource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; Mirai::ForwardMessage::GetDisplaySource </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取合并转发消息的来源显示（"聊天记录"），为空代表默认值 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00088">88</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abafdafb6a43cefd5805efb5f6570099a" name="abafdafb6a43cefd5805efb5f6570099a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abafdafb6a43cefd5805efb5f6570099a">&#9670;&nbsp;</a></span>GetDisplayPreview()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::vector&lt; std::string &gt; &gt; Mirai::ForwardMessage::GetDisplayPreview </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取合并转发消息的内容预览，为空代表默认值 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00094">94</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af5b08960f1da45886b0209a2c2135b05" name="af5b08960f1da45886b0209a2c2135b05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af5b08960f1da45886b0209a2c2135b05">&#9670;&nbsp;</a></span>GetDisplaySummary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; Mirai::ForwardMessage::GetDisplaySummary </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取合并转发消息的内容总结（"查看x条转发消息"），为空代表默认值 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00100">100</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7f6737829cc3a358c2d4e6b36c08853a" name="a7f6737829cc3a358c2d4e6b36c08853a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f6737829cc3a358c2d4e6b36c08853a">&#9670;&nbsp;</a></span>SetDisplayTitle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::SetDisplayTitle </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>title</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置合并转发消息的标题（"xxx的聊天记录"） </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab7fb45165298cf65839b6470e560a621" name="ab7fb45165298cf65839b6470e560a621"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7fb45165298cf65839b6470e560a621">&#9670;&nbsp;</a></span>SetDisplayBrief()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::SetDisplayBrief </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>brief</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置合并转发消息的简略信息（"[聊天记录]"） </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00113">113</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a29123afcba49fcdfe1ca9e8a52b70c1a" name="a29123afcba49fcdfe1ca9e8a52b70c1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29123afcba49fcdfe1ca9e8a52b70c1a">&#9670;&nbsp;</a></span>SetDisplaySource()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::SetDisplaySource </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>source</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置合并转发消息的来源显示（"聊天记录"） </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad56e972013b213d50d0e05d8b852c92d" name="ad56e972013b213d50d0e05d8b852c92d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad56e972013b213d50d0e05d8b852c92d">&#9670;&nbsp;</a></span>SetDisplayPreview()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::SetDisplayPreview </td>
+          <td>(</td>
+          <td class="paramtype">std::vector&lt; std::string &gt;&#160;</td>
+          <td class="paramname"><em>preview</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置合并转发消息的内容预览 </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00125">125</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a44c2afec0e3db191d824bc52f1d9e4d5" name="a44c2afec0e3db191d824bc52f1d9e4d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a44c2afec0e3db191d824bc52f1d9e4d5">&#9670;&nbsp;</a></span>SetDisplaySummary()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::SetDisplaySummary </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>summary</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>设置合并转发消息的内容总结（"查看x条转发消息"） </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a58cdeaa65f3b0337ac4bde28e4fc5583" name="a58cdeaa65f3b0337ac4bde28e4fc5583"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58cdeaa65f3b0337ac4bde28e4fc5583">&#9670;&nbsp;</a></span>empty()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::ForwardMessage::empty </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00037">37</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a0ff771f2010221e2da69ccb470956d77" name="a0ff771f2010221e2da69ccb470956d77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ff771f2010221e2da69ccb470956d77">&#9670;&nbsp;</a></span>size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> Mirai::ForwardMessage::size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00041">41</a> 行定义.</p>
+
+</div>
+</div>
+<a id="abf40baf22432dd991f08609e2354b750" name="abf40baf22432dd991f08609e2354b750"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf40baf22432dd991f08609e2354b750">&#9670;&nbsp;</a></span>reserve()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::reserve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>new_cap</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00045">45</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a437aa795abd097c91eb5fb0e81ade68a" name="a437aa795abd097c91eb5fb0e81ade68a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a437aa795abd097c91eb5fb0e81ade68a">&#9670;&nbsp;</a></span>shrink_to_fit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::shrink_to_fit </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00049">49</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9190ae5f13a6a44d664c5079e89b9b13" name="a9190ae5f13a6a44d664c5079e89b9b13"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9190ae5f13a6a44d664c5079e89b9b13">&#9670;&nbsp;</a></span>max_size()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> Mirai::ForwardMessage::max_size </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00053">53</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1862d69601606dab55cfea64897b17e3" name="a1862d69601606dab55cfea64897b17e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1862d69601606dab55cfea64897b17e3">&#9670;&nbsp;</a></span>capacity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> Mirai::ForwardMessage::capacity </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a88aa93efc673273284946e65620acdf2" name="a88aa93efc673273284946e65620acdf2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88aa93efc673273284946e65620acdf2">&#9670;&nbsp;</a></span>at() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> Mirai::ForwardMessage::at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab90dfd5ab4a03d8d8834c468854ad145" name="ab90dfd5ab4a03d8d8834c468854ad145"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab90dfd5ab4a03d8d8834c468854ad145">&#9670;&nbsp;</a></span>at() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> Mirai::ForwardMessage::at </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00066">66</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aabf544f0eb415fa0e1b85467aaae2099" name="aabf544f0eb415fa0e1b85467aaae2099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aabf544f0eb415fa0e1b85467aaae2099">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> Mirai::ForwardMessage::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00070">70</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a84bad4cabdcd4848af782f1f5d2e4ccf" name="a84bad4cabdcd4848af782f1f5d2e4ccf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84bad4cabdcd4848af782f1f5d2e4ccf">&#9670;&nbsp;</a></span>operator[]() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> Mirai::ForwardMessage::operator[] </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>n</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00074">74</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ada7bba185288e6536ee9fc5e7e784ce9" name="ada7bba185288e6536ee9fc5e7e784ce9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada7bba185288e6536ee9fc5e7e784ce9">&#9670;&nbsp;</a></span>back() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> Mirai::ForwardMessage::back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00078">78</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3736a3ea94814ad0bf167eba7b3ee81f" name="a3736a3ea94814ad0bf167eba7b3ee81f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3736a3ea94814ad0bf167eba7b3ee81f">&#9670;&nbsp;</a></span>back() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> Mirai::ForwardMessage::back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00082">82</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a832d05e5a70b2ec714d0421321eea2c6" name="a832d05e5a70b2ec714d0421321eea2c6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a832d05e5a70b2ec714d0421321eea2c6">&#9670;&nbsp;</a></span>front() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> Mirai::ForwardMessage::front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00086">86</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8578fad5dfe1f46e5f31e09a4e6ee5a9" name="a8578fad5dfe1f46e5f31e09a4e6ee5a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8578fad5dfe1f46e5f31e09a4e6ee5a9">&#9670;&nbsp;</a></span>front() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> Mirai::ForwardMessage::front </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00090">90</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae3113113d0db1a0a487167ec88860b48" name="ae3113113d0db1a0a487167ec88860b48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3113113d0db1a0a487167ec88860b48">&#9670;&nbsp;</a></span>clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::clear </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00095">95</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1a6dec1f99c7929eac5b1e89047317bd" name="a1a6dec1f99c7929eac5b1e89047317bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a6dec1f99c7929eac5b1e89047317bd">&#9670;&nbsp;</a></span>insert() <span class="overload">[1/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00099">99</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8faf998a494c984cecd93958dde27404" name="a8faf998a494c984cecd93958dde27404"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8faf998a494c984cecd93958dde27404">&#9670;&nbsp;</a></span>insert() <span class="overload">[2/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00103">103</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac6490eea6a7dbc84fa4dff101f1de8d1" name="ac6490eea6a7dbc84fa4dff101f1de8d1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6490eea6a7dbc84fa4dff101f1de8d1">&#9670;&nbsp;</a></span>insert() <span class="overload">[3/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00107">107</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6c663e7a1b8dbabee994801275c931fe" name="a6c663e7a1b8dbabee994801275c931fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c663e7a1b8dbabee994801275c931fe">&#9670;&nbsp;</a></span>insert() <span class="overload">[4/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class InputIt &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a> Mirai::ForwardMessage::insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">InputIt&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00178">178</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae9923a726afce280b2a0599c558de47d" name="ae9923a726afce280b2a0599c558de47d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae9923a726afce280b2a0599c558de47d">&#9670;&nbsp;</a></span>insert() <span class="overload">[5/5]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::insert </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &gt;&#160;</td>
+          <td class="paramname"><em>ilist</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00111">111</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad1d0519061de6f937e669cf6649916a9" name="ad1d0519061de6f937e669cf6649916a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad1d0519061de6f937e669cf6649916a9">&#9670;&nbsp;</a></span>emplace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">iterator</a> Mirai::ForwardMessage::emplace </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00183">183</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a9e85ad32fe694c28835aec746a9577a6" name="a9e85ad32fe694c28835aec746a9577a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e85ad32fe694c28835aec746a9577a6">&#9670;&nbsp;</a></span>erase() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::erase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>pos</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00115">115</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac938993d6e300e6d8f3d64084d40086b" name="ac938993d6e300e6d8f3d64084d40086b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac938993d6e300e6d8f3d64084d40086b">&#9670;&nbsp;</a></span>erase() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::erase </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>first</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a>&#160;</td>
+          <td class="paramname"><em>last</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00119">119</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a3b93b47d058b0212ef9b5731d4fac063" name="a3b93b47d058b0212ef9b5731d4fac063"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b93b47d058b0212ef9b5731d4fac063">&#9670;&nbsp;</a></span>push_back() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::push_back </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a>&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00123">123</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a84508ee82ac9481bb992e249c2d89888" name="a84508ee82ac9481bb992e249c2d89888"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84508ee82ac9481bb992e249c2d89888">&#9670;&nbsp;</a></span>push_back() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::push_back </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;&amp;&#160;</td>
+          <td class="paramname"><em>node</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00127">127</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af44c9f9c43409f4f45ae6f8e7d32e36e" name="af44c9f9c43409f4f45ae6f8e7d32e36e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af44c9f9c43409f4f45ae6f8e7d32e36e">&#9670;&nbsp;</a></span>emplace_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;class... Args&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">reference</a> Mirai::ForwardMessage::emplace_back </td>
+          <td>(</td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00191">191</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2db2581618458ff6ae496f1c7e2c731f" name="a2db2581618458ff6ae496f1c7e2c731f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2db2581618458ff6ae496f1c7e2c731f">&#9670;&nbsp;</a></span>pop_back()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::pop_back </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00131">131</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5eb57c77fd778e461596ca9544cf8d6d" name="a5eb57c77fd778e461596ca9544cf8d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5eb57c77fd778e461596ca9544cf8d6d">&#9670;&nbsp;</a></span>resize() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00135">135</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1dc469b3826ad56f43a9a4f144f4f490" name="a1dc469b3826ad56f43a9a4f144f4f490"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dc469b3826ad56f43a9a4f144f4f490">&#9670;&nbsp;</a></span>resize() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Mirai::ForwardMessage::resize </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a>&#160;</td>
+          <td class="paramname"><em>count</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a> &amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00139">139</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a28d646a0bdebfa757daecb84fac47238" name="a28d646a0bdebfa757daecb84fac47238"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28d646a0bdebfa757daecb84fac47238">&#9670;&nbsp;</a></span>begin() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00144">144</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a2fda124242bcf7651ab71a63737774b0" name="a2fda124242bcf7651ab71a63737774b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2fda124242bcf7651ab71a63737774b0">&#9670;&nbsp;</a></span>begin() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> Mirai::ForwardMessage::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00148">148</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa7e38150e83cf7ff0050348b59cf6e52" name="aa7e38150e83cf7ff0050348b59cf6e52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7e38150e83cf7ff0050348b59cf6e52">&#9670;&nbsp;</a></span>cbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> Mirai::ForwardMessage::cbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00152">152</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af660020e814a4fc62193f4679dbee2ff" name="af660020e814a4fc62193f4679dbee2ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af660020e814a4fc62193f4679dbee2ff">&#9670;&nbsp;</a></span>end() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> Mirai::ForwardMessage::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00156">156</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aff26cd70aaa4d701dd5cc3dde20f0155" name="aff26cd70aaa4d701dd5cc3dde20f0155"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff26cd70aaa4d701dd5cc3dde20f0155">&#9670;&nbsp;</a></span>end() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> Mirai::ForwardMessage::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00160">160</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a39d973f1c5eef5389b8568359666d3b0" name="a39d973f1c5eef5389b8568359666d3b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a39d973f1c5eef5389b8568359666d3b0">&#9670;&nbsp;</a></span>cend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> Mirai::ForwardMessage::cend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00164">164</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ad8377e95b516b827c907fe6b301fbaaa" name="ad8377e95b516b827c907fe6b301fbaaa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8377e95b516b827c907fe6b301fbaaa">&#9670;&nbsp;</a></span>rbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">ForwardMessage::reverse_iterator</a> Mirai::ForwardMessage::rbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00168">168</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5c9028369f00492b2a07abac0ab07509" name="a5c9028369f00492b2a07abac0ab07509"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c9028369f00492b2a07abac0ab07509">&#9670;&nbsp;</a></span>crbegin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">ForwardMessage::const_reverse_iterator</a> Mirai::ForwardMessage::crbegin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00172">172</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a41601847b6e630f5a3e6033ff7cdb519" name="a41601847b6e630f5a3e6033ff7cdb519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41601847b6e630f5a3e6033ff7cdb519">&#9670;&nbsp;</a></span>rend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">ForwardMessage::reverse_iterator</a> Mirai::ForwardMessage::rend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00176">176</a> 行定义.</p>
+
+</div>
+</div>
+<a id="af6140e25ecc84a6e52148060387254b3" name="af6140e25ecc84a6e52148060387254b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6140e25ecc84a6e52148060387254b3">&#9670;&nbsp;</a></span>crend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">ForwardMessage::const_reverse_iterator</a> Mirai::ForwardMessage::crend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>STL-like interface </p>
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a> 第 <a class="el" href="ForwardMessage_8cpp_source.html#l00180">180</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">类成员变量说明</h2>
+<a id="a59c8955648d9363d0b38daef64809d18" name="a59c8955648d9363d0b38daef64809d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59c8955648d9363d0b38daef64809d18">&#9670;&nbsp;</a></span>NodeList_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1ForwardMessage.html#ae101b03a3b0a677f83b8dfbccec4dae0">NodeList</a> Mirai::ForwardMessage::NodeList_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00054">54</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab89710071cefc53fcdb60dee8576f2dd" name="ab89710071cefc53fcdb60dee8576f2dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab89710071cefc53fcdb60dee8576f2dd">&#9670;&nbsp;</a></span>title_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::string&gt; Mirai::ForwardMessage::title_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00056">56</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab475d2eba1bf236704f913e8794b6f53" name="ab475d2eba1bf236704f913e8794b6f53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab475d2eba1bf236704f913e8794b6f53">&#9670;&nbsp;</a></span>brief_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::string&gt; Mirai::ForwardMessage::brief_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00057">57</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a49e810f496837ec4ac45dd495b3f52db" name="a49e810f496837ec4ac45dd495b3f52db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a49e810f496837ec4ac45dd495b3f52db">&#9670;&nbsp;</a></span>source_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::string&gt; Mirai::ForwardMessage::source_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00058">58</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab08f1e82535f9b68e8a3b9381514bc55" name="ab08f1e82535f9b68e8a3b9381514bc55"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab08f1e82535f9b68e8a3b9381514bc55">&#9670;&nbsp;</a></span>preview_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::vector&lt;std::string&gt; &gt; Mirai::ForwardMessage::preview_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00059">59</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa1a820a1512ac75a27528a451a477083" name="aa1a820a1512ac75a27528a451a477083"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa1a820a1512ac75a27528a451a477083">&#9670;&nbsp;</a></span>summary_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt;std::string&gt; Mirai::ForwardMessage::summary_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00060">60</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a6ae2703dbc481554625c292242b1af50" name="a6ae2703dbc481554625c292242b1af50"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae2703dbc481554625c292242b1af50">&#9670;&nbsp;</a></span>TYPE_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a> Mirai::ForwardMessage::TYPE_ = <a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fccabfec72bb37910c61f36b6c29a1f7ec31">MessageTypes::FORWARD</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00062">62</a> 行定义.</p>
+
+</div>
+</div>
+<a id="aa212a58e819bd7a85a98cc96e620a3bc" name="aa212a58e819bd7a85a98cc96e620a3bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa212a58e819bd7a85a98cc96e620a3bc">&#9670;&nbsp;</a></span>SUPPORT_SEND_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool Mirai::ForwardMessage::SUPPORT_SEND_ = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">在文件 <a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a> 第 <a class="el" href="ForwardMessage_8hpp_source.html#l00063">63</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>libmirai/models/libmirai/Messages/<a class="el" href="ForwardMessage_8hpp_source.html">ForwardMessage.hpp</a></li>
+<li>libmirai/models/libmirai/Messages/<a class="el" href="ForwardMessage_8cpp_source.html">ForwardMessage.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMirai.html">Mirai</a></li><li class="navelem"><a class="el" href="classMirai_1_1ForwardMessage.html">ForwardMessage</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

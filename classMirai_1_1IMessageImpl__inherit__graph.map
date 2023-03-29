@@ -1,0 +1,5 @@
+<map id="Mirai::IMessageImpl&lt; Message &gt;" name="Mirai::IMessageImpl&lt; Message &gt;">
+<area shape="rect" id="node1" title="CRTP helper layer" alt="" coords="19,81,170,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1FaceMessageImpl.html" title="QQ表情类消息" alt="" coords="5,173,184,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IMessage.html" title="Common interface for all message types" alt="" coords="33,5,156,33"/>
+</map>

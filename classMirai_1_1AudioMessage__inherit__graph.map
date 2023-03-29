@@ -1,0 +1,5 @@
+<map id="Mirai::AudioMessage" name="Mirai::AudioMessage">
+<area shape="rect" id="node1" title="语音消息" alt="" coords="5,173,161,201"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="8,81,159,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessage.html" title="Common interface for all message types" alt="" coords="22,5,145,33"/>
+</map>

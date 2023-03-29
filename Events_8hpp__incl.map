@@ -1,0 +1,23 @@
+<map id="libmirai/aggregates/libmirai/Events/Events.hpp" name="libmirai/aggregates/libmirai/Events/Events.hpp">
+<area shape="rect" id="node1" title=" " alt="" coords="892,5,1085,49"/>
+<area shape="rect" id="node2" href="$BotEvents_8hpp.html" title=" " alt="" coords="723,197,934,225"/>
+<area shape="rect" id="node6" href="$IEvent_8hpp.html" title=" " alt="" coords="539,289,630,317"/>
+<area shape="rect" id="node7" href="$CommandExecutedEvent_8hpp.html" title=" " alt="" coords="1451,97,1694,141"/>
+<area shape="rect" id="node11" href="$FriendEvents_8hpp.html" title=" " alt="" coords="404,105,635,133"/>
+<area shape="rect" id="node12" href="$GroupEvents_8hpp.html" title=" " alt="" coords="761,105,990,133"/>
+<area shape="rect" id="node13" href="$MemberEvents_8hpp.html" title=" " alt="" coords="958,197,1201,225"/>
+<area shape="rect" id="node14" href="$MiraiClientEvents_8hpp.html" title=" " alt="" coords="2305,189,2491,233"/>
+<area shape="rect" id="node16" href="$NewFriendRequestEvent_8hpp.html" title=" " alt="" coords="155,189,345,233"/>
+<area shape="rect" id="node17" href="$NudgeEvent_8hpp.html" title=" " alt="" coords="1933,105,2159,133"/>
+<area shape="rect" id="node19" href="$OtherClientEvents_8hpp.html" title=" " alt="" coords="1719,97,1909,141"/>
+<area shape="rect" id="node20" href="$StrangerMessageEvents_8hpp.html" title=" " alt="" coords="1015,97,1189,141"/>
+<area shape="rect" id="node21" href="$TempMessageEvents_8hpp.html" title=" " alt="" coords="1214,97,1427,141"/>
+<area shape="rect" id="node3" title=" " alt="" coords="1219,289,1291,317"/>
+<area shape="rect" id="node4" title=" " alt="" coords="1051,373,1108,401"/>
+<area shape="rect" id="node5" href="$BasicTypes_8hpp.html" title=" " alt="" coords="1315,289,1531,317"/>
+<area shape="rect" id="node8" href="$MessageChain_8hpp.html" title=" " alt="" coords="1427,189,1625,233"/>
+<area shape="rect" id="node9" href="$Exceptions_8hpp.html" title=" " alt="" coords="2305,281,2445,325"/>
+<area shape="rect" id="node10" title=" " alt="" coords="2413,373,2495,401"/>
+<area shape="rect" id="node15" title=" " alt="" coords="2571,289,2622,317"/>
+<area shape="rect" id="node18" href="$NudgeTarget_8hpp.html" title=" " alt="" coords="1902,197,2129,225"/>
+</map>

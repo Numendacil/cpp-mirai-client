@@ -1,0 +1,6 @@
+<map id="Mirai::BotLeaveEventKick" name="Mirai::BotLeaveEventKick">
+<area shape="rect" id="node1" title="Bot被踢出群聊事件" alt="" coords="107,207,293,235"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotLeaveEvent.html" title=" " alt="" coords="113,113,287,157"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,5,216,49"/>
+<area shape="rect" id="node4" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="240,13,341,41"/>
+</map>

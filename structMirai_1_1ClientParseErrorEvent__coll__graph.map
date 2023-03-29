@@ -1,0 +1,7 @@
+<map id="Mirai::ClientParseErrorEvent" name="Mirai::ClientParseErrorEvent">
+<area shape="rect" id="node1" title="消息解析错误事件" alt="" coords="182,221,385,249"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="5,113,193,157"/>
+<area shape="rect" id="node3" href="$classMirai_1_1ParseError.html" title="消息解析错误" alt="" coords="218,121,349,149"/>
+<area shape="rect" id="node4" title=" " alt="" coords="194,5,330,33"/>
+<area shape="rect" id="node5" title=" " alt="" coords="355,5,439,33"/>
+</map>

@@ -142,10 +142,9 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><p ><a class="anchor" id="md_README"></a></p>
-<p ><a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/github/workflow/status/numendacil/cpp-mirai-client/UnitTest?style=flat&amp;logo=github" alt="UnitTest Status" class="inline"/></a> <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FNumendacil%2Fcpp-mirai-client?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FNumendacil%2Fcpp-mirai-client.svg?type=shield" alt="FOSSA Status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE"><img src="https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat" alt="AGPLv3.0 License" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/badge/version-2.6.2-blue.svg?style=flat" alt="Project Version" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/badge/c++-17-yellow.svg?style=flat" alt="C++ Version" style="pointer-events: none;" class="inline"/></a></p>
+<p ><a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/github/actions/workflow/status/numendacil/cpp-mirai-client/UnitTest.yml?branch=master&amp;style=flat&amp;logo=github" alt="UnitTest Status" class="inline"/></a> <a href="https://app.fossa.com/projects/git%2Bgithub.com%2FNumendacil%2Fcpp-mirai-client?ref=badge_shield"><img src="https://app.fossa.com/api/projects/git%2Bgithub.com%2FNumendacil%2Fcpp-mirai-client.svg?type=shield" alt="FOSSA Status" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client/blob/master/LICENSE"><img src="https://img.shields.io/github/license/numendacil/cpp-mirai-client?style=flat" alt="AGPLv3.0 License" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/badge/version-1.0.0-blue.svg?style=flat" alt="Project Version" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/numendacil/cpp-mirai-client"><img src="https://img.shields.io/badge/c++-17-yellow.svg?style=flat" alt="C++ Version" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 关于本项目</h1>
-<p >Currently working in progress.</p>
 <p >cpp-mirai-client 是一个基于 <a href="https://github.com/mamoe/mirai"><em>mirai</em></a> 与 <a href="https://github.com/project-mirai/mirai-api-http"><em>mirai-api-http</em></a> 的跨平台C++机器人框架。</p>
 <p >本项目在一定程度上参考了 <a href="https://github.com/cyanray/mirai-cpp">cyanray/mirai-cpp</a> 项目，您也可以考虑使用该项目进行C++ QQ机器人的开发</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
@@ -165,18 +164,17 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <li><a href="https://github.com/nlohmann/json"><b>nlohmann/json</b></a> JSON for Modern C++</li>
 <li><a href="https://github.com/google/googletest"><b>google/googletest</b></a> GoogleTest - Google Testing and Mocking Framework</li>
 </ol>
-<p >其中 <a href="https://github.com/google/googletest">google/googletest</a> 仅用于测试，实际使用时可以不用安装。 这些项目都已经以submodule的形式被包含在了 <code>external/</code> 目录下，可以通过 <code>git clone --recursive</code> 来拉取对应的模块并本地编译链接。 你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 <code>find_package</code> 来找到对应的文件。</p>
+<p >其中 <a href="https://github.com/google/googletest">google/googletest</a> 仅用于测试，实际使用时可以不用安装。 这些项目都已经以submodule的形式被包含在了 <code>external/</code> 目录下，可以通过 <code>git clone --recursive</code> 来拉取对应的模块并本地编译链接。 你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 <code>find_package</code> 来找到对应的文件。所有依赖均为私有依赖，仅用于编译，使用cpp-mirai-client 时不需要链接这些第三方库。</p>
 <p >本项目的文档生成使用了 <a href="https://doxygen.org/index.html">Doxygen</a> 与 <a href="https://github.com/jothepro/doxygen-awesome-css">jothepro/doxygen-awesome-css</a>。</p>
 <h1><a class="anchor" id="autotoc_md4"></a>
 TODO</h1>
 <ul>
 <li>Docs and example usages</li>
-<li>Remove nlohmann/json from public interface</li>
 <li>Project templates for creating a simple QQBot</li>
 <li>Benchmark and performance tests</li>
 </ul>
 <p ><span class="next_section_button"></span></p>
-<p ><span class="next_section_button">Read Next: <a class="el" href="md_docs_Quickstart.html">快速入门</a> </span> </p>
+<p ><span class="next_section_button">Read Next: <a class="el" href="md_docs_usage__0_quickstart.html">快速入门</a> </span> </p>
 </div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->

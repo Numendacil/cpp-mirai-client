@@ -1,0 +1,27 @@
+var classMirai_1_1MusicShareMessage =
+[
+    [ "MusicShareMessage", "classMirai_1_1MusicShareMessage.html#aa10ee3dc836e59e70e1125c0ce018c1a", null ],
+    [ "MusicShareMessage", "classMirai_1_1MusicShareMessage.html#a2ee240f1861f0a0fa9ea91af02bc7b52", null ],
+    [ "isValid_", "classMirai_1_1MusicShareMessage.html#ad0fdf259a6742dbc453ac82231171f1b", null ],
+    [ "GetKind", "classMirai_1_1MusicShareMessage.html#ac74cdc8c4ea124950dfc7b1af15a4125", null ],
+    [ "GetTitle", "classMirai_1_1MusicShareMessage.html#a88e8e9a29636f3d5f58316e528260ad9", null ],
+    [ "GetSummary", "classMirai_1_1MusicShareMessage.html#ade66e2b9e54c02067ef8666654fe02b2", null ],
+    [ "GetJumpUrl", "classMirai_1_1MusicShareMessage.html#ad2dde3e110f3319e814cd23f7e74815e", null ],
+    [ "GetPictureUrl", "classMirai_1_1MusicShareMessage.html#addc39e5cc40311933251be9a59ef10b8", null ],
+    [ "GetMusicUrl", "classMirai_1_1MusicShareMessage.html#a0cad76a3cc5f66abd95d9a428688feae", null ],
+    [ "GetBrief", "classMirai_1_1MusicShareMessage.html#a3b1806707b1d2f90dd71dfcb86c7100c", null ],
+    [ "SetKind", "classMirai_1_1MusicShareMessage.html#a8b89d87c9d65603d15c2909e9b670df6", null ],
+    [ "SetTitle", "classMirai_1_1MusicShareMessage.html#afe7ad29c5092237311723dd5cb9a2328", null ],
+    [ "SetSummary", "classMirai_1_1MusicShareMessage.html#ac94c84c971e6804a01a35dc83d2344ce", null ],
+    [ "SetJumpUrl", "classMirai_1_1MusicShareMessage.html#a755ad97bca9e01114be4ae3d2e788876", null ],
+    [ "SetPictureUrl", "classMirai_1_1MusicShareMessage.html#a68cfdb9b60d2311af8d5824c452b255e", null ],
+    [ "SetMusicUrl", "classMirai_1_1MusicShareMessage.html#a556e070606782418406a7c87eda4885b", null ],
+    [ "SetBrief", "classMirai_1_1MusicShareMessage.html#a7dac55bd7ff540b2c597816666c75e54", null ],
+    [ "kind_", "classMirai_1_1MusicShareMessage.html#a69efaa30d4269c9e14894ffb3ec5127f", null ],
+    [ "title_", "classMirai_1_1MusicShareMessage.html#af49632bb37f8e874c880c59cf9648cf0", null ],
+    [ "summary_", "classMirai_1_1MusicShareMessage.html#af5d0766a424c235d1b01957559f9c6fa", null ],
+    [ "JumpUrl_", "classMirai_1_1MusicShareMessage.html#a7774a8428356c24ec50aa86243dcb172", null ],
+    [ "PictureUrl_", "classMirai_1_1MusicShareMessage.html#a93f01b3cee723f402fff4fadd86a1f10", null ],
+    [ "MusicUrl_", "classMirai_1_1MusicShareMessage.html#a89ef2582c6f324bb73a52503178596c1", null ],
+    [ "brief_", "classMirai_1_1MusicShareMessage.html#a5f91f82b2d01733c82be5d7116973ed0", null ]
+];

@@ -1,0 +1,12 @@
+<map id="libmirai/models/libmirai/Messages/ForwardMessage.cpp" name="libmirai/models/libmirai/Messages/ForwardMessage.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="287,5,521,49"/>
+<area shape="rect" id="node2" href="$ForwardMessage_8hpp.html" title=" " alt="" coords="255,249,417,277"/>
+<area shape="rect" id="node9" href="$ForwardMessageNode_8hpp.html" title=" " alt="" coords="385,97,583,125"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,401,61,429"/>
+<area shape="rect" id="node4" title=" " alt="" coords="583,325,655,353"/>
+<area shape="rect" id="node5" title=" " alt="" coords="297,401,351,429"/>
+<area shape="rect" id="node6" title=" " alt="" coords="361,325,423,353"/>
+<area shape="rect" id="node7" href="$BasicTypes_8hpp.html" title=" " alt="" coords="71,325,287,353"/>
+<area shape="rect" id="node8" href="$IMessage_8hpp.html" title=" " alt="" coords="447,325,559,353"/>
+<area shape="rect" id="node10" href="$MessageChain_8hpp.html" title=" " alt="" coords="425,173,570,201"/>
+</map>

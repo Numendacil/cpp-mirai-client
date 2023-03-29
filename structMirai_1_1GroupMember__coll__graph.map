@@ -1,0 +1,9 @@
+<map id="Mirai::GroupMember" name="Mirai::GroupMember">
+<area shape="rect" id="node1" title="群员资料" alt="" coords="74,299,229,327"/>
+<area shape="rect" id="node2" href="$classMirai_1_1QQ__t.html" title="QQ号码类型" alt="" coords="5,151,100,179"/>
+<area shape="rect" id="node3" href="$classMirai_1_1UID__t.html" title="Base class for QQ_t and GID_t" alt="" coords="31,13,130,41"/>
+<area shape="rect" id="node7" href="$classMirai_1_1GID__t.html" title="群聊号码类型" alt="" coords="87,99,186,127"/>
+<area shape="rect" id="node4" title=" " alt="" coords="211,99,295,127"/>
+<area shape="rect" id="node6" href="$structMirai_1_1Group.html" title="群聊资料" alt="" coords="101,205,202,233"/>
+<area shape="rect" id="node5" title=" " alt="" coords="185,5,320,49"/>
+</map>

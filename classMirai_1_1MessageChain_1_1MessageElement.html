@@ -1,0 +1,897 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="generator" content="Doxygen 1.9.4" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>cpp-mirai-client: Mirai::MessageChain::MessageElement类 参考</title>
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+	<link href="doxygen.css" rel="stylesheet" type="text/css" />
+	<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+	<script type="text/javascript">
+		DoxygenAwesomeDarkModeToggle.init()
+		DoxygenAwesomeFragmentCopyButton.init()
+		DoxygenAwesomeParagraphLink.init()
+	</script>
+</head>
+<body>
+	<!-- https://tholman.com/github-corners/ -->
+	<a href="https://github.com/numendacil/cpp-mirai-client" class="github-corner" title="View source on GitHub"
+		target="_blank">
+		<svg viewBox="0 0 250 250" width="40" height="40"
+			style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<style>
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+		@keyframes octocat-wave {
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+		}
+	</style>
+		<div id="top">
+			<!-- do not remove this div, it is closed by doxygen! -->
+			<div id="titlearea">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr style="height: 56px;">
+							<td id="projectalign" style="padding-left: 0.5em;">
+								<div id="projectname">cpp-mirai-client
+									&#160;<span id="projectnumber">v2.6.1</span>
+								</div>
+								<div id="projectbrief">cpp client for mirai-api-http</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('classMirai_1_1MessageChain_1_1MessageElement.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public 成员函数</a> &#124;
+<a href="classMirai_1_1MessageChain_1_1MessageElement-members.html">所有成员列表</a>  </div>
+  <div class="headertitle"><div class="title">Mirai::MessageChain::MessageElement类 参考</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>消息元素对象  
+ <a href="classMirai_1_1MessageChain_1_1MessageElement.html#details">更多...</a></p>
+
+<p><code>#include &lt;<a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public 成员函数</h2></td></tr>
+<tr class="memitem:a87e965552729e0cb74f5fd487790b2a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a87e965552729e0cb74f5fd487790b2a1">type</a> () const</td></tr>
+<tr class="memdesc:a87e965552729e0cb74f5fd487790b2a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">获取所含消息的类型  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a87e965552729e0cb74f5fd487790b2a1">更多...</a><br /></td></tr>
+<tr class="separator:a87e965552729e0cb74f5fd487790b2a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5326c542bac4931678971c71bf6c237b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a5326c542bac4931678971c71bf6c237b">allowSend</a> () const</td></tr>
+<tr class="memdesc:a5326c542bac4931678971c71bf6c237b"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查消息是否可以用于发送  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a5326c542bac4931678971c71bf6c237b">更多...</a><br /></td></tr>
+<tr class="separator:a5326c542bac4931678971c71bf6c237b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e10320523122dc006b9b65529631078"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a8e10320523122dc006b9b65529631078">valid</a> () const</td></tr>
+<tr class="memdesc:a8e10320523122dc006b9b65529631078"><td class="mdescLeft">&#160;</td><td class="mdescRight">检查消息是否有效  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a8e10320523122dc006b9b65529631078">更多...</a><br /></td></tr>
+<tr class="separator:a8e10320523122dc006b9b65529631078"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a042b7db95937741c78986e169a8f7f98"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a042b7db95937741c78986e169a8f7f98">MessageElement</a> ()=default</td></tr>
+<tr class="memdesc:a042b7db95937741c78986e169a8f7f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a042b7db95937741c78986e169a8f7f98">更多...</a><br /></td></tr>
+<tr class="separator:a042b7db95937741c78986e169a8f7f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af190d3d426c86963e1d473e19787658f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#af190d3d426c86963e1d473e19787658f">MessageElement</a> (std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt; &amp;&amp;msg)</td></tr>
+<tr class="memdesc:af190d3d426c86963e1d473e19787658f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#af190d3d426c86963e1d473e19787658f">更多...</a><br /></td></tr>
+<tr class="separator:af190d3d426c86963e1d473e19787658f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f55e08506fc9f6970ca02f226402f92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a3f55e08506fc9f6970ca02f226402f92">operator=</a> (std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt; &amp;&amp;msg)</td></tr>
+<tr class="memdesc:a3f55e08506fc9f6970ca02f226402f92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a3f55e08506fc9f6970ca02f226402f92">更多...</a><br /></td></tr>
+<tr class="separator:a3f55e08506fc9f6970ca02f226402f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a782b0817756c44a890a89833f32c8601"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a782b0817756c44a890a89833f32c8601">MessageElement</a> (const <a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a782b0817756c44a890a89833f32c8601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a782b0817756c44a890a89833f32c8601">更多...</a><br /></td></tr>
+<tr class="separator:a782b0817756c44a890a89833f32c8601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1ae34be76e1944c43f104489aba1cbb1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a1ae34be76e1944c43f104489aba1cbb1">operator=</a> (const <a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;rhs)</td></tr>
+<tr class="memdesc:a1ae34be76e1944c43f104489aba1cbb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a1ae34be76e1944c43f104489aba1cbb1">更多...</a><br /></td></tr>
+<tr class="separator:a1ae34be76e1944c43f104489aba1cbb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab9a1c3f840525e62052addb877caafb2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#ab9a1c3f840525e62052addb877caafb2">MessageElement</a> (<a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="memdesc:ab9a1c3f840525e62052addb877caafb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#ab9a1c3f840525e62052addb877caafb2">更多...</a><br /></td></tr>
+<tr class="separator:ab9a1c3f840525e62052addb877caafb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4c0b94cd6162c7db76d89b6e50bb925"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#ab4c0b94cd6162c7db76d89b6e50bb925">operator=</a> (<a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&amp;) noexcept=default</td></tr>
+<tr class="memdesc:ab4c0b94cd6162c7db76d89b6e50bb925"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#ab4c0b94cd6162c7db76d89b6e50bb925">更多...</a><br /></td></tr>
+<tr class="separator:ab4c0b94cd6162c7db76d89b6e50bb925"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58c9aa23202b6c0cf89f6a4e4c9eaba2"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a58c9aa23202b6c0cf89f6a4e4c9eaba2">~MessageElement</a> ()=default</td></tr>
+<tr class="memdesc:a58c9aa23202b6c0cf89f6a4e4c9eaba2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a58c9aa23202b6c0cf89f6a4e4c9eaba2">更多...</a><br /></td></tr>
+<tr class="separator:a58c9aa23202b6c0cf89f6a4e4c9eaba2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac1cfc3d430c98c5686ae2860f70f6e1f"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#ac1cfc3d430c98c5686ae2860f70f6e1f">operator bool</a> () const</td></tr>
+<tr class="memdesc:ac1cfc3d430c98c5686ae2860f70f6e1f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#ac1cfc3d430c98c5686ae2860f70f6e1f">更多...</a><br /></td></tr>
+<tr class="separator:ac1cfc3d430c98c5686ae2860f70f6e1f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cdb2ed05ab067df454619d8fcd17656"><td class="memTemplParams" colspan="2">template&lt;typename MessageType , typename... Args, typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a1cdb2ed05ab067df454619d8fcd17656"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a1cdb2ed05ab067df454619d8fcd17656">MessageElement</a> (std::in_place_type_t&lt; MessageType &gt;, Args &amp;&amp;... args)</td></tr>
+<tr class="memdesc:a1cdb2ed05ab067df454619d8fcd17656"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a1cdb2ed05ab067df454619d8fcd17656">更多...</a><br /></td></tr>
+<tr class="separator:a1cdb2ed05ab067df454619d8fcd17656"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7967fad16f9d1b6c4234fa86933cc751"><td class="memTemplParams" colspan="2">template&lt;typename MessageType , typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a7967fad16f9d1b6c4234fa86933cc751"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a7967fad16f9d1b6c4234fa86933cc751">MessageElement</a> (MessageType &amp;&amp;m)</td></tr>
+<tr class="memdesc:a7967fad16f9d1b6c4234fa86933cc751"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a7967fad16f9d1b6c4234fa86933cc751">更多...</a><br /></td></tr>
+<tr class="separator:a7967fad16f9d1b6c4234fa86933cc751"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a796e441bef58146ef11f4383ab7abfc1"><td class="memTemplParams" colspan="2">template&lt;typename MessageType , typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </td></tr>
+<tr class="memitem:a796e441bef58146ef11f4383ab7abfc1"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a796e441bef58146ef11f4383ab7abfc1">operator=</a> (MessageType &amp;&amp;m)</td></tr>
+<tr class="memdesc:a796e441bef58146ef11f4383ab7abfc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a796e441bef58146ef11f4383ab7abfc1">更多...</a><br /></td></tr>
+<tr class="separator:a796e441bef58146ef11f4383ab7abfc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac6a87317cd3669d8f0aeeaecf96f7622"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#ac6a87317cd3669d8f0aeeaecf96f7622">MessageElement</a> (<a class="el" href="classMirai_1_1IMessage.html">IMessage</a> *m)</td></tr>
+<tr class="memdesc:ac6a87317cd3669d8f0aeeaecf96f7622"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors, conversion operators and destructor  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#ac6a87317cd3669d8f0aeeaecf96f7622">更多...</a><br /></td></tr>
+<tr class="separator:ac6a87317cd3669d8f0aeeaecf96f7622"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a8dfd5d10e5ca29ef54d3f4c201a28bd7"><td class="memTemplParams" colspan="2">template&lt;typename MessageType &gt; </td></tr>
+<tr class="memitem:a8dfd5d10e5ca29ef54d3f4c201a28bd7"><td class="memTemplItemLeft" align="right" valign="top">MessageType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a8dfd5d10e5ca29ef54d3f4c201a28bd7">as</a> ()</td></tr>
+<tr class="memdesc:a8dfd5d10e5ca29ef54d3f4c201a28bd7"><td class="mdescLeft">&#160;</td><td class="mdescRight">转换为某一特定类型的消息，类型错误时将抛出异常  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a8dfd5d10e5ca29ef54d3f4c201a28bd7">更多...</a><br /></td></tr>
+<tr class="separator:a8dfd5d10e5ca29ef54d3f4c201a28bd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a918eb6cde137d709fd292ea9b337837a"><td class="memTemplParams" colspan="2">template&lt;typename MessageType &gt; </td></tr>
+<tr class="memitem:a918eb6cde137d709fd292ea9b337837a"><td class="memTemplItemLeft" align="right" valign="top">const MessageType &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a918eb6cde137d709fd292ea9b337837a">as</a> () const</td></tr>
+<tr class="memdesc:a918eb6cde137d709fd292ea9b337837a"><td class="mdescLeft">&#160;</td><td class="mdescRight">转换为某一特定类型的消息，类型错误时将抛出异常  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a918eb6cde137d709fd292ea9b337837a">更多...</a><br /></td></tr>
+<tr class="separator:a918eb6cde137d709fd292ea9b337837a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a5cb561ef25b18a1c8681d28345cb8596"><td class="memTemplParams" colspan="2">template&lt;typename Callable &gt; </td></tr>
+<tr class="memitem:a5cb561ef25b18a1c8681d28345cb8596"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a5cb561ef25b18a1c8681d28345cb8596">visit</a> (Callable &amp;&amp;f)</td></tr>
+<tr class="memdesc:a5cb561ef25b18a1c8681d28345cb8596"><td class="mdescLeft">&#160;</td><td class="mdescRight">对此消息元素应用visitor，类似 <code>std::visit</code>  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#a5cb561ef25b18a1c8681d28345cb8596">更多...</a><br /></td></tr>
+<tr class="separator:a5cb561ef25b18a1c8681d28345cb8596"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7e159a2219f3d9377dce8d8d1ce185c"><td class="memTemplParams" colspan="2">template&lt;typename Callable &gt; </td></tr>
+<tr class="memitem:ae7e159a2219f3d9377dce8d8d1ce185c"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#ae7e159a2219f3d9377dce8d8d1ce185c">visit</a> (Callable &amp;&amp;f) const</td></tr>
+<tr class="memdesc:ae7e159a2219f3d9377dce8d8d1ce185c"><td class="mdescLeft">&#160;</td><td class="mdescRight">对此消息元素应用visitor，类似 <code>std::visit</code>  <a href="classMirai_1_1MessageChain_1_1MessageElement.html#ae7e159a2219f3d9377dce8d8d1ce185c">更多...</a><br /></td></tr>
+<tr class="separator:ae7e159a2219f3d9377dce8d8d1ce185c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">详细描述</h2>
+<div class="textblock"><p >消息元素对象 </p>
+<p >对不同消息类型的统一封装，储存着某一特定消息类型的对象 </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00091">91</a> 行定义.</p>
+</div><h2 class="groupheader">构造及析构函数说明</h2>
+<a id="a042b7db95937741c78986e169a8f7f98" name="a042b7db95937741c78986e169a8f7f98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a042b7db95937741c78986e169a8f7f98">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[1/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+</div>
+</div>
+<a id="af190d3d426c86963e1d473e19787658f" name="af190d3d426c86963e1d473e19787658f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af190d3d426c86963e1d473e19787658f">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[2/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00146">146</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a782b0817756c44a890a89833f32c8601" name="a782b0817756c44a890a89833f32c8601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a782b0817756c44a890a89833f32c8601">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[3/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00159">159</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab9a1c3f840525e62052addb877caafb2" name="ab9a1c3f840525e62052addb877caafb2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab9a1c3f840525e62052addb877caafb2">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[4/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+</div>
+</div>
+<a id="a58c9aa23202b6c0cf89f6a4e4c9eaba2" name="a58c9aa23202b6c0cf89f6a4e4c9eaba2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58c9aa23202b6c0cf89f6a4e4c9eaba2">&#9670;&nbsp;</a></span>~MessageElement()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::~MessageElement </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+</div>
+</div>
+<a id="a1cdb2ed05ab067df454619d8fcd17656" name="a1cdb2ed05ab067df454619d8fcd17656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1cdb2ed05ab067df454619d8fcd17656">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[5/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MessageType , typename... Args, typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype">std::in_place_type_t&lt; MessageType &gt;&#160;</td>
+          <td class="paramname">, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00183">183</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a7967fad16f9d1b6c4234fa86933cc751" name="a7967fad16f9d1b6c4234fa86933cc751"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7967fad16f9d1b6c4234fa86933cc751">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[6/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MessageType , typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype">MessageType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00190">190</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ac6a87317cd3669d8f0aeeaecf96f7622" name="ac6a87317cd3669d8f0aeeaecf96f7622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac6a87317cd3669d8f0aeeaecf96f7622">&#9670;&nbsp;</a></span>MessageElement() <span class="overload">[7/7]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::MessageElement </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1IMessage.html">IMessage</a> *&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00212">212</a> 行定义.</p>
+
+</div>
+</div>
+<h2 class="groupheader">成员函数说明</h2>
+<a id="a3f55e08506fc9f6970ca02f226402f92" name="a3f55e08506fc9f6970ca02f226402f92"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f55e08506fc9f6970ca02f226402f92">&#9670;&nbsp;</a></span>operator=() <span class="overload">[1/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp; Mirai::MessageChain::MessageElement::operator= </td>
+          <td>(</td>
+          <td class="paramtype">std::unique_ptr&lt; <a class="el" href="classMirai_1_1IMessage.html">IMessage</a> &gt; &amp;&amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00151">151</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a1ae34be76e1944c43f104489aba1cbb1" name="a1ae34be76e1944c43f104489aba1cbb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1ae34be76e1944c43f104489aba1cbb1">&#9670;&nbsp;</a></span>operator=() <span class="overload">[2/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp; Mirai::MessageChain::MessageElement::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00164">164</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ab4c0b94cd6162c7db76d89b6e50bb925" name="ab4c0b94cd6162c7db76d89b6e50bb925"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4c0b94cd6162c7db76d89b6e50bb925">&#9670;&nbsp;</a></span>operator=() <span class="overload">[3/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp; Mirai::MessageChain::MessageElement::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp;&amp;&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+</div>
+</div>
+<a id="ac1cfc3d430c98c5686ae2860f70f6e1f" name="ac1cfc3d430c98c5686ae2860f70f6e1f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1cfc3d430c98c5686ae2860f70f6e1f">&#9670;&nbsp;</a></span>operator bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Mirai::MessageChain::MessageElement::operator bool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00179">179</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a796e441bef58146ef11f4383ab7abfc1" name="a796e441bef58146ef11f4383ab7abfc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a796e441bef58146ef11f4383ab7abfc1">&#9670;&nbsp;</a></span>operator=() <span class="overload">[4/4]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MessageType , typename Type  = std::decay_t&lt;MessageType&gt;, typename std::enable_if_t&lt; <a class="el" href="structMirai_1_1MessageChain_1_1traits_1_1is__message__type__.html">traits::is_message_type</a>&lt; Type &gt;::value, int &gt;  = 0&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a> &amp; Mirai::MessageChain::MessageElement::operator= </td>
+          <td>(</td>
+          <td class="paramtype">MessageType &amp;&amp;&#160;</td>
+          <td class="paramname"><em>m</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructors, conversion operators and destructor </p>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00197">197</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a87e965552729e0cb74f5fd487790b2a1" name="a87e965552729e0cb74f5fd487790b2a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87e965552729e0cb74f5fd487790b2a1">&#9670;&nbsp;</a></span>type()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMirai.html#a1575f902d11cea6375fa9c86be575fcc">MessageTypes</a> Mirai::MessageChain::MessageElement::type </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>获取所含消息的类型 </p>
+<dl class="section return"><dt>返回</dt><dd><code>MessageTypes</code> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00221">221</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5326c542bac4931678971c71bf6c237b" name="a5326c542bac4931678971c71bf6c237b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5326c542bac4931678971c71bf6c237b">&#9670;&nbsp;</a></span>allowSend()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::MessageChain::MessageElement::allowSend </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查消息是否可以用于发送 </p>
+<p >部分消息仅支持接收 </p><dl class="section return"><dt>返回</dt><dd><code>bool</code> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00229">229</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8e10320523122dc006b9b65529631078" name="a8e10320523122dc006b9b65529631078"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e10320523122dc006b9b65529631078">&#9670;&nbsp;</a></span>valid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Mirai::MessageChain::MessageElement::valid </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>检查消息是否有效 </p>
+<p >发送无效消息( <code><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a8e10320523122dc006b9b65529631078" title="检查消息是否有效">valid()</a> = false</code> )会导致mirai-api-http返回400或500错误，并抛出异常。 检测的内容靠测试经验和mirai-api-http源码确定， <code><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html#a8e10320523122dc006b9b65529631078" title="检查消息是否有效">valid()</a> = true</code> 不保证一定能发送成功。 </p><dl class="section return"><dt>返回</dt><dd><code>bool</code> </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00242">242</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a8dfd5d10e5ca29ef54d3f4c201a28bd7" name="a8dfd5d10e5ca29ef54d3f4c201a28bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8dfd5d10e5ca29ef54d3f4c201a28bd7">&#9670;&nbsp;</a></span>as() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MessageType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MessageType &amp; Mirai::MessageChain::MessageElement::as </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转换为某一特定类型的消息，类型错误时将抛出异常 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">MessageType</td><td>消息类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>MessageType&amp; 对象的引用 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00255">255</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a918eb6cde137d709fd292ea9b337837a" name="a918eb6cde137d709fd292ea9b337837a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a918eb6cde137d709fd292ea9b337837a">&#9670;&nbsp;</a></span>as() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename MessageType &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const MessageType &amp; Mirai::MessageChain::MessageElement::as </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>转换为某一特定类型的消息，类型错误时将抛出异常 </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">MessageType</td><td>消息类型 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>MessageType&amp; 对象的引用 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00265">265</a> 行定义.</p>
+
+</div>
+</div>
+<a id="a5cb561ef25b18a1c8681d28345cb8596" name="a5cb561ef25b18a1c8681d28345cb8596"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5cb561ef25b18a1c8681d28345cb8596">&#9670;&nbsp;</a></span>visit() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Callable &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Mirai::MessageChain::MessageElement::visit </td>
+          <td>(</td>
+          <td class="paramtype">Callable &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>对此消息元素应用visitor，类似 <code>std::visit</code> </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Callable</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>可调用对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>auto 所有输入的返回类型必须一致 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00284">284</a> 行定义.</p>
+
+</div>
+</div>
+<a id="ae7e159a2219f3d9377dce8d8d1ce185c" name="ae7e159a2219f3d9377dce8d8d1ce185c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7e159a2219f3d9377dce8d8d1ce185c">&#9670;&nbsp;</a></span>visit() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Callable &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto Mirai::MessageChain::MessageElement::visit </td>
+          <td>(</td>
+          <td class="paramtype">Callable &amp;&amp;&#160;</td>
+          <td class="paramname"><em>f</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>对此消息元素应用visitor，类似 <code>std::visit</code> </p>
+<dl class="tparams"><dt>模板参数</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Callable</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>参数</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">f</td><td>可调用对象 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>返回</dt><dd>auto 所有输入的返回类型必须一致 </dd></dl>
+
+<p class="definition">在文件 <a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a> 第 <a class="el" href="MessageChain_8hpp_source.html#l00289">289</a> 行定义.</p>
+
+</div>
+</div>
+<hr/>该类的文档由以下文件生成:<ul>
+<li>libmirai/models/libmirai/Messages/<a class="el" href="MessageChain_8hpp_source.html">MessageChain.hpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMirai.html">Mirai</a></li><li class="navelem"><a class="el" href="classMirai_1_1MessageChain.html">MessageChain</a></li><li class="navelem"><a class="el" href="classMirai_1_1MessageChain_1_1MessageElement.html">MessageElement</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

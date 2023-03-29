@@ -1,0 +1,6 @@
+<map id="Mirai::IEvent&lt; Event &gt;" name="Mirai::IEvent&lt; Event &gt;">
+<area shape="rect" id="node1" title="Common interface for all event types" alt="" coords="5,81,168,109"/>
+<area shape="rect" id="node2" href="$classMirai_1_1BotAccountEvent.html" title="与Bot账号相关的事件" alt="" coords="225,5,396,49"/>
+<area shape="rect" id="node3" href="$classMirai_1_1BotLeaveEvent.html" title="Bot退群相关事件" alt="" coords="231,73,390,117"/>
+<area shape="rect" id="node4" href="$classMirai_1_1MemberLeaveEvent.html" title="成员退出群聊相关事件" alt="" coords="216,141,405,185"/>
+</map>

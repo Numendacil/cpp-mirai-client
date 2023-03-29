@@ -1,0 +1,5 @@
+<map id="Mirai::ForwardMessage" name="Mirai::ForwardMessage">
+<area shape="rect" id="node1" title="合并转发消息" alt="" coords="5,173,179,201"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="12,81,172,125"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessage.html" title="Common interface for all message types" alt="" coords="31,5,153,33"/>
+</map>

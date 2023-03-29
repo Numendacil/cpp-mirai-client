@@ -1,0 +1,4 @@
+<map id="Mirai::GroupAllowAnonymousChatEvent" name="Mirai::GroupAllowAnonymousChatEvent">
+<area shape="rect" id="node1" title="群聊开启/关闭匿名聊天事件" alt="" coords="5,97,217,141"/>
+<area shape="rect" id="node2" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="17,5,206,49"/>
+</map>

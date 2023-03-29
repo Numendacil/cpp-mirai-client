@@ -1,0 +1,6 @@
+<map id="Mirai::FlashImageMessage" name="Mirai::FlashImageMessage">
+<area shape="rect" id="node1" title="闪照消息" alt="" coords="89,207,284,235"/>
+<area shape="rect" id="node2" href="$classMirai_1_1ImageMessageImpl.html" title=" " alt="" coords="93,113,280,157"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="5,5,187,49"/>
+<area shape="rect" id="node4" href="$structMirai_1_1MiraiImage.html" title="Mirai图片" alt="" coords="211,13,343,41"/>
+</map>

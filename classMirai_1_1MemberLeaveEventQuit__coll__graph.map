@@ -1,0 +1,5 @@
+<map id="Mirai::MemberLeaveEventQuit" name="Mirai::MemberLeaveEventQuit">
+<area shape="rect" id="node1" title="成员主动退出群聊事件" alt="" coords="5,189,220,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1MemberLeaveEvent.html" title=" " alt="" coords="11,97,214,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IEvent.html" title=" " alt="" coords="9,5,216,49"/>
+</map>

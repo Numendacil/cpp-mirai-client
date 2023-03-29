@@ -1,0 +1,379 @@
+<!-- HTML header for doxygen 1.9.3-->
+<!DOCTYPE html
+	PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=11" />
+	<meta name="generator" content="Doxygen 1.9.4" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>cpp-mirai-client: libmirai/models/libmirai/Messages/ForwardMessage.cpp 源文件</title>
+	<link href="tabs.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="jquery.js"></script>
+	<script type="text/javascript" src="dynsections.js"></script>
+	<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+	<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+	<link href="doxygen.css" rel="stylesheet" type="text/css" />
+	<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only-darkmode-toggle.css" rel="stylesheet" type="text/css"/>
+<link href="custom.css" rel="stylesheet" type="text/css"/>
+	<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+	<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+	<script type="text/javascript">
+		DoxygenAwesomeDarkModeToggle.init()
+		DoxygenAwesomeFragmentCopyButton.init()
+		DoxygenAwesomeParagraphLink.init()
+	</script>
+</head>
+<body>
+	<!-- https://tholman.com/github-corners/ -->
+	<a href="https://github.com/numendacil/cpp-mirai-client" class="github-corner" title="View source on GitHub"
+		target="_blank">
+		<svg viewBox="0 0 250 250" width="40" height="40"
+			style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+			<path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+			<path
+				d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+				fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+			<path
+				d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+				fill="currentColor" class="octo-body"></path>
+		</svg></a>
+	<style>
+		.github-corner:hover .octo-arm {
+			animation: octocat-wave 560ms ease-in-out
+		}
+		@keyframes octocat-wave {
+			0%,
+			100% {
+				transform: rotate(0)
+			}
+			20%,
+			60% {
+				transform: rotate(-25deg)
+			}
+			40%,
+			80% {
+				transform: rotate(10deg)
+			}
+		}
+		@media (max-width:500px) {
+			.github-corner:hover .octo-arm {
+				animation: none
+			}
+			.github-corner .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+		}
+	</style>
+		<div id="top">
+			<!-- do not remove this div, it is closed by doxygen! -->
+			<div id="titlearea">
+				<table cellspacing="0" cellpadding="0">
+					<tbody>
+						<tr style="height: 56px;">
+							<td id="projectalign" style="padding-left: 0.5em;">
+								<div id="projectname">cpp-mirai-client
+									&#160;<span id="projectnumber">v2.6.1</span>
+								</div>
+								<div id="projectbrief">cpp client for mirai-api-http</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<!-- end header part --><!-- 制作者 Doxygen 1.9.4 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search",'搜索','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','搜索');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(document).ready(function(){initNavTree('ForwardMessage_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">ForwardMessage.cpp</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="ForwardMessage_8cpp.html">浏览该文件的文档.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// Copyright (C) 2022 Numendacil and contributors</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">//</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// This program is free software: you can redistribute it and/or modify</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// it under the terms of the GNU Affero General Public License as</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// published by the Free Software Foundation, either version 3 of the</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="comment">// License, or (at your option) any later version.</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="comment">//</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="comment">// This program is distributed in the hope that it will be useful,</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="comment">// but WITHOUT ANY WARRANTY; without even the implied warranty of</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// GNU Affero General Public License for more details.</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">//</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// You should have received a copy of the GNU Affero General Public License</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// along with this program.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="ForwardMessage_8hpp.html">ForwardMessage.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="ForwardMessageNode_8hpp.html">ForwardMessageNode.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMirai.html">Mirai</a></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23">ForwardMessage::ForwardMessage</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23">ForwardMessage::ForwardMessage</a>(<span class="keyword">const</span> ForwardMessage&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>ForwardMessage&amp; <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ab1bf6e0886e7c14624b87c09cf8334d1">ForwardMessage::operator= </a>(<span class="keyword">const</span> ForwardMessage&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23">ForwardMessage::ForwardMessage</a>(ForwardMessage&amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>ForwardMessage&amp; <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ab1bf6e0886e7c14624b87c09cf8334d1">ForwardMessage::operator= </a>(ForwardMessage&amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a9daa51eb9d40a3ba112549242faddc06">ForwardMessage::~ForwardMessage</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ab621c459ed107b494a9d299151d68a13">   30</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ab621c459ed107b494a9d299151d68a13">ForwardMessage::isValid_</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; n : this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>)</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>        <span class="keywordflow">if</span> (!n.valid()) <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a58cdeaa65f3b0337ac4bde28e4fc5583">   37</a></span><span class="keywordtype">bool</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a58cdeaa65f3b0337ac4bde28e4fc5583">ForwardMessage::empty</a>() const noexcept</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.empty();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a0ff771f2010221e2da69ccb470956d77">   41</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a0ff771f2010221e2da69ccb470956d77">ForwardMessage::size</a>() const noexcept</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>{</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.size();</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>}</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#abf40baf22432dd991f08609e2354b750">   45</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#abf40baf22432dd991f08609e2354b750">ForwardMessage::reserve</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> new_cap)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.reserve(new_cap);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a437aa795abd097c91eb5fb0e81ade68a">   49</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a437aa795abd097c91eb5fb0e81ade68a">ForwardMessage::shrink_to_fit</a>() noexcept</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>{</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.shrink_to_fit();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a9190ae5f13a6a44d664c5079e89b9b13">   53</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a9190ae5f13a6a44d664c5079e89b9b13">ForwardMessage::max_size</a>() const noexcept</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.max_size();</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a1862d69601606dab55cfea64897b17e3">   57</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">ForwardMessage::size_type</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a1862d69601606dab55cfea64897b17e3">ForwardMessage::capacity</a>() const noexcept</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>{</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.capacity();</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>}</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">   62</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">ForwardMessage::at</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n)<span class="keyword"> const</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.at(n);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>}</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ab90dfd5ab4a03d8d8834c468854ad145">   66</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">ForwardMessage::at</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n)</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.at(n);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>}</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">   70</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">ForwardMessage::operator[]</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n) <span class="keyword">const</span> <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>{</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">return</span> this-&gt;NodeList_[n];</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a84bad4cabdcd4848af782f1f5d2e4ccf">   74</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">ForwardMessage::operator[]</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> n) <span class="keyword">noexcept</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>{</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span> this-&gt;NodeList_[n];</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">   78</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">ForwardMessage::back</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.back();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>}</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a3736a3ea94814ad0bf167eba7b3ee81f">   82</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">ForwardMessage::back</a>()</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>{</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.back();</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">   86</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">ForwardMessage::const_reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">ForwardMessage::front</a>()<span class="keyword"> const</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keyword"></span>{</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.front();</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>}</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a8578fad5dfe1f46e5f31e09a4e6ee5a9">   90</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">ForwardMessage::reference</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">ForwardMessage::front</a>()</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>{</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.front();</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>}</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ae3113113d0db1a0a487167ec88860b48">   95</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ae3113113d0db1a0a487167ec88860b48">ForwardMessage::clear</a>() noexcept</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>{</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.clear();</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>}</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">   99</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">ForwardMessage::insert</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> value)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.insert(pos, value);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a8faf998a494c984cecd93958dde27404">  103</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">ForwardMessage::insert</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a>&amp;&amp; value)</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>{</div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.insert(pos, std::move(value));</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>}</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ac6490eea6a7dbc84fa4dff101f1de8d1">  107</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">ForwardMessage::insert</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count, <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> value)</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>{</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.insert(pos, count, value);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>}</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ae9923a726afce280b2a0599c558de47d">  111</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">ForwardMessage::insert</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos, std::initializer_list&lt;value_type&gt; ilist)</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>{</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.insert(pos, ilist);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>}</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">  115</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">ForwardMessage::erase</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> pos)</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>{</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.erase(pos);</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ac938993d6e300e6d8f3d64084d40086b">  119</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">ForwardMessage::erase</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> first, <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">const_iterator</a> last)</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>{</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.erase(first, last);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>}</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">  123</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">ForwardMessage::push_back</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">const_reference</a> node)</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>{</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.push_back(node);</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span>}</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a84508ee82ac9481bb992e249c2d89888">  127</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">ForwardMessage::push_back</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a>&amp;&amp; node)</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span>{</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.push_back(std::move(node));</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span>}</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a2db2581618458ff6ae496f1c7e2c731f">  131</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a2db2581618458ff6ae496f1c7e2c731f">ForwardMessage::pop_back</a>()</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>{</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.pop_back();</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>}</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">  135</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">ForwardMessage::resize</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count)</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span>{</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.resize(count);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span>}</div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a1dc469b3826ad56f43a9a4f144f4f490">  139</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">ForwardMessage::resize</a>(<a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">size_type</a> count, <span class="keyword">const</span> <a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">value_type</a>&amp; value)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>{</div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.resize(count, value);</div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span>}</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">  144</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">ForwardMessage::begin</a>() noexcept</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>{</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.begin();</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>}</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a2fda124242bcf7651ab71a63737774b0">  148</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">ForwardMessage::begin</a>() const noexcept</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span>{</div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.begin();</div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>}</div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#aa7e38150e83cf7ff0050348b59cf6e52">  152</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#aa7e38150e83cf7ff0050348b59cf6e52">ForwardMessage::cbegin</a>() const noexcept</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>{</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.cbegin();</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>}</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">  156</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">ForwardMessage::iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">ForwardMessage::end</a>() noexcept</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span>{</div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.end();</div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span>}</div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#aff26cd70aaa4d701dd5cc3dde20f0155">  160</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">ForwardMessage::end</a>() const noexcept</div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span>{</div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.end();</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>}</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a39d973f1c5eef5389b8568359666d3b0">  164</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">ForwardMessage::const_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a39d973f1c5eef5389b8568359666d3b0">ForwardMessage::cend</a>() const noexcept</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span>{</div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.cend();</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>}</div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#ad8377e95b516b827c907fe6b301fbaaa">  168</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">ForwardMessage::reverse_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#ad8377e95b516b827c907fe6b301fbaaa">ForwardMessage::rbegin</a>() noexcept</div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>{</div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.rbegin();</div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span>}</div>
+<div class="line"><a id="l00172" name="l00172"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a5c9028369f00492b2a07abac0ab07509">  172</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">ForwardMessage::const_reverse_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a5c9028369f00492b2a07abac0ab07509">ForwardMessage::crbegin</a>() const noexcept</div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>{</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.crbegin();</div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span>}</div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#a41601847b6e630f5a3e6033ff7cdb519">  176</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">ForwardMessage::reverse_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#a41601847b6e630f5a3e6033ff7cdb519">ForwardMessage::rend</a>() noexcept</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>{</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.rend();</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>}</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno"><a class="line" href="classMirai_1_1ForwardMessage.html#af6140e25ecc84a6e52148060387254b3">  180</a></span><a class="code hl_typedef" href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">ForwardMessage::const_reverse_iterator</a> <a class="code hl_function" href="classMirai_1_1ForwardMessage.html#af6140e25ecc84a6e52148060387254b3">ForwardMessage::crend</a>() const noexcept</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>{</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    <span class="keywordflow">return</span> this-&gt;<a class="code hl_variable" href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">NodeList_</a>.crend();</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>}</div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>} <span class="comment">// namespace Mirai</span></div>
+<div class="ttc" id="aForwardMessageNode_8hpp_html"><div class="ttname"><a href="ForwardMessageNode_8hpp.html">ForwardMessageNode.hpp</a></div></div>
+<div class="ttc" id="aForwardMessage_8hpp_html"><div class="ttname"><a href="ForwardMessage_8hpp.html">ForwardMessage.hpp</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a0ff771f2010221e2da69ccb470956d77"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a0ff771f2010221e2da69ccb470956d77">Mirai::ForwardMessage::size</a></div><div class="ttdeci">size_type size() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00041">ForwardMessage.cpp:41</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a14b7da05808c731e000416b53839e59c"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a14b7da05808c731e000416b53839e59c">Mirai::ForwardMessage::const_reference</a></div><div class="ttdeci">NodeList::const_reference const_reference</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00150">ForwardMessage.hpp:150</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a1862d69601606dab55cfea64897b17e3"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a1862d69601606dab55cfea64897b17e3">Mirai::ForwardMessage::capacity</a></div><div class="ttdeci">size_type capacity() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00057">ForwardMessage.cpp:57</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a1a6dec1f99c7929eac5b1e89047317bd"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a1a6dec1f99c7929eac5b1e89047317bd">Mirai::ForwardMessage::insert</a></div><div class="ttdeci">iterator insert(const_iterator pos, const_reference value)</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00099">ForwardMessage.cpp:99</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a28d646a0bdebfa757daecb84fac47238"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a28d646a0bdebfa757daecb84fac47238">Mirai::ForwardMessage::begin</a></div><div class="ttdeci">iterator begin() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00144">ForwardMessage.cpp:144</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a2db2581618458ff6ae496f1c7e2c731f"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a2db2581618458ff6ae496f1c7e2c731f">Mirai::ForwardMessage::pop_back</a></div><div class="ttdeci">void pop_back()</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00131">ForwardMessage.cpp:131</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a39d973f1c5eef5389b8568359666d3b0"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a39d973f1c5eef5389b8568359666d3b0">Mirai::ForwardMessage::cend</a></div><div class="ttdeci">const_iterator cend() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00164">ForwardMessage.cpp:164</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a3b93b47d058b0212ef9b5731d4fac063"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a3b93b47d058b0212ef9b5731d4fac063">Mirai::ForwardMessage::push_back</a></div><div class="ttdeci">void push_back(const_reference node)</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00123">ForwardMessage.cpp:123</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a41601847b6e630f5a3e6033ff7cdb519"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a41601847b6e630f5a3e6033ff7cdb519">Mirai::ForwardMessage::rend</a></div><div class="ttdeci">reverse_iterator rend() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00176">ForwardMessage.cpp:176</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a437aa795abd097c91eb5fb0e81ade68a"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a437aa795abd097c91eb5fb0e81ade68a">Mirai::ForwardMessage::shrink_to_fit</a></div><div class="ttdeci">void shrink_to_fit() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00049">ForwardMessage.cpp:49</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a48ea5a9d6740d3d8be68f37456cc6046"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a48ea5a9d6740d3d8be68f37456cc6046">Mirai::ForwardMessage::iterator</a></div><div class="ttdeci">NodeList::iterator iterator</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00155">ForwardMessage.hpp:155</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a4a1ed841e1f306b8388a9ba2e4d90e23"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23">Mirai::ForwardMessage::ForwardMessage</a></div><div class="ttdeci">ForwardMessage()</div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a58cdeaa65f3b0337ac4bde28e4fc5583"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a58cdeaa65f3b0337ac4bde28e4fc5583">Mirai::ForwardMessage::empty</a></div><div class="ttdeci">bool empty() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00037">ForwardMessage.cpp:37</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a59c8955648d9363d0b38daef64809d18"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a59c8955648d9363d0b38daef64809d18">Mirai::ForwardMessage::NodeList_</a></div><div class="ttdeci">NodeList NodeList_</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00054">ForwardMessage.hpp:54</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a5c9028369f00492b2a07abac0ab07509"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a5c9028369f00492b2a07abac0ab07509">Mirai::ForwardMessage::crbegin</a></div><div class="ttdeci">const_reverse_iterator crbegin() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00172">ForwardMessage.cpp:172</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a5eb57c77fd778e461596ca9544cf8d6d"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a5eb57c77fd778e461596ca9544cf8d6d">Mirai::ForwardMessage::resize</a></div><div class="ttdeci">void resize(size_type count)</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00135">ForwardMessage.cpp:135</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a832d05e5a70b2ec714d0421321eea2c6"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6">Mirai::ForwardMessage::front</a></div><div class="ttdeci">const_reference front() const</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00086">ForwardMessage.cpp:86</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a88aa93efc673273284946e65620acdf2"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a88aa93efc673273284946e65620acdf2">Mirai::ForwardMessage::at</a></div><div class="ttdeci">const_reference at(size_type n) const</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00062">ForwardMessage.cpp:62</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a9190ae5f13a6a44d664c5079e89b9b13"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a9190ae5f13a6a44d664c5079e89b9b13">Mirai::ForwardMessage::max_size</a></div><div class="ttdeci">size_type max_size() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00053">ForwardMessage.cpp:53</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a9daa51eb9d40a3ba112549242faddc06"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a9daa51eb9d40a3ba112549242faddc06">Mirai::ForwardMessage::~ForwardMessage</a></div><div class="ttdeci">~ForwardMessage() final</div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_a9e85ad32fe694c28835aec746a9577a6"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#a9e85ad32fe694c28835aec746a9577a6">Mirai::ForwardMessage::erase</a></div><div class="ttdeci">iterator erase(const_iterator pos)</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00115">ForwardMessage.cpp:115</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_aa7e38150e83cf7ff0050348b59cf6e52"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#aa7e38150e83cf7ff0050348b59cf6e52">Mirai::ForwardMessage::cbegin</a></div><div class="ttdeci">const_iterator cbegin() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00152">ForwardMessage.cpp:152</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_aabf544f0eb415fa0e1b85467aaae2099"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#aabf544f0eb415fa0e1b85467aaae2099">Mirai::ForwardMessage::operator[]</a></div><div class="ttdeci">const_reference operator[](size_type n) const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00070">ForwardMessage.cpp:70</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ab1bf6e0886e7c14624b87c09cf8334d1"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ab1bf6e0886e7c14624b87c09cf8334d1">Mirai::ForwardMessage::operator=</a></div><div class="ttdeci">ForwardMessage &amp; operator=(const ForwardMessage &amp;)</div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ab621c459ed107b494a9d299151d68a13"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ab621c459ed107b494a9d299151d68a13">Mirai::ForwardMessage::isValid_</a></div><div class="ttdeci">bool isValid_() const final</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00030">ForwardMessage.cpp:30</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_aba08f4ebe18886972b9b702676292c51"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#aba08f4ebe18886972b9b702676292c51">Mirai::ForwardMessage::const_iterator</a></div><div class="ttdeci">NodeList::const_iterator const_iterator</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00156">ForwardMessage.hpp:156</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_abf40baf22432dd991f08609e2354b750"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#abf40baf22432dd991f08609e2354b750">Mirai::ForwardMessage::reserve</a></div><div class="ttdeci">void reserve(size_type new_cap)</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00045">ForwardMessage.cpp:45</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ac7b7c2e88a08d808acf747754023332e"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ac7b7c2e88a08d808acf747754023332e">Mirai::ForwardMessage::value_type</a></div><div class="ttdeci">NodeList::value_type value_type</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00145">ForwardMessage.hpp:145</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ac8a72ea77f4571c6cd03b0f2f60679df"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ac8a72ea77f4571c6cd03b0f2f60679df">Mirai::ForwardMessage::size_type</a></div><div class="ttdeci">NodeList::size_type size_type</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00147">ForwardMessage.hpp:147</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_acfba719275355fd33d03fa82c6fd4a25"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#acfba719275355fd33d03fa82c6fd4a25">Mirai::ForwardMessage::reverse_iterator</a></div><div class="ttdeci">NodeList::reverse_iterator reverse_iterator</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00153">ForwardMessage.hpp:153</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ad8377e95b516b827c907fe6b301fbaaa"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ad8377e95b516b827c907fe6b301fbaaa">Mirai::ForwardMessage::rbegin</a></div><div class="ttdeci">reverse_iterator rbegin() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00168">ForwardMessage.cpp:168</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ada7bba185288e6536ee9fc5e7e784ce9"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ada7bba185288e6536ee9fc5e7e784ce9">Mirai::ForwardMessage::back</a></div><div class="ttdeci">const_reference back() const</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00078">ForwardMessage.cpp:78</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_ae3113113d0db1a0a487167ec88860b48"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#ae3113113d0db1a0a487167ec88860b48">Mirai::ForwardMessage::clear</a></div><div class="ttdeci">void clear() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00095">ForwardMessage.cpp:95</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_af6140e25ecc84a6e52148060387254b3"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#af6140e25ecc84a6e52148060387254b3">Mirai::ForwardMessage::crend</a></div><div class="ttdeci">const_reverse_iterator crend() const noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00180">ForwardMessage.cpp:180</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_af660020e814a4fc62193f4679dbee2ff"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#af660020e814a4fc62193f4679dbee2ff">Mirai::ForwardMessage::end</a></div><div class="ttdeci">iterator end() noexcept</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8cpp_source.html#l00156">ForwardMessage.cpp:156</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_af725e15c3314cec5437a7417503fa5a3"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#af725e15c3314cec5437a7417503fa5a3">Mirai::ForwardMessage::reference</a></div><div class="ttdeci">NodeList::reference reference</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00149">ForwardMessage.hpp:149</a></div></div>
+<div class="ttc" id="aclassMirai_1_1ForwardMessage_html_af8bbbdde842a319ebc99ef99e0c72c8b"><div class="ttname"><a href="classMirai_1_1ForwardMessage.html#af8bbbdde842a319ebc99ef99e0c72c8b">Mirai::ForwardMessage::const_reverse_iterator</a></div><div class="ttdeci">NodeList::const_reverse_iterator const_reverse_iterator</div><div class="ttdoc">STL-like interface</div><div class="ttdef"><b>Definition:</b> <a href="ForwardMessage_8hpp_source.html#l00154">ForwardMessage.hpp:154</a></div></div>
+<div class="ttc" id="anamespaceMirai_html"><div class="ttname"><a href="namespaceMirai.html">Mirai</a></div><div class="ttdoc">所有mirai相关的对象的命名空间</div><div class="ttdef"><b>Definition:</b> <a href="HttpWsAdaptor_8hpp_source.html#l00024">HttpWsAdaptor.hpp:25</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_473afe080807e8b093432b88d00449a0.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_3b84d0e487f126fc36ec313d13c9367e.html">models</a></li><li class="navelem"><a class="el" href="dir_94d2c6032902c3c06502807393ac2767.html">libmirai</a></li><li class="navelem"><a class="el" href="dir_df974233ad7ad3c100a38e5f6c64a140.html">Messages</a></li><li class="navelem"><a class="el" href="ForwardMessage_8cpp.html">ForwardMessage.cpp</a></li>
+    <li class="footer">制作者 <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+  </ul>
+</div>
+</body>
+</html>

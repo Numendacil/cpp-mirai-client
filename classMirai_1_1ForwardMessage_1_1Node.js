@@ -1,0 +1,26 @@
+var classMirai_1_1ForwardMessage_1_1Node =
+[
+    [ "MessageRef", "structMirai_1_1ForwardMessage_1_1Node_1_1MessageRef.html", "structMirai_1_1ForwardMessage_1_1Node_1_1MessageRef" ],
+    [ "Node", "classMirai_1_1ForwardMessage_1_1Node.html#af7d5fed5b4273003f3152aa9ddcd64bb", null ],
+    [ "~Node", "classMirai_1_1ForwardMessage_1_1Node.html#aa74da6cbc3d978c15ea50e111a984a32", null ],
+    [ "valid", "classMirai_1_1ForwardMessage_1_1Node.html#a15d33fa25408431b7bef5cd13cb17cc4", null ],
+    [ "GetSenderId", "classMirai_1_1ForwardMessage_1_1Node.html#afc8464ba58b2d64064ba3da67756c08c", null ],
+    [ "GetTimestamp", "classMirai_1_1ForwardMessage_1_1Node.html#a2e7f14cee36256c848fc3c0d91322602", null ],
+    [ "GetSenderName", "classMirai_1_1ForwardMessage_1_1Node.html#a80ece8c706305283605dd89964997ae4", null ],
+    [ "GetMessageChain", "classMirai_1_1ForwardMessage_1_1Node.html#a621d2f63d2fcada5159ddadc6dbc4985", null ],
+    [ "hasMessageId", "classMirai_1_1ForwardMessage_1_1Node.html#a4d3d8ddfd19771ae10ee2c1bb72872bb", null ],
+    [ "GetMessageId", "classMirai_1_1ForwardMessage_1_1Node.html#a1a3bac42bef2f7734aeecbcf5b1010d2", null ],
+    [ "SetSenderId", "classMirai_1_1ForwardMessage_1_1Node.html#a7c9ff87de0eba9a080a42f817038d73f", null ],
+    [ "SetTimestamp", "classMirai_1_1ForwardMessage_1_1Node.html#ad8a5297669f05e1413a6ef508cb28de0", null ],
+    [ "SetSenderName", "classMirai_1_1ForwardMessage_1_1Node.html#a01987e879f8851666bdbc38062c19fb4", null ],
+    [ "SetMessageChain", "classMirai_1_1ForwardMessage_1_1Node.html#a06cb18ce587998319baec59c0efbe33c", null ],
+    [ "SetMessageChain", "classMirai_1_1ForwardMessage_1_1Node.html#a95a467b09b54c23339037952d1b2077b", null ],
+    [ "SetMessageId", "classMirai_1_1ForwardMessage_1_1Node.html#a97dbcb1ee3544b9de9e426a9634da25b", null ],
+    [ "SetMessageRef", "classMirai_1_1ForwardMessage_1_1Node.html#a7b8529b89074a1a18e99370bcb62bfb8", null ],
+    [ "SenderId_", "classMirai_1_1ForwardMessage_1_1Node.html#a7ba56e154a48b3d9ec230ff95d3d9f07", null ],
+    [ "time_", "classMirai_1_1ForwardMessage_1_1Node.html#a7354b61bf98c67f3045ac8900fb42554", null ],
+    [ "SenderName_", "classMirai_1_1ForwardMessage_1_1Node.html#a2e6682b87f5845b2178ced65d2a96146", null ],
+    [ "message_", "classMirai_1_1ForwardMessage_1_1Node.html#a1f2422f69eb529fe9716f1a2175a21e2", null ],
+    [ "MessageId_", "classMirai_1_1ForwardMessage_1_1Node.html#aae114993a41857a0c5bbd5ef63f7e761", null ],
+    [ "ref_", "classMirai_1_1ForwardMessage_1_1Node.html#aae2e48e2d1e7aec25cbf168d02b81309", null ]
+];

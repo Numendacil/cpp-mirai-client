@@ -1,0 +1,5 @@
+<map id="Mirai::MarketFaceMessage" name="Mirai::MarketFaceMessage">
+<area shape="rect" id="node1" title="QQ商店表情消息" alt="" coords="5,189,201,217"/>
+<area shape="rect" id="node2" href="$classMirai_1_1FaceMessageImpl.html" title=" " alt="" coords="12,97,195,141"/>
+<area shape="rect" id="node3" href="$classMirai_1_1IMessageImpl.html" title=" " alt="" coords="12,5,195,49"/>
+</map>
