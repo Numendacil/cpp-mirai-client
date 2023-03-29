@@ -211,7 +211,7 @@ public:
 	                                            bool withDownloadInfo = false) override;
 
 	/// 获取文件信息
-	GroupFileInfo FileInfo(string SessionKey, string id, string path, UID_t target,
+	GroupFileInfo GetFileInfo(string SessionKey, string id, string path, UID_t target,
 	                               bool withDownloadInfo = false) override;
 
 	/// 创建文件夹

@@ -165,7 +165,7 @@ public:
 	                                            bool withDownloadInfo = false) = 0;
 
 	/// 获取文件信息
-	virtual GroupFileInfo FileInfo(string SessionKey, string id, string path, UID_t target,
+	virtual GroupFileInfo GetFileInfo(string SessionKey, string id, string path, UID_t target,
 	                               bool withDownloadInfo = false) = 0;
 
 	/// 创建文件夹

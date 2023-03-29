@@ -457,12 +457,12 @@ std::vector<GroupFileInfo> MiraiClient::GetGroupFileList(GID_t GroupId, const Fi
 
 GroupFileInfo MiraiClient::GetGroupFileInfo(GID_t GroupId, const FilePath& dir, bool withDownloadInfo) const
 {
-	return this->adaptor_->FileInfo(this->GetSessionKey_(), dir.GetId(), dir.GetPath(), GroupId, withDownloadInfo);
+	return this->adaptor_->GetFileInfo(this->GetSessionKey_(), dir.GetId(), dir.GetPath(), GroupId, withDownloadInfo);
 }
 
 void MiraiClient::GetGroupFileInfo(GID_t GroupId, GroupFileInfo& file, bool withDownloadInfo) const
 {
-	this->adaptor_->FileInfo(this->GetSessionKey_(), file.id, "", GroupId, withDownloadInfo);
+	this->adaptor_->GetFileInfo(this->GetSessionKey_(), file.id, "", GroupId, withDownloadInfo);
 }
 
 GroupFileInfo MiraiClient::CreateGroupFileDirectory(GID_t GroupId, string directory) const

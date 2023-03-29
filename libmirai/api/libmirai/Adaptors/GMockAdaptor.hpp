@@ -221,7 +221,7 @@ public:
 	            (override));
 
 	/// 获取文件信息
-	MOCK_METHOD(GroupFileInfo, FileInfo,
+	MOCK_METHOD(GroupFileInfo, GetFileInfo,
 	            (string SessionKey, string id, string path, UID_t target, bool withDownloadInfo),
 	            (override));
 

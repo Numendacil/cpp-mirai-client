@@ -652,7 +652,7 @@ std::vector<GroupFileInfo> HttpWsAdaptor::FileList(string SessionKey, string id,
 	MIRAI_PARSE_GUARD_END(resp);
 }
 
-GroupFileInfo HttpWsAdaptor::FileInfo(string SessionKey, string id, string path, UID_t target, bool withDownloadInfo)
+GroupFileInfo HttpWsAdaptor::GetFileInfo(string SessionKey, string id, string path, UID_t target, bool withDownloadInfo)
 {
 	httplib::Params params = {{"target", target.to_string()},
 	                          {"withDownloadInfo", withDownloadInfo ? "true" : "false"}};
