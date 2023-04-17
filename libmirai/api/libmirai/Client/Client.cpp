@@ -43,10 +43,6 @@ using json = nlohmann::json;
 
 MiraiClient::MiraiClient() = default;
 MiraiClient::MiraiClient(std::unique_ptr<IAdaptor> adaptor) : adaptor_(std::move(adaptor)) {}
-MiraiClient::MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor)
-	: PoolSize_(PoolSize), adaptor_(std::move(adaptor))
-{
-}
 
 // MiraiClient::MiraiClient(MiraiClient&& rhs) noexcept
 // {
@@ -257,11 +253,12 @@ void MiraiClient::Connect()
 	LOG_DEBUG(*(this->logger_), "Successfully connected");
 }
 
-void MiraiClient::Disconnect()
+void MiraiClient::Disconnect(bool WaitForFinish)
 {
 	this->adaptor_->Disconnect(this->GetSessionKey_());
 	LOG_DEBUG(*(this->logger_), "Successfully disconnected");
 
+	this->pool_->stop(WaitForFinish);
 	this->pool_ = nullptr;
 	LOG_DEBUG(*(this->logger_), "Threadpool shutdown complete");
 }

@@ -132,12 +132,11 @@ protected:
 public:
 	MiraiClient();
 	MiraiClient(std::unique_ptr<IAdaptor> adaptor);
-	MiraiClient(size_t PoolSize, std::unique_ptr<IAdaptor> adaptor);
 
 	template<typename Adaptor, typename... Args,
 	         typename std::enable_if_t<std::is_base_of_v<IAdaptor, Adaptor>, int> = 0>
-	MiraiClient(size_t PoolSize, Args&&... args)
-		: MiraiClient(PoolSize, std::make_unique<Adaptor>(std::forward<Args>(args)...))
+	MiraiClient(Args&&... args)
+		: MiraiClient(std::make_unique<Adaptor>(std::forward<Args>(args)...))
 	{
 	}
 
@@ -180,6 +179,20 @@ public:
 	///@}
 
 
+	/**
+	 * @brief 设置线程池大小
+	 * 
+	 * @param size 线程池大小
+	 * @return std::size_t 原先的线程池大小
+	 */
+	std::size_t SetPoolSize(std::size_t size)
+	{
+		std::size_t ret = this->PoolSize_;
+		this->PoolSize_ = ret;
+		return ret;
+	}
+
+
 	/// 设置日志记录类
 	void SetLogger(std::shared_ptr<ILogger> logger) { this->logger_ = logger; }
 
@@ -219,7 +232,15 @@ public:
 	 * 若成功返回说明已成功断开连接，否则会抛出异常。
 	 * `Disconnect()` 返回前会调用 `ClientConnectionClosedEvent` 的回调函数，并等待所有正在运行中的事件回调函数结束。
 	 */
-	void Disconnect();
+	
+	/**
+	 * @brief 断开与mirai-api-http的连接
+	 * 
+	 * 若成功返回说明已成功断开连接，否则会抛出异常。
+	 * `Disconnect()` 返回前会调用 `ClientConnectionClosedEvent` 的回调函数，并等待所有正在运行中的事件回调函数结束。
+	 * @param WaitForFinish 是否等待线程池中的任务完成
+	 */
+	void Disconnect(bool WaitForFinish = false);
 
 	/// 返回是否已成功连接mirai-api-http
 	bool isConnected() const

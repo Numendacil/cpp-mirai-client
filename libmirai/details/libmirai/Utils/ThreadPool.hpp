@@ -39,6 +39,7 @@ protected:
 	std::queue<std::function<void()>> jobs_;
 
 	bool stop_ = false;
+	bool wait_ = false;
 
 	void loop_()
 	{
@@ -48,7 +49,11 @@ protected:
 			{
 				std::unique_lock<std::mutex> lk(this->mtx_);
 				this->cv_.wait(lk, [this] { return this->stop_ || !this->jobs_.empty(); });
-				if (this->stop_ && this->jobs_.empty()) return;
+				if (this->stop_)
+				{
+					if (!this->wait_ || (this->wait_ && this->jobs_.empty()))
+						return;
+				}
 				job = std::move(this->jobs_.front());
 				this->jobs_.pop();
 			}
@@ -67,13 +72,14 @@ protected:
 	template <typename F>
 	class _task_container : public _task_container_base {
 	public:
-		//here, std::forward is needed because we need the construction of _f *not* to
-		//  bind an lvalue reference - it is not a guarantee that an object of type F is
-		//  CopyConstructible, only that it is MoveConstructible.
+		// Here, std::forward is needed because we need the construction of _f *not* to
+		// bind an lvalue reference - it is not a guarantee that an object of type F is
+		// CopyConstructible, only that it is MoveConstructible.
 		_task_container(F &&func) : _f(std::forward<F>(func)) {}
 		
-		void operator()() override {
-		_f();
+		void operator()() override 
+		{
+			_f();
 		}
 
 	private:
@@ -94,17 +100,27 @@ public:
 	ThreadPool(ThreadPool&&) = delete;
 	ThreadPool& operator=(ThreadPool&&) = delete;
 
-	~ThreadPool()
+	void stop(bool wait = false)
 	{
 		{
-			std::unique_lock<std::mutex> lk(this->mtx_);
+			std::lock_guard<std::mutex> lk(this->mtx_);
 			this->stop_ = true;
+			this->wait_ = wait;
 		}
 		this->cv_.notify_all();
 		for (std::thread& th : this->workers_)
 		{
 			if (th.joinable()) th.join();
 		}
+	}
+
+	~ThreadPool()
+	{
+		{
+			std::lock_guard<std::mutex> lk(this->mtx_);
+			if (this->stop_) return;
+		}
+		this->stop(false);
 	}
 
 	template<class F, class... Args, std::enable_if_t<std::is_invocable_v<F&&, Args&&...>, int> = 0>
@@ -117,7 +133,7 @@ public:
 
 		std::future<return_type> result = task->get_future();
 		{
-			std::unique_lock<std::mutex> lk(this->mtx_);
+			std::lock_guard<std::mutex> lk(this->mtx_);
 			if (this->stop_) return std::future<return_type>();
 			this->jobs_.emplace([task]() { (*task)(); });
 		}
