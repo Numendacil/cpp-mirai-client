@@ -5,5 +5,5 @@ var searchData=
   ['deletefriend_2',['DeleteFriend',['../classMirai_1_1MiraiClient.html#aa66dac3f4612661347a56bfb23332dc1',1,'Mirai::MiraiClient::DeleteFriend()'],['../classMirai_1_1IAdaptor.html#a1bc95d21ea487d868f35aaa918f1e86a',1,'Mirai::IAdaptor::DeleteFriend()']]],
   ['dice_3',['Dice',['../classMirai_1_1MessageChain.html#aa47698d30c578a4d746dd71de448f1f9',1,'Mirai::MessageChain']]],
   ['dicemessage_4',['DiceMessage',['../classMirai_1_1DiceMessage.html#adc6cd952cc9d83c212a3e62a539496a2',1,'Mirai::DiceMessage::DiceMessage(int value)'],['../classMirai_1_1DiceMessage.html#a678996103bfab9a3eb795ca8b4077764',1,'Mirai::DiceMessage::DiceMessage()=default']]],
-  ['disconnect_5',['Disconnect',['../classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f',1,'Mirai::MiraiClient::Disconnect()'],['../classMirai_1_1IAdaptor.html#a88dceb36aeb986afbba6443d74ad5c88',1,'Mirai::IAdaptor::Disconnect()']]]
+  ['disconnect_5',['Disconnect',['../classMirai_1_1MiraiClient.html#aa201018af90b78f810f255c78f019eae',1,'Mirai::MiraiClient::Disconnect()'],['../classMirai_1_1IAdaptor.html#a88dceb36aeb986afbba6443d74ad5c88',1,'Mirai::IAdaptor::Disconnect()']]]
 ];

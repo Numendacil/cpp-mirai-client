@@ -12,7 +12,7 @@ var searchData=
   ['dicemessage_2ehpp_9',['DiceMessage.hpp',['../DiceMessage_8hpp.html',1,'']]],
   ['difference_5ftype_10',['difference_type',['../classMirai_1_1MessageChain.html#a035e34669f61dea083c4ca2c17cd2da0',1,'Mirai::MessageChain::difference_type()'],['../classMirai_1_1ForwardMessage.html#ace56a65c46be3776c4d713b34242b6b4',1,'Mirai::ForwardMessage::difference_type()']]],
   ['dir_5f_11',['dir_',['../classMirai_1_1FilePath.html#a65e22c097032b623c6649b0e1919d90d',1,'Mirai::FilePath']]],
-  ['disconnect_12',['Disconnect',['../classMirai_1_1MiraiClient.html#a88453664439899302af31de7cda91c2f',1,'Mirai::MiraiClient::Disconnect()'],['../classMirai_1_1IAdaptor.html#a88dceb36aeb986afbba6443d74ad5c88',1,'Mirai::IAdaptor::Disconnect()']]],
+  ['disconnect_12',['Disconnect',['../classMirai_1_1MiraiClient.html#aa201018af90b78f810f255c78f019eae',1,'Mirai::MiraiClient::Disconnect()'],['../classMirai_1_1IAdaptor.html#a88dceb36aeb986afbba6443d74ad5c88',1,'Mirai::IAdaptor::Disconnect()']]],
   ['downloadurl_13',['DownloadUrl',['../structMirai_1_1GroupFileInfo.html#a671b8bea620ba4c403a6a1d53676210e',1,'Mirai::GroupFileInfo']]],
   ['duration_5f_14',['duration_',['../classMirai_1_1BotMuteEvent.html#aab7500b1efd73fe96e44a26a7a4aad0d',1,'Mirai::BotMuteEvent']]]
 ];
