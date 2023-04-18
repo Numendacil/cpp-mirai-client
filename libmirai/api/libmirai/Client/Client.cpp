@@ -107,7 +107,7 @@ MiraiClient::MiraiClient(std::unique_ptr<IAdaptor> adaptor) : adaptor_(std::move
 
 MiraiClient::~MiraiClient()
 {
-	this->Disconnect();
+	this->Disconnect(false);
 }
 
 
@@ -258,9 +258,13 @@ void MiraiClient::Disconnect(bool WaitForFinish)
 	this->adaptor_->Disconnect(this->GetSessionKey_());
 	LOG_DEBUG(*(this->logger_), "Successfully disconnected");
 
-	this->pool_->stop(WaitForFinish);
-	this->pool_ = nullptr;
-	LOG_DEBUG(*(this->logger_), "Threadpool shutdown complete");
+	if (this->pool_)
+	{
+		if (!WaitForFinish)
+			this->pool_->pause();
+		this->pool_ = nullptr;
+		LOG_DEBUG(*(this->logger_), "Threadpool shutdown complete");
+	}
 }
 
 

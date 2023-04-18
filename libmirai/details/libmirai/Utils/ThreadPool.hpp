@@ -39,7 +39,7 @@ protected:
 	std::queue<std::function<void()>> jobs_;
 
 	bool stop_ = false;
-	bool wait_ = false;
+	std::atomic<bool> paused_ = false;
 
 	void loop_()
 	{
@@ -48,10 +48,10 @@ protected:
 			std::function<void()> job;
 			{
 				std::unique_lock<std::mutex> lk(this->mtx_);
-				this->cv_.wait(lk, [this] { return this->stop_ || !this->jobs_.empty(); });
+				this->cv_.wait(lk, [this] { return this->stop_ || (!this->jobs_.empty() && !this->paused_); });
 				if (this->stop_)
 				{
-					if (!this->wait_ || (this->wait_ && this->jobs_.empty()))
+					if (this->paused_ || this->jobs_.empty())
 						return;
 				}
 				job = std::move(this->jobs_.front());
@@ -61,30 +61,6 @@ protected:
 			job();
 		}
 	}
-
-	struct _task_container_base 
-	{
-	public:
-		virtual ~_task_container_base() = default;
-		virtual void operator()() = 0;
-	};
-
-	template <typename F>
-	class _task_container : public _task_container_base {
-	public:
-		// Here, std::forward is needed because we need the construction of _f *not* to
-		// bind an lvalue reference - it is not a guarantee that an object of type F is
-		// CopyConstructible, only that it is MoveConstructible.
-		_task_container(F &&func) : _f(std::forward<F>(func)) {}
-		
-		void operator()() override 
-		{
-			_f();
-		}
-
-	private:
-		std::decay_t<F> _f;
-	};
 
 public:
 	ThreadPool(std::size_t n)
@@ -100,27 +76,24 @@ public:
 	ThreadPool(ThreadPool&&) = delete;
 	ThreadPool& operator=(ThreadPool&&) = delete;
 
-	void stop(bool wait = false)
-	{
-		{
-			std::lock_guard<std::mutex> lk(this->mtx_);
-			this->stop_ = true;
-			this->wait_ = wait;
-		}
+	void pause() { this->paused_ = true; }
+	void resume() 
+	{ 
+		this->paused_ = false; 
 		this->cv_.notify_all();
-		for (std::thread& th : this->workers_)
-		{
-			if (th.joinable()) th.join();
-		}
 	}
 
 	~ThreadPool()
 	{
 		{
 			std::lock_guard<std::mutex> lk(this->mtx_);
-			if (this->stop_) return;
+			this->stop_ = true;
 		}
-		this->stop(false);
+		this->cv_.notify_all();
+		for (std::thread& th : this->workers_)
+		{
+			if (th.joinable()) th.join();
+		}
 	}
 
 	template<class F, class... Args, std::enable_if_t<std::is_invocable_v<F&&, Args&&...>, int> = 0>

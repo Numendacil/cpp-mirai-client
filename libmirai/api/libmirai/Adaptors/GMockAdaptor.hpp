@@ -110,7 +110,7 @@ public:
 	/**
 	 * @brief Called for closing a session
 	 * 
-	 * Diconnect should not return before ConnectionClosed callback is called
+	 * Disconnectt should not return before ConnectionClosed callback is called
 	 */
 	void Disconnect(string SessionKey) override
 	{

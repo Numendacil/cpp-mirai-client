@@ -18,7 +18,6 @@ using json = nlohmann::json;
 TEST(UtilsTest, ThreadPool)
 {
 	using namespace Mirai::Utils;
-	ThreadPool pool(24);
 	struct Counter
 	{
 		int i = 0;
@@ -31,17 +30,31 @@ TEST(UtilsTest, ThreadPool)
 			return i;
 		}
 	} counter;
-	std::future<int> result[300];
-	for (auto & i : result)
-		i = pool.enqueue(&Counter::GetFinal, &counter);
+
 	int max = 0;
-	for (auto & i : result)
 	{
-		int res = i.get();
-		if (max < res)
-			max = res;
+		std::future<int> result[300];
+		ThreadPool pool(24);
+		pool.pause();
+		for (auto & i : result)
+			i = pool.enqueue(&Counter::GetFinal, &counter);
+		pool.resume();
+
+		for (auto & i : result)
+		{
+			int res = i.get();
+			if (max < res)
+				max = res;
+		}
+		EXPECT_EQ(max, 300);
+
+		pool.pause();
+		for (size_t l = 0; l < 10; l++)
+			(void)pool.enqueue(&Counter::GetFinal, &counter);
+
+		// pool dtor
 	}
-	EXPECT_EQ(max, 300);
+	EXPECT_EQ(counter.i, 300);
 }
 
 TEST(UtilsTest, Common)
