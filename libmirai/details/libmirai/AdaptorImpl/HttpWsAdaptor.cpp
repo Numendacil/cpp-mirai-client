@@ -25,6 +25,9 @@
 #include <ixwebsocket/IXWebSocketMessageType.h>
 #include <nlohmann/json.hpp>
 
+#define TOML_ENABLE_FORMATTERS 0
+#include <toml++/toml.hpp>
+
 #include <libmirai/Exceptions/Exceptions.hpp>
 #include <libmirai/Serialization/Events/Events.hpp>
 #include <libmirai/Serialization/Types/Types.hpp>
@@ -42,31 +45,71 @@ namespace
 
 constexpr const char* JSON_CONTENT_TYPE = "application/json;charset=UTF-8";
 
-void ConfigFromJson(HttpWsAdaptorConfig& config, const json& json_config)
+void ConfigFromJson(HttpWsAdaptorConfig& config, const json& j)
 {
-	config.HttpUrl = Utils::GetValue(json_config, "HttpUrl", config.HttpUrl);
+	config.HttpUrl = Utils::GetValue(j, "HttpUrl", config.HttpUrl);
 	config.ConnectionTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "ConnectionTimeout", config.ConnectionTimeout.count()));
+		std::chrono::milliseconds(Utils::GetValue(j, "ConnectionTimeout", config.ConnectionTimeout.count()));
 	config.ReadTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "ReadTimeout", config.ReadTimeout.count()));
+		std::chrono::milliseconds(Utils::GetValue(j, "ReadTimeout", config.ReadTimeout.count()));
 	config.WriteTimeout =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "WriteTimeout", config.WriteTimeout.count()));
+		std::chrono::milliseconds(Utils::GetValue(j, "WriteTimeout", config.WriteTimeout.count()));
 
-	config.WebsocketUrl = Utils::GetValue(json_config, "WebsocketUrl", config.WebsocketUrl);
+	config.WebsocketUrl = Utils::GetValue(j, "WebsocketUrl", config.WebsocketUrl);
 	config.HeartbeatInterval =
-		std::chrono::seconds(Utils::GetValue(json_config, "HeartbeatInterval", config.HeartbeatInterval.count()));
+		std::chrono::seconds(Utils::GetValue(j, "HeartbeatInterval", config.HeartbeatInterval.count()));
 	config.HandshakeTimeout =
-		std::chrono::seconds(Utils::GetValue(json_config, "HandshakeTimeout", config.HandshakeTimeout.count()));
-	config.EnablePong = Utils::GetValue(json_config, "EnablePong", config.EnablePong);
-	config.EnableDeflate = Utils::GetValue(json_config, "EnableDeflate", config.EnableDeflate);
-	config.AutoReconnect = Utils::GetValue(json_config, "AutoReconnect", config.AutoReconnect);
+		std::chrono::seconds(Utils::GetValue(j, "HandshakeTimeout", config.HandshakeTimeout.count()));
+	config.EnablePong = Utils::GetValue(j, "EnablePong", config.EnablePong);
+	config.EnableDeflate = Utils::GetValue(j, "EnableDeflate", config.EnableDeflate);
+	config.AutoReconnect = Utils::GetValue(j, "AutoReconnect", config.AutoReconnect);
 	config.MinRetryInterval =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "MinRetryInterval", config.MinRetryInterval.count()));
+		std::chrono::milliseconds(Utils::GetValue(j, "MinRetryInterval", config.MinRetryInterval.count()));
 	config.MaxRetryInterval =
-		std::chrono::milliseconds(Utils::GetValue(json_config, "MaxRetryInterval", config.MaxRetryInterval.count()));
+		std::chrono::milliseconds(Utils::GetValue(j, "MaxRetryInterval", config.MaxRetryInterval.count()));
 
-	config.BotQQ = Utils::GetValue(json_config, "BotQQ", config.BotQQ);
-	config.VerifyKey = Utils::GetValue(json_config, "VerifyKey", config.VerifyKey);
+	config.BotQQ = Utils::GetValue(j, "BotQQ", config.BotQQ);
+	config.VerifyKey = Utils::GetValue(j, "VerifyKey", config.VerifyKey);
+}
+
+void ConfigFromTOML(HttpWsAdaptorConfig& config, const toml::table& tbl)
+{
+	auto HttpConfig = tbl["http"];
+	if (HttpConfig)
+	{
+		config.HttpUrl = HttpConfig["url"].value_or(config.HttpUrl);
+		config.ConnectionTimeout =
+			std::chrono::milliseconds(HttpConfig["connection_timeout"].value_or(config.ConnectionTimeout.count()));
+		config.ReadTimeout =
+			std::chrono::milliseconds(HttpConfig["read_timeout"].value_or(config.ReadTimeout.count()));
+		config.WriteTimeout =
+			std::chrono::milliseconds(HttpConfig["write_timeout"].value_or(config.WriteTimeout.count()));
+	}
+
+	auto WsConfig = tbl["ws"];
+	if (WsConfig)
+	{
+		config.WebsocketUrl = WsConfig["url"].value_or(config.WebsocketUrl);
+		config.HeartbeatInterval =
+			std::chrono::seconds(WsConfig["heartbeat_interval"].value_or(config.HeartbeatInterval.count()));
+		config.HandshakeTimeout =
+			std::chrono::seconds(WsConfig["handshake_timeout"].value_or(config.HandshakeTimeout.count()));
+		config.EnablePong =  WsConfig["enable_pong"].value_or(config.EnablePong);
+		config.EnableDeflate = WsConfig["enable_deflate"].value_or(config.EnableDeflate);
+		config.AutoReconnect = WsConfig["auto_reconnect"].value_or(config.AutoReconnect);
+		config.MinRetryInterval =
+			std::chrono::milliseconds(WsConfig["min_retry_interval"].value_or(config.MinRetryInterval.count()));
+		config.MaxRetryInterval =
+			std::chrono::milliseconds(WsConfig["max_retry_interval"].value_or(config.MaxRetryInterval.count()));
+	}
+
+	auto MiraiConfig = tbl["mirai"];
+	if (MiraiConfig)
+	{
+		config.BotQQ = (QQ_t)MiraiConfig["qq"].value_or((int64_t)config.BotQQ);
+		config.VerifyKey = MiraiConfig["verify_key"].value_or(config.VerifyKey);
+	}
+
 }
 
 } // namespace
@@ -76,6 +119,11 @@ void HttpWsAdaptorConfig::FromJsonFile(const std::string& path)
 	std::ifstream file(path);
 	json content = json::parse(file);
 	ConfigFromJson(*this, content);
+}
+
+void HttpWsAdaptorConfig::FromTOMLFile(const std::string& path)
+{
+	ConfigFromTOML(*this, toml::parse_file(path));
 }
 
 std::unique_ptr<IAdaptor> MakeHttpWsAdaptor(HttpWsAdaptorConfig config)

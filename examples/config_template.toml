@@ -1,0 +1,20 @@
+[http]
+url = "http://localhost:8080"
+connection_timeout = 10000	# milliseconds
+read_timeout = 5000		# milliseconds
+write_timeout = 5000		# milliseconds
+
+[ws]
+url = "ws://localhost:8080"
+heartbeat_interval = 60		# seconds
+handshake_timeout = 60		# seconds
+enable_pong = true
+enable_deflate = true
+auto_reconnect = true
+min_retry_interval = 1000	# milliseconds
+max_retry_interval = 30000	# milliseconds
+
+[mirai]
+qq = 12345
+verify_key = ""
+

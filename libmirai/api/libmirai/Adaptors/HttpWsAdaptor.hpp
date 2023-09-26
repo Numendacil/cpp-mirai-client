@@ -65,6 +65,9 @@ struct HttpWsAdaptorConfig
 
 	/// 从JSON文件中读取配置
 	void FromJsonFile(const std::string& path);
+
+	/// 从TOML文件中读取配置
+	void FromTOMLFile(const std::string& path);
 };
 
 std::unique_ptr<IAdaptor> MakeHttpWsAdaptor(HttpWsAdaptorConfig config);

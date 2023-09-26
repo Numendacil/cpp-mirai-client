@@ -10,6 +10,7 @@ int main()
 
 	/* Set your other configs here
 	config.FromJsonFile("config.json");
+	config.FromTOMLFile("config.toml");
 	*/
 	config.AutoReconnect = false;
 
