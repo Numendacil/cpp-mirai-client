@@ -31,10 +31,11 @@ TEST(UtilsTest, ThreadPool)
 		}
 	} counter;
 
-	int max = 0;
 	{
 		std::future<int> result[300];
 		ThreadPool pool(24);
+		int max = 0;
+
 		pool.pause();
 		for (auto & i : result)
 			i = pool.enqueue(&Counter::GetFinal, &counter);
@@ -55,6 +56,16 @@ TEST(UtilsTest, ThreadPool)
 		// pool dtor
 	}
 	EXPECT_EQ(counter.i, 300);
+
+	{
+		ThreadPool pool(24);
+		pool.pause();
+		for (size_t i = 0; i < 100; i++)
+			pool.enqueue(&Counter::GetFinal, &counter);
+		pool.stop(true);
+		// pool dtor
+	}
+	EXPECT_EQ(counter.i, 400);
 }
 
 TEST(UtilsTest, Common)

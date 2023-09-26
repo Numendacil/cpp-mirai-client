@@ -13,3 +13,6 @@
 [submodule "external/IXWebSocket"]
 	path = external/IXWebSocket
 	url = git@github.com:machinezone/IXWebSocket
+[submodule "external/tomlplusplus"]
+	path = external/tomlplusplus
+	url = git@github.com:marzer/tomlplusplus

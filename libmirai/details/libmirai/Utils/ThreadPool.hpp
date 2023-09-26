@@ -39,7 +39,8 @@ protected:
 	std::queue<std::function<void()>> jobs_;
 
 	bool stop_ = false;
-	std::atomic<bool> paused_ = false;
+	bool wait_ = false;
+	bool pause_ = false;
 
 	void loop_()
 	{
@@ -48,10 +49,10 @@ protected:
 			std::function<void()> job;
 			{
 				std::unique_lock<std::mutex> lk(this->mtx_);
-				this->cv_.wait(lk, [this] { return this->stop_ || (!this->jobs_.empty() && !this->paused_); });
+				this->cv_.wait(lk, [this] { return this->stop_ || (!this->jobs_.empty() && !this->pause_); });
 				if (this->stop_)
 				{
-					if (this->paused_ || this->jobs_.empty())
+					if (!this->wait_ || this->jobs_.empty())
 						return;
 				}
 				job = std::move(this->jobs_.front());
@@ -76,24 +77,36 @@ public:
 	ThreadPool(ThreadPool&&) = delete;
 	ThreadPool& operator=(ThreadPool&&) = delete;
 
-	void pause() { this->paused_ = true; }
+	void pause() 
+	{ 
+		std::lock_guard<std::mutex> lk(this->mtx_);
+		this->pause_ = true; 
+	}
+
 	void resume() 
 	{ 
-		this->paused_ = false; 
+		std::lock_guard<std::mutex> lk(this->mtx_);
+		this->pause_ = false; 
 		this->cv_.notify_all();
 	}
 
-	~ThreadPool()
+	void stop(bool WaitForFinish = false)
 	{
 		{
 			std::lock_guard<std::mutex> lk(this->mtx_);
 			this->stop_ = true;
+			this->wait_ = WaitForFinish;
 		}
 		this->cv_.notify_all();
 		for (std::thread& th : this->workers_)
 		{
 			if (th.joinable()) th.join();
 		}
+	}
+
+	~ThreadPool()
+	{
+		if (!this->stop_) this->stop(false);
 	}
 
 	template<class F, class... Args, std::enable_if_t<std::is_invocable_v<F&&, Args&&...>, int> = 0>

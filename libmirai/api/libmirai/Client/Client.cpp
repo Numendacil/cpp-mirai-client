@@ -260,8 +260,7 @@ void MiraiClient::Disconnect(bool WaitForFinish)
 
 	if (this->pool_)
 	{
-		if (!WaitForFinish)
-			this->pool_->pause();
+		this->pool_->stop(WaitForFinish);
 		this->pool_ = nullptr;
 		LOG_DEBUG(*(this->logger_), "Threadpool shutdown complete");
 	}

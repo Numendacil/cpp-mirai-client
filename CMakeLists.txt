@@ -25,20 +25,21 @@ option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
 # Examples
 option(MIRAI_BUILD_EXAMPLES "Build Examples" ${MIRAI_LIB_MAIN_PROJECT})
 # Install
-option(MIRAI_INSTALL "Install library" ${MIRAI_LIB_MAIN_PROJECT})
+option(MIRAI_INSTALL "Install library" ON)
 
 
-if(MIRAI_BUILD_SHARED_LIBS)
+if(MIRAI_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
 	if(MSVC)
 		set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
-	endif()
+	endif(MSVC)
 	add_library(${MIRAI_LIB_TARGET_NAME} SHARED)
+	set(CMAKE_POSITION_INDEPENDENT_CODE ON CACHE BOOL "Enable PIC" FORCE)
 else()
-	# default, controlled by BUILD_SHARED_LIBS
-	add_library(${MIRAI_LIB_TARGET_NAME})
-endif(MIRAI_BUILD_SHARED_LIBS)
+	add_library(${MIRAI_LIB_TARGET_NAME} STATIC)
+endif(MIRAI_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
 
 add_library(${PROJECT_NAME}::${MIRAI_LIB_TARGET_NAME} ALIAS ${MIRAI_LIB_TARGET_NAME})
+
 
 
 # Set target options
@@ -47,28 +48,43 @@ set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES CXX_STANDARD 17)
 set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES CXX_STANDARD_REQUIRED ON)
 
 
+
 # External packages
+set(MIRAI_NO_LOCAL_LIBS true)
+
 find_package(Threads REQUIRED)
 
 find_package(httplib QUIET)
 if(NOT HTTPLIB_FOUND)
 	message("cpp-httplib not found. Building from local subdirectories")
-	set(HTTPLIB_USE_BROTLI_IF_AVAILABLE OFF CACHE BOOL "Uses Brotli (if available) to enable Brotli decompression support." FORCE)
+	set(MIRAI_NO_LOCAL_LIBS false)
+
 	add_subdirectory(external/cpp-httplib)
 endif()
 
 find_package(nlohmann_json QUIET)
 if(NOT TARGET nlohmann_json::nlohmann_json)
 	message("nlohmann_json not found. Building from local subdirectories")
-	set(JSON_Install ON CACHE BOOL "Install CMake targets during install step." FORCE)
+	set(MIRAI_NO_LOCAL_LIBS false)
+
 	set(JSON_ImplicitConversions OFF CACHE BOOL "Enable implicit conversions." FORCE)
 	set(JSON_DisableEnumSerialization OFF CACHE BOOL "Disable default integer enum serialization." FORCE)
+
 	add_subdirectory(external/json)
+endif()
+
+find_package(tomlplusplus QUIET)
+if(NOT TARGET tomlplusplus::tomlplusplus)
+	message("tomlplusplus not found. Building from local subdirectories")
+	set(MIRAI_NO_LOCAL_LIBS false)
+
+	add_subdirectory(external/tomlplusplus)
 endif()
 
 find_package(ixwebsocket QUIET)
 if(NOT TARGET ixwebsocket::ixwebsocket)
 	message("ixwebsocket not found. Building from local subdirectories")
+	set(MIRAI_NO_LOCAL_LIBS false)
 
 	find_package(ZLIB QUIET)
 	if(TARGET ZLIB::ZLIB)
@@ -102,6 +118,7 @@ endif()
 
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE Threads::Threads)
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
+target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE tomlplusplus::tomlplusplus)
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE httplib::httplib)
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE ixwebsocket::ixwebsocket)
 
@@ -130,43 +147,41 @@ endif(MIRAI_BUILD_EXAMPLES)
 
 # Install
 if(MIRAI_INSTALL)
+	# Headers
 	install(
-		TARGETS ${MIRAI_LIB_TARGET_NAME}
-		EXPORT ${MIRAI_LIB_TARGET_NAME}-targets
-		DESTINATION "lib"
-	)
-
-	install(
-		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/models/"
-		DESTINATION "include/cppmirai"
+		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/"
+		DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${MIRAI_LIB_TARGET_NAME}/"
 		FILES_MATCHING
+		PATTERN "details" EXCLUDE
 		PATTERN "*.hpp"
 	)
 
-	install(
-		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/api/"
-		DESTINATION "include/cppmirai/api"
-		FILES_MATCHING
-		PATTERN "*.hpp"
-	)
+	if (MIRAI_NO_LOCAL_LIBS OR BUILD_SHARED_LIBS OR MIRAI_BUILD_SHARED_LIBS)
+	# Install everything
+		install(
+			TARGETS ${MIRAI_LIB_TARGET_NAME}
+			EXPORT ${MIRAI_LIB_TARGET_NAME}Targets
+			DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		)
 
-	install(
-		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/aggregates/"
-		DESTINATION "include/cppmirai/aggregates"
-		FILES_MATCHING
-		PATTERN "*.hpp"
-	)
+		install(
+			EXPORT ${MIRAI_LIB_TARGET_NAME}Targets 
+			FILE "${MIRAI_LIB_TARGET_NAME}Targets.cmake"
+			NAMESPACE ${PROJECT_NAME}::
+			DESTINATION "lib/cmake/${MIRAI_LIB_TARGET_NAME}"
+		)
 
-	configure_file("${MIRAI_LIB_TARGET_NAME}-config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}-config.cmake" @ONLY)
-	install(
-		FILES "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}-config.cmake"
-		DESTINATION "lib/cmake/${MIRAI_LIB_TARGET_NAME}"
-	)
-
-	install(
-		EXPORT ${MIRAI_LIB_TARGET_NAME}-targets 
-		FILE "${MIRAI_LIB_TARGET_NAME}-targets.cmake"
-		NAMESPACE ${PROJECT_NAME}::
-		DESTINATION "lib/cmake/${MIRAI_LIB_TARGET_NAME}"
-	)
+		configure_file("${MIRAI_LIB_TARGET_NAME}Config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}Config.cmake" @ONLY)
+		install(
+			FILES "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}Config.cmake"
+			DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${MIRAI_LIB_TARGET_NAME}"
+		)
+	else()
+	# Install binaries only
+		install(
+			TARGETS ${MIRAI_LIB_TARGET_NAME}
+			EXPORT ${MIRAI_LIB_TARGET_NAME}-targets
+			DESTINATION "${CMAKE_INSTALL_LIBDIR}"
+		)
+	endif()
 endif(MIRAI_INSTALL)

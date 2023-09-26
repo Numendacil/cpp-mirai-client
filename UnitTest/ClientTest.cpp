@@ -111,7 +111,7 @@ TEST(ClientTest, GMockAdaptorTest)
 		EXPECT_NO_THROW(ptr->TextCallback(event.dump()));
 	}
 
-	EXPECT_NO_THROW(client.Disconnect(false));
+	EXPECT_NO_THROW(client.Disconnect(true));
 
 	EXPECT_EQ(count, 1000);
 

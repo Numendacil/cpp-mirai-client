@@ -42,7 +42,8 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 1. [**machinezone/IXWebSocket**](https://github.com/machinezone/IXWebSocket) websocket and http client and server library, with TLS support and very few dependencies 
 2. [**yhirose/cpp-httplib**](https://github.com/yhirose/cpp-httplib) A C++ header-only HTTP/HTTPS server and client library
 3. [**nlohmann/json**](https://github.com/nlohmann/json) JSON for Modern C++ 
-4. [**google/googletest**](https://github.com/google/googletest) GoogleTest - Google Testing and Mocking Framework
+4. [**marzer/tomlplusplus**](https://github.com/marzer/tomlplusplus) Header-only TOML config file parser and serializer for C++17
+5. [**google/googletest**](https://github.com/google/googletest) GoogleTest - Google Testing and Mocking Framework
 
 其中 [google/googletest](https://github.com/google/googletest) 仅用于测试，实际使用时可以不用安装。
 这些项目都已经以submodule的形式被包含在了 `external/` 目录下，可以通过 `git clone --recursive` 来拉取对应的模块并本地编译链接。
