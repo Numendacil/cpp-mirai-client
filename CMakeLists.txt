@@ -26,6 +26,9 @@ option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
 option(MIRAI_BUILD_EXAMPLES "Build Examples" ${MIRAI_LIB_MAIN_PROJECT})
 # Install
 option(MIRAI_INSTALL "Install library" ON)
+# Use HTTPS or SSH for git download, make sure you have the correct ssh keys configured
+option(MIRAI_GIT_USE_SSH "Use SSH for git download" OFF)
+
 
 
 if(MIRAI_BUILD_SHARED_LIBS OR BUILD_SHARED_LIBS)
@@ -52,69 +55,15 @@ set_target_properties(${MIRAI_LIB_TARGET_NAME} PROPERTIES CXX_STANDARD_REQUIRED 
 # External packages
 set(MIRAI_NO_LOCAL_LIBS true)
 
-find_package(Threads REQUIRED)
+include(FetchContent)
+set(FETCHCONTENT_QUIET FALSE)
 
-find_package(httplib QUIET)
-if(NOT HTTPLIB_FOUND)
-	message("cpp-httplib not found. Building from local subdirectories")
-	set(MIRAI_NO_LOCAL_LIBS false)
+set(URL_PREFIX "https://github.com/")
+if(MIRAI_GIT_USE_SSH)
+	set(URL_PREFIX "git@github.com:")
+endif(MIRAI_GIT_USE_SSH)
 
-	add_subdirectory(external/cpp-httplib)
-endif()
-
-find_package(nlohmann_json QUIET)
-if(NOT TARGET nlohmann_json::nlohmann_json)
-	message("nlohmann_json not found. Building from local subdirectories")
-	set(MIRAI_NO_LOCAL_LIBS false)
-
-	set(JSON_ImplicitConversions OFF CACHE BOOL "Enable implicit conversions." FORCE)
-	set(JSON_DisableEnumSerialization OFF CACHE BOOL "Disable default integer enum serialization." FORCE)
-
-	add_subdirectory(external/json)
-endif()
-
-find_package(tomlplusplus QUIET)
-if(NOT TARGET tomlplusplus::tomlplusplus)
-	message("tomlplusplus not found. Building from local subdirectories")
-	set(MIRAI_NO_LOCAL_LIBS false)
-
-	add_subdirectory(external/tomlplusplus)
-endif()
-
-find_package(ixwebsocket QUIET)
-if(NOT TARGET ixwebsocket::ixwebsocket)
-	message("ixwebsocket not found. Building from local subdirectories")
-	set(MIRAI_NO_LOCAL_LIBS false)
-
-	find_package(ZLIB QUIET)
-	if(TARGET ZLIB::ZLIB)
-		set(USE_ZLIB ON CACHE BOOL "Enable zlib support" FORCE)
-	else()
-		set(USE_ZLIB OFF CACHE BOOL "Enable zlib support" FORCE)
-	endif()
-
-	find_package(OpenSSL QUIET)
-	find_package(MbedTLS QUIET)
-	if(APPLE)
-		set(WS_USE_TLS ON)	# Defaults to SecureTranport on Apple
-	else()
-		if(OPENSSL_FOUND OR MBEDTLS_FOUND)
-			set(WS_USE_TLS ON)
-		endif()
-	endif()
-
-	if(WS_USE_TLS)
-		set(USE_TLS ON CACHE BOOL "Enable TLS support" FORCE)
-	endif()
-	if(OPENSSL_FOUND)
-		set(USE_OPEN_SSL ON CACHE BOOL "Enable OpenSSL support" FORCE)
-	elseif(MBEDTLS_FOUND)
-		set(USE_MBED_TLS ON CACHE BOOL "Enable MbedTLS support" FORCE)
-	endif()
-
-	add_subdirectory(external/IXWebSocket)
-
-endif()
+include(cmake/externals.cmake)
 
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE Threads::Threads)
 target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE nlohmann_json::nlohmann_json)
@@ -132,10 +81,15 @@ add_subdirectory(libmirai)
 # UnitTests
 if(MIRAI_BUILD_UNIT_TESTS)
 	message("UnitTests enabled")
-	add_subdirectory(external/googletest)
-	add_subdirectory(UnitTest)
 
-	target_link_libraries(${MIRAI_LIB_TARGET_NAME} PRIVATE GTest::gmock)
+	FetchContent_Declare(
+		googletest
+		GIT_REPOSITORY	${URL_PREFIX}google/googletest
+		GIT_TAG		v1.14.0
+	)
+	FetchContent_MakeAvailable(googletest)
+
+	add_subdirectory(UnitTest)
 endif(MIRAI_BUILD_UNIT_TESTS)
 
 # Examples
@@ -147,41 +101,5 @@ endif(MIRAI_BUILD_EXAMPLES)
 
 # Install
 if(MIRAI_INSTALL)
-	# Headers
-	install(
-		DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/libmirai/"
-		DESTINATION "${CMAKE_INSTALL_INCLUDEDIR}/${MIRAI_LIB_TARGET_NAME}/"
-		FILES_MATCHING
-		PATTERN "details" EXCLUDE
-		PATTERN "*.hpp"
-	)
-
-	if (MIRAI_NO_LOCAL_LIBS OR BUILD_SHARED_LIBS OR MIRAI_BUILD_SHARED_LIBS)
-	# Install everything
-		install(
-			TARGETS ${MIRAI_LIB_TARGET_NAME}
-			EXPORT ${MIRAI_LIB_TARGET_NAME}Targets
-			DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-		)
-
-		install(
-			EXPORT ${MIRAI_LIB_TARGET_NAME}Targets 
-			FILE "${MIRAI_LIB_TARGET_NAME}Targets.cmake"
-			NAMESPACE ${PROJECT_NAME}::
-			DESTINATION "lib/cmake/${MIRAI_LIB_TARGET_NAME}"
-		)
-
-		configure_file("${MIRAI_LIB_TARGET_NAME}Config.cmake.in" "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}Config.cmake" @ONLY)
-		install(
-			FILES "${CMAKE_CURRENT_BINARY_DIR}/${MIRAI_LIB_TARGET_NAME}Config.cmake"
-			DESTINATION "${CMAKE_INSTALL_LIBDIR}/cmake/${MIRAI_LIB_TARGET_NAME}"
-		)
-	else()
-	# Install binaries only
-		install(
-			TARGETS ${MIRAI_LIB_TARGET_NAME}
-			EXPORT ${MIRAI_LIB_TARGET_NAME}-targets
-			DESTINATION "${CMAKE_INSTALL_LIBDIR}"
-		)
-	endif()
+	include(cmake/install.cmake)
 endif(MIRAI_INSTALL)
