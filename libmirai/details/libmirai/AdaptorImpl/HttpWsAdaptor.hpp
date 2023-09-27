@@ -44,6 +44,7 @@ private:
 	std::map<std::thread::id, httplib::Client> httpclients_;
 
 	bool connected_ = false;
+	bool error_ = false;
 	ClientConnectionEstablishedEvent info_;
 	mutable std::mutex connectmtx_;	// Guarding connection info
 	mutable std::condition_variable connectcv_;

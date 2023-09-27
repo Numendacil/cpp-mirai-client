@@ -198,6 +198,9 @@ void HttpWsAdaptor::Connect()
 	this->httpclients_.clear();
 	// this->shutdown_ = false;
 
+	this->error_ = false;
+	this->connected_ = false;
+
 	size_t retry = 0;
 	// while (true)
 	// {
@@ -361,7 +364,13 @@ void HttpWsAdaptor::Connect()
 				}
 				{
 					std::lock_guard<std::mutex> lk(this->connectmtx_);
-					this->connected_ = false;
+					if (!this->connected_)	// Not connected yet, error occured during the connecting proccess
+					{
+						this->error_ = true;
+						this->connectcv_.notify_all();
+					}
+					else
+						this->connected_ = false;
 				}
 				break;
 			default:
@@ -373,7 +382,9 @@ void HttpWsAdaptor::Connect()
 	
 	{
 		std::unique_lock<std::mutex> lk(this->connectmtx_);
-		this->connectcv_.wait(lk, [this]() { return this->connected_; });
+		this->connectcv_.wait(lk, [this]() { return this->connected_ || this->error_; });
+		if (this->error_)
+			throw Mirai::NetworkException(-1, "Failed to connect to endpoint");	// Details are given in error handler
 	}
 
 	// // The websocket connection will maintain session 

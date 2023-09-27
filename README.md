@@ -19,7 +19,9 @@ cpp-mirai-client 是一个基于 [*mirai*](https://github.com/mamoe/mirai) 与
  [*mirai-api-http*](https://github.com/project-mirai/mirai-api-http) 的跨平台C++机器人框架。
 
 本项目在一定程度上参考了 [cyanray/mirai-cpp](https://github.com/cyanray/mirai-cpp) 项目，您也可以考虑使用该项目进行C++
-QQ机器人的开发
+QQ机器人的开发。
+
+当前适配的 *mirai-api-http* 版本: v2.9.1
 
 ## 安装要求
 本项目使用CMake进行项目构建，要求CMake版本3.16以上。编译器需要支持C++17标准，目前已在最新版本的GCC、Clang与MSVC
@@ -33,11 +35,11 @@ target_link_libraries(your_target_name PRIVATE cpp-mirai-client::cppmirai)
 ```
 即可。
 
-也可以通过 cppmirai-template 直接生成一个基础的程序框架（TBD）
+也可以通过 [cppmirai-template](https://github.com/Numendacil/cppmirai-template) 模板直接生成一个基础的程序框架
 
 ## 项目依赖
 
-cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹内找到
+cpp-mirai-client 使用了以下第三方项目，可在 `cmake/externals.cmake` 文件内找到
 
 1. [**machinezone/IXWebSocket**](https://github.com/machinezone/IXWebSocket) websocket and http client and server library, with TLS support and very few dependencies 
 2. [**yhirose/cpp-httplib**](https://github.com/yhirose/cpp-httplib) A C++ header-only HTTP/HTTPS server and client library
@@ -45,18 +47,12 @@ cpp-mirai-client 使用了以下第三方项目，可在 `external/` 文件夹�
 4. [**marzer/tomlplusplus**](https://github.com/marzer/tomlplusplus) Header-only TOML config file parser and serializer for C++17
 5. [**google/googletest**](https://github.com/google/googletest) GoogleTest - Google Testing and Mocking Framework
 
-其中 [google/googletest](https://github.com/google/googletest) 仅用于测试，实际使用时可以不用安装。
-这些项目都已经以submodule的形式被包含在了 `external/` 目录下，可以通过 `git clone --recursive` 来拉取对应的模块并本地编译链接。
+其中 [google/googletest](https://github.com/google/googletest) 仅用于测试，实际使用时将忽略。
+这些项目将自动通过 `CMake` 中的 `FetchContent` 下载并编译，
 你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 `find_package` 来找到对应的文件。所有依赖均为私有依赖，仅用于编译，使用cpp-mirai-client
 时不需要链接这些第三方库。
 
 本项目的文档生成使用了 [Doxygen](https://doxygen.org/index.html) 与 [jothepro/doxygen-awesome-css](https://github.com/jothepro/doxygen-awesome-css)。
-
-## TODO
-
-- Docs and example usages
-- Project templates for creating a simple QQBot
-- Benchmark and performance tests
 
 <span class="next_section_button">
 

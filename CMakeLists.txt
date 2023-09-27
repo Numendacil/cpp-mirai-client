@@ -18,7 +18,7 @@ if(CMAKE_CURRENT_SOURCE_DIR STREQUAL CMAKE_SOURCE_DIR)
 endif()
 
 
-# Options with regard to building shared library, you may need to manually set the fPIC option
+# Options with regard to building shared library
 option(MIRAI_BUILD_SHARED_LIBS "Build ${MIRAI_LIB_TARGET_NAME} as a shared library." OFF)
 # UnitTests
 option(MIRAI_BUILD_UNIT_TESTS "Build UnitTests" ${MIRAI_LIB_MAIN_PROJECT})
