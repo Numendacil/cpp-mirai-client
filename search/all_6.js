@@ -29,7 +29,7 @@ var searchData=
   ['flashimagemessage_26',['FlashImageMessage',['../classMirai_1_1FlashImageMessage.html',1,'Mirai']]],
   ['forward_27',['FORWARD',['../namespaceMirai.html#a1575f902d11cea6375fa9c86be575fccabfec72bb37910c61f36b6c29a1f7ec31',1,'Mirai']]],
   ['forward_28',['Forward',['../classMirai_1_1MessageChain.html#a8c315bbbb505d8687086ed137e514db0',1,'Mirai::MessageChain']]],
-  ['forwardmessage_29',['ForwardMessage',['../classMirai_1_1ForwardMessage.html#acc55fec30037ad7dc7b95bc692b8f58a',1,'Mirai::ForwardMessage::ForwardMessage(ForwardMessage &amp;&amp;)'],['../classMirai_1_1ForwardMessage.html#a4436dc01f2abc1e4ea96d2c4e97b08c0',1,'Mirai::ForwardMessage::ForwardMessage(const ForwardMessage &amp;)'],['../classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23',1,'Mirai::ForwardMessage::ForwardMessage()'],['../classMirai_1_1ForwardMessage.html',1,'Mirai::ForwardMessage']]],
+  ['forwardmessage_29',['ForwardMessage',['../classMirai_1_1ForwardMessage.html#a4436dc01f2abc1e4ea96d2c4e97b08c0',1,'Mirai::ForwardMessage::ForwardMessage(const ForwardMessage &amp;)'],['../classMirai_1_1ForwardMessage.html#acc55fec30037ad7dc7b95bc692b8f58a',1,'Mirai::ForwardMessage::ForwardMessage(ForwardMessage &amp;&amp;)'],['../classMirai_1_1ForwardMessage.html#a4a1ed841e1f306b8388a9ba2e4d90e23',1,'Mirai::ForwardMessage::ForwardMessage()'],['../classMirai_1_1ForwardMessage.html',1,'Mirai::ForwardMessage']]],
   ['forwardmessage_2ecpp_30',['ForwardMessage.cpp',['../ForwardMessage_8cpp.html',1,'']]],
   ['forwardmessage_2ehpp_31',['ForwardMessage.hpp',['../ForwardMessage_8hpp.html',1,'']]],
   ['forwardmessagenode_2ehpp_32',['ForwardMessageNode.hpp',['../ForwardMessageNode_8hpp.html',1,'']]],
@@ -49,7 +49,8 @@ var searchData=
   ['friendsyncmessage_46',['FriendSyncMessage',['../namespaceMirai.html#a27597c5bd52d9ac1c0fa885d39301c7ea3919bd01abd38fe6967b388de1477756',1,'Mirai']]],
   ['friendsyncmessageevent_47',['FriendSyncMessageEvent',['../classMirai_1_1FriendSyncMessageEvent.html',1,'Mirai']]],
   ['fromjsonfile_48',['FromJsonFile',['../structMirai_1_1HttpWsAdaptorConfig.html#a483bf310cfb70b72bfdf9c18e78ab72b',1,'Mirai::HttpWsAdaptorConfig']]],
-  ['front_49',['front',['../classMirai_1_1MessageChain.html#a9bbaf4ad91afc3da0b2e8f56ace36037',1,'Mirai::MessageChain::front()'],['../classMirai_1_1MessageChain.html#a1545d022f4f26ce20c7d402ab6237d95',1,'Mirai::MessageChain::front() const'],['../classMirai_1_1ForwardMessage.html#a8578fad5dfe1f46e5f31e09a4e6ee5a9',1,'Mirai::ForwardMessage::front()'],['../classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6',1,'Mirai::ForwardMessage::front() const']]],
-  ['function_5ftraits_50',['function_traits',['../structMirai_1_1MiraiClient_1_1traits_1_1function__traits.html',1,'Mirai::MiraiClient::traits']]],
-  ['function_5ftraits_3c_20std_3a_3afunction_3c_20void_28eventtype_29_3e_20_3e_51',['function_traits&lt; std::function&lt; void(EventType)&gt; &gt;',['../structMirai_1_1MiraiClient_1_1traits_1_1function__traits_3_01std_1_1function_3_01void_07EventType_08_4_01_4.html',1,'Mirai::MiraiClient::traits']]]
+  ['fromtomlfile_49',['FromTOMLFile',['../structMirai_1_1HttpWsAdaptorConfig.html#afafeba631cee57a8ca617e29890e9799',1,'Mirai::HttpWsAdaptorConfig']]],
+  ['front_50',['front',['../classMirai_1_1MessageChain.html#a9bbaf4ad91afc3da0b2e8f56ace36037',1,'Mirai::MessageChain::front()'],['../classMirai_1_1MessageChain.html#a1545d022f4f26ce20c7d402ab6237d95',1,'Mirai::MessageChain::front() const'],['../classMirai_1_1ForwardMessage.html#a8578fad5dfe1f46e5f31e09a4e6ee5a9',1,'Mirai::ForwardMessage::front()'],['../classMirai_1_1ForwardMessage.html#a832d05e5a70b2ec714d0421321eea2c6',1,'Mirai::ForwardMessage::front() const']]],
+  ['function_5ftraits_51',['function_traits',['../structMirai_1_1MiraiClient_1_1traits_1_1function__traits.html',1,'Mirai::MiraiClient::traits']]],
+  ['function_5ftraits_3c_20std_3a_3afunction_3c_20void_28eventtype_29_3e_20_3e_52',['function_traits&lt; std::function&lt; void(EventType)&gt; &gt;',['../structMirai_1_1MiraiClient_1_1traits_1_1function__traits_3_01std_1_1function_3_01void_07EventType_08_4_01_4.html',1,'Mirai::MiraiClient::traits']]]
 ];

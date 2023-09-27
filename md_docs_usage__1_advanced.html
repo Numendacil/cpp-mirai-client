@@ -141,7 +141,7 @@ $(document).ready(function(){initNavTree('md_docs_usage__1_advanced.html',''); i
   <div class="headertitle"><div class="title">进阶教程 </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><h1><a class="anchor" id="autotoc_md14"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md13"></a>
 异常处理</h1>
 <p >cpp-mirai-client 中的大部分函数均有可能会抛出异常。其种类可分为以下几个方面：</p>
 <ul>
@@ -166,7 +166,7 @@ $(document).ready(function(){initNavTree('md_docs_usage__1_advanced.html',''); i
 <p class="startli">目前未使用。在调用某些预留但未实现的接口时抛出的异常，例如在Websocket模式下mirai-api-http无法上传文件。</p>
 </li>
 </ul>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 特殊事件</h1>
 <p >为了处理连接mirai时可能发生的状况，cpp-mirai-client 定义了四种特殊的事件类型，位于 <a href="../../libmirai/models/libmirai/Events/MiraiClientEvents.hpp">MiraiClientEvents.hpp</a> 中。它们可以像普通事件一样注册回调函数</p>
 <div class="fragment"><div class="line">client.On&lt;<a class="code hl_struct" href="structMirai_1_1ClientConnectionEstablishedEvent.html">Mirai::ClientConnectionEstablishedEvent</a>&gt;(</div>
@@ -187,7 +187,7 @@ $(document).ready(function(){initNavTree('md_docs_usage__1_advanced.html',''); i
 <li><code><a class="el" href="structMirai_1_1ClientConnectionErrorEvent.html" title="连接错误事件">Mirai::ClientConnectionErrorEvent</a></code> 会在连接产生错误时触发，如网络原因导致的连接失败，或MAH握手信息不一致等。若错误导致连接断开则会再产生 <code><a class="el" href="structMirai_1_1ClientConnectionClosedEvent.html">ClientConnectionClosedEvent</a></code> 事件，因此无需在 <code><a class="el" href="structMirai_1_1ClientConnectionErrorEvent.html">ClientConnectionErrorEvent</a></code> 中添加处理断连相关的逻辑。</li>
 <li><code><a class="el" href="structMirai_1_1ClientParseErrorEvent.html" title="消息解析错误事件">Mirai::ClientParseErrorEvent</a></code>会在解析消息产生错误时触发（主动调用API产生的异常不包括在内，而是会直接抛出），一般来说只需要记录错误即可。</li>
 </ul>
-<h1><a class="anchor" id="autotoc_md16"></a>
+<h1><a class="anchor" id="autotoc_md15"></a>
 多线程相关</h1>
 <p >由于cpp-mirai-client在处理消息循环时使用了多线程，因此为保证线程安全，<code><a class="el" href="classMirai_1_1MiraiClient.html" title="提供与mirai-api-http网络交互的封装">Mirai::MiraiClient</a></code> 的调用者应满足以下约定：</p>
 <ul>

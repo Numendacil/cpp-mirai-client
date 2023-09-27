@@ -1,6 +1,7 @@
 var structMirai_1_1HttpWsAdaptorConfig =
 [
     [ "FromJsonFile", "structMirai_1_1HttpWsAdaptorConfig.html#a483bf310cfb70b72bfdf9c18e78ab72b", null ],
+    [ "FromTOMLFile", "structMirai_1_1HttpWsAdaptorConfig.html#afafeba631cee57a8ca617e29890e9799", null ],
     [ "HttpUrl", "structMirai_1_1HttpWsAdaptorConfig.html#a27cc24cf750b8590301832dc8ed27875", null ],
     [ "ConnectionTimeout", "structMirai_1_1HttpWsAdaptorConfig.html#a50105c71014559b5ab4c1fdc0aedd3ef", null ],
     [ "ReadTimeout", "structMirai_1_1HttpWsAdaptorConfig.html#aced19e7affffee314e7fcbd5f0b42a5e", null ],

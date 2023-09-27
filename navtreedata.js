@@ -28,25 +28,24 @@ var NAVTREE =
     [ "简介", null, [
       [ "关于本项目", "index.html#autotoc_md1", null ],
       [ "安装要求", "index.html#autotoc_md2", null ],
-      [ "项目依赖", "index.html#autotoc_md3", null ],
-      [ "TODO", "index.html#autotoc_md4", null ]
+      [ "项目依赖", "index.html#autotoc_md3", null ]
     ] ],
     [ "教程", null, [
       [ "快速入门", "md_docs_usage__0_quickstart.html", [
-        [ "准备工作", "md_docs_usage__0_quickstart.html#autotoc_md6", [
-          [ "配置mirai与mirai-api-http", "md_docs_usage__0_quickstart.html#autotoc_md7", null ],
-          [ "链接cpp-mirai-client", "md_docs_usage__0_quickstart.html#autotoc_md8", null ]
+        [ "准备工作", "md_docs_usage__0_quickstart.html#autotoc_md5", [
+          [ "配置mirai与mirai-api-http", "md_docs_usage__0_quickstart.html#autotoc_md6", null ],
+          [ "链接cpp-mirai-client", "md_docs_usage__0_quickstart.html#autotoc_md7", null ]
         ] ],
-        [ "一个简易的复读机", "md_docs_usage__0_quickstart.html#autotoc_md9", [
-          [ "头文件", "md_docs_usage__0_quickstart.html#autotoc_md10", null ],
-          [ "连接mirai-api-http", "md_docs_usage__0_quickstart.html#autotoc_md11", null ],
-          [ "处理事件", "md_docs_usage__0_quickstart.html#autotoc_md12", null ]
+        [ "一个简易的复读机", "md_docs_usage__0_quickstart.html#autotoc_md8", [
+          [ "头文件", "md_docs_usage__0_quickstart.html#autotoc_md9", null ],
+          [ "连接mirai-api-http", "md_docs_usage__0_quickstart.html#autotoc_md10", null ],
+          [ "处理事件", "md_docs_usage__0_quickstart.html#autotoc_md11", null ]
         ] ]
       ] ],
       [ "进阶教程", "md_docs_usage__1_advanced.html", [
-        [ "异常处理", "md_docs_usage__1_advanced.html#autotoc_md14", null ],
-        [ "特殊事件", "md_docs_usage__1_advanced.html#autotoc_md15", null ],
-        [ "多线程相关", "md_docs_usage__1_advanced.html#autotoc_md16", null ]
+        [ "异常处理", "md_docs_usage__1_advanced.html#autotoc_md13", null ],
+        [ "特殊事件", "md_docs_usage__1_advanced.html#autotoc_md14", null ],
+        [ "多线程相关", "md_docs_usage__1_advanced.html#autotoc_md15", null ]
       ] ]
     ] ],
     [ "API 文档", null, [
@@ -94,8 +93,8 @@ var NAVTREEINDEX =
 "classMirai_1_1MiraiClient.html#a1b4d6dd8d9d66e775b0c995cf815ef3c",
 "classMirai_1_1MusicShareMessage.html#a69efaa30d4269c9e14894ffb3ec5127f",
 "classMirai_1_1StrangerSyncMessageEvent.html",
-"namespaceMirai.html#a27597c5bd52d9ac1c0fa885d39301c7eac50454868fc861eba581ad4932d38a83",
-"structMirai_1_1GetType_3_01DiceMessage_1_1GetType_07_08_4.html#a4e8006bd3d88d19d768c4fce559f2d11",
+"namespaceMirai.html#a27597c5bd52d9ac1c0fa885d39301c7ead319b3aaeb1aa4d6b90fffe6ba77e58f",
+"structMirai_1_1GetType_3_01FaceMessage_1_1GetType_07_08_4.html",
 "structstd_1_1hash_3_01Mirai_1_1GID__t_01_4.html"
 ];
 

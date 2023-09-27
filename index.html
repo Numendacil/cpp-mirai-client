@@ -146,7 +146,8 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <h1><a class="anchor" id="autotoc_md1"></a>
 关于本项目</h1>
 <p >cpp-mirai-client 是一个基于 <a href="https://github.com/mamoe/mirai"><em>mirai</em></a> 与 <a href="https://github.com/project-mirai/mirai-api-http"><em>mirai-api-http</em></a> 的跨平台C++机器人框架。</p>
-<p >本项目在一定程度上参考了 <a href="https://github.com/cyanray/mirai-cpp">cyanray/mirai-cpp</a> 项目，您也可以考虑使用该项目进行C++ QQ机器人的开发</p>
+<p >本项目在一定程度上参考了 <a href="https://github.com/cyanray/mirai-cpp">cyanray/mirai-cpp</a> 项目，您也可以考虑使用该项目进行C++ QQ机器人的开发。</p>
+<p >当前适配的 <em>mirai-api-http</em> 版本: v2.9.1</p>
 <h1><a class="anchor" id="autotoc_md2"></a>
 安装要求</h1>
 <p >本项目使用CMake进行项目构建，要求CMake版本3.16以上。编译器需要支持C++17标准，目前已在最新版本的GCC、Clang与MSVC 编译器下测试通过。</p>
@@ -154,25 +155,19 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 <div class="line">set(MIRAI_BUILD_UNIT_TESTS OFF CACHE BOOL &quot;Build UnitTests&quot; FORCE)</div>
 <div class="line">target_link_libraries(your_target_name PRIVATE cpp-mirai-client::cppmirai)</div>
 </div><!-- fragment --><p> 即可。</p>
-<p >也可以通过 cppmirai-template 直接生成一个基础的程序框架（TBD）</p>
+<p >也可以通过 <a href="https://github.com/Numendacil/cppmirai-template">cppmirai-template</a> 模板直接生成一个基础的程序框架</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 项目依赖</h1>
-<p >cpp-mirai-client 使用了以下第三方项目，可在 <code>external/</code> 文件夹内找到</p>
+<p >cpp-mirai-client 使用了以下第三方项目，可在 <code>cmake/externals.cmake</code> 文件内找到</p>
 <ol type="1">
 <li><a href="https://github.com/machinezone/IXWebSocket"><b>machinezone/IXWebSocket</b></a> websocket and http client and server library, with TLS support and very few dependencies</li>
 <li><a href="https://github.com/yhirose/cpp-httplib"><b>yhirose/cpp-httplib</b></a> A C++ header-only HTTP/HTTPS server and client library</li>
 <li><a href="https://github.com/nlohmann/json"><b>nlohmann/json</b></a> JSON for Modern C++</li>
+<li><a href="https://github.com/marzer/tomlplusplus"><b>marzer/tomlplusplus</b></a> Header-only TOML config file parser and serializer for C++17</li>
 <li><a href="https://github.com/google/googletest"><b>google/googletest</b></a> GoogleTest - Google Testing and Mocking Framework</li>
 </ol>
-<p >其中 <a href="https://github.com/google/googletest">google/googletest</a> 仅用于测试，实际使用时可以不用安装。 这些项目都已经以submodule的形式被包含在了 <code>external/</code> 目录下，可以通过 <code>git clone --recursive</code> 来拉取对应的模块并本地编译链接。 你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 <code>find_package</code> 来找到对应的文件。所有依赖均为私有依赖，仅用于编译，使用cpp-mirai-client 时不需要链接这些第三方库。</p>
+<p >其中 <a href="https://github.com/google/googletest">google/googletest</a> 仅用于测试，实际使用时将忽略。 这些项目将自动通过 <code>CMake</code> 中的 <code>FetchContent</code> 下载并编译， 你也可以单独安装这些第三方库，cpp-mirai-client会自动使用 <code>find_package</code> 来找到对应的文件。所有依赖均为私有依赖，仅用于编译，使用cpp-mirai-client 时不需要链接这些第三方库。</p>
 <p >本项目的文档生成使用了 <a href="https://doxygen.org/index.html">Doxygen</a> 与 <a href="https://github.com/jothepro/doxygen-awesome-css">jothepro/doxygen-awesome-css</a>。</p>
-<h1><a class="anchor" id="autotoc_md4"></a>
-TODO</h1>
-<ul>
-<li>Docs and example usages</li>
-<li>Project templates for creating a simple QQBot</li>
-<li>Benchmark and performance tests</li>
-</ul>
 <p ><span class="next_section_button"></span></p>
 <p ><span class="next_section_button">Read Next: <a class="el" href="md_docs_usage__0_quickstart.html">快速入门</a> </span> </p>
 </div></div><!-- PageDoc -->
